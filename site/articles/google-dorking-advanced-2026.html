@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Google Dorking: Operators and Techniques for Serious OSINT — IGRS</title>
+<meta name="description" content="Google&#x27;s search operators are among the most powerful — and most underused — tools in the OSINT toolkit. The full operator set, with investigative use cases for each.">
+<link rel="canonical" href="https://igrs.xyz/articles/google-dorking-advanced-2026.html">
+<meta property="og:title" content="Advanced Google Dorking: Operators and Techniques for Serious OSINT">
+<meta property="og:description" content="Google&#x27;s search operators are among the most powerful — and most underused — tools in the OSINT toolkit. The full operator set, with investigative use cases for each.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/google-dorking-advanced-2026.html">
+<meta property="og:site_name" content="IGRS">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'Advanced Google Dorking: Operators and Techniques for Serious OSINT',
+"description":'Google&#x27;s search operators are among the most powerful — and most underused — tools in the OSINT toolkit. The full operator set, with investigative use cases for each.',"datePublished":"2026-05-20","dateModified":"2026-05-20",
+"author":{"@type":"Person","name":"Manuj Kumar Pandey"},
+"publisher":{"@type":"Organization","name":"IGRS"},
+"mainEntityOfPage":"https://igrs.xyz/articles/google-dorking-advanced-2026.html"}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>Advanced Google Dorking: Operators and Techniques for Serious OSINT</h1>
+  <div class="dossier" aria-label="Article information">
+    <table>
+      <tr><td>File No.</td><td>IGRS-030/2026</td></tr>
+      <tr><td>Subject</td><td>Comprehensive guide to advanced Google search operators for professional OSINT investigation</td></tr>
+      <tr><td>Category</td><td>OSINT Fundamentals</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-05-20</td></tr>
+      <tr><td>Reading time</td><td>6 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">Google&#x27;s search operators are among the most powerful — and most underused — tools in the OSINT toolkit. The full operator set, with investigative use cases for each.</p>
+  <h2>Beyond basic search</h2><p>Most people use Google as a natural language search engine. OSINT investigators use it as a structured query language against the world's largest document index. Search operators transform generic keyword searches into precise queries that can find specific file types on specific domains, pages containing specific combinations of terms, or content that has been indexed but is not intended to be public. Mastery of Google's operator set is a foundational OSINT skill that requires no special tools and costs nothing.</p><h2>The essential operators</h2><p><strong>site:</strong> — restricts results to a specific domain. <code>site:company.com filetype:pdf</code> finds all indexed PDFs on a domain. <code>site:linkedin.com/in "Company X" "Director"</code> finds LinkedIn profiles of Company X directors. Invaluable for scoping searches to known-relevant domains.</p><p><strong>filetype:</strong> — restricts results to specific file types. <code>filetype:xlsx site:gov.in</code> finds Excel files on Indian government sites. Common investigatively useful types: pdf, xlsx, docx, csv, sql, log, txt, xml. File types sometimes expose data not intended for public access.</p><p><strong>intitle: / allintitle:</strong> — restricts results to pages with the search term in the title. Useful for finding specific document types: <code>intitle:"index of" "parent directory"</code> finds directory listings. <code>allintitle:confidential salary budget 2025</code> finds pages with all those terms in the title.</p><p><strong>inurl: / allinurl:</strong> — restricts results to pages with the term in the URL. <code>inurl:admin login</code> finds admin login pages. <code>inurl:/wp-content/uploads/ filetype:pdf</code> finds PDFs uploaded to WordPress sites.</p><p><strong>intext: / allintext:</strong> — searches within page body text specifically. Useful when the search term may appear in navigation or other elements you want to exclude. <code>intext:"Aadhar" intext:"PAN" filetype:csv</code> (investigative example — finding potential data exposures).</p><p><strong>cache:</strong> — returns Google's cached version of a page. Invaluable when content has been removed or modified since indexing. <code>cache:domain.com/page</code>.</p><p><strong>related:</strong> — finds pages similar to a specified URL. Useful for finding competitors, related organizations, or alternative sources. <code>related:company.com</code>.</p><p><strong>" " (exact phrase):</strong> — requires exact phrase match. The single most important operator for precision. Always use for names, document titles, specific terms.</p><p><strong>- (exclude):</strong> — excludes pages containing the specified term. Useful for removing noise: <code>"John Smith" lawyer -"John Smith and Sons"</code>.</p><h2>Combining operators</h2><p>The real power emerges from combining operators. <code>site:company.com filetype:pdf "confidential" -inurl:public</code> finds confidential PDFs on a domain, excluding those in public directories. <code>site:linkedin.com/in "Company X" "Head of Security" OR "CISO"</code> finds security leadership at a specific organization. <code>intitle:"index of" "backup" site:targetdomain.com</code> checks for exposed backup directories — a classic vulnerability check used in authorized security assessments.</p><div class="callout"><strong>Dorking ethics:</strong> Google dorking on your own organization's assets (authorized audit), a subject of a lawful investigation, or public records is appropriate OSINT practice. Using dorking to access private data, systems, or content you are not authorized to access is unlawful regardless of how the information was found.</div>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+      <a href="../disclaimer.html">&gt; Disclaimer</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
