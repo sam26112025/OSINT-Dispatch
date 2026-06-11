@@ -8,16 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Install lftp
         run: sudo apt-get install -y lftp
-
       - name: Deploy via FTP
         run: |
           lftp -c "
           set ftp:ssl-allow no;
           set dns:order inet;
           open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} p3plzcpnl506320.prod.phx3.secureserver.net;
-          mirror --reverse --delete --verbose ./site/ /home/l4iuqbud5dfe/public_html/;
+          mirror --reverse --delete --verbose ./site/ public_html/;
           bye
           "
