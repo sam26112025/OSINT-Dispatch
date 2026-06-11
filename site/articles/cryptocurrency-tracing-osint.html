@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cryptocurrency Tracing: OSINT Techniques for Following the Money — IGRS</title>
+<meta name="description" content="Cryptocurrency&#x27;s transparency is often misunderstood — blockchain transactions are public by design. How investigators trace funds through wallets, mixers, and exchanges.">
+<link rel="canonical" href="https://igrs.xyz/articles/cryptocurrency-tracing-osint.html">
+<meta property="og:title" content="Cryptocurrency Tracing: OSINT Techniques for Following the Money">
+<meta property="og:description" content="Cryptocurrency&#x27;s transparency is often misunderstood — blockchain transactions are public by design. How investigators trace funds through wallets, mixers, and exchanges.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/cryptocurrency-tracing-osint.html">
+<meta property="og:site_name" content="IGRS">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'Cryptocurrency Tracing: OSINT Techniques for Following the Money',
+"description":'Cryptocurrency&#x27;s transparency is often misunderstood — blockchain transactions are public by design. How investigators trace funds through wallets, mixers, and exchanges.',"datePublished":"2026-05-26","dateModified":"2026-05-26",
+"author":{"@type":"Person","name":"Manuj Kumar Pandey"},
+"publisher":{"@type":"Organization","name":"IGRS"},
+"mainEntityOfPage":"https://igrs.xyz/articles/cryptocurrency-tracing-osint.html"}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>Cryptocurrency Tracing: OSINT Techniques for Following the Money</h1>
+  <div class="dossier" aria-label="Article information">
+    <table>
+      <tr><td>File No.</td><td>IGRS-032/2026</td></tr>
+      <tr><td>Subject</td><td>Open-source intelligence methodology for tracing cryptocurrency transactions in fraud investigations</td></tr>
+      <tr><td>Category</td><td>Cyber Fraud</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-05-26</td></tr>
+      <tr><td>Reading time</td><td>7 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">Cryptocurrency&#x27;s transparency is often misunderstood — blockchain transactions are public by design. How investigators trace funds through wallets, mixers, and exchanges.</p>
+  <h2>The transparency paradox</h2><p>Cryptocurrency is often described as anonymous, but most major blockchains — Bitcoin, Ethereum, and most layer-2 networks — are pseudonymous rather than anonymous. Every transaction is recorded permanently on a public ledger, visible to anyone, forever. The pseudonymity comes from addresses — random-looking strings with no inherent identity linkage. But addresses leave traces, cluster together through common usage patterns, and eventually touch real-world infrastructure — exchanges, payment processors, merchants — that must comply with KYC/AML regulations. This is where tracing converts pseudonymous addresses to real identities.</p><h2>The blockchain as evidence</h2><p>Every cryptocurrency transaction provides: the sending address, the receiving address, the amount, a timestamp, and the transaction hash (a unique identifier). For Bitcoin, the UTXO model additionally shows which previous transaction outputs funded the current transaction. This creates a complete, immutable graph of value flow that cannot be altered after the fact. For investigators, this is a forensic dream — evidence that cannot be destroyed, tampered with, or claimed to have been misrecorded.</p><h2>Free OSINT tools for blockchain analysis</h2><ul><li><strong>Blockchain.com explorer, Blockchair, Mempool.space (Bitcoin):</strong> Enter any address or transaction hash to see the full history. Blockchair additionally provides cluster analysis and basic entity identification.</li><li><strong>Etherscan (Ethereum):</strong> Complete Ethereum transaction history with contract interaction details. Token transfers, DeFi interactions, and NFT transactions are all visible.</li><li><strong>OSINT Framework blockchain section:</strong> Aggregates multiple free analysis tools by blockchain.</li><li><strong>Chainalysis Reactor free tier / Crystal Blockchain:</strong> Commercial tools with free limited-use tiers; significantly more powerful for entity identification and pattern analysis.</li></ul><h2>Address clustering</h2><p>The most powerful technique in free-tool blockchain OSINT is address clustering — identifying groups of addresses controlled by the same entity. Common-input ownership heuristic: when multiple addresses are inputs to the same transaction, they are typically controlled by the same wallet. Following the change output: Bitcoin transactions often produce a change output returning to the sender; identifying change outputs allows clustering. Over multiple transactions, a single entity's full address set often becomes visible, revealing the total funds controlled.</p><h2>Exchange attribution</h2><p>The terminal point of most crypto fraud investigations is an exchange — where cryptocurrency is converted to fiat. Major exchanges serving Indian users (WazirX, CoinDCX, Binance, OKX) are required under PMLA to maintain KYC records and respond to law enforcement legal process. When tracing leads to a deposit at an identified exchange, a Section 91 BNSS notice to that exchange (or, for foreign exchanges, a mutual legal assistance request via CBI) can produce the KYC identity behind the receiving address. This converts the blockchain's pseudonymous address into a name, phone number, and bank account.</p><div class="callout">Cryptocurrency mixing services (tumblers) and privacy coins (Monero) are designed to defeat tracing. However, even mixed funds must eventually touch real-world infrastructure — and the mixing service itself is often an identifiable entity that law enforcement can target.</div>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+      <a href="../disclaimer.html">&gt; Disclaimer</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
