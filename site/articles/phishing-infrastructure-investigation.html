@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investigating Phishing Infrastructure: From URL to Attribution — IGRS</title>
+<meta name="description" content="A phishing URL is just the entry point. The infrastructure behind it reveals the threat actor&#x27;s patterns, tooling, and often their identity. How to investigate systematically.">
+<link rel="canonical" href="https://igrs.xyz/articles/phishing-infrastructure-investigation.html">
+<meta property="og:title" content="Investigating Phishing Infrastructure: From URL to Attribution">
+<meta property="og:description" content="A phishing URL is just the entry point. The infrastructure behind it reveals the threat actor&#x27;s patterns, tooling, and often their identity. How to investigate systematically.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/phishing-infrastructure-investigation.html">
+<meta property="og:site_name" content="IGRS">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'Investigating Phishing Infrastructure: From URL to Attribution',
+"description":'A phishing URL is just the entry point. The infrastructure behind it reveals the threat actor&#x27;s patterns, tooling, and often their identity. How to investigate systematically.',"datePublished":"2026-05-11","dateModified":"2026-05-11",
+"author":{"@type":"Person","name":"Manuj Kumar Pandey"},
+"publisher":{"@type":"Organization","name":"IGRS"},
+"mainEntityOfPage":"https://igrs.xyz/articles/phishing-infrastructure-investigation.html"}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>Investigating Phishing Infrastructure: From URL to Attribution</h1>
+  <div class="dossier" aria-label="Article information">
+    <table>
+      <tr><td>File No.</td><td>IGRS-027/2026</td></tr>
+      <tr><td>Subject</td><td>OSINT and technical methodology for phishing infrastructure analysis and threat actor attribution</td></tr>
+      <tr><td>Category</td><td>Threat Intelligence</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-05-11</td></tr>
+      <tr><td>Reading time</td><td>6 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">A phishing URL is just the entry point. The infrastructure behind it reveals the threat actor&#x27;s patterns, tooling, and often their identity. How to investigate systematically.</p>
+  <h2>Why investigate phishing infrastructure</h2><p>The standard response to a phishing URL is to block it and move on. The intelligence response is to investigate the infrastructure behind it — the hosting, the domain registration, the SSL certificate, the server configuration, and the malicious toolkit — because threat actors reuse infrastructure. The domain that phished your finance team today may share hosting, registrar patterns, or SSL fingerprints with dozens of other phishing sites targeting your sector. Identifying those patterns lets you block the actor's entire operational footprint, not just one URL.</p><h2>Domain analysis</h2><p>Begin with the phishing domain itself. Whois and RDAP records reveal registrar, registration date, and (where not privacy-protected) registrant details. Registration dates are significant — phishing domains are typically registered within hours or days of deployment; a domain registered years ago suggests either a compromised legitimate site or a more patient actor. Check domain categorisation on major reputation services (URLhaus, PhishTank, VirusTotal) to see if others have already identified it. The registrar and DNS provider can sometimes reveal patterns — threat actors often reuse the same infrastructure providers across campaigns.</p><h2>Hosting investigation</h2><p>Resolve the domain to its IP address and investigate that IP. Shodan shows what services are running on the host. VirusTotal's IP report shows other domains that have pointed to the same IP — often revealing the actor's other active phishing sites. Look for unusual open ports, uncommon services, or hosting patterns (bulletproof hosting providers, recently created VPS instances) that suggest malicious use. IP geolocation is a rough indicator of actor geography but should not be over-relied upon — actors routinely use hosting in jurisdictions distant from their actual location.</p><h2>SSL certificate analysis</h2><p>Most phishing sites now use HTTPS — free certificates from Let's Encrypt remove the cost barrier. Certificate transparency logs (crt.sh) record every SSL certificate issued for a domain, including historical certificates. Searching crt.sh for wildcard patterns or organisation names sometimes reveals the actor's other domains. More importantly, some actors reuse SSL certificates or certificate patterns across multiple domains, creating a fingerprint visible in passive DNS and certificate transparency data.</p><div class="callout">Censys and Shodan both allow searching by SSL certificate fingerprint. If you identify a phishing server's SSL certificate, searching for other hosts with the same certificate or certificate pattern can reveal the actor's entire infrastructure.</div><h2>Malicious toolkit fingerprinting</h2><p>The phishing page itself often contains fingerprints of the toolkit used to create it — EvilProxy, Evilginx, Gophish, Modlishka, and dozens of commercially available phishing kits each have distinctive HTML structures, JavaScript patterns, and server response characteristics. Identifying the toolkit narrows the threat actor pool (some kits are sold only to specific communities) and can link the current phishing campaign to previous activity documented in threat intelligence reports.</p>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+      <a href="../disclaimer.html">&gt; Disclaimer</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
