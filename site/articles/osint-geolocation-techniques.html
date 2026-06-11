@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geolocating Images and Videos: A Step-by-Step OSINT Methodology — IGRS</title>
+<meta name="description" content="Geolocation — determining where a photo or video was taken from visual content alone — is one of the most powerful verification skills in modern OSINT. The complete methodology.">
+<link rel="canonical" href="https://igrs.xyz/articles/osint-geolocation-techniques.html">
+<meta property="og:title" content="Geolocating Images and Videos: A Step-by-Step OSINT Methodology">
+<meta property="og:description" content="Geolocation — determining where a photo or video was taken from visual content alone — is one of the most powerful verification skills in modern OSINT. The complete methodology.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/osint-geolocation-techniques.html">
+<meta property="og:site_name" content="IGRS">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'Geolocating Images and Videos: A Step-by-Step OSINT Methodology',
+"description":'Geolocation — determining where a photo or video was taken from visual content alone — is one of the most powerful verification skills in modern OSINT. The complete methodology.',"datePublished":"2026-06-10","dateModified":"2026-06-10",
+"author":{"@type":"Person","name":"Manuj Kumar Pandey"},
+"publisher":{"@type":"Organization","name":"IGRS"},
+"mainEntityOfPage":"https://igrs.xyz/articles/osint-geolocation-techniques.html"}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>Geolocating Images and Videos: A Step-by-Step OSINT Methodology</h1>
+  <div class="dossier" aria-label="Article information">
+    <table>
+      <tr><td>File No.</td><td>IGRS-038/2026</td></tr>
+      <tr><td>Subject</td><td>Systematic methodology for geolocation of photographs and video using open-source techniques</td></tr>
+      <tr><td>Category</td><td>Verification</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-06-10</td></tr>
+      <tr><td>Reading time</td><td>6 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">Geolocation — determining where a photo or video was taken from visual content alone — is one of the most powerful verification skills in modern OSINT. The complete methodology.</p>
+  <h2>What geolocation is</h2><p>Geolocation in the OSINT context means determining the geographic location depicted in a photograph or video using visual evidence in the image itself — without relying on metadata, which is often stripped before publication. It is the process of matching visual features (terrain, structures, signage, vegetation, street markings, shadows) against satellite imagery, street-level photography, and geographic databases to pinpoint where a photo was taken. Used by conflict investigators, journalists, and intelligence analysts to verify the claimed location of events and identify manipulation.</p><h2>The methodology — a structured approach</h2><p><strong>Step 1: Extract everything visible.</strong> Before touching a mapping tool, methodically catalogue every visible feature in the image. Buildings and their architectural style. Vegetation types (which narrow geography). Street furniture — lamp posts, road markings, traffic signs, bus stops. Signage and text (including partial text). Mountains or distinctive terrain on the horizon. The sun position and shadow direction, which reveal time and cardinal direction. Vehicle types and registration plate formats. Infrastructure — power line configurations, rail track types, road surface materials. Each observation is a clue; more observations mean more constraints on the location.</p><p><strong>Step 2: Identify language and jurisdiction.</strong> Any text in the image — signage, vehicle plates, brand names, architectural numerals — often immediately narrows the geographic search space to a country or region. A street sign in Devanagari script in a urban environment narrows to Indian cities. A green highway sign with specific font characteristics may indicate a specific Indian state's PWD signage system.</p><p><strong>Step 3: Match architecture and infrastructure.</strong> Building styles, construction materials, and urban layout patterns are geographically distinctive. Indian cities have recognizable construction patterns that differ from Pakistani, Bangladeshi, or Southeast Asian urban environments. Within India, architectural styles differ significantly between northern, southern, eastern, and western regions.</p><p><strong>Step 4: Use satellite and street imagery.</strong> Google Earth, Google Maps, Bing Maps, and Yandex Maps provide complementary satellite and street-level coverage. Apple Maps covers some areas with better resolution. For conflict zones or remote areas with limited commercial coverage, Sentinel Hub, Planet Explorer, and Maxar's OpenData program provide satellite imagery.</p><div class="callout"><strong>Shadow analysis for time determination:</strong> The direction and length of shadows in an image, combined with the known geographic location once established, allows calculation of the approximate time of day and day of year — often confirming or refuting claims about when an event occurred.</div><p><strong>Step 5: Verify and document.</strong> Geolocation is confirmed when multiple independent features of the image match the proposed location from independent mapping sources. Document the matching features explicitly — screenshot the satellite view with annotations marking the specific features that match the image. This documentation is essential for any report or legal proceeding.</p>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+      <a href="../disclaimer.html">&gt; Disclaimer</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
