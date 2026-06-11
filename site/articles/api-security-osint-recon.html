@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API Security Reconnaissance: How Attackers Map Your APIs Before You Know They Exist — IGRS</title>
+<meta name="description" content="Most organizations do not have complete inventories of their own APIs. Attackers find what defenders miss. The discovery techniques and how to get ahead of them.">
+<link rel="canonical" href="https://igrs.xyz/articles/api-security-osint-recon.html">
+<meta property="og:title" content="API Security Reconnaissance: How Attackers Map Your APIs Before You Know They Exist">
+<meta property="og:description" content="Most organizations do not have complete inventories of their own APIs. Attackers find what defenders miss. The discovery techniques and how to get ahead of them.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/api-security-osint-recon.html">
+<meta property="og:site_name" content="IGRS">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'API Security Reconnaissance: How Attackers Map Your APIs Before You Know They Exist',
+"description":'Most organizations do not have complete inventories of their own APIs. Attackers find what defenders miss. The discovery techniques and how to get ahead of them.',"datePublished":"2026-06-03","dateModified":"2026-06-03",
+"author":{"@type":"Person","name":"Manuj Kumar Pandey"},
+"publisher":{"@type":"Organization","name":"IGRS"},
+"mainEntityOfPage":"https://igrs.xyz/articles/api-security-osint-recon.html"}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>API Security Reconnaissance: How Attackers Map Your APIs Before You Know They Exist</h1>
+  <div class="dossier" aria-label="Article information">
+    <table>
+      <tr><td>File No.</td><td>IGRS-035/2026</td></tr>
+      <tr><td>Subject</td><td>OSINT techniques for API discovery and security assessment in authorized environments</td></tr>
+      <tr><td>Category</td><td>Threat Intelligence</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-06-03</td></tr>
+      <tr><td>Reading time</td><td>6 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">Most organizations do not have complete inventories of their own APIs. Attackers find what defenders miss. The discovery techniques and how to get ahead of them.</p>
+  <h2>The API sprawl problem</h2><p>Modern applications are built from APIs — internal services, partner integrations, mobile backends, and third-party connections that collectively represent an organization's most sensitive data pathways. The security problem is that most organizations do not have accurate, complete inventories of their own APIs. APIs are created by development teams without security review, exposed in mobile apps, published to developer portals, and sometimes forgotten when the product they served is deprecated. Attackers — and security researchers doing authorized assessments — use OSINT techniques to discover this undocumented API surface before defenders know it exists.</p><h2>JavaScript file analysis</h2><p>Modern web applications load JavaScript bundles that contain API endpoint references — the paths, parameters, and sometimes authentication patterns for every API call the frontend makes. These bundles are publicly accessible to any user of the application. Tools like LinkFinder and JSParser extract API endpoints from JavaScript files automatically. The process: load the target application, identify all JS files from the network tab of browser developer tools, pass each through the analysis tool, and review the extracted paths for undocumented or sensitive endpoints. This regularly surfaces internal API paths that developers assumed were not publicly discoverable.</p><h2>Mobile application analysis</h2><p>Mobile apps are another rich source of API endpoint discovery. Android APKs and iOS IPAs can be decompiled to reveal hardcoded API endpoints, authentication tokens (a frequent security failure), environment-specific endpoints (staging, development, production), and sometimes internal documentation comments that reveal system architecture. Tools: jadx for Android APK decompilation, frida for dynamic analysis. For basic endpoint extraction without full decompilation, strings extraction from the binary often reveals URL patterns.</p><h2>Public sources</h2><p>Before touching the application, check public sources for API documentation: the organization's developer portal (developer.company.com is a common subdomain); Postman's public API network, where organizations sometimes publish internal API collections; GitHub repositories where employees may have committed code containing API endpoint references or, in serious cases, API keys; and Wayback Machine snapshots of developer portals or API documentation that may have been removed.</p><div class="callout">This reconnaissance methodology is appropriate for authorized security assessments of your own organization's APIs or in scope systems during a penetration test. Applying it to systems you do not have authorization to test constitutes unauthorized access under Section 66 of the IT Act.</div><h2>Shodan for API discovery</h2><p>Shodan indexes internet-facing services including API servers. Queries combining organization name, known IP ranges, and port patterns can surface API servers that are not linked from the organization's public website. Non-standard ports (8080, 8443, 3000, 5000) are particularly worth checking — development and staging APIs often run on these ports and may be exposed to the internet without the security controls applied to production systems.</p>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+      <a href="../disclaimer.html">&gt; Disclaimer</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
