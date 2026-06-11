@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 OSINT Tools Every Beginner Should Know (and What They Are Actually For) — OSINT Dispatch</title>
+<meta name="description" content="The OSINT tool landscape is overwhelming. These ten free or freemium tools cover 90% of beginner needs — explained by what investigative question each one answers.">
+<link rel="canonical" href="https://igrs.xyz/articles/osint-tools-beginners.html">
+<meta property="og:title" content="10 OSINT Tools Every Beginner Should Know (and What They Are Actually For) — OSINT Dispatch">
+<meta property="og:description" content="The OSINT tool landscape is overwhelming. These ten free or freemium tools cover 90% of beginner needs — explained by what investigative question each one answers.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/osint-tools-beginners.html">
+<meta property="og:site_name" content="OSINT Dispatch">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'10 OSINT Tools Every Beginner Should Know (and What They Are Actually For)',
+"description":'The OSINT tool landscape is overwhelming. These ten free or freemium tools cover 90% of beginner needs — explained by what investigative question each one answers.',"datePublished":"2026-05-07","dateModified":"2026-05-07",
+"author":{"@type":"Person","name":"Manuj Kumar Pandey"},
+"publisher":{"@type":"Organization","name":"OSINT Dispatch"},
+"mainEntityOfPage":"https://igrs.xyz/articles/osint-tools-beginners.html"}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html">OSINT<span>&nbsp;Dispatch</span></a>
+      <div class="mast-meta">Est. 2026 &middot; New Delhi, India</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#articles">Articles</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+<article>
+  <h1>10 OSINT Tools Every Beginner Should Know (and What They Are Actually For)</h1>
+  <div class="dossier" aria-label="Article information">
+    <table>
+      <tr><td>File No.</td><td>OD-005/2026</td></tr>
+      <tr><td>Subject</td><td>Survey of foundational OSINT tooling with lawful use context</td></tr>
+      <tr><td>Category</td><td>OSINT Fundamentals</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-05-07</td></tr>
+      <tr><td>Reading time</td><td>7 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">The OSINT tool landscape is overwhelming. These ten free or freemium tools cover 90% of beginner needs — explained by what investigative question each one answers.</p>
+  
+<h2>Tools answer questions — start with the question</h2>
+<p>Beginners collect tools the way some people collect gym memberships. The professional approach is the reverse: identify the investigative question, then pick the tool that answers it. Below, each tool is framed by the question it exists to answer. All are usable free of charge at entry level, and all operate on publicly available data.</p>
+
+<h2>1. Google (advanced operators) — "What has been indexed about this subject?"</h2>
+<p>Still the most powerful OSINT tool ever built. Operators like <em>site:</em>, <em>filetype:</em>, <em>intitle:</em> and exact-phrase quotes turn a general search engine into a precision instrument — for example, restricting results to PDF documents on a specific organisation's website. Learn ten operators well before installing anything else.</p>
+
+<h2>2. Have I Been Pwned — "Has this email appeared in a known breach?"</h2>
+<p>A free breach-notification service maintained by security researcher Troy Hunt. Essential for self-audits and for security teams checking organisational exposure. It deliberately does not reveal passwords — it tells you <em>that</em> exposure happened and in which breach.</p>
+
+<h2>3. Whois / RDAP lookups — "Who registered this domain, and when?"</h2>
+<p>Domain registration records reveal creation dates, registrars and (where not privacy-protected) registrant details. A "bank" website registered eleven days ago tells you everything you need to know. Historical whois services extend this back in time, showing ownership changes.</p>
+
+<h2>4. Wayback Machine — "What did this page say before it was edited or deleted?"</h2>
+<p>The Internet Archive's snapshots preserve deleted pages, changed terms, vanished team pages and scrubbed claims. In fraud and due-diligence work, comparing a company's website across years is frequently more revealing than its current version.</p>
+
+<h2>5. Reverse image search — "Where else has this photo appeared?"</h2>
+<p>Google Lens, Bing Visual Search, TinEye and Yandex each index different corners of the web. The core verification use: checking whether a "news" photo, profile picture or product image was lifted from somewhere else years earlier. We cover full methodology in a separate article.</p>
+
+<h2>6. Shodan — "What devices and services is an organisation exposing to the internet?"</h2>
+<p>Shodan indexes internet-connected devices and services — webcams, routers, industrial systems, misconfigured databases. Defensively, security teams use it to discover their own organisation's forgotten, exposed assets. Important: <strong>viewing an index entry is lawful; connecting to or accessing systems you do not own is not.</strong></p>
+
+<h2>7. theHarvester — "What emails, subdomains and hosts are publicly associated with a domain?"</h2>
+<p>A classic open-source reconnaissance tool that aggregates results from search engines and public sources to map an organisation's external footprint. Standard in authorised security assessments, where it shows what an attacker could enumerate without touching the target.</p>
+
+<h2>8. Maltego (Community Edition) — "How do these entities connect?"</h2>
+<p>A link-analysis platform that visualises relationships between people, domains, companies, email addresses and infrastructure as a graph. Its real value is cognitive: investigations involving more than a handful of entities become unmanageable in notes, but obvious in a graph.</p>
+
+<h2>9. ExifTool — "What metadata is inside this file?"</h2>
+<p>Photos and documents carry embedded metadata: camera model, timestamps, software used, sometimes GPS coordinates. ExifTool reads (and strips) it. Investigators use it to verify when and how a file was produced; privacy-conscious users use it to clean their own files before sharing.</p>
+
+<h2>10. Nominatim / Google Earth — "Where was this taken?"</h2>
+<p>Geolocation — matching features in a photo (terrain, signage, architecture, shadows) to map and satellite data — is one of the most powerful verification skills in modern OSINT, used heavily in conflict reporting and disinformation debunking. Free mapping tools are all you need to start practising with publicly posted images.</p>
+
+<h2>The rules that apply to all of them</h2>
+<div class="callout"><strong>Three boundaries, always:</strong> (1) Use tools only on data you may lawfully access — your own assets, authorised engagements, or genuinely public information. (2) Document everything: a finding you cannot reproduce or source is worthless. (3) A tool's output is a lead, not a conclusion — verify across independent sources before you treat anything as fact.</div>
+<p>Master these ten and you will understand the underlying categories — search, breach data, infrastructure, archives, imagery, link analysis, metadata — that every advanced commercial platform is built on.</p>
+
+  <div class="author-box">
+    <div class="label">About the author</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India. Everything published here is educational and based on hands-on investigative practice.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../privacy-policy.html">Privacy Policy</a>
+      <a href="../terms.html">Terms of Use</a>
+      <a href="../disclaimer.html">Disclaimer</a>
+    </div>
+    <div>&copy; 2026 OSINT Dispatch. All rights reserved.</div>
+  </div>
+</footer>
+</body>
+</html>
