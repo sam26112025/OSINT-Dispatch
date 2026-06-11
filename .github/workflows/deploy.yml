@@ -16,7 +16,8 @@ jobs:
         run: |
           lftp -c "
           set ftp:ssl-allow no;
-          open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ftp.igrs.xyz;
-          mirror --reverse --delete --verbose ./site/ /public_html/;
+          set dns:order inet;
+          open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} p3plzcpnl506320.prod.phx3.secureserver.net;
+          mirror --reverse --delete --verbose ./site/ /home/l4iuqbud5dfe/public_html/;
           bye
           "
