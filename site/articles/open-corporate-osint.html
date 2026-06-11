@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corporate OSINT in India: Using MCA21 and Public Registries for Due Diligence — IGRS</title>
+<meta name="description" content="Indian regulatory databases contain rich corporate intelligence that most investigators underuse. How to extract maximum value from MCA21, SEBI, and other public registries.">
+<link rel="canonical" href="https://igrs.xyz/articles/open-corporate-osint.html">
+<meta property="og:title" content="Corporate OSINT in India: Using MCA21 and Public Registries for Due Diligence">
+<meta property="og:description" content="Indian regulatory databases contain rich corporate intelligence that most investigators underuse. How to extract maximum value from MCA21, SEBI, and other public registries.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/open-corporate-osint.html">
+<meta property="og:site_name" content="IGRS">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'Corporate OSINT in India: Using MCA21 and Public Registries for Due Diligence',
+"description":'Indian regulatory databases contain rich corporate intelligence that most investigators underuse. How to extract maximum value from MCA21, SEBI, and other public registries.',"datePublished":"2026-06-01","dateModified":"2026-06-01",
+"author":{"@type":"Person","name":"Manuj Kumar Pandey"},
+"publisher":{"@type":"Organization","name":"IGRS"},
+"mainEntityOfPage":"https://igrs.xyz/articles/open-corporate-osint.html"}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>Corporate OSINT in India: Using MCA21 and Public Registries for Due Diligence</h1>
+  <div class="dossier" aria-label="Article information">
+    <table>
+      <tr><td>File No.</td><td>IGRS-034/2026</td></tr>
+      <tr><td>Subject</td><td>Guide to open-source corporate intelligence using Indian regulatory databases</td></tr>
+      <tr><td>Category</td><td>OSINT Fundamentals</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-06-01</td></tr>
+      <tr><td>Reading time</td><td>6 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">Indian regulatory databases contain rich corporate intelligence that most investigators underuse. How to extract maximum value from MCA21, SEBI, and other public registries.</p>
+  <h2>Why corporate OSINT matters</h2><p>Corporate fraud, vendor due diligence, counterparty risk assessment, and anti-money laundering investigations all require understanding the true ownership, financial health, and regulatory status of entities and individuals. India's regulatory disclosure framework — while inconsistent across sectors — provides substantial public information that can anchor corporate investigations at no cost and without triggering subject awareness.</p><h2>MCA21 — the Ministry of Corporate Affairs portal</h2><p>MCA21 (mca.gov.in) is the primary registry for all Indian companies and LLPs. Key investigative data available:</p><ul><li><strong>Company master data:</strong> Date of incorporation, registered address, corporate identification number (CIN), status (active/struck off/under liquidation), paid-up capital</li><li><strong>Director information:</strong> Names, DIN (Director Identification Numbers), current and past directorships — a single individual's full corporate portfolio is visible by searching their DIN</li><li><strong>Charges register:</strong> All loans secured against company assets, showing lending institutions and outstanding amounts — reveals financial stress indicators</li><li><strong>Annual filings:</strong> Balance sheets and P&L statements for private companies are available for a small fee; for many companies, these are the only public financial disclosures available</li><li><strong>Complaints and orders:</strong> Regulatory actions, compounding orders, and disqualified director lists</li></ul><h2>The DIN network</h2><p>Director Identification Numbers are the most powerful investigative tool in MCA21. Every company director must register a DIN. Searching a DIN returns all companies — current and historical — where that individual is or was a director. This reveals business networks that subjects typically do not disclose. An individual claiming to have no connection to a company may be listed as its director. Shell company networks become visible when multiple shell entities share directors — a cluster of companies with the same few DINs, minimal capital, and no filings is a classic red flag.</p><h2>SEBI and stock exchange disclosures</h2><p>For listed companies, SEBI's disclosure framework produces rich public filings. Insider trading disclosures show which promoters and designated persons bought or sold shares — useful in market manipulation investigations. Shareholding pattern disclosures (required quarterly) show ownership changes that may indicate corporate control shifts. Annual reports contain related party transaction disclosures that reveal undisclosed business relationships. The BSE and NSE websites provide bulk download of these filings, enabling systematic analysis.</p><div class="callout">GSTIN (GST Identification Number) lookup at the GST portal (gst.gov.in) confirms whether a business is GST registered and shows the business name and address associated with the registration — useful for verifying vendor legitimacy and detecting fraudulent invoicing.</div><h2>Connecting the picture</h2><p>The investigative value of corporate OSINT comes from connecting multiple sources. A subject claims to run a successful manufacturing business — MCA21 shows the company was struck off three years ago. A vendor submits invoices on behalf of a company whose MCA21 charge register shows it is pledged to a microfinance lender — raising questions about its financial stability. A promoter claims no involvement in a failed company — MCA21 shows they were a director until six months before it went into liquidation. Each of these insights requires only public data and a few minutes of structured search.</p>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+      <a href="../disclaimer.html">&gt; Disclaimer</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
