@@ -3,19 +3,20 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install lftp
+        run: sudo apt-get install -y lftp
+
       - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          port: 21
-          local-dir: ./site/
-          server-dir: ./public_html/
+        run: |
+          lftp -c "
+          set ftp:ssl-allow no;
+          open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ftp.igrs.xyz;
+          mirror --reverse --delete --verbose ./site/ /public_html/;
+          bye
+          "
