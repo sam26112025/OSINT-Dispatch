@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aadhaar in Investigations: What OSINT Can Legally Access and What It Cannot — IGRS</title>
+<meta name="description" content="Aadhaar data is central to Indian identity — but strict legal protections govern how it can be accessed and used in investigations. Where the lines are, and what happens when they are crossed.">
+<link rel="canonical" href="https://igrs.xyz/articles/aadhaar-osint-legal-limits.html">
+<meta property="og:title" content="Aadhaar in Investigations: What OSINT Can Legally Access and What It Cannot">
+<meta property="og:description" content="Aadhaar data is central to Indian identity — but strict legal protections govern how it can be accessed and used in investigations. Where the lines are, and what happens when they are crossed.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/aadhaar-osint-legal-limits.html">
+<meta property="og:site_name" content="IGRS">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'Aadhaar in Investigations: What OSINT Can Legally Access and What It Cannot',
+"description":'Aadhaar data is central to Indian identity — but strict legal protections govern how it can be accessed and used in investigations. Where the lines are, and what happens when they are crossed.',"datePublished":"2026-04-23","dateModified":"2026-04-23",
+"author":{"@type":"Person","name":"Manuj Kumar Pandey"},
+"publisher":{"@type":"Organization","name":"IGRS"},
+"mainEntityOfPage":"https://igrs.xyz/articles/aadhaar-osint-legal-limits.html"}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>Aadhaar in Investigations: What OSINT Can Legally Access and What It Cannot</h1>
+  <div class="dossier" aria-label="Article information">
+    <table>
+      <tr><td>File No.</td><td>IGRS-021/2026</td></tr>
+      <tr><td>Subject</td><td>Legal boundaries for Aadhaar-related investigation under Indian law</td></tr>
+      <tr><td>Category</td><td>Law & Evidence</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-04-23</td></tr>
+      <tr><td>Reading time</td><td>6 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">Aadhaar data is central to Indian identity — but strict legal protections govern how it can be accessed and used in investigations. Where the lines are, and what happens when they are crossed.</p>
+  <h2>Why Aadhaar matters in investigations</h2><p>With over 1.3 billion enrolments, Aadhaar is India's most comprehensive identity infrastructure. Its linkage to bank accounts, mobile numbers, government benefits, and increasingly private services means that Aadhaar data — when available — can anchor identity verification across an entire investigation. However, the Aadhaar Act, 2016 and its 2019 amendments impose strict legal constraints on who can access Aadhaar information and how, making this one of the most legally fraught areas of Indian investigative practice.</p><h2>What the law prohibits</h2><p>Section 29 of the Aadhaar Act is the critical provision for investigators. It prohibits sharing of core biometric information — fingerprints, iris scans — under any circumstances whatsoever. It prohibits disclosure of identity information (including Aadhaar number and demographic data) except for purposes specified in the Act. Section 33 provides the law enforcement exception: a court or a designated officer of at least Joint Secretary rank can direct UIDAI to disclose identity information in the interests of national security or to investigate criminal offences. Accessing Aadhaar data through any other route — including unofficial APIs, data broker services that claim to provide Aadhaar lookups, or databases obtained from insider sources — constitutes a criminal offence under Section 37 of the Aadhaar Act, punishable with imprisonment up to three years.</p><div class="callout"><strong>Illegal Aadhaar APIs:</strong> Services that claim to offer Aadhaar-to-name/address lookups via API are operating illegally. Using such services exposes the investigator to prosecution under Section 37 of the Aadhaar Act, regardless of the purpose of the investigation.</div><h2>Lawful pathways</h2><p>The lawful routes to Aadhaar-linked identity information in investigations are narrow but real. A Section 33 order from a competent court or the designated authority allows UIDAI to provide identity information. For mobile number investigations, the DoT's TAFCOP portal allows checking which mobile numbers are linked to a given identity document — a legitimate investigative tool. Bank KYC obtained through proper Section 91 BNSS legal process often includes the account holder's Aadhaar-linked mobile and address without directly accessing UIDAI systems.</p><h2>Virtual ID and partial numbers</h2><p>Aadhaar's Virtual ID (VID) system allows authentication without revealing the actual Aadhaar number. In investigation contexts, an entity that conducted Aadhaar authentication may have a VID rather than the full Aadhaar number in its records — UIDAI can resolve this to the full number under proper legal process, but the receiving organization typically cannot do so independently.</p><h2>Implications for intelligence reports</h2><p>Intelligence reports that cite Aadhaar-linked information should clearly document the legal basis on which that information was obtained. Reports that appear to use Aadhaar data obtained through informal channels expose the investigator and the organization to legal liability and may result in evidence being excluded or, in serious cases, prosecution.</p>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+      <a href="../disclaimer.html">&gt; Disclaimer</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
