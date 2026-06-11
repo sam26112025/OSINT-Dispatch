@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobile Forensics in Indian Investigations: Tools, Legal Basis, and Admissibility — IGRS</title>
+<meta name="description" content="Mobile phones are the primary evidence source in most Indian criminal investigations. How extraction works, what tools are used, and how evidence holds up in court.">
+<link rel="canonical" href="https://igrs.xyz/articles/mobile-forensics-india-2026.html">
+<meta property="og:title" content="Mobile Forensics in Indian Investigations: Tools, Legal Basis, and Admissibility">
+<meta property="og:description" content="Mobile phones are the primary evidence source in most Indian criminal investigations. How extraction works, what tools are used, and how evidence holds up in court.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/mobile-forensics-india-2026.html">
+<meta property="og:site_name" content="IGRS">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'Mobile Forensics in Indian Investigations: Tools, Legal Basis, and Admissibility',
+"description":'Mobile phones are the primary evidence source in most Indian criminal investigations. How extraction works, what tools are used, and how evidence holds up in court.',"datePublished":"2026-04-08","dateModified":"2026-04-08",
+"author":{"@type":"Person","name":"Manuj Kumar Pandey"},
+"publisher":{"@type":"Organization","name":"IGRS"},
+"mainEntityOfPage":"https://igrs.xyz/articles/mobile-forensics-india-2026.html"}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>Mobile Forensics in Indian Investigations: Tools, Legal Basis, and Admissibility</h1>
+  <div class="dossier" aria-label="Article information">
+    <table>
+      <tr><td>File No.</td><td>IGRS-016/2026</td></tr>
+      <tr><td>Subject</td><td>Practical and legal guide to mobile phone forensics for Indian law enforcement</td></tr>
+      <tr><td>Category</td><td>Digital Forensics</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-04-08</td></tr>
+      <tr><td>Reading time</td><td>8 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">Mobile phones are the primary evidence source in most Indian criminal investigations. How extraction works, what tools are used, and how evidence holds up in court.</p>
+  <h2>Why mobile forensics dominates Indian investigations</h2><p>India has over 750 million smartphone users. Mobile phones are the primary medium for communication, financial transactions, and social coordination — and consequently the primary evidence source in criminal investigations. Mobile phone evidence features in more than 80% of cybercrime convictions in India.</p><h2>Types of extraction</h2><ul><li><strong>Logical extraction</strong> — data exported through the OS's own APIs; fast and non-destructive but limited by access controls</li><li><strong>File system extraction</strong> — bypasses some OS restrictions to pull the full file system including app databases; requires unlocked device or trusted computer pairing</li><li><strong>Physical extraction</strong> — bit-for-bit image including deleted data residue and encrypted partitions; the gold standard; requires passcode or vulnerability exploit on modern devices</li><li><strong>Chip-off</strong> — memory chips physically removed and read directly; used for damaged or destroyed devices; destructive to the device</li></ul><h2>Tools used in Indian labs</h2><p>Primary platforms: <strong>Cellebrite UFED</strong> (industry standard, broad device support), <strong>MSAB XRY</strong> (strong on encrypted devices and legacy handsets), <strong>Oxygen Forensic Detective</strong> (particularly strong on cloud and app extraction). Government FSLs also use open-source tools including Autopsy and ADB-based scripts for budget-constrained units.</p><h2>Legal framework</h2><p>Extraction requires court order or device owner's written consent. Relevant provisions: Section 91 BNSS 2023 (production of documents), Sections 102 and 165 BNSS (seizure at crime scene). Extraction without authority risks evidence exclusion and legal challenge to the investigating officer.</p><div class="callout"><strong>Chain of custody is as important as the extraction itself.</strong> Document every person who handled the device from seizure to lab. A custody gap allows defence counsel to argue tampering regardless of technical soundness.</div><h2>Court-ready workflow</h2><ol><li>Seize in aeroplane mode or Faraday bag immediately — prevents remote wipe</li><li>Photograph device, note IMEI (*#06#), document physical condition</li><li>Log into evidence register with unique case reference</li><li>Lab: connect to write-blocked workstation, generate pre-extraction hash</li><li>Extract using appropriate tool for device type</li><li>Generate post-extraction hash — must match pre-extraction</li><li>Produce Section 63 BSA certificate signed by examiner</li><li>Store in sealed labelled evidence bags</li></ol>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+      <a href="../disclaimer.html">&gt; Disclaimer</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
