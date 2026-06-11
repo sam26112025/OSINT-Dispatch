@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Forensics: Investigating Incidents in AWS, Azure, and Google Cloud — IGRS</title>
+<meta name="description" content="More Indian organizations are hosting critical systems in the cloud. When incidents occur there, traditional forensic approaches do not work. What does.">
+<link rel="canonical" href="https://igrs.xyz/articles/cloud-forensics-aws-azure.html">
+<meta property="og:title" content="Cloud Forensics: Investigating Incidents in AWS, Azure, and Google Cloud">
+<meta property="og:description" content="More Indian organizations are hosting critical systems in the cloud. When incidents occur there, traditional forensic approaches do not work. What does.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/cloud-forensics-aws-azure.html">
+<meta property="og:site_name" content="IGRS">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'Cloud Forensics: Investigating Incidents in AWS, Azure, and Google Cloud',
+"description":'More Indian organizations are hosting critical systems in the cloud. When incidents occur there, traditional forensic approaches do not work. What does.',"datePublished":"2026-06-08","dateModified":"2026-06-08",
+"author":{"@type":"Person","name":"Manuj Kumar Pandey"},
+"publisher":{"@type":"Organization","name":"IGRS"},
+"mainEntityOfPage":"https://igrs.xyz/articles/cloud-forensics-aws-azure.html"}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>Cloud Forensics: Investigating Incidents in AWS, Azure, and Google Cloud</h1>
+  <div class="dossier" aria-label="Article information">
+    <table>
+      <tr><td>File No.</td><td>IGRS-037/2026</td></tr>
+      <tr><td>Subject</td><td>Practical guide to cloud forensic investigation — log sources, preservation, and legal process</td></tr>
+      <tr><td>Category</td><td>Digital Forensics</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-06-08</td></tr>
+      <tr><td>Reading time</td><td>7 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">More Indian organizations are hosting critical systems in the cloud. When incidents occur there, traditional forensic approaches do not work. What does.</p>
+  <h2>Why cloud forensics is different</h2><p>Traditional digital forensics assumes physical access to storage media — imaging a hard drive, extracting data from a phone. Cloud environments invert these assumptions. The infrastructure is not yours to image, the storage is virtualized and distributed, and evidence that seems permanent may be deleted within hours by automated lifecycle policies. Cloud forensics requires different tools, different legal process, and a fundamentally different approach to evidence preservation — one that must begin immediately after an incident is detected, not after a measured forensic plan is developed.</p><h2>Log sources by platform</h2><p><strong>AWS:</strong> CloudTrail is the primary investigation source — it logs every API call made to AWS services, with the calling identity, source IP, timestamp, and full request parameters. CloudTrail must be enabled; check immediately whether it was enabled and whether logging was disabled by the attacker during the incident. VPC Flow Logs capture network traffic metadata. S3 access logs show who accessed what objects and when. AWS Config snapshots resource configuration state at regular intervals, allowing reconstruction of what was configured at the time of an incident.</p><p><strong>Azure:</strong> Azure Activity Log captures control-plane operations (creating/deleting resources, changing configurations). Azure AD Sign-in Logs show every authentication event with source IP, device, and outcome. Microsoft Defender for Cloud generates security alerts. Key Vault audit logs show who accessed secrets. NSG Flow Logs for network activity.</p><p><strong>Google Cloud:</strong> Cloud Audit Logs (Admin Activity and Data Access logs) are the primary sources. VPC Flow Logs for network. Cloud Armor logs for WAF events.</p><h2>Evidence preservation — the race against lifecycle policies</h2><p>Cloud resources are often configured with automatic deletion policies that destroy logs and temporary storage. The first action in any cloud incident is to disable automatic deletion of logs for the affected environment, take snapshots of affected instances before they are terminated or rebuilt, and preserve any ephemeral storage (instance storage, in-memory data if accessible) before it is lost. Many cloud incidents are complicated by the fact that security teams discover them hours or days after they occurred — by which time some evidence may already have been destroyed by normal lifecycle operations.</p><div class="callout">Document your preservation actions with timestamps. Cloud forensics increasingly involves legal proceedings where defence counsel challenges the completeness and authenticity of evidence. A documented preservation chain — who did what, when, with what result — is your protection against these challenges.</div><h2>Legal process for cloud providers</h2><p>When an incident involves data stored or processed by a cloud provider, obtaining evidence beyond what is accessible through the organization's own console requires legal process. AWS, Azure, and GCP all maintain law enforcement response teams and respond to court orders and government legal process. For Indian law enforcement, this typically requires an international rogatory process unless the cloud region is India-based (AWS ap-south-1, Azure India Central). For Indian organizations investigating their own cloud environments, the organization's existing access rights allow evidence collection without third-party process — the question is which logs were retained and for how long.</p>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+      <a href="../disclaimer.html">&gt; Disclaimer</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
