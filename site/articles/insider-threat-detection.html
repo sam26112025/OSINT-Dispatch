@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insider Threat Detection: OSINT and Behavioural Indicators for Indian Organizations — IGRS</title>
+<meta name="description" content="Insider threats cause some of the most damaging data breaches in Indian organizations. Most are detectable before they cause maximum damage. The indicators and investigation methods.">
+<link rel="canonical" href="https://igrs.xyz/articles/insider-threat-detection.html">
+<meta property="og:title" content="Insider Threat Detection: OSINT and Behavioural Indicators for Indian Organizations">
+<meta property="og:description" content="Insider threats cause some of the most damaging data breaches in Indian organizations. Most are detectable before they cause maximum damage. The indicators and investigation methods.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/insider-threat-detection.html">
+<meta property="og:site_name" content="IGRS">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'Insider Threat Detection: OSINT and Behavioural Indicators for Indian Organizations',
+"description":'Insider threats cause some of the most damaging data breaches in Indian organizations. Most are detectable before they cause maximum damage. The indicators and investigation methods.',"datePublished":"2026-05-14","dateModified":"2026-05-14",
+"author":{"@type":"Person","name":"Manuj Kumar Pandey"},
+"publisher":{"@type":"Organization","name":"IGRS"},
+"mainEntityOfPage":"https://igrs.xyz/articles/insider-threat-detection.html"}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>Insider Threat Detection: OSINT and Behavioural Indicators for Indian Organizations</h1>
+  <div class="dossier" aria-label="Article information">
+    <table>
+      <tr><td>File No.</td><td>IGRS-028/2026</td></tr>
+      <tr><td>Subject</td><td>Framework for identifying and investigating insider threat activity in Indian corporate and government environments</td></tr>
+      <tr><td>Category</td><td>Threat Intelligence</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-05-14</td></tr>
+      <tr><td>Reading time</td><td>7 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">Insider threats cause some of the most damaging data breaches in Indian organizations. Most are detectable before they cause maximum damage. The indicators and investigation methods.</p>
+  <h2>The insider threat problem in India</h2><p>Insider threats — whether malicious employees, negligent staff, or compromised insiders acting under coercion — represent a disproportionate share of significant data breaches in Indian organizations. The combination of loose data access controls, limited user activity monitoring, and a culture that historically has not treated data theft as a serious criminal matter has made Indian enterprises and government bodies particularly vulnerable. CERT-In data consistently shows insider incidents accounting for a significant proportion of breach events, though under-reporting makes precise measurement difficult.</p><h2>Categories of insider threat</h2><p>Understanding the category matters for both detection and response. The malicious insider deliberately exfiltrates data for personal gain — selling to competitors, preparing for a competing venture, or acting on behalf of an external actor. The negligent insider causes harm through careless data handling — sending sensitive files to personal email, using unsecured cloud storage, or falling for phishing attacks. The compromised insider is an otherwise-trusted employee whose credentials or device have been seized by an external attacker. Each category produces different behavioural and technical signals and requires different investigative and response approaches.</p><h2>Behavioural indicators</h2><p>Behavioural indicators of potential insider threat activity include: significant changes in work patterns (sudden late-night logins, access to systems outside normal role scope), unusual data access volumes (bulk downloads of records, access to files far outside normal job function), expressed grievances combined with unusual access behaviour, resignation or notice-serving combined with sudden increase in data copying, and requests for unusual access privileges without clear business justification. None of these indicators is conclusive alone — context matters enormously. A combination of behavioural and technical signals, reviewed by a trained investigator, produces far fewer false positives than automated systems acting on individual indicators.</p><h2>Technical detection methods</h2><p>On the technical side, insider threat detection relies on: DLP (Data Loss Prevention) monitoring for large data transfers to personal email, cloud storage, or USB devices; UEBA (User and Entity Behaviour Analytics) baselining normal access patterns and flagging deviations; privileged access monitoring for administrator accounts (which have disproportionate damage potential); and endpoint monitoring for evidence of data staging — large compressed archives, bulk copy operations, or installation of sync tools not approved by IT. Email header analysis can reveal forwarding rules that silently copy messages to external addresses — a classic malicious insider technique.</p><div class="callout">Before launching a formal insider threat investigation, involve HR and legal counsel. Indian employment law and the DPDP Act 2023 impose obligations that affect how employee monitoring data can be collected and used. An investigation conducted without proper authorization may produce inadmissible evidence and expose the organization to wrongful termination liability.</div><h2>OSINT component of insider investigations</h2><p>Open-source intelligence plays a defined role in insider threat investigations. Checking whether a suspect employee has recently joined a competitor's LinkedIn network, posted about a new venture, or expressed negative sentiments about the organization publicly can corroborate internal indicators. Searching for the employee's name in connection with industry events, publication of proprietary information, or job-seeking activity on professional platforms can reveal motive and timing. These checks must be done carefully — OSINT on employees is subject to privacy law constraints and should be documented with its legal basis clearly stated.</p>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+      <a href="../disclaimer.html">&gt; Disclaimer</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
