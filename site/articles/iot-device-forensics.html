@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IoT Device Forensics: What Smart Home Devices Record and How to Extract It — IGRS</title>
+<meta name="description" content="Smart speakers, doorbell cameras, fitness trackers, and smart TVs generate rich investigative data. How to extract it, authenticate it, and use it in proceedings.">
+<link rel="canonical" href="https://igrs.xyz/articles/iot-device-forensics.html">
+<meta property="og:title" content="IoT Device Forensics: What Smart Home Devices Record and How to Extract It">
+<meta property="og:description" content="Smart speakers, doorbell cameras, fitness trackers, and smart TVs generate rich investigative data. How to extract it, authenticate it, and use it in proceedings.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/iot-device-forensics.html">
+<meta property="og:site_name" content="IGRS">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'IoT Device Forensics: What Smart Home Devices Record and How to Extract It',
+"description":'Smart speakers, doorbell cameras, fitness trackers, and smart TVs generate rich investigative data. How to extract it, authenticate it, and use it in proceedings.',"datePublished":"2026-05-08","dateModified":"2026-05-08",
+"author":{"@type":"Person","name":"Manuj Kumar Pandey"},
+"publisher":{"@type":"Organization","name":"IGRS"},
+"mainEntityOfPage":"https://igrs.xyz/articles/iot-device-forensics.html"}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>IoT Device Forensics: What Smart Home Devices Record and How to Extract It</h1>
+  <div class="dossier" aria-label="Article information">
+    <table>
+      <tr><td>File No.</td><td>IGRS-026/2026</td></tr>
+      <tr><td>Subject</td><td>Investigation guide to forensic extraction from IoT devices, smart speakers, and connected devices</td></tr>
+      <tr><td>Category</td><td>Digital Forensics</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-05-08</td></tr>
+      <tr><td>Reading time</td><td>6 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">Smart speakers, doorbell cameras, fitness trackers, and smart TVs generate rich investigative data. How to extract it, authenticate it, and use it in proceedings.</p>
+  <h2>IoT as an investigative source</h2><p>The average urban Indian household now contains multiple internet-connected devices beyond smartphones — smart televisions, Wi-Fi routers, IP cameras, smart speakers, fitness bands, and increasingly smart appliances. Each of these devices generates logs, stores data, and communicates with cloud services. For investigators, this creates a wealth of potential evidence: location data, audio fragments, video footage, usage patterns, and network activity logs that can corroborate or contradict witness accounts and establish timelines with precision that human memory cannot match.</p><h2>Smart speakers</h2><p>Devices like Amazon Echo and Google Home store voice interaction records in cloud accounts — the precise utterances that activated the device, timestamped to the second. Amazon and Google respond to lawful legal process for these records. Locally, smart speakers maintain connection logs and sometimes a short local audio buffer. In homicide and domestic violence cases internationally, smart speaker records have placed victims and suspects at specific locations at specific times, corroborated or refuted alibis, and captured ambient audio of incidents.</p><h2>IP cameras and video doorbells</h2><p>Consumer IP cameras typically store footage locally on SD cards and/or in cloud storage (Ring, Wyze, Arlo, and Indian equivalents). Local SD card extraction is straightforward — image the card forensically using a write blocker. Cloud footage requires legal process to the provider. The critical forensic considerations are timestamp integrity (many consumer cameras have inaccurate clocks that must be calibrated against a reliable reference) and metadata (video files contain embedded metadata about the recording device and settings that can establish authenticity).</p><h2>Fitness trackers and smartwatches</h2><p>Fitness devices record step counts, heart rate, sleep patterns, GPS tracks, and often explicit location waypoints. These records are timestamped and stored both on the device and in associated cloud accounts (Fitbit/Google, Garmin Connect, Apple Health). In multiple international cases, fitness tracker data has been used to determine whether a reported victim was actually where they claimed to be, and whether their physiological data was consistent with the account they gave of an incident.</p><div class="callout">IoT forensics depends heavily on cloud data. Build relationships with the legal process teams at major IoT platforms — Amazon, Google, Apple, Fitbit/Google — and understand their data retention windows. Many consumer IoT services retain data for 30–90 days before automatic deletion.</div><h2>Wi-Fi router logs</h2><p>The home or office router is often the most accessible IoT device and a useful timeline anchor. Router DHCP logs show which MAC addresses connected at what times. DNS query logs (on routers with logging enabled) show which services were accessed. Connection logs can establish that a specific device was present on the network at a specific time, corroborating or undermining claimed locations. Extraction requires either physical access to the router's storage or, for managed routers with cloud management, legal process to the ISP or cloud management provider.</p>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+      <a href="../disclaimer.html">&gt; Disclaimer</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
