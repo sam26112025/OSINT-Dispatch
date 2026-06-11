@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detecting Deepfakes: A Practical Guide for Investigators and Journalists — IGRS</title>
+<meta name="description" content="Synthetic media — AI-generated or AI-manipulated video and audio — is increasingly used in fraud, disinformation, and extortion. How to detect it with currently available techniques.">
+<link rel="canonical" href="https://igrs.xyz/articles/deepfake-detection-osint.html">
+<meta property="og:title" content="Detecting Deepfakes: A Practical Guide for Investigators and Journalists">
+<meta property="og:description" content="Synthetic media — AI-generated or AI-manipulated video and audio — is increasingly used in fraud, disinformation, and extortion. How to detect it with currently available techniques.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/deepfake-detection-osint.html">
+<meta property="og:site_name" content="IGRS">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'Detecting Deepfakes: A Practical Guide for Investigators and Journalists',
+"description":'Synthetic media — AI-generated or AI-manipulated video and audio — is increasingly used in fraud, disinformation, and extortion. How to detect it with currently available techniques.',"datePublished":"2026-06-05","dateModified":"2026-06-05",
+"author":{"@type":"Person","name":"Manuj Kumar Pandey"},
+"publisher":{"@type":"Organization","name":"IGRS"},
+"mainEntityOfPage":"https://igrs.xyz/articles/deepfake-detection-osint.html"}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>Detecting Deepfakes: A Practical Guide for Investigators and Journalists</h1>
+  <div class="dossier" aria-label="Article information">
+    <table>
+      <tr><td>File No.</td><td>IGRS-036/2026</td></tr>
+      <tr><td>Subject</td><td>Current methodology for deepfake video and audio detection using available tools</td></tr>
+      <tr><td>Category</td><td>Verification</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-06-05</td></tr>
+      <tr><td>Reading time</td><td>6 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">Synthetic media — AI-generated or AI-manipulated video and audio — is increasingly used in fraud, disinformation, and extortion. How to detect it with currently available techniques.</p>
+  <h2>The deepfake threat landscape</h2><p>Deepfake technology — AI synthesis and manipulation of video and audio to depict people saying or doing things they never did — has moved from research curiosity to operational threat in the span of three years. In India, deepfake video has been used in political disinformation campaigns, in "CEO fraud" attacks where executives' voices are cloned to authorize transfers, in non-consensual intimate imagery, and in extortion schemes targeting public figures and private individuals alike. The technology has democratized to the point where a convincing voice clone requires only a few minutes of source audio and a consumer laptop.</p><h2>Visual artefacts in video deepfakes</h2><p>Current face-swap and face-synthesis deepfakes, despite their sophistication, often exhibit characteristic visual artefacts that are visible under careful examination. Focus on the face boundary — the edges where the synthetic face meets the real hair, neck, and background. Inconsistent lighting direction between the face and the surrounding scene is a common tell. Look at the teeth and eyes: synthesized teeth sometimes blur or merge, and eyes may lack the specular highlight (catchlight) that characterizes real eyes or may not blink at natural intervals. Examine rapid head movements — these stress the synthesis model and often produce visible distortion or smearing.</p><h2>Physical consistency checks</h2><p>Beyond visual artefacts, real video has physical properties that deepfakes often fail to replicate. The movement of hair, loose clothing, and earrings in response to head movement should be physically consistent. Reflections on shiny surfaces (glasses, jewellery, water) should be consistent with the claimed lighting environment. Facial landmark positions (the distance between eyes, mouth width, nose position) should remain consistent across frames — synthesis models sometimes produce subtle inconsistencies in facial geometry between frames.</p><h2>Audio deepfake detection</h2><p>AI voice cloning is now significantly more accessible and convincing than video deepfakes, and in many ways more dangerous in an organizational context. Listening for: an unusual absence of background noise (synthesized audio is often cleaner than real audio from the claimed environment), inconsistent ambient sound between speech segments, unusual breathing patterns or the absence of natural breathing sounds, and "robotic" transitions between phonemes that human speech does not produce. Spectrogram analysis using tools like Audacity can reveal synthesis artefacts in frequency distribution that are not audible but are visually evident.</p><div class="callout">AI detection tools — including Deepware Scanner, Microsoft Video Authenticator, and various commercial platforms — should be used as one input among many, not as definitive arbiters. Detection accuracy varies significantly by generation method, compression, and platform. A detection tool saying "real" does not definitively mean the content is authentic.</div><h2>Provenance and context verification</h2><p>The most reliable deepfake detection in practice is not technical analysis of the video itself but provenance investigation. Does the video originate from a reliable source? Is the claimed context verifiable from independent sources? Do other accounts of the depicted event corroborate the video's content? Has the depicted person denied it, and through what channels? Video that circulates only through anonymous channels with no corroboration should be treated as unverified regardless of how technically convincing it appears.</p>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+      <a href="../disclaimer.html">&gt; Disclaimer</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
