@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ransomware Incident Response: A Practical Playbook for Indian Organizations — IGRS</title>
+<meta name="description" content="Ransomware attacks on Indian organizations have tripled in the past two years. The first 48 hours of response determine whether the organization recovers cleanly or pays.">
+<link rel="canonical" href="https://igrs.xyz/articles/ransomware-incident-response-india.html">
+<meta property="og:title" content="Ransomware Incident Response: A Practical Playbook for Indian Organizations">
+<meta property="og:description" content="Ransomware attacks on Indian organizations have tripled in the past two years. The first 48 hours of response determine whether the organization recovers cleanly or pays.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/ransomware-incident-response-india.html">
+<meta property="og:site_name" content="IGRS">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'Ransomware Incident Response: A Practical Playbook for Indian Organizations',
+"description":'Ransomware attacks on Indian organizations have tripled in the past two years. The first 48 hours of response determine whether the organization recovers cleanly or pays.',"datePublished":"2026-04-20","dateModified":"2026-04-20",
+"author":{"@type":"Person","name":"Manuj Kumar Pandey"},
+"publisher":{"@type":"Organization","name":"IGRS"},
+"mainEntityOfPage":"https://igrs.xyz/articles/ransomware-incident-response-india.html"}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>Ransomware Incident Response: A Practical Playbook for Indian Organizations</h1>
+  <div class="dossier" aria-label="Article information">
+    <table>
+      <tr><td>File No.</td><td>IGRS-020/2026</td></tr>
+      <tr><td>Subject</td><td>Step-by-step ransomware IR guide calibrated for Indian regulatory and operational context</td></tr>
+      <tr><td>Category</td><td>Incident Response</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-04-20</td></tr>
+      <tr><td>Reading time</td><td>7 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">Ransomware attacks on Indian organizations have tripled in the past two years. The first 48 hours of response determine whether the organization recovers cleanly or pays.</p>
+  <h2>The Indian ransomware landscape</h2><p>India has seen a dramatic increase in ransomware incidents targeting manufacturing, healthcare, logistics, and financial services organizations. Groups including LockBit affiliates, Royal, and several India-specific threat actors have been active. Indian organizations are particularly targeted because many combine sensitive data with security maturity that lags their sector globally, and because the regulatory environment — while tightening — has historically imposed lower penalties for breaches than European or North American equivalents.</p><h2>Hour 0–4: Contain and preserve</h2><p>The moment ransomware is confirmed, the priority is stopping lateral movement — not recovering encrypted files. Immediately isolate affected systems from the network by disconnecting ethernet cables and disabling Wi-Fi adapters. Do not shut systems down — in-memory forensic artefacts are valuable and shutdown may trigger additional encryption or wiping. Disable VPN access for all remote users. Identify the patient zero — the initial infection point — by checking the earliest encryption timestamp and working backward through logs.</p><p>Simultaneously, preserve everything available: network flow logs, DNS query logs, proxy logs, EDR telemetry, and any email logs that may contain the initial phishing vector. These logs have short retention windows on many systems and are critical for the subsequent forensic investigation and insurance claim.</p><h2>Hour 4–24: Assess scope and notify</h2><p>Map which systems are encrypted, which are clean, and which may be infected but not yet triggered. Check backup integrity immediately — many ransomware operators deliberately target backups in the days before triggering encryption. If backups are online and uncompromised, recovery options are vastly better. Assess whether data was exfiltrated before encryption — most modern ransomware groups operate "double extortion," threatening to publish stolen data if ransom is not paid. Look for evidence of data staging (large compressed archives, unusual outbound transfer volumes in the days prior).</p><div class="callout"><strong>CERT-In notification:</strong> Under the CERT-In directions of April 2022, ransomware incidents must be reported to CERT-In within 6 hours of detection. Failure to report carries penalties. Keep the notification concise and factual — do not speculate about attribution at this stage.</div><h2>The ransom decision</h2><p>Paying ransomware is not illegal in India, but it is strongly discouraged by CERT-In and law enforcement. Payment does not guarantee decryption, does not prevent data publication, and directly funds future attacks. Before considering payment, exhaust all options: check NoMoreRansom.org for free decryptors for your ransomware variant, verify backup integrity fully, and engage a specialist incident response firm who may have access to threat actor decryptors through prior negotiations.</p><h2>Recovery and post-incident</h2><p>Recovery should proceed from verified clean backups to isolated environments, with systems returning to production only after forensic confirmation they are clean. The root cause must be identified and remediated before anything returns to the network — re-infection during recovery is common. Conduct a full post-incident review, update incident response plans, and implement the defensive improvements identified. If data was confirmed exfiltrated, notify affected individuals per DPDP Act 2023 requirements.</p>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+      <a href="../disclaimer.html">&gt; Disclaimer</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
