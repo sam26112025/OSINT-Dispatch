@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn as an OSINT Source: What Investigators Extract and How — IGRS</title>
+<meta name="description" content="LinkedIn contains more professional intelligence than almost any other platform. What investigators can extract, how to do it lawfully, and what its limits are.">
+<link rel="canonical" href="https://igrs.xyz/articles/osint-linkedin-investigation.html">
+<meta property="og:title" content="LinkedIn as an OSINT Source: What Investigators Extract and How">
+<meta property="og:description" content="LinkedIn contains more professional intelligence than almost any other platform. What investigators can extract, how to do it lawfully, and what its limits are.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/osint-linkedin-investigation.html">
+<meta property="og:site_name" content="IGRS">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'LinkedIn as an OSINT Source: What Investigators Extract and How',
+"description":'LinkedIn contains more professional intelligence than almost any other platform. What investigators can extract, how to do it lawfully, and what its limits are.',"datePublished":"2026-04-17","dateModified":"2026-04-17",
+"author":{"@type":"Person","name":"Manuj Kumar Pandey"},
+"publisher":{"@type":"Organization","name":"IGRS"},
+"mainEntityOfPage":"https://igrs.xyz/articles/osint-linkedin-investigation.html"}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>LinkedIn as an OSINT Source: What Investigators Extract and How</h1>
+  <div class="dossier" aria-label="Article information">
+    <table>
+      <tr><td>File No.</td><td>IGRS-019/2026</td></tr>
+      <tr><td>Subject</td><td>Professional OSINT methodology for LinkedIn investigation without violating ToS or law</td></tr>
+      <tr><td>Category</td><td>OSINT Fundamentals</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-04-17</td></tr>
+      <tr><td>Reading time</td><td>6 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">LinkedIn contains more professional intelligence than almost any other platform. What investigators can extract, how to do it lawfully, and what its limits are.</p>
+  <h2>Why LinkedIn is an OSINT goldmine</h2><p>LinkedIn's 900+ million profiles represent the largest voluntary professional database ever assembled. Unlike social media where personal information is often guarded, LinkedIn users actively publish their employment history, educational background, professional network, skill sets, and often contact details — because visibility is the platform's core value proposition. For investigators, this creates a uniquely rich source for identity verification, corporate mapping, and social graph analysis.</p><h2>What LinkedIn reveals</h2><p>A complete LinkedIn profile typically contains: full legal name as used professionally, current and historical employer names with dates (useful for timeline reconstruction), job titles and responsibilities (revealing access levels and technical capabilities), educational institutions with graduation years, professional certifications, geographic location (often city-level), profile photo, connection count, shared connections, and frequently external contact details or website links. The connections graph — who someone is connected to — can reveal family relationships, business partnerships, and organisational hierarchies not documented elsewhere.</p><h2>Lawful investigation techniques</h2><p>Viewing public LinkedIn profiles does not require authentication — most profile data is indexed by search engines and accessible to anyone. The primary OSINT techniques that operate within lawful bounds include: Google dorking for LinkedIn profiles (<code>site:linkedin.com/in "Company X" "Security"</code>), searching cached versions via Google or Wayback Machine when profiles have been deleted or modified, cross-referencing profile details against company registration databases (MCA21 for Indian entities), and using LinkedIn's own search filters to map organizational hierarchies.</p><div class="callout">Creating fake LinkedIn personas to access information, scraping at scale in violation of LinkedIn's ToS, or accessing private profile information through unauthorized means crosses into legal risk territory. Stick to publicly available information accessed through legitimate means.</div><h2>Verification techniques</h2><p>LinkedIn information should always be independently verified before use in a report. Employment claims can be checked against MCA21 director records, press releases, and company websites. Certification claims can be verified against issuing body databases (EC-Council verify portal, ISC² member lookup). Profile photos should be reverse-searched — stolen photos from other sources are common on fraudulent profiles. Publication dates of posts and profile updates, visible in some views, help establish timelines.</p><h2>Documenting LinkedIn evidence</h2><p>Profile content changes — people delete jobs, modify descriptions, or entirely remove profiles when under investigation. Capture evidence promptly using full-page screenshots with visible timestamps and URLs. For high-stakes matters, use web archiving services (archive.org Save Page feature) to create a time-stamped public record. Note that LinkedIn profile URLs sometimes change; document both the URL and the profile identifier (the alphanumeric string in the URL) as cross-references.</p>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+      <a href="../disclaimer.html">&gt; Disclaimer</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
