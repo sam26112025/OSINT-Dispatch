@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Threat Hunting in Indian SOCs: Moving from Reactive to Proactive Defence — IGRS</title>
+<meta name="description" content="Most Indian SOCs still operate in reactive mode — waiting for alerts before investigating. Threat hunting flips this. How to implement it with the tools and talent most Indian teams already have.">
+<link rel="canonical" href="https://igrs.xyz/articles/threat-hunting-soc-india.html">
+<meta property="og:title" content="Threat Hunting in Indian SOCs: Moving from Reactive to Proactive Defence">
+<meta property="og:description" content="Most Indian SOCs still operate in reactive mode — waiting for alerts before investigating. Threat hunting flips this. How to implement it with the tools and talent most Indian teams already have.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/threat-hunting-soc-india.html">
+<meta property="og:site_name" content="IGRS">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'Threat Hunting in Indian SOCs: Moving from Reactive to Proactive Defence',
+"description":'Most Indian SOCs still operate in reactive mode — waiting for alerts before investigating. Threat hunting flips this. How to implement it with the tools and talent most Indian teams already have.',"datePublished":"2026-04-29","dateModified":"2026-04-29",
+"author":{"@type":"Person","name":"Manuj Kumar Pandey"},
+"publisher":{"@type":"Organization","name":"IGRS"},
+"mainEntityOfPage":"https://igrs.xyz/articles/threat-hunting-soc-india.html"}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>Threat Hunting in Indian SOCs: Moving from Reactive to Proactive Defence</h1>
+  <div class="dossier" aria-label="Article information">
+    <table>
+      <tr><td>File No.</td><td>IGRS-023/2026</td></tr>
+      <tr><td>Subject</td><td>Practical threat hunting methodology for security operations teams in Indian organizations</td></tr>
+      <tr><td>Category</td><td>Threat Intelligence</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-04-29</td></tr>
+      <tr><td>Reading time</td><td>7 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">Most Indian SOCs still operate in reactive mode — waiting for alerts before investigating. Threat hunting flips this. How to implement it with the tools and talent most Indian teams already have.</p>
+  <h2>What threat hunting actually is</h2><p>Threat hunting is the proactive, human-led search for evidence of attacker activity that has not triggered automated alerts. It operates on the assumption that sophisticated attackers are already inside the network — moving laterally, establishing persistence, and exfiltrating data — while evading the signature and anomaly-based detections that reactive security depends on. The hunter's job is to find these threats before they cause maximum damage, using hypotheses derived from threat intelligence, TTPs, and knowledge of the environment.</p><h2>Why Indian SOCs need it now</h2><p>Indian organizations face a maturing threat landscape. The days when Indian networks were targeted only by opportunistic, commodity malware are over. APT groups from multiple nations, ransomware-as-a-service operators, and sophisticated fraud networks specifically target Indian financial services, government contractors, pharmaceutical companies, and critical infrastructure. These actors use legitimate tools — PowerShell, WMI, PsExec, Cobalt Strike — that generate few or no SIEM alerts in default configurations. Reactive monitoring will not catch them.</p><h2>The hypothesis-driven approach</h2><p>Every hunt begins with a hypothesis — a specific, testable proposition about how an attacker might operate in the environment. Hypotheses come from three sources: threat intelligence (a report describes a threat actor using a specific technique against organizations like yours — you hunt for evidence of that technique in your logs); analytics (your SIEM identifies an anomaly that doesn't rise to an alert threshold — you hunt for related activity); and situational awareness (a new vulnerability has been published — you hunt for exploitation indicators before a patch is deployed). A hypothesis might be: "A threat actor has compromised a domain-joined workstation and is using scheduled tasks to maintain persistence." The hunt then searches endpoint logs for scheduled task creation events, correlates them with parent process and user context, and investigates anomalies.</p><h2>Data sources that matter most</h2><p>Effective threat hunting requires the right telemetry. For Indian SOC teams working with typical enterprise environments, the highest-value data sources are: Windows Event Logs (particularly Security, System, and PowerShell operational logs), EDR telemetry (process creation, network connections, file writes, registry modifications), DNS query logs (revealing C2 communication patterns), proxy and firewall logs (showing data exfiltration and unusual outbound patterns), and Active Directory authentication logs (revealing lateral movement and credential misuse). If you are not collecting all of these, prioritise getting them into your SIEM before building a hunting program.</p><div class="callout"><strong>Starting point for Indian teams:</strong> Hunt for LOLBins (Living Off the Land Binaries) — legitimate Windows tools like certutil, bitsadmin, regsvr32, and mshta used maliciously. These are used heavily by advanced attackers targeting Indian networks and generate distinctive but often un-alerted log patterns.</div><h2>Building the capability with existing resources</h2><p>Most Indian SOCs can begin meaningful threat hunting with existing tools. If you have a SIEM and endpoint logs, you have the minimum viable hunting environment. Start with three hunts per month — one from a recent threat intelligence report, one from MITRE ATT&CK techniques relevant to your sector, and one from the previous month's alert backlog that was closed without full investigation. Document findings systematically. Each hunt that finds nothing is still valuable — it confirms that particular technique is not present, or identifies gaps in your logging that need filling.</p>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+      <a href="../disclaimer.html">&gt; Disclaimer</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
