@@ -1,0 +1,8 @@
+Options -Indexes
+DirectoryIndex index.html index.htm
+AddType application/xml .xml
+AddType text/plain .txt
+
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+</IfModule>
