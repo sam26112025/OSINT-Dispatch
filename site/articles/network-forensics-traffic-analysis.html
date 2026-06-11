@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Network Forensics: Reading Packet Captures Like an Investigator — IGRS</title>
+<meta name="description" content="Network traffic doesn&#x27;t lie. A properly captured PCAP can reconstruct exactly what happened during an intrusion, data exfiltration, or attack. How to read it.">
+<link rel="canonical" href="https://igrs.xyz/articles/network-forensics-traffic-analysis.html">
+<meta property="og:title" content="Network Forensics: Reading Packet Captures Like an Investigator">
+<meta property="og:description" content="Network traffic doesn&#x27;t lie. A properly captured PCAP can reconstruct exactly what happened during an intrusion, data exfiltration, or attack. How to read it.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/network-forensics-traffic-analysis.html">
+<meta property="og:site_name" content="IGRS">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'Network Forensics: Reading Packet Captures Like an Investigator',
+"description":'Network traffic doesn&#x27;t lie. A properly captured PCAP can reconstruct exactly what happened during an intrusion, data exfiltration, or attack. How to read it.',"datePublished":"2026-05-17","dateModified":"2026-05-17",
+"author":{"@type":"Person","name":"Manuj Kumar Pandey"},
+"publisher":{"@type":"Organization","name":"IGRS"},
+"mainEntityOfPage":"https://igrs.xyz/articles/network-forensics-traffic-analysis.html"}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>Network Forensics: Reading Packet Captures Like an Investigator</h1>
+  <div class="dossier" aria-label="Article information">
+    <table>
+      <tr><td>File No.</td><td>IGRS-029/2026</td></tr>
+      <tr><td>Subject</td><td>Practical guide to PCAP analysis for incident investigation and intrusion reconstruction</td></tr>
+      <tr><td>Category</td><td>Digital Forensics</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-05-17</td></tr>
+      <tr><td>Reading time</td><td>6 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">Network traffic doesn&#x27;t lie. A properly captured PCAP can reconstruct exactly what happened during an intrusion, data exfiltration, or attack. How to read it.</p>
+  <h2>What network forensics tells you</h2><p>When an endpoint is compromised, the attacker must communicate — with command and control infrastructure, with lateral movement targets, with exfiltration endpoints. That communication traverses the network and, if captured, provides an objective record of what occurred that is independent of the attacker's ability to tamper with endpoint logs. Network forensics reconstructs the who, what, when, and where of network-layer activity with a precision that endpoint-based evidence alone cannot match.</p><h2>Capture points and their limitations</h2><p>The most useful capture points for forensic network analysis are: the network perimeter (capturing all traffic crossing the firewall — shows external communication but not internal lateral movement), core switches (capturing inter-VLAN traffic — reveals lateral movement and internal data transfers), and endpoint-level captures (using tools like Wireshark or tcpdump directly on hosts — highest granularity but requires pre-positioned capability or memory forensics post-incident). Full packet capture at scale requires significant storage — a realistic deployment strategy involves capturing full packets at perimeter choke points and collecting only metadata (NetFlow/IPFIX) from internal segments.</p><h2>Wireshark as an investigation tool</h2><p>Wireshark is the primary tool for investigative PCAP analysis. Key workflows for incident investigation: follow TCP stream (reconstructs the full conversation between two endpoints, including transferred content for unencrypted protocols); protocol statistics (shows the volume distribution across protocols — unusual proportions suggest specific attack types); display filters (isolates traffic by IP, port, protocol, or content patterns — the most powerful investigation tool in Wireshark); and export objects (extracts files transferred over HTTP, SMB, FTP directly from the capture for analysis).</p><h2>Identifying attack patterns in PCAPs</h2><p>Common attack patterns have distinctive network signatures. Port scans appear as rapid sequential SYN packets to multiple ports with mostly SYN-ACK or RST responses. Brute force authentication shows repeated connection attempts to authentication services (SMB port 445, RDP port 3389, SSH port 22) with authentication failure responses. C2 communication often shows regular, periodic outbound connections to unusual external IPs — a beaconing pattern that stands out against normal traffic baselines. Data exfiltration appears as unusually large outbound transfers, often to cloud storage services, file transfer sites, or unusual IPs, particularly during off-hours.</p><div class="callout"><strong>Encrypted traffic challenge:</strong> TLS encryption prevents content inspection of most modern traffic. However, metadata — connection frequency, timing, volume, destination, and TLS handshake characteristics — is still visible and often sufficient to identify malicious communication patterns.</div><h2>Documentation for legal use</h2><p>Network forensic evidence must be documented carefully for use in legal proceedings. The chain of custody for capture files must be established — who captured the traffic, on what equipment, using what software version, with what configuration. Hash values of the raw PCAP files must be computed immediately after capture and recorded. The analysis methodology — what filters were applied, what conclusions were drawn and from which packets — must be documented in sufficient detail that another examiner could reproduce the analysis and reach the same conclusions.</p>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+      <a href="../disclaimer.html">&gt; Disclaimer</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
