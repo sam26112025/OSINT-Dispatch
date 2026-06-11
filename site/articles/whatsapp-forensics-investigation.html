@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp Forensics: What Investigators Can Recover and What They Cannot — IGRS</title>
+<meta name="description" content="WhatsApp is central to most Indian criminal investigations. What evidence survives, how it is extracted, and what the platform provides in response to legal process.">
+<link rel="canonical" href="https://igrs.xyz/articles/whatsapp-forensics-investigation.html">
+<meta property="og:title" content="WhatsApp Forensics: What Investigators Can Recover and What They Cannot">
+<meta property="og:description" content="WhatsApp is central to most Indian criminal investigations. What evidence survives, how it is extracted, and what the platform provides in response to legal process.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/whatsapp-forensics-investigation.html">
+<meta property="og:site_name" content="IGRS">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'WhatsApp Forensics: What Investigators Can Recover and What They Cannot',
+"description":'WhatsApp is central to most Indian criminal investigations. What evidence survives, how it is extracted, and what the platform provides in response to legal process.',"datePublished":"2026-04-11","dateModified":"2026-04-11",
+"author":{"@type":"Person","name":"Manuj Kumar Pandey"},
+"publisher":{"@type":"Organization","name":"IGRS"},
+"mainEntityOfPage":"https://igrs.xyz/articles/whatsapp-forensics-investigation.html"}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>WhatsApp Forensics: What Investigators Can Recover and What They Cannot</h1>
+  <div class="dossier" aria-label="Article information">
+    <table>
+      <tr><td>File No.</td><td>IGRS-017/2026</td></tr>
+      <tr><td>Subject</td><td>Technical guide to WhatsApp data recovery — databases, backups, metadata and legal process</td></tr>
+      <tr><td>Category</td><td>Digital Forensics</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-04-11</td></tr>
+      <tr><td>Reading time</td><td>6 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">WhatsApp is central to most Indian criminal investigations. What evidence survives, how it is extracted, and what the platform provides in response to legal process.</p>
+  <h2>WhatsApp's evidence footprint</h2><p>WhatsApp is India's dominant messaging platform with over 500 million users. It features in virtually every type of investigation — financial fraud, domestic violence, drug networks, cybercrime. Forensically, it leaves a substantial evidence footprint, but understanding precisely where data lives is essential before extraction.</p><h2>On-device data</h2><p>WhatsApp stores its message database in an SQLite file — <code>msgstore.db</code> on Android, within the app sandbox on iOS. This database contains message text, timestamps, sender and recipient identifiers, media references, and read receipts. On Android, accessible via full file system extraction from an unlocked or rooted device. On iOS, requires physical extraction or unencrypted iTunes backup.</p><p>Media files — photos, videos, voice notes — are stored separately. They persist after messages are deleted in many configurations because deletion removes the database entry but not the file.</p><h2>Deleted message recovery</h2><p>When a user deletes a message, WhatsApp marks the record as deleted but does not always immediately overwrite storage. Forensic tools can parse unallocated SQLite space to recover deleted records. Success depends on how long ago deletion occurred and subsequent write activity. The "Delete for Everyone" feature removes message content from both databases, but metadata — that a message existed and was deleted at a specific timestamp — typically remains.</p><h2>What Meta provides via legal process</h2><p>WhatsApp responds to lawful Indian law enforcement legal process. What Meta can provide: account registration information, IP addresses used to register and access the account, device identifiers. What Meta cannot provide: message content — end-to-end encryption means Meta does not hold it.</p><div class="callout">Message content can only be obtained from the device itself or an unencrypted backup. If neither is available, content is generally unrecoverable without the sender's or recipient's device.</div><h2>Admissibility</h2><p>WhatsApp evidence requires a proper Section 63 BSA 2023 certificate. Screenshots alone, without a forensic extraction report and certificate, are regularly challenged as potentially fabricated. The report must specify extraction tool, device details, hash values, and confirm the database was not modified during or after extraction.</p>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+      <a href="../disclaimer.html">&gt; Disclaimer</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
