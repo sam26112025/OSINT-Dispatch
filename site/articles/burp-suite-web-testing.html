@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Using Burp Suite for Web Application Security Testing: A Beginner&#x27;s Workflow — IGRS</title>
+<meta name="description" content="Burp Suite is the industry-standard tool for web application security testing. The essential workflow for beginners doing authorized assessments.">
+<link rel="canonical" href="https://igrs.xyz/articles/burp-suite-web-testing.html">
+<meta property="og:title" content="Using Burp Suite for Web Application Security Testing: A Beginner&#x27;s Workflow">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/burp-suite-web-testing.html">
+<meta property="og:site_name" content="IGRS">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'Using Burp Suite for Web Application Security Testing: A Beginner&#x27;s Workflow',"description":'Burp Suite is the industry-standard tool for web application security testing. The essential workflow for beginners doing authorized assessments.',"datePublished":"2026-04-06","author":{"@type":"Person","name":"Manuj Kumar Pandey"},"publisher":{"@type":"Organization","name":"IGRS"}}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>Using Burp Suite for Web Application Security Testing: A Beginner&#x27;s Workflow</h1>
+  <div class="dossier">
+    <table>
+      <tr><td>File No.</td><td>IGRS-040/2026</td></tr>
+      <tr><td>Subject</td><td>Practical introduction to Burp Suite Community Edition for authorized web application testing</td></tr>
+      <tr><td>Category</td><td>Threat Intelligence</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-04-06</td></tr>
+      <tr><td>Reading time</td><td>6 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">Burp Suite is the industry-standard tool for web application security testing. The essential workflow for beginners doing authorized assessments.</p>
+  <h2>What Burp Suite does</h2>
+<p>Burp Suite sits between your browser and the target application, intercepting, analysing, and manipulating HTTP/HTTPS traffic. It combines a proxy, request repeater, scanner, and intruder into a single platform. The Community Edition is free and covers core functionality for most web application testing work.</p>
+<h2>Setup</h2>
+<p>Burp Suite operates as an HTTP proxy on localhost:8080 by default. Configure Firefox to route traffic through this proxy via Network Settings. For HTTPS sites, install Burp's CA certificate from Proxy &rarr; Proxy Settings &rarr; CA Certificate, then install in your browser's certificate store.</p>
+<h2>The intercept workflow</h2>
+<p>With the proxy configured, every request passes through Burp. Turn on Intercept (Proxy &rarr; Intercept is on). Each request pauses showing full headers, parameters, and body. You can modify any aspect before forwarding — this is how testers inject SQL injection strings, XSS payloads, and path traversal sequences into parameters to test for vulnerabilities.</p>
+<h2>The Repeater — your most used tool</h2>
+<p>Send any captured request to Repeater (right-click &rarr; Send to Repeater). Modify the request and resend. The response appears side-by-side. Iterate across multiple modifications to identify how the application handles different inputs. This iterative process is how most manual vulnerability discovery happens.</p>
+<div class="callout">All testing must be performed only on systems you have written authorization to test. Running Burp Suite against a web application without authorization constitutes unauthorized access under Section 66 IT Act regardless of whether vulnerabilities are found.</div>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
