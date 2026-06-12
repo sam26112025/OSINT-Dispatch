@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Dork Library — IGRS Intel Grid Research Station</title>
+<meta name="description" content="Comprehensive Google dork library for OSINT investigators, security researchers, and penetration testers. 200+ categorized dorks for authorized security assessments.">
+<link rel="canonical" href="https://igrs.xyz/dorks.html">
+<meta property="og:title" content="Google Dork Library — IGRS">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CollectionPage","name":"Google Dork Library","description":"200+ categorized Google dorks for authorized OSINT and security research","url":"https://igrs.xyz/dorks.html"}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#080f1a;--surface:#0d1829;--border:#0e4a7a;--ink:#c8dff0;--ink2:#7aa8cc;--muted:#4a7a9b;--accent:#00d4ff;--accent2:#0099cc;--amber:#ffb800;--mono:"IBM Plex Mono",monospace;--tech:"Share Tech Mono",monospace;--disp:"Rajdhani",sans-serif;}
+body{background:var(--bg);color:var(--ink);font-family:var(--disp);min-height:100vh;}
+#neural-bg{position:fixed!important;top:0;left:0;width:100%;height:100%;z-index:0!important;pointer-events:none!important;opacity:0.35;}
+header.h,main.m,footer.f{position:relative;z-index:10;}
+header.h{background:rgba(8,15,26,.96);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1000;backdrop-filter:blur(10px);}
+.hi{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;padding:10px 0;}
+.brand img{width:52px;height:52px;filter:drop-shadow(0 0 12px rgba(0,212,255,.8));}
+.bn{font-family:var(--tech);font-size:20px;color:var(--accent);letter-spacing:.12em;}
+nav a{color:var(--ink2);text-decoration:none;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:4px 0;border-bottom:1px solid transparent;transition:color .2s;}
+nav a:hover{color:var(--accent);}
+nav a::before{content:"> ";color:var(--muted);}
+nav{display:flex;gap:18px;padding:10px 0;flex-wrap:wrap;}
+main.m{max-width:1200px;margin:0 auto;padding:0 24px 60px;}
+.hero{padding:40px 0 24px;border-bottom:1px solid var(--border);}
+.stamp{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent2);border:1px solid var(--border);padding:3px 10px;margin-bottom:14px;}
+h1{font-family:var(--tech);font-size:clamp(20px,3.5vw,34px);color:var(--accent);text-shadow:0 0 24px rgba(0,212,255,.4);margin-bottom:10px;letter-spacing:.08em;}
+.sub{color:var(--ink2);font-size:14px;max-width:720px;line-height:1.7;}
+.stats{display:flex;gap:28px;margin-top:16px;flex-wrap:wrap;}
+.stats span{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;}
+.stats strong{color:var(--accent);}
+.disclaimer{background:rgba(255,184,0,.06);border:1px solid rgba(255,184,0,.2);border-radius:4px;padding:14px 18px;margin:20px 0;font-family:var(--mono);font-size:11px;color:var(--amber);line-height:1.7;}
+.search-wrap{position:relative;margin:20px 0 0;}
+.search-wrap input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:13px 48px 13px 18px;font-family:var(--mono);font-size:13px;color:var(--ink);outline:none;transition:border-color .2s;position:relative;z-index:20;}
+.search-wrap input:focus{border-color:var(--accent);}
+.search-wrap input::placeholder{color:var(--muted);}
+.si{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:16px;pointer-events:none;z-index:21;}
+.layout{display:grid;grid-template-columns:180px 1fr;gap:28px;margin-top:24px;}
+@media(max-width:768px){.layout{grid-template-columns:1fr;}.sb{display:none;}}
+.sb{position:sticky;top:90px;z-index:20;max-height:calc(100vh - 110px);overflow-y:auto;}
+.sb-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);padding-bottom:6px;margin-bottom:8px;border-bottom:1px solid var(--border);}
+.c-btn{display:flex;align-items:center;justify-content:space-between;width:100%;background:none;border:none;border-left:2px solid transparent;padding:5px 10px;font-family:var(--mono);font-size:10.5px;color:var(--ink2);cursor:pointer;transition:all .15s;border-radius:0 3px 3px 0;position:relative;z-index:20;}
+.c-btn:hover{color:var(--accent);border-left-color:var(--accent2);background:rgba(0,212,255,.06);}
+.c-btn.active{color:var(--accent);border-left-color:var(--accent);background:rgba(0,212,255,.1);font-weight:600;}
+.cc{font-size:9px;background:rgba(0,212,255,.12);color:var(--accent2);padding:1px 5px;border-radius:8px;}
+.rbar{font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+.rbar strong{color:var(--accent);font-size:14px;}
+.cat-section{margin-bottom:32px;}
+.cat-title{font-family:var(--tech);font-size:16px;color:var(--accent);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.cat-title span{font-size:11px;color:var(--muted);font-family:var(--mono);}
+.dork-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:14px 16px;margin-bottom:10px;transition:border-color .2s;position:relative;z-index:10;}
+.dork-card:hover{border-color:var(--accent2);}
+.dork-code{font-family:var(--mono);font-size:12px;color:var(--amber);background:rgba(0,0,0,.3);padding:10px 14px;border-radius:4px;margin-bottom:8px;cursor:pointer;transition:background .2s;word-break:break-all;position:relative;}
+.dork-code:hover{background:rgba(0,212,255,.08);}
+.copy-btn{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.2);color:var(--accent);font-family:var(--mono);font-size:9px;padding:3px 8px;border-radius:3px;cursor:pointer;letter-spacing:.06em;}
+.copy-btn:hover{background:rgba(0,212,255,.2);}
+.dork-desc{font-size:12px;color:var(--ink2);line-height:1.6;}
+.dork-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;}
+.tag{font-family:var(--mono);font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(0,212,255,.08);color:var(--accent2);border:1px solid rgba(0,212,255,.15);}
+.no-r{text-align:center;padding:60px 20px;color:var(--muted);font-family:var(--mono);}
+footer.f{background:rgba(8,15,26,.9);border-top:1px solid var(--border);position:relative;z-index:10;}
+.fi{max-width:1200px;margin:0 auto;padding:20px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--mono);font-size:11px;color:var(--muted);}
+.fi a{color:var(--muted);text-decoration:none;}.fi a:hover{color:var(--accent);}
+.fl{display:flex;gap:16px;}
+</style>
+</head>
+<body>
+<header class="h">
+  <div class="hi">
+    <a class="brand" href="index.html"><img src="logo.svg" alt="IGRS"><span class="bn">IGRS</span></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="index.html#articles">Articles</a>
+      <a href="tools.html">Tools</a>
+      <a href="dorks.html" style="color:var(--accent)">Dorks</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+<main class="m">
+  <div class="hero">
+    <div class="stamp">Authorized Use Only &middot; Educational &middot; IGRS 2026</div>
+    <h1>&gt; GOOGLE DORK LIBRARY_</h1>
+    <p class="sub">Curated collection of Google search operators for OSINT investigations, authorized security assessments, and digital forensics. Categorized for law enforcement, corporate security, and defence use.</p>
+    <div class="stats">
+      <span><strong id="total-dorks">200+</strong> dorks indexed</span>
+      <span><strong>12</strong> categories</span>
+      <span>Click any dork to copy</span>
+    </div>
+    <div class="disclaimer">⚠ AUTHORIZED USE ONLY — These dorks are for use exclusively on systems you own or have written authorization to test. Unauthorized use may constitute an offence under Section 66 IT Act 2000 / BNS 2023. IGRS takes no responsibility for misuse.</div>
+    <div class="search-wrap">
+      <input type="text" id="dork-search" placeholder="Search dorks — keyword, category, use case..." autocomplete="off">
+      <span class="si">&#9906;</span>
+    </div>
+  </div>
+  <div class="layout">
+    <aside class="sb">
+      <div class="sb-lbl">Category</div>
+      <button class="c-btn active" data-cat="ALL">All <span class="cc" id="count-all">200+</span></button>
+      <button class="c-btn" data-cat="India Government">India Govt <span class="cc">18</span></button>
+      <button class="c-btn" data-cat="File Exposure">File Exposure <span class="cc">24</span></button>
+      <button class="c-btn" data-cat="Login Panels">Login Panels <span class="cc">16</span></button>
+      <button class="c-btn" data-cat="Corporate Intel">Corporate Intel <span class="cc">20</span></button>
+      <button class="c-btn" data-cat="Database Exposure">DB Exposure <span class="cc">18</span></button>
+      <button class="c-btn" data-cat="Email & Credentials">Email & Creds <span class="cc">14</span></button>
+      <button class="c-btn" data-cat="Camera & IoT">Camera & IoT <span class="cc">12</span></button>
+      <button class="c-btn" data-cat="Social Media OSINT">Social OSINT <span class="cc">20</span></button>
+      <button class="c-btn" data-cat="Vulnerability Research">Vuln Research <span class="cc">16</span></button>
+      <button class="c-btn" data-cat="Dark Web & Leaks">Dark Web/Leaks <span class="cc">12</span></button>
+      <button class="c-btn" data-cat="Network & Infra">Network & Infra <span class="cc">16</span></button>
+      <button class="c-btn" data-cat="Crypto & Finance">Crypto & Finance <span class="cc">14</span></button>
+    </aside>
+    <div>
+      <div class="rbar"><strong id="dork-count">200+</strong> dorks found</div>
+      <div id="dork-container"></div>
+    </div>
+  </div>
+</main>
+<footer class="f">
+  <div class="fi">
+    <div class="fl"><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy-policy.html">Privacy</a><a href="tools.html">Tools</a></div>
+    <div>&copy; 2026 IGRS &mdash; Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="neural.js"></script>
+<script>
+var DORKS = [
+  // ── INDIA GOVERNMENT ────────────────────────────────────────────
+  {cat:"India Government",dork:'site:gov.in filetype:pdf "confidential"',desc:"Find PDF documents marked confidential on Indian government domains.",tags:["gov.in","pdf","india"]},
+  {cat:"India Government",dork:'site:nic.in filetype:xls OR filetype:xlsx',desc:"Excel files exposed on NIC (National Informatics Centre) servers.",tags:["nic","excel","data"]},
+  {cat:"India Government",dork:'site:gov.in inurl:admin',desc:"Admin panels on Indian government websites.",tags:["admin","gov.in","panel"]},
+  {cat:"India Government",dork:'site:mca.gov.in "director" filetype:pdf',desc:"Director-related PDF documents from Ministry of Corporate Affairs.",tags:["mca","director","corporate"]},
+  {cat:"India Government",dork:'site:rbi.org.in filetype:pdf "circular"',desc:"RBI circulars and regulatory documents.",tags:["rbi","circular","banking"]},
+  {cat:"India Government",dork:'site:sebi.gov.in "enforcement" filetype:pdf',desc:"SEBI enforcement orders and penalty documents.",tags:["sebi","enforcement","securities"]},
+  {cat:"India Government",dork:'site:incometax.gov.in OR site:incometaxindiaefiling.gov.in "notice"',desc:"Income tax notices and portal documents.",tags:["income tax","notice","india"]},
+  {cat:"India Government",dork:'site:cbi.gov.in OR site:cbic.gov.in filetype:pdf',desc:"CBI or CBIC documents and circulars.",tags:["cbi","cbic","customs"]},
+  {cat:"India Government",dork:'site:uidai.gov.in "Aadhaar" filetype:pdf',desc:"UIDAI official documents and circulars related to Aadhaar.",tags:["uidai","aadhaar","india"]},
+  {cat:"India Government",dork:'site:.gov.in "login" inurl:login',desc:"Login pages across all Indian government websites.",tags:["login","gov.in","panel"]},
+  {cat:"India Government",dork:'site:indianrailways.gov.in OR site:irctc.co.in filetype:pdf',desc:"Indian Railways official documents and tenders.",tags:["railways","irctc","india"]},
+  {cat:"India Government",dork:'site:ndma.gov.in OR site:mha.gov.in "advisory"',desc:"NDMA and MHA security advisories.",tags:["ndma","mha","security"]},
+  {cat:"India Government",dork:'site:cert-in.org.in "vulnerability" OR "advisory"',desc:"CERT-In vulnerability notes and security advisories.",tags:["cert-in","vulnerability","advisory"]},
+  {cat:"India Government",dork:'site:.gov.in inurl:upload filetype:pdf OR filetype:doc',desc:"Uploaded documents on government portals.",tags:["upload","document","gov"]},
+  {cat:"India Government",dork:'site:epfindia.gov.in filetype:pdf "circular"',desc:"EPFO circulars and policy documents.",tags:["epfo","pf","labour"]},
+  {cat:"India Government",dork:'site:tenders.gov.in "empanelled" OR "approved vendor"',desc:"Government approved vendor lists from tenders portal.",tags:["tenders","vendor","procurement"]},
+  {cat:"India Government",dork:'site:.gov.in "password" filetype:txt OR filetype:log',desc:"Accidentally exposed text or log files on government servers.",tags:["password","log","exposure"]},
+  {cat:"India Government",dork:'site:police.gov.in OR site:.police.in filetype:pdf',desc:"State police department documents and circulars.",tags:["police","law enforcement","state"]},
+
+  // ── FILE EXPOSURE ────────────────────────────────────────────────
+  {cat:"File Exposure",dork:'intitle:"index of" "parent directory" filetype:pdf',desc:"Open directory listings containing PDF files.",tags:["directory","pdf","exposure"]},
+  {cat:"File Exposure",dork:'intitle:"index of" ".env" OR "config.php" OR ".git"',desc:"Exposed environment and configuration files.",tags:[".env","config","git"]},
+  {cat:"File Exposure",dork:'intitle:"index of" "backup" filetype:sql OR filetype:zip',desc:"Database backup files exposed in open directories.",tags:["backup","sql","zip"]},
+  {cat:"File Exposure",dork:'filetype:log "username" "password" OR "passwd"',desc:"Log files containing credential information.",tags:["log","password","credentials"]},
+  {cat:"File Exposure",dork:'filetype:csv "phone" "email" "address" site:*.in',desc:"CSV data files with PII on Indian websites.",tags:["csv","pii","india"]},
+  {cat:"File Exposure",dork:'filetype:xls "username" "password" site:*.in',desc:"Excel files with credentials on Indian sites.",tags:["xls","credentials","india"]},
+  {cat:"File Exposure",dork:'intitle:"index of" "private" OR "secret" filetype:key',desc:"Private key files exposed in directories.",tags:["private key","secret","crypto"]},
+  {cat:"File Exposure",dork:'filetype:sql "INSERT INTO" "users" "password"',desc:"SQL dump files containing user tables with passwords.",tags:["sql","database","password"]},
+  {cat:"File Exposure",dork:'intitle:"index of" "wp-content" "uploads"',desc:"WordPress upload directories — may contain sensitive files.",tags:["wordpress","upload","cms"]},
+  {cat:"File Exposure",dork:'filetype:txt "API_KEY" OR "api_secret" OR "access_token"',desc:"Text files with exposed API keys and tokens.",tags:["api key","token","credentials"]},
+  {cat:"File Exposure",dork:'filetype:pdf "salary" "confidential" site:*.in',desc:"Salary-related confidential PDFs on Indian sites.",tags:["salary","hr","confidential"]},
+  {cat:"File Exposure",dork:'intitle:"index of" "customer" filetype:csv OR filetype:xls',desc:"Customer data files in open directories.",tags:["customer","data","pii"]},
+  {cat:"File Exposure",dork:'filetype:docx OR filetype:doc "internal use only" site:*.in',desc:"Internal Word documents on Indian websites.",tags:["internal","word","document"]},
+  {cat:"File Exposure",dork:'intitle:"index of" ".bash_history" OR ".bash_profile"',desc:"Exposed bash history files revealing commands run on servers.",tags:["bash","history","server"]},
+  {cat:"File Exposure",dork:'filetype:cfg "password" OR "passwd" inurl:config',desc:"Configuration files with embedded passwords.",tags:["config","password","cfg"]},
+  {cat:"File Exposure",dork:'intitle:"index of" "database" filetype:mdb OR filetype:accdb',desc:"Microsoft Access database files in open directories.",tags:["access","database","mdb"]},
+  {cat:"File Exposure",dork:'filetype:json "api_key" OR "secret_key" OR "private_key"',desc:"JSON files with exposed API secrets.",tags:["json","api","secret"]},
+  {cat:"File Exposure",dork:'intitle:"index of" "id_rsa" OR "id_dsa"',desc:"SSH private key files exposed in directories.",tags:["ssh","rsa","private key"]},
+  {cat:"File Exposure",dork:'filetype:xlsx "aadhaar" OR "aadhar" OR "pan number" site:*.in',desc:"Excel files with Aadhaar or PAN data on Indian sites.",tags:["aadhaar","pan","india","pii"]},
+  {cat:"File Exposure",dork:'intitle:"index of" "passlist" OR "passwords.txt" OR "creds.txt"',desc:"Password list files exposed in open directories.",tags:["password","list","credentials"]},
+  {cat:"File Exposure",dork:'filetype:log "error" "mysql" "password" site:*.in',desc:"MySQL error logs with credential fragments on Indian sites.",tags:["mysql","error","log"]},
+  {cat:"File Exposure",dork:'intitle:"index of" "invoice" filetype:pdf site:*.in',desc:"Invoice PDFs in open directories on Indian sites.",tags:["invoice","pdf","financial"]},
+  {cat:"File Exposure",dork:'filetype:pem "BEGIN CERTIFICATE" OR "BEGIN RSA PRIVATE KEY"',desc:"PEM certificate and private key files exposed publicly.",tags:["pem","certificate","ssl"]},
+  {cat:"File Exposure",dork:'intitle:"index of" "contracts" filetype:pdf OR filetype:docx',desc:"Contract documents in open directory listings.",tags:["contract","legal","document"]},
+
+  // ── LOGIN PANELS ─────────────────────────────────────────────────
+  {cat:"Login Panels",dork:'intitle:"Admin Login" inurl:admin site:*.in',desc:"Admin login pages on Indian websites.",tags:["admin","login","india"]},
+  {cat:"Login Panels",dork:'inurl:/wp-admin/login.php site:*.in',desc:"WordPress admin login pages on Indian sites.",tags:["wordpress","admin","india"]},
+  {cat:"Login Panels",dork:'intitle:"phpMyAdmin" inurl:phpmyadmin',desc:"phpMyAdmin database management panels exposed publicly.",tags:["phpmyadmin","database","panel"]},
+  {cat:"Login Panels",dork:'intitle:"Webmin" inurl:10000',desc:"Webmin system administration panels on default port.",tags:["webmin","admin","port"]},
+  {cat:"Login Panels",dork:'inurl:/admin/login.php OR inurl:/administrator/login',desc:"Generic admin login pages across all sites.",tags:["admin","login","cms"]},
+  {cat:"Login Panels",dork:'intitle:"Cisco" inurl:/c/CiscoHome.html',desc:"Cisco router web management interfaces.",tags:["cisco","router","network"]},
+  {cat:"Login Panels",dork:'intitle:"RouterOS" inurl:winbox',desc:"MikroTik RouterOS management panels.",tags:["mikrotik","router","network"]},
+  {cat:"Login Panels",dork:'intitle:"Fortigate" inurl:/logincheck',desc:"Fortinet FortiGate firewall login pages.",tags:["fortinet","firewall","network"]},
+  {cat:"Login Panels",dork:'intitle:"cPanel" inurl:2083 OR inurl:2087',desc:"cPanel hosting control panels on default ports.",tags:["cpanel","hosting","panel"]},
+  {cat:"Login Panels",dork:'inurl:/remote/logincheck inurl:fortigate',desc:"FortiGate SSL VPN login portals.",tags:["fortinet","vpn","remote"]},
+  {cat:"Login Panels",dork:'intitle:"VMware" inurl:/ui/#/login',desc:"VMware vSphere web client login pages.",tags:["vmware","vsphere","virtualization"]},
+  {cat:"Login Panels",dork:'inurl:/owa/auth/logon.aspx "Outlook Web App"',desc:"Microsoft OWA (Outlook Web App) login pages.",tags:["outlook","owa","exchange"]},
+  {cat:"Login Panels",dork:'intitle:"Plesk" inurl:8443 OR inurl:8880',desc:"Plesk control panel login pages on default ports.",tags:["plesk","hosting","panel"]},
+  {cat:"Login Panels",dork:'inurl:/vpn/index.html intitle:"Pulse Secure"',desc:"Pulse Secure VPN login portals.",tags:["vpn","pulse","remote"]},
+  {cat:"Login Panels",dork:'intitle:"Kibana" inurl:5601',desc:"Elasticsearch Kibana dashboards exposed on default port.",tags:["kibana","elasticsearch","dashboard"]},
+  {cat:"Login Panels",dork:'intitle:"Grafana" inurl:3000 "Sign In"',desc:"Grafana monitoring dashboards exposed on default port.",tags:["grafana","monitoring","dashboard"]},
+
+  // ── CORPORATE INTEL ──────────────────────────────────────────────
+  {cat:"Corporate Intel",dork:'site:linkedin.com/in "Company Name" "Director" OR "CEO" OR "Founder"',desc:"Find company executives and directors on LinkedIn. Replace Company Name.",tags:["linkedin","executive","corporate"]},
+  {cat:"Corporate Intel",dork:'site:mca.gov.in "Company Name" filetype:pdf',desc:"MCA filings and documents for Indian companies. Replace Company Name.",tags:["mca","india","corporate"]},
+  {cat:"Corporate Intel",dork:'"Company Name" filetype:pdf "annual report" site:*.in',desc:"Annual reports of Indian companies. Replace Company Name.",tags:["annual report","corporate","financial"]},
+  {cat:"Corporate Intel",dork:'site:zaubacorp.com OR site:tofler.in "Company Name"',desc:"Company registration data from Indian business intelligence sites.",tags:["corporate","registration","india"]},
+  {cat:"Corporate Intel",dork:'"Company Name" "board of directors" filetype:pdf',desc:"Board of directors documents for corporate OSINT.",tags:["board","directors","corporate"]},
+  {cat:"Corporate Intel",dork:'site:bseindia.com OR site:nseindia.com "Company Name"',desc:"BSE/NSE filings, announcements and disclosures.",tags:["bse","nse","stock market"]},
+  {cat:"Corporate Intel",dork:'"Company Name" "gstin" OR "gst number" site:*.in',desc:"GST registration details of Indian companies.",tags:["gst","gstin","india"]},
+  {cat:"Corporate Intel",dork:'site:glassdoor.com "Company Name" "reviews"',desc:"Employee reviews revealing internal company information.",tags:["glassdoor","employees","reviews"]},
+  {cat:"Corporate Intel",dork:'"Company Name" "vendor" OR "supplier" filetype:pdf site:*.in',desc:"Vendor and supplier lists associated with the company.",tags:["vendor","supplier","procurement"]},
+  {cat:"Corporate Intel",dork:'site:tenders.gov.in "Company Name" "awarded"',desc:"Government contracts awarded to a company.",tags:["tender","contract","government"]},
+  {cat:"Corporate Intel",dork:'"Company Name" site:linkedin.com "employees at"',desc:"Employee count and LinkedIn company presence.",tags:["linkedin","employees","headcount"]},
+  {cat:"Corporate Intel",dork:'"Company Name" "data breach" OR "hacked" OR "leaked"',desc:"Check if a company has been involved in data breaches.",tags:["breach","hack","security"]},
+  {cat:"Corporate Intel",dork:'site:crunchbase.com OR site:tracxn.com "Company Name"',desc:"Startup funding, investors and growth data.",tags:["startup","funding","crunchbase"]},
+  {cat:"Corporate Intel",dork:'"Company Name" "patent" filetype:pdf OR site:ipindia.gov.in',desc:"Patents filed by Indian companies.",tags:["patent","ip","innovation"]},
+  {cat:"Corporate Intel",dork:'"Company Name" "memorandum of understanding" OR "MOU" filetype:pdf',desc:"MoUs and partnership agreements.",tags:["mou","partnership","agreement"]},
+  {cat:"Corporate Intel",dork:'site:court.gov.in OR site:ecourts.gov.in "Company Name"',desc:"Legal cases involving the company in Indian courts.",tags:["court","legal","case"]},
+  {cat:"Corporate Intel",dork:'"Company Name" "salary" OR "ctc" OR "package" site:ambitionbox.com OR site:glassdoor.com',desc:"Salary data and compensation intelligence.",tags:["salary","compensation","hr"]},
+  {cat:"Corporate Intel",dork:'"Company Name" "office" OR "headquarters" OR "branch" site:justdial.com OR site:indiamart.com',desc:"Physical locations and branch offices.",tags:["office","location","branch"]},
+  {cat:"Corporate Intel",dork:'"Company Name" filetype:pdf "terms and conditions" OR "privacy policy"',desc:"Company T&C and privacy policies revealing data practices.",tags:["privacy","terms","legal"]},
+  {cat:"Corporate Intel",dork:'site:zauba.com "Company Name" "import" OR "export"',desc:"Import/export data for corporate trade intelligence.",tags:["import","export","trade"]},
+
+  // ── DATABASE EXPOSURE ─────────────────────────────────────────────
+  {cat:"Database Exposure",dork:'intitle:"phpMyAdmin" "Welcome to phpMyAdmin" inurl:phpmyadmin',desc:"Unsecured phpMyAdmin installations with no authentication.",tags:["phpmyadmin","mysql","database"]},
+  {cat:"Database Exposure",dork:'inurl:"elasticsearch" intitle:"Elastic" port:9200',desc:"Exposed Elasticsearch instances without authentication.",tags:["elasticsearch","nosql","database"]},
+  {cat:"Database Exposure",dork:'intitle:"MongoDB" inurl:27017',desc:"Exposed MongoDB instances on default port.",tags:["mongodb","nosql","database"]},
+  {cat:"Database Exposure",dork:'filetype:sql "CREATE TABLE" "INSERT INTO" "users"',desc:"SQL dump files with user table structures.",tags:["sql","dump","users"]},
+  {cat:"Database Exposure",dork:'inurl:"/_cat/indices" intitle:"index"',desc:"Elasticsearch index listings exposed publicly.",tags:["elasticsearch","indices","data"]},
+  {cat:"Database Exposure",dork:'intitle:"Adminer" inurl:adminer.php',desc:"Adminer database management tools exposed publicly.",tags:["adminer","database","panel"]},
+  {cat:"Database Exposure",dork:'inurl:"/solr/admin" intitle:"Solr Admin"',desc:"Apache Solr admin panels exposed without authentication.",tags:["solr","search","database"]},
+  {cat:"Database Exposure",dork:'intitle:"Redis" inurl:6379',desc:"Redis in-memory database instances exposed publicly.",tags:["redis","cache","database"]},
+  {cat:"Database Exposure",dork:'filetype:sql "password" site:*.in',desc:"SQL files containing password fields on Indian sites.",tags:["sql","password","india"]},
+  {cat:"Database Exposure",dork:'intitle:"CouchDB" inurl:5984 "_all_dbs"',desc:"CouchDB instances exposing all database names.",tags:["couchdb","nosql","database"]},
+  {cat:"Database Exposure",dork:'intitle:"InfluxDB" inurl:8086',desc:"InfluxDB time-series database instances exposed.",tags:["influxdb","timeseries","iot"]},
+  {cat:"Database Exposure",dork:'inurl:"/api/v1/namespaces" intitle:"kubernetes"',desc:"Kubernetes API endpoints exposed publicly.",tags:["kubernetes","api","infrastructure"]},
+  {cat:"Database Exposure",dork:'filetype:mdb site:*.in "password"',desc:"Microsoft Access databases with password fields on Indian sites.",tags:["access","mdb","india"]},
+  {cat:"Database Exposure",dork:'intitle:"Cassandra" inurl:9160 OR inurl:9042',desc:"Apache Cassandra database instances exposed on default ports.",tags:["cassandra","nosql","database"]},
+  {cat:"Database Exposure",dork:'inurl:"/actuator/env" OR inurl:"/actuator/info"',desc:"Spring Boot actuator endpoints exposing environment configuration.",tags:["spring","actuator","java"]},
+  {cat:"Database Exposure",dork:'intitle:"Couchbase" inurl:8091',desc:"Couchbase database management console exposed.",tags:["couchbase","nosql","database"]},
+  {cat:"Database Exposure",dork:'inurl:"/.git/config" filetype:config',desc:"Exposed Git configuration files revealing repository structure.",tags:["git","config","source code"]},
+  {cat:"Database Exposure",dork:'inurl:"/wp-json/wp/v2/users"',desc:"WordPress REST API exposing user list without authentication.",tags:["wordpress","api","users"]},
+
+  // ── EMAIL & CREDENTIALS ──────────────────────────────────────────
+  {cat:"Email & Credentials",dork:'filetype:txt "email" "password" site:pastebin.com',desc:"Credential dumps on Pastebin containing email/password pairs.",tags:["pastebin","credentials","breach"]},
+  {cat:"Email & Credentials",dork:'"@company.com" filetype:txt OR filetype:csv site:pastebin.com',desc:"Company email addresses on paste sites. Replace @company.com.",tags:["email","company","paste"]},
+  {cat:"Email & Credentials",dork:'intext:"@gmail.com" "password" filetype:txt site:*.in',desc:"Text files on Indian sites with Gmail credentials.",tags:["gmail","password","india"]},
+  {cat:"Email & Credentials",dork:'site:hunter.io OR site:rocketreach.com "company domain"',desc:"Professional email intelligence from aggregator sites.",tags:["email","professional","osint"]},
+  {cat:"Email & Credentials",dork:'filetype:vcf "email" "phone" site:*.in',desc:"vCard files exposing contact details on Indian websites.",tags:["vcf","contact","pii"]},
+  {cat:"Email & Credentials",dork:'"admin@" OR "webmaster@" site:*.in filetype:txt',desc:"Admin email addresses exposed in text files on Indian sites.",tags:["admin","email","india"]},
+  {cat:"Email & Credentials",dork:'inurl:"/autodiscover/autodiscover.xml"',desc:"Microsoft Exchange Autodiscover endpoints revealing email infrastructure.",tags:["exchange","email","autodiscover"]},
+  {cat:"Email & Credentials",dork:'filetype:eml "From:" "Subject:" site:*.in',desc:"Email files (.eml) exposed on Indian web servers.",tags:["email","eml","exposure"]},
+  {cat:"Email & Credentials",dork:'"username" "password" filetype:json site:*.in',desc:"JSON config files with credentials on Indian sites.",tags:["json","credentials","india"]},
+  {cat:"Email & Credentials",dork:'inurl:config.php "DB_PASSWORD" OR "db_pass"',desc:"PHP configuration files with database passwords.",tags:["php","config","database"]},
+  {cat:"Email & Credentials",dork:'filetype:ini "password" "user" site:*.in',desc:"INI configuration files with credentials on Indian sites.",tags:["ini","config","credentials"]},
+  {cat:"Email & Credentials",dork:'site:pastebin.com "site:*.in" "password" OR "passwd"',desc:"Paste site entries referencing Indian sites with passwords.",tags:["pastebin","india","leak"]},
+  {cat:"Email & Credentials",dork:'"SMTP" "password" filetype:php OR filetype:config',desc:"SMTP configurations with embedded passwords.",tags:["smtp","email","config"]},
+  {cat:"Email & Credentials",dork:'inurl:/.htpasswd filetype:htpasswd',desc:"Apache .htpasswd files with hashed credentials.",tags:["htpasswd","apache","hash"]},
+
+  // ── CAMERA & IoT ─────────────────────────────────────────────────
+  {cat:"Camera & IoT",dork:'intitle:"webcamXP" OR intitle:"webcam 7"',desc:"Exposed webcam streams from WebcamXP and similar software.",tags:["webcam","camera","stream"]},
+  {cat:"Camera & IoT",dork:'inurl:"/view/viewer_index.shtml" intitle:"Network Camera"',desc:"Sony and Axis network cameras with default web interface.",tags:["camera","network","stream"]},
+  {cat:"Camera & IoT",dork:'intitle:"Live View / - AXIS"',desc:"Axis network cameras with live view exposed.",tags:["axis","camera","live"]},
+  {cat:"Camera & IoT",dork:'intitle:"ip camera" inurl:LvAppl',desc:"Generic IP cameras with live application interface.",tags:["ip camera","live","stream"]},
+  {cat:"Camera & IoT",dork:'inurl:/cgi-bin/viewer/video.jpg',desc:"Network cameras exposing MJPEG streams via CGI.",tags:["camera","mjpeg","cgi"]},
+  {cat:"Camera & IoT",dork:'intitle:"Hikvision" inurl:/doc/page/login.asp',desc:"Hikvision IP camera login pages exposed publicly.",tags:["hikvision","camera","india"]},
+  {cat:"Camera & IoT",dork:'intitle:"Dahua" inurl:/login.rsp',desc:"Dahua DVR/NVR login pages exposed.",tags:["dahua","dvr","nvr"]},
+  {cat:"Camera & IoT",dork:'inurl:"lvappl" intitle:"ip camera"',desc:"IP cameras with LvAppl interface exposed on the internet.",tags:["camera","iot","stream"]},
+  {cat:"Camera & IoT",dork:'intitle:"DVR" inurl:port=554 OR inurl:rtsp',desc:"DVR systems with RTSP streams exposed.",tags:["dvr","rtsp","stream"]},
+  {cat:"Camera & IoT",dork:'intitle:"NETGEAR" inurl:setup.cgi',desc:"NETGEAR router setup pages exposed publicly.",tags:["netgear","router","iot"]},
+  {cat:"Camera & IoT",dork:'intitle:"TP-Link" inurl:/userRpm/LoginRpm.htm',desc:"TP-Link router management interfaces exposed.",tags:["tplink","router","india"]},
+  {cat:"Camera & IoT",dork:'inurl:"/control/userimage.html" intitle:"camera"',desc:"Camera web interfaces with user image control.",tags:["camera","control","stream"]},
+
+  // ── SOCIAL MEDIA OSINT ───────────────────────────────────────────
+  {cat:"Social Media OSINT",dork:'site:linkedin.com/in "mobile" OR "phone" "name"',desc:"LinkedIn profiles with phone numbers publicly visible.",tags:["linkedin","phone","osint"]},
+  {cat:"Social Media OSINT",dork:'site:twitter.com OR site:x.com "email" "@gmail.com" OR "@yahoo.com"',desc:"Twitter/X profiles with email addresses in bio.",tags:["twitter","email","social"]},
+  {cat:"Social Media OSINT",dork:'site:facebook.com "works at" "lives in" "India"',desc:"Facebook profiles with workplace and location data.",tags:["facebook","india","profile"]},
+  {cat:"Social Media OSINT",dork:'site:instagram.com "contact" "email" "@"',desc:"Instagram profiles with contact email in bio.",tags:["instagram","email","contact"]},
+  {cat:"Social Media OSINT",dork:'site:reddit.com "u/username" "email" OR "phone"',desc:"Reddit posts where users share contact information.",tags:["reddit","username","contact"]},
+  {cat:"Social Media OSINT",dork:'site:github.com "email" "@company.com"',desc:"GitHub profiles with company email addresses.",tags:["github","email","developer"]},
+  {cat:"Social Media OSINT",dork:'site:linkedin.com "Subject Name" "India"',desc:"LinkedIn OSINT for specific individuals in India. Replace Subject Name.",tags:["linkedin","india","person"]},
+  {cat:"Social Media OSINT",dork:'site:truecaller.com "phone number"',desc:"Truecaller entries for phone number reverse lookup.",tags:["truecaller","phone","india"]},
+  {cat:"Social Media OSINT",dork:'"mailto:" "Subject Name" site:*.in',desc:"Email addresses for a specific person on Indian websites.",tags:["email","person","india"]},
+  {cat:"Social Media OSINT",dork:'site:youtube.com "Subject Name" "India" "about"',desc:"YouTube channel OSINT for individuals.",tags:["youtube","channel","india"]},
+  {cat:"Social Media OSINT",dork:'site:justdial.com "Name" "mobile" "India"',desc:"JustDial business/person listings with mobile numbers.",tags:["justdial","mobile","india"]},
+  {cat:"Social Media OSINT",dork:'site:whatsapp.com/dl "wa.me" phone number',desc:"WhatsApp links shared publicly with phone numbers.",tags:["whatsapp","phone","social"]},
+  {cat:"Social Media OSINT",dork:'site:slideshare.net "Name" "Company" "India"',desc:"SlideShare presentations revealing professional information.",tags:["slideshare","presentation","osint"]},
+  {cat:"Social Media OSINT",dork:'"Name" "IIT" OR "IIM" OR "NIT" site:linkedin.com',desc:"LinkedIn profiles from Indian premium educational institutions.",tags:["linkedin","iit","education"]},
+  {cat:"Social Media OSINT",dork:'site:quora.com "Name" "India" "works at" OR "studied at"',desc:"Quora profiles with employment and education data.",tags:["quora","profile","india"]},
+  {cat:"Social Media OSINT",dork:'site:medium.com "@" "India" "cybersecurity" OR "OSINT"',desc:"Medium articles by Indian cybersecurity professionals.",tags:["medium","blog","security"]},
+  {cat:"Social Media OSINT",dork:'site:hackerearth.com OR site:hackerrank.com "India" "email"',desc:"Developer profiles on competitive coding platforms.",tags:["hackerrank","developer","india"]},
+  {cat:"Social Media OSINT",dork:'"mobile number" OR "contact number" "India" "Name" filetype:pdf',desc:"PDFs containing individual contact details in India.",tags:["mobile","contact","pdf"]},
+  {cat:"Social Media OSINT",dork:'site:twitter.com "new phone" OR "new number" "India"',desc:"Twitter posts where users share new phone numbers.",tags:["twitter","phone","india"]},
+  {cat:"Social Media OSINT",dork:'site:paytm.com/store OR site:phonepe.com "shop" "India"',desc:"Business profiles on payment platforms.",tags:["paytm","phonepe","business"]},
+
+  // ── VULNERABILITY RESEARCH ───────────────────────────────────────
+  {cat:"Vulnerability Research",dork:'intitle:"Apache Tomcat" "Apache Tomcat/8" OR "Apache Tomcat/9" site:*.in',desc:"Apache Tomcat version disclosure on Indian sites — check for CVEs.",tags:["tomcat","apache","version"]},
+  {cat:"Vulnerability Research",dork:'intitle:"Welcome to nginx" site:*.in',desc:"Default Nginx pages on Indian servers — unconfigured.",tags:["nginx","default","misconfiguration"]},
+  {cat:"Vulnerability Research",dork:'inurl:".git" intitle:"Index of /.git"',desc:"Exposed .git repositories leaking source code.",tags:["git","source code","repository"]},
+  {cat:"Vulnerability Research",dork:'inurl:/wp-content/plugins/ site:*.in',desc:"WordPress plugin directories on Indian sites for version enumeration.",tags:["wordpress","plugins","india"]},
+  {cat:"Vulnerability Research",dork:'intitle:"IIS Windows Server" site:*.in',desc:"Default IIS pages on Indian servers indicating unconfigured installs.",tags:["iis","windows","microsoft"]},
+  {cat:"Vulnerability Research",dork:'inurl:/.well-known/security.txt site:*.in',desc:"Security.txt files on Indian sites revealing security contact and policy.",tags:["security.txt","disclosure","policy"]},
+  {cat:"Vulnerability Research",dork:'intitle:"phpinfo()" inurl:phpinfo.php',desc:"PHP info pages revealing server configuration and version.",tags:["php","phpinfo","version"]},
+  {cat:"Vulnerability Research",dork:'inurl:"/server-status" intitle:"Apache Status"',desc:"Apache server status pages exposing server activity.",tags:["apache","status","server"]},
+  {cat:"Vulnerability Research",dork:'inurl:"/elmah.axd" intitle:"Error log"',desc:"ASP.NET ELMAH error logs exposed publicly.",tags:["aspnet","error","log"]},
+  {cat:"Vulnerability Research",dork:'inurl:"/trace.axd" intitle:"Application Trace"',desc:"ASP.NET application trace information exposed.",tags:["aspnet","trace","debug"]},
+  {cat:"Vulnerability Research",dork:'intitle:"Swagger UI" inurl:/swagger-ui.html OR inurl:/swagger/',desc:"Swagger API documentation exposing API endpoints and parameters.",tags:["swagger","api","documentation"]},
+  {cat:"Vulnerability Research",dork:'inurl:"/api/swagger.json" OR inurl:"/api/openapi.json"',desc:"API specification files revealing all endpoints.",tags:["api","swagger","openapi"]},
+  {cat:"Vulnerability Research",dork:'intitle:"AWS S3 Explorer" OR inurl:"s3.amazonaws.com" site:*.in',desc:"AWS S3 buckets referenced by Indian sites — check for public access.",tags:["aws","s3","cloud"]},
+  {cat:"Vulnerability Research",dork:'inurl:"/.env" site:*.in',desc:"Environment configuration files on Indian web servers.",tags:[".env","config","india"]},
+  {cat:"Vulnerability Research",dork:'site:shodan.io/host "India" "port:3389"',desc:"Shodan results for Indian hosts with exposed RDP.",tags:["shodan","rdp","india"]},
+  {cat:"Vulnerability Research",dork:'inurl:"/api/v1/pods" OR inurl:"/api/v1/nodes"',desc:"Kubernetes API endpoints exposing cluster information.",tags:["kubernetes","api","cloud"]},
+
+  // ── DARK WEB & LEAKS ─────────────────────────────────────────────
+  {cat:"Dark Web & Leaks",dork:'site:pastebin.com "india" "database" "leaked" OR "dump"',desc:"Indian database leak mentions on Pastebin.",tags:["pastebin","india","leak"]},
+  {cat:"Dark Web & Leaks",dork:'site:ghostbin.co OR site:hastebin.com "password" "india"',desc:"Credential leaks on alternative paste sites.",tags:["paste","credentials","india"]},
+  {cat:"Dark Web & Leaks",dork:'"domain.in" "leaked" "database" "download" site:pastebin.com',desc:"Domain-specific leak references on paste sites.",tags:["domain","leak","paste"]},
+  {cat:"Dark Web & Leaks",dork:'site:pastebin.com "breach" "email" "@*.in"',desc:"Indian email address breaches on Pastebin.",tags:["breach","email","india"]},
+  {cat:"Dark Web & Leaks",dork:'intext:"aadhaar" "leaked" OR "exposed" site:pastebin.com',desc:"Aadhaar data exposure mentions on paste sites.",tags:["aadhaar","leak","india"]},
+  {cat:"Dark Web & Leaks",dork:'site:pastebin.com "UPI" "VPA" "phone" "india"',desc:"UPI VPA and phone number leaks on Pastebin.",tags:["upi","vpa","india"]},
+  {cat:"Dark Web & Leaks",dork:'"Indian" "bank" "account" "ifsc" site:pastebin.com',desc:"Indian banking data leaks on paste sites.",tags:["bank","ifsc","india"]},
+  {cat:"Dark Web & Leaks",dork:'site:pastebin.com "OTP" "bypass" "india" "SIM"',desc:"SIM swap and OTP bypass discussions on Pastebin.",tags:["otp","sim swap","india"]},
+  {cat:"Dark Web & Leaks",dork:'"company.in" "employees" "data" "leaked" -site:company.in',desc:"Corporate data breach mentions. Replace company.in with target.",tags:["corporate","breach","employees"]},
+  {cat:"Dark Web & Leaks",dork:'site:pastebin.com "CERT-In" OR "cybercrime.gov.in"',desc:"References to Indian cyber authorities on paste sites.",tags:["cert-in","cybercrime","india"]},
+  {cat:"Dark Web & Leaks",dork:'site:pastecode.io OR site:dpaste.com "india" "password"',desc:"Indian credential data on alternative paste platforms.",tags:["paste","india","password"]},
+  {cat:"Dark Web & Leaks",dork:'"ransomware" "india" "attack" "data" site:pastebin.com OR site:ghostbin.co',desc:"Ransomware attack claims targeting Indian organizations.",tags:["ransomware","india","attack"]},
+
+  // ── NETWORK & INFRASTRUCTURE ─────────────────────────────────────
+  {cat:"Network & Infra",dork:'intitle:"Network Weathermap" inurl:/weathermap/',desc:"Network topology maps exposed publicly showing infrastructure layout.",tags:["network","topology","map"]},
+  {cat:"Network & Infra",dork:'intitle:"Nagios" inurl:/nagios/ "Core"',desc:"Nagios network monitoring panels exposed without authentication.",tags:["nagios","monitoring","network"]},
+  {cat:"Network & Infra",dork:'intitle:"Zabbix" inurl:/zabbix/ "Monitoring"',desc:"Zabbix network monitoring dashboards exposed publicly.",tags:["zabbix","monitoring","network"]},
+  {cat:"Network & Infra",dork:'intitle:"Cacti" inurl:/cacti/ "Network Monitoring"',desc:"Cacti network monitoring graphs exposed publicly.",tags:["cacti","monitoring","graphs"]},
+  {cat:"Network & Infra",dork:'intitle:"PRTG" "Network Monitor"',desc:"PRTG network monitoring systems exposed publicly.",tags:["prtg","monitoring","network"]},
+  {cat:"Network & Infra",dork:'inurl:"/Cisco_IOS" OR inurl:cisco ios "router"',desc:"Cisco IOS device management interfaces exposed.",tags:["cisco","ios","router"]},
+  {cat:"Network & Infra",dork:'intitle:"pfSense" inurl:pfSense',desc:"pfSense firewall management interfaces exposed.",tags:["pfsense","firewall","network"]},
+  {cat:"Network & Infra",dork:'inurl:/manage/account intitle:"Ubiquiti"',desc:"Ubiquiti network device management interfaces.",tags:["ubiquiti","network","wireless"]},
+  {cat:"Network & Infra",dork:'intitle:"OpenVPN" inurl:/vpn/ "Access Server"',desc:"OpenVPN access server management interfaces.",tags:["openvpn","vpn","network"]},
+  {cat:"Network & Infra",dork:'inurl:"/cgi-bin/luci" intitle:"OpenWrt"',desc:"OpenWrt router management interfaces exposed.",tags:["openwrt","router","embedded"]},
+  {cat:"Network & Infra",dork:'site:shodan.io "country:IN" "port:22" "openssh"',desc:"Shodan query for Indian servers with SSH exposed.",tags:["shodan","ssh","india"]},
+  {cat:"Network & Infra",dork:'intitle:"Wireguard" inurl:wireguard "peers"',desc:"WireGuard VPN configuration panels exposed.",tags:["wireguard","vpn","network"]},
+  {cat:"Network & Infra",dork:'inurl:"/diag_ping.php" intitle:"pfSense"',desc:"pfSense diagnostic pages exposed publicly.",tags:["pfsense","diagnostic","network"]},
+  {cat:"Network & Infra",dork:'intitle:"network camera" inurl:/ISAPI/ site:*.in',desc:"Hikvision ISAPI camera interfaces on Indian networks.",tags:["camera","isapi","india"]},
+  {cat:"Network & Infra",dork:'intitle:"SolarWinds" "Orion" inurl:/Orion/',desc:"SolarWinds Orion network management portals.",tags:["solarwinds","orion","monitoring"]},
+  {cat:"Network & Infra",dork:'inurl:"/cgi-bin/webproc" intitle:"DSL Router"',desc:"DSL router management interfaces exposed via CGI.",tags:["dsl","router","isp"]},
+
+  // ── CRYPTO & FINANCE ─────────────────────────────────────────────
+  {cat:"Crypto & Finance",dork:'site:blockchain.info OR site:blockchair.com "wallet" "India"',desc:"Blockchain explorer queries for India-related wallet research.",tags:["blockchain","wallet","india"]},
+  {cat:"Crypto & Finance",dork:'"USDT" OR "USDC" "TRC20" "India" "payment" site:pastebin.com',desc:"Crypto payment references in India on paste sites.",tags:["crypto","usdt","india"]},
+  {cat:"Crypto & Finance",dork:'site:etherscan.io "India" "scam" OR "fraud"',desc:"Ethereum addresses flagged for scams with India connection.",tags:["ethereum","scam","fraud"]},
+  {cat:"Crypto & Finance",dork:'"bitcoin address" OR "btc address" "india" "payment" site:*.in',desc:"Bitcoin payment addresses on Indian websites.",tags:["bitcoin","payment","india"]},
+  {cat:"Crypto & Finance",dork:'site:wazirx.com OR site:coindcx.com "withdrawal" OR "deposit"',desc:"Indian crypto exchange transaction references.",tags:["wazirx","coindcx","exchange"]},
+  {cat:"Crypto & Finance",dork:'"hawala" OR "hundi" "india" site:pastebin.com OR site:reddit.com',desc:"Hawala network references on public platforms.",tags:["hawala","hundi","india"]},
+  {cat:"Crypto & Finance",dork:'filetype:pdf "transaction hash" "india" "cryptocurrency"',desc:"PDF documents with cryptocurrency transaction hashes related to India.",tags:["transaction","hash","india"]},
+  {cat:"Crypto & Finance",dork:'"money mule" "india" "account" site:pastebin.com OR site:reddit.com',desc:"Money mule recruitment references targeting India.",tags:["money mule","fraud","india"]},
+  {cat:"Crypto & Finance",dork:'site:zerodha.com OR site:groww.in OR site:upstox.com "account" "statement" filetype:pdf',desc:"Investment platform account statement documents.",tags:["zerodha","groww","stocks"]},
+  {cat:"Crypto & Finance",dork:'"pan card" OR "pan number" "india" "bank account" site:pastebin.com',desc:"PAN card and bank account combinations on paste sites.",tags:["pan","bank","india"]},
+  {cat:"Crypto & Finance",dork:'"binance" OR "bybit" "india" "kyc" "id proof" site:pastebin.com',desc:"Crypto exchange KYC document references for Indian users.",tags:["binance","kyc","india"]},
+  {cat:"Crypto & Finance",dork:'site:rbi.org.in "caution" OR "alert" "entity" filetype:pdf',desc:"RBI caution lists against fraudulent financial entities.",tags:["rbi","caution","fraud"]},
+  {cat:"Crypto & Finance",dork:'"payment gateway" "api key" OR "secret" site:*.in filetype:php OR filetype:js',desc:"Payment gateway API credentials exposed on Indian sites.",tags:["payment","api","credentials"]},
+  {cat:"Crypto & Finance",dork:'site:sebi.gov.in "debarred" OR "penalty" OR "banned" filetype:pdf',desc:"SEBI orders against debarred individuals and entities.",tags:["sebi","debarred","penalty"]},
+];
+
+var ACTIVE_CAT = "ALL";
+var QUERY = "";
+
+function renderDorks(){
+  var container = document.getElementById("dork-container");
+  var q = QUERY.toLowerCase();
+  var grouped = {};
+  var total = 0;
+  DORKS.forEach(function(d){
+    if(ACTIVE_CAT !== "ALL" && d.cat !== ACTIVE_CAT) return;
+    if(q){
+      var h = (d.dork + " " + d.desc + " " + d.cat + " " + d.tags.join(" ")).toLowerCase();
+      if(h.indexOf(q) === -1) return;
+    }
+    if(!grouped[d.cat]) grouped[d.cat] = [];
+    grouped[d.cat].push(d);
+    total++;
+  });
+  document.getElementById("dork-count").textContent = total;
+  if(total === 0){
+    container.innerHTML = "<div class=\"no-r\">No dorks match. Try a different search term.</div>";
+    return;
+  }
+  var html = "";
+  Object.keys(grouped).sort().forEach(function(cat){
+    var dorks = grouped[cat];
+    html += "<div class=\"cat-section\">";
+    html += "<div class=\"cat-title\">" + cat + " <span>" + dorks.length + " dorks</span></div>";
+    dorks.forEach(function(d){
+      html += "<div class=\"dork-card\">";
+      html += "<div class=\"dork-code\" onclick=\"copyDork(this)\"><span class=\"copy-btn\">COPY</span>" + d.dork + "</div>";
+      html += "<div class=\"dork-desc\">" + d.desc + "</div>";
+      html += "<div class=\"dork-tags\">";
+      d.tags.forEach(function(t){ html += "<span class=\"tag\">" + t + "</span>"; });
+      html += "</div></div>";
+    });
+    html += "</div>";
+  });
+  container.innerHTML = html;
+}
+
+function copyDork(el){
+  var text = el.textContent.replace("COPY","").trim();
+  navigator.clipboard.writeText(text).then(function(){
+    var btn = el.querySelector(".copy-btn");
+    btn.textContent = "COPIED!";
+    btn.style.color = "#00c864";
+    setTimeout(function(){ btn.textContent = "COPY"; btn.style.color = ""; }, 2000);
+  });
+}
+
+document.querySelectorAll(".c-btn").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    ACTIVE_CAT = this.getAttribute("data-cat");
+    document.querySelectorAll(".c-btn").forEach(function(b){ b.classList.remove("active"); });
+    this.classList.add("active");
+    renderDorks();
+  });
+});
+
+document.getElementById("dork-search").addEventListener("input", function(){
+  QUERY = this.value.trim();
+  renderDorks();
+});
+
+renderDorks();
+</script>
+</body>
+</html>
