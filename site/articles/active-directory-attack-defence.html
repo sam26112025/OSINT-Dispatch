@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Active Directory Attacks and Defences: What Every Indian Security Team Must Know — IGRS</title>
+<meta name="description" content="Active Directory is the authentication backbone of most Indian enterprise environments — and the primary target of attackers who have established a foothold. The most important attacks and how to defend.">
+<link rel="canonical" href="https://igrs.xyz/articles/active-directory-attack-defence.html">
+<meta property="og:title" content="Active Directory Attacks and Defences: What Every Indian Security Team Must Know">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/active-directory-attack-defence.html">
+<meta property="og:site_name" content="IGRS">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'Active Directory Attacks and Defences: What Every Indian Security Team Must Know',"description":'Active Directory is the authentication backbone of most Indian enterprise environments — and the primary target of attackers who have established a foothold. The most important attacks and how to defend.',"datePublished":"2026-06-04","author":{"@type":"Person","name":"Manuj Kumar Pandey"},"publisher":{"@type":"Organization","name":"IGRS"}}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>Active Directory Attacks and Defences: What Every Indian Security Team Must Know</h1>
+  <div class="dossier">
+    <table>
+      <tr><td>File No.</td><td>IGRS-060/2026</td></tr>
+      <tr><td>Subject</td><td>Common Active Directory attack patterns, detection methods, and priority hardening steps for Indian organizations</td></tr>
+      <tr><td>Category</td><td>Threat Intelligence</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-06-04</td></tr>
+      <tr><td>Reading time</td><td>7 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">Active Directory is the authentication backbone of most Indian enterprise environments — and the primary target of attackers who have established a foothold. The most important attacks and how to defend.</p>
+  <h2>Why Active Directory is the prize</h2>
+<p>Active Directory manages authentication and access control for every user account, computer, and server in a Windows domain network. Compromising Active Directory gives an attacker control over every resource in the domain. The overwhelming majority of Indian enterprise and government Windows environments use Active Directory, making AD attack and defence one of the highest-priority knowledge areas for Indian security teams.</p>
+<h2>Kerberoasting</h2>
+<p>Any domain user can request a Kerberos service ticket for any service account that has a Service Principal Name (SPN) registered. The ticket is encrypted with the service account's password hash. Attackers request these tickets and crack them offline. Service accounts often have weak passwords and rarely rotate. Defence: use long, complex, regularly rotated service account passwords; use Group Managed Service Accounts (gMSAs) for automatic password rotation; monitor Event ID 4769 for unusual encryption types (RC4) which may indicate Kerberoasting in progress.</p>
+<h2>Pass-the-Hash</h2>
+<p>Windows stores NTLM password hashes in memory (LSASS process) and uses them for authentication. Attackers with local administrator access extract these hashes and use them to authenticate to other systems without knowing the plaintext password — the hash is the credential. Defence: enable Windows Credential Guard to prevent LSASS dumping on modern systems; restrict local administrator accounts rigorously using LAPS (Local Administrator Password Solution) to randomize local admin passwords; monitor Event ID 4624 Type 3 with NTLM from unusual sources.</p>
+<h2>DCSync</h2>
+<p>An account with Directory Replication permissions can request that domain controllers replicate credential data, effectively pulling all password hashes from the domain. This abuses legitimate replication functionality using compromised privileged credentials. Defence: audit which accounts have replication permissions (should be only domain controllers and specific backup accounts); alert on unexpected replication requests.</p>
+<div class="callout"><strong>The most impactful single defensive step:</strong> Enable the Protected Users security group for all privileged accounts. This prevents credential caching, forces Kerberos with no NTLM fallback, and limits ticket lifetimes — significantly raising the cost of credential-based attacks against your most privileged accounts.</div>
+<h2>Tier-based administration</h2>
+<p>The most effective structural defence is tiered administration: Tier 0 (Domain Controllers — managed only by dedicated Tier 0 admin accounts that never log into lower-tier systems); Tier 1 (servers); Tier 2 (workstations). This prevents credential theft from workstations, where most initial compromises occur, from enabling direct access to domain controllers.</p>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
