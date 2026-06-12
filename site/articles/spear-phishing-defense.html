@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spear Phishing Defence: Why Targeted Attacks Succeed and How to Stop Them — IGRS</title>
+<meta name="description" content="Generic phishing filters don&#x27;t stop spear phishing. Targeted attacks succeed because they&#x27;re built from OSINT research. Understanding how they&#x27;re constructed is the key to defeating them.">
+<link rel="canonical" href="https://igrs.xyz/articles/spear-phishing-defense.html">
+<meta property="og:title" content="Spear Phishing Defence: Why Targeted Attacks Succeed and How to Stop Them">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/spear-phishing-defense.html">
+<meta property="og:site_name" content="IGRS">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'Spear Phishing Defence: Why Targeted Attacks Succeed and How to Stop Them',"description":'Generic phishing filters don&#x27;t stop spear phishing. Targeted attacks succeed because they&#x27;re built from OSINT research. Understanding how they&#x27;re constructed is the key to defeating them.',"datePublished":"2026-04-21","author":{"@type":"Person","name":"Manuj Kumar Pandey"},"publisher":{"@type":"Organization","name":"IGRS"}}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>Spear Phishing Defence: Why Targeted Attacks Succeed and How to Stop Them</h1>
+  <div class="dossier">
+    <table>
+      <tr><td>File No.</td><td>IGRS-045/2026</td></tr>
+      <tr><td>Subject</td><td>Detection and defence methodology for targeted spear phishing attacks against Indian organizations</td></tr>
+      <tr><td>Category</td><td>Cyber Awareness</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-04-21</td></tr>
+      <tr><td>Reading time</td><td>6 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">Generic phishing filters don&#x27;t stop spear phishing. Targeted attacks succeed because they&#x27;re built from OSINT research. Understanding how they&#x27;re constructed is the key to defeating them.</p>
+  <h2>Spear phishing versus phishing</h2>
+<p>Phishing is mass targeting — the same message sent to thousands, relying on a small percentage falling for a generic lure. Spear phishing is precision targeting — a message crafted specifically for one individual using personal and professional information gathered through OSINT research. It appears indistinguishable from legitimate communication, because it references things the target is actually working on.</p>
+<h2>How attackers research their targets</h2>
+<p>A spear phishing campaign begins with OSINT collection. LinkedIn reveals the target's role, reporting structure, current projects, and colleagues' names. Company websites reveal email format. Press releases reveal partners, clients, and business activities. Social media reveals personal interests and communication style. Job postings reveal which internal software the company uses — a pretext referencing a specific tool (Jira, Workday, Salesforce) immediately increases plausibility.</p>
+<h2>Common pretexts against Indian organizations</h2>
+<p>Highest-volume patterns targeting Indian businesses and government: IT helpdesk credential reset requests referencing real internal systems; finance department vendor payment update requests timed to actual procurement cycles; senior executive impersonation requesting urgent wire transfers or data; HR benefit and payroll update notifications. Each is designed to be processed quickly without verification — the combination of familiarity, authority, and urgency defeats careful thinking.</p>
+<div class="callout"><strong>The single most effective control:</strong> Out-of-band verification. Any request involving money movement, credential entry, or sensitive data disclosure — regardless of how legitimate the email appears — should be verified by calling the requester on a known phone number before acting. This defeats the vast majority of successful spear phishing outcomes.</div>
+<h2>Technical controls that help</h2>
+<p>DMARC enforcement at reject policy prevents domain spoofing. External email banners on messages from outside the organization train users to pause before acting on messages claiming to be from internal senders. Advanced email filtering with attachment sandboxing and URL analysis catches known-malicious content. But technical controls alone are insufficient against well-crafted attacks using legitimate services.</p>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
