@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Windows Event Log Forensics: The Critical Events Every Investigator Must Know — IGRS</title>
+<meta name="description" content="Windows Event Logs record virtually every significant action on a Windows system. Knowing which events matter — and reading them correctly — is a core DFIR skill.">
+<link rel="canonical" href="https://igrs.xyz/articles/windows-event-log-forensics.html">
+<meta property="og:title" content="Windows Event Log Forensics: The Critical Events Every Investigator Must Know">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/windows-event-log-forensics.html">
+<meta property="og:site_name" content="IGRS">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'Windows Event Log Forensics: The Critical Events Every Investigator Must Know',"description":'Windows Event Logs record virtually every significant action on a Windows system. Knowing which events matter — and reading them correctly — is a core DFIR skill.',"datePublished":"2026-05-18","author":{"@type":"Person","name":"Manuj Kumar Pandey"},"publisher":{"@type":"Organization","name":"IGRS"}}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>Windows Event Log Forensics: The Critical Events Every Investigator Must Know</h1>
+  <div class="dossier">
+    <table>
+      <tr><td>File No.</td><td>IGRS-054/2026</td></tr>
+      <tr><td>Subject</td><td>Guide to Windows Event Log analysis for incident investigation and intrusion reconstruction</td></tr>
+      <tr><td>Category</td><td>Digital Forensics</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-05-18</td></tr>
+      <tr><td>Reading time</td><td>7 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">Windows Event Logs record virtually every significant action on a Windows system. Knowing which events matter — and reading them correctly — is a core DFIR skill.</p>
+  <h2>Authentication events</h2>
+<p><strong>Event ID 4624 — Successful logon:</strong> Records every successful authentication. The Logon Type field is critical: Type 2 is interactive (console), Type 3 is network (file share, WMI), Type 10 is remote interactive (RDP), Type 5 is service. Type 3 events from unusual source IPs indicate lateral movement. <strong>Event ID 4625 — Failed logon:</strong> Large numbers from a single source indicate brute force. Failure reason code 0xC000006A means wrong password; 0xC0000064 means unknown username. <strong>Event ID 4648 — Explicit credential use:</strong> Indicates pass-the-hash, credential stuffing, or legitimate service account use. <strong>Event IDs 4768/4769 — Kerberos ticket requests:</strong> Unusual encryption types (RC4) in 4769 events may indicate pass-the-hash or Kerberoasting activity.</p>
+<h2>Process and execution events</h2>
+<p><strong>Event ID 4688 — Process creation:</strong> Records every new process launched, including full command line if audit policy is configured (not enabled by default — enable this immediately). Parent-child relationships reveal execution chains: cmd.exe spawned by Word is malicious; spawned by Explorer is normal. <strong>Event ID 7045 — New service installed:</strong> Attackers frequently install services for persistence — any new service on production systems merits review. <strong>Event ID 4698 — Scheduled task created:</strong> Includes the full task XML configuration showing what the task will execute and when.</p>
+<h2>Account and privilege events</h2>
+<p><strong>Event ID 4720 — User account created:</strong> New accounts outside business hours or by unexpected actors are high-priority triggers. <strong>Event IDs 4728/4732 — Member added to security or local group:</strong> Adding users to Administrators or Domain Admins is a critical indicator. <strong>Event ID 4776 — Domain controller credential validation:</strong> Pattern analysis across these events reveals credential-based attacks in progress.</p>
+<div class="callout"><strong>Log retention is critical:</strong> Default Windows Event Log sizes are dangerously small — Security logs default to 20MB, covering only hours on an active system. Increase all critical logs to minimum 1GB and enable forwarding to a SIEM. An investigation that cannot answer "what happened two weeks ago" because logs rolled over has failed before it began.</div>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
