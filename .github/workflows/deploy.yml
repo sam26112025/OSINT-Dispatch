@@ -14,14 +14,32 @@ jobs:
       - name: Fetch threat intelligence data
         run: |
           mkdir -p site/data
-          curl -sf -X POST "https://urlhaus-api.abuse.ch/v1/urls/recent/limit/50/" -H "Content-Type: application/x-www-form-urlencoded" --max-time 20 -o site/data/urlhaus.json || echo '{"urls":[]}' > site/data/urlhaus.json
-          curl -sf "https://feodotracker.abuse.ch/downloads/ipblocklist_aggressive.json" --max-time 20 -o site/data/feodo.json || echo '[]' > site/data/feodo.json
-          curl -sf -X POST "https://mb-api.abuse.ch/api/v1/" -H "Content-Type: application/x-www-form-urlencoded" -d "query=get_recent&selector=time" --max-time 20 -o site/data/malwarebazaar.json || echo '{"data":[]}' > site/data/malwarebazaar.json
-          curl -sf "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json" --max-time 30 -o site/data/cisa_kev.json || echo '{"vulnerabilities":[]}' > site/data/cisa_kev.json
+          echo "Testing connectivity..."
+          curl --max-time 10 -o /dev/null -sw "httpbin: %{http_code}\n" "https://httpbin.org/get" || true
+          echo "Fetching URLhaus..."
+          CODE=$(curl --max-time 20 -w "%{http_code}" -o site/data/urlhaus.json -X POST "https://urlhaus-api.abuse.ch/v1/urls/recent/limit/50/" -H "Content-Type: application/x-www-form-urlencoded" 2>/dev/null || echo "000")
+          echo "URLhaus HTTP: $CODE size: $(wc -c < site/data/urlhaus.json)B"
+          [[ "$CODE" != "200" ]] && echo '{"query_status":"no_results","urls":[]}' > site/data/urlhaus.json
+          echo "Fetching Feodo..."
+          CODE=$(curl --max-time 20 -w "%{http_code}" -o site/data/feodo.json "https://feodotracker.abuse.ch/downloads/ipblocklist_aggressive.json" 2>/dev/null || echo "000")
+          echo "Feodo HTTP: $CODE size: $(wc -c < site/data/feodo.json)B"
+          [[ "$CODE" != "200" ]] && echo '[]' > site/data/feodo.json
+          echo "Fetching MalwareBazaar..."
+          CODE=$(curl --max-time 20 -w "%{http_code}" -o site/data/malwarebazaar.json -X POST "https://mb-api.abuse.ch/api/v1/" -H "Content-Type: application/x-www-form-urlencoded" -d "query=get_recent&selector=time" 2>/dev/null || echo "000")
+          echo "MalwareBazaar HTTP: $CODE size: $(wc -c < site/data/malwarebazaar.json)B"
+          [[ "$CODE" != "200" ]] && echo '{"query_status":"no_results","data":[]}' > site/data/malwarebazaar.json
+          echo "Fetching CISA KEV..."
+          CODE=$(curl --max-time 30 -w "%{http_code}" -o site/data/cisa_kev.json "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json" 2>/dev/null || echo "000")
+          echo "CISA KEV HTTP: $CODE size: $(wc -c < site/data/cisa_kev.json)B"
+          [[ "$CODE" != "200" ]] && echo '{"vulnerabilities":[]}' > site/data/cisa_kev.json
+          echo "Fetching NVD..."
           START=$(date -u -d "30 days ago" "+%Y-%m-%dT%H:%M:%S.000")
           END=$(date -u "+%Y-%m-%dT%H:%M:%S.000")
-          curl -sf "https://services.nvd.nist.gov/rest/json/cves/2.0?pubStartDate=${START}&pubEndDate=${END}&resultsPerPage=100" --max-time 45 -o site/data/nvd_cves.json || echo '{"vulnerabilities":[]}' > site/data/nvd_cves.json
+          CODE=$(curl --max-time 60 -w "%{http_code}" -o site/data/nvd_cves.json "https://services.nvd.nist.gov/rest/json/cves/2.0?pubStartDate=${START}&pubEndDate=${END}&resultsPerPage=100" 2>/dev/null || echo "000")
+          echo "NVD HTTP: $CODE size: $(wc -c < site/data/nvd_cves.json)B"
+          [[ "$CODE" != "200" ]] && echo '{"vulnerabilities":[]}' > site/data/nvd_cves.json
           echo '{"updated":"'$(date -u +%Y-%m-%dT%H:%M:%SZ)'"}' > site/data/last_updated.json
+          ls -la site/data/
 
       - name: Install lftp
         run: sudo apt-get install -y lftp
