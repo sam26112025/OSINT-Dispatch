@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OSINT Tools Comparison Matrix — IGRS — IGRS Intel Grid Research Station</title>
+<meta name="description" content="OSINT Tools Comparison Matrix — IGRS — IGRS Intel Grid Research Station. Free cybersecurity and OSINT intelligence resource for law enforcement, corporate, and defence.">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#080f1a;--surface:#0d1829;--border:#0e4a7a;--ink:#c8dff0;--ink2:#7aa8cc;--muted:#4a7a9b;--accent:#00d4ff;--accent2:#0099cc;--amber:#ffb800;--green:#00ff88;--red:#ff4444;--mono:"IBM Plex Mono",monospace;--tech:"Share Tech Mono",monospace;--disp:"Rajdhani",sans-serif;}
+body{background:var(--bg);color:var(--ink);font-family:var(--disp);min-height:100vh;}
+#neural-bg{position:fixed!important;top:0;left:0;width:100%;height:100%;z-index:0!important;pointer-events:none!important;opacity:0.35;}
+header.h,main.m,footer.f{position:relative;z-index:10;}
+header.h{background:rgba(8,15,26,.96);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1000;backdrop-filter:blur(10px);}
+.hi{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;padding:10px 0;}
+.brand img{width:52px;height:52px;filter:drop-shadow(0 0 12px rgba(0,212,255,.8));}
+.bn{font-family:var(--tech);font-size:20px;color:var(--accent);letter-spacing:.12em;}
+nav{display:flex;gap:14px;padding:10px 0;flex-wrap:wrap;}
+nav a{color:var(--ink2);text-decoration:none;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 0;border-bottom:1px solid transparent;transition:color .2s;}
+nav a:hover,nav a.act{color:var(--accent);border-bottom-color:var(--accent);}
+nav a::before{content:"> ";color:var(--muted);}
+main.m{max-width:1100px;margin:0 auto;padding:0 24px 60px;}
+.hero{padding:36px 0 24px;border-bottom:1px solid var(--border);margin-bottom:28px;}
+.stamp{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent2);border:1px solid var(--border);padding:3px 10px;margin-bottom:14px;}
+h1{font-family:var(--tech);font-size:clamp(20px,3.5vw,34px);color:var(--accent);text-shadow:0 0 24px rgba(0,212,255,.4);margin-bottom:10px;letter-spacing:.08em;}
+.sub{color:var(--ink2);font-size:14px;max-width:720px;line-height:1.7;}
+.callout{background:rgba(0,212,255,.06);border-left:3px solid var(--accent);padding:14px 18px;margin:16px 0;font-size:13px;color:var(--ink2);line-height:1.7;border-radius:0 4px 4px 0;}
+.callout strong{color:var(--accent);}
+.warn{background:rgba(255,184,0,.06);border-left:3px solid var(--amber);padding:14px 18px;margin:16px 0;font-size:13px;color:var(--ink2);line-height:1.7;border-radius:0 4px 4px 0;}
+footer.f{background:rgba(8,15,26,.9);border-top:1px solid var(--border);position:relative;z-index:10;}
+.fi{max-width:1100px;margin:0 auto;padding:20px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--mono);font-size:11px;color:var(--muted);}
+.fi a{color:var(--muted);text-decoration:none;}.fi a:hover{color:var(--accent);}
+.fl{display:flex;gap:16px;flex-wrap:wrap;}
+.badge{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:3px;letter-spacing:.06em;text-transform:uppercase;}
+.b-free{background:rgba(0,200,100,.1);color:#00c864;border:1px solid rgba(0,200,100,.2);}
+.b-paid{background:rgba(255,80,80,.1);color:#ff6060;border:1px solid rgba(255,80,80,.2);}
+.b-high{background:rgba(255,68,68,.12);color:var(--red);border:1px solid rgba(255,68,68,.25);}
+.b-med{background:rgba(255,184,0,.1);color:var(--amber);border:1px solid rgba(255,184,0,.2);}
+.b-low{background:rgba(0,255,136,.08);color:var(--green);border:1px solid rgba(0,255,136,.2);}
+.b-india{background:rgba(255,145,0,.1);color:#ff9100;border:1px solid rgba(255,145,0,.2);}
+.sec-hdr{font-family:var(--tech);font-size:18px;color:var(--accent);margin:28px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+</style>
+</head>
+<body>
+<header class="h">
+  <div class="hi">
+    <a class="brand" href="index.html"><img src="logo.svg" alt="IGRS"><span class="bn">IGRS</span></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="tools.html">Tools</a>
+      <a href="dorks.html">Dorks</a>
+      <a href="playbooks.html">Playbooks</a>
+      <a href="cyberlaw.html">Cyber Law</a>
+      <a href="ioc.html">IOC Feed</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="india-cyber-stats.html">Statistics</a>
+      <a href="case-studies.html">Case Studies</a>
+      <a href="cve-tracker.html">CVE Tracker</a>
+      <a href="compare.html" class="act">Compare Tools</a>
+      <a href="threat-digest.html">Threat Digest</a>
+    </nav>
+  </div>
+</header>
+<main class="m">
+<style>
+.comp-section{margin-bottom:36px;}
+.comp-title{font-family:var(--tech);font-size:18px;color:var(--accent);margin-bottom:6px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+.comp-subtitle{font-size:13px;color:var(--ink2);margin-bottom:18px;}
+.comp-table{width:100%;border-collapse:collapse;margin-bottom:8px;position:relative;z-index:10;}
+.comp-table th{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:10px 14px;text-align:left;border-bottom:2px solid var(--border);background:var(--surface);}
+.comp-table td{padding:12px 14px;border-bottom:1px solid rgba(14,74,122,.3);font-size:12px;vertical-align:top;}
+.comp-table tr:hover td{background:rgba(0,212,255,.03);}
+.tool-name-cell{font-family:var(--tech);font-size:14px;color:var(--accent);font-weight:600;white-space:nowrap;}
+.tool-link{font-family:var(--mono);font-size:10px;color:var(--accent2);text-decoration:none;}
+.tool-link:hover{color:var(--accent);}
+.tick{color:var(--green);font-size:14px;}
+.cross{color:var(--red);font-size:14px;}
+.partial{color:var(--amber);font-size:14px;}
+.rec-badge{font-family:var(--mono);font-size:9px;padding:2px 8px;border-radius:3px;letter-spacing:.06em;text-transform:uppercase;background:rgba(0,212,255,.12);color:var(--accent);border:1px solid rgba(0,212,255,.25);}
+.india-rec{background:rgba(255,145,0,.1);color:#ff9100;border:1px solid rgba(255,145,0,.2);}
+.diff-cell{font-size:12px;color:var(--ink2);line-height:1.5;}
+</style>
+  <div class="hero">
+    <div class="stamp">India Context &middot; Free vs Paid &middot; Updated 2026 &middot; IGRS</div>
+    <h1>&gt; OSINT TOOLS COMPARISON MATRIX_</h1>
+    <p class="sub">Side-by-side comparison of OSINT tools by use case — helping investigators and security teams choose the right tool for each task. India-specific recommendations based on practical field use.</p>
+  </div>
+
+  <!-- PHONE OSINT -->
+  <div class="comp-section">
+    <div class="comp-title">&#128241; Phone Number OSINT</div>
+    <div class="comp-subtitle">Best tools for identifying the owner, carrier, and digital footprint of a mobile number — with India-specific coverage.</div>
+    <table class="comp-table">
+      <tr><th>Tool</th><th>India Coverage</th><th>Free Tier</th><th>Name Lookup</th><th>Carrier ID</th><th>Social Profiles</th><th>API Available</th><th>Best For</th></tr>
+      <tr>
+        <td class="tool-name-cell">Truecaller<br><a href="https://truecaller.com" class="tool-link" target="_blank">truecaller.com</a></td>
+        <td><span class="tick">&#10004;</span> Excellent</td><td><span class="tick">&#10004;</span></td><td><span class="tick">&#10004;</span></td><td><span class="tick">&#10004;</span></td><td><span class="partial">&#9685;</span> Limited</td><td><span class="tick">&#10004;</span> Paid</td>
+        <td><span class="rec-badge india-rec">India #1</span> First-stop for Indian numbers. 400M+ Indian records.</td>
+      </tr>
+      <tr>
+        <td class="tool-name-cell">PhoneInfoga<br><a href="https://github.com/sundowndev/phoneinfoga" class="tool-link" target="_blank">GitHub CLI</a></td>
+        <td><span class="tick">&#10004;</span> Good</td><td><span class="tick">&#10004;</span> Open Source</td><td><span class="partial">&#9685;</span></td><td><span class="tick">&#10004;</span></td><td><span class="tick">&#10004;</span></td><td><span class="tick">&#10004;</span> Self-hosted</td>
+        <td><span class="rec-badge">Technical</span> CLI tool — aggregates multiple sources. Good for OPSEC.</td>
+      </tr>
+      <tr>
+        <td class="tool-name-cell">NumVerify<br><a href="https://numverify.com" class="tool-link" target="_blank">numverify.com</a></td>
+        <td><span class="tick">&#10004;</span> Good</td><td><span class="tick">&#10004;</span> 100/mo</td><td><span class="cross">&#10008;</span></td><td><span class="tick">&#10004;</span></td><td><span class="cross">&#10008;</span></td><td><span class="tick">&#10004;</span></td>
+        <td>Carrier + format validation. Good for bulk verification.</td>
+      </tr>
+      <tr>
+        <td class="tool-name-cell">TAFCOP<br><a href="https://tafcop.sancharsaathi.gov.in" class="tool-link" target="_blank">DoT India</a></td>
+        <td><span class="tick">&#10004;</span> India Only</td><td><span class="tick">&#10004;</span> Free</td><td><span class="tick">&#10004;</span></td><td><span class="tick">&#10004;</span></td><td><span class="cross">&#10008;</span></td><td><span class="cross">&#10008;</span></td>
+        <td><span class="rec-badge india-rec">Legal OSINT</span> Check SIMs linked to an ID. Official GoI portal.</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- EMAIL OSINT -->
+  <div class="comp-section">
+    <div class="comp-title">&#9993; Email Intelligence Tools</div>
+    <div class="comp-subtitle">Finding, verifying, and enriching email address intelligence for investigations and due diligence.</div>
+    <table class="comp-table">
+      <tr><th>Tool</th><th>Find Email</th><th>Verify Valid</th><th>Breach Check</th><th>Account Discovery</th><th>Free Tier</th><th>India Best Use</th></tr>
+      <tr>
+        <td class="tool-name-cell">Hunter.io<br><a href="https://hunter.io" class="tool-link" target="_blank">hunter.io</a></td>
+        <td><span class="tick">&#10004;</span></td><td><span class="tick">&#10004;</span></td><td><span class="cross">&#10008;</span></td><td><span class="cross">&#10008;</span></td><td><span class="tick">&#10004;</span> 25/mo</td>
+        <td>Finding professional emails from company domain. Corporate due diligence.</td>
+      </tr>
+      <tr>
+        <td class="tool-name-cell">HaveIBeenPwned<br><a href="https://haveibeenpwned.com" class="tool-link" target="_blank">haveibeenpwned.com</a></td>
+        <td><span class="cross">&#10008;</span></td><td><span class="cross">&#10008;</span></td><td><span class="tick">&#10004;</span></td><td><span class="cross">&#10008;</span></td><td><span class="tick">&#10004;</span> Free</td>
+        <td><span class="rec-badge">Essential</span> Standard first check. Domain monitoring for enterprises.</td>
+      </tr>
+      <tr>
+        <td class="tool-name-cell">Holehe<br><a href="https://github.com/megadose/holehe" class="tool-link" target="_blank">GitHub CLI</a></td>
+        <td><span class="cross">&#10008;</span></td><td><span class="partial">&#9685;</span></td><td><span class="cross">&#10008;</span></td><td><span class="tick">&#10004;</span> 120+ sites</td><td><span class="tick">&#10004;</span> Open Source</td>
+        <td><span class="rec-badge">Account Discovery</span> Find where an email is registered across platforms.</td>
+      </tr>
+      <tr>
+        <td class="tool-name-cell">Epieos<br><a href="https://epieos.com" class="tool-link" target="_blank">epieos.com</a></td>
+        <td><span class="cross">&#10008;</span></td><td><span class="tick">&#10004;</span></td><td><span class="partial">&#9685;</span></td><td><span class="tick">&#10004;</span></td><td><span class="tick">&#10004;</span> Limited</td>
+        <td>Google account + Skype lookup from email. Very useful for identity correlation.</td>
+      </tr>
+      <tr>
+        <td class="tool-name-cell">EmailRep<br><a href="https://emailrep.io" class="tool-link" target="_blank">emailrep.io</a></td>
+        <td><span class="cross">&#10008;</span></td><td><span class="tick">&#10004;</span></td><td><span class="tick">&#10004;</span></td><td><span class="partial">&#9685;</span></td><td><span class="tick">&#10004;</span> 100/day</td>
+        <td>Email reputation scoring — useful for fraud detection and risk assessment.</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- USERNAME OSINT -->
+  <div class="comp-section">
+    <div class="comp-title">&#128101; Username / Identity Tracking</div>
+    <div class="comp-subtitle">Mapping a username or handle across the internet to build a comprehensive social footprint.</div>
+    <table class="comp-table">
+      <tr><th>Tool</th><th>Sites Checked</th><th>Speed</th><th>False Positive Rate</th><th>CLI/Web</th><th>India Coverage</th><th>Recommendation</th></tr>
+      <tr>
+        <td class="tool-name-cell">Sherlock<br><a href="https://github.com/sherlock-project/sherlock" class="tool-link" target="_blank">GitHub</a></td>
+        <td>400+</td><td>Fast</td><td>Low</td><td>CLI</td><td><span class="tick">&#10004;</span> Good</td>
+        <td><span class="rec-badge">Best Overall</span> Most reliable. Active community. Good false-positive filtering.</td>
+      </tr>
+      <tr>
+        <td class="tool-name-cell">Maigret<br><a href="https://github.com/soxoj/maigret" class="tool-link" target="_blank">GitHub</a></td>
+        <td>3,000+</td><td>Slower</td><td>Medium</td><td>CLI</td><td><span class="tick">&#10004;</span> Excellent</td>
+        <td>More sites than Sherlock. Also extracts profile data from found accounts.</td>
+      </tr>
+      <tr>
+        <td class="tool-name-cell">WhatsMyName<br><a href="https://whatsmyname.app" class="tool-link" target="_blank">whatsmyname.app</a></td>
+        <td>600+</td><td>Fast</td><td>Low</td><td>Web + CLI</td><td><span class="partial">&#9685;</span> Medium</td>
+        <td>Good web-based option. Useful for quick checks without CLI setup.</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- DOMAIN / IP OSINT -->
+  <div class="comp-section">
+    <div class="comp-title">&#127760; Domain & IP Intelligence</div>
+    <div class="comp-subtitle">Investigating domains, IPs, and internet infrastructure for threat intelligence and due diligence.</div>
+    <table class="comp-table">
+      <tr><th>Tool</th><th>Domain Info</th><th>IP Lookup</th><th>Port Scan</th><th>Historical DNS</th><th>Threat Intel</th><th>Free Tier</th><th>Best For</th></tr>
+      <tr>
+        <td class="tool-name-cell">Shodan<br><a href="https://shodan.io" class="tool-link" target="_blank">shodan.io</a></td>
+        <td><span class="partial">&#9685;</span></td><td><span class="tick">&#10004;</span></td><td><span class="tick">&#10004;</span></td><td><span class="partial">&#9685;</span></td><td><span class="tick">&#10004;</span></td><td><span class="tick">&#10004;</span> Limited</td>
+        <td><span class="rec-badge">Attack Surface</span> Finding exposed services and vulnerable systems.</td>
+      </tr>
+      <tr>
+        <td class="tool-name-cell">VirusTotal<br><a href="https://virustotal.com" class="tool-link" target="_blank">virustotal.com</a></td>
+        <td><span class="tick">&#10004;</span></td><td><span class="tick">&#10004;</span></td><td><span class="cross">&#10008;</span></td><td><span class="tick">&#10004;</span></td><td><span class="tick">&#10004;</span></td><td><span class="tick">&#10004;</span> Good</td>
+        <td><span class="rec-badge">Essential</span> First stop for domain/IP threat reputation. Pivot across datasets.</td>
+      </tr>
+      <tr>
+        <td class="tool-name-cell">SecurityTrails<br><a href="https://securitytrails.com" class="tool-link" target="_blank">securitytrails.com</a></td>
+        <td><span class="tick">&#10004;</span></td><td><span class="tick">&#10004;</span></td><td><span class="cross">&#10008;</span></td><td><span class="tick">&#10004;</span></td><td><span class="partial">&#9685;</span></td><td><span class="tick">&#10004;</span> 50/mo</td>
+        <td>Historical DNS — best for tracking infrastructure changes over time.</td>
+      </tr>
+      <tr>
+        <td class="tool-name-cell">Censys<br><a href="https://search.censys.io" class="tool-link" target="_blank">search.censys.io</a></td>
+        <td><span class="tick">&#10004;</span></td><td><span class="tick">&#10004;</span></td><td><span class="tick">&#10004;</span></td><td><span class="partial">&#9685;</span></td><td><span class="partial">&#9685;</span></td><td><span class="tick">&#10004;</span> Limited</td>
+        <td>Certificate transparency + internet scanning. Complements Shodan well.</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- SOCIAL MEDIA -->
+  <div class="comp-section">
+    <div class="comp-title">&#128248; Social Media OSINT Tools</div>
+    <div class="comp-subtitle">Platform-specific tools for extracting intelligence from social media profiles and content.</div>
+    <table class="comp-table">
+      <tr><th>Tool</th><th>Platform</th><th>What It Does</th><th>Free</th><th>India Relevance</th></tr>
+      <tr><td class="tool-name-cell">Twint</td><td>Twitter/X</td><td class="diff-cell">Scrapes tweets, followers, following without API. Historical data. Geo-search.</td><td><span class="tick">&#10004;</span></td><td><span class="tick">&#10004;</span> High</td></tr>
+      <tr><td class="tool-name-cell">InstaLoader</td><td>Instagram</td><td class="diff-cell">Download profiles, posts, stories, highlights + metadata (EXIF, geotags).</td><td><span class="tick">&#10004;</span></td><td><span class="tick">&#10004;</span> Very High</td></tr>
+      <tr><td class="tool-name-cell">Osintgram</td><td>Instagram</td><td class="diff-cell">Extract followers, following, tagged locations, comments, mentioned users.</td><td><span class="tick">&#10004;</span></td><td><span class="tick">&#10004;</span> Very High</td></tr>
+      <tr><td class="tool-name-cell">youtube-dl / yt-dlp</td><td>YouTube</td><td class="diff-cell">Download videos + metadata. Channel analysis. Comment extraction.</td><td><span class="tick">&#10004;</span></td><td><span class="tick">&#10004;</span> High</td></tr>
+      <tr><td class="tool-name-cell">Maltego</td><td>All Platforms</td><td class="diff-cell">Visual link analysis across all platforms. Entity relationship mapping. Best for complex investigations.</td><td><span class="partial">&#9685;</span> Community</td><td><span class="tick">&#10004;</span> High</td></tr>
+    </table>
+    <div class="callout"><strong>India Recommendation:</strong> For most Indian investigations, the combination of <strong>Truecaller (phone)</strong> + <strong>OSINTGRAM (Instagram)</strong> + <strong>Sherlock (username)</strong> + <strong>HIBP (email)</strong> covers 80% of person OSINT needs at zero cost.</div>
+  </div>
+</main>
+<footer class="f">
+  <div class="fi">
+    <div class="fl">
+      <a href="index.html">Home</a><a href="tools.html">Tools</a>
+      <a href="dorks.html">Dorks</a><a href="playbooks.html">Playbooks</a>
+      <a href="cyberlaw.html">Cyber Law</a><a href="about.html">About</a>
+    </div>
+    <div>&copy; 2026 IGRS &mdash; Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="neural.js"></script>
+</html>
