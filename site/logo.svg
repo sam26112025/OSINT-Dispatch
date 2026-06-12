@@ -1,123 +1,130 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
   <defs>
     <style>
-      .hex-outer { animation: rotateHex 8s linear infinite; transform-origin: 60px 60px; }
-      .hex-inner { animation: rotateHexRev 5s linear infinite; transform-origin: 60px 60px; }
-      .pulse-ring { animation: pulseRing 2.5s ease-out infinite; transform-origin: 60px 60px; }
-      .pulse-ring2 { animation: pulseRing 2.5s ease-out infinite 1.25s; transform-origin: 60px 60px; }
-      .core-dot  { animation: corePulse 2s ease-in-out infinite; transform-origin: 60px 60px; }
-      .scan-line { animation: scanLine 3s linear infinite; }
-      .cross-h   { animation: crossFade 2s ease-in-out infinite; }
-      .cross-v   { animation: crossFade 2s ease-in-out infinite 1s; }
-      .glow-text { animation: glowText 2s ease-in-out infinite; }
+      .ring-outer { animation: spinCW 10s linear infinite; transform-origin: 100px 100px; }
+      .ring-inner { animation: spinCCW 7s linear infinite; transform-origin: 100px 100px; }
+      .ring-mid   { animation: spinCW  14s linear infinite; transform-origin: 100px 100px; }
+      .pulse1 { animation: pulseFade 2.4s ease-out infinite 0s; transform-origin: 100px 100px; }
+      .pulse2 { animation: pulseFade 2.4s ease-out infinite 1.2s; transform-origin: 100px 100px; }
+      .core   { animation: coreBeat 1.8s ease-in-out infinite; transform-origin: 100px 100px; }
+      .scan   { animation: scanMove 3s linear infinite; }
+      .igrs-txt { animation: textGlow 2.2s ease-in-out infinite; }
+      .sub-txt  { animation: textGlow 2.2s ease-in-out infinite 1.1s; }
+      .tick   { animation: tickBlink 3s ease-in-out infinite; }
 
-      @keyframes rotateHex {
-        from { transform: rotate(0deg); }
-        to   { transform: rotate(360deg); }
+      @keyframes spinCW  { to { transform: rotate(360deg); } }
+      @keyframes spinCCW { to { transform: rotate(-360deg); } }
+      @keyframes pulseFade {
+        0%   { transform: scale(0.5); opacity: 0.9; }
+        100% { transform: scale(1.6); opacity: 0; }
       }
-      @keyframes rotateHexRev {
-        from { transform: rotate(0deg); }
-        to   { transform: rotate(-360deg); }
+      @keyframes coreBeat {
+        0%,100% { r: 7px;  opacity: 1.0; }
+        50%      { r: 11px; opacity: 0.5; }
       }
-      @keyframes pulseRing {
-        0%   { transform: scale(0.6); opacity: 0.9; }
-        100% { transform: scale(1.4); opacity: 0; }
+      @keyframes scanMove {
+        0%   { transform: translateY(0px);   opacity: 0.6; }
+        50%  { transform: translateY(130px); opacity: 0.2; }
+        100% { transform: translateY(0px);   opacity: 0.6; }
       }
-      @keyframes corePulse {
-        0%, 100% { r: 5; opacity: 1; }
-        50%       { r: 8; opacity: 0.6; }
+      @keyframes textGlow {
+        0%,100% { fill: #00d4ff; filter: drop-shadow(0 0 4px #00d4ff); }
+        50%      { fill: #66eeff; filter: drop-shadow(0 0 14px #00d4ff) drop-shadow(0 0 28px #007799); }
       }
-      @keyframes scanLine {
-        0%   { y: 20; opacity: 0.8; }
-        50%  { y: 95; opacity: 0.4; }
-        100% { y: 20; opacity: 0.8; }
-      }
-      @keyframes crossFade {
-        0%, 100% { opacity: 1; }
-        50%       { opacity: 0.3; }
-      }
-      @keyframes glowText {
-        0%, 100% { filter: drop-shadow(0 0 4px #00d4ff); }
-        50%       { filter: drop-shadow(0 0 12px #00d4ff) drop-shadow(0 0 20px #0099cc); }
+      @keyframes tickBlink {
+        0%,100% { opacity: 0.8; }
+        50%      { opacity: 0.2; }
       }
     </style>
 
-    <!-- Hex clip -->
-    <clipPath id="hexClip">
-      <polygon points="60,8 104,32 104,80 60,104 16,80 16,32"/>
-    </clipPath>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softglow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
 
-    <!-- Glow filter -->
-    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-    <filter id="strongGlow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
+    <clipPath id="hexMask">
+      <polygon points="100,12 174,54 174,138 100,180 26,138 26,54"/>
+    </clipPath>
   </defs>
 
-  <!-- Background dark hex fill -->
-  <polygon points="60,8 104,32 104,80 60,104 16,80 16,32"
-           fill="#050d18" stroke="#00d4ff" stroke-width="1.5" opacity="0.95"/>
+  <!-- ── BG hex fill ─────────────────────────────────── -->
+  <polygon points="100,12 174,54 174,138 100,180 26,138 26,54"
+           fill="#040d1a" stroke="#00d4ff" stroke-width="2" opacity="0.97"/>
 
-  <!-- Scan line sweep -->
-  <rect class="scan-line" x="16" width="88" height="1.5"
-        fill="#00d4ff" opacity="0.25" clip-path="url(#hexClip)"/>
+  <!-- ── Scan line ─────────────────────────────────────── -->
+  <rect class="scan" x="26" y="12" width="148" height="2"
+        fill="#00d4ff" opacity="0.18" clip-path="url(#hexMask)"/>
 
-  <!-- Pulse rings -->
-  <circle class="pulse-ring"  cx="60" cy="56" r="22" fill="none" stroke="#00d4ff" stroke-width="1" opacity="0.7"/>
-  <circle class="pulse-ring2" cx="60" cy="56" r="22" fill="none" stroke="#00d4ff" stroke-width="1" opacity="0.7"/>
-
-  <!-- Outer rotating hex ring -->
-  <g class="hex-outer" filter="url(#glow)">
-    <polygon points="60,14 98,34 98,74 60,94 22,74 22,34"
-             fill="none" stroke="#00d4ff" stroke-width="1.2" stroke-dasharray="8 4" opacity="0.6"/>
+  <!-- ── Outer dashed hex ring (rotating CW) ──────────── -->
+  <g class="ring-outer" filter="url(#glow)">
+    <polygon points="100,20 166,58 166,134 100,172 34,134 34,58"
+             fill="none" stroke="#00d4ff" stroke-width="1.4"
+             stroke-dasharray="10 5" opacity="0.65"/>
   </g>
 
-  <!-- Inner counter-rotating hex -->
-  <g class="hex-inner" filter="url(#glow)">
-    <polygon points="60,24 90,40 90,72 60,88 30,72 30,40"
-             fill="none" stroke="#00aacc" stroke-width="0.8" stroke-dasharray="4 6" opacity="0.5"/>
+  <!-- ── Mid dashed hex ring (rotating CW slow) ───────── -->
+  <g class="ring-mid" filter="url(#glow)">
+    <polygon points="100,34 154,66 154,126 100,158 46,126 46,66"
+             fill="none" stroke="#0099bb" stroke-width="1"
+             stroke-dasharray="5 8" opacity="0.4"/>
   </g>
 
-  <!-- Crosshair lines -->
-  <line class="cross-h" x1="22" y1="56" x2="98" y2="56"
-        stroke="#00d4ff" stroke-width="0.6" opacity="0.4" clip-path="url(#hexClip)"/>
-  <line class="cross-v" x1="60" y1="14" x2="60" y2="98"
-        stroke="#00d4ff" stroke-width="0.6" opacity="0.4" clip-path="url(#hexClip)"/>
-
-  <!-- Corner tick marks -->
-  <g stroke="#00d4ff" stroke-width="1.2" opacity="0.7">
-    <line x1="38" y1="30" x2="44" y2="30"/>
-    <line x1="38" y1="30" x2="38" y2="36"/>
-    <line x1="82" y1="30" x2="76" y2="30"/>
-    <line x1="82" y1="30" x2="82" y2="36"/>
-    <line x1="38" y1="82" x2="44" y2="82"/>
-    <line x1="38" y1="82" x2="38" y2="76"/>
-    <line x1="82" y1="82" x2="76" y2="82"/>
-    <line x1="82" y1="82" x2="82" y2="76"/>
+  <!-- ── Inner dashed hex ring (rotating CCW) ─────────── -->
+  <g class="ring-inner" filter="url(#glow)">
+    <polygon points="100,50 142,74 142,118 100,142 58,118 58,74"
+             fill="none" stroke="#00ccee" stroke-width="0.9"
+             stroke-dasharray="6 6" opacity="0.5"/>
   </g>
 
-  <!-- Core pulsing dot -->
-  <circle class="core-dot" cx="60" cy="56" r="5"
-          fill="#00d4ff" filter="url(#strongGlow)" opacity="0.9"/>
+  <!-- ── Pulse rings ────────────────────────────────────── -->
+  <circle class="pulse1" cx="100" cy="96" r="36"
+          fill="none" stroke="#00d4ff" stroke-width="1.2" opacity="0.8"/>
+  <circle class="pulse2" cx="100" cy="96" r="36"
+          fill="none" stroke="#00d4ff" stroke-width="1.2" opacity="0.8"/>
 
-  <!-- IGRS text -->
-  <g class="glow-text">
-    <text x="60" y="46" text-anchor="middle"
-          font-family="Share Tech Mono, monospace" font-size="13" font-weight="bold"
-          fill="#00d4ff" letter-spacing="2">IGRS</text>
-    <text x="60" y="74" text-anchor="middle"
-          font-family="Share Tech Mono, monospace" font-size="5.5"
-          fill="#00aacc" letter-spacing="1.5" opacity="0.85">INTEL GRID</text>
+  <!-- ── Crosshair ──────────────────────────────────────── -->
+  <line x1="34"  y1="96" x2="166" y2="96"
+        stroke="#00d4ff" stroke-width="0.7" opacity="0.3" clip-path="url(#hexMask)"/>
+  <line x1="100" y1="20" x2="100" y2="172"
+        stroke="#00d4ff" stroke-width="0.7" opacity="0.3" clip-path="url(#hexMask)"/>
+
+  <!-- ── Corner tick marks ─────────────────────────────── -->
+  <g class="tick" stroke="#00d4ff" stroke-width="1.6" opacity="0.75">
+    <!-- top-left -->
+    <line x1="56" y1="50" x2="66" y2="50"/>
+    <line x1="56" y1="50" x2="56" y2="60"/>
+    <!-- top-right -->
+    <line x1="144" y1="50" x2="134" y2="50"/>
+    <line x1="144" y1="50" x2="144" y2="60"/>
+    <!-- bottom-left -->
+    <line x1="56"  y1="142" x2="66"  y2="142"/>
+    <line x1="56"  y1="142" x2="56"  y2="132"/>
+    <!-- bottom-right -->
+    <line x1="144" y1="142" x2="134" y2="142"/>
+    <line x1="144" y1="142" x2="144" y2="132"/>
   </g>
+
+  <!-- ── Centre pulsing dot ────────────────────────────── -->
+  <circle class="core" cx="100" cy="96" r="7"
+          fill="#00d4ff" filter="url(#softglow)" opacity="0.95"/>
+
+  <!-- ── IGRS text ─────────────────────────────────────── -->
+  <text class="igrs-txt"
+        x="100" y="84"
+        text-anchor="middle"
+        font-family="Share Tech Mono, Courier New, monospace"
+        font-size="26" font-weight="bold" letter-spacing="4"
+        fill="#00d4ff">IGRS</text>
+
+  <!-- ── Sub label ─────────────────────────────────────── -->
+  <text class="sub-txt"
+        x="100" y="116"
+        text-anchor="middle"
+        font-family="Share Tech Mono, Courier New, monospace"
+        font-size="8.5" letter-spacing="2.5"
+        fill="#0099bb" opacity="0.9">INTEL GRID</text>
 </svg>
