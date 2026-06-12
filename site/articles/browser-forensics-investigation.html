@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Browser Forensics: What Chrome, Firefox, and Edge Leave Behind — IGRS</title>
+<meta name="description" content="Web browsers accumulate rich evidence of online activity — history, downloads, saved passwords, cached content, and session data. How investigators extract and use it.">
+<link rel="canonical" href="https://igrs.xyz/articles/browser-forensics-investigation.html">
+<meta property="og:title" content="Browser Forensics: What Chrome, Firefox, and Edge Leave Behind">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/browser-forensics-investigation.html">
+<meta property="og:site_name" content="IGRS">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'Browser Forensics: What Chrome, Firefox, and Edge Leave Behind',"description":'Web browsers accumulate rich evidence of online activity — history, downloads, saved passwords, cached content, and session data. How investigators extract and use it.',"datePublished":"2026-05-12","author":{"@type":"Person","name":"Manuj Kumar Pandey"},"publisher":{"@type":"Organization","name":"IGRS"}}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>Browser Forensics: What Chrome, Firefox, and Edge Leave Behind</h1>
+  <div class="dossier">
+    <table>
+      <tr><td>File No.</td><td>IGRS-052/2026</td></tr>
+      <tr><td>Subject</td><td>Guide to browser artefact forensics for incident investigation and digital evidence collection</td></tr>
+      <tr><td>Category</td><td>Digital Forensics</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-05-12</td></tr>
+      <tr><td>Reading time</td><td>6 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">Web browsers accumulate rich evidence of online activity — history, downloads, saved passwords, cached content, and session data. How investigators extract and use it.</p>
+  <h2>Why browser forensics matters</h2>
+<p>Browsers retain detailed records of every online interaction. For cybercrime investigations, browser artifacts can establish what websites a suspect visited, when, what they searched for, what files they downloaded, and what accounts they logged into. For incident response, browser forensics reveals how a user was compromised — which phishing page they visited, which drive-by download delivered the malware, which malicious extension was installed.</p>
+<h2>Key artifact categories</h2>
+<p><strong>History:</strong> URLs with timestamps, visit counts, and page titles stored in a SQLite database. Forensic tools can recover deleted records from unallocated SQLite database pages. <strong>Downloads:</strong> Records all downloaded files — URL, file name, path, timestamp — often surviving even when the downloaded file itself has been deleted. <strong>Cookies:</strong> Session tokens and authentication cookies establishing which accounts were active and when. <strong>Cached content:</strong> Locally cached web pages can reveal content that has since been removed from the internet — valuable for phishing page reconstruction. <strong>Saved passwords:</strong> Stored encrypted in the browser profile. <strong>Extensions:</strong> Installed browser extensions — malicious extensions are an increasingly common initial access vector.</p>
+<h2>Artifact locations on disk</h2>
+<p>Chrome on Windows stores its profile in the Local AppData directory under Google Chrome. Firefox stores profiles in the AppData Roaming directory under Mozilla Firefox. On Linux, Chrome profiles are in the user's home directory under .config/google-chrome and Firefox under .mozilla/firefox. The key files are SQLite databases: History, Downloads, Cookies, Login Data (saved passwords), and Web Data (form autofill).</p>
+<div class="callout">Always work on a forensic copy of browser artifact databases — not the originals. SQLite databases are locked while the browser is running; copy files to a separate location before analysis. In live forensics, terminate the browser process before copying.</div>
+<h2>Analysis tools</h2>
+<p>Hindsight (open-source Python tool for Chrome and Edge artifact parsing with timeline output), DB Browser for SQLite (direct database examination), and commercial forensic platforms including Cellebrite UFED and Magnet AXIOM which incorporate browser artifact parsing into their general forensic workflows.</p>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
