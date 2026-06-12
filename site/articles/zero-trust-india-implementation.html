@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zero Trust Architecture: What It Actually Means and How Indian Organizations Can Implement It — IGRS</title>
+<meta name="description" content="Zero Trust is everywhere as a buzzword and rarely understood as an architecture. What it actually means, and how to move toward it practically with tools most Indian organizations already have.">
+<link rel="canonical" href="https://igrs.xyz/articles/zero-trust-india-implementation.html">
+<meta property="og:title" content="Zero Trust Architecture: What It Actually Means and How Indian Organizations Can Implement It">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/zero-trust-india-implementation.html">
+<meta property="og:site_name" content="IGRS">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'Zero Trust Architecture: What It Actually Means and How Indian Organizations Can Implement It',"description":'Zero Trust is everywhere as a buzzword and rarely understood as an architecture. What it actually means, and how to move toward it practically with tools most Indian organizations already have.',"datePublished":"2026-06-11","author":{"@type":"Person","name":"Manuj Kumar Pandey"},"publisher":{"@type":"Organization","name":"IGRS"}}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>Zero Trust Architecture: What It Actually Means and How Indian Organizations Can Implement It</h1>
+  <div class="dossier">
+    <table>
+      <tr><td>File No.</td><td>IGRS-063/2026</td></tr>
+      <tr><td>Subject</td><td>Practical Zero Trust implementation guide for Indian enterprise security teams</td></tr>
+      <tr><td>Category</td><td>Threat Intelligence</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-06-11</td></tr>
+      <tr><td>Reading time</td><td>6 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">Zero Trust is everywhere as a buzzword and rarely understood as an architecture. What it actually means, and how to move toward it practically with tools most Indian organizations already have.</p>
+  <h2>Zero Trust defined precisely</h2>
+<p>Zero Trust is a security model based on the principle "never trust, always verify" — replacing the traditional perimeter model (trust everything inside the network, block everything outside) with continuous verification of every access request regardless of network location. A user on your corporate VPN gets no more inherent trust than one accessing from the internet. Every access request must be authenticated, authorized for the specific resource requested, and subject to ongoing validation based on device health, user behaviour, and contextual risk signals.</p>
+<h2>The three core pillars</h2>
+<p><strong>Identity-centric access:</strong> Access decisions are made based on verified identity, not network location. Every user and service account must authenticate strongly — MFA at minimum, phishing-resistant methods like FIDO2 for privileged accounts. Access is granted only to specific resources needed for the verified identity's role, not to entire network segments. <strong>Device health verification:</strong> The health and compliance posture of the requesting device is a factor in access decisions. A managed, patched, endpoint-protected corporate device is treated differently from an unmanaged personal device. Conditional access policies (in Azure AD/Entra ID and MDM platforms) implement this automatically. <strong>Least privilege and microsegmentation:</strong> Network access is granted at the application or service level, not the network segment level — users access the specific application they need, not the network the application sits on. This contains the blast radius of compromised credentials.</p>
+<h2>Implementation priorities for Indian organizations</h2>
+<p><strong>Identity first:</strong> MFA for all users — 100% coverage, no exceptions for senior executives or VIPs; conditional access policies blocking access from non-compliant devices or unusual locations; continuous access evaluation where supported. <strong>Devices:</strong> Enrol all corporate devices in MDM; enforce device compliance (patch status, antivirus, disk encryption) as an access condition. <strong>Applications:</strong> Migrate from VPN-based to application-level proxies (Microsoft Entra Application Proxy, Cloudflare Access, Zscaler). <strong>Data:</strong> Classify sensitive data; apply access controls at the data level; enable DLP policies that follow data rather than relying on perimeter controls.</p>
+<div class="callout"><strong>For Indian organizations starting from zero:</strong> The highest-impact single investment is MFA for all identities, especially privileged accounts and remote access. Identity compromise is the leading initial access vector for breaches — strong authentication stops most attacks before they start. Everything else builds on this foundation.</div>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
