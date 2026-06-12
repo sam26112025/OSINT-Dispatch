@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapping Your Organization&#x27;s Internet-Facing Attack Surface with Free Tools — IGRS</title>
+<meta name="description" content="Attackers map your internet-facing systems before they attack. Security teams should do the same — regularly. The free tools and methodology for attack surface discovery.">
+<link rel="canonical" href="https://igrs.xyz/articles/open-ports-attack-surface.html">
+<meta property="og:title" content="Mapping Your Organization&#x27;s Internet-Facing Attack Surface with Free Tools">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/open-ports-attack-surface.html">
+<meta property="og:site_name" content="IGRS">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'Mapping Your Organization&#x27;s Internet-Facing Attack Surface with Free Tools',"description":'Attackers map your internet-facing systems before they attack. Security teams should do the same — regularly. The free tools and methodology for attack surface discovery.',"datePublished":"2026-04-27","author":{"@type":"Person","name":"Manuj Kumar Pandey"},"publisher":{"@type":"Organization","name":"IGRS"}}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>Mapping Your Organization&#x27;s Internet-Facing Attack Surface with Free Tools</h1>
+  <div class="dossier">
+    <table>
+      <tr><td>File No.</td><td>IGRS-047/2026</td></tr>
+      <tr><td>Subject</td><td>Attack surface discovery methodology using Shodan, Censys, and free open-source tools</td></tr>
+      <tr><td>Category</td><td>Threat Intelligence</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-04-27</td></tr>
+      <tr><td>Reading time</td><td>5 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">Attackers map your internet-facing systems before they attack. Security teams should do the same — regularly. The free tools and methodology for attack surface discovery.</p>
+  <h2>Attack surface discovery — the attacker's first step</h2>
+<p>Before any intrusion, attackers enumerate an organization's internet-facing infrastructure — identifying exposed systems, services, software versions, and vulnerable configurations. This reconnaissance uses the same tools defenders have: Shodan, Censys, and similar services that continuously index internet-connected systems. The difference is timing: attackers do this to exploit; defenders should do it first, and regularly.</p>
+<h2>Shodan for attack surface mapping</h2>
+<p>Shodan is a search engine for internet-connected devices and services, continuously scanning the internet and indexing what it finds — open ports, service banners, SSL certificate details, and vulnerability indicators. Search <code>org:"Company Name"</code> or <code>net:IP-RANGE</code> to see everything indexed for your organization. Review every result — forgotten test servers, misconfigured services, and exposed administrative interfaces regularly appear this way.</p>
+<h2>Censys as a complement</h2>
+<p>Censys has different scanning coverage than Shodan — systems missed by one often appear in the other. It is particularly useful for certificate-based discovery: searching for SSL certificates issued to your domain reveals every subdomain that has obtained a certificate, including infrastructure not in your asset inventory. Certificate transparency logs at crt.sh serve the same function for free.</p>
+<h2>What to investigate in scan results</h2>
+<p>Priority exposures: administrative interfaces (routers, firewalls, server management) directly exposed to the internet; remote access services (RDP 3389, SSH 22, VNC) without VPN in front; databases (MySQL 3306, MongoDB 27017, Elasticsearch 9200) with no visible authentication; old software versions with known critical CVEs; development or staging environments with production data or credentials.</p>
+<div class="callout">Run this assessment quarterly at minimum, and immediately after any infrastructure change. Cloud environments scale dynamically in ways that manual asset management cannot track — new exposure can appear within hours of a deployment.</div>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
