@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>IOC Lookup Tool — IP, Domain, Hash Checker — IGRS</title>
+<meta name="description" content="Free real-time IOC lookup tool. Check any IP address, domain, or file hash against multiple threat intelligence sources simultaneously — URLhaus, Feodo Tracker, MalwareBazaar, and CISA KEV.">
+<link rel="canonical" href="https://igrs.xyz/lookup.html">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#080f1a;--sf:#0d1829;--bd:#0e4a7a;--ink:#c8dff0;--ink2:#7aa8cc;--mt:#4a7a9b;--ac:#00d4ff;--ac2:#0099cc;--am:#ffb800;--gn:#00ff88;--rd:#ff4444;--mono:"IBM Plex Mono",monospace;--tech:"Share Tech Mono",monospace;--disp:"Rajdhani",sans-serif;}
+body{background:var(--bg);color:var(--ink);font-family:var(--disp);min-height:100vh;}
+#neural-bg{position:fixed!important;top:0;left:0;width:100%;height:100%;z-index:0!important;pointer-events:none!important;opacity:0.3;}
+header.h,main.m,footer.f{position:relative;z-index:10;}
+header.h{background:rgba(8,15,26,.96);border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:1000;backdrop-filter:blur(10px);}
+.hi{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;padding:10px 0;}
+.brand img{width:48px;height:48px;filter:drop-shadow(0 0 10px rgba(0,212,255,.8));}
+.bn{font-family:var(--tech);font-size:19px;color:var(--ac);letter-spacing:.12em;}
+nav{display:flex;gap:14px;padding:10px 0;flex-wrap:wrap;}
+nav a{color:var(--ink2);text-decoration:none;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:4px 0;transition:color .2s;}
+nav a:hover{color:var(--ac);}
+nav a::before{content:"> ";color:var(--mt);}
+main.m{max-width:1200px;margin:0 auto;padding:0 20px 60px;}
+.hero{padding:32px 0 20px;border-bottom:1px solid var(--bd);margin-bottom:24px;}
+.stamp{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--ac2);border:1px solid var(--bd);padding:3px 10px;margin-bottom:12px;}
+h1{font-family:var(--tech);font-size:clamp(18px,3vw,32px);color:var(--ac);text-shadow:0 0 20px rgba(0,212,255,.4);margin-bottom:8px;letter-spacing:.08em;}
+.sub{color:var(--ink2);font-size:13px;max-width:700px;line-height:1.7;}
+.badge{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:3px;letter-spacing:.06em;text-transform:uppercase;}
+.b-hi{background:rgba(255,68,68,.1);color:var(--rd);border:1px solid rgba(255,68,68,.2);}
+.b-md{background:rgba(255,184,0,.1);color:var(--am);border:1px solid rgba(255,184,0,.2);}
+.b-lo{background:rgba(0,255,136,.08);color:var(--gn);border:1px solid rgba(0,255,136,.2);}
+.b-ac{background:rgba(0,212,255,.1);color:var(--ac2);border:1px solid rgba(0,212,255,.2);}
+.status-bar{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:11px;color:var(--mt);margin-bottom:16px;padding:10px 14px;background:var(--sf);border:1px solid var(--bd);border-radius:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--gn);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+.dot.loading{background:var(--am);}
+.dot.error{background:var(--rd);animation:none;}
+footer.f{background:rgba(8,15,26,.9);border-top:1px solid var(--bd);position:relative;z-index:10;}
+.fi{max-width:1200px;margin:0 auto;padding:18px 20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:10px;color:var(--mt);}
+.fi a{color:var(--mt);text-decoration:none;}.fi a:hover{color:var(--ac);}
+.fl{display:flex;gap:14px;}
+
+.lookup-box{background:var(--sf);border:1px solid var(--bd);border-radius:8px;padding:24px;margin-bottom:28px;position:relative;z-index:20;}
+.lookup-row{display:flex;gap:10px;}
+.lookup-input{flex:1;background:rgba(0,0,0,.3);border:1px solid var(--bd);border-radius:4px;padding:14px 18px;font-family:var(--mono);font-size:14px;color:var(--ink);outline:none;transition:border-color .2s;}
+.lookup-input:focus{border-color:var(--ac);box-shadow:0 0 0 2px rgba(0,212,255,.12);}
+.lookup-input::placeholder{color:var(--mt);}
+.lookup-btn{background:var(--ac);color:#000;font-family:var(--mono);font-size:12px;font-weight:700;padding:14px 24px;border:none;border-radius:4px;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:opacity .2s;white-space:nowrap;position:relative;z-index:20;}
+.lookup-btn:hover{opacity:.85;}
+.lookup-btn:disabled{opacity:.4;cursor:not-allowed;}
+.type-pills{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+.type-pill{font-family:var(--mono);font-size:10px;padding:5px 12px;border:1px solid var(--bd);border-radius:12px;cursor:pointer;color:var(--ink2);background:none;transition:all .2s;position:relative;z-index:20;}
+.type-pill:hover,.type-pill.active{border-color:var(--ac);color:var(--ac);background:rgba(0,212,255,.08);}
+.examples{margin-top:10px;font-family:var(--mono);font-size:10px;color:var(--mt);}
+.examples span{color:var(--ac2);cursor:pointer;margin-right:12px;}
+.examples span:hover{color:var(--ac);}
+.results-wrap{display:none;}
+.results-wrap.show{display:block;}
+.ioc-display{background:var(--sf);border:1px solid var(--bd);border-radius:6px;padding:14px 18px;margin-bottom:20px;}
+.ioc-val{font-family:var(--mono);font-size:18px;color:var(--am);word-break:break-all;margin-bottom:6px;}
+.ioc-type{font-family:var(--mono);font-size:10px;color:var(--mt);}
+.sources-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;}
+.source-card{background:var(--sf);border:1px solid var(--bd);border-radius:6px;padding:16px;position:relative;z-index:10;transition:border-color .2s;}
+.source-card.clean{border-left:3px solid var(--gn);}
+.source-card.malicious{border-left:3px solid var(--rd);}
+.source-card.unknown{border-left:3px solid var(--mt);}
+.source-card.loading{border-left:3px solid var(--am);opacity:.7;}
+.sc-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.sc-name{font-family:var(--tech);font-size:14px;color:var(--ac);}
+.sc-status{font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;}
+.sc-status.malicious{background:rgba(255,68,68,.12);color:var(--rd);border:1px solid rgba(255,68,68,.2);}
+.sc-status.clean{background:rgba(0,255,136,.08);color:var(--gn);border:1px solid rgba(0,255,136,.2);}
+.sc-status.checking{background:rgba(255,184,0,.08);color:var(--am);border:1px solid rgba(255,184,0,.2);}
+.sc-status.unknown{background:rgba(74,122,155,.15);color:var(--mt);border:1px solid rgba(74,122,155,.2);}
+.sc-detail{font-size:12px;color:var(--ink2);line-height:1.6;}
+.sc-link{font-family:var(--mono);font-size:10px;color:var(--ac2);text-decoration:none;}
+.sc-link:hover{color:var(--ac);}
+.verdict-box{background:var(--sf);border-radius:8px;padding:16px 20px;margin-bottom:20px;display:flex;align-items:center;gap:16px;}
+.verdict-icon{font-size:32px;}
+.verdict-text{font-family:var(--tech);font-size:18px;}
+.verdict-box.malicious{border:2px solid var(--rd);}
+.verdict-box.clean{border:2px solid var(--gn);}
+.verdict-box.unknown{border:2px solid var(--mt);}
+</style>
+</head>
+<body>
+
+<header class="h">
+  <div class="hi">
+    <a class="brand" href="index.html"><img src="logo.svg" alt="IGRS"><span class="bn">IGRS</span></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="tools.html">Tools</a>
+      <a href="playbooks.html">Playbooks</a>
+      <a href="live.html">Live Feed</a>
+      <a href="lookup.html"style="color:var(--accent)">IOC Lookup</a>
+      <a href="cve-live.html">CVE Live</a>
+      <a href="news.html">News</a>
+      <a href="threatmap.html">Threat Map</a>
+    </nav>
+  </div>
+</header>
+<main class="m">
+  <div class="hero">
+    <div class="stamp">Multi-Source &middot; Real-Time &middot; No API Key &middot; IGRS</div>
+    <h1>&gt; IOC LOOKUP TOOL_</h1>
+    <p class="sub">Check any IP address, domain, URL, or file hash against multiple free threat intelligence sources simultaneously. Results in seconds. No account required.</p>
+  </div>
+
+  <div class="lookup-box">
+    <div class="lookup-row">
+      <input type="text" class="lookup-input" id="ioc-input"
+             placeholder="Enter IP, domain, URL, or MD5/SHA256 hash..."
+             onkeydown="if(event.key==='Enter') doLookup()">
+      <button class="lookup-btn" id="lookup-btn" onclick="doLookup()">&#9906; CHECK</button>
+    </div>
+    <div class="type-pills">
+      <button class="type-pill active" onclick="setType('auto',this)">Auto-detect</button>
+      <button class="type-pill" onclick="setType('ip',this)">IP Address</button>
+      <button class="type-pill" onclick="setType('domain',this)">Domain</button>
+      <button class="type-pill" onclick="setType('url',this)">URL</button>
+      <button class="type-pill" onclick="setType('hash',this)">File Hash</button>
+    </div>
+    <div class="examples">Try: <span onclick="fillAndCheck('185.220.101.47')">185.220.101.47</span><span onclick="fillAndCheck('sbi-netbanking-secure-login.com')">sbi-netbanking-secure-login.com</span><span onclick="fillAndCheck('44d88612fea8a8f36de82e1278abb02f')">44d88612fea8a8f (MD5)</span></div>
+  </div>
+
+  <div class="results-wrap" id="results">
+    <div class="ioc-display">
+      <div class="ioc-val" id="res-val"></div>
+      <div class="ioc-type" id="res-type"></div>
+    </div>
+    <div class="verdict-box unknown" id="verdict-box">
+      <div class="verdict-icon" id="verdict-icon">&#9654;</div>
+      <div>
+        <div class="verdict-text" id="verdict-text" style="color:var(--mt)">Checking sources...</div>
+        <div style="font-size:12px;color:var(--mt);margin-top:4px;" id="verdict-sub"></div>
+      </div>
+    </div>
+    <div class="sources-grid" id="sources-grid"></div>
+  </div>
+</main>
+
+<footer class="f">
+  <div class="fi">
+    <div class="fl">
+      <a href="index.html">Home</a><a href="tools.html">Tools</a>
+      <a href="playbooks.html">Playbooks</a><a href="cyberlaw.html">Cyber Law</a>
+    </div>
+    <div>&copy; 2026 IGRS &mdash; Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="neural.js"></script>
+<script>
+var lookupType = 'auto';
+var currentIOC = '';
+var results = {};
+
+function setType(t, btn) {
+  lookupType = t;
+  document.querySelectorAll('.type-pill').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+}
+
+function fillAndCheck(val) {
+  document.getElementById('ioc-input').value = val;
+  doLookup();
+}
+
+function detectType(val) {
+  val = val.trim();
+  if(/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/.test(val)) return 'ip';
+  if(/^[a-fA-F0-9]{32}$/.test(val)) return 'md5';
+  if(/^[a-fA-F0-9]{64}$/.test(val)) return 'sha256';
+  if(/^https?:\/\//.test(val)) return 'url';
+  if(/^[a-zA-Z0-9][a-zA-Z0-9\-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/.test(val)) return 'domain';
+  return 'unknown';
+}
+
+function setSourceCard(id, status, detail, link) {
+  var card = document.getElementById('src-'+id);
+  if(!card) return;
+  card.className = 'source-card ' + status;
+  card.querySelector('.sc-status').className = 'sc-status ' + status;
+  card.querySelector('.sc-status').textContent = status === 'malicious' ? '⚠ DETECTED' : status === 'clean' ? '✓ CLEAN' : status === 'checking' ? '◌ CHECKING' : 'NOT FOUND';
+  card.querySelector('.sc-detail').innerHTML = detail;
+  if(link) card.querySelector('.sc-link').href = link;
+}
+
+function updateVerdict() {
+  var vals = Object.values(results);
+  var mal = vals.filter(function(v){ return v==='malicious'; }).length;
+  var clean = vals.filter(function(v){ return v==='clean'; }).length;
+  var box = document.getElementById('verdict-box');
+  var icon = document.getElementById('verdict-icon');
+  var text = document.getElementById('verdict-text');
+  var sub = document.getElementById('verdict-sub');
+  if(mal > 0) {
+    box.className = 'verdict-box malicious';
+    icon.textContent = '⚠';
+    text.style.color = 'var(--rd)';
+    text.textContent = 'MALICIOUS — Detected in ' + mal + ' source' + (mal>1?'s':'');
+    sub.textContent = 'This indicator has been flagged. Do not interact with this resource.';
+  } else if(vals.length > 0 && clean === vals.length) {
+    box.className = 'verdict-box clean';
+    icon.textContent = '✓';
+    text.style.color = 'var(--gn)';
+    text.textContent = 'CLEAN — Not found in checked sources';
+    sub.textContent = 'Not flagged in any checked database. Clean does not guarantee safety.';
+  } else {
+    box.className = 'verdict-box unknown';
+    icon.textContent = '◎';
+    text.style.color = 'var(--mt)';
+    text.textContent = 'Checking ' + vals.length + ' sources...';
+    sub.textContent = '';
+  }
+}
+
+function buildSources(type) {
+  var sources = [
+    {id:'urlhaus', name:'URLhaus (Abuse.ch)', desc:'Malicious URL database — updated in real-time'},
+    {id:'feodo',   name:'Feodo Tracker (Abuse.ch)', desc:'C2 server blocklist — Emotet, QakBot, IcedID'},
+    {id:'malbaz',  name:'MalwareBazaar (Abuse.ch)', desc:'Malware hash database — thousands of samples'},
+    {id:'cisa',    name:'CISA KEV Catalog', desc:'US CISA Known Exploited Vulnerabilities — CVE lookup'},
+  ];
+  var html = sources.map(function(s) {
+    return '<div class="source-card loading" id="src-'+s.id+'">' +
+      '<div class="sc-header"><div class="sc-name">'+s.name+'</div>' +
+      '<span class="sc-status checking">&#9679; CHECKING</span></div>' +
+      '<div class="sc-detail">'+s.desc+'</div>' +
+      '<a class="sc-link" href="#" target="_blank" rel="noopener" style="display:block;margin-top:8px;"></a>' +
+    '</div>';
+  }).join('');
+  document.getElementById('sources-grid').innerHTML = html;
+}
+
+function doLookup() {
+  var val = document.getElementById('ioc-input').value.trim();
+  if(!val) return;
+  currentIOC = val;
+  results = {};
+  var type = lookupType === 'auto' ? detectType(val) : lookupType;
+
+  document.getElementById('res-val').textContent = val;
+  document.getElementById('res-type').textContent = 'Type: ' + type.toUpperCase() + ' | Querying ' + 4 + ' sources simultaneously...';
+  document.getElementById('results').className = 'results-wrap show';
+  document.getElementById('lookup-btn').disabled = true;
+
+  buildSources(type);
+  updateVerdict();
+
+  // URLhaus check
+  var urlhausBody = '';
+  if(type === 'url') urlhausBody = 'url='+encodeURIComponent(val);
+  else if(type === 'domain') urlhausBody = 'host='+encodeURIComponent(val);
+  else if(type === 'ip') urlhausBody = 'host='+encodeURIComponent(val);
+
+  if(urlhausBody) {
+    fetch('https://urlhaus-api.abuse.ch/v1/' + (type==='url'?'url/':'host/'), {
+      method:'POST',
+      headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body: urlhausBody
+    }).then(function(r){ return r.json(); }).then(function(d) {
+      if(d.query_status === 'is_host' || d.query_status === 'is_url') {
+        var det = d.urlhaus_reference ? '<a class="sc-link" href="'+d.urlhaus_reference+'" target="_blank" rel="noopener">View full report &#8599;</a>' : '';
+        results['urlhaus'] = 'malicious';
+        setSourceCard('urlhaus','malicious','Found in URLhaus database. URLs from this host have been flagged as malicious.<br>'+det, d.urlhaus_reference||'#');
+      } else {
+        results['urlhaus'] = 'clean';
+        setSourceCard('urlhaus','clean','Not found in URLhaus malicious URL database.','https://urlhaus.abuse.ch');
+      }
+      updateVerdict();
+    }).catch(function(){
+      results['urlhaus'] = 'unknown';
+      setSourceCard('urlhaus','unknown','Could not reach URLhaus API.','https://urlhaus.abuse.ch');
+      updateVerdict();
+    });
+  } else {
+    results['urlhaus'] = 'unknown';
+    setSourceCard('urlhaus','unknown','URLhaus checks URLs and domains/IPs only — not applicable for this type.','https://urlhaus.abuse.ch');
+    updateVerdict();
+  }
+
+  // Feodo check (IP only)
+  fetch('https://feodotracker.abuse.ch/downloads/ipblocklist_aggressive.json')
+  .then(function(r){ return r.json(); })
+  .then(function(data) {
+    var found = (Array.isArray(data)?data:[]).filter(function(d){ return d.ip_address === val; });
+    if(found.length > 0) {
+      var f = found[0];
+      results['feodo'] = 'malicious';
+      setSourceCard('feodo','malicious','Active C2 server: <strong>'+( f.malware||'Unknown')+' malware</strong>. Status: '+(f.status||'?')+'. Port: '+(f.port||'?'),'https://feodotracker.abuse.ch');
+    } else {
+      results['feodo'] = 'clean';
+      setSourceCard('feodo','clean', type==='ip'?'Not found in Feodo C2 blocklist.':'Feodo checks IPs only — not applicable.','https://feodotracker.abuse.ch');
+    }
+    updateVerdict();
+  }).catch(function(){
+    results['feodo'] = 'unknown';
+    setSourceCard('feodo','unknown','Could not reach Feodo Tracker.','https://feodotracker.abuse.ch');
+    updateVerdict();
+  });
+
+  // MalwareBazaar hash check
+  if(type === 'md5' || type === 'sha256') {
+    fetch('https://mb-api.abuse.ch/api/v1/', {
+      method:'POST',
+      headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body:'query=get_info&' + (type==='md5'?'md5_hash':'sha256_hash') + '=' + val
+    }).then(function(r){ return r.json(); }).then(function(d) {
+      if(d.query_status === 'ok' && d.data && d.data.length > 0) {
+        var m = d.data[0];
+        results['malbaz'] = 'malicious';
+        setSourceCard('malbaz','malicious',
+          'Malware: <strong>'+(m.signature||'Unknown')+'</strong> | Type: '+(m.file_type||'?')+' | Size: '+(m.file_size?Math.round(m.file_size/1024)+'KB':'?'),
+          'https://bazaar.abuse.ch/sample/'+m.sha256_hash+'/');
+      } else {
+        results['malbaz'] = 'clean';
+        setSourceCard('malbaz','clean','Hash not found in MalwareBazaar database.','https://bazaar.abuse.ch');
+      }
+      updateVerdict();
+    }).catch(function(){
+      results['malbaz'] = 'unknown';
+      setSourceCard('malbaz','unknown','Could not reach MalwareBazaar API.','https://bazaar.abuse.ch');
+      updateVerdict();
+    });
+  } else {
+    results['malbaz'] = 'unknown';
+    setSourceCard('malbaz','unknown','MalwareBazaar checks file hashes only (MD5/SHA256).','https://bazaar.abuse.ch');
+    updateVerdict();
+  }
+
+  // CISA KEV check
+  fetch('https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json')
+  .then(function(r){ return r.json(); })
+  .then(function(data) {
+    var vuln = (data.vulnerabilities||[]).filter(function(v){
+      return val.toLowerCase().includes('cve') && v.cveID && v.cveID.toLowerCase() === val.toLowerCase();
+    });
+    if(vuln.length > 0) {
+      var v = vuln[0];
+      results['cisa'] = 'malicious';
+      setSourceCard('cisa','malicious','In CISA KEV: <strong>'+v.vulnerabilityName+'</strong><br>'+v.shortDescription.substring(0,100)+'...','https://www.cisa.gov/known-exploited-vulnerabilities-catalog');
+    } else {
+      results['cisa'] = 'clean';
+      setSourceCard('cisa','clean',
+        val.toLowerCase().includes('cve')?'Not in CISA Known Exploited Vulnerabilities catalog.':'CISA KEV checks CVE IDs. Enter a CVE number to check.',
+        'https://www.cisa.gov/known-exploited-vulnerabilities-catalog');
+    }
+    updateVerdict();
+    document.getElementById('lookup-btn').disabled = false;
+  }).catch(function(){
+    results['cisa'] = 'unknown';
+    setSourceCard('cisa','unknown','Could not reach CISA KEV feed.','https://www.cisa.gov/known-exploited-vulnerabilities-catalog');
+    updateVerdict();
+    document.getElementById('lookup-btn').disabled = false;
+  });
+}
+</script>
+</body></html>
