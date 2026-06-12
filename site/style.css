@@ -61,7 +61,7 @@ header.site{
 .mast{
   display:flex;flex-wrap:wrap;
   align-items:center;justify-content:space-between;
-  gap:8px;padding:18px 0 8px;
+  gap:12px;padding:10px 0 10px;
 }
 
 .brand{
@@ -75,6 +75,15 @@ header.site{
 }
 
 .brand span{color:var(--ink2)}
+
+.brand img {
+  width:80px;
+  height:80px;
+  vertical-align:middle;
+  margin-right:14px;
+  filter:drop-shadow(0 0 16px rgba(0,212,255,0.9));
+}
+
 
 .mast-meta{
   font-family:var(--mono);
