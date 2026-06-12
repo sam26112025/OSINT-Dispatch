@@ -2,530 +2,782 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>IGRS — Intel Grid Research Station</title>
-<meta name="description" content="IGRS — Intel Grid Research Station. Free cybersecurity and OSINT intelligence platform for law enforcement, corporate security, and defence. Tools, articles, live threat feeds, IOC lookup, CVE tracker and more.">
+<meta name="description" content="IGRS — Intel Grid Research Station. Free cybersecurity and OSINT intelligence platform for law enforcement, corporate security, and defence professionals.">
 <link rel="canonical" href="https://igrs.xyz">
 <meta property="og:title" content="IGRS — Intel Grid Research Station">
-<meta property="og:description" content="Free OSINT and cybersecurity intelligence platform — 305+ tools, live threat feeds, IOC lookup, CVE tracker, playbooks and more.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://igrs.xyz">
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script>if(location.protocol==="http:"&&location.hostname!=="localhost"){location.replace("https://"+location.host+location.pathname);}</script>
 <style>
-/* Resource Grid */
-.resources-strip { padding:32px 0 24px; }
-.rs-header { margin-bottom:24px; }
-.rs-title { font-family:var(--tech);font-size:clamp(16px,2.5vw,22px);color:var(--accent);letter-spacing:.06em;margin-bottom:6px; }
-.rs-sub { font-family:var(--mono);font-size:11px;color:var(--muted); }
-.rs-cat-label { font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin:20px 0 10px;padding-left:8px;border-left:2px solid var(--accent2); }
-.rs-cat-label.live-label { color:var(--accent);animation:liveFlash 2s infinite; }
-@keyframes liveFlash { 0%,100%{opacity:1;}50%{opacity:.5;} }
-.res-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:4px; }
-@media(max-width:900px){ .res-grid{grid-template-columns:repeat(3,1fr);} }
-@media(max-width:600px){ .res-grid{grid-template-columns:repeat(2,1fr);} }
-.res-card { background:var(--surface);border:1px solid var(--border2);border-radius:6px;padding:14px 16px;text-decoration:none;display:flex;align-items:flex-start;gap:12px;transition:border-color .2s,transform .15s,box-shadow .2s;position:relative;z-index:10;overflow:hidden; }
-.res-card::before { content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:opacity .2s; }
-.res-card:hover { border-color:var(--accent2);transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,212,255,.1); }
-.res-card:hover::before { opacity:1; }
-.res-card.live-card { border-color:rgba(255,68,68,.25); }
-.res-card.live-card:hover { border-color:rgba(255,68,68,.5);box-shadow:0 4px 16px rgba(255,68,68,.1); }
-.rc-icon { font-size:18px;flex-shrink:0;margin-top:2px; }
-.rc-content { flex:1;min-width:0; }
-.rc-title { font-family:var(--tech);font-size:13px;color:var(--accent);font-weight:600;margin-bottom:3px; }
-.rc-sub { font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.4; }
-.live-dot { position:absolute;top:8px;right:8px;width:6px;height:6px;border-radius:50%;background:#ff4444;box-shadow:0 0 6px rgba(255,68,68,.8);animation:dotPulse 1.5s infinite; }
-@keyframes dotPulse { 0%,100%{opacity:1;}50%{opacity:.2;} }
+/* ── RESET ── */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+/* ── TOKENS ── */
+:root{
+  --bg:#04090f;
+  --bg2:#080f1a;
+  --surface:#0a1628;
+  --border:#0e3a5c;
+  --border2:#0e4a7a;
+  --ink:#c8dff0;
+  --ink2:#7aa8cc;
+  --muted:#3a6a8a;
+  --accent:#00d4ff;
+  --accent2:#0099cc;
+  --am:#ffb800;
+  --gn:#00ff88;
+  --rd:#ff3e3e;
+  --tech:"Share Tech Mono",monospace;
+  --mono:"IBM Plex Mono",monospace;
+  --disp:"Rajdhani",sans-serif;
+}
+
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--disp);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── CANVAS BG ── */
+#bg-canvas{
+  position:fixed;top:0;left:0;
+  width:100%;height:100%;
+  z-index:0;pointer-events:none;
+  opacity:0.6;
+}
+
+/* ── SCANLINES overlay ── */
+body::after{
+  content:"";
+  position:fixed;inset:0;
+  background:repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,.15) 2px,
+    rgba(0,0,0,.15) 4px
+  );
+  pointer-events:none;
+  z-index:1;
+  opacity:.4;
+}
+
+/* ── NAV ── */
+nav.top{
+  position:fixed;top:0;left:0;right:0;
+  z-index:1000;
+  padding:0 40px;
+  height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(4,9,15,.85);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(0,212,255,.08);
+  transition:background .3s;
+}
+.nav-brand{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;
+}
+.nav-brand img{
+  width:44px;height:44px;
+  filter:drop-shadow(0 0 12px rgba(0,212,255,.9));
+  animation:logoPulse 3s ease-in-out infinite;
+}
+@keyframes logoPulse{0%,100%{filter:drop-shadow(0 0 12px rgba(0,212,255,.9));}50%{filter:drop-shadow(0 0 24px rgba(0,212,255,1)) drop-shadow(0 0 40px rgba(0,212,255,.5));}}
+.nav-name{
+  font-family:var(--tech);font-size:20px;
+  color:var(--accent);letter-spacing:.15em;
+  text-shadow:0 0 20px rgba(0,212,255,.6);
+}
+.nav-links{
+  display:flex;gap:28px;align-items:center;
+  font-family:var(--mono);font-size:10px;
+  letter-spacing:.1em;text-transform:uppercase;
+}
+.nav-links a{
+  color:var(--muted);text-decoration:none;
+  transition:color .2s;position:relative;
+  padding:4px 0;
+}
+.nav-links a::after{
+  content:"";position:absolute;bottom:0;left:0;right:0;
+  height:1px;background:var(--accent);
+  transform:scaleX(0);transition:transform .2s;
+}
+.nav-links a:hover{color:var(--accent);}
+.nav-links a:hover::after{transform:scaleX(1);}
+.nav-live{
+  color:var(--rd)!important;
+  display:flex;align-items:center;gap:6px;
+}
+.nav-live::before{
+  content:"";width:6px;height:6px;border-radius:50%;
+  background:var(--rd);
+  box-shadow:0 0 8px var(--rd);
+  animation:blink 1.2s infinite;
+}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+@media(max-width:768px){.nav-links{gap:16px;font-size:9px;}.nav-links a:nth-child(n+4){display:none;}}
+
+/* ── HERO ── */
+.hero{
+  position:relative;z-index:2;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:80px 24px 40px;
+  overflow:hidden;
+}
+
+/* Hexagon grid background */
+.hex-grid{
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='70'%3E%3Cpolygon points='30,4 56,19 56,51 30,66 4,51 4,19' fill='none' stroke='%230e3a5c' stroke-width='0.5' opacity='0.6'/%3E%3C/svg%3E");
+  background-size:60px 70px;
+  opacity:.4;
+  animation:hexDrift 20s linear infinite;
+}
+@keyframes hexDrift{from{background-position:0 0;}to{background-position:60px 70px;}}
+
+/* Radial glow */
+.hero-glow{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:800px;height:800px;
+  background:radial-gradient(ellipse at center,rgba(0,212,255,.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+
+.hero-eyebrow{
+  font-family:var(--mono);font-size:11px;
+  letter-spacing:.25em;text-transform:uppercase;
+  color:var(--accent2);margin-bottom:24px;
+  display:flex;align-items:center;gap:12px;
+  opacity:0;animation:fadeUp .8s .3s forwards;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{
+  content:"";flex:1;height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent2));
+}
+.hero-eyebrow::after{background:linear-gradient(90deg,var(--accent2),transparent);}
+
+.hero-title{
+  font-family:var(--tech);
+  font-size:clamp(32px,6vw,72px);
+  line-height:1.1;
+  letter-spacing:.06em;
+  color:#fff;
+  text-shadow:0 0 40px rgba(0,212,255,.4);
+  margin-bottom:8px;
+  opacity:0;animation:fadeUp .8s .5s forwards;
+}
+.hero-title .accent{
+  color:var(--accent);
+  text-shadow:0 0 30px rgba(0,212,255,.8),0 0 60px rgba(0,212,255,.4);
+}
+.cursor{
+  display:inline-block;width:3px;height:.85em;
+  background:var(--accent);vertical-align:middle;
+  animation:cursorBlink .8s infinite;margin-left:4px;
+}
+@keyframes cursorBlink{0%,100%{opacity:1;}50%{opacity:0;}}
+
+.hero-sub{
+  font-size:clamp(14px,2vw,18px);
+  color:var(--ink2);line-height:1.8;
+  max-width:640px;margin:20px auto 36px;
+  opacity:0;animation:fadeUp .8s .7s forwards;
+}
+
+.hero-ctas{
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  opacity:0;animation:fadeUp .8s .9s forwards;
+}
+.cta-primary{
+  font-family:var(--mono);font-size:12px;font-weight:700;
+  padding:14px 32px;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--accent);color:#000;border:none;
+  border-radius:4px;cursor:pointer;text-decoration:none;
+  transition:all .2s;position:relative;overflow:hidden;
+}
+.cta-primary::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.2),transparent);
+  opacity:0;transition:opacity .2s;
+}
+.cta-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,212,255,.4);}
+.cta-primary:hover::before{opacity:1;}
+.cta-secondary{
+  font-family:var(--mono);font-size:12px;
+  padding:14px 32px;letter-spacing:.1em;text-transform:uppercase;
+  background:none;color:var(--accent2);
+  border:1px solid var(--border2);border-radius:4px;
+  cursor:pointer;text-decoration:none;transition:all .2s;
+}
+.cta-secondary:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,212,255,.06);}
+.cta-live{
+  font-family:var(--mono);font-size:12px;
+  padding:14px 24px;letter-spacing:.1em;text-transform:uppercase;
+  background:none;color:var(--rd);
+  border:1px solid rgba(255,62,62,.3);border-radius:4px;
+  cursor:pointer;text-decoration:none;transition:all .2s;
+  display:flex;align-items:center;gap:8px;
+}
+.cta-live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--rd);box-shadow:0 0 8px var(--rd);animation:blink 1.2s infinite;}
+.cta-live:hover{border-color:var(--rd);background:rgba(255,62,62,.06);}
+
+/* Stats strip */
+.hero-stats{
+  display:flex;gap:48px;margin-top:64px;
+  opacity:0;animation:fadeUp .8s 1.1s forwards;
+}
+.stat{text-align:center;}
+.stat-num{
+  font-family:var(--tech);font-size:32px;
+  color:var(--accent);font-weight:700;
+  text-shadow:0 0 20px rgba(0,212,255,.5);
+}
+.stat-label{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:4px;}
+@media(max-width:600px){.hero-stats{gap:24px;}.stat-num{font-size:22px;}}
+
+.scroll-hint{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  font-family:var(--mono);font-size:10px;color:var(--muted);
+  letter-spacing:.15em;text-transform:uppercase;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:0;animation:fadeUp .8s 1.5s forwards;
+}
+.scroll-arrow{
+  width:20px;height:20px;border-right:1px solid var(--muted);
+  border-bottom:1px solid var(--muted);
+  transform:rotate(45deg);
+  animation:scrollBounce 2s ease-in-out infinite;
+}
+@keyframes scrollBounce{0%,100%{transform:rotate(45deg) translateY(0);}50%{transform:rotate(45deg) translateY(6px);}}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── RESOURCES SECTION ── */
+.resources{
+  position:relative;z-index:2;
+  padding:80px 40px;
+  max-width:1400px;margin:0 auto;
+}
+
+.section-label{
+  font-family:var(--mono);font-size:10px;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--accent2);margin-bottom:12px;
+  display:flex;align-items:center;gap:12px;
+}
+.section-label::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent);}
+
+.section-title{
+  font-family:var(--tech);
+  font-size:clamp(20px,3vw,36px);
+  color:#fff;letter-spacing:.05em;
+  margin-bottom:8px;
+}
+.section-title .ac{color:var(--accent);}
+.section-sub{font-size:14px;color:var(--ink2);margin-bottom:48px;max-width:560px;}
+
+/* ── CATEGORY GROUPS ── */
+.cat-group{margin-bottom:48px;}
+.cat-label{
+  font-family:var(--mono);font-size:9px;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);padding:0 0 10px 2px;
+  margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;
+}
+.cat-label::after{content:"";flex:1;height:1px;background:rgba(14,74,122,.5);}
+.cat-label.live-cat{color:var(--rd);animation:liveLbl 2s infinite;}
+@keyframes liveLbl{0%,100%{opacity:1;}50%{opacity:.5;}}
+
+/* ── CARDS ── */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+@media(max-width:1100px){.cards{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:768px){.cards{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){.cards{grid-template-columns:1fr;}}
+
+.card{
+  position:relative;
+  background:rgba(10,22,40,.8);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:20px;
+  text-decoration:none;
+  display:flex;flex-direction:column;gap:10px;
+  cursor:pointer;
+  overflow:hidden;
+  transition:transform .25s cubic-bezier(.23,1,.32,1),
+              border-color .25s,
+              box-shadow .25s;
+  /* Stagger animation via JS */
+  opacity:0;transform:translateY(30px);
+}
+.card.visible{
+  animation:cardIn .5s cubic-bezier(.23,1,.32,1) forwards;
+}
+@keyframes cardIn{to{opacity:1;transform:translateY(0);}}
+
+/* Card hover glow */
+.card::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse at var(--mx,50%) var(--my,50%),rgba(0,212,255,.1),transparent 60%);
+  opacity:0;transition:opacity .3s;pointer-events:none;
+}
+.card:hover{
+  transform:translateY(-6px) scale(1.02);
+  border-color:rgba(0,212,255,.4);
+  box-shadow:0 20px 60px rgba(0,212,255,.15),0 0 0 1px rgba(0,212,255,.1);
+}
+.card:hover::before{opacity:1;}
+
+/* Card top accent line */
+.card::after{
+  content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--card-ac,var(--accent)),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.card:hover::after{opacity:1;}
+
+/* Live card */
+.card.live{border-color:rgba(255,62,62,.2);}
+.card.live:hover{border-color:rgba(255,62,62,.5);box-shadow:0 20px 60px rgba(255,62,62,.12);}
+.card.live::after{background:linear-gradient(90deg,transparent,var(--rd),transparent);}
+.live-indicator{
+  position:absolute;top:12px;right:12px;
+  width:7px;height:7px;border-radius:50%;
+  background:var(--rd);
+  box-shadow:0 0 10px var(--rd);
+  animation:blink 1.2s infinite;
+}
+
+.card-icon{
+  font-size:26px;line-height:1;
+  filter:drop-shadow(0 0 8px rgba(0,212,255,.3));
+}
+.card.live .card-icon{filter:drop-shadow(0 0 8px rgba(255,62,62,.4));}
+
+.card-title{
+  font-family:var(--tech);font-size:15px;
+  color:var(--accent);font-weight:600;
+  letter-spacing:.04em;
+}
+.card.live .card-title{color:#ff8080;}
+
+.card-desc{
+  font-family:var(--mono);font-size:10px;
+  color:var(--muted);line-height:1.6;
+  flex:1;
+}
+
+.card-arrow{
+  font-family:var(--mono);font-size:11px;
+  color:var(--border2);
+  transition:color .2s,transform .2s;
+  align-self:flex-end;
+}
+.card:hover .card-arrow{color:var(--accent);transform:translateX(4px);}
+.card.live:hover .card-arrow{color:var(--rd);}
+
+/* ── FOOTER ── */
+footer{
+  position:relative;z-index:2;
+  border-top:1px solid rgba(14,74,122,.3);
+  padding:24px 40px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:12px;
+  font-family:var(--mono);font-size:10px;color:var(--muted);
+}
+footer a{color:var(--muted);text-decoration:none;transition:color .2s;}
+footer a:hover{color:var(--accent);}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;}
 </style>
-<script>if(location.protocol==="http:"&&location.hostname!=="localhost"){location.replace("https://"+location.host+location.pathname+location.search);}</script>
 </head>
 <body>
-<header class="site">
-  <div class="wrap">
-    <div class="mast">
-      <a class="brand" href="index.html"><img src="logo.svg" alt="IGRS">IGRS<span></span></a>
-      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
-    </div>
-    <nav class="main" aria-label="Main">
-      <a href="index.html" aria-current="page">Home</a>
-      <a href="index.html#articles">Articles</a>
-      <a href="tools.html">Tools</a>
-      <a href="dorks.html">Dorks</a>
-      <a href="playbooks.html">Playbooks</a>
-      <a href="cyberlaw.html">Cyber Law</a>
-      <a href="live.html">Live Feed</a>
-      <a href="lookup.html">IOC Lookup</a>
-      <a href="about.html">About</a>
-    </nav>
+
+<!-- Background canvas -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- Navigation -->
+<nav class="top">
+  <a class="nav-brand" href="index.html">
+    <img src="logo.svg" alt="IGRS">
+    <span class="nav-name">IGRS</span>
+  </a>
+  <div class="nav-links">
+    <a href="articles.html">Articles</a>
+    <a href="tools.html">Tools</a>
+    <a href="dorks.html">Dorks</a>
+    <a href="playbooks.html">Playbooks</a>
+    <a href="cyberlaw.html">Cyber Law</a>
+    <a href="live.html" class="nav-live">Live Feed</a>
+    <a href="about.html">About</a>
   </div>
-</header>
+</nav>
 
-<main class="wrap">
+<!-- Hero -->
+<section class="hero">
+  <div class="hex-grid"></div>
+  <div class="hero-glow"></div>
 
-  <!-- ── HERO ── -->
-  <section class="hero-section" style="padding:40px 0 28px;border-bottom:1px solid var(--border2);margin-bottom:0;">
-    <div class="stamp">Cybersecurity &middot; OSINT &middot; Threat Intelligence &middot; India Focus</div>
-    <h1 style="font-family:var(--tech);font-size:clamp(22px,4vw,40px);color:var(--accent);text-shadow:0 0 28px rgba(0,212,255,.4);margin-bottom:12px;letter-spacing:.08em;">&gt; INTEL GRID RESEARCH STATION_</h1>
-    <p style="color:var(--ink2);font-size:15px;max-width:680px;line-height:1.8;margin-bottom:20px;">Free cybersecurity and OSINT intelligence platform for law enforcement, corporate security, and defence professionals. 305+ tools, live threat feeds, investigation playbooks, and original intelligence articles — all free, no login required.</p>
-    <div style="display:flex;gap:12px;flex-wrap:wrap;">
-      <a href="tools.html" style="font-family:var(--mono);font-size:11px;padding:10px 20px;background:var(--accent);color:#000;border-radius:4px;text-decoration:none;font-weight:700;letter-spacing:.08em;">&gt; Explore Tools</a>
-      <a href="live.html" style="font-family:var(--mono);font-size:11px;padding:10px 20px;background:none;color:var(--rd,#ff4444);border:1px solid rgba(255,68,68,.4);border-radius:4px;text-decoration:none;letter-spacing:.08em;">&#9679; Live Threat Feed</a>
-      <a href="lookup.html" style="font-family:var(--mono);font-size:11px;padding:10px 20px;background:none;color:var(--accent2);border:1px solid var(--border2);border-radius:4px;text-decoration:none;letter-spacing:.08em;">&gt; IOC Lookup</a>
-    </div>
-  </section>
+  <div class="hero-eyebrow">Intel Grid Research Station</div>
 
-  <!-- ── RESOURCES GRID ── -->
-  <section class="resources-strip">
-    <div class="rs-header">
-      <div class="rs-title">&gt; IGRS INTELLIGENCE RESOURCES_</div>
-      <div class="rs-sub">All tools, databases, and live feeds — free, no login required</div>
-    </div>
+  <h1 class="hero-title">
+    The World's Threats.<br>
+    <span class="accent">Your Intelligence.<span class="cursor"></span></span>
+  </h1>
 
-    <div class="rs-cat-label">&#9632; OSINT Tools &amp; Databases</div>
-    <div class="res-grid">
-      <a class="res-card" href="tools.html">
-        <div class="rc-icon">&#9776;</div>
-        <div class="rc-content"><div class="rc-title">Tools Directory</div><div class="rc-sub">305+ OSINT tools — searchable &amp; filtered</div></div>
-      </a>
-      <a class="res-card" href="dorks.html">
-        <div class="rc-icon">&#9906;</div>
-        <div class="rc-content"><div class="rc-title">Dork Library</div><div class="rc-sub">200+ Google dorks — 12 categories</div></div>
-      </a>
-      <a class="res-card" href="compare.html">
-        <div class="rc-icon">&#9870;</div>
-        <div class="rc-content"><div class="rc-title">Tool Comparison</div><div class="rc-sub">Best OSINT tool for each use case</div></div>
-      </a>
-      <a class="res-card" href="playbooks.html">
-        <div class="rc-icon">&#9654;</div>
-        <div class="rc-content"><div class="rc-title">Investigation SOPs</div><div class="rc-sub">8 step-by-step OSINT playbooks</div></div>
-      </a>
-    </div>
+  <p class="hero-sub">
+    Free cybersecurity and OSINT intelligence platform for law enforcement, corporate security, and defence professionals. Built by an investigator. For investigators.
+  </p>
 
-    <div class="rs-cat-label">&#9632; Intelligence &amp; Reference</div>
-    <div class="res-grid">
-      <a class="res-card" href="cyberlaw.html">
-        <div class="rc-icon">&#9878;</div>
-        <div class="rc-content"><div class="rc-title">Cyber Law Reference</div><div class="rc-sub">IT Act, BNS, BNSS, BSA, DPDP 2026</div></div>
-      </a>
-      <a class="res-card" href="case-studies.html">
-        <div class="rc-icon">&#128065;</div>
-        <div class="rc-content"><div class="rc-title">Case Studies</div><div class="rc-sub">4 anonymized investigation walkthroughs</div></div>
-      </a>
-      <a class="res-card" href="india-cyber-stats.html">
-        <div class="rc-icon">&#128200;</div>
-        <div class="rc-content"><div class="rc-title">Cybercrime Stats</div><div class="rc-sub">NCRB data — state rankings &amp; trends</div></div>
-      </a>
-      <a class="res-card" href="certifications.html">
-        <div class="rc-icon">&#127942;</div>
-        <div class="rc-content"><div class="rc-title">Cert Roadmap</div><div class="rc-sub">CEH, OSCP, CHFI, GCFE — India 2026</div></div>
-      </a>
-    </div>
-
-    <div class="rs-cat-label">&#9632; Threat Intelligence</div>
-    <div class="res-grid">
-      <a class="res-card" href="ioc.html">
-        <div class="rc-icon">&#128276;</div>
-        <div class="rc-content"><div class="rc-title">IOC Feed</div><div class="rc-sub">India threat intelligence — weekly updated</div></div>
-      </a>
-      <a class="res-card" href="cve-tracker.html">
-        <div class="rc-icon">&#128721;</div>
-        <div class="rc-content"><div class="rc-title">CVE Tracker</div><div class="rc-sub">India-focus vulnerabilities — patch status</div></div>
-      </a>
-      <a class="res-card" href="threat-digest.html">
-        <div class="rc-icon">&#128240;</div>
-        <div class="rc-content"><div class="rc-title">Threat Digest</div><div class="rc-sub">Weekly India cybersecurity brief</div></div>
-      </a>
-      <a class="res-card" href="index.html#articles">
-        <div class="rc-icon">&#128196;</div>
-        <div class="rc-content"><div class="rc-title">Articles</div><div class="rc-sub">67+ original cybersecurity articles</div></div>
-      </a>
-    </div>
-
-    <div class="rs-cat-label live-label">&#9679; Live Real-Time Data</div>
-    <div class="res-grid">
-      <a class="res-card live-card" href="live.html">
-        <div class="rc-icon">&#128308;</div>
-        <div class="rc-content"><div class="rc-title">Live Threat Feed</div><div class="rc-sub">Malicious URLs, C2 IPs, malware hashes</div></div>
-        <div class="live-dot"></div>
-      </a>
-      <a class="res-card live-card" href="lookup.html">
-        <div class="rc-icon">&#9906;</div>
-        <div class="rc-content"><div class="rc-title">IOC Lookup</div><div class="rc-sub">Check any IP, domain or hash instantly</div></div>
-        <div class="live-dot"></div>
-      </a>
-      <a class="res-card live-card" href="cve-live.html">
-        <div class="rc-icon">&#9889;</div>
-        <div class="rc-content"><div class="rc-title">Live CVE Feed</div><div class="rc-sub">Real-time NVD + CISA KEV vulnerabilities</div></div>
-        <div class="live-dot"></div>
-      </a>
-      <a class="res-card live-card" href="news.html">
-        <div class="rc-icon">&#128240;</div>
-        <div class="rc-content"><div class="rc-title">Cyber News</div><div class="rc-sub">THN, BleepingComputer, Krebs — live</div></div>
-        <div class="live-dot"></div>
-      </a>
-      <a class="res-card live-card" href="threatmap.html">
-        <div class="rc-icon">&#127760;</div>
-        <div class="rc-content"><div class="rc-title">Threat Map</div><div class="rc-sub">Live global C2 server visualization</div></div>
-        <div class="live-dot"></div>
-      </a>
-      <a class="res-card live-card" href="ioc.html">
-        <div class="rc-icon">&#128683;</div>
-        <div class="rc-content"><div class="rc-title">IOC Database</div><div class="rc-sub">India-targeted indicators of compromise</div></div>
-        <div class="live-dot"></div>
-      </a>
-    </div>
-  </section>
-
-  <!-- ── ARTICLES ── -->
-  <section class="register" id="articles">
-    <h2>Article Register</h2>
-    <a class="entry" href="articles/rogueplanet-windows-defender-zero-day-june-2026.html">
-    <div class="e-no">FILE IGRS-064</div>
-    <div class="e-title">RoguePlanet: Microsoft Defender Zero-Day Exposes Fully Patched Windows 10 and 11</div>
-    <div class="e-desc">A new Microsoft Defender zero-day named RoguePlanet was publicly released hours after June 2026 Patch Tuesday, granting SYSTEM-level privileges on fully patched Windows 10 and 11 machines. Here is what it does and what defenders should do now.</div>
-    <div class="e-meta">Threat Intelligence &middot; 2026-06-12 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/servicenow-breach-silent-patch-june-2026.html">
-    <div class="e-no">FILE IGRS-065</div>
-    <div class="e-title">ServiceNow Data Breach: How a Silent Patch Left Enterprises Unaware for Four Days</div>
-    <div class="e-desc">ServiceNow patched a critical unauthenticated API flaw on June 5 but didn't notify customers until June 9. Attackers queried customer instance data — IT tickets, employee records, security reports — in that window.</div>
-    <div class="e-meta">Incident Response &middot; 2026-06-12 &middot; 7 min read</div>
-  </a>
-  <a class="entry" href="articles/data-aggregation-attacks-onlyfans-re-identification.html">
-    <div class="e-no">FILE IGRS-066</div>
-    <div class="e-title">The Re-Identification Threat: How 340 Million Profiles Were Built Without Hacking a Single Server</div>
-    <div class="e-desc">A threat actor assembled 340 million user profiles linked to a major platform without breaching it — by cross-referencing old data breach dumps. This is the re-identification attack, and it affects every platform assuming breach-only exposure.</div>
-    <div class="e-meta">OSINT Fundamentals &middot; 2026-06-12 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/oracle-peoplesoft-rce-zero-day-cve-2026-35273.html">
-    <div class="e-no">FILE IGRS-067</div>
-    <div class="e-title">Oracle PeopleSoft Zero-Day CVE-2026-35273: Unauthenticated RCE Actively Exploited</div>
-    <div class="e-desc">Oracle has warned about a critical PeopleSoft zero-day allowing unauthenticated remote code execution, actively exploited by ShinyHunters. Indian enterprises and government departments using PeopleSoft require immediate action.</div>
-    <div class="e-meta">Threat Intelligence &middot; 2026-06-12 &middot; 5 min read</div>
-  </a>
-  <a class="entry" href="articles/audia6-crypto-laundering-shutdown-june-2026.html">
-    <div class="e-no">FILE IGRS-068</div>
-    <div class="e-title">AudiA6 Crypto Laundering Service Shut Down: What It Means for Ransomware Economics</div>
-    <div class="e-desc">The shutdown of AudiA6 — a cryptocurrency laundering service used by multiple ransomware groups — disrupts a key piece of ransomware financial infrastructure. What this takedown means for cybercrime operations globally.</div>
-    <div class="e-meta">Cyber Fraud &middot; 2026-06-12 &middot; 5 min read</div>
-  </a>
-  <a class="entry" href="articles/zero-trust-india-implementation.html">
-    <div class="e-no">FILE IGRS-062</div>
-    <div class="e-title">Zero Trust Architecture: What It Actually Means and How Indian Organizations Can Implement It</div>
-    <div class="e-desc">Zero Trust is everywhere as a buzzword and rarely understood as an architecture. What it actually means and how to move toward it practically.</div>
-    <div class="e-meta">Threat Intelligence &middot; 2026-06-11 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/osint-geolocation-techniques.html">
-    <div class="e-no">FILE IGRS-061</div>
-    <div class="e-title">Geolocating Images and Videos: A Step-by-Step OSINT Methodology</div>
-    <div class="e-desc">Geolocation — determining where a photo was taken from visual content alone — is one of the most powerful verification skills in modern OSINT.</div>
-    <div class="e-meta">Verification &middot; 2026-06-10 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/security-awareness-training-india.html">
-    <div class="e-no">FILE IGRS-060</div>
-    <div class="e-title">Building Effective Security Awareness in Indian Organizations</div>
-    <div class="e-desc">Most security awareness training doesn't work. Understanding why — and what does work — based on behavioural science and operational experience.</div>
-    <div class="e-meta">Cyber Awareness &middot; 2026-06-09 &middot; 5 min read</div>
-  </a>
-  <a class="entry" href="articles/cloud-forensics-aws-azure.html">
-    <div class="e-no">FILE IGRS-059</div>
-    <div class="e-title">Cloud Forensics: Investigating Incidents in AWS, Azure, and Google Cloud</div>
-    <div class="e-desc">More Indian organizations are hosting critical systems in the cloud. When incidents occur there, traditional forensic approaches do not work.</div>
-    <div class="e-meta">Digital Forensics &middot; 2026-06-08 &middot; 7 min read</div>
-  </a>
-  <a class="entry" href="articles/privacy-by-design-india.html">
-    <div class="e-no">FILE IGRS-058</div>
-    <div class="e-title">Privacy by Design Under India's DPDP Act: What Organizations Must Build In</div>
-    <div class="e-desc">India's DPDP Act requires privacy to be built into systems from the start. What this means in practice for Indian product teams.</div>
-    <div class="e-meta">Law & Evidence &middot; 2026-06-07 &middot; 5 min read</div>
-  </a>
-  <a class="entry" href="articles/deepfake-detection-osint.html">
-    <div class="e-no">FILE IGRS-057</div>
-    <div class="e-title">Detecting Deepfakes: A Practical Guide for Investigators and Journalists</div>
-    <div class="e-desc">Synthetic media is increasingly used in fraud, disinformation, and extortion. How to detect it with currently available techniques.</div>
-    <div class="e-meta">Verification &middot; 2026-06-05 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/active-directory-attack-defence.html">
-    <div class="e-no">FILE IGRS-056</div>
-    <div class="e-title">Active Directory Attacks and Defences: What Every Indian Security Team Must Know</div>
-    <div class="e-desc">Active Directory is the primary target of attackers who have a foothold. Kerberoasting, pass-the-hash, DCSync — and how to defend against each.</div>
-    <div class="e-meta">Threat Intelligence &middot; 2026-06-04 &middot; 7 min read</div>
-  </a>
-  <a class="entry" href="articles/api-security-osint-recon.html">
-    <div class="e-no">FILE IGRS-055</div>
-    <div class="e-title">API Security Reconnaissance: How Attackers Map Your APIs Before You Know They Exist</div>
-    <div class="e-desc">Most organizations don't have complete inventories of their own APIs. Attackers find what defenders miss. The discovery techniques explained.</div>
-    <div class="e-meta">Threat Intelligence &middot; 2026-06-03 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/india-critical-infrastructure-threats.html">
-    <div class="e-no">FILE IGRS-054</div>
-    <div class="e-title">Threats to India's Critical Infrastructure: The Intelligence Picture in 2026</div>
-    <div class="e-desc">India's power grid, financial system, and telecom networks face persistent cyber threats. What the public intelligence record shows.</div>
-    <div class="e-meta">Threat Intelligence &middot; 2026-06-02 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/open-corporate-osint.html">
-    <div class="e-no">FILE IGRS-053</div>
-    <div class="e-title">Corporate OSINT in India: Using MCA21 and Public Registries for Due Diligence</div>
-    <div class="e-desc">Indian regulatory databases contain rich corporate intelligence most investigators underuse. How to extract maximum value from MCA21 and SEBI.</div>
-    <div class="e-meta">OSINT Fundamentals &middot; 2026-06-01 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/cybersecurity-career-india-2026.html">
-    <div class="e-no">FILE IGRS-052</div>
-    <div class="e-title">Cybersecurity Careers in India 2026: Roles, Salaries, and How to Break In</div>
-    <div class="e-desc">India's cybersecurity talent gap means real opportunity. A realistic, current guide to roles, salaries, certifications, and getting your first job.</div>
-    <div class="e-meta">Careers &middot; 2026-05-30 &middot; 7 min read</div>
-  </a>
-  <a class="entry" href="articles/email-header-analysis-investigations.html">
-    <div class="e-no">FILE IGRS-051</div>
-    <div class="e-title">Reading Email Headers: How to Trace the Origin of Any Email</div>
-    <div class="e-desc">Email headers contain the full routing history of every message. Reading them reveals the true sender origin even when the address is forged.</div>
-    <div class="e-meta">OSINT Fundamentals &middot; 2026-05-29 &middot; 5 min read</div>
-  </a>
-  <a class="entry" href="articles/email-security-dmarc-dkim.html">
-    <div class="e-no">FILE IGRS-050</div>
-    <div class="e-title">Email Authentication: Implementing SPF, DKIM and DMARC to Stop Domain Spoofing</div>
-    <div class="e-desc">Spoofing your organization's email domain is trivially easy without authentication. SPF, DKIM, and DMARC together stop it.</div>
-    <div class="e-meta">Threat Intelligence &middot; 2026-05-27 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/cryptocurrency-tracing-osint.html">
-    <div class="e-no">FILE IGRS-049</div>
-    <div class="e-title">Cryptocurrency Tracing: OSINT Techniques for Following the Money</div>
-    <div class="e-desc">Blockchain transactions are public by design. How investigators trace funds through wallets, mixers, and exchanges to real identities.</div>
-    <div class="e-meta">Cyber Fraud &middot; 2026-05-26 &middot; 7 min read</div>
-  </a>
-  <a class="entry" href="articles/ios-android-privacy-settings.html">
-    <div class="e-no">FILE IGRS-048</div>
-    <div class="e-title">Privacy Hardening for Android and iOS: The Settings That Actually Matter in 2026</div>
-    <div class="e-desc">Most privacy advice focuses on apps. The settings that matter most are built into the OS itself. The complete list, explained.</div>
-    <div class="e-meta">Privacy & Safety &middot; 2026-05-24 &middot; 5 min read</div>
-  </a>
-  <a class="entry" href="articles/stalkerware-detection-removal.html">
-    <div class="e-no">FILE IGRS-047</div>
-    <div class="e-title">Detecting and Removing Stalkerware from Android and iOS Devices</div>
-    <div class="e-desc">Stalkerware is commercial spyware typically installed without consent. How to detect it, document it for legal purposes, and safely remove it.</div>
-    <div class="e-meta">Privacy & Safety &middot; 2026-05-23 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/opsec-investigators-india.html">
-    <div class="e-no">FILE IGRS-046</div>
-    <div class="e-title">Operational Security for Investigators: Protecting Yourself While You Research</div>
-    <div class="e-desc">Investigators who research sensitive targets face risks themselves — exposure, legal threats, retaliation. OPSEC principles for staying protected.</div>
-    <div class="e-meta">OSINT Fundamentals &middot; 2026-05-21 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/google-dorking-advanced-2026.html">
-    <div class="e-no">FILE IGRS-045</div>
-    <div class="e-title">Advanced Google Dorking: Operators and Techniques for Serious OSINT</div>
-    <div class="e-desc">Google's search operators are among the most powerful — and most underused — tools in the OSINT toolkit. The full operator set with use cases.</div>
-    <div class="e-meta">OSINT Fundamentals &middot; 2026-05-20 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/windows-event-log-forensics.html">
-    <div class="e-no">FILE IGRS-044</div>
-    <div class="e-title">Windows Event Log Forensics: The Critical Events Every Investigator Must Know</div>
-    <div class="e-desc">Windows Event Logs record virtually every significant action on a Windows system. The events that matter and how to read them correctly.</div>
-    <div class="e-meta">Digital Forensics &middot; 2026-05-18 &middot; 7 min read</div>
-  </a>
-  <a class="entry" href="articles/network-forensics-traffic-analysis.html">
-    <div class="e-no">FILE IGRS-043</div>
-    <div class="e-title">Network Forensics: Reading Packet Captures Like an Investigator</div>
-    <div class="e-desc">Network traffic doesn't lie. A properly captured PCAP can reconstruct exactly what happened during an intrusion or data exfiltration.</div>
-    <div class="e-meta">Digital Forensics &middot; 2026-05-17 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/honeypot-deception-defence.html">
-    <div class="e-no">FILE IGRS-042</div>
-    <div class="e-title">Honeypots and Deception Technology: Early Warning Systems for Intruders</div>
-    <div class="e-desc">A honeypot is a trap — a fake asset that legitimate users never touch. When an attacker accesses it, you know immediately. Zero false positives.</div>
-    <div class="e-meta">Threat Intelligence &middot; 2026-05-15 &middot; 5 min read</div>
-  </a>
-  <a class="entry" href="articles/insider-threat-detection.html">
-    <div class="e-no">FILE IGRS-041</div>
-    <div class="e-title">Insider Threat Detection: OSINT and Behavioural Indicators for Indian Organizations</div>
-    <div class="e-desc">Insider threats cause some of the most damaging data breaches in Indian organizations. Most are detectable before they cause maximum damage.</div>
-    <div class="e-meta">Threat Intelligence &middot; 2026-05-14 &middot; 7 min read</div>
-  </a>
-  <a class="entry" href="articles/browser-forensics-investigation.html">
-    <div class="e-no">FILE IGRS-040</div>
-    <div class="e-title">Browser Forensics: What Chrome, Firefox, and Edge Leave Behind</div>
-    <div class="e-desc">Web browsers accumulate rich evidence of online activity — history, downloads, saved passwords, cached content. How investigators extract and use it.</div>
-    <div class="e-meta">Digital Forensics &middot; 2026-05-12 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/phishing-infrastructure-investigation.html">
-    <div class="e-no">FILE IGRS-039</div>
-    <div class="e-title">Investigating Phishing Infrastructure: From URL to Attribution</div>
-    <div class="e-desc">A phishing URL is just the entry point. The infrastructure behind it reveals threat actor patterns, tooling, and often their identity.</div>
-    <div class="e-meta">Threat Intelligence &middot; 2026-05-11 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/threat-intelligence-platforms.html">
-    <div class="e-no">FILE IGRS-038</div>
-    <div class="e-title">Threat Intelligence Platforms: MISP, OpenCTI, and Building a TI Capability on a Budget</div>
-    <div class="e-desc">Most Indian security teams cannot afford commercial TI platforms. Open-source alternatives provide most of the capability at zero licensing cost.</div>
-    <div class="e-meta">Threat Intelligence &middot; 2026-05-09 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/iot-device-forensics.html">
-    <div class="e-no">FILE IGRS-037</div>
-    <div class="e-title">IoT Device Forensics: What Smart Home Devices Record and How to Extract It</div>
-    <div class="e-desc">Smart speakers, doorbell cameras, and fitness trackers generate rich investigative data. How to extract it and authenticate it for proceedings.</div>
-    <div class="e-meta">Digital Forensics &middot; 2026-05-08 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/supply-chain-attack-osint.html">
-    <div class="e-no">FILE IGRS-036</div>
-    <div class="e-title">Supply Chain Attacks: How Investigators and Defenders Identify Compromised Software</div>
-    <div class="e-desc">Supply chain attacks compromise trusted software to reach downstream targets. The SolarWinds and XZ Utils attacks defined a generation of threat.</div>
-    <div class="e-meta">Threat Intelligence &middot; 2026-05-06 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/india-cyber-law-updates-2026.html">
-    <div class="e-no">FILE IGRS-035</div>
-    <div class="e-title">India's Cybercrime Law in 2026: BNS, BNSS, BSA and What Changed</div>
-    <div class="e-desc">India replaced its criminal codes in 2023-24. What changed for cybercrime prosecution, digital evidence, and investigation powers.</div>
-    <div class="e-meta">Law & Evidence &middot; 2026-05-05 &middot; 7 min read</div>
-  </a>
-  <a class="entry" href="articles/dns-investigation-osint.html">
-    <div class="e-no">FILE IGRS-034</div>
-    <div class="e-title">DNS Investigation: Reading the Internet's Phone Book for OSINT Intelligence</div>
-    <div class="e-desc">DNS records contain significant intelligence about how an organization or threat actor operates online. How to read and use them.</div>
-    <div class="e-meta">OSINT Fundamentals &middot; 2026-05-03 &middot; 5 min read</div>
-  </a>
-  <a class="entry" href="articles/cve-exploitation-osint-2026.html">
-    <div class="e-no">FILE IGRS-033</div>
-    <div class="e-title">From CVE to Exploit: How to Track Vulnerability Exploitation in the Wild</div>
-    <div class="e-desc">A CVE score tells you theoretical severity. OSINT tells you whether it is actually being exploited right now. How to bridge the gap.</div>
-    <div class="e-meta">Threat Intelligence &middot; 2026-05-02 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/osint-phone-number-investigation.html">
-    <div class="e-no">FILE IGRS-032</div>
-    <div class="e-title">Phone Number OSINT: What an Investigator Can Learn from a Mobile Number</div>
-    <div class="e-desc">A mobile number is one of the most information-rich identifiers in an investigation. Open sources vs legal process — where the lines are.</div>
-    <div class="e-meta">OSINT Fundamentals &middot; 2026-04-30 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/threat-hunting-soc-india.html">
-    <div class="e-no">FILE IGRS-031</div>
-    <div class="e-title">Threat Hunting in Indian SOCs: Moving from Reactive to Proactive Defence</div>
-    <div class="e-desc">Most Indian SOCs operate in reactive mode. Threat hunting flips this. How to implement it with tools and talent most Indian teams already have.</div>
-    <div class="e-meta">Threat Intelligence &middot; 2026-04-29 &middot; 7 min read</div>
-  </a>
-  <a class="entry" href="articles/open-ports-attack-surface.html">
-    <div class="e-no">FILE IGRS-030</div>
-    <div class="e-title">Mapping Your Organization's Internet-Facing Attack Surface with Free Tools</div>
-    <div class="e-desc">Attackers map your internet-facing systems before they attack. Security teams should do the same — regularly — with free tools.</div>
-    <div class="e-meta">Threat Intelligence &middot; 2026-04-27 &middot; 5 min read</div>
-  </a>
-  <a class="entry" href="articles/social-engineering-anatomy-2026.html">
-    <div class="e-no">FILE IGRS-029</div>
-    <div class="e-title">The Anatomy of a Social Engineering Attack in 2026</div>
-    <div class="e-desc">Social engineering has evolved far beyond phishing emails. Understanding how today's attacks are constructed is the first step to defeating them.</div>
-    <div class="e-meta">Cyber Awareness &middot; 2026-04-26 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/wifi-security-investigation.html">
-    <div class="e-no">FILE IGRS-028</div>
-    <div class="e-title">Wi-Fi Network Investigation: What Routers Record and How to Extract It</div>
-    <div class="e-desc">Wi-Fi routers are often overlooked as evidence sources. They record DHCP leases and connection events that can place devices at specific times.</div>
-    <div class="e-meta">Digital Forensics &middot; 2026-04-24 &middot; 5 min read</div>
-  </a>
-  <a class="entry" href="articles/aadhaar-osint-legal-limits.html">
-    <div class="e-no">FILE IGRS-027</div>
-    <div class="e-title">Aadhaar in Investigations: What OSINT Can Legally Access and What It Cannot</div>
-    <div class="e-desc">Strict legal protections govern how Aadhaar data can be accessed in investigations. Where the lines are and what happens when they are crossed.</div>
-    <div class="e-meta">Law & Evidence &middot; 2026-04-23 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/spear-phishing-defense.html">
-    <div class="e-no">FILE IGRS-026</div>
-    <div class="e-title">Spear Phishing Defence: Why Targeted Attacks Succeed and How to Stop Them</div>
-    <div class="e-desc">Generic phishing filters don't stop spear phishing. Targeted attacks succeed because they're built from OSINT research on the victim.</div>
-    <div class="e-meta">Cyber Awareness &middot; 2026-04-21 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/ransomware-incident-response-india.html">
-    <div class="e-no">FILE IGRS-025</div>
-    <div class="e-title">Ransomware Incident Response: A Practical Playbook for Indian Organizations</div>
-    <div class="e-desc">Ransomware attacks on Indian organizations have tripled in two years. The first 48 hours of response determine whether the organization recovers cleanly or pays.</div>
-    <div class="e-meta">Incident Response &middot; 2026-04-20 &middot; 7 min read</div>
-  </a>
-  <a class="entry" href="articles/osint-image-metadata.html">
-    <div class="e-no">FILE IGRS-024</div>
-    <div class="e-title">Image Metadata OSINT: What Photos Reveal About Their Origin</div>
-    <div class="e-desc">Most photos contain hidden metadata revealing the camera, location, time, and editing history. How to extract it and understand its evidential value.</div>
-    <div class="e-meta">OSINT Fundamentals &middot; 2026-04-18 &middot; 5 min read</div>
-  </a>
-  <a class="entry" href="articles/osint-linkedin-investigation.html">
-    <div class="e-no">FILE IGRS-023</div>
-    <div class="e-title">LinkedIn as an OSINT Source: What Investigators Extract and How</div>
-    <div class="e-desc">LinkedIn contains more professional intelligence than almost any other platform. What investigators can extract and how to do it lawfully.</div>
-    <div class="e-meta">OSINT Fundamentals &middot; 2026-04-17 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/malware-analysis-basics.html">
-    <div class="e-no">FILE IGRS-022</div>
-    <div class="e-title">Malware Analysis for Investigators: Static and Dynamic Analysis Basics</div>
-    <div class="e-desc">Understanding what malware does is essential for incident response and threat intelligence. The beginner's path through static and dynamic analysis.</div>
-    <div class="e-meta">Threat Intelligence &middot; 2026-04-15 &middot; 7 min read</div>
-  </a>
-  <a class="entry" href="articles/upi-fraud-investigation-guide.html">
-    <div class="e-no">FILE IGRS-021</div>
-    <div class="e-title">Investigating UPI Fraud: Tracing Transactions, Mule Accounts and Recovery</div>
-    <div class="e-desc">UPI fraud is India's highest-volume cybercrime category. How transactions are traced, mule account networks mapped, and funds frozen.</div>
-    <div class="e-meta">Cyber Fraud &middot; 2026-04-14 &middot; 7 min read</div>
-  </a>
-  <a class="entry" href="articles/india-data-breach-response.html">
-    <div class="e-no">FILE IGRS-020</div>
-    <div class="e-title">Data Breach Response in India: CERT-In, DPDP, and What Organizations Must Do</div>
-    <div class="e-desc">India's breach notification obligations have become significantly stricter. What to report, to whom, within what timeframe, and penalties for failure.</div>
-    <div class="e-meta">Incident Response &middot; 2026-04-12 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/whatsapp-forensics-investigation.html">
-    <div class="e-no">FILE IGRS-019</div>
-    <div class="e-title">WhatsApp Forensics: What Investigators Can Recover and What They Cannot</div>
-    <div class="e-desc">WhatsApp is central to most Indian criminal investigations. What evidence survives, how it is extracted, and what Meta provides via legal process.</div>
-    <div class="e-meta">Digital Forensics &middot; 2026-04-11 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/threat-actor-profiling.html">
-    <div class="e-no">FILE IGRS-018</div>
-    <div class="e-title">Threat Actor Profiling: Building Intelligence on Adversaries</div>
-    <div class="e-desc">Knowing who is targeting your organization — tools, techniques, motivation, history — fundamentally changes how you defend.</div>
-    <div class="e-meta">Threat Intelligence &middot; 2026-04-09 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/mobile-forensics-india-2026.html">
-    <div class="e-no">FILE IGRS-017</div>
-    <div class="e-title">Mobile Forensics in Indian Investigations: Tools, Legal Basis, and Admissibility</div>
-    <div class="e-desc">Mobile phones are the primary evidence source in most Indian criminal investigations. How extraction works, tools used, and how evidence holds up in court.</div>
-    <div class="e-meta">Digital Forensics &middot; 2026-04-08 &middot; 8 min read</div>
-  </a>
-  <a class="entry" href="articles/burp-suite-web-testing.html">
-    <div class="e-no">FILE IGRS-016</div>
-    <div class="e-title">Using Burp Suite for Web Application Security Testing: A Beginner's Workflow</div>
-    <div class="e-desc">Burp Suite is the industry-standard tool for web application security testing. The essential workflow for beginners doing authorized assessments.</div>
-    <div class="e-meta">Threat Intelligence &middot; 2026-04-06 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/osint-dark-web-monitoring-india.html">
-    <div class="e-no">FILE IGRS-015</div>
-    <div class="e-title">Dark Web Monitoring for Indian Organizations: What to Watch and How</div>
-    <div class="e-desc">Indian enterprises are regularly featured in dark web data markets. A structured approach to monitoring what is being traded about your organization.</div>
-    <div class="e-meta">Threat Intelligence &middot; 2026-04-05 &middot; 6 min read</div>
-  </a>
-  <a class="entry" href="articles/vpn-privacy-india-2026.html">
-    <div class="e-no">FILE IGRS-014</div>
-    <div class="e-title">VPNs in India 2026: What They Protect, What They Don't, and the New Logging Rules</div>
-    <div class="e-desc">CERT-In 2022 directions require VPN providers to log user data for five years. What this means for your privacy and what actually protects you.</div>
-    <div class="e-meta">Privacy & Safety &middot; 2026-04-03 &middot; 5 min read</div>
-  </a>
-  <a class="entry" href="articles/india-sim-swap-fraud-2026.html">
-    <div class="e-no">FILE IGRS-013</div>
-    <div class="e-title">The SIM Swap Epidemic: How Indian Mobile Numbers Are Being Hijacked in 2026</div>
-    <div class="e-desc">SIM swap attacks have surged across Indian metros. Attackers need only your Aadhaar number and a corrupt telecom agent to seize your number — and everything tied to it.</div>
-    <div class="e-meta">Cyber Fraud &middot; 2026-04-02 &middot; 7 min read</div>
-  </a>
-  </section>
-
-</main>
-
-<footer class="site">
-  <div class="wrap foot">
-    <div>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="privacy-policy.html">Privacy Policy</a>
-      <a href="terms.html">Terms of Use</a>
-      <a href="disclaimer.html">Disclaimer</a>
-    </div>
-    <div>&copy; 2026 IGRS. All rights reserved.</div>
+  <div class="hero-ctas">
+    <a href="tools.html" class="cta-primary">Explore 305+ Tools</a>
+    <a href="articles.html" class="cta-secondary">Read Intelligence</a>
+    <a href="live.html" class="cta-live">Live Threat Feed</a>
   </div>
+
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num" data-target="305">0</div><div class="stat-label">Tools Indexed</div></div>
+    <div class="stat"><div class="stat-num" data-target="67">0</div><div class="stat-label">Articles</div></div>
+    <div class="stat"><div class="stat-num" data-target="200">0</div><div class="stat-label">Dorks</div></div>
+    <div class="stat"><div class="stat-num" data-target="8">0</div><div class="stat-label">SOPs</div></div>
+  </div>
+
+  <div class="scroll-hint">
+    Explore Resources
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- Resources -->
+<section class="resources">
+  <div class="section-label">Intelligence Infrastructure</div>
+  <h2 class="section-title">Everything You Need.<br><span class="ac">Nothing You Don't.</span></h2>
+  <p class="section-sub">16 free resources across tools, intelligence, and live data — built for real investigations.</p>
+
+  <!-- OSINT Tools -->
+  <div class="cat-group">
+    <div class="cat-label">&#9632; OSINT Tools &amp; Databases</div>
+    <div class="cards">
+      <a class="card" href="tools.html" style="--card-ac:#00d4ff">
+        <div class="card-icon">&#9776;</div>
+        <div class="card-title">Tools Directory</div>
+        <div class="card-desc">305+ curated OSINT tools — searchable, filterable, categorized across 16 domains</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+      <a class="card" href="dorks.html" style="--card-ac:#ffb800">
+        <div class="card-icon">&#9906;</div>
+        <div class="card-title">Dork Library</div>
+        <div class="card-desc">200+ Google search operators — India govt, file exposure, login panels, corporate intel</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+      <a class="card" href="compare.html" style="--card-ac:#00ff88">
+        <div class="card-icon">&#9870;</div>
+        <div class="card-title">Tool Comparison</div>
+        <div class="card-desc">Side-by-side — best OSINT tool for phone, email, username, domain, social media</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+      <a class="card" href="playbooks.html" style="--card-ac:#9b59b6">
+        <div class="card-icon">&#9654;</div>
+        <div class="card-title">Investigation SOPs</div>
+        <div class="card-desc">8 step-by-step playbooks — UPI fraud, crypto tracing, phishing, corporate OSINT</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Intelligence -->
+  <div class="cat-group">
+    <div class="cat-label">&#9632; Intelligence &amp; Reference</div>
+    <div class="cards">
+      <a class="card" href="cyberlaw.html" style="--card-ac:#00d4ff">
+        <div class="card-icon">&#9878;</div>
+        <div class="card-title">Cyber Law Reference</div>
+        <div class="card-desc">IT Act, BNS, BNSS, BSA, DPDP 2026 — plain English, FIR combinations, Section 63 BSA</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+      <a class="card" href="case-studies.html" style="--card-ac:#ffb800">
+        <div class="card-icon">&#128065;</div>
+        <div class="card-title">Case Studies</div>
+        <div class="card-desc">4 anonymized walkthroughs — UPI fraud ring, APT attribution, vendor due diligence</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+      <a class="card" href="india-cyber-stats.html" style="--card-ac:#00ff88">
+        <div class="card-icon">&#128200;</div>
+        <div class="card-title">Cybercrime Statistics</div>
+        <div class="card-desc">NCRB data — state rankings, crime categories, reporting portals, helplines</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+      <a class="card" href="certifications.html" style="--card-ac:#e67e22">
+        <div class="card-icon">&#127942;</div>
+        <div class="card-title">Cert Roadmap</div>
+        <div class="card-desc">CEH, OSCP, CHFI, GCFE — India 2026, free resources, salary ranges, career paths</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Threat Intel -->
+  <div class="cat-group">
+    <div class="cat-label">&#9632; Threat Intelligence</div>
+    <div class="cards">
+      <a class="card" href="ioc.html" style="--card-ac:#ff6b6b">
+        <div class="card-icon">&#128276;</div>
+        <div class="card-title">IOC Feed</div>
+        <div class="card-desc">India-targeted indicators — malicious IPs, phishing domains, malware hashes, email senders</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+      <a class="card" href="cve-tracker.html" style="--card-ac:#ffb800">
+        <div class="card-icon">&#128721;</div>
+        <div class="card-title">CVE Tracker</div>
+        <div class="card-desc">India-focus vulnerabilities — PeopleSoft, SAP, Tally, Zoho, patch status, CISA KEV</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+      <a class="card" href="threat-digest.html" style="--card-ac:#9b59b6">
+        <div class="card-icon">&#128240;</div>
+        <div class="card-title">Threat Digest</div>
+        <div class="card-desc">Weekly India cybersecurity brief — active campaigns, zero-days, LE operations</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+      <a class="card" href="articles.html" style="--card-ac:#00d4ff">
+        <div class="card-icon">&#128196;</div>
+        <div class="card-title">Articles</div>
+        <div class="card-desc">67+ original intelligence articles — digital forensics, OSINT, threat intelligence</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Live Real-Time -->
+  <div class="cat-group">
+    <div class="cat-label live-cat">&#9679; Live Real-Time Data</div>
+    <div class="cards">
+      <a class="card live" href="live.html">
+        <div class="live-indicator"></div>
+        <div class="card-icon">&#128308;</div>
+        <div class="card-title">Live Threat Feed</div>
+        <div class="card-desc">Real-time malicious URLs, active C2 servers, malware hashes — auto-refresh 5min</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+      <a class="card live" href="lookup.html">
+        <div class="live-indicator"></div>
+        <div class="card-icon">&#9906;</div>
+        <div class="card-title">IOC Lookup</div>
+        <div class="card-desc">Check any IP, domain or hash across multiple threat intelligence sources instantly</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+      <a class="card live" href="cve-live.html">
+        <div class="live-indicator"></div>
+        <div class="card-icon">&#9889;</div>
+        <div class="card-title">Live CVE Feed</div>
+        <div class="card-desc">Real-time NVD vulnerabilities + CISA KEV — last 30 days, sorted by severity</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+      <a class="card live" href="news.html">
+        <div class="live-indicator"></div>
+        <div class="card-icon">&#128240;</div>
+        <div class="card-title">Cyber News</div>
+        <div class="card-desc">THN, BleepingComputer, Krebs on Security, SANS ISC — aggregated live</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+      <a class="card live" href="threatmap.html">
+        <div class="live-indicator"></div>
+        <div class="card-icon">&#127760;</div>
+        <div class="card-title">Threat Map</div>
+        <div class="card-desc">Live global C2 server visualization — Feodo Tracker data on interactive world map</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+      <a class="card live" href="ioc.html">
+        <div class="live-indicator"></div>
+        <div class="card-icon">&#128683;</div>
+        <div class="card-title">IOC Database</div>
+        <div class="card-desc">Curated India-targeted indicators — filterable by type, severity, and source</div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="articles.html">Articles</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy-policy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="disclaimer.html">Disclaimer</a>
+  </div>
+  <div>&copy; 2026 IGRS &mdash; Intel Grid Research Station. Educational &amp; Defensive Use Only.</div>
 </footer>
-<script src="neural.js"></script>
+
+<script>
+// ── ANIMATED CANVAS BG ────────────────────────────────────────
+(function(){
+  var c = document.getElementById('bg-canvas');
+  var ctx = c.getContext('2d');
+  var W, H, nodes = [], lines = [];
+  var NODE_COUNT = 70, MAX_DIST = 180;
+
+  function resize(){
+    W = c.width = window.innerWidth;
+    H = c.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Create nodes
+  for(var i=0;i<NODE_COUNT;i++){
+    nodes.push({
+      x: Math.random()*W, y: Math.random()*H,
+      vx:(Math.random()-.5)*.4, vy:(Math.random()-.5)*.4,
+      r: Math.random()*2+1,
+      opacity: Math.random()*.6+.2
+    });
+  }
+
+  // Hex pattern nodes (fixed background layer)
+  var hexNodes = [];
+  var cols = Math.ceil(W/120)+1, rows = Math.ceil(H/140)+1;
+  for(var row=0;row<rows;row++){
+    for(var col=0;col<cols;col++){
+      hexNodes.push({
+        x: col*120 + (row%2)*60,
+        y: row*140,
+        opacity: Math.random()*.15+.05,
+        pulse: Math.random()*Math.PI*2
+      });
+    }
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+
+    // Draw pulsing hex dots
+    hexNodes.forEach(function(n){
+      n.pulse += .01;
+      var op = n.opacity + Math.sin(n.pulse)*.05;
+      ctx.beginPath();
+      ctx.arc(n.x,n.y,1.5,0,Math.PI*2);
+      ctx.fillStyle = 'rgba(0,212,255,'+op+')';
+      ctx.fill();
+    });
+
+    // Move floating nodes
+    nodes.forEach(function(n){
+      n.x += n.vx; n.y += n.vy;
+      if(n.x<0||n.x>W) n.vx*=-1;
+      if(n.y<0||n.y>H) n.vy*=-1;
+    });
+
+    // Draw connections
+    for(var i=0;i<nodes.length;i++){
+      for(var j=i+1;j<nodes.length;j++){
+        var dx = nodes[i].x-nodes[j].x;
+        var dy = nodes[i].y-nodes[j].y;
+        var dist = Math.sqrt(dx*dx+dy*dy);
+        if(dist<MAX_DIST){
+          var op = (1-dist/MAX_DIST)*.25;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x,nodes[i].y);
+          ctx.lineTo(nodes[j].x,nodes[j].y);
+          ctx.strokeStyle = 'rgba(0,150,210,'+op+')';
+          ctx.lineWidth = .8;
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw nodes
+    nodes.forEach(function(n){
+      ctx.beginPath();
+      ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
+      ctx.fillStyle = 'rgba(0,212,255,'+n.opacity+')';
+      ctx.fill();
+      // Glow
+      ctx.beginPath();
+      ctx.arc(n.x,n.y,n.r*3,0,Math.PI*2);
+      ctx.fillStyle = 'rgba(0,212,255,'+n.opacity*.15+')';
+      ctx.fill();
+    });
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ── COUNTER ANIMATION ─────────────────────────────────────────
+function animateCounter(el, target, duration){
+  var start = 0, startTime = null;
+  function step(timestamp){
+    if(!startTime) startTime = timestamp;
+    var progress = Math.min((timestamp-startTime)/duration, 1);
+    var ease = 1 - Math.pow(1-progress, 3);
+    el.textContent = Math.floor(ease * target) + (target>100?'+':'');
+    if(progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// Trigger counters when stats become visible
+var statsObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(entry.isIntersecting){
+      var els = entry.target.querySelectorAll('[data-target]');
+      els.forEach(function(el, i){
+        setTimeout(function(){
+          animateCounter(el, parseInt(el.dataset.target), 1200);
+        }, i*150);
+      });
+      statsObs.unobserve(entry.target);
+    }
+  });
+},{threshold:0.5});
+var statsEl = document.querySelector('.hero-stats');
+if(statsEl) statsObs.observe(statsEl);
+
+// ── CARD MOUSE GLOW ──────────────────────────────────────────
+document.querySelectorAll('.card').forEach(function(card){
+  card.addEventListener('mousemove', function(e){
+    var rect = card.getBoundingClientRect();
+    var x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1) + '%';
+    var y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1) + '%';
+    card.style.setProperty('--mx', x);
+    card.style.setProperty('--my', y);
+  });
+});
+
+// ── CARD STAGGER ANIMATION ON SCROLL ─────────────────────────
+var cardObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(entry.isIntersecting){
+      var cards = entry.target.querySelectorAll('.card');
+      cards.forEach(function(card, i){
+        setTimeout(function(){
+          card.classList.add('visible');
+        }, i * 80);
+      });
+      cardObs.unobserve(entry.target);
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.cat-group').forEach(function(g){
+  cardObs.observe(g);
+});
+</script>
 </body>
 </html>
