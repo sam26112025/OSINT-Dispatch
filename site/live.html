@@ -163,7 +163,10 @@ function severityBadge(s) {
 // ── URLhaus feed ──────────────────────────────────────────────
 function loadURLhaus() {
   return fetch('https://urlhaus-api.abuse.ch/v1/urls/recent/limit/50/', {
-    method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}
+    method:'POST',
+    headers:{'Content-Type':'application/x-www-form-urlencoded'},
+    body:'',
+    mode:'cors'
   })
   .then(function(r){ return r.json(); })
   .then(function(data) {
@@ -187,7 +190,7 @@ function loadURLhaus() {
 
 // ── Feodo C2 feed ─────────────────────────────────────────────
 function loadFeodo() {
-  return fetch('https://feodotracker.abuse.ch/downloads/ipblocklist_aggressive.json')
+  return fetch('https://feodotracker.abuse.ch/downloads/ipblocklist_aggressive.json', {mode:'cors'})
   .then(function(r){ return r.json(); })
   .then(function(data) {
     var items = (Array.isArray(data) ? data : []).filter(function(d){ return d.status==='Online'; }).slice(0,30);
@@ -214,7 +217,8 @@ function loadMalware() {
   return fetch('https://mb-api.abuse.ch/api/v1/', {
     method:'POST',
     headers:{'Content-Type':'application/x-www-form-urlencoded'},
-    body:'query=get_recent&selector=time'
+    body:'query=get_recent&selector=time',
+    mode:'cors'
   })
   .then(function(r){ return r.json(); })
   .then(function(data) {
