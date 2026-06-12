@@ -218,6 +218,7 @@ textarea.inp{resize:vertical;}
           <a class="tool-btn" href="https://www.shodan.io" target="_blank" rel="noopener"><span class="tool-btn-icon">&#127760;</span>Shodan</a>
           <a class="tool-btn" href="https://crt.sh" target="_blank" rel="noopener"><span class="tool-btn-icon">&#128274;</span>crt.sh</a>
           <a class="tool-btn" href="https://urlscan.io" target="_blank" rel="noopener"><span class="tool-btn-icon">&#9906;</span>URLScan</a>
+          <a class="tool-btn" href="https://web-check.xyz" target="_blank" rel="noopener"><span class="tool-btn-icon">&#9881;</span>Web-Check</a>
         </div>
         <div class="sec-lbl">Corporate Intel</div>
         <div class="tool-grid">
@@ -545,6 +546,7 @@ function doLookup() {
   if(t==='ip') {
     sources=[
       {n:'VirusTotal',u:'https://www.virustotal.com/gui/ip-address/'+v,a:'IP Report'},
+      {n:'Web-Check',u:'https://web-check.xyz/results/'+v,a:'Full Inspection'},
       {n:'AbuseIPDB',u:'https://www.abuseipdb.com/check/'+v,a:'Abuse Report'},
       {n:'Shodan',u:'https://www.shodan.io/host/'+v,a:'Port Scan'},
       {n:'IPInfo',u:'https://ipinfo.io/'+v,a:'Geolocation'},
