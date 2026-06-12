@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DNS Investigation: Reading the Internet&#x27;s Phone Book for OSINT Intelligence — IGRS</title>
+<meta name="description" content="DNS records contain significant intelligence about how an organization or threat actor operates online. How to read, analyse, and use them in investigations.">
+<link rel="canonical" href="https://igrs.xyz/articles/dns-investigation-osint.html">
+<meta property="og:title" content="DNS Investigation: Reading the Internet&#x27;s Phone Book for OSINT Intelligence">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/dns-investigation-osint.html">
+<meta property="og:site_name" content="IGRS">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'DNS Investigation: Reading the Internet&#x27;s Phone Book for OSINT Intelligence',"description":'DNS records contain significant intelligence about how an organization or threat actor operates online. How to read, analyse, and use them in investigations.',"datePublished":"2026-05-03","author":{"@type":"Person","name":"Manuj Kumar Pandey"},"publisher":{"@type":"Organization","name":"IGRS"}}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>DNS Investigation: Reading the Internet&#x27;s Phone Book for OSINT Intelligence</h1>
+  <div class="dossier">
+    <table>
+      <tr><td>File No.</td><td>IGRS-049/2026</td></tr>
+      <tr><td>Subject</td><td>DNS analysis techniques for domain investigation, infrastructure mapping, and threat actor attribution</td></tr>
+      <tr><td>Category</td><td>OSINT Fundamentals</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-05-03</td></tr>
+      <tr><td>Reading time</td><td>5 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">DNS records contain significant intelligence about how an organization or threat actor operates online. How to read, analyse, and use them in investigations.</p>
+  <h2>Why DNS matters for investigators</h2>
+<p>DNS is the internet's address book — translating domain names into IP addresses and routing email. Every domain's DNS configuration is public, and the records it contains reveal substantial intelligence about the organization behind it: hosting infrastructure, email provider, security configuration, and sometimes subdomains not publicly advertised. For threat actor investigation, DNS records and their historical versions are primary attribution and infrastructure-mapping tools.</p>
+<h2>DNS record types and what they reveal</h2>
+<p><strong>A record:</strong> Maps a domain to an IPv4 address. The IP reveals the hosting provider and may link to other domains on the same server. <strong>MX record:</strong> Identifies the mail server — reveals email provider (Google Workspace, Microsoft 365, in-house). <strong>TXT record:</strong> Contains SPF records, DMARC policy, DKIM public keys, and domain verification records for third-party services — each verification record reveals a service the organization uses. <strong>NS record:</strong> Identifies name servers — sometimes correlates with other domains managed by the same actor. <strong>CNAME:</strong> Aliases revealing CDN providers or SaaS services in use.</p>
+<h2>Investigation tools</h2>
+<p>MXToolbox provides comprehensive DNS lookups across all record types. SecurityTrails and PassiveTotal provide historical DNS data — what IP addresses a domain pointed to in the past. VirusTotal's domain report combines DNS data with threat intelligence. DNSdumpster for subdomain enumeration. Command-line: <code>dig</code> on Linux/Mac, <code>nslookup</code> on Windows.</p>
+<h2>Historical DNS for attribution</h2>
+<p>Threat actors rotate domains and IPs to evade blocklists. Historical DNS databases record past IP resolutions — and which other domains shared those IPs. Pivoting from a known malicious domain to its historical IPs, then to other domains that pointed to those same IPs, reveals the actor's broader infrastructure across multiple campaigns.</p>
+<div class="callout">Subdomain enumeration via DNS brute-forcing against a target is active reconnaissance — only appropriate in authorized security assessments. Certificate transparency logs (crt.sh) and SecurityTrails are appropriate passive alternatives for open-source investigation.</div>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
