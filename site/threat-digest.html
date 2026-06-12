@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekly Threat Digest — India Cybersecurity Intelligence — IGRS — IGRS Intel Grid Research Station</title>
+<meta name="description" content="Weekly Threat Digest — India Cybersecurity Intelligence — IGRS — IGRS Intel Grid Research Station. Free cybersecurity and OSINT intelligence resource for law enforcement, corporate, and defence.">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#080f1a;--surface:#0d1829;--border:#0e4a7a;--ink:#c8dff0;--ink2:#7aa8cc;--muted:#4a7a9b;--accent:#00d4ff;--accent2:#0099cc;--amber:#ffb800;--green:#00ff88;--red:#ff4444;--mono:"IBM Plex Mono",monospace;--tech:"Share Tech Mono",monospace;--disp:"Rajdhani",sans-serif;}
+body{background:var(--bg);color:var(--ink);font-family:var(--disp);min-height:100vh;}
+#neural-bg{position:fixed!important;top:0;left:0;width:100%;height:100%;z-index:0!important;pointer-events:none!important;opacity:0.35;}
+header.h,main.m,footer.f{position:relative;z-index:10;}
+header.h{background:rgba(8,15,26,.96);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1000;backdrop-filter:blur(10px);}
+.hi{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;padding:10px 0;}
+.brand img{width:52px;height:52px;filter:drop-shadow(0 0 12px rgba(0,212,255,.8));}
+.bn{font-family:var(--tech);font-size:20px;color:var(--accent);letter-spacing:.12em;}
+nav{display:flex;gap:14px;padding:10px 0;flex-wrap:wrap;}
+nav a{color:var(--ink2);text-decoration:none;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 0;border-bottom:1px solid transparent;transition:color .2s;}
+nav a:hover,nav a.act{color:var(--accent);border-bottom-color:var(--accent);}
+nav a::before{content:"> ";color:var(--muted);}
+main.m{max-width:1100px;margin:0 auto;padding:0 24px 60px;}
+.hero{padding:36px 0 24px;border-bottom:1px solid var(--border);margin-bottom:28px;}
+.stamp{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent2);border:1px solid var(--border);padding:3px 10px;margin-bottom:14px;}
+h1{font-family:var(--tech);font-size:clamp(20px,3.5vw,34px);color:var(--accent);text-shadow:0 0 24px rgba(0,212,255,.4);margin-bottom:10px;letter-spacing:.08em;}
+.sub{color:var(--ink2);font-size:14px;max-width:720px;line-height:1.7;}
+.callout{background:rgba(0,212,255,.06);border-left:3px solid var(--accent);padding:14px 18px;margin:16px 0;font-size:13px;color:var(--ink2);line-height:1.7;border-radius:0 4px 4px 0;}
+.callout strong{color:var(--accent);}
+.warn{background:rgba(255,184,0,.06);border-left:3px solid var(--amber);padding:14px 18px;margin:16px 0;font-size:13px;color:var(--ink2);line-height:1.7;border-radius:0 4px 4px 0;}
+footer.f{background:rgba(8,15,26,.9);border-top:1px solid var(--border);position:relative;z-index:10;}
+.fi{max-width:1100px;margin:0 auto;padding:20px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--mono);font-size:11px;color:var(--muted);}
+.fi a{color:var(--muted);text-decoration:none;}.fi a:hover{color:var(--accent);}
+.fl{display:flex;gap:16px;flex-wrap:wrap;}
+.badge{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:3px;letter-spacing:.06em;text-transform:uppercase;}
+.b-free{background:rgba(0,200,100,.1);color:#00c864;border:1px solid rgba(0,200,100,.2);}
+.b-paid{background:rgba(255,80,80,.1);color:#ff6060;border:1px solid rgba(255,80,80,.2);}
+.b-high{background:rgba(255,68,68,.12);color:var(--red);border:1px solid rgba(255,68,68,.25);}
+.b-med{background:rgba(255,184,0,.1);color:var(--amber);border:1px solid rgba(255,184,0,.2);}
+.b-low{background:rgba(0,255,136,.08);color:var(--green);border:1px solid rgba(0,255,136,.2);}
+.b-india{background:rgba(255,145,0,.1);color:#ff9100;border:1px solid rgba(255,145,0,.2);}
+.sec-hdr{font-family:var(--tech);font-size:18px;color:var(--accent);margin:28px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+</style>
+</head>
+<body>
+<header class="h">
+  <div class="hi">
+    <a class="brand" href="index.html"><img src="logo.svg" alt="IGRS"><span class="bn">IGRS</span></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="tools.html">Tools</a>
+      <a href="dorks.html">Dorks</a>
+      <a href="playbooks.html">Playbooks</a>
+      <a href="cyberlaw.html">Cyber Law</a>
+      <a href="ioc.html">IOC Feed</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="india-cyber-stats.html">Statistics</a>
+      <a href="case-studies.html">Case Studies</a>
+      <a href="cve-tracker.html">CVE Tracker</a>
+      <a href="compare.html">Compare Tools</a>
+      <a href="threat-digest.html" class="act">Threat Digest</a>
+    </nav>
+  </div>
+</header>
+<main class="m">
+<style>
+.digest-header{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px 24px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.digest-vol{font-family:var(--mono);font-size:11px;color:var(--muted);}
+.digest-vol strong{color:var(--accent);}
+.tlp-badge{font-family:var(--mono);font-size:10px;padding:4px 12px;border-radius:3px;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);}
+.digest-section{margin-bottom:32px;}
+.ds-header{font-family:var(--tech);font-size:16px;color:var(--accent);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.ds-count{font-family:var(--mono);font-size:11px;color:var(--muted);font-weight:400;}
+.threat-item{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:16px 18px;margin-bottom:12px;transition:border-color .2s;position:relative;z-index:10;}
+.threat-item:hover{border-color:var(--accent2);}
+.threat-item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:6px 0 0 6px;background:var(--item-color,var(--border));}
+.ti-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:8px;}
+.ti-title{font-family:var(--tech);font-size:14px;color:var(--ink);font-weight:600;}
+.ti-meta{display:flex;gap:6px;flex-wrap:wrap;}
+.ti-body{font-size:13px;color:var(--ink2);line-height:1.7;}
+.ti-iocs{margin-top:10px;padding-top:10px;border-top:1px solid rgba(14,74,122,.3);}
+.ti-ioc-label{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;}
+.ioc-chip{font-family:var(--mono);font-size:10px;color:var(--amber);background:rgba(255,184,0,.08);border:1px solid rgba(255,184,0,.2);padding:2px 8px;border-radius:3px;display:inline-block;margin:2px;}
+.mitigation-box{background:rgba(0,212,255,.05);border:1px solid rgba(0,212,255,.15);border-radius:4px;padding:12px 14px;margin-top:10px;}
+.mit-label{font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;}
+.mit-text{font-size:12px;color:var(--ink2);line-height:1.6;}
+.digest-summary{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px 24px;margin-bottom:28px;}
+.ds-title{font-family:var(--tech);font-size:15px;color:var(--accent);margin-bottom:14px;}
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;}
+.summary-stat{text-align:center;padding:12px;background:rgba(0,0,0,.2);border-radius:4px;}
+.ss-num{font-family:var(--tech);font-size:22px;color:var(--accent);font-weight:700;}
+.ss-label{font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:4px;}
+.archive-link{font-family:var(--mono);font-size:11px;color:var(--accent2);text-decoration:none;padding:4px 10px;border:1px solid rgba(0,153,204,.3);border-radius:3px;transition:all .2s;}
+.archive-link:hover{border-color:var(--accent);color:var(--accent);}
+</style>
+  <div class="hero">
+    <div class="stamp">Weekly &middot; India Focus &middot; TLP:WHITE &middot; IGRS 2026</div>
+    <h1>&gt; WEEKLY THREAT DIGEST_</h1>
+    <p class="sub">Curated weekly intelligence brief covering active threats, campaigns, and advisories targeting Indian organizations and global cybersecurity developments with India relevance. Published every Friday.</p>
+  </div>
+
+  <div class="digest-header">
+    <div>
+      <div class="digest-vol">Volume <strong>24</strong> &mdash; Week of <strong>June 9–13, 2026</strong></div>
+      <div style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:4px;">Next edition: June 20, 2026</div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <span class="tlp-badge" style="background:rgba(255,255,255,.12);color:#fff;">TLP:WHITE</span>
+      <span class="badge b-india">India Focus</span>
+    </div>
+  </div>
+
+  <div class="digest-summary">
+    <div class="ds-title">&#128200; This Week at a Glance</div>
+    <div class="summary-grid">
+      <div class="summary-stat"><div class="ss-num">3</div><div class="ss-label">Critical CVEs</div></div>
+      <div class="summary-stat"><div class="ss-num">5</div><div class="ss-label">Active Campaigns</div></div>
+      <div class="summary-stat"><div class="ss-num">12</div><div class="ss-label">New IOCs</div></div>
+      <div class="summary-stat"><div class="ss-num">2</div><div class="ss-label">Threat Actor Updates</div></div>
+      <div class="summary-stat"><div class="ss-num">1</div><div class="ss-label">LE Takedown</div></div>
+      <div class="summary-stat"><div class="ss-num">4</div><div class="ss-label">CERT-In Advisories</div></div>
+    </div>
+  </div>
+
+  <!-- CRITICAL ALERTS -->
+  <div class="digest-section">
+    <div class="ds-header">&#128308; Critical Alerts <span class="ds-count">3 items</span></div>
+
+    <div class="threat-item" style="--item-color:var(--red);">
+      <div class="ti-header">
+        <div class="ti-title">RoguePlanet — Microsoft Defender Zero-Day, No Patch Available</div>
+        <div class="ti-meta"><span class="badge b-high">CRITICAL</span><span class="badge b-india">India High Risk</span></div>
+      </div>
+      <div class="ti-body">A researcher released a new Defender zero-day (RoguePlanet) exploiting a race condition to achieve SYSTEM privilege escalation on fully patched Windows 10 and 11. Released on June 10, the same day as Patch Tuesday — no Microsoft patch available as of June 13. ThreatLocker independently confirmed the exploit works. Detection: monitor for MsMpEng.exe spawning any child process — this should never occur in a healthy environment.</div>
+      <div class="ti-iocs">
+        <div class="ti-ioc-label">Detection Pivot</div>
+        <span class="ioc-chip">Parent: MsMpEng.exe spawning child</span>
+        <span class="ioc-chip">EventID 4688 — SYSTEM integrity shell</span>
+        <span class="ioc-chip">CVE-2026-33825</span>
+      </div>
+      <div class="mitigation-box">
+        <div class="mit-label">&#9654; Mitigation</div>
+        <div class="mit-text">Enable application allowlisting (blocks by default). Restrict local user privileges. Monitor MsMpEng.exe process lineage. Apply June 2026 Patch Tuesday for other fixes while awaiting RoguePlanet patch. Full article: <a href="articles/rogueplanet-windows-defender-zero-day-june-2026.html" style="color:var(--accent2);">IGRS Analysis</a></div>
+      </div>
+    </div>
+
+    <div class="threat-item" style="--item-color:var(--red);">
+      <div class="ti-header">
+        <div class="ti-title">Oracle PeopleSoft CVE-2026-35273 — Unauthenticated RCE, Actively Exploited</div>
+        <div class="ti-meta"><span class="badge b-high">CRITICAL</span><span class="badge b-india">India High Risk</span></div>
+      </div>
+      <div class="ti-body">Oracle PeopleSoft critical zero-day allows unauthenticated RCE. Actively exploited by ShinyHunters for bulk data theft targeting Indian government ministries, PSUs, central universities, and large enterprises running PeopleSoft for HR/ERP. Patch available — treat as emergency deployment outside normal change management.</div>
+      <div class="ti-iocs">
+        <div class="ti-ioc-label">IOCs</div>
+        <span class="ioc-chip">CVE-2026-35273</span>
+        <span class="ioc-chip">ShinyHunters TTP</span>
+        <span class="ioc-chip">CVSS 9.8</span>
+      </div>
+      <div class="mitigation-box">
+        <div class="mit-label">&#9654; Mitigation</div>
+        <div class="mit-text">Apply Oracle July 2026 CPU immediately. Block external access to PeopleSoft web tier at firewall. Monitor for anomalous data export volumes. Report any exploitation to CERT-In within 6 hours.</div>
+      </div>
+    </div>
+
+    <div class="threat-item" style="--item-color:var(--amber);">
+      <div class="ti-header">
+        <div class="ti-title">ServiceNow Data Breach — Silent Patch Left Enterprises Unaware 4 Days</div>
+        <div class="ti-meta"><span class="badge b-high">HIGH</span><span class="badge b-india">India Relevant</span></div>
+      </div>
+      <div class="ti-body">ServiceNow patched a critical unauthenticated API vulnerability on June 5 but only notified customers via a behind-login advisory on June 9. Attackers queried customer instance data — IT tickets, employee records, security incident reports. Multiple large Indian IT and BFSI enterprises use ServiceNow.</div>
+      <div class="mitigation-box">
+        <div class="mit-label">&#9654; Action</div>
+        <div class="mit-text">Check ServiceNow customer portal for KB3067321. If you received a support case from ServiceNow, initiate incident response. Review API access logs for April–June 2026. CERT-In notification required if personal data was exposed.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVE CAMPAIGNS -->
+  <div class="digest-section">
+    <div class="ds-header">&#128270; Active Campaigns — India Targeted <span class="ds-count">3 items</span></div>
+
+    <div class="threat-item" style="--item-color:var(--amber);">
+      <div class="ti-header">
+        <div class="ti-title">Digital Arrest Scam Surge — CBDT / CBI Impersonation Wave</div>
+        <div class="ti-meta"><span class="badge b-med">HIGH VOLUME</span><span class="badge b-india">India</span></div>
+      </div>
+      <div class="ti-body">I4C reports a 340% increase in "digital arrest" scam calls this week. Fraudsters impersonating CBI, ED, and CBDT officers are using WhatsApp video calls with fake "police station" backgrounds. Victims are told to stay on call while transferring money to "clear their name." Targeting professionals and retirees in metros. Average loss per case: Rs 8.5 lakh.</div>
+      <div class="ti-iocs">
+        <div class="ti-ioc-label">Indicators</div>
+        <span class="ioc-chip">+91-7XXX-XXXXXX pattern</span>
+        <span class="ioc-chip">WhatsApp video call with uniform</span>
+        <span class="ioc-chip">"Digital arrest" phrase used</span>
+        <span class="ioc-chip">UPI transfer demanded</span>
+      </div>
+      <div class="mitigation-box">
+        <div class="mit-label">&#9654; Advisory</div>
+        <div class="mit-text">No legitimate agency arrests via video call or demands payment to "clear your name." Report to 1930 immediately. Awareness campaign: brief your HR teams and family members.</div>
+      </div>
+    </div>
+
+    <div class="threat-item" style="--item-color:#9b59b6);">
+      <div class="ti-header">
+        <div class="ti-title">AgentTesla Campaign — Invoice-Themed Emails Targeting Indian SME Finance Teams</div>
+        <div class="ti-meta"><span class="badge b-med">MEDIUM</span><span class="badge b-india">India</span></div>
+      </div>
+      <div class="ti-body">New AgentTesla infostealer campaign sending invoice-themed emails to finance teams in Indian manufacturing and logistics SMEs. Malicious Excel attachment with macro. On execution: steals browser credentials, email client passwords, FTP credentials, and sends to attacker C2.</div>
+      <div class="ti-iocs">
+        <div class="ti-ioc-label">IOCs</div>
+        <span class="ioc-chip">Hash: 44d88612fea8a8f36de82e1278abb02f</span>
+        <span class="ioc-chip">Subject: "Invoice_[number]_India"</span>
+        <span class="ioc-chip">C2: 194.165.16.78</span>
+      </div>
+    </div>
+
+    <div class="threat-item" style="--item-color:var(--green);">
+      <div class="ti-header">
+        <div class="ti-title">Re-identification Attack — 340M Profiles Built Without Hacking Any Platform</div>
+        <div class="ti-meta"><span class="badge b-low">AWARENESS</span><span class="badge b-india">India Privacy Risk</span></div>
+      </div>
+      <div class="ti-body">A threat actor assembled 340 million user profiles cross-referenced against multiple platforms by stitching together old breach dumps — without hacking any single platform. Indian users with Aadhaar-linked phone numbers are particularly exposed. This re-identification attack highlights why historical data breaches remain relevant years later.</div>
+      <div class="mitigation-box">
+        <div class="mit-label">&#9654; Advisory</div>
+        <div class="mit-text">Monitor your email addresses on HaveIBeenPwned. Use unique email aliases per service. Consider a separate number for sensitive platform registrations. Full analysis: <a href="articles/data-aggregation-attacks-onlyfans-re-identification.html" style="color:var(--accent2);">IGRS Article</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POSITIVE INTEL -->
+  <div class="digest-section">
+    <div class="ds-header">&#9989; Law Enforcement Wins <span class="ds-count">1 item</span></div>
+    <div class="threat-item" style="--item-color:var(--green);">
+      <div class="ti-header">
+        <div class="ti-title">AudiA6 Crypto Laundering Service Taken Down — Ransomware Groups Disrupted</div>
+        <div class="ti-meta"><span class="badge b-low">POSITIVE</span></div>
+      </div>
+      <div class="ti-body">AudiA6, a cryptocurrency mixing service used by multiple ransomware groups to launder extortion payments, was shut down on June 11. Simultaneously, a Russia-aligned threat actor arrested in Thailand is now in US custody. For Indian organizations that have paid ransoms: blockchain tracing opportunity — funds may remain in more traceable wallets longer than usual.</div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:32px;">
+    <a href="threat-digest.html" class="archive-link">&#128196; This is the latest edition — Archive coming soon</a>
+  </div>
+</main>
+<footer class="f">
+  <div class="fi">
+    <div class="fl">
+      <a href="index.html">Home</a><a href="tools.html">Tools</a>
+      <a href="dorks.html">Dorks</a><a href="playbooks.html">Playbooks</a>
+      <a href="cyberlaw.html">Cyber Law</a><a href="about.html">About</a>
+    </div>
+    <div>&copy; 2026 IGRS &mdash; Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="neural.js"></script>
+</html>
