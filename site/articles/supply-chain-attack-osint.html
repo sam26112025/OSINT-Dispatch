@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Supply Chain Attacks: How Investigators and Defenders Identify Compromised Software — IGRS</title>
+<meta name="description" content="Supply chain attacks compromise trusted software to reach downstream targets. The SolarWinds and XZ Utils attacks defined a generation of threat. How to detect and investigate them.">
+<link rel="canonical" href="https://igrs.xyz/articles/supply-chain-attack-osint.html">
+<meta property="og:title" content="Supply Chain Attacks: How Investigators and Defenders Identify Compromised Software">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/supply-chain-attack-osint.html">
+<meta property="og:site_name" content="IGRS">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'Supply Chain Attacks: How Investigators and Defenders Identify Compromised Software',"description":'Supply chain attacks compromise trusted software to reach downstream targets. The SolarWinds and XZ Utils attacks defined a generation of threat. How to detect and investigate them.',"datePublished":"2026-05-06","author":{"@type":"Person","name":"Manuj Kumar Pandey"},"publisher":{"@type":"Organization","name":"IGRS"}}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>Supply Chain Attacks: How Investigators and Defenders Identify Compromised Software</h1>
+  <div class="dossier">
+    <table>
+      <tr><td>File No.</td><td>IGRS-050/2026</td></tr>
+      <tr><td>Subject</td><td>Detection and investigation methodology for software supply chain attacks affecting Indian organizations</td></tr>
+      <tr><td>Category</td><td>Threat Intelligence</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-05-06</td></tr>
+      <tr><td>Reading time</td><td>6 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">Supply chain attacks compromise trusted software to reach downstream targets. The SolarWinds and XZ Utils attacks defined a generation of threat. How to detect and investigate them.</p>
+  <h2>Why supply chain attacks are so effective</h2>
+<p>A supply chain attack compromises trusted software at the source — the build pipeline, the software repository, or the update mechanism — so the malicious modification reaches every downstream user who installs or updates that software. The attack bypasses direct intrusion defences because it enters through a trusted channel: code passing signing checks, from a known vendor, installed by legitimate update mechanisms that security teams have explicitly allowed.</p>
+<h2>The attack patterns</h2>
+<p><strong>Compromised build environment:</strong> Attacker accesses the build server and injects malicious code into compiled binaries before signing — the source code remains clean, but the binary is malicious. <strong>Compromised open-source package:</strong> Apparently legitimate code contributed to a widely used package with malicious functionality hidden or conditionally triggered — the XZ Utils backdoor discovered in 2024 is the canonical example. <strong>Typosquatting:</strong> A malicious package published to npm, PyPI, or similar repositories with a name nearly identical to a legitimate package. <strong>Compromised update mechanism:</strong> Vendor update server or signing key compromised, allowing malicious updates to reach all users — the SolarWinds Orion attack pattern.</p>
+<h2>Detection techniques</h2>
+<p>Software composition analysis (SCA) tools maintain inventories of all third-party dependencies and alert on new versions or known-vulnerable components. Binary integrity verification compares installed software hashes against vendor-published hashes. Behavioural monitoring detects unexpected network connections or file system activity by newly updated software that previously behaved normally.</p>
+<h2>Incident investigation</h2>
+<p>When supply chain compromise is suspected, investigation must extend to all systems that installed the same affected version during the relevant window. Map which version was installed when, on which systems. Treat all those systems as potentially compromised until proven otherwise through forensic review. Identify all network connections made by the compromised software — these reveal C2 infrastructure and exfiltration destinations.</p>
+<div class="callout">For Indian organizations using open-source components, a Software Bill of Materials (SBOM) — a structured inventory of all components, versions, and dependencies — is the foundation for supply chain risk management. Without it, you cannot know what you are running, let alone whether it has been compromised.</div>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
