@@ -1,3 +1,8 @@
 User-agent: *
 Allow: /
+
+# Sitemaps
 Sitemap: https://igrs.xyz/sitemap.xml
+
+# Block non-content
+Disallow: /ads.txt
