@@ -136,17 +136,18 @@ if(location.protocol === 'http:' && location.hostname !== 'localhost') {
 var allArticles = [];
 var activeSource = 'ALL';
 
+var _enc = encodeURIComponent;
 var SOURCES = [
   {id:'THN', name:'The Hacker News', color:'#e74c3c',
-    url:'https://api.rss2json.com/v1/api.json?rss_url=https://feeds.feedburner.com/TheHackersNews&count=20'},
+    url:'https://api.rss2json.com/v1/api.json?rss_url='+_enc('https://feeds.feedburner.com/TheHackersNews')+'&count=20'},
   {id:'BC', name:'BleepingComputer', color:'#00d4ff',
-    url:'https://api.rss2json.com/v1/api.json?rss_url=https://www.bleepingcomputer.com/feed/&count=20'},
+    url:'https://api.rss2json.com/v1/api.json?rss_url='+_enc('https://www.bleepingcomputer.com/feed/')+'&count=20'},
   {id:'KREBS', name:'Krebs on Security', color:'#ffb800',
-    url:'https://api.rss2json.com/v1/api.json?rss_url=https://krebsonsecurity.com/feed/&count=15'},
+    url:'https://api.rss2json.com/v1/api.json?rss_url='+_enc('https://krebsonsecurity.com/feed/')+'&count=15'},
   {id:'DARK', name:'Dark Reading', color:'#9b59b6',
-    url:'https://api.rss2json.com/v1/api.json?rss_url=https://www.darkreading.com/rss.xml&count=20'},
+    url:'https://api.rss2json.com/v1/api.json?rss_url='+_enc('https://www.darkreading.com/rss.xml')+'&count=20'},
   {id:'SANS', name:'SANS Internet Storm Center', color:'#00ff88',
-    url:'https://api.rss2json.com/v1/api.json?rss_url=https://isc.sans.edu/rssfeed_full.xml&count=15'},
+    url:'https://api.rss2json.com/v1/api.json?rss_url='+_enc('https://isc.sans.edu/rssfeed_full.xml')+'&count=15'},
 ];
 
 function timeAgo(dateStr) {
