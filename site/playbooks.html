@@ -43,9 +43,9 @@ h1{font-family:var(--tech);font-size:clamp(20px,3.5vw,34px);color:var(--accent);
 .tag-le{background:rgba(0,255,136,.08);color:var(--green);border:1px solid rgba(0,255,136,.2);}
 .tag-corp{background:rgba(0,212,255,.08);color:var(--accent2);border:1px solid rgba(0,212,255,.2);}
 .tag-def{background:rgba(255,184,0,.08);color:var(--amber);border:1px solid rgba(255,184,0,.2);}
-.pb-toggle{font-size:18px;color:var(--muted);transition:transform .3s,color .2s;flex-shrink:0;}
+.pb-toggle{font-size:18px;color:var(--muted);transition:transform .3s,color .2s;flex-shrink:0;transform:rotate(180deg);}
 .pb-toggle.open{transform:rotate(180deg);}
-.pb-body{display:none;padding:0 22px 20px;}
+.pb-body{display:block;padding:0 22px 20px;}
 .pb-body.open{display:block;}
 .pb-desc{font-size:13px;color:var(--ink2);line-height:1.7;margin:14px 0;}
 .step{display:flex;gap:14px;margin-bottom:14px;align-items:flex-start;}
@@ -237,9 +237,9 @@ function buildPlaybooks(){
     html += "<div class=\"pb-header\" onclick=\"togglePB("+idx+")\">";
     html += "<div class=\"pb-icon\">"+pb.icon+"</div>";
     html += "<div class=\"pb-title-wrap\"><div class=\"pb-title\">"+pb.title+"</div><div class=\"pb-meta\">"+tagHtml+"</div></div>";
-    html += "<div class=\"pb-toggle\" id=\"toggle-"+idx+"\">&#9660;</div>";
+    html += "<div class=\"pb-toggle open\" id=\"toggle-"+idx+"\">&#9660;</div>";
     html += "</div>";
-    html += "<div class=\"pb-body\" id=\"body-"+idx+"\">";
+    html += "<div class=\"pb-body open\" id=\"body-"+idx+"\">";
     html += "<div class=\"pb-desc\">"+pb.desc+"</div>";
     html += stepsHtml;
     html += "<div class=\"pb-tools\"><div class=\"pb-tools-label\">Key Tools</div><div class=\"tool-links\">"+toolsHtml+"</div></div>";
