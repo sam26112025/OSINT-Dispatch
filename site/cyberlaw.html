@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>India Cyber Law Quick Reference 2026 — BNS, BNSS, BSA, IT Act — IGRS</title>
+<meta name="description" content="Complete India cyber law quick reference for 2026 — IT Act 2000, BNS, BNSS, BSA, DPDP Act. Plain English explanations of all cybercrime sections, evidence rules, investigation powers, and penalties.">
+<link rel="canonical" href="https://igrs.xyz/cyberlaw.html">
+<meta property="og:title" content="India Cyber Law Quick Reference 2026 — IGRS">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#080f1a;--surface:#0d1829;--border:#0e4a7a;--ink:#c8dff0;--ink2:#7aa8cc;--muted:#4a7a9b;--accent:#00d4ff;--accent2:#0099cc;--amber:#ffb800;--green:#00ff88;--red:#ff4444;--mono:"IBM Plex Mono",monospace;--tech:"Share Tech Mono",monospace;--disp:"Rajdhani",sans-serif;}
+body{background:var(--bg);color:var(--ink);font-family:var(--disp);min-height:100vh;}
+#neural-bg{position:fixed!important;top:0;left:0;width:100%;height:100%;z-index:0!important;pointer-events:none!important;opacity:0.35;}
+header.h,main.m,footer.f{position:relative;z-index:10;}
+header.h{background:rgba(8,15,26,.96);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1000;backdrop-filter:blur(10px);}
+.hi{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;padding:10px 0;}
+.brand img{width:52px;height:52px;filter:drop-shadow(0 0 12px rgba(0,212,255,.8));}
+.bn{font-family:var(--tech);font-size:20px;color:var(--accent);letter-spacing:.12em;}
+nav{display:flex;gap:18px;padding:10px 0;flex-wrap:wrap;}
+nav a{color:var(--ink2);text-decoration:none;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:4px 0;border-bottom:1px solid transparent;transition:color .2s;}
+nav a:hover,nav a.act{color:var(--accent);border-bottom-color:var(--accent);}
+nav a::before{content:"> ";color:var(--muted);}
+main.m{max-width:1100px;margin:0 auto;padding:0 24px 60px;}
+.hero{padding:40px 0 28px;border-bottom:1px solid var(--border);}
+.stamp{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent2);border:1px solid var(--border);padding:3px 10px;margin-bottom:14px;}
+h1{font-family:var(--tech);font-size:clamp(20px,3.5vw,34px);color:var(--accent);text-shadow:0 0 24px rgba(0,212,255,.4);margin-bottom:10px;letter-spacing:.08em;}
+.sub{color:var(--ink2);font-size:14px;max-width:720px;line-height:1.7;margin-bottom:16px;}
+.updated{font-family:var(--mono);font-size:11px;color:var(--muted);}
+.updated strong{color:var(--amber);}
+.law-tabs{display:flex;gap:8px;margin:28px 0 0;flex-wrap:wrap;}
+.ltab{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:4px;cursor:pointer;transition:all .2s;background:none;color:var(--ink2);position:relative;z-index:20;}
+.ltab:hover{border-color:var(--accent2);color:var(--accent);}
+.ltab.active{border-color:var(--accent);color:var(--accent);background:rgba(0,212,255,.08);}
+.law-section{display:none;margin-top:24px;}
+.law-section.active{display:block;}
+.section-intro{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:18px 20px;margin-bottom:20px;font-size:13px;color:var(--ink2);line-height:1.7;}
+.section-table{width:100%;border-collapse:collapse;margin-bottom:24px;}
+.section-table th{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:10px 14px;text-align:left;border-bottom:2px solid var(--border);}
+.section-table td{padding:12px 14px;border-bottom:1px solid rgba(14,74,122,.4);font-size:13px;vertical-align:top;}
+.section-table tr:hover td{background:rgba(0,212,255,.03);}
+.sec-num{font-family:var(--mono);font-size:12px;color:var(--amber);font-weight:600;white-space:nowrap;}
+.sec-title{color:var(--accent);font-weight:600;font-size:13px;}
+.sec-plain{color:var(--ink2);line-height:1.6;}
+.penalty{font-family:var(--mono);font-size:11px;color:var(--red);white-space:nowrap;}
+.penalty.fine{color:var(--amber);}
+.badge-cog{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:3px;letter-spacing:.06em;text-transform:uppercase;background:rgba(0,255,136,.08);color:var(--green);border:1px solid rgba(0,255,136,.2);}
+.badge-bail{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:3px;letter-spacing:.06em;text-transform:uppercase;background:rgba(255,184,0,.08);color:var(--amber);border:1px solid rgba(255,184,0,.2);}
+.callout{background:rgba(0,212,255,.06);border-left:3px solid var(--accent);padding:14px 18px;margin:16px 0;font-size:13px;color:var(--ink2);line-height:1.7;border-radius:0 4px 4px 0;}
+.callout strong{color:var(--accent);}
+footer.f{background:rgba(8,15,26,.9);border-top:1px solid var(--border);position:relative;z-index:10;}
+.fi{max-width:1100px;margin:0 auto;padding:20px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--mono);font-size:11px;color:var(--muted);}
+.fi a{color:var(--muted);text-decoration:none;}.fi a:hover{color:var(--accent);}
+.fl{display:flex;gap:16px;}
+@media(max-width:768px){.section-table{display:block;overflow-x:auto;}}
+</style>
+</head>
+<body>
+<header class="h">
+  <div class="hi">
+    <a class="brand" href="index.html"><img src="logo.svg" alt="IGRS"><span class="bn">IGRS</span></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="tools.html">Tools</a>
+      <a href="dorks.html">Dorks</a>
+      <a href="playbooks.html">Playbooks</a>
+      <a href="cyberlaw.html" class="act">Cyber Law</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+<main class="m">
+  <div class="hero">
+    <div class="stamp">Law Enforcement Reference &middot; Updated 2026 &middot; IGRS</div>
+    <h1>&gt; INDIA CYBER LAW QUICK REFERENCE_</h1>
+    <p class="sub">Plain-English reference for all cybercrime-related provisions under Indian law — IT Act 2000, Bharatiya Nyaya Sanhita (BNS), Bharatiya Nagarik Suraksha Sanhita (BNSS), Bharatiya Sakshya Adhiniyam (BSA), and the DPDP Act 2023. For law enforcement officers, legal professionals, and security teams.</p>
+    <div class="updated">Last updated: <strong>June 2026</strong> &mdash; Reflects BNS/BNSS/BSA in force from July 1, 2024</div>
+  </div>
+
+  <div class="law-tabs">
+    <button class="ltab active" onclick="showTab('it-act')">IT Act 2000</button>
+    <button class="ltab" onclick="showTab('bns')">BNS 2023</button>
+    <button class="ltab" onclick="showTab('bnss')">BNSS 2023</button>
+    <button class="ltab" onclick="showTab('bsa')">BSA 2023</button>
+    <button class="ltab" onclick="showTab('dpdp')">DPDP Act 2023</button>
+    <button class="ltab" onclick="showTab('evidence')">Evidence Guide</button>
+    <button class="ltab" onclick="showTab('fir')">FIR Reference</button>
+  </div>
+
+  <!-- IT ACT 2000 -->
+  <div class="law-section active" id="tab-it-act">
+    <div class="section-intro">The Information Technology Act, 2000 remains the primary legislation for cybercrime offences in India. Despite the introduction of BNS/BNSS/BSA in 2024, the IT Act continues in force and governs unauthorized access, data theft, identity crimes, cyber terrorism, and related offences.</div>
+    <table class="section-table">
+      <tr><th>Section</th><th>Offence</th><th>Plain Explanation</th><th>Punishment</th><th>Type</th></tr>
+      <tr><td class="sec-num">S. 43</td><td class="sec-title">Damage to Computer Systems</td><td class="sec-plain">Unauthorized access, downloading data, introducing virus, denial of service, destroying data. Civil liability — compensation up to Rs 5 crore.</td><td class="penalty fine">Civil: Rs 5 Cr compensation</td><td></td></tr>
+      <tr><td class="sec-num">S. 43A</td><td class="sec-title">Failure to Protect Sensitive Data</td><td class="sec-plain">Body corporate fails to implement reasonable security practices for sensitive personal data — liable to pay compensation to affected person.</td><td class="penalty fine">Compensation (amount not specified)</td><td></td></tr>
+      <tr><td class="sec-num">S. 65</td><td class="sec-title">Tampering with Source Code</td><td class="sec-plain">Knowingly concealing, destroying, or altering computer source code when required to maintain it by law.</td><td class="penalty">3 years + Rs 2 lakh fine</td><td><span class="badge-cog">Cognizable</span></td></tr>
+      <tr><td class="sec-num">S. 66</td><td class="sec-title">Computer Related Offences</td><td class="sec-plain">Dishonest or fraudulent acts under Section 43 — unauthorized access, data theft, virus introduction with criminal intent.</td><td class="penalty">3 years + Rs 5 lakh fine</td><td><span class="badge-cog">Cognizable</span></td></tr>
+      <tr><td class="sec-num">S. 66A</td><td class="sec-title">~~Offensive Messages~~</td><td class="sec-plain">Struck down by Supreme Court in Shreya Singhal v. Union of India (2015). No longer in force.</td><td class="penalty fine">STRUCK DOWN</td><td></td></tr>
+      <tr><td class="sec-num">S. 66B</td><td class="sec-title">Receiving Stolen Computer Resource</td><td class="sec-plain">Dishonestly receiving or retaining any stolen computer resource or communication device, knowing it to be stolen.</td><td class="penalty">3 years + Rs 1 lakh fine</td><td><span class="badge-bail">Bailable</span></td></tr>
+      <tr><td class="sec-num">S. 66C</td><td class="sec-title">Identity Theft</td><td class="sec-plain">Fraudulently using another person's electronic signature, password, or unique identification feature. Most commonly invoked in SIM swap and account takeover cases.</td><td class="penalty">3 years + Rs 1 lakh fine</td><td><span class="badge-cog">Cognizable</span></td></tr>
+      <tr><td class="sec-num">S. 66D</td><td class="sec-title">Cheating by Personation (Online)</td><td class="sec-plain">Cheating someone by personating another person using a computer resource or communication device. Used in CEO fraud, phishing, fake customer care scams.</td><td class="penalty">3 years + Rs 1 lakh fine</td><td><span class="badge-cog">Cognizable</span></td></tr>
+      <tr><td class="sec-num">S. 66E</td><td class="sec-title">Violation of Privacy</td><td class="sec-plain">Intentionally capturing, publishing, or transmitting the image of a person's private parts without consent. Applies to voyeurism and non-consensual image sharing.</td><td class="penalty">3 years + Rs 2 lakh fine</td><td><span class="badge-cog">Cognizable</span></td></tr>
+      <tr><td class="sec-num">S. 66F</td><td class="sec-title">Cyber Terrorism</td><td class="sec-plain">Acts that threaten unity, integrity, security, or sovereignty of India through computer systems — attacking critical infrastructure, spreading terror through networks.</td><td class="penalty">Life Imprisonment</td><td><span class="badge-cog">Cognizable</span></td></tr>
+      <tr><td class="sec-num">S. 67</td><td class="sec-title">Publishing Obscene Material Online</td><td class="sec-plain">Publishing or transmitting obscene material in electronic form. First conviction: 3 years + Rs 5 lakh. Subsequent: 5 years + Rs 10 lakh.</td><td class="penalty">3–5 years + fine</td><td><span class="badge-cog">Cognizable</span></td></tr>
+      <tr><td class="sec-num">S. 67A</td><td class="sec-title">Publishing Sexually Explicit Material</td><td class="sec-plain">Publishing or transmitting sexually explicit material (not just obscene). Stricter than S.67. First conviction: 5 years + Rs 10 lakh. Subsequent: 7 years + Rs 10 lakh.</td><td class="penalty">5–7 years + fine</td><td><span class="badge-cog">Cognizable</span></td></tr>
+      <tr><td class="sec-num">S. 67B</td><td class="sec-title">Child Sexual Abuse Material (CSAM)</td><td class="sec-plain">Publishing, browsing, or downloading sexual content involving minors online. Strictest IT Act provision. First: 5 years + Rs 10 lakh. Subsequent: 7 years + Rs 10 lakh.</td><td class="penalty">5–7 years + fine</td><td><span class="badge-cog">Cognizable</span></td></tr>
+      <tr><td class="sec-num">S. 69</td><td class="sec-title">Government Interception Power</td><td class="sec-plain">Government power to intercept, monitor, or decrypt any information through any computer resource in interest of sovereignty, security, friendly relations, or public order.</td><td class="penalty fine">Government power — not offence</td><td></td></tr>
+      <tr><td class="sec-num">S. 69B</td><td class="sec-title">Traffic Data Monitoring</td><td class="sec-plain">Government power to authorize monitoring and collection of traffic data or information through any computer resource for cyber security purposes.</td><td class="penalty fine">Government power — not offence</td><td></td></tr>
+      <tr><td class="sec-num">S. 70</td><td class="sec-title">Critical Information Infrastructure</td><td class="sec-plain">Unauthorized access to protected system declared as CII (Critical Information Infrastructure) — power plants, banking systems, defense networks, government databases.</td><td class="penalty">10 years + fine</td><td><span class="badge-cog">Cognizable</span></td></tr>
+    </table>
+    <div class="callout"><strong>Investigation tip:</strong> For most cybercrime FIRs, invoke Section 66/66C/66D IT Act along with relevant BNS provisions. The IT Act gives specific cyber-focused language; BNS provides the broader criminal framework. Filing both strengthens the case.</div>
+  </div>
+
+  <!-- BNS 2023 -->
+  <div class="law-section" id="tab-bns">
+    <div class="section-intro">The Bharatiya Nyaya Sanhita (BNS) 2023 replaced the Indian Penal Code (IPC) 1860 with effect from July 1, 2024. For cybercrime investigators, the key BNS sections address fraud, cheating, personation, and criminal conspiracy in digital contexts. The IT Act remains the primary cyber law — BNS supplements it.</div>
+    <table class="section-table">
+      <tr><th>Section</th><th>Offence (IPC Equivalent)</th><th>Plain Explanation</th><th>Punishment</th><th>Type</th></tr>
+      <tr><td class="sec-num">S. 318</td><td class="sec-title">Cheating (was IPC 420)</td><td class="sec-plain">Deceiving a person and inducing them to deliver property or valuable security. Now explicitly covers digital payment fraud — UPI, net banking, online transfers induced by deception.</td><td class="penalty">7 years + fine</td><td><span class="badge-cog">Cognizable</span></td></tr>
+      <tr><td class="sec-num">S. 319</td><td class="sec-title">Cheating by Personation (was IPC 416)</td><td class="sec-plain">Pretending to be someone else to cheat. Covers fake customer care, impersonation scams, fake government officials calling for "digital arrest." Stronger with S.66D IT Act.</td><td class="penalty">3 years + fine</td><td><span class="badge-cog">Cognizable</span></td></tr>
+      <tr><td class="sec-num">S. 316</td><td class="sec-title">Criminal Breach of Trust (was IPC 405/406)</td><td class="sec-plain">Misappropriation of property entrusted — relevant for insider data theft, employee misuse of company systems/data, crypto custodian fraud.</td><td class="penalty">3–7 years + fine</td><td><span class="badge-cog">Cognizable</span></td></tr>
+      <tr><td class="sec-num">S. 336</td><td class="sec-title">Forgery (was IPC 463)</td><td class="sec-plain">Making false documents or electronic records with intent to cause damage or fraud. Covers fabricated digital evidence, forged email headers, fake KYC documents.</td><td class="penalty">2 years + fine</td><td><span class="badge-bail">Bailable</span></td></tr>
+      <tr><td class="sec-num">S. 338</td><td class="sec-title">Forgery for Fraud (was IPC 468)</td><td class="sec-plain">Forgery specifically for the purpose of cheating — higher punishment than basic forgery. Used when forged digital documents are used in fraud schemes.</td><td class="penalty">7 years + fine</td><td><span class="badge-cog">Cognizable</span></td></tr>
+      <tr><td class="sec-num">S. 340</td><td class="sec-title">Using Forged Documents (was IPC 471)</td><td class="sec-plain">Using a forged document as genuine, knowing it to be forged. Covers use of fabricated bank statements, fake KYC, forged digital signatures.</td><td class="penalty">Same as forgery itself</td><td><span class="badge-cog">Cognizable</span></td></tr>
+      <tr><td class="sec-num">S. 111</td><td class="sec-title">Organised Crime</td><td class="sec-plain">NEW provision — organized crime syndicates, criminal enterprises. Covers coordinated cyber fraud networks, ransomware groups, SIM swap rings operating as organized networks.</td><td class="penalty">Life / Death + fine</td><td><span class="badge-cog">Cognizable</span></td></tr>
+      <tr><td class="sec-num">S. 61</td><td class="sec-title">Criminal Conspiracy (was IPC 120B)</td><td class="sec-plain">Agreement between two or more persons to commit any offence. Invoked against all members of a cyber fraud network — even those not directly committing the final act.</td><td class="penalty">Same as offence conspired</td><td><span class="badge-cog">Cognizable</span></td></tr>
+      <tr><td class="sec-num">S. 308</td><td class="sec-title">Extortion (was IPC 383/384)</td><td class="sec-plain">Putting someone in fear to dishonestly induce delivery of property. Covers ransomware demands, sextortion, threatening to leak data unless payment made.</td><td class="penalty">3–10 years + fine</td><td><span class="badge-cog">Cognizable</span></td></tr>
+      <tr><td class="sec-num">S. 351</td><td class="sec-title">Criminal Intimidation (was IPC 503/506)</td><td class="sec-plain">Threatening someone with injury to person, reputation, or property. Covers online threats, cyber harassment, threatening messages on WhatsApp/social media.</td><td class="penalty">2–7 years + fine</td><td><span class="badge-bail">Bailable</span></td></tr>
+    </table>
+    <div class="callout"><strong>FIR drafting note:</strong> After July 1, 2024, cite BNS sections, not IPC. Courts have noted procedural irregularities when old IPC sections are cited in new FIRs. Example: Instead of "Section 420 IPC" write "Section 318 BNS 2023."</div>
+  </div>
+
+  <!-- BNSS 2023 -->
+  <div class="law-section" id="tab-bnss">
+    <div class="section-intro">The Bharatiya Nagarik Suraksha Sanhita (BNSS) 2023 replaced the Code of Criminal Procedure (CrPC) 1973 from July 1, 2024. It governs investigation powers, court procedures, evidence production, and arrest/bail provisions. Key changes relevant to cyber investigations are highlighted.</div>
+    <table class="section-table">
+      <tr><th>Section</th><th>Power/Provision (CrPC Equivalent)</th><th>Explanation for Investigators</th></tr>
+      <tr><td class="sec-num">S. 94</td><td class="sec-title">Production of Documents (was CrPC 91)</td><td class="sec-plain">Court or officer can direct any person to produce documents or electronic records. Primary tool for serving legal process on banks, telecom operators, ISPs, social media platforms. Must specify the documents needed and legal basis.</td></tr>
+      <tr><td class="sec-num">S. 105</td><td class="sec-title">Search and Seizure (was CrPC 100)</td><td class="sec-plain">NEW: Mandatory audio-video recording of all search and seizure operations. Failure to record may affect admissibility. This creates both an evidentiary benefit and compliance obligation for cyber cell raids.</td></tr>
+      <tr><td class="sec-num">S. 176</td><td class="sec-title">FIR Registration (was CrPC 154)</td><td class="sec-plain">NEW: Zero FIR can be filed at any police station regardless of jurisdiction. Within 15 days, FIR must be transferred to the appropriate jurisdiction. Critical for cybercrime cases where offence may cross multiple jurisdictions.</td></tr>
+      <tr><td class="sec-num">S. 173</td><td class="sec-title">Investigation (was CrPC 156)</td><td class="sec-plain">Police power to investigate cognizable offences. For cyber cases: investigation includes digital evidence collection, device seizure, and online platform legal process. Timeline for charge sheet filing: 60 days (custody) or 90 days (bail).</td></tr>
+      <tr><td class="sec-num">S. 532</td><td class="sec-title">Trial via Electronic Mode</td><td class="sec-plain">NEW: Witnesses can testify via electronic means (video conferencing). Reduces delay in cyber cases where witnesses or experts are in different cities. Evidence can be submitted electronically to courts.</td></tr>
+      <tr><td class="sec-num">S. 187</td><td class="sec-title">Remand (was CrPC 167)</td><td class="sec-plain">Custody of accused during investigation — maximum 15 days police custody, maximum 60/90 days judicial custody before charge sheet. For cyber cases: device forensics must be completed within this window.</td></tr>
+      <tr><td class="sec-num">S. 106</td><td class="sec-title">Provisional Attachment</td><td class="sec-plain">NEW/enhanced: Provisional attachment of property linked to crime — faster than previous process, does not require court order in all cases. Critical for freezing mule accounts and crypto wallets before funds are moved.</td></tr>
+      <tr><td class="sec-num">S. 185</td><td class="sec-title">Arrest Without Warrant</td><td class="sec-plain">Police can arrest without warrant for cognizable offences. For cybercrime: when accused is identified, immediate arrest prevents evidence destruction. Section 66/66C/66D IT Act are all cognizable — arrest without warrant is valid.</td></tr>
+    </table>
+    <div class="callout"><strong>Section 94 BNSS vs Section 91 CrPC:</strong> These are functionally equivalent — legal notices issued before July 1, 2024 cite S.91 CrPC, those after cite S.94 BNSS. Banks, telecom operators, and platforms should respond to both. If a platform refuses a post-July 2024 notice citing S.91, serve a fresh notice citing S.94 BNSS.</div>
+  </div>
+
+  <!-- BSA 2023 -->
+  <div class="law-section" id="tab-bsa">
+    <div class="section-intro">The Bharatiya Sakshya Adhiniyam (BSA) 2023 replaced the Indian Evidence Act 1872 from July 1, 2024. The most critical change for digital forensics professionals and cybercrime investigators is the updated Section 63 certificate requirement for electronic evidence.</div>
+    <table class="section-table">
+      <tr><th>Section</th><th>Provision (IEA Equivalent)</th><th>What Changed and Why It Matters</th></tr>
+      <tr><td class="sec-num">S. 63</td><td class="sec-title">Electronic Evidence Certificate (was IEA 65B)</td><td class="sec-plain">The certificate authenticating electronic evidence must now include the HASH VALUE of the electronic record. This is the most critical change — Section 65B certificates without hash values are now non-compliant. The certificate must be signed by the responsible official of the device or certifying expert.</td></tr>
+      <tr><td class="sec-num">S. 57</td><td class="sec-title">Documents in Evidence (was IEA 61)</td><td class="sec-plain">Electronic records are explicitly recognized as documents admissible in evidence. Covers: emails, WhatsApp messages, social media posts, digital photographs, CCTV footage, transaction records, log files.</td></tr>
+      <tr><td class="sec-num">S. 22</td><td class="sec-title">Electronic Agreements</td><td class="sec-plain">Electronic contracts and agreements are valid. Relevant for cybercrimes involving digital consent, online agreements, electronic signatures.</td></tr>
+      <tr><td class="sec-num">S. 59</td><td class="sec-title">Presumption as to Electronic Records</td><td class="sec-plain">Court may presume that an electronic record purporting to be an agreement was concluded in the manner appearing on the record. Useful for email and WhatsApp-based fraud evidence.</td></tr>
+      <tr><td class="sec-num">S. 60</td><td class="sec-title">Electronic Signature Presumption</td><td class="sec-plain">Court shall presume that a secure electronic signature is the subscriber's signature. Strengthens admissibility of electronically signed documents in fraud cases.</td></tr>
+    </table>
+    <div class="callout"><strong>Section 63 BSA 2023 Certificate — Mandatory Elements:</strong><br><br>
+    1. The computer/device was in proper working order during the relevant period<br>
+    2. The electronic record was produced in the ordinary course of activities<br>
+    3. The information was regularly fed into the computer during that period<br>
+    4. <strong>NEW: The hash value of the electronic record (SHA-256 recommended)</strong><br>
+    5. Signed by the responsible official or forensic examiner<br><br>
+    <strong>Practical action:</strong> Update all forensic report templates to include SHA-256 hash values. Courts are beginning to reject Section 63/65B certificates without hash values.</div>
+  </div>
+
+  <!-- DPDP ACT -->
+  <div class="law-section" id="tab-dpdp">
+    <div class="section-intro">The Digital Personal Data Protection Act 2023 (DPDP Act) is India's first comprehensive data protection legislation. It governs how organizations collect, process, and protect personal data. Rules are pending finalization — but the Act's obligations are in force. The Data Protection Board of India (DPBI) will enforce it.</div>
+    <table class="section-table">
+      <tr><th>Provision</th><th>Obligation</th><th>Practical Impact</th></tr>
+      <tr><td class="sec-num">S. 4</td><td class="sec-title">Grounds for Processing</td><td class="sec-plain">Personal data can only be processed with consent or for legitimate uses (legal obligation, state function, public interest, employment). Consent must be free, specific, informed, and unconditional.</td></tr>
+      <tr><td class="sec-num">S. 8</td><td class="sec-title">Data Fiduciary Obligations</td><td class="sec-plain">Organizations processing personal data must: implement appropriate security safeguards, erase data when purpose is fulfilled, notify the Data Protection Board and affected data principals of personal data breaches.</td></tr>
+      <tr><td class="sec-num">S. 9</td><td class="sec-title">Children's Data</td><td class="sec-plain">Processing data of children under 18 requires verifiable parental consent. No targeted advertising to children. No tracking children's online behavior. Significant implications for social media and ed-tech platforms.</td></tr>
+      <tr><td class="sec-num">S. 17</td><td class="sec-title">Data Principal Rights</td><td class="sec-plain">Individuals have rights to: access their data, correct inaccurate data, erasure of data (right to be forgotten), and grievance redressal. Organizations must have a mechanism to respond to these requests.</td></tr>
+      <tr><td class="sec-num">S. 25</td><td class="sec-title">Penalties</td><td class="sec-plain">Failure to prevent data breach: up to Rs 250 crore. Failure to notify breach: up to Rs 200 crore. Violation of children's data provisions: up to Rs 200 crore. Non-compliance with Data Protection Board directions: up to Rs 150 crore.</td></tr>
+      <tr><td class="sec-num">S. 17(2)</td><td class="sec-title">Exemptions for Law Enforcement</td><td class="sec-plain">The DPDP Act exempts processing necessary for prevention, detection, investigation, or prosecution of offences. Law enforcement agencies are not required to comply with data access, correction, or erasure requests during active investigations.</td></tr>
+    </table>
+    <div class="callout"><strong>For corporate security teams:</strong> The DPDP Act breach notification requirement works alongside CERT-In's 6-hour mandatory reporting direction. Both apply simultaneously. When a data breach occurs: CERT-In within 6 hours + Data Protection Board notification (timeline per Rules, expected 72 hours). Start building your breach response playbook now — do not wait for Rules to be finalized.</div>
+  </div>
+
+  <!-- EVIDENCE GUIDE -->
+  <div class="law-section" id="tab-evidence">
+    <div class="section-intro">Practical guide to collecting, preserving, and presenting digital evidence in Indian courts — calibrated to BSA 2023 and current judicial practice.</div>
+    <div class="callout"><strong>The Golden Rule of Digital Evidence:</strong> Preserve first, analyze second. Any action on original evidence that changes it — even powering on a phone — without first creating a forensic image is potential evidence contamination. Always work on copies.</div>
+    <table class="section-table">
+      <tr><th>Evidence Type</th><th>Collection Method</th><th>Authentication Requirement</th><th>Common Challenge</th></tr>
+      <tr><td class="sec-title">Mobile Phone Data</td><td class="sec-plain">Cellebrite UFED / MSAB XRY / Oxygen Forensics — full file system or physical extraction. Seize in Faraday bag. Generate hash before and after extraction.</td><td class="sec-plain">Section 63 BSA certificate with device IMEI, extraction tool, version, date, pre/post SHA-256 hash.</td><td class="sec-plain">Defence will argue: Was phone in airplane mode from seizure? Who had custody? Was extraction tool validated?</td></tr>
+      <tr><td class="sec-title">WhatsApp Messages</td><td class="sec-plain">Extract msgstore.db from device. Do not screenshot — forensic database extraction is required for admissibility. Screenshots alone are regularly challenged.</td><td class="sec-plain">Section 63 BSA certificate for the extracted database. Hash of msgstore.db.</td><td class="sec-plain">Screenshots without forensic extraction are vulnerable to fabrication allegations. Courts increasingly require database-level extraction.</td></tr>
+      <tr><td class="sec-title">Email Evidence</td><td class="sec-plain">Obtain full email with headers, not just body screenshot. Export as .eml file. Header analysis confirms sender IP and routing path.</td><td class="sec-plain">Section 63 BSA certificate from email service provider (if obtained via legal process) or from the receiving system.</td><td class="sec-plain">Sender address can be spoofed — header analysis is critical. Defence will challenge if header authentication not documented.</td></tr>
+      <tr><td class="sec-title">CCTV Footage</td><td class="sec-plain">Obtain original recording in original format — do not transcode or compress. Note: camera timestamp may differ from actual time — calibrate against independent time source.</td><td class="sec-plain">Section 63 BSA certificate from the CCTV system operator. Timestamp calibration documentation.</td><td class="sec-plain">Timestamp accuracy challenges are most common. Always document the difference between CCTV clock and actual time.</td></tr>
+      <tr><td class="sec-title">Bank Transaction Records</td><td class="sec-plain">Obtain via Section 94 BNSS notice to bank. Bank's certified statement is admissible. Include UTR, timestamps, IP address of transaction initiation.</td><td class="sec-plain">Bank official's Section 63 BSA certificate. Account statement on bank letterhead with branch seal.</td><td class="sec-plain">Defence may challenge if transaction IP log is not included — always request IP address and device ID along with transaction records.</td></tr>
+      <tr><td class="sec-title">Social Media Posts</td><td class="sec-plain">Capture full page URL, timestamp, and surrounding context. Use web archiving (archive.today) for time-stamped preservation. Screenshots alone are insufficient for high-stakes matters.</td><td class="sec-plain">Section 63 BSA certificate from the investigating officer documenting capture method. Platform's legal process response preferred.</td><td class="sec-plain">Posts can be deleted — capture immediately. Edited posts leave traces in platform metadata obtainable via legal process.</td></tr>
+    </table>
+  </div>
+
+  <!-- FIR REFERENCE -->
+  <div class="law-section" id="tab-fir">
+    <div class="section-intro">Quick reference for FIR section combinations by offence type. All BNS sections reflect the post-July 1, 2024 applicable law. FIRs filed after this date should cite BNS, not IPC.</div>
+    <table class="section-table">
+      <tr><th>Crime Type</th><th>Primary Sections</th><th>Additional Sections</th></tr>
+      <tr><td class="sec-title">UPI / Online Payment Fraud</td><td class="sec-num">S.318 BNS + S.66D IT Act</td><td class="sec-plain">S.66C IT Act (if identity theft element) | S.319 BNS (personation) | S.61 BNS (if multiple accused)</td></tr>
+      <tr><td class="sec-title">SIM Swap Fraud</td><td class="sec-num">S.66C IT Act + S.66D IT Act</td><td class="sec-plain">S.318 BNS | S.319 BNS | S.338 BNS (forgery of documents used to obtain SIM)</td></tr>
+      <tr><td class="sec-title">Phishing / Fake Website</td><td class="sec-num">S.66D IT Act + S.318 BNS</td><td class="sec-plain">S.338 BNS (forged website/brand) | S.66 IT Act | S.419 BNS (if false representation)</td></tr>
+      <tr><td class="sec-title">Ransomware Attack</td><td class="sec-num">S.66 IT Act + S.308 BNS</td><td class="sec-plain">S.43 IT Act (civil) | S.66F IT Act (if CII targeted) | S.61 BNS (conspiracy)</td></tr>
+      <tr><td class="sec-title">Data Theft / Corporate Espionage</td><td class="sec-num">S.66 IT Act + S.316 BNS</td><td class="sec-plain">S.66B IT Act (receiving stolen data) | S.61 BNS | S.43A IT Act (civil)</td></tr>
+      <tr><td class="sec-title">Sextortion / Non-Consensual Images</td><td class="sec-num">S.66E IT Act + S.308 BNS</td><td class="sec-plain">S.67A IT Act | S.351 BNS (criminal intimidation) | S.77 BNS (voyeurism)</td></tr>
+      <tr><td class="sec-title">Fake Social Media Profile</td><td class="sec-num">S.66D IT Act + S.319 BNS</td><td class="sec-plain">S.338 BNS | S.351 BNS (if threatening) | S.66C IT Act (if existing credentials misused)</td></tr>
+      <tr><td class="sec-title">Dark Web Drug Marketplace</td><td class="sec-num">S.66 IT Act + NDPS Act</td><td class="sec-plain">S.61 BNS (conspiracy) | S.111 BNS (organized crime) | S.66F IT Act (if anonymous network used)</td></tr>
+      <tr><td class="sec-title">Cyber Terrorism</td><td class="sec-num">S.66F IT Act</td><td class="sec-plain">UAPA provisions | S.111 BNS (organized crime) | S.61 BNS (conspiracy)</td></tr>
+      <tr><td class="sec-title">Child Sexual Abuse Material</td><td class="sec-num">S.67B IT Act + POCSO Act</td><td class="sec-plain">S.15 POCSO (storage) | S.13 POCSO (using child for porn) | S.61 BNS (conspiracy if network)</td></tr>
+    </table>
+    <div class="callout"><strong>Zero FIR guidance:</strong> Under BNSS Section 176, any police station must register a Zero FIR for cognizable cybercrime offences regardless of jurisdiction. The FIR must be transferred to the appropriate jurisdiction within 15 days. Victim should insist on Zero FIR registration if local police claim lack of jurisdiction.</div>
+  </div>
+</main>
+<footer class="f">
+  <div class="fi">
+    <div class="fl"><a href="about.html">About</a><a href="tools.html">Tools</a><a href="playbooks.html">Playbooks</a><a href="dorks.html">Dorks</a></div>
+    <div>&copy; 2026 IGRS &mdash; Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="neural.js"></script>
+<script>
+function showTab(id){
+  document.querySelectorAll(".law-section").forEach(function(s){ s.classList.remove("active"); });
+  document.querySelectorAll(".ltab").forEach(function(t){ t.classList.remove("active"); });
+  document.getElementById("tab-"+id).classList.add("active");
+  event.target.classList.add("active");
+}
+</script>
+</body>
+</html>
