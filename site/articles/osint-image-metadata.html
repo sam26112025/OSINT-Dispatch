@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Metadata OSINT: What Photos Reveal About Their Origin — IGRS</title>
+<meta name="description" content="Most photos contain hidden metadata revealing the camera, location, time, and editing history. How to extract it, interpret it, and understand its evidential value.">
+<link rel="canonical" href="https://igrs.xyz/articles/osint-image-metadata.html">
+<meta property="og:title" content="Image Metadata OSINT: What Photos Reveal About Their Origin">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/osint-image-metadata.html">
+<meta property="og:site_name" content="IGRS">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'Image Metadata OSINT: What Photos Reveal About Their Origin',"description":'Most photos contain hidden metadata revealing the camera, location, time, and editing history. How to extract it, interpret it, and understand its evidential value.',"datePublished":"2026-04-18","author":{"@type":"Person","name":"Manuj Kumar Pandey"},"publisher":{"@type":"Organization","name":"IGRS"}}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>Image Metadata OSINT: What Photos Reveal About Their Origin</h1>
+  <div class="dossier">
+    <table>
+      <tr><td>File No.</td><td>IGRS-044/2026</td></tr>
+      <tr><td>Subject</td><td>Guide to extracting and interpreting EXIF and other metadata from photographs in investigations</td></tr>
+      <tr><td>Category</td><td>OSINT Fundamentals</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-04-18</td></tr>
+      <tr><td>Reading time</td><td>5 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">Most photos contain hidden metadata revealing the camera, location, time, and editing history. How to extract it, interpret it, and understand its evidential value.</p>
+  <h2>What metadata photos contain</h2>
+<p>Digital photographs carry EXIF metadata embedded in the image file recording: camera make and model, timestamp of capture, GPS coordinates (latitude, longitude, altitude — when location services were enabled on the device), camera settings, software used to process the image, and image dimensions. The GPS field alone can place a photo at a precise geographic location.</p>
+<h2>How to extract metadata</h2>
+<p><strong>ExifTool</strong> is the definitive command-line tool, supporting over 300 file formats. Basic usage: <code>exiftool filename.jpg</code> — outputs all available metadata. For web-based extraction without installation, Jeffrey's EXIF Viewer and MetaPicz process uploaded images. For bulk extraction from many images, ExifTool's batch processing handles thousands of files.</p>
+<h2>GPS location data</h2>
+<p>When GPS metadata is present, it provides precise coordinates — accurate to 5-10 metres from a smartphone with GPS lock. This places photographs of crime scenes, evidence, suspect locations, and events precisely on a map. GPS timestamps provide an additional time anchor independent of the claimed capture date.</p>
+<h2>Timestamp analysis</h2>
+<p>The EXIF timestamp reflects whatever timezone the camera was set to — which may be incorrect. Look for multiple timestamp fields (DateTimeOriginal, DateTimeDigitized, GPS DateStamp) which should be internally consistent for an unmanipulated image. Inconsistencies between these fields can indicate tampering.</p>
+<div class="callout">Major social media platforms (Instagram, WhatsApp, Twitter) strip most EXIF metadata from uploaded images — GPS data in particular. Metadata from images obtained directly from devices is significantly richer than from social media downloads.</div>
+<h2>Evidential considerations</h2>
+<p>EXIF metadata is easily modifiable using ExifTool, which means it requires corroboration before being treated as definitive evidence. The strongest corroboration is internal consistency across all fields, file system metadata alignment, and technical consistency of camera settings with claimed conditions.</p>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
