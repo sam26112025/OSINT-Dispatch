@@ -117,6 +117,10 @@ footer.f{background:rgba(8,15,26,.9);border-top:1px solid var(--bd);position:rel
 </footer>
 <script src="neural.js"></script>
 <script>
+// Redirect HTTP to HTTPS
+if(location.protocol === 'http:' && location.hostname !== 'localhost') {
+  location.replace('https://' + location.host + location.pathname + location.search);
+}
 var activeTab = 'urls';
 var countdown = 300;
 var progressInterval, countdownInterval;
@@ -244,6 +248,22 @@ function loadMalware() {
 }
 
 function loadAll() {
+  // Check if page is served over HTTPS - required for fetch() to external APIs
+  if(location.protocol !== 'https:') {
+    setStatus('error','HTTPS required for live feeds');
+    var msg = '<div style="text-align:center;padding:30px 20px;font-family:var(--mono);font-size:12px;color:var(--mt);">' +
+      '<div style="font-size:32px;margin-bottom:16px;">&#128274;</div>' +
+      '<strong style="color:var(--am);font-size:14px;">HTTPS Required</strong><br><br>' +
+      '<span style="color:var(--ink2);line-height:1.8;">This page must be accessed over HTTPS to load live threat data.<br>' +
+      'Your browser blocks external API calls from HTTP pages for security.<br><br>' +
+      'Please access: </span><br>' +
+      '<a href="https://igrs.xyz/live.html" style="color:var(--ac);font-size:13px;text-decoration:underline;">https://igrs.xyz/live.html</a>' +
+      '</div>';
+    document.getElementById('tab-urls').innerHTML = msg;
+    document.getElementById('tab-c2').innerHTML = msg;
+    document.getElementById('tab-mw').innerHTML = msg;
+    return;
+  }
   setStatus('loading','Fetching live threat data...');
   Promise.all([loadURLhaus(), loadFeodo(), loadMalware()])
     .then(function(){ setStatus('live','Live — data from Abuse.ch feeds'); })
