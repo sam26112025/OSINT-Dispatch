@@ -1,55 +1,77 @@
-name: Deploy to GoDaddy
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
-  schedule:
-    - cron: '0 */6 * * *'
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Fetch threat intelligence data
+- name: Fetch threat intelligence data
         run: |
           mkdir -p site/data
-          echo "Testing connectivity..."
-          curl --max-time 10 -o /dev/null -sw "httpbin: %{http_code}\n" "https://httpbin.org/get" || true
-          echo "Fetching URLhaus..."
-          CODE=$(curl --max-time 20 -w "%{http_code}" -o site/data/urlhaus.json -X POST "https://urlhaus-api.abuse.ch/v1/urls/recent/limit/50/" -H "Content-Type: application/x-www-form-urlencoded" 2>/dev/null || echo "000")
-          echo "URLhaus HTTP: $CODE size: $(wc -c < site/data/urlhaus.json)B"
-          [[ "$CODE" != "200" ]] && echo '{"query_status":"no_results","urls":[]}' > site/data/urlhaus.json
+
+          # URLhaus — CSV download (no auth needed)
+          echo "Fetching URLhaus CSV..."
+          curl --max-time 30 -o /tmp/urlhaus.csv \
+            "https://urlhaus.abuse.ch/downloads/csv_recent/" 2>/dev/null || true
+          # Convert CSV to JSON
+          python3 -c "
+          import csv, json, sys
+          urls = []
+          try:
+            with open('/tmp/urlhaus.csv','r',errors='ignore') as f:
+              for line in f:
+                if line.startswith('#') or not line.strip(): continue
+                parts = line.strip().split(',')
+                if len(parts) >= 5:
+                  urls.append({'id':parts[0].strip('\"'),'date_added':parts[1].strip('\"'),
+                    'url':parts[2].strip('\"'),'url_status':parts[3].strip('\"'),
+                    'host':parts[2].strip('\"').split('/')[2] if '//' in parts[2] else '',
+                    'tags':[]})
+          except: pass
+          print(json.dumps({'query_status':'ok','urls':urls}))
+          " > site/data/urlhaus.json
+          echo "URLhaus: $(python3 -c \"import json;d=json.load(open('site/data/urlhaus.json'));print(len(d.get('urls',[])))\" 2>/dev/null || echo 0) URLs"
+
+          # Feodo — save regardless of HTTP code
           echo "Fetching Feodo..."
-          CODE=$(curl --max-time 20 -w "%{http_code}" -o site/data/feodo.json "https://feodotracker.abuse.ch/downloads/ipblocklist_aggressive.json" 2>/dev/null || echo "000")
-          echo "Feodo HTTP: $CODE size: $(wc -c < site/data/feodo.json)B"
-          [[ "$CODE" != "200" ]] && echo '[]' > site/data/feodo.json
+          curl --max-time 20 -o /tmp/feodo_raw.json \
+            "https://feodotracker.abuse.ch/downloads/ipblocklist_aggressive.json" 2>/dev/null || true
+          python3 -c "
+          import json, sys
+          try:
+            data = json.load(open('/tmp/feodo_raw.json'))
+            print(json.dumps(data))
+          except:
+            print('[]')
+          " > site/data/feodo.json
+          echo "Feodo: $(python3 -c \"import json;d=json.load(open('site/data/feodo.json'));print(len(d) if isinstance(d,list) else 0)\" 2>/dev/null || echo 0) records"
+
+          # MalwareBazaar — use public JSON export
           echo "Fetching MalwareBazaar..."
-          CODE=$(curl --max-time 20 -w "%{http_code}" -o site/data/malwarebazaar.json -X POST "https://mb-api.abuse.ch/api/v1/" -H "Content-Type: application/x-www-form-urlencoded" -d "query=get_recent&selector=time" 2>/dev/null || echo "000")
-          echo "MalwareBazaar HTTP: $CODE size: $(wc -c < site/data/malwarebazaar.json)B"
-          [[ "$CODE" != "200" ]] && echo '{"query_status":"no_results","data":[]}' > site/data/malwarebazaar.json
+          curl --max-time 30 -o /tmp/mb_raw.json \
+            "https://bazaar.abuse.ch/export/json/recent/" 2>/dev/null || true
+          python3 -c "
+          import json, sys
+          try:
+            data = json.load(open('/tmp/mb_raw.json'))
+            if isinstance(data, list):
+              print(json.dumps({'query_status':'ok','data':data}))
+            else:
+              print(json.dumps(data))
+          except:
+            print(json.dumps({'query_status':'no_results','data':[]}))
+          " > site/data/malwarebazaar.json
+          echo "MalwareBazaar: $(python3 -c \"import json;d=json.load(open('site/data/malwarebazaar.json'));print(len(d.get('data',[])))\" 2>/dev/null || echo 0) samples"
+
+          # CISA KEV — already works!
           echo "Fetching CISA KEV..."
-          CODE=$(curl --max-time 30 -w "%{http_code}" -o site/data/cisa_kev.json "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json" 2>/dev/null || echo "000")
-          echo "CISA KEV HTTP: $CODE size: $(wc -c < site/data/cisa_kev.json)B"
-          [[ "$CODE" != "200" ]] && echo '{"vulnerabilities":[]}' > site/data/cisa_kev.json
-          echo "Fetching NVD..."
+          curl --max-time 30 -o site/data/cisa_kev.json \
+            "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json" 2>/dev/null \
+            || echo '{"vulnerabilities":[]}' > site/data/cisa_kev.json
+          echo "CISA KEV: $(python3 -c \"import json;d=json.load(open('site/data/cisa_kev.json'));print(len(d.get('vulnerabilities',[])))\" 2>/dev/null || echo 0) entries"
+
+          # NVD CVEs — already works!
+          echo "Fetching NVD CVEs..."
           START=$(date -u -d "30 days ago" "+%Y-%m-%dT%H:%M:%S.000")
           END=$(date -u "+%Y-%m-%dT%H:%M:%S.000")
-          CODE=$(curl --max-time 60 -w "%{http_code}" -o site/data/nvd_cves.json "https://services.nvd.nist.gov/rest/json/cves/2.0?pubStartDate=${START}&pubEndDate=${END}&resultsPerPage=100" 2>/dev/null || echo "000")
-          echo "NVD HTTP: $CODE size: $(wc -c < site/data/nvd_cves.json)B"
-          [[ "$CODE" != "200" ]] && echo '{"vulnerabilities":[]}' > site/data/nvd_cves.json
+          curl --max-time 60 -o site/data/nvd_cves.json \
+            "https://services.nvd.nist.gov/rest/json/cves/2.0?pubStartDate=${START}&pubEndDate=${END}&resultsPerPage=100" 2>/dev/null \
+            || echo '{"vulnerabilities":[]}' > site/data/nvd_cves.json
+          echo "NVD: $(python3 -c \"import json;d=json.load(open('site/data/nvd_cves.json'));print(len(d.get('vulnerabilities',[])))\" 2>/dev/null || echo 0) CVEs"
+
           echo '{"updated":"'$(date -u +%Y-%m-%dT%H:%M:%SZ)'"}' > site/data/last_updated.json
-          ls -la site/data/
-
-      - name: Install lftp
-        run: sudo apt-get install -y lftp
-
-      - name: Deploy via FTP
-        run: |
-          lftp -c "
-          set ftp:ssl-allow no;
-          set dns:order inet;
-          open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} p3plzcpnl506320.prod.phx3.secureserver.net;
-          mirror --reverse --delete --verbose ./site/ public_html/;
-          bye
-          "
+          echo "=== Done ==="
+          ls -lh site/data/
