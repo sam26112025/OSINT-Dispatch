@@ -3,393 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OSINT Tools Directory — IGRS Intel Grid Research Station</title>
+<title>OSINT Tools Directory - IGRS Intel Grid Research Station</title>
 <meta name="description" content="Curated directory of 100+ OSINT tools for investigators, forensic analysts, and cybersecurity professionals. Searchable by category, type, and pricing. India-specific tools included.">
 <link rel="canonical" href="https://igrs.xyz/tools.html">
-<meta property="og:title" content="OSINT Tools Directory — IGRS">
-<meta property="og:description" content="100+ curated OSINT tools for investigators — searchable, filterable, India-specific tools included.">
+<meta property="og:title" content="OSINT Tools Directory - IGRS">
+<meta property="og:description" content="100+ curated OSINT tools for investigators and security professionals.">
 <meta property="og:type" content="website">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <style>
-/* ── RESET & BASE ───────────────────────────────────── */
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 :root{
-  --bg:#080f1a;
-  --surface:#0d1829;
-  --border:#0e4a7a;
-  --ink:#c8dff0;
-  --ink2:#7aa8cc;
-  --muted:#4a7a9b;
-  --accent:#00d4ff;
-  --accent2:#0099cc;
-  --mono:'IBM Plex Mono',monospace;
-  --tech:'Share Tech Mono',monospace;
-  --disp:'Rajdhani',sans-serif;
+  --bg:#080f1a;--surface:#0d1829;--border:#0e4a7a;
+  --ink:#c8dff0;--ink2:#7aa8cc;--muted:#4a7a9b;
+  --accent:#00d4ff;--accent2:#0099cc;
+  --mono:"IBM Plex Mono",monospace;
+  --tech:"Share Tech Mono",monospace;
+  --disp:"Rajdhani",sans-serif;
 }
-body{
-  background:var(--bg);
-  color:var(--ink);
-  font-family:var(--disp);
-  min-height:100vh;
-  /* NO position relative here - avoid stacking context on body */
-}
-
-/* ── NEURAL CANVAS — behind everything ─────────────── */
-#neural-bg{
-  position:fixed !important;
-  top:0;left:0;
-  width:100%;height:100%;
-  z-index:0 !important;
-  pointer-events:none !important;
-  opacity:0.4;
-}
-
-/* ── ALL INTERACTIVE CONTENT above canvas ───────────── */
-header.igrs-hdr,
-main.igrs-main,
-footer.igrs-ftr{
-  position:relative;
-  z-index:10;
-}
-
-/* ── HEADER ─────────────────────────────────────────── */
-header.igrs-hdr{
-  background:rgba(8,15,26,0.95);
-  border-bottom:1px solid var(--border);
-  position:sticky;
-  top:0;
-  z-index:1000;
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
-}
-.hdr-inner{
-  max-width:1200px;
-  margin:0 auto;
-  padding:0 24px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:8px;
-}
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  text-decoration:none;
-  padding:10px 0;
-}
-.brand img{width:56px;height:56px;filter:drop-shadow(0 0 12px rgba(0,212,255,0.8));}
-.brand-name{
-  font-family:var(--tech);
-  font-size:22px;
-  color:var(--accent);
-  letter-spacing:.12em;
-  text-shadow:0 0 16px rgba(0,212,255,0.5);
-}
-nav.igrs-nav{
-  display:flex;
-  gap:20px;
-  font-family:var(--mono);
-  font-size:11px;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-  padding:10px 0;
-  flex-wrap:wrap;
-}
-nav.igrs-nav a{
-  color:var(--ink2);
-  text-decoration:none;
-  padding:4px 0;
-  border-bottom:1px solid transparent;
-  transition:color .2s,border-color .2s;
-}
-nav.igrs-nav a:hover,
-nav.igrs-nav a.active{color:var(--accent);border-bottom-color:var(--accent);}
-nav.igrs-nav a::before{content:'> ';color:var(--muted);}
-
-/* ── MAIN WRAPPER ───────────────────────────────────── */
-main.igrs-main{
-  max-width:1200px;
-  margin:0 auto;
-  padding:0 24px 60px;
-}
-
-/* ── HERO ───────────────────────────────────────────── */
-.hero{
-  padding:40px 0 24px;
-  border-bottom:1px solid var(--border);
-}
-.stamp{
-  display:inline-block;
-  font-family:var(--mono);
-  font-size:9px;
-  letter-spacing:.15em;
-  text-transform:uppercase;
-  color:var(--accent2);
-  border:1px solid var(--border);
-  padding:3px 10px;
-  margin-bottom:14px;
-}
-.hero h1{
-  font-family:var(--tech);
-  font-size:clamp(20px,3.5vw,34px);
-  color:var(--accent);
-  text-shadow:0 0 24px rgba(0,212,255,.4);
-  margin-bottom:10px;
-  letter-spacing:.08em;
-}
-.hero p{
-  color:var(--ink2);
-  font-size:14px;
-  max-width:700px;
-  line-height:1.7;
-}
-.hero-stats{
-  display:flex;
-  gap:28px;
-  margin-top:16px;
-  flex-wrap:wrap;
-}
-.hero-stats span{
-  font-family:var(--mono);
-  font-size:11px;
-  color:var(--muted);
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
+body{background:var(--bg);color:var(--ink);font-family:var(--disp);min-height:100vh;}
+#neural-bg{position:fixed!important;top:0;left:0;width:100%;height:100%;z-index:0!important;pointer-events:none!important;opacity:0.4;}
+header.igrs-hdr,main.igrs-main,footer.igrs-ftr{position:relative;z-index:10;}
+header.igrs-hdr{background:rgba(8,15,26,.95);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1000;backdrop-filter:blur(10px);}
+.hdr-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;padding:10px 0;}
+.brand img{width:56px;height:56px;filter:drop-shadow(0 0 12px rgba(0,212,255,.8));}
+.brand-name{font-family:var(--tech);font-size:22px;color:var(--accent);letter-spacing:.12em;text-shadow:0 0 16px rgba(0,212,255,.5);}
+nav.igrs-nav{display:flex;gap:20px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:10px 0;flex-wrap:wrap;}
+nav.igrs-nav a{color:var(--ink2);text-decoration:none;padding:4px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s;}
+nav.igrs-nav a:hover,nav.igrs-nav a.active{color:var(--accent);border-bottom-color:var(--accent);}
+nav.igrs-nav a::before{content:"> ";color:var(--muted);}
+main.igrs-main{max-width:1200px;margin:0 auto;padding:0 24px 60px;}
+.hero{padding:40px 0 24px;border-bottom:1px solid var(--border);}
+.stamp{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent2);border:1px solid var(--border);padding:3px 10px;margin-bottom:14px;}
+.hero h1{font-family:var(--tech);font-size:clamp(20px,3.5vw,34px);color:var(--accent);text-shadow:0 0 24px rgba(0,212,255,.4);margin-bottom:10px;letter-spacing:.08em;}
+.hero p{color:var(--ink2);font-size:14px;max-width:700px;line-height:1.7;}
+.hero-stats{display:flex;gap:28px;margin-top:16px;flex-wrap:wrap;}
+.hero-stats span{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;}
 .hero-stats strong{color:var(--accent);}
-
-/* ── SEARCH ─────────────────────────────────────────── */
 .search-wrap{position:relative;margin:24px 0 0;}
-.search-wrap input{
-  width:100%;
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:4px;
-  padding:13px 48px 13px 18px;
-  font-family:var(--mono);
-  font-size:14px;
-  color:var(--ink);
-  outline:none;
-  transition:border-color .2s, box-shadow .2s;
-  /* CRITICAL: position and z-index so it's clickable */
-  position:relative;
-  z-index:20;
-}
-.search-wrap input:focus{
-  border-color:var(--accent);
-  box-shadow:0 0 0 2px rgba(0,212,255,.15);
-}
+.search-wrap input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:13px 48px 13px 18px;font-family:var(--mono);font-size:14px;color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s;position:relative;z-index:20;}
+.search-wrap input:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(0,212,255,.15);}
 .search-wrap input::placeholder{color:var(--muted);}
-.search-icon{
-  position:absolute;right:16px;top:50%;
-  transform:translateY(-50%);
-  color:var(--muted);font-size:18px;
-  pointer-events:none;z-index:21;
-}
-
-/* ── LAYOUT ─────────────────────────────────────────── */
-.page-layout{
-  display:grid;
-  grid-template-columns:200px 1fr;
-  gap:28px;
-  margin-top:24px;
-  align-items:start;
-}
-@media(max-width:800px){
-  .page-layout{grid-template-columns:1fr;}
-  .sidebar{display:none;}
-}
-
-/* ── SIDEBAR ─────────────────────────────────────────── */
-.sidebar{
-  position:sticky;
-  top:100px;
-  /* explicit z-index above canvas */
-  z-index:20;
-}
+.search-icon{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:18px;pointer-events:none;z-index:21;}
+.page-layout{display:grid;grid-template-columns:200px 1fr;gap:28px;margin-top:24px;align-items:start;}
+@media(max-width:800px){.page-layout{grid-template-columns:1fr;}.sidebar{display:none;}}
+.sidebar{position:sticky;top:100px;z-index:20;}
 .sb-section{margin-bottom:20px;}
-.sb-label{
-  font-family:var(--mono);
-  font-size:9px;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  color:var(--muted);
-  padding-bottom:6px;
-  margin-bottom:6px;
-  border-bottom:1px solid var(--border);
-}
-.f-btn{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  width:100%;
-  text-align:left;
-  background:none;
-  border:none;
-  border-left:2px solid transparent;
-  padding:5px 10px;
-  font-family:var(--mono);
-  font-size:11px;
-  color:var(--ink2);
-  cursor:pointer;
-  transition:all .15s;
-  border-radius:0 3px 3px 0;
-  /* CRITICAL: must be clickable */
-  position:relative;
-  z-index:20;
-}
+.sb-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);padding-bottom:6px;margin-bottom:6px;border-bottom:1px solid var(--border);}
+.f-btn{display:flex;align-items:center;justify-content:space-between;width:100%;text-align:left;background:none;border:none;border-left:2px solid transparent;padding:6px 10px;font-family:var(--mono);font-size:11px;color:var(--ink2);cursor:pointer;transition:all .15s;border-radius:0 3px 3px 0;position:relative;z-index:20;}
 .f-btn:hover{color:var(--accent);border-left-color:var(--accent2);background:rgba(0,212,255,.06);}
 .f-btn.active{color:var(--accent);border-left-color:var(--accent);background:rgba(0,212,255,.1);font-weight:600;}
-.fc{
-  font-size:9px;
-  background:rgba(0,212,255,.12);
-  color:var(--accent2);
-  padding:1px 5px;
-  border-radius:8px;
-}
-.reset-btn{
-  width:100%;
-  background:none;
-  border:1px solid var(--border);
-  color:var(--muted);
-  font-family:var(--mono);
-  font-size:9px;
-  padding:7px;
-  cursor:pointer;
-  border-radius:3px;
-  letter-spacing:.1em;
-  margin-top:10px;
-  text-transform:uppercase;
-  transition:all .2s;
-  position:relative;
-  z-index:20;
-}
+.fc{font-size:9px;background:rgba(0,212,255,.12);color:var(--accent2);padding:1px 5px;border-radius:8px;}
+.reset-btn{width:100%;background:none;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:9px;padding:7px;cursor:pointer;border-radius:3px;letter-spacing:.1em;margin-top:10px;text-transform:uppercase;transition:all .2s;position:relative;z-index:20;}
 .reset-btn:hover{border-color:var(--accent);color:var(--accent);}
-
-/* ── RESULTS ─────────────────────────────────────────── */
 .content-area{position:relative;z-index:10;}
-.results-bar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:14px;
-  padding-bottom:12px;
-  border-bottom:1px solid var(--border);
-}
-.result-count{
-  font-family:var(--mono);
-  font-size:12px;
-  color:var(--muted);
-}
+.results-bar{display:flex;align-items:center;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+.result-count{font-family:var(--mono);font-size:12px;color:var(--muted);}
 .result-count strong{color:var(--accent);font-size:14px;}
-.active-tags{
-  display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;
-}
-.atag{
-  display:flex;align-items:center;gap:5px;
-  background:rgba(0,212,255,.1);
-  border:1px solid rgba(0,212,255,.25);
-  color:var(--accent);
-  font-family:var(--mono);font-size:10px;
-  padding:2px 8px;border-radius:3px;
-}
-.atag button{
-  background:none;border:none;
-  color:var(--accent2);cursor:pointer;
-  font-size:11px;padding:0;line-height:1;
-  position:relative;z-index:25;
-}
-
-/* ── TOOL GRID ───────────────────────────────────────── */
-.tool-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(260px,1fr));
-  gap:14px;
-}
-/* CRITICAL FIX: tool cards must be above canvas */
-.tool-card{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:6px;
-  padding:16px 18px;
-  text-decoration:none;
-  color:inherit;
-  transition:border-color .2s, box-shadow .2s, transform .15s;
-  position:relative;
-  z-index:15;
-  cursor:pointer;
-  overflow:hidden;
-}
-.tool-card::before{
-  content:'';
-  position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--accent),transparent);
-  opacity:0;transition:opacity .2s;
-}
-.tool-card:hover{
-  border-color:var(--accent2);
-  box-shadow:0 4px 24px rgba(0,212,255,.14);
-  transform:translateY(-2px);
-}
+.active-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+.atag{display:flex;align-items:center;gap:5px;background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.25);color:var(--accent);font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:3px;}
+.atag button{background:none;border:none;color:var(--accent2);cursor:pointer;font-size:11px;padding:0;line-height:1;}
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+.tool-card{display:flex;flex-direction:column;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:16px 18px;text-decoration:none;color:inherit;transition:border-color .2s,box-shadow .2s,transform .15s;position:relative;z-index:15;overflow:hidden;}
+.tool-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:opacity .2s;}
+.tool-card:hover{border-color:var(--accent2);box-shadow:0 4px 24px rgba(0,212,255,.14);transform:translateY(-2px);}
 .tool-card:hover::before{opacity:1;}
-.tc-name{
-  font-family:var(--tech);
-  font-size:15px;
-  color:var(--accent);
-  font-weight:600;
-}
-.tc-header{
-  display:flex;justify-content:space-between;align-items:flex-start;gap:8px;
-}
+.tc-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
+.tc-name{font-family:var(--tech);font-size:15px;color:var(--accent);font-weight:600;}
 .tc-arrow{font-size:12px;color:var(--muted);flex-shrink:0;margin-top:2px;}
-.tc-desc{
-  font-size:12px;color:var(--ink2);line-height:1.65;flex:1;
-}
+.tc-desc{font-size:12px;color:var(--ink2);line-height:1.65;flex:1;}
 .tc-footer{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;}
-.badge{
-  font-family:var(--mono);font-size:9px;
-  padding:2px 6px;border-radius:3px;
-  letter-spacing:.06em;text-transform:uppercase;
-}
+.badge{font-family:var(--mono);font-size:9px;padding:2px 6px;border-radius:3px;letter-spacing:.06em;text-transform:uppercase;}
 .b-cat{background:rgba(0,212,255,.1);color:var(--accent2);border:1px solid rgba(0,212,255,.2);}
 .b-type{background:rgba(200,230,224,.08);color:#c8e6e0;border:1px solid rgba(200,230,224,.15);}
 .b-free{background:rgba(0,200,100,.1);color:#00c864;border:1px solid rgba(0,200,100,.2);}
 .b-freemium{background:rgba(255,200,0,.1);color:#ffc800;border:1px solid rgba(255,200,0,.2);}
 .b-paid{background:rgba(255,80,80,.1);color:#ff6060;border:1px solid rgba(255,80,80,.2);}
-.no-results{
-  grid-column:1/-1;text-align:center;
-  padding:60px 20px;
-  color:var(--muted);
-  font-family:var(--mono);font-size:14px;
-}
-
-/* ── FOOTER ─────────────────────────────────────────── */
-footer.igrs-ftr{
-  background:rgba(8,15,26,0.9);
-  border-top:1px solid var(--border);
-  position:relative;z-index:10;
-}
-.ftr-inner{
-  max-width:1200px;margin:0 auto;padding:20px 24px;
-  display:flex;justify-content:space-between;
-  flex-wrap:wrap;gap:12px;
-  font-family:var(--mono);font-size:11px;color:var(--muted);
-}
+.no-results{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted);font-family:var(--mono);font-size:14px;}
+footer.igrs-ftr{background:rgba(8,15,26,.9);border-top:1px solid var(--border);position:relative;z-index:10;}
+.ftr-inner{max-width:1200px;margin:0 auto;padding:20px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--mono);font-size:11px;color:var(--muted);}
 .ftr-inner a{color:var(--muted);text-decoration:none;transition:color .2s;}
 .ftr-inner a:hover{color:var(--accent);}
 .ftr-links{display:flex;gap:16px;flex-wrap:wrap;}
 </style>
 </head>
 <body>
-
-<!-- Header -->
 <header class="igrs-hdr">
   <div class="hdr-inner">
     <a class="brand" href="index.html">
@@ -406,7 +106,6 @@ footer.igrs-ftr{
   </div>
 </header>
 
-<!-- Main -->
 <main class="igrs-main">
   <div class="hero">
     <div class="stamp">Educational &middot; Defensive Use Only &middot; IGRS 2026</div>
@@ -418,15 +117,12 @@ footer.igrs-ftr{
       <span>Updated <strong>June 2026</strong></span>
     </div>
     <div class="search-wrap">
-      <input type="text" id="search-input"
-             placeholder="Search tools — name, description, category..."
-             autocomplete="off" spellcheck="false">
+      <input type="text" id="search-input" placeholder="Search tools - name, description, category..." autocomplete="off" spellcheck="false">
       <span class="search-icon">&#9906;</span>
     </div>
   </div>
 
   <div class="page-layout">
-    <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sb-section">
         <div class="sb-label">Category</div>
@@ -469,20 +165,18 @@ footer.igrs-ftr{
       <button class="reset-btn" id="reset-all">&gt; Reset Filters</button>
     </aside>
 
-    <!-- Content -->
     <div class="content-area">
       <div class="active-tags" id="active-tags"></div>
       <div class="results-bar">
-        <div class="result-count">
-          <strong id="result-count">105</strong> tools found
-        </div>
+        <div class="result-count"><strong id="result-count">105</strong> tools found</div>
       </div>
-      <div class="tool-grid" id="tool-grid"></div>
+      <div class="tool-grid" id="tool-grid">
+        <div style="grid-column:1/-1;font-family:var(--mono);font-size:12px;color:var(--muted);padding:20px 0;">Loading tools...</div>
+      </div>
     </div>
   </div>
 </main>
 
-<!-- Footer -->
 <footer class="igrs-ftr">
   <div class="ftr-inner">
     <div class="ftr-links">
@@ -496,111 +190,123 @@ footer.igrs-ftr{
   </div>
 </footer>
 
-<!-- Neural background (z-index:0, pointer-events:none) -->
 <script src="neural.js"></script>
-
 <script>
-const TOOLS = [{"name": "Sherlock", "url": "https://github.com/sherlock-project/sherlock", "cat": "SOCMINT", "subcat": "Username Search", "type": "CLI", "price": "Free", "desc": "Hunt down social media accounts by username across 400+ platforms simultaneously."}, {"name": "WhatsMyName", "url": "https://whatsmyname.app", "cat": "SOCMINT", "subcat": "Username Search", "type": "Tool", "price": "Free", "desc": "Username enumeration across hundreds of sites with detailed results and API access."}, {"name": "Maigret", "url": "https://github.com/soxoj/maigret", "cat": "SOCMINT", "subcat": "Username Search", "type": "CLI", "price": "Free", "desc": "Collect a dossier on a person by username — checks 3000+ sites, extracts profile data."}, {"name": "Social Searcher", "url": "https://www.social-searcher.com", "cat": "SOCMINT", "subcat": "Multi-Platform", "type": "Platform", "price": "Freemium", "desc": "Real-time social media search across major platforms with sentiment analysis."}, {"name": "Twint", "url": "https://github.com/twintproject/twint", "cat": "SOCMINT", "subcat": "Twitter/X", "type": "CLI", "price": "Free", "desc": "Twitter intelligence tool — scrape tweets, followers, following without API limits."}, {"name": "InstaLoader", "url": "https://instaloader.github.io", "cat": "SOCMINT", "subcat": "Instagram", "type": "CLI", "price": "Free", "desc": "Download Instagram profiles, posts, stories, highlights and metadata."}, {"name": "Osintgram", "url": "https://github.com/Datalux/Osintgram", "cat": "SOCMINT", "subcat": "Instagram", "type": "CLI", "price": "Free", "desc": "Instagram OSINT tool — extract followers, following, post details, tagged locations."}, {"name": "LinkedIn2Username", "url": "https://github.com/initstring/linkedin2username", "cat": "SOCMINT", "subcat": "LinkedIn", "type": "CLI", "price": "Free", "desc": "Generate username lists from LinkedIn company pages for use in credential attacks (authorized testing)."}, {"name": "YouTube Data Tools", "url": "https://ytdt.digitalmethods.net", "cat": "SOCMINT", "subcat": "YouTube", "type": "Tool", "price": "Free", "desc": "Extract channel data, video comments, subscriber networks from YouTube."}, {"name": "Telegram OSINT", "url": "https://github.com/tejado/Telegram-OSINT-lib", "cat": "SOCMINT", "subcat": "Telegram", "type": "CLI", "price": "Free", "desc": "Extract information about Telegram users, groups, and channels."}, {"name": "Pipl", "url": "https://pipl.com", "cat": "People Search", "subcat": "Identity Search", "type": "Platform", "price": "Paid", "desc": "Deep web people search engine — aggregates social profiles, public records, contact details."}, {"name": "Spokeo", "url": "https://www.spokeo.com", "cat": "People Search", "subcat": "Public Records", "type": "Platform", "price": "Freemium", "desc": "People search using name, phone, email or address — aggregates US public records."}, {"name": "TrueCaller", "url": "https://www.truecaller.com", "cat": "People Search", "subcat": "Phone Lookup", "type": "Platform", "price": "Freemium", "desc": "India's largest caller ID database — reverse phone lookup with spam reporting."}, {"name": "411", "url": "https://www.411.com", "cat": "People Search", "subcat": "White Pages", "type": "Platform", "price": "Free", "desc": "US white pages — search by name, phone, or address for public contact information."}, {"name": "Webmii", "url": "https://webmii.com", "cat": "People Search", "subcat": "Identity Search", "type": "Tool", "price": "Free", "desc": "People search engine that scores visibility and aggregates web mentions by name."}, {"name": "PeekYou", "url": "https://www.peekyou.com", "cat": "People Search", "subcat": "Identity Search", "type": "Platform", "price": "Free", "desc": "Links real names to usernames across social networks and web presence."}, {"name": "Intelius", "url": "https://www.intelius.com", "cat": "People Search", "subcat": "Public Records", "type": "Platform", "price": "Paid", "desc": "Comprehensive US public records — background checks, criminal records, addresses."}, {"name": "Hunter.io", "url": "https://hunter.io", "cat": "Email Intel", "subcat": "Email Finder", "type": "Platform", "price": "Freemium", "desc": "Find and verify professional email addresses by company domain with confidence scores."}, {"name": "Have I Been Pwned", "url": "https://haveibeenpwned.com", "cat": "Email Intel", "subcat": "Breach Check", "type": "Platform", "price": "Free", "desc": "Check if your email or phone has been compromised in a data breach. Troy Hunt's definitive breach database."}, {"name": "Email Header Analyzer", "url": "https://mxtoolbox.com/EmailHeaders.aspx", "cat": "Email Intel", "subcat": "Header Analysis", "type": "Tool", "price": "Free", "desc": "Parse email headers to trace origin IPs, routing path, SPF/DKIM/DMARC authentication results."}, {"name": "Epieos", "url": "https://epieos.com", "cat": "Email Intel", "subcat": "Email OSINT", "type": "Tool", "price": "Freemium", "desc": "Google account lookup, Skype lookup, and social media account discovery from email."}, {"name": "Holehe", "url": "https://github.com/megadose/holehe", "cat": "Email Intel", "subcat": "Account Discovery", "type": "CLI", "price": "Free", "desc": "Check if an email is registered on 120+ services — Twitter, Instagram, Snapchat and more."}, {"name": "Infoga", "url": "https://github.com/GerbenJavado/LinkFinder", "cat": "Email Intel", "subcat": "Email Info", "type": "CLI", "price": "Free", "desc": "Email information gathering tool — collects data from public sources, search engines, PGP servers."}, {"name": "EmailRep", "url": "https://emailrep.io", "cat": "Email Intel", "subcat": "Reputation", "type": "Tool", "price": "Freemium", "desc": "Email address reputation scoring — malicious activity, data breach exposure, social profiles."}, {"name": "Whois Lookup", "url": "https://whois.domaintools.com", "cat": "Domain Intel", "subcat": "Whois", "type": "Tool", "price": "Freemium", "desc": "Comprehensive WHOIS records, registration history, and domain ownership intelligence."}, {"name": "Shodan", "url": "https://www.shodan.io", "cat": "Domain Intel", "subcat": "Internet Scanning", "type": "Platform", "price": "Freemium", "desc": "Search engine for internet-connected devices — open ports, banners, vulnerabilities, certificates."}, {"name": "Censys", "url": "https://search.censys.io", "cat": "Domain Intel", "subcat": "Internet Scanning", "type": "Platform", "price": "Freemium", "desc": "Attack surface analysis — scan internet-facing assets, SSL certificates, service discovery."}, {"name": "SecurityTrails", "url": "https://securitytrails.com", "cat": "Domain Intel", "subcat": "DNS History", "type": "Platform", "price": "Freemium", "desc": "Historical DNS records, subdomain enumeration, IP to domain mapping and reverse lookups."}, {"name": "DNSDumpster", "url": "https://dnsdumpster.com", "cat": "Domain Intel", "subcat": "DNS Recon", "type": "Tool", "price": "Free", "desc": "Free domain research tool — DNS records, MX records, host map visualization."}, {"name": "crt.sh", "url": "https://crt.sh", "cat": "Domain Intel", "subcat": "Certificate Transparency", "type": "Tool", "price": "Free", "desc": "Certificate transparency log search — find all SSL certificates issued for a domain, revealing subdomains."}, {"name": "VirusTotal", "url": "https://www.virustotal.com", "cat": "Domain Intel", "subcat": "Threat Lookup", "type": "Platform", "price": "Freemium", "desc": "Analyze files, URLs, domains, and IPs for malware — 70+ antivirus engines and threat intelligence."}, {"name": "MXToolbox", "url": "https://mxtoolbox.com", "cat": "Domain Intel", "subcat": "DNS Analysis", "type": "Tool", "price": "Free", "desc": "Email delivery diagnostics, DNS lookup, blacklist check, SPF/DKIM/DMARC validation."}, {"name": "Subfinder", "url": "https://github.com/projectdiscovery/subfinder", "cat": "Domain Intel", "subcat": "Subdomain Enum", "type": "CLI", "price": "Free", "desc": "Fast passive subdomain enumeration using multiple public sources and APIs."}, {"name": "Amass", "url": "https://github.com/owasp-amass/amass", "cat": "Domain Intel", "subcat": "Subdomain Enum", "type": "CLI", "price": "Free", "desc": "OWASP's network mapping and attack surface discovery using open source information gathering."}, {"name": "Google Earth Pro", "url": "https://www.google.com/earth/about/versions", "cat": "Geo Intel", "subcat": "Satellite Imagery", "type": "Tool", "price": "Free", "desc": "Historical satellite imagery, terrain analysis, and geographic measurement tools for geolocation."}, {"name": "Sentinel Hub", "url": "https://www.sentinel-hub.com", "cat": "Geo Intel", "subcat": "Satellite Imagery", "type": "Platform", "price": "Freemium", "desc": "Access to Copernicus satellite imagery — multispectral analysis, change detection, true color."}, {"name": "SunCalc", "url": "https://www.suncalc.org", "cat": "Geo Intel", "subcat": "Shadow Analysis", "type": "Tool", "price": "Free", "desc": "Calculate sun position and shadow direction for any location and time — essential for image geolocation."}, {"name": "GeoHack", "url": "https://geohack.toolforge.org", "cat": "Geo Intel", "subcat": "Coordinates", "type": "Tool", "price": "Free", "desc": "Launch multiple mapping services simultaneously from a single set of coordinates."}, {"name": "Mapillary", "url": "https://www.mapillary.com", "cat": "Geo Intel", "subcat": "Street Level", "type": "Platform", "price": "Free", "desc": "Crowdsourced street-level imagery — fills gaps where Google Street View has no coverage."}, {"name": "Overpass Turbo", "url": "https://overpass-turbo.eu", "cat": "Geo Intel", "subcat": "OpenStreetMap", "type": "Tool", "price": "Free", "desc": "Query OpenStreetMap data — extract specific features like roads, buildings, POIs by location."}, {"name": "What3Words", "url": "https://what3words.com", "cat": "Geo Intel", "subcat": "Location", "type": "Platform", "price": "Free", "desc": "3-word address system dividing the world into 3m squares — useful for precise location communication."}, {"name": "Pic2Map", "url": "https://www.pic2map.com", "cat": "Geo Intel", "subcat": "Photo Location", "type": "Tool", "price": "Free", "desc": "Extract GPS location from photo EXIF data and display on map — instant photo geolocation."}, {"name": "Google Reverse Image", "url": "https://images.google.com", "cat": "Image Intel", "subcat": "Reverse Search", "type": "Tool", "price": "Free", "desc": "Reverse image search to find where an image appears, similar images, and source identification."}, {"name": "TinEye", "url": "https://tineye.com", "cat": "Image Intel", "subcat": "Reverse Search", "type": "Platform", "price": "Freemium", "desc": "Reverse image search with date of first appearance and exact match detection — tracking image origins."}, {"name": "Yandex Images", "url": "https://yandex.com/images", "cat": "Image Intel", "subcat": "Reverse Search", "type": "Tool", "price": "Free", "desc": "Russian reverse image search — often finds results Google misses, particularly useful for Eastern Europe."}, {"name": "ExifTool", "url": "https://exiftool.org", "cat": "Image Intel", "subcat": "Metadata", "type": "CLI", "price": "Free", "desc": "Read, write, and edit metadata in image, audio, video, and PDF files — the definitive metadata tool."}, {"name": "FotoForensics", "url": "https://fotoforensics.com", "cat": "Image Intel", "subcat": "Forensics", "type": "Tool", "price": "Free", "desc": "Error level analysis and metadata examination to detect image manipulation and tampering."}, {"name": "InVID WeVerify", "url": "https://www.invid-project.eu/tools-and-services/invid-verification-plugin", "cat": "Image Intel", "subcat": "Verification", "type": "Browser-Extension", "price": "Free", "desc": "Video and image verification toolkit — reverse search, metadata, geolocation, deepfake detection."}, {"name": "Deepware Scanner", "url": "https://scanner.deepware.ai", "cat": "Image Intel", "subcat": "Deepfake", "type": "Tool", "price": "Free", "desc": "Detect AI-generated deepfake videos using neural network analysis."}, {"name": "NumVerify", "url": "https://numverify.com", "cat": "Phone Intel", "subcat": "Validation", "type": "Platform", "price": "Freemium", "desc": "Global phone number validation and lookup — carrier, line type, location, format verification."}, {"name": "PhoneInfoga", "url": "https://github.com/sundowndev/phoneinfoga", "cat": "Phone Intel", "subcat": "OSINT", "type": "CLI", "price": "Free", "desc": "Advanced phone number information gathering using public sources — carrier, VOIP check, social profiles."}, {"name": "CallerID Test", "url": "https://www.calleridtest.com", "cat": "Phone Intel", "subcat": "Caller ID", "type": "Tool", "price": "Free", "desc": "Test and verify caller ID information for any phone number."}, {"name": "TAFCOP", "url": "https://tafcop.sancharsaathi.gov.in", "cat": "Phone Intel", "subcat": "India Specific", "type": "Platform", "price": "Free", "desc": "DoT India portal — check how many mobile connections are registered against your Aadhaar/ID document."}, {"name": "Sanchar Saathi", "url": "https://sancharsaathi.gov.in", "cat": "Phone Intel", "subcat": "India Specific", "type": "Platform", "price": "Free", "desc": "India's telecom citizen portal — report fraud, check registered connections, block stolen devices."}, {"name": "Ahmia", "url": "https://ahmia.fi", "cat": "Dark Web", "subcat": "Search Engine", "type": "Tool", "price": "Free", "desc": "Clearnet search engine for Tor hidden services — indexes .onion sites accessible without Tor browser."}, {"name": "DarkSearch", "url": "https://darksearch.io", "cat": "Dark Web", "subcat": "Search Engine", "type": "Tool", "price": "Free", "desc": "Dark web search engine API — search Tor network content from the clearnet."}, {"name": "Hunchly", "url": "https://www.hunch.ly", "cat": "Dark Web", "subcat": "Capture", "type": "Tool", "price": "Paid", "desc": "Automatic web page capture and evidence preservation for dark web investigations."}, {"name": "OnionSearch", "url": "https://github.com/megadose/OnionSearch", "cat": "Dark Web", "subcat": "Search", "type": "CLI", "price": "Free", "desc": "Script to search for .onion sites using multiple dark web search engines simultaneously."}, {"name": "DeHashed", "url": "https://www.dehashed.com", "cat": "Breach Data", "subcat": "Credential Leaks", "type": "Platform", "price": "Freemium", "desc": "Search leaked databases — email, username, password, IP, name, address across billions of records."}, {"name": "LeakCheck", "url": "https://leakcheck.io", "cat": "Breach Data", "subcat": "Credential Leaks", "type": "Platform", "price": "Freemium", "desc": "Check if credentials have been leaked — email, username, phone number across 7B+ records."}, {"name": "IntelX", "url": "https://intelx.io", "cat": "Breach Data", "subcat": "Dark Web Search", "type": "Platform", "price": "Freemium", "desc": "Intelligence X — search Tor, I2P, data leaks, public web. Archive of paste sites and dark web."}, {"name": "Snusbase", "url": "https://snusbase.com", "cat": "Breach Data", "subcat": "Database Search", "type": "Platform", "price": "Freemium", "desc": "Search engine for hacked databases — find leaked emails, usernames, IPs, passwords."}, {"name": "GhostProject", "url": "https://ghostproject.fr", "cat": "Breach Data", "subcat": "Password Check", "type": "Tool", "price": "Freemium", "desc": "Search 1.4B+ compromised credentials to check if an email has been pwned."}, {"name": "MCA21", "url": "https://www.mca.gov.in", "cat": "Corporate Intel", "subcat": "India Company Search", "type": "Platform", "price": "Free", "desc": "India's Ministry of Corporate Affairs portal — company registration, director details, filings, charges."}, {"name": "OpenCorporates", "url": "https://opencorporates.com", "cat": "Corporate Intel", "subcat": "Global Registry", "type": "Platform", "price": "Freemium", "desc": "World's largest open database of companies — search across 140+ jurisdictions for corporate records."}, {"name": "Companies House", "url": "https://find-and-update.company-information.service.gov.uk", "cat": "Corporate Intel", "subcat": "UK Registry", "type": "Platform", "price": "Free", "desc": "UK company search — filings, directors, shareholders, accounts, and incorporation details."}, {"name": "EDGAR", "url": "https://www.sec.gov/cgi-bin/browse-edgar", "cat": "Corporate Intel", "subcat": "SEC Filings", "type": "Platform", "price": "Free", "desc": "SEC EDGAR — US public company filings, insider trading disclosures, financial statements."}, {"name": "GST Portal", "url": "https://www.gst.gov.in", "cat": "Corporate Intel", "subcat": "India GST Lookup", "type": "Platform", "price": "Free", "desc": "Verify GSTIN registration, business name, address and filing status for Indian entities."}, {"name": "Gleif", "url": "https://search.gleif.org", "cat": "Corporate Intel", "subcat": "LEI Search", "type": "Platform", "price": "Free", "desc": "Global Legal Entity Identifier database — verify legal entities involved in financial transactions."}, {"name": "AbuseIPDB", "url": "https://www.abuseipdb.com", "cat": "Network Intel", "subcat": "IP Reputation", "type": "Platform", "price": "Freemium", "desc": "IP address abuse reporting database — check if an IP has been reported for malicious activity."}, {"name": "IPinfo", "url": "https://ipinfo.io", "cat": "Network Intel", "subcat": "IP Lookup", "type": "Platform", "price": "Freemium", "desc": "IP geolocation, ASN, carrier, hostname, and abuse contact information."}, {"name": "Greynoise", "url": "https://www.greynoise.io", "cat": "Network Intel", "subcat": "Internet Noise", "type": "Platform", "price": "Freemium", "desc": "Classify internet-wide scanning activity — separate malicious IPs from benign internet noise."}, {"name": "BGPView", "url": "https://bgpview.io", "cat": "Network Intel", "subcat": "ASN Lookup", "type": "Tool", "price": "Free", "desc": "BGP routing table data — ASN information, IP prefix ownership, routing history."}, {"name": "Robtex", "url": "https://www.robtex.com", "cat": "Network Intel", "subcat": "DNS/IP Analysis", "type": "Tool", "price": "Free", "desc": "Network intelligence — DNS, routes, emails, and ASN data with visual graphs."}, {"name": "Spyse", "url": "https://spyse.com", "cat": "Network Intel", "subcat": "Internet Assets", "type": "Platform", "price": "Freemium", "desc": "Internet assets search — subdomains, SSL certificates, open ports, vulnerabilities."}, {"name": "Hurricane Electric BGP", "url": "https://bgp.he.net", "cat": "Network Intel", "subcat": "BGP/ASN", "type": "Tool", "price": "Free", "desc": "BGP toolkit — ASN lookup, IP info, network topology, and routing data from Hurricane Electric."}, {"name": "Maltego", "url": "https://www.maltego.com", "cat": "General OSINT", "subcat": "Link Analysis", "type": "Platform", "price": "Freemium", "desc": "Visual link analysis and data mining — build entity relationship graphs from OSINT sources."}, {"name": "SpiderFoot", "url": "https://github.com/smicallef/spiderfoot", "cat": "General OSINT", "subcat": "Automation", "type": "CLI", "price": "Free", "desc": "Automated OSINT collection — 200+ modules scan domains, IPs, emails, names, usernames."}, {"name": "theHarvester", "url": "https://github.com/laramies/theHarvester", "cat": "General OSINT", "subcat": "Recon", "type": "CLI", "price": "Free", "desc": "Email, subdomain, host, port, and banner gathering from multiple public sources."}, {"name": "Recon-ng", "url": "https://github.com/lanmaster53/recon-ng", "cat": "General OSINT", "subcat": "Framework", "type": "CLI", "price": "Free", "desc": "Full-featured reconnaissance framework with independent modules and database interaction."}, {"name": "OSINT Framework", "url": "https://osintframework.com", "cat": "General OSINT", "subcat": "Directory", "type": "Tool", "price": "Free", "desc": "OSINT tool collection organized by category — comprehensive visual map of investigation resources."}, {"name": "Creepy", "url": "https://github.com/ilektrojohn/creepy", "cat": "General OSINT", "subcat": "Geolocation", "type": "Tool", "price": "Free", "desc": "Geolocation OSINT tool — extract location data from social networks and photo sharing platforms."}, {"name": "Metagoofil", "url": "https://github.com/opsdisk/metagoofil", "cat": "General OSINT", "subcat": "Metadata", "type": "CLI", "price": "Free", "desc": "Extract metadata from public documents — PDF, DOC, XLS, PPT on target domains."}, {"name": "Blockchain.com Explorer", "url": "https://www.blockchain.com/explorer", "cat": "Crypto Intel", "subcat": "Bitcoin", "type": "Tool", "price": "Free", "desc": "Bitcoin blockchain explorer — trace transactions, wallet balances, address clustering."}, {"name": "Etherscan", "url": "https://etherscan.io", "cat": "Crypto Intel", "subcat": "Ethereum", "type": "Tool", "price": "Free", "desc": "Ethereum blockchain explorer — token transfers, smart contract interactions, wallet analysis."}, {"name": "Blockchair", "url": "https://blockchair.com", "cat": "Crypto Intel", "subcat": "Multi-chain", "type": "Platform", "price": "Freemium", "desc": "Multi-blockchain explorer — Bitcoin, Ethereum, and 20+ chains with advanced analytics."}, {"name": "Crystal Blockchain", "url": "https://crystalblockchain.com", "cat": "Crypto Intel", "subcat": "Transaction Tracing", "type": "Platform", "price": "Paid", "desc": "Professional cryptocurrency tracing — AML compliance, wallet screening, transaction path analysis."}, {"name": "Chainalysis Reactor", "url": "https://www.chainalysis.com/chainalysis-reactor", "cat": "Crypto Intel", "subcat": "Investigation", "type": "Platform", "price": "Paid", "desc": "Cryptocurrency investigation platform used by law enforcement globally for tracing illicit funds."}, {"name": "CIBIL Score Check", "url": "https://www.cibil.com", "cat": "India Specific", "subcat": "Credit Intelligence", "type": "Platform", "price": "Freemium", "desc": "India's primary credit bureau — check credit scores and reports (authorized access only)."}, {"name": "UIDAI Aadhaar Verify", "url": "https://myaadhaar.uidai.gov.in", "cat": "India Specific", "subcat": "Identity Verification", "type": "Platform", "price": "Free", "desc": "Official UIDAI portal — verify Aadhaar authenticity and update details (authorized use)."}, {"name": "MCA21 DIN Search", "url": "https://www.mca.gov.in/mcafoportal/viewMasterData.do", "cat": "India Specific", "subcat": "Director Search", "type": "Platform", "price": "Free", "desc": "Search Director Identification Numbers — find all company directorships for an individual."}, {"name": "CERT-In", "url": "https://www.cert-in.org.in", "cat": "India Specific", "subcat": "Threat Intelligence", "type": "Platform", "price": "Free", "desc": "India's national Computer Emergency Response Team — advisories, vulnerability notes, incident reporting."}, {"name": "I4C Cybercrime Portal", "url": "https://cybercrime.gov.in", "cat": "India Specific", "subcat": "Crime Reporting", "type": "Platform", "price": "Free", "desc": "National Cybercrime Reporting Portal — report cybercrime, financial fraud, and online crimes."}, {"name": "1930 Helpline", "url": "https://cybercrime.gov.in", "cat": "India Specific", "subcat": "Fraud Reporting", "type": "Platform", "price": "Free", "desc": "India's national cyber fraud helpline — immediate reporting freezes mule accounts for fund recovery."}, {"name": "TRAI DND Registry", "url": "https://www.nccptsp.com", "cat": "India Specific", "subcat": "Telecom", "type": "Platform", "price": "Free", "desc": "TRAI's National Do Not Disturb registry — check and report unsolicited commercial communication."}, {"name": "Voter ID Verification", "url": "https://electoralsearch.eci.gov.in", "cat": "India Specific", "subcat": "Public Records", "type": "Platform", "price": "Free", "desc": "Election Commission of India — verify voter ID registration and electoral roll details."}, {"name": "Gephi", "url": "https://gephi.org", "cat": "Visualization", "subcat": "Graph Analysis", "type": "Tool", "price": "Free", "desc": "Open-source network analysis and visualization — social graph mapping, link analysis, clustering."}, {"name": "CyberChef", "url": "https://gchq.github.io/CyberChef", "cat": "Visualization", "subcat": "Data Analysis", "type": "Tool", "price": "Free", "desc": "GCHQ's web app for encryption, encoding, compression, and data analysis — the analyst's Swiss army knife."}, {"name": "TimelineJS", "url": "https://timeline.knightlab.com", "cat": "Visualization", "subcat": "Timeline", "type": "Tool", "price": "Free", "desc": "Build interactive timelines from spreadsheets — visualize investigation chronologies."}, {"name": "Flourish", "url": "https://flourish.studio", "cat": "Visualization", "subcat": "Data Viz", "type": "Platform", "price": "Freemium", "desc": "Create data visualizations, maps, and interactive stories — network diagrams and relationship maps."}, {"name": "Snopes", "url": "https://www.snopes.com", "cat": "Verification", "subcat": "Fact Check", "type": "Platform", "price": "Free", "desc": "Fact-checking resource — verify claims, viral content, and misinformation."}, {"name": "Wayback Machine", "url": "https://web.archive.org", "cat": "Verification", "subcat": "Web Archive", "type": "Tool", "price": "Free", "desc": "Internet Archive's Wayback Machine — view historical snapshots of any website since 1996."}, {"name": "CachedView", "url": "https://cachedview.nl", "cat": "Verification", "subcat": "Cache", "type": "Tool", "price": "Free", "desc": "View Google, Bing, and Wayback Machine cached versions of web pages simultaneously."}, {"name": "URLScan", "url": "https://urlscan.io", "cat": "Verification", "subcat": "URL Analysis", "type": "Tool", "price": "Free", "desc": "Submit and scan URLs — screenshot, DOM, network requests, technology fingerprinting."}, {"name": "PhishTank", "url": "https://phishtank.org", "cat": "Verification", "subcat": "Phishing", "type": "Platform", "price": "Free", "desc": "Community-based phishing URL database — verify and report phishing sites."}];
-let F = {cat:'ALL', type:'ALL', price:'ALL'};
-let Q = '';
+// Tools data - single quotes escaped as HTML entities
+var TOOLS = [{"name": "Sherlock", "url": "https://github.com/sherlock-project/sherlock", "cat": "SOCMINT", "subcat": "Username Search", "type": "CLI", "price": "Free", "desc": "Hunt down social media accounts by username across 400+ platforms simultaneously."}, {"name": "WhatsMyName", "url": "https://whatsmyname.app", "cat": "SOCMINT", "subcat": "Username Search", "type": "Tool", "price": "Free", "desc": "Username enumeration across hundreds of sites with detailed results and API access."}, {"name": "Maigret", "url": "https://github.com/soxoj/maigret", "cat": "SOCMINT", "subcat": "Username Search", "type": "CLI", "price": "Free", "desc": "Collect a dossier on a person by username \u2014 checks 3000+ sites, extracts profile data."}, {"name": "Social Searcher", "url": "https://www.social-searcher.com", "cat": "SOCMINT", "subcat": "Multi-Platform", "type": "Platform", "price": "Freemium", "desc": "Real-time social media search across major platforms with sentiment analysis."}, {"name": "Twint", "url": "https://github.com/twintproject/twint", "cat": "SOCMINT", "subcat": "Twitter/X", "type": "CLI", "price": "Free", "desc": "Twitter intelligence tool \u2014 scrape tweets, followers, following without API limits."}, {"name": "InstaLoader", "url": "https://instaloader.github.io", "cat": "SOCMINT", "subcat": "Instagram", "type": "CLI", "price": "Free", "desc": "Download Instagram profiles, posts, stories, highlights and metadata."}, {"name": "Osintgram", "url": "https://github.com/Datalux/Osintgram", "cat": "SOCMINT", "subcat": "Instagram", "type": "CLI", "price": "Free", "desc": "Instagram OSINT tool \u2014 extract followers, following, post details, tagged locations."}, {"name": "LinkedIn2Username", "url": "https://github.com/initstring/linkedin2username", "cat": "SOCMINT", "subcat": "LinkedIn", "type": "CLI", "price": "Free", "desc": "Generate username lists from LinkedIn company pages for use in credential attacks (authorized testing)."}, {"name": "YouTube Data Tools", "url": "https://ytdt.digitalmethods.net", "cat": "SOCMINT", "subcat": "YouTube", "type": "Tool", "price": "Free", "desc": "Extract channel data, video comments, subscriber networks from YouTube."}, {"name": "Telegram OSINT", "url": "https://github.com/tejado/Telegram-OSINT-lib", "cat": "SOCMINT", "subcat": "Telegram", "type": "CLI", "price": "Free", "desc": "Extract information about Telegram users, groups, and channels."}, {"name": "Pipl", "url": "https://pipl.com", "cat": "People Search", "subcat": "Identity Search", "type": "Platform", "price": "Paid", "desc": "Deep web people search engine \u2014 aggregates social profiles, public records, contact details."}, {"name": "Spokeo", "url": "https://www.spokeo.com", "cat": "People Search", "subcat": "Public Records", "type": "Platform", "price": "Freemium", "desc": "People search using name, phone, email or address \u2014 aggregates US public records."}, {"name": "TrueCaller", "url": "https://www.truecaller.com", "cat": "People Search", "subcat": "Phone Lookup", "type": "Platform", "price": "Freemium", "desc": "India&#39;s largest caller ID database \u2014 reverse phone lookup with spam reporting."}, {"name": "411", "url": "https://www.411.com", "cat": "People Search", "subcat": "White Pages", "type": "Platform", "price": "Free", "desc": "US white pages \u2014 search by name, phone, or address for public contact information."}, {"name": "Webmii", "url": "https://webmii.com", "cat": "People Search", "subcat": "Identity Search", "type": "Tool", "price": "Free", "desc": "People search engine that scores visibility and aggregates web mentions by name."}, {"name": "PeekYou", "url": "https://www.peekyou.com", "cat": "People Search", "subcat": "Identity Search", "type": "Platform", "price": "Free", "desc": "Links real names to usernames across social networks and web presence."}, {"name": "Intelius", "url": "https://www.intelius.com", "cat": "People Search", "subcat": "Public Records", "type": "Platform", "price": "Paid", "desc": "Comprehensive US public records \u2014 background checks, criminal records, addresses."}, {"name": "Hunter.io", "url": "https://hunter.io", "cat": "Email Intel", "subcat": "Email Finder", "type": "Platform", "price": "Freemium", "desc": "Find and verify professional email addresses by company domain with confidence scores."}, {"name": "Have I Been Pwned", "url": "https://haveibeenpwned.com", "cat": "Email Intel", "subcat": "Breach Check", "type": "Platform", "price": "Free", "desc": "Check if your email or phone has been compromised in a data breach. Troy Hunt&#39;s definitive breach database."}, {"name": "Email Header Analyzer", "url": "https://mxtoolbox.com/EmailHeaders.aspx", "cat": "Email Intel", "subcat": "Header Analysis", "type": "Tool", "price": "Free", "desc": "Parse email headers to trace origin IPs, routing path, SPF/DKIM/DMARC authentication results."}, {"name": "Epieos", "url": "https://epieos.com", "cat": "Email Intel", "subcat": "Email OSINT", "type": "Tool", "price": "Freemium", "desc": "Google account lookup, Skype lookup, and social media account discovery from email."}, {"name": "Holehe", "url": "https://github.com/megadose/holehe", "cat": "Email Intel", "subcat": "Account Discovery", "type": "CLI", "price": "Free", "desc": "Check if an email is registered on 120+ services \u2014 Twitter, Instagram, Snapchat and more."}, {"name": "Infoga", "url": "https://github.com/GerbenJavado/LinkFinder", "cat": "Email Intel", "subcat": "Email Info", "type": "CLI", "price": "Free", "desc": "Email information gathering tool \u2014 collects data from public sources, search engines, PGP servers."}, {"name": "EmailRep", "url": "https://emailrep.io", "cat": "Email Intel", "subcat": "Reputation", "type": "Tool", "price": "Freemium", "desc": "Email address reputation scoring \u2014 malicious activity, data breach exposure, social profiles."}, {"name": "Whois Lookup", "url": "https://whois.domaintools.com", "cat": "Domain Intel", "subcat": "Whois", "type": "Tool", "price": "Freemium", "desc": "Comprehensive WHOIS records, registration history, and domain ownership intelligence."}, {"name": "Shodan", "url": "https://www.shodan.io", "cat": "Domain Intel", "subcat": "Internet Scanning", "type": "Platform", "price": "Freemium", "desc": "Search engine for internet-connected devices \u2014 open ports, banners, vulnerabilities, certificates."}, {"name": "Censys", "url": "https://search.censys.io", "cat": "Domain Intel", "subcat": "Internet Scanning", "type": "Platform", "price": "Freemium", "desc": "Attack surface analysis \u2014 scan internet-facing assets, SSL certificates, service discovery."}, {"name": "SecurityTrails", "url": "https://securitytrails.com", "cat": "Domain Intel", "subcat": "DNS History", "type": "Platform", "price": "Freemium", "desc": "Historical DNS records, subdomain enumeration, IP to domain mapping and reverse lookups."}, {"name": "DNSDumpster", "url": "https://dnsdumpster.com", "cat": "Domain Intel", "subcat": "DNS Recon", "type": "Tool", "price": "Free", "desc": "Free domain research tool \u2014 DNS records, MX records, host map visualization."}, {"name": "crt.sh", "url": "https://crt.sh", "cat": "Domain Intel", "subcat": "Certificate Transparency", "type": "Tool", "price": "Free", "desc": "Certificate transparency log search \u2014 find all SSL certificates issued for a domain, revealing subdomains."}, {"name": "VirusTotal", "url": "https://www.virustotal.com", "cat": "Domain Intel", "subcat": "Threat Lookup", "type": "Platform", "price": "Freemium", "desc": "Analyze files, URLs, domains, and IPs for malware \u2014 70+ antivirus engines and threat intelligence."}, {"name": "MXToolbox", "url": "https://mxtoolbox.com", "cat": "Domain Intel", "subcat": "DNS Analysis", "type": "Tool", "price": "Free", "desc": "Email delivery diagnostics, DNS lookup, blacklist check, SPF/DKIM/DMARC validation."}, {"name": "Subfinder", "url": "https://github.com/projectdiscovery/subfinder", "cat": "Domain Intel", "subcat": "Subdomain Enum", "type": "CLI", "price": "Free", "desc": "Fast passive subdomain enumeration using multiple public sources and APIs."}, {"name": "Amass", "url": "https://github.com/owasp-amass/amass", "cat": "Domain Intel", "subcat": "Subdomain Enum", "type": "CLI", "price": "Free", "desc": "OWASP&#39;s network mapping and attack surface discovery using open source information gathering."}, {"name": "Google Earth Pro", "url": "https://www.google.com/earth/about/versions", "cat": "Geo Intel", "subcat": "Satellite Imagery", "type": "Tool", "price": "Free", "desc": "Historical satellite imagery, terrain analysis, and geographic measurement tools for geolocation."}, {"name": "Sentinel Hub", "url": "https://www.sentinel-hub.com", "cat": "Geo Intel", "subcat": "Satellite Imagery", "type": "Platform", "price": "Freemium", "desc": "Access to Copernicus satellite imagery \u2014 multispectral analysis, change detection, true color."}, {"name": "SunCalc", "url": "https://www.suncalc.org", "cat": "Geo Intel", "subcat": "Shadow Analysis", "type": "Tool", "price": "Free", "desc": "Calculate sun position and shadow direction for any location and time \u2014 essential for image geolocation."}, {"name": "GeoHack", "url": "https://geohack.toolforge.org", "cat": "Geo Intel", "subcat": "Coordinates", "type": "Tool", "price": "Free", "desc": "Launch multiple mapping services simultaneously from a single set of coordinates."}, {"name": "Mapillary", "url": "https://www.mapillary.com", "cat": "Geo Intel", "subcat": "Street Level", "type": "Platform", "price": "Free", "desc": "Crowdsourced street-level imagery \u2014 fills gaps where Google Street View has no coverage."}, {"name": "Overpass Turbo", "url": "https://overpass-turbo.eu", "cat": "Geo Intel", "subcat": "OpenStreetMap", "type": "Tool", "price": "Free", "desc": "Query OpenStreetMap data \u2014 extract specific features like roads, buildings, POIs by location."}, {"name": "What3Words", "url": "https://what3words.com", "cat": "Geo Intel", "subcat": "Location", "type": "Platform", "price": "Free", "desc": "3-word address system dividing the world into 3m squares \u2014 useful for precise location communication."}, {"name": "Pic2Map", "url": "https://www.pic2map.com", "cat": "Geo Intel", "subcat": "Photo Location", "type": "Tool", "price": "Free", "desc": "Extract GPS location from photo EXIF data and display on map \u2014 instant photo geolocation."}, {"name": "Google Reverse Image", "url": "https://images.google.com", "cat": "Image Intel", "subcat": "Reverse Search", "type": "Tool", "price": "Free", "desc": "Reverse image search to find where an image appears, similar images, and source identification."}, {"name": "TinEye", "url": "https://tineye.com", "cat": "Image Intel", "subcat": "Reverse Search", "type": "Platform", "price": "Freemium", "desc": "Reverse image search with date of first appearance and exact match detection \u2014 tracking image origins."}, {"name": "Yandex Images", "url": "https://yandex.com/images", "cat": "Image Intel", "subcat": "Reverse Search", "type": "Tool", "price": "Free", "desc": "Russian reverse image search \u2014 often finds results Google misses, particularly useful for Eastern Europe."}, {"name": "ExifTool", "url": "https://exiftool.org", "cat": "Image Intel", "subcat": "Metadata", "type": "CLI", "price": "Free", "desc": "Read, write, and edit metadata in image, audio, video, and PDF files \u2014 the definitive metadata tool."}, {"name": "FotoForensics", "url": "https://fotoforensics.com", "cat": "Image Intel", "subcat": "Forensics", "type": "Tool", "price": "Free", "desc": "Error level analysis and metadata examination to detect image manipulation and tampering."}, {"name": "InVID WeVerify", "url": "https://www.invid-project.eu/tools-and-services/invid-verification-plugin", "cat": "Image Intel", "subcat": "Verification", "type": "Browser-Extension", "price": "Free", "desc": "Video and image verification toolkit \u2014 reverse search, metadata, geolocation, deepfake detection."}, {"name": "Deepware Scanner", "url": "https://scanner.deepware.ai", "cat": "Image Intel", "subcat": "Deepfake", "type": "Tool", "price": "Free", "desc": "Detect AI-generated deepfake videos using neural network analysis."}, {"name": "NumVerify", "url": "https://numverify.com", "cat": "Phone Intel", "subcat": "Validation", "type": "Platform", "price": "Freemium", "desc": "Global phone number validation and lookup \u2014 carrier, line type, location, format verification."}, {"name": "PhoneInfoga", "url": "https://github.com/sundowndev/phoneinfoga", "cat": "Phone Intel", "subcat": "OSINT", "type": "CLI", "price": "Free", "desc": "Advanced phone number information gathering using public sources \u2014 carrier, VOIP check, social profiles."}, {"name": "CallerID Test", "url": "https://www.calleridtest.com", "cat": "Phone Intel", "subcat": "Caller ID", "type": "Tool", "price": "Free", "desc": "Test and verify caller ID information for any phone number."}, {"name": "TAFCOP", "url": "https://tafcop.sancharsaathi.gov.in", "cat": "Phone Intel", "subcat": "India Specific", "type": "Platform", "price": "Free", "desc": "DoT India portal \u2014 check how many mobile connections are registered against your Aadhaar/ID document."}, {"name": "Sanchar Saathi", "url": "https://sancharsaathi.gov.in", "cat": "Phone Intel", "subcat": "India Specific", "type": "Platform", "price": "Free", "desc": "India&#39;s telecom citizen portal \u2014 report fraud, check registered connections, block stolen devices."}, {"name": "Ahmia", "url": "https://ahmia.fi", "cat": "Dark Web", "subcat": "Search Engine", "type": "Tool", "price": "Free", "desc": "Clearnet search engine for Tor hidden services \u2014 indexes .onion sites accessible without Tor browser."}, {"name": "DarkSearch", "url": "https://darksearch.io", "cat": "Dark Web", "subcat": "Search Engine", "type": "Tool", "price": "Free", "desc": "Dark web search engine API \u2014 search Tor network content from the clearnet."}, {"name": "Hunchly", "url": "https://www.hunch.ly", "cat": "Dark Web", "subcat": "Capture", "type": "Tool", "price": "Paid", "desc": "Automatic web page capture and evidence preservation for dark web investigations."}, {"name": "OnionSearch", "url": "https://github.com/megadose/OnionSearch", "cat": "Dark Web", "subcat": "Search", "type": "CLI", "price": "Free", "desc": "Script to search for .onion sites using multiple dark web search engines simultaneously."}, {"name": "DeHashed", "url": "https://www.dehashed.com", "cat": "Breach Data", "subcat": "Credential Leaks", "type": "Platform", "price": "Freemium", "desc": "Search leaked databases \u2014 email, username, password, IP, name, address across billions of records."}, {"name": "LeakCheck", "url": "https://leakcheck.io", "cat": "Breach Data", "subcat": "Credential Leaks", "type": "Platform", "price": "Freemium", "desc": "Check if credentials have been leaked \u2014 email, username, phone number across 7B+ records."}, {"name": "IntelX", "url": "https://intelx.io", "cat": "Breach Data", "subcat": "Dark Web Search", "type": "Platform", "price": "Freemium", "desc": "Intelligence X \u2014 search Tor, I2P, data leaks, public web. Archive of paste sites and dark web."}, {"name": "Snusbase", "url": "https://snusbase.com", "cat": "Breach Data", "subcat": "Database Search", "type": "Platform", "price": "Freemium", "desc": "Search engine for hacked databases \u2014 find leaked emails, usernames, IPs, passwords."}, {"name": "GhostProject", "url": "https://ghostproject.fr", "cat": "Breach Data", "subcat": "Password Check", "type": "Tool", "price": "Freemium", "desc": "Search 1.4B+ compromised credentials to check if an email has been pwned."}, {"name": "MCA21", "url": "https://www.mca.gov.in", "cat": "Corporate Intel", "subcat": "India Company Search", "type": "Platform", "price": "Free", "desc": "India&#39;s Ministry of Corporate Affairs portal \u2014 company registration, director details, filings, charges."}, {"name": "OpenCorporates", "url": "https://opencorporates.com", "cat": "Corporate Intel", "subcat": "Global Registry", "type": "Platform", "price": "Freemium", "desc": "World&#39;s largest open database of companies \u2014 search across 140+ jurisdictions for corporate records."}, {"name": "Companies House", "url": "https://find-and-update.company-information.service.gov.uk", "cat": "Corporate Intel", "subcat": "UK Registry", "type": "Platform", "price": "Free", "desc": "UK company search \u2014 filings, directors, shareholders, accounts, and incorporation details."}, {"name": "EDGAR", "url": "https://www.sec.gov/cgi-bin/browse-edgar", "cat": "Corporate Intel", "subcat": "SEC Filings", "type": "Platform", "price": "Free", "desc": "SEC EDGAR \u2014 US public company filings, insider trading disclosures, financial statements."}, {"name": "GST Portal", "url": "https://www.gst.gov.in", "cat": "Corporate Intel", "subcat": "India GST Lookup", "type": "Platform", "price": "Free", "desc": "Verify GSTIN registration, business name, address and filing status for Indian entities."}, {"name": "Gleif", "url": "https://search.gleif.org", "cat": "Corporate Intel", "subcat": "LEI Search", "type": "Platform", "price": "Free", "desc": "Global Legal Entity Identifier database \u2014 verify legal entities involved in financial transactions."}, {"name": "AbuseIPDB", "url": "https://www.abuseipdb.com", "cat": "Network Intel", "subcat": "IP Reputation", "type": "Platform", "price": "Freemium", "desc": "IP address abuse reporting database \u2014 check if an IP has been reported for malicious activity."}, {"name": "IPinfo", "url": "https://ipinfo.io", "cat": "Network Intel", "subcat": "IP Lookup", "type": "Platform", "price": "Freemium", "desc": "IP geolocation, ASN, carrier, hostname, and abuse contact information."}, {"name": "Greynoise", "url": "https://www.greynoise.io", "cat": "Network Intel", "subcat": "Internet Noise", "type": "Platform", "price": "Freemium", "desc": "Classify internet-wide scanning activity \u2014 separate malicious IPs from benign internet noise."}, {"name": "BGPView", "url": "https://bgpview.io", "cat": "Network Intel", "subcat": "ASN Lookup", "type": "Tool", "price": "Free", "desc": "BGP routing table data \u2014 ASN information, IP prefix ownership, routing history."}, {"name": "Robtex", "url": "https://www.robtex.com", "cat": "Network Intel", "subcat": "DNS/IP Analysis", "type": "Tool", "price": "Free", "desc": "Network intelligence \u2014 DNS, routes, emails, and ASN data with visual graphs."}, {"name": "Spyse", "url": "https://spyse.com", "cat": "Network Intel", "subcat": "Internet Assets", "type": "Platform", "price": "Freemium", "desc": "Internet assets search \u2014 subdomains, SSL certificates, open ports, vulnerabilities."}, {"name": "Hurricane Electric BGP", "url": "https://bgp.he.net", "cat": "Network Intel", "subcat": "BGP/ASN", "type": "Tool", "price": "Free", "desc": "BGP toolkit \u2014 ASN lookup, IP info, network topology, and routing data from Hurricane Electric."}, {"name": "Maltego", "url": "https://www.maltego.com", "cat": "General OSINT", "subcat": "Link Analysis", "type": "Platform", "price": "Freemium", "desc": "Visual link analysis and data mining \u2014 build entity relationship graphs from OSINT sources."}, {"name": "SpiderFoot", "url": "https://github.com/smicallef/spiderfoot", "cat": "General OSINT", "subcat": "Automation", "type": "CLI", "price": "Free", "desc": "Automated OSINT collection \u2014 200+ modules scan domains, IPs, emails, names, usernames."}, {"name": "theHarvester", "url": "https://github.com/laramies/theHarvester", "cat": "General OSINT", "subcat": "Recon", "type": "CLI", "price": "Free", "desc": "Email, subdomain, host, port, and banner gathering from multiple public sources."}, {"name": "Recon-ng", "url": "https://github.com/lanmaster53/recon-ng", "cat": "General OSINT", "subcat": "Framework", "type": "CLI", "price": "Free", "desc": "Full-featured reconnaissance framework with independent modules and database interaction."}, {"name": "OSINT Framework", "url": "https://osintframework.com", "cat": "General OSINT", "subcat": "Directory", "type": "Tool", "price": "Free", "desc": "OSINT tool collection organized by category \u2014 comprehensive visual map of investigation resources."}, {"name": "Creepy", "url": "https://github.com/ilektrojohn/creepy", "cat": "General OSINT", "subcat": "Geolocation", "type": "Tool", "price": "Free", "desc": "Geolocation OSINT tool \u2014 extract location data from social networks and photo sharing platforms."}, {"name": "Metagoofil", "url": "https://github.com/opsdisk/metagoofil", "cat": "General OSINT", "subcat": "Metadata", "type": "CLI", "price": "Free", "desc": "Extract metadata from public documents \u2014 PDF, DOC, XLS, PPT on target domains."}, {"name": "Blockchain.com Explorer", "url": "https://www.blockchain.com/explorer", "cat": "Crypto Intel", "subcat": "Bitcoin", "type": "Tool", "price": "Free", "desc": "Bitcoin blockchain explorer \u2014 trace transactions, wallet balances, address clustering."}, {"name": "Etherscan", "url": "https://etherscan.io", "cat": "Crypto Intel", "subcat": "Ethereum", "type": "Tool", "price": "Free", "desc": "Ethereum blockchain explorer \u2014 token transfers, smart contract interactions, wallet analysis."}, {"name": "Blockchair", "url": "https://blockchair.com", "cat": "Crypto Intel", "subcat": "Multi-chain", "type": "Platform", "price": "Freemium", "desc": "Multi-blockchain explorer \u2014 Bitcoin, Ethereum, and 20+ chains with advanced analytics."}, {"name": "Crystal Blockchain", "url": "https://crystalblockchain.com", "cat": "Crypto Intel", "subcat": "Transaction Tracing", "type": "Platform", "price": "Paid", "desc": "Professional cryptocurrency tracing \u2014 AML compliance, wallet screening, transaction path analysis."}, {"name": "Chainalysis Reactor", "url": "https://www.chainalysis.com/chainalysis-reactor", "cat": "Crypto Intel", "subcat": "Investigation", "type": "Platform", "price": "Paid", "desc": "Cryptocurrency investigation platform used by law enforcement globally for tracing illicit funds."}, {"name": "CIBIL Score Check", "url": "https://www.cibil.com", "cat": "India Specific", "subcat": "Credit Intelligence", "type": "Platform", "price": "Freemium", "desc": "India&#39;s primary credit bureau \u2014 check credit scores and reports (authorized access only)."}, {"name": "UIDAI Aadhaar Verify", "url": "https://myaadhaar.uidai.gov.in", "cat": "India Specific", "subcat": "Identity Verification", "type": "Platform", "price": "Free", "desc": "Official UIDAI portal \u2014 verify Aadhaar authenticity and update details (authorized use)."}, {"name": "MCA21 DIN Search", "url": "https://www.mca.gov.in/mcafoportal/viewMasterData.do", "cat": "India Specific", "subcat": "Director Search", "type": "Platform", "price": "Free", "desc": "Search Director Identification Numbers \u2014 find all company directorships for an individual."}, {"name": "CERT-In", "url": "https://www.cert-in.org.in", "cat": "India Specific", "subcat": "Threat Intelligence", "type": "Platform", "price": "Free", "desc": "India&#39;s national Computer Emergency Response Team \u2014 advisories, vulnerability notes, incident reporting."}, {"name": "I4C Cybercrime Portal", "url": "https://cybercrime.gov.in", "cat": "India Specific", "subcat": "Crime Reporting", "type": "Platform", "price": "Free", "desc": "National Cybercrime Reporting Portal \u2014 report cybercrime, financial fraud, and online crimes."}, {"name": "1930 Helpline", "url": "https://cybercrime.gov.in", "cat": "India Specific", "subcat": "Fraud Reporting", "type": "Platform", "price": "Free", "desc": "India&#39;s national cyber fraud helpline \u2014 immediate reporting freezes mule accounts for fund recovery."}, {"name": "TRAI DND Registry", "url": "https://www.nccptsp.com", "cat": "India Specific", "subcat": "Telecom", "type": "Platform", "price": "Free", "desc": "TRAI&#39;s National Do Not Disturb registry \u2014 check and report unsolicited commercial communication."}, {"name": "Voter ID Verification", "url": "https://electoralsearch.eci.gov.in", "cat": "India Specific", "subcat": "Public Records", "type": "Platform", "price": "Free", "desc": "Election Commission of India \u2014 verify voter ID registration and electoral roll details."}, {"name": "Gephi", "url": "https://gephi.org", "cat": "Visualization", "subcat": "Graph Analysis", "type": "Tool", "price": "Free", "desc": "Open-source network analysis and visualization \u2014 social graph mapping, link analysis, clustering."}, {"name": "CyberChef", "url": "https://gchq.github.io/CyberChef", "cat": "Visualization", "subcat": "Data Analysis", "type": "Tool", "price": "Free", "desc": "GCHQ&#39;s web app for encryption, encoding, compression, and data analysis \u2014 the analyst&#39;s Swiss army knife."}, {"name": "TimelineJS", "url": "https://timeline.knightlab.com", "cat": "Visualization", "subcat": "Timeline", "type": "Tool", "price": "Free", "desc": "Build interactive timelines from spreadsheets \u2014 visualize investigation chronologies."}, {"name": "Flourish", "url": "https://flourish.studio", "cat": "Visualization", "subcat": "Data Viz", "type": "Platform", "price": "Freemium", "desc": "Create data visualizations, maps, and interactive stories \u2014 network diagrams and relationship maps."}, {"name": "Snopes", "url": "https://www.snopes.com", "cat": "Verification", "subcat": "Fact Check", "type": "Platform", "price": "Free", "desc": "Fact-checking resource \u2014 verify claims, viral content, and misinformation."}, {"name": "Wayback Machine", "url": "https://web.archive.org", "cat": "Verification", "subcat": "Web Archive", "type": "Tool", "price": "Free", "desc": "Internet Archive&#39;s Wayback Machine \u2014 view historical snapshots of any website since 1996."}, {"name": "CachedView", "url": "https://cachedview.nl", "cat": "Verification", "subcat": "Cache", "type": "Tool", "price": "Free", "desc": "View Google, Bing, and Wayback Machine cached versions of web pages simultaneously."}, {"name": "URLScan", "url": "https://urlscan.io", "cat": "Verification", "subcat": "URL Analysis", "type": "Tool", "price": "Free", "desc": "Submit and scan URLs \u2014 screenshot, DOM, network requests, technology fingerprinting."}, {"name": "PhishTank", "url": "https://phishtank.org", "cat": "Verification", "subcat": "Phishing", "type": "Platform", "price": "Free", "desc": "Community-based phishing URL database \u2014 verify and report phishing sites."}];
+
+var F = {cat:"ALL", type:"ALL", price:"ALL"};
+var Q = "";
 
 function priceBadge(p){
-  const map = {Free:'b-free', Freemium:'b-freemium', Paid:'b-paid'};
-  const c = map[p] || 'b-type';
-  return '<span class="badge '+c+'">'+p+'</span>';
+  if(p === "Free")     return "<span class=\"badge b-free\">Free</span>";
+  if(p === "Freemium") return "<span class=\"badge b-freemium\">Freemium</span>";
+  if(p === "Paid")     return "<span class=\"badge b-paid\">Paid</span>";
+  return "<span class=\"badge b-type\">" + p + "</span>";
 }
 
 function renderGrid(arr){
-  const g = document.getElementById('tool-grid');
+  var g = document.getElementById("tool-grid");
   if(!arr.length){
-    g.innerHTML = '<div class="no-results">&#9672;&nbsp; No tools match — try adjusting filters or clearing the search.</div>';
+    g.innerHTML = "<div class=\"no-results\">No tools match your current filters. Try adjusting or resetting.</div>";
     return;
   }
-  g.innerHTML = arr.map(t =>
-    '<a class="tool-card" href="'+t.url+'" target="_blank" rel="noopener noreferrer">'+
-      '<div class="tc-header">'+
-        '<div class="tc-name">'+t.name+'</div>'+
-        '<div class="tc-arrow">&#8599;</div>'+
-      '</div>'+
-      '<div class="tc-desc">'+t.desc+'</div>'+
-      '<div class="tc-footer">'+
-        '<span class="badge b-cat">'+t.subcat+'</span>'+
-        '<span class="badge b-type">'+t.type+'</span>'+
-        priceBadge(t.price)+
-      '</div>'+
-    '</a>'
-  ).join('');
+  var html = "";
+  for(var i = 0; i < arr.length; i++){
+    var t = arr[i];
+    html += "<a class=\"tool-card\" href=\"" + t.url + "\" target=\"_blank\" rel=\"noopener noreferrer\">";
+    html += "<div class=\"tc-header\">";
+    html += "<div class=\"tc-name\">" + t.name + "</div>";
+    html += "<div class=\"tc-arrow\">&#8599;</div>";
+    html += "</div>";
+    html += "<div class=\"tc-desc\">" + t.desc + "</div>";
+    html += "<div class=\"tc-footer\">";
+    html += "<span class=\"badge b-cat\">" + t.subcat + "</span>";
+    html += "<span class=\"badge b-type\">" + t.type + "</span>";
+    html += priceBadge(t.price);
+    html += "</div></a>";
+  }
+  g.innerHTML = html;
 }
 
 function renderTags(){
-  const el = document.getElementById('active-tags');
-  const tags = [];
-  if(F.cat   !== 'ALL') tags.push({k:'cat',   v:F.cat});
-  if(F.type  !== 'ALL') tags.push({k:'type',  v:F.type});
-  if(F.price !== 'ALL') tags.push({k:'price', v:F.price});
-  if(Q)                 tags.push({k:'search',v:Q});
-  el.innerHTML = tags.map(({k,v}) =>
-    '<span class="atag">'+k+': '+v+
-      ' <button onclick="clearFilter(''+k+'')" title="Remove">&#x2715;</button>'+
-    '</span>'
-  ).join('');
+  var el = document.getElementById("active-tags");
+  var html = "";
+  if(F.cat   !== "ALL") html += "<span class=\"atag\">cat: " + F.cat + " <button onclick=\"clearFilter('cat')\">&#x2715;</button></span>";
+  if(F.type  !== "ALL") html += "<span class=\"atag\">type: " + F.type + " <button onclick=\"clearFilter('type')\">&#x2715;</button></span>";
+  if(F.price !== "ALL") html += "<span class=\"atag\">price: " + F.price + " <button onclick=\"clearFilter('price')\">&#x2715;</button></span>";
+  if(Q)                 html += "<span class=\"atag\">search: " + Q + " <button onclick=\"clearFilter('search')\">&#x2715;</button></span>";
+  el.innerHTML = html;
 }
 
 function applyFilters(){
-  const q = Q.toLowerCase();
-  const filtered = TOOLS.filter(t =>
-    (F.cat   === 'ALL' || t.cat   === F.cat)   &&
-    (F.type  === 'ALL' || t.type  === F.type)  &&
-    (F.price === 'ALL' || t.price === F.price) &&
-    (!q || [t.name, t.desc, t.cat, t.subcat].some(s => s.toLowerCase().includes(q)))
-  );
-  document.getElementById('result-count').textContent = filtered.length;
+  var q = Q.toLowerCase();
+  var filtered = [];
+  for(var i = 0; i < TOOLS.length; i++){
+    var t = TOOLS[i];
+    if(F.cat   !== "ALL" && t.cat   !== F.cat)   continue;
+    if(F.type  !== "ALL" && t.type  !== F.type)  continue;
+    if(F.price !== "ALL" && t.price !== F.price) continue;
+    if(q){
+      var haystack = (t.name + " " + t.desc + " " + t.cat + " " + t.subcat).toLowerCase();
+      if(haystack.indexOf(q) === -1) continue;
+    }
+    filtered.push(t);
+  }
+  document.getElementById("result-count").textContent = filtered.length;
   renderGrid(filtered);
   renderTags();
 }
 
 function clearFilter(k){
-  if(k === 'search'){
-    Q = '';
-    document.getElementById('search-input').value = '';
+  if(k === "search"){
+    Q = "";
+    document.getElementById("search-input").value = "";
   } else {
-    F[k] = 'ALL';
-    document.querySelectorAll('.f-btn[data-filter="'+k+'"]').forEach(b => b.classList.remove('active'));
-    const allBtn = document.querySelector('.f-btn[data-filter="'+k+'"][data-val="ALL"]');
-    if(allBtn) allBtn.classList.add('active');
+    F[k] = "ALL";
+    var btns = document.querySelectorAll(".f-btn[data-filter=\"" + k + "\"]");
+    for(var i=0;i<btns.length;i++) btns[i].classList.remove("active");
+    var allBtn = document.querySelector(".f-btn[data-filter=\"" + k + "\"][data-val=\"ALL\"]");
+    if(allBtn) allBtn.classList.add("active");
   }
   applyFilters();
 }
 
-// Filter button clicks
-document.querySelectorAll('.f-btn').forEach(btn => {
-  btn.addEventListener('click', function(){
-    const f = this.dataset.filter;
-    const v = this.dataset.val;
-    F[f] = v;
-    document.querySelectorAll('.f-btn[data-filter="'+f+'"]').forEach(b => b.classList.remove('active'));
-    this.classList.add('active');
-    applyFilters();
-  });
-});
+// Wire up filter buttons
+var fbns = document.querySelectorAll(".f-btn");
+for(var i = 0; i < fbns.length; i++){
+  (function(btn){
+    btn.addEventListener("click", function(){
+      var f = this.getAttribute("data-filter");
+      var v = this.getAttribute("data-val");
+      F[f] = v;
+      var siblings = document.querySelectorAll(".f-btn[data-filter=\"" + f + "\"]");
+      for(var j=0;j<siblings.length;j++) siblings[j].classList.remove("active");
+      this.classList.add("active");
+      applyFilters();
+    });
+  })(fbns[i]);
+}
 
 // Search
-document.getElementById('search-input').addEventListener('input', function(){
+document.getElementById("search-input").addEventListener("input", function(){
   Q = this.value.trim();
   applyFilters();
 });
 
-// Reset all
-document.getElementById('reset-all').addEventListener('click', function(){
-  F = {cat:'ALL', type:'ALL', price:'ALL'};
-  Q = '';
-  document.getElementById('search-input').value = '';
-  document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.f-btn[data-val="ALL"]').forEach(b => b.classList.add('active'));
+// Reset
+document.getElementById("reset-all").addEventListener("click", function(){
+  F = {cat:"ALL", type:"ALL", price:"ALL"};
+  Q = "";
+  document.getElementById("search-input").value = "";
+  var all = document.querySelectorAll(".f-btn");
+  for(var i=0;i<all.length;i++) all[i].classList.remove("active");
+  var allBtns = document.querySelectorAll(".f-btn[data-val=\"ALL\"]");
+  for(var i=0;i<allBtns.length;i++) allBtns[i].classList.add("active");
   applyFilters();
 });
 
-// Initial render
+// Run on load
 applyFilters();
 </script>
 </body>
