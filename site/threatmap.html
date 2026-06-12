@@ -139,6 +139,9 @@ footer.f{background:rgba(8,15,26,.9);border-top:1px solid var(--bd);position:rel
 </footer>
 <script src="neural.js"></script>
 <script>
+if(location.protocol === 'http:' && location.hostname !== 'localhost') {
+  location.replace('https://' + location.host + location.pathname + location.search);
+}
 var c2Data = [];
 var svg, projection, path, zoom, geoData;
 var currentTransform = d3.zoomIdentity;
