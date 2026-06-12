@@ -18,6 +18,16 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="shortcut icon" href="favicon.svg">
 
+
+<style>
+.resources-strip{padding:28px 0;border-bottom:1px solid var(--border2);}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;}
+.res-card{background:var(--surface);border:1px solid var(--border2);border-radius:6px;padding:18px 20px;text-decoration:none;display:flex;flex-direction:column;gap:6px;transition:border-color .2s,transform .15s;position:relative;z-index:10;}
+.res-card:hover{border-color:var(--accent2);transform:translateY(-2px);}
+.res-icon{font-size:22px;margin-bottom:4px;}
+.res-title{font-family:var(--tech);font-size:15px;color:var(--accent);font-weight:600;}
+.res-sub{font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.5;}
+</style>
 </head>
 <body>
 <header class="site">
@@ -33,6 +43,9 @@
       <a href="index.html" aria-current="page">Home</a>
       <a href="index.html#articles">Articles</a>
       <a href="tools.html">&gt; Tools</a>
+      <a href="dorks.html">&gt; Dorks</a>
+      <a href="playbooks.html">&gt; Playbooks</a>
+      <a href="cyberlaw.html">&gt; Cyber Law</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </nav>
@@ -45,7 +58,34 @@
     <h1>Open-source intelligence, digital forensics and cyber threat research — from the grid.</h1>
     <p>IGRS publishes practical, original guides on OSINT research methods, digital evidence, privacy protection and cybersecurity careers. Written by Manuj Kumar Pandey, a certified forensic investigator with 6+ years in the field. All content is educational and defensive in nature.</p>
   </section>
-  <section class="register" id="articles"><!-- v2026-06-12-latest-first -->
+  
+<section class="resources-strip">
+  <div class="wrap">
+    <div class="res-grid">
+      <a class="res-card" href="tools.html">
+        <div class="res-icon">&#9776;</div>
+        <div class="res-title">Tools Directory</div>
+        <div class="res-sub">305+ OSINT tools — searchable &amp; filtered</div>
+      </a>
+      <a class="res-card" href="dorks.html">
+        <div class="res-icon">&#9906;</div>
+        <div class="res-title">Dork Library</div>
+        <div class="res-sub">200+ Google dorks — 12 categories</div>
+      </a>
+      <a class="res-card" href="playbooks.html">
+        <div class="res-icon">&#9654;</div>
+        <div class="res-title">Investigation SOPs</div>
+        <div class="res-sub">8 step-by-step OSINT playbooks</div>
+      </a>
+      <a class="res-card" href="cyberlaw.html">
+        <div class="res-icon">&#9878;</div>
+        <div class="res-title">Cyber Law Reference</div>
+        <div class="res-sub">IT Act, BNS, BNSS, BSA, DPDP 2026</div>
+      </a>
+    </div>
+  </div>
+</section>
+<section class="register" id="articles"><!-- v2026-06-12-latest-first -->
     <h2>Article Register</h2>
     
   <a class="entry" href="articles/rogueplanet-windows-defender-zero-day-june-2026.html">
