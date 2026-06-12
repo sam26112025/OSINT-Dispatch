@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OSINT Investigation Playbooks & SOPs — IGRS</title>
+<meta name="description" content="Step-by-step OSINT investigation playbooks and SOPs for law enforcement, corporate security, and defence. UPI fraud, WhatsApp OSINT, crypto tracing, corporate due diligence and more.">
+<link rel="canonical" href="https://igrs.xyz/playbooks.html">
+<meta property="og:title" content="OSINT Investigation Playbooks — IGRS">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#080f1a;--surface:#0d1829;--border:#0e4a7a;--ink:#c8dff0;--ink2:#7aa8cc;--muted:#4a7a9b;--accent:#00d4ff;--accent2:#0099cc;--amber:#ffb800;--green:#00ff88;--mono:"IBM Plex Mono",monospace;--tech:"Share Tech Mono",monospace;--disp:"Rajdhani",sans-serif;}
+body{background:var(--bg);color:var(--ink);font-family:var(--disp);min-height:100vh;}
+#neural-bg{position:fixed!important;top:0;left:0;width:100%;height:100%;z-index:0!important;pointer-events:none!important;opacity:0.35;}
+header.h,main.m,footer.f{position:relative;z-index:10;}
+header.h{background:rgba(8,15,26,.96);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1000;backdrop-filter:blur(10px);}
+.hi{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;padding:10px 0;}
+.brand img{width:52px;height:52px;filter:drop-shadow(0 0 12px rgba(0,212,255,.8));}
+.bn{font-family:var(--tech);font-size:20px;color:var(--accent);letter-spacing:.12em;}
+nav{display:flex;gap:18px;padding:10px 0;flex-wrap:wrap;}
+nav a{color:var(--ink2);text-decoration:none;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:4px 0;border-bottom:1px solid transparent;transition:color .2s;}
+nav a:hover,nav a.act{color:var(--accent);border-bottom-color:var(--accent);}
+nav a::before{content:"> ";color:var(--muted);}
+main.m{max-width:1100px;margin:0 auto;padding:0 24px 60px;}
+.hero{padding:40px 0 28px;border-bottom:1px solid var(--border);}
+.stamp{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent2);border:1px solid var(--border);padding:3px 10px;margin-bottom:14px;}
+h1{font-family:var(--tech);font-size:clamp(20px,3.5vw,34px);color:var(--accent);text-shadow:0 0 24px rgba(0,212,255,.4);margin-bottom:10px;letter-spacing:.08em;}
+.sub{color:var(--ink2);font-size:14px;max-width:720px;line-height:1.7;}
+.pb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin-top:36px;}
+.pb-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:border-color .2s,box-shadow .2s;position:relative;z-index:10;}
+.pb-card:hover{border-color:var(--accent2);box-shadow:0 4px 24px rgba(0,212,255,.12);}
+.pb-header{padding:20px 22px 16px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+.pb-header:hover .pb-toggle{color:var(--accent);}
+.pb-icon{font-size:24px;flex-shrink:0;margin-top:2px;}
+.pb-title-wrap{flex:1;}
+.pb-title{font-family:var(--tech);font-size:16px;color:var(--accent);margin-bottom:6px;}
+.pb-meta{display:flex;flex-wrap:wrap;gap:6px;}
+.pb-tag{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:3px;letter-spacing:.06em;text-transform:uppercase;}
+.tag-le{background:rgba(0,255,136,.08);color:var(--green);border:1px solid rgba(0,255,136,.2);}
+.tag-corp{background:rgba(0,212,255,.08);color:var(--accent2);border:1px solid rgba(0,212,255,.2);}
+.tag-def{background:rgba(255,184,0,.08);color:var(--amber);border:1px solid rgba(255,184,0,.2);}
+.pb-toggle{font-size:18px;color:var(--muted);transition:transform .3s,color .2s;flex-shrink:0;}
+.pb-toggle.open{transform:rotate(180deg);}
+.pb-body{display:none;padding:0 22px 20px;}
+.pb-body.open{display:block;}
+.pb-desc{font-size:13px;color:var(--ink2);line-height:1.7;margin:14px 0;}
+.step{display:flex;gap:14px;margin-bottom:14px;align-items:flex-start;}
+.step-num{font-family:var(--mono);font-size:11px;color:var(--accent);background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.2);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700;}
+.step-content{flex:1;}
+.step-title{font-family:var(--tech);font-size:13px;color:var(--ink);margin-bottom:4px;}
+.step-detail{font-size:12px;color:var(--ink2);line-height:1.65;}
+.step-code{font-family:var(--mono);font-size:11px;color:var(--amber);background:rgba(0,0,0,.3);padding:6px 10px;border-radius:3px;margin-top:6px;word-break:break-all;}
+.pb-tools{margin-top:14px;padding-top:12px;border-top:1px solid var(--border);}
+.pb-tools-label{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.tool-links{display:flex;flex-wrap:wrap;gap:6px;}
+.tool-link{font-family:var(--mono);font-size:10px;color:var(--accent2);background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.15);padding:3px 8px;border-radius:3px;text-decoration:none;transition:background .2s;}
+.tool-link:hover{background:rgba(0,212,255,.14);}
+footer.f{background:rgba(8,15,26,.9);border-top:1px solid var(--border);position:relative;z-index:10;}
+.fi{max-width:1100px;margin:0 auto;padding:20px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--mono);font-size:11px;color:var(--muted);}
+.fi a{color:var(--muted);text-decoration:none;}.fi a:hover{color:var(--accent);}
+.fl{display:flex;gap:16px;}
+</style>
+</head>
+<body>
+<header class="h">
+  <div class="hi">
+    <a class="brand" href="index.html"><img src="logo.svg" alt="IGRS"><span class="bn">IGRS</span></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="index.html#articles">Articles</a>
+      <a href="tools.html">Tools</a>
+      <a href="dorks.html">Dorks</a>
+      <a href="playbooks.html" class="act">Playbooks</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+<main class="m">
+  <div class="hero">
+    <div class="stamp">Law Enforcement &middot; Corporate &middot; Defence &middot; IGRS 2026</div>
+    <h1>&gt; OSINT INVESTIGATION PLAYBOOKS_</h1>
+    <p class="sub">Step-by-step investigation SOPs for cybercrime investigators, corporate security teams, and defence analysts. Each playbook covers tools, methodology, evidence collection, and legal compliance specific to India.</p>
+  </div>
+  <div class="pb-grid" id="pb-grid"></div>
+</main>
+<footer class="f">
+  <div class="fi">
+    <div class="fl"><a href="about.html">About</a><a href="tools.html">Tools</a><a href="dorks.html">Dorks</a><a href="contact.html">Contact</a></div>
+    <div>&copy; 2026 IGRS &mdash; Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="neural.js"></script>
+<script>
+var PLAYBOOKS = [
+  {
+    icon:"💸",title:"UPI Fraud Investigation SOP",
+    tags:["Law Enforcement","Corporate"],
+    desc:"Complete methodology for investigating UPI payment fraud in India — from UTR tracing to mule account mapping and fund recovery via 1930.",
+    steps:[
+      {n:1,t:"Collect UTR and transaction details",d:"Obtain the 12-digit UTR (Unique Transaction Reference) from the victim. Note the exact amount, timestamp, sender VPA, and recipient VPA.",code:"UTR format: XXXXXXXXXXXXXX (12 digits) — visible in bank statement or UPI app transaction history"},
+      {n:2,t:"Immediate 1930 report",d:"Call 1930 (National Cyber Fraud Helpline) within first hour of detection. Provide UTR, amount, and transaction timestamp. CFCFRMS system sends simultaneous alerts to recipient bank's nodal officer.",code:"Online: cybercrime.gov.in → Financial Fraud → Report and Track"},
+      {n:3,t:"Section 91 BNSS notice to recipient bank",d:"Draft Section 91 BNSS (formerly CrPC 91) notice to the bank where the fraud amount landed. Request: account holder KYC, account statement, registered mobile number, IP logs of last login.",code:"Bank CISO email format: ciso@bankname.com | Nodal officer contact via RBI registry"},
+      {n:4,t:"NPCI transaction graph request",d:"For multi-hop fund movement, request the full transaction graph from NPCI (National Payments Corporation of India) covering all UTRs linked to the initial transaction.",code:"NPCI Law Enforcement Portal: www.npci.org.in/law-enforcement"},
+      {n:5,t:"Mule account network mapping",d:"Plot all accounts in the transaction chain. Use MCA21 to verify entities. Cross-reference account holder names against CIBIL fraud registry and cybercrime portal data.",code:"Tool: Maltego + MCA21 + CIBIL fraud check"},
+      {n:6,t:"Device and IP attribution",d:"Request device fingerprint (IMEI, device ID) and IP address of transaction initiation from the PSP (PhonePe/GPay/Paytm) via Section 91 notice.",code:"PSP law enforcement emails: lawenforcement@phonepe.com | legal@google.com"},
+      {n:7,t:"Evidence packaging for FIR",d:"Compile: victim complaint, UTR screenshot, Section 91 responses, account KYC, NPCI graph, device details. All documents need Section 63 BSA 2023 certificate.",code:"FIR sections: Sections 318, 319 BNS 2023 + Section 66C/66D IT Act 2000"}
+    ],
+    tools:["cybercrime.gov.in","npci.org.in","mca.gov.in"]
+  },
+  {
+    icon:"📱",title:"WhatsApp Account OSINT SOP",
+    tags:["Law Enforcement","Corporate"],
+    desc:"Methodology for extracting intelligence from WhatsApp accounts, groups, and messages — both from device extraction and Meta legal process.",
+    steps:[
+      {n:1,t:"Phone number to account mapping",d:"Verify the WhatsApp account is active for the target number. Use Truecaller for name association. Check if WhatsApp Business profile exists (reveals business name, description, address).",code:"wa.me/91XXXXXXXXXX — append Indian number to check account status"},
+      {n:2,t:"Group intelligence gathering",d:"If target is in known WhatsApp groups, document group name, description, admin numbers, and member count. Group invite links (when available) reveal group ID.",code:"Group link format: chat.whatsapp.com/XXXXXXXXXXXXXXXXXX"},
+      {n:3,t:"Device extraction — Cellebrite/MSAB",d:"For device in custody: use Cellebrite UFED or MSAB XRY for full file system extraction. WhatsApp database at: /data/data/com.whatsapp/databases/msgstore.db (Android)",code:"Key files: msgstore.db, wa.db (contacts), axolotl.db (encryption keys)"},
+      {n:4,t:"Backup recovery",d:"Check for Google Drive backup (Android) or iCloud backup (iOS) if device database is unavailable. Issue legal process to Google/Apple for backup data.",code:"Google: legal.google.com/ler | Apple: apple.com/legal/privacy/law-enforcement-guidelines"},
+      {n:5,t:"Meta legal process",d:"Submit request to Meta for: account registration data, IP addresses, device identifiers (IMEI, ICCID). Meta does NOT hold message content due to E2E encryption.",code:"Meta law enforcement portal: facebookmail.com/le | Response: 2-6 weeks"},
+      {n:6,t:"Section 63 BSA certificate",d:"All extracted WhatsApp data must be accompanied by Section 63 BSA 2023 certificate. Include: extraction tool name/version, device IMEI, extraction timestamp, pre/post hash values.",code:"Hash algorithm: SHA-256 | Generate with: certutil -hashfile msgstore.db SHA256"},
+      {n:7,t:"Deleted message recovery",d:"Use SQLite forensic tools to parse unallocated pages of msgstore.db for deleted records. Tools: DB Browser for SQLite, SQLite Forensics, Autopsy.",code:"Tool: autopsy -case /path/to/case --openCase"}
+    ],
+    tools:["truecaller.com","cellebrite.com","web.archive.org"]
+  },
+  {
+    icon:"₿",title:"Cryptocurrency Tracing Playbook",
+    tags:["Law Enforcement","Corporate","Defence"],
+    desc:"End-to-end methodology for tracing cryptocurrency transactions from crime to exchange — covering Bitcoin, Ethereum, and USDT on TRC20/ERC20.",
+    steps:[
+      {n:1,t:"Identify and document the receiving address",d:"Obtain the cryptocurrency wallet address from victim, transaction record, or FIR. Note the blockchain (Bitcoin, Ethereum, Tron/TRC20). Never modify the address — one character error = wrong wallet.",code:"BTC: starts with 1, 3, or bc1 | ETH: starts with 0x | TRC20 (USDT): starts with T"},
+      {n:2,t:"Blockchain explorer analysis",d:"Search the wallet address on the appropriate blockchain explorer. Note: total received, transaction count, first/last transaction, and all linked outgoing addresses.",code:"BTC: blockchain.com/explorer | ETH: etherscan.io | TRC20: tronscan.org"},
+      {n:3,t:"Transaction graph tracing",d:"Follow funds through each hop. A hop is when funds move from one wallet to another. Identify if funds go through a mixer (multiple small inputs/outputs = likely mixing).",code:"Free tool: blockchair.com (transaction graph) | Paid: Chainalysis Reactor"},
+      {n:4,t:"Exchange identification",d:"When funds reach a known exchange (Binance, WazirX, CoinDCX, OKX), the trail becomes legally actionable. Use Chainalysis or Crystal Blockchain to identify exchange attribution.",code:"Indian exchanges: WazirX, CoinDCX, Coinswitchkuber, ZebPay"},
+      {n:5,t:"Legal process to exchange",d:"Issue Section 91 BNSS notice to Indian exchanges. For foreign exchanges: initiate MLAT (Mutual Legal Assistance Treaty) via CBI. Request: KYC of deposit account, IP logs, linked bank account.",code:"WazirX legal: legal@zanmai.in | CoinDCX: legal@coindcx.com"},
+      {n:6,t:"Freeze request",d:"Once exchange KYC identifies the suspect, file simultaneous FIR and request the exchange to freeze the account and prevent withdrawal pending investigation.",code:"Time-critical: crypto moves fast — freeze within 24h of identification"},
+      {n:7,t:"Fiat off-ramp tracing",d:"If funds converted to INR and withdrawn, trace via bank account linked to exchange. Issue Section 91 BNSS to the receiving bank for complete account history and ATM withdrawal locations.",code:"IMPS/NEFT/UPI records from bank: critical for linking crypto to physical identity"}
+    ],
+    tools:["blockchain.com","etherscan.io","tronscan.org","blockchair.com"]
+  },
+  {
+    icon:"🏢",title:"Corporate Due Diligence OSINT SOP",
+    tags:["Corporate","Law Enforcement"],
+    desc:"Open-source due diligence methodology for vendor verification, partner background checks, and fraud risk assessment of Indian entities.",
+    steps:[
+      {n:1,t:"Company identity verification",d:"Search MCA21 for the company's CIN (Corporate Identification Number). Verify: incorporation date, registered address, status (active/struck off), authorized and paid-up capital.",code:"MCA21: www.mca.gov.in → MCA Services → View Company/LLP Master Data"},
+      {n:2,t:"Director network mapping",d:"Extract all DINs (Director Identification Numbers) from MCA21. Search each DIN to map all companies the directors are or were associated with. Flag: struck-off companies, shell entity patterns.",code:"DIN search: mca.gov.in → MCA Services → DIN Services → Verify DIN"},
+      {n:3,t:"Financial health check",d:"For listed companies: check BSE/NSE filings. For private: check MCA annual filings (available for fee). Look for: charge register (outstanding loans), delayed filings, compounding orders.",code:"BSE filings: bseindia.com | NSE: nseindia.com | Charge register: MCA21"},
+      {n:4,t:"GST and tax compliance",d:"Verify GSTIN on GST portal. Check: active/cancelled status, business name match, registered address match. Cross-reference with MCA21 address — mismatch is a red flag.",code:"GST verification: gst.gov.in → Search Taxpayer → Search by GSTIN"},
+      {n:5,t:"Legal case search",d:"Search for pending or past litigation. Check: eCourts portal for civil/criminal cases, SEBI orders, RBI caution lists, NCLT/NCLAT orders (insolvency cases).",code:"eCourts: ecourts.gov.in | SEBI orders: sebi.gov.in | NCLT: nclt.gov.in"},
+      {n:6,t:"News and media OSINT",d:"Google News search for company name + fraud/scam/case/raid. Check: Moneycontrol, ET, Business Standard, financial news. LinkedIn for employee sentiment and organizational changes.",code:'Google dork: "Company Name" ("fraud" OR "scam" OR "ED" OR "CBI" OR "IT raid")'},
+      {n:7,t:"Trade intelligence",d:"Check Zauba (zauba.com) for import/export history. IEC (Importer Exporter Code) verification at DGFT. Trade data reveals actual business activity vs stated business.",code:"DGFT IEC lookup: dgft.gov.in → IEC Online | Zauba: zauba.com"}
+    ],
+    tools:["mca.gov.in","gst.gov.in","ecourts.gov.in","sebi.gov.in","zauba.com"]
+  },
+  {
+    icon:"🌐",title:"Dark Web Monitoring SOP",
+    tags:["Corporate","Defence","Law Enforcement"],
+    desc:"Structured approach to monitoring the dark web for organizational data exposure, threat actor chatter, and leaked credentials — with proper OPSEC.",
+    steps:[
+      {n:1,t:"OPSEC setup — mandatory first step",d:"Never monitor dark web from personal or corporate device. Use dedicated hardware with fresh OS. Route all traffic through Tor + VPN in sequence. Create sterile personas for any forum access.",code:"Recommended: Tails OS (tails.boum.org) on dedicated USB | No personal accounts"},
+      {n:2,t:"Breach database monitoring",d:"Set up automated monitoring for your organization's domains on HaveIBeenPwned API. Any new breach containing @yourdomain.com triggers immediate alert. Free tier available for domain-level monitoring.",code:"API: haveibeenpwned.com/API/v3/breachedaccount/{account} | Domain search available"},
+      {n:3,t:"Paste site monitoring",d:"Monitor Pastebin, Ghostbin, Hastebin, and Rentry for keyword mentions: company name, domain, executive names, product names. Tools: PSBDMP, Pastebin Scraper API.",code:"Free monitoring: psbdmp.ws | Search: pastebin.com/search?q=yourkeyword"},
+      {n:4,t:"Forum and marketplace monitoring",d:"Use commercial platforms (Recorded Future, Flashpoint, DarkOwl) for indexed dark web forum content. Free alternative: IntelX (intelx.io) has limited free searches of Tor and I2P content.",code:"IntelX free: intelx.io | Ahmia (clearnet dark web search): ahmia.fi"},
+      {n:5,t:"Credential verification",d:"When leaked credentials are found, immediately verify if they are valid (only test against your own systems in controlled environment). Rotate all credentials matching leaked patterns organization-wide.",code:"Do NOT test credentials against third-party systems — unauthorized access violation"},
+      {n:6,t:"Evidence preservation",d:"Screenshot all findings with URL, timestamp, and context. Use archive.today to create time-stamped public records of dark web content when accessible via Tor. Hash all captured files.",code:"archive.today → Submit URL | Screenshot tool: Greenshot with timestamp overlay"},
+      {n:7,t:"Escalation and notification",d:"Confirmed data exposure: notify CERT-In within 6 hours (mandatory), brief leadership, initiate incident response. For law enforcement referrals: preserve evidence chain, do not contact dark web actors.",code:"CERT-In reporting: incident@cert-in.org.in | Helpline: 1800-11-4949"}
+    ],
+    tools:["haveibeenpwned.com","intelx.io","ahmia.fi","dehashed.com"]
+  },
+  {
+    icon:"🕵️",title:"Person OSINT Investigation SOP",
+    tags:["Law Enforcement","Corporate"],
+    desc:"Comprehensive person OSINT methodology for identity verification, background investigation, and digital footprint mapping — lawful sources only.",
+    steps:[
+      {n:1,t:"Seed data collection",d:"Start with minimum available: name, phone number, email, username, or location. Each piece of seed data unlocks different investigation pathways. Document source of each seed.",code:"Investigation log: Subject | Seed Type | Source | Date | Reliability Rating"},
+      {n:2,t:"Phone number intelligence",d:"Run target number through Truecaller (name), NumVerify (carrier, line type), PhoneInfoga (social media linked). Check if number is registered on WhatsApp, Telegram, Signal.",code:"PhoneInfoga: github.com/sundowndev/phoneinfoga | Usage: phoneinfoga scan -n +91XXXXXXXXXX"},
+      {n:3,t:"Email OSINT",d:"Run target email through: HaveIBeenPwned (breach history), Holehe (which services account exists on), Epieos (Google account data, Skype), Hunter.io (professional email verification).",code:"Holehe: holehe emailaddress@domain.com | Epieos: epieos.com"},
+      {n:4,t:"Username enumeration",d:"If username is known: run through Sherlock (400+ sites), WhatsMyName.app, Maigret (3000+ sites). Document all platforms where account exists — active vs dormant.",code:"Sherlock: python3 sherlock username | Maigret: python3 maigret username"},
+      {n:5,t:"Social media cross-referencing",d:"LinkedIn for professional identity verification. Facebook/Instagram for personal network, location, relationships. Twitter/X for expressed opinions and timeline. Cross-reference dates and locations.",code:'LinkedIn dork: site:linkedin.com "Name" "City" "Company"'},
+      {n:6,t:"Image reverse search",d:"Download profile photos and run reverse image search on Google Images, TinEye, and Yandex Images. Yandex is significantly better at finding face matches. Check EXIF data of any images obtained.",code:"Yandex images: yandex.com/images → camera icon → upload | ExifTool: exiftool image.jpg"},
+      {n:7,t:"Corporate and legal cross-check",d:"Run name against MCA21 (director search), court records (eCourts), SEBI orders, voter ID portal (for address verification), and news archives.",code:"Voter ID electoral search: electoralsearch.eci.gov.in | MCA21 DIN search by name"}
+    ],
+    tools:["truecaller.com","haveibeenpwned.com","epieos.com","sherlock-project.github.io"]
+  },
+  {
+    icon:"🔍",title:"Phishing Infrastructure Investigation SOP",
+    tags:["Corporate","Defence","Law Enforcement"],
+    desc:"Methodology for investigating phishing domains, attributing infrastructure to threat actors, and building takedown requests.",
+    steps:[
+      {n:1,t:"Phishing URL initial analysis",d:"Never click a phishing URL directly. Use URLScan.io to safely execute and screenshot. Note: IP, hosting provider, SSL certificate, technologies used, and any redirects.",code:"URLScan: urlscan.io → Submit URL → View report (screenshot + network + DOM)"},
+      {n:2,t:"Domain WHOIS and registration analysis",d:"Check WHOIS for registration date, registrar, and registrant (if not privacy-protected). Newly registered domains (< 30 days) are highest risk. Check if email used for registration appears in other phishing domains.",code:"WHOIS: whois.domaintools.com | Registrar history: SecurityTrails.com"},
+      {n:3,t:"IP and hosting attribution",d:"Resolve the phishing domain to its IP. Check: AbuseIPDB (abuse history), Shodan (other services on same IP), VirusTotal (other domains on same IP — pivoting).",code:"AbuseIPDB: abuseipdb.com/check/IP | Shodan: shodan.io/host/IP"},
+      {n:4,t:"SSL certificate analysis",d:"Check certificate transparency logs on crt.sh for the phishing domain. Other domains with same SSL certificate or issued to same organization reveal actor's full infrastructure.",code:"crt.sh: crt.sh/?q=domain.com | Censys cert search: search.censys.io"},
+      {n:5,t:"Phishing kit fingerprinting",d:"If you have the phishing page source (from URLScan), analyze HTML structure, JavaScript patterns, and form action URLs. These fingerprint the toolkit used (EvilProxy, Evilginx, GoPhish).",code:"View page source in URLScan report → search for POST action URLs and hidden fields"},
+      {n:6,t:"Threat intelligence correlation",d:"Search VirusTotal, OTX AlienVault, and PhishTank for the domain/IP. Check if it appears in previous campaigns. Search Twitter/X and security blogs for mentions of the domain.",code:"VirusTotal: virustotal.com/gui/domain/domain.com | OTX: otx.alienvault.com"},
+      {n:7,t:"Takedown process",d:"Report to: hosting provider abuse contact (find via AbuseIPDB), registrar abuse email, Google Safe Browsing (safebrowsing.google.com/safebrowsing/report_phish), PhishTank. For India-targeted phishing: CERT-In.",code:"CERT-In phishing report: incident@cert-in.org.in | Google: transparencyreport.google.com/safe-browsing/report"}
+    ],
+    tools:["urlscan.io","crt.sh","abuseipdb.com","virustotal.com","phishtank.org"]
+  },
+  {
+    icon:"📡",title:"Threat Actor Profiling SOP",
+    tags:["Defence","Corporate","Law Enforcement"],
+    desc:"Structured methodology for building threat actor profiles from open-source intelligence — TTPs, infrastructure patterns, attribution confidence assessment.",
+    steps:[
+      {n:1,t:"Initial trigger and seed intelligence",d:"Trigger: a security incident, CERT-In advisory, or threat feed indicator. Document the initial indicator: IP, domain, malware hash, email, or TTP. This is the anchor for the investigation.",code:"Incident log: Indicator | Type | Source | First Seen | Confidence Level"},
+      {n:2,t:"MITRE ATT&CK TTP mapping",d:"Map observed TTPs to MITRE ATT&CK framework. Initial access method? Persistence mechanism? Lateral movement technique? Command and control protocol? Each TTP narrows the actor pool.",code:"ATT&CK Navigator: mitre-attack.github.io/attack-navigator/ | Map observed vs known actor TTPs"},
+      {n:3,t:"Malware and tooling analysis",d:"Hash any malware samples against VirusTotal and MalwareBazaar. Family identification narrows actor groups. Check: sandbox reports on Any.run and JoeSandbox for behavioral TTPs.",code:"MalwareBazaar: bazaar.abuse.ch | Any.run sandbox: any.run | JoeSandbox: joesandbox.com"},
+      {n:4,t:"Infrastructure pattern analysis",d:"Analyze C2 domains and IPs for patterns: registrar preferences, hosting providers, TLD patterns, domain naming conventions, SSL certificate subjects. Threat actors reuse infrastructure patterns.",code:"Historical IP: SecurityTrails | Passive DNS: passivedns.mnemonic.no | Shodan historical"},
+      {n:5,t:"Threat intelligence cross-referencing",d:"Search known threat actor databases: MITRE ATT&CK Groups, Mandiant APT profiles, CrowdStrike Adversary database, Recorded Future (if available), government advisories (CERT-In, NCSC, CISA).",code:"MITRE Groups: attack.mitre.org/groups/ | CISA advisories: cisa.gov/known-exploited-vulnerabilities"},
+      {n:6,t:"Attribution confidence assessment",d:"Apply confidence levels to attribution: High (government confirmation + multiple vendor corroboration), Medium (TTP overlap with known actor, 2+ sources), Low (single source, circumstantial overlap only).",code:"Use traffic light protocol: TLP:WHITE (public) | TLP:GREEN (community) | TLP:AMBER (restricted)"},
+      {n:7,t:"Intelligence product creation",d:"Document in structured format: Subject, Synopsis, Source Reliability, Information Credibility, TTPs, Infrastructure, Attribution, Confidence Level, Recommendations. Distribute per TLP classification.",code:"Report structure: PIR → Collection → Analysis → Dissemination → Feedback"}
+    ],
+    tools:["attack.mitre.org","virustotal.com","any.run","bazaar.abuse.ch","cisa.gov"]
+  }
+];
+
+function buildPlaybooks(){
+  var g = document.getElementById("pb-grid");
+  var html = "";
+  PLAYBOOKS.forEach(function(pb, idx){
+    var tagHtml = pb.tags.map(function(t){
+      var cl = t === "Law Enforcement" ? "tag-le" : t === "Corporate" ? "tag-corp" : "tag-def";
+      return "<span class=\"pb-tag "+cl+"\">"+t+"</span>";
+    }).join("");
+    var stepsHtml = pb.steps.map(function(s){
+      var codeHtml = s.code ? "<div class=\"step-code\">"+s.code+"</div>" : "";
+      return "<div class=\"step\"><div class=\"step-num\">"+s.n+"</div><div class=\"step-content\"><div class=\"step-title\">"+s.t+"</div><div class=\"step-detail\">"+s.d+"</div>"+codeHtml+"</div></div>";
+    }).join("");
+    var toolsHtml = pb.tools.map(function(t){
+      return "<a class=\"tool-link\" href=\"https://"+t+"\" target=\"_blank\" rel=\"noopener\">"+t+"</a>";
+    }).join("");
+    html += "<div class=\"pb-card\">";
+    html += "<div class=\"pb-header\" onclick=\"togglePB("+idx+")\">";
+    html += "<div class=\"pb-icon\">"+pb.icon+"</div>";
+    html += "<div class=\"pb-title-wrap\"><div class=\"pb-title\">"+pb.title+"</div><div class=\"pb-meta\">"+tagHtml+"</div></div>";
+    html += "<div class=\"pb-toggle\" id=\"toggle-"+idx+"\">&#9660;</div>";
+    html += "</div>";
+    html += "<div class=\"pb-body\" id=\"body-"+idx+"\">";
+    html += "<div class=\"pb-desc\">"+pb.desc+"</div>";
+    html += stepsHtml;
+    html += "<div class=\"pb-tools\"><div class=\"pb-tools-label\">Key Tools</div><div class=\"tool-links\">"+toolsHtml+"</div></div>";
+    html += "</div></div>";
+  });
+  g.innerHTML = html;
+}
+
+function togglePB(idx){
+  var body = document.getElementById("body-"+idx);
+  var toggle = document.getElementById("toggle-"+idx);
+  var isOpen = body.classList.contains("open");
+  body.classList.toggle("open", !isOpen);
+  toggle.classList.toggle("open", !isOpen);
+}
+
+buildPlaybooks();
+</script>
+</body>
+</html>
