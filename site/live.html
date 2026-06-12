@@ -3,290 +3,325 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Live Threat Feed — Real-Time Malware & C2 Intelligence — IGRS</title>
-<meta name="description" content="Real-time cybersecurity threat feed — live malicious URLs, active C2 servers, and latest malware hashes from Abuse.ch URLhaus and Feodo Tracker. Updated every 5 minutes.">
+<title>Live Threat Feed — Real-Time Intelligence — IGRS</title>
+<meta name="description" content="Real-time cybersecurity threat feed — live malicious URLs, active C2 servers, malware hashes from Abuse.ch. Updated every 5 minutes.">
 <link rel="canonical" href="https://igrs.xyz/live.html">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <style>
-
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#080f1a;--sf:#0d1829;--bd:#0e4a7a;--ink:#c8dff0;--ink2:#7aa8cc;--mt:#4a7a9b;--ac:#00d4ff;--ac2:#0099cc;--am:#ffb800;--gn:#00ff88;--rd:#ff4444;--mono:"IBM Plex Mono",monospace;--tech:"Share Tech Mono",monospace;--disp:"Rajdhani",sans-serif;}
+:root{--bg:#04090f;--sf:#0a1628;--bd:#0e3a5c;--ink:#c8dff0;--ink2:#7aa8cc;--mt:#3a6a8a;--ac:#00d4ff;--ac2:#0099cc;--am:#ffb800;--gn:#00ff88;--rd:#ff3e3e;--mono:"IBM Plex Mono",monospace;--tech:"Share Tech Mono",monospace;--disp:"Rajdhani",sans-serif;}
 body{background:var(--bg);color:var(--ink);font-family:var(--disp);min-height:100vh;}
-#neural-bg{position:fixed!important;top:0;left:0;width:100%;height:100%;z-index:0!important;pointer-events:none!important;opacity:0.3;}
-header.h,main.m,footer.f{position:relative;z-index:10;}
-header.h{background:rgba(8,15,26,.96);border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:1000;backdrop-filter:blur(10px);}
-.hi{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;padding:10px 0;}
-.brand img{width:48px;height:48px;filter:drop-shadow(0 0 10px rgba(0,212,255,.8));}
+#neural-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.3;}
+header{position:sticky;top:0;z-index:1000;background:rgba(4,9,15,.96);border-bottom:1px solid var(--bd);backdrop-filter:blur(10px);}
+.hi{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;height:60px;}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.brand img{width:44px;height:44px;filter:drop-shadow(0 0 10px rgba(0,212,255,.8));}
 .bn{font-family:var(--tech);font-size:19px;color:var(--ac);letter-spacing:.12em;}
-nav{display:flex;gap:14px;padding:10px 0;flex-wrap:wrap;}
-nav a{color:var(--ink2);text-decoration:none;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:4px 0;transition:color .2s;}
-nav a:hover{color:var(--ac);}
-nav a::before{content:"> ";color:var(--mt);}
-main.m{max-width:1200px;margin:0 auto;padding:0 20px 60px;}
-.hero{padding:32px 0 20px;border-bottom:1px solid var(--bd);margin-bottom:24px;}
-.stamp{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--ac2);border:1px solid var(--bd);padding:3px 10px;margin-bottom:12px;}
-h1{font-family:var(--tech);font-size:clamp(18px,3vw,32px);color:var(--ac);text-shadow:0 0 20px rgba(0,212,255,.4);margin-bottom:8px;letter-spacing:.08em;}
-.sub{color:var(--ink2);font-size:13px;max-width:700px;line-height:1.7;}
-.badge{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:3px;letter-spacing:.06em;text-transform:uppercase;}
-.b-hi{background:rgba(255,68,68,.1);color:var(--rd);border:1px solid rgba(255,68,68,.2);}
-.b-md{background:rgba(255,184,0,.1);color:var(--am);border:1px solid rgba(255,184,0,.2);}
-.b-lo{background:rgba(0,255,136,.08);color:var(--gn);border:1px solid rgba(0,255,136,.2);}
-.b-ac{background:rgba(0,212,255,.1);color:var(--ac2);border:1px solid rgba(0,212,255,.2);}
-.status-bar{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:11px;color:var(--mt);margin-bottom:16px;padding:10px 14px;background:var(--sf);border:1px solid var(--bd);border-radius:4px;}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--gn);animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+nav{display:flex;gap:16px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;flex-wrap:wrap;}
+nav a{color:var(--mt);text-decoration:none;transition:color .2s;}
+nav a:hover,nav a.act{color:var(--ac);}
+nav a::before{content:"> ";color:var(--bd);}
+main{max-width:1200px;margin:0 auto;padding:0 24px 60px;position:relative;z-index:1;}
+.hero{padding:36px 0 20px;border-bottom:1px solid var(--bd);margin-bottom:20px;}
+.stamp{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--ac2);border:1px solid var(--bd);padding:3px 10px;margin-bottom:14px;}
+h1{font-family:var(--tech);font-size:clamp(20px,3.5vw,34px);color:var(--ac);margin-bottom:8px;letter-spacing:.08em;}
+.sub{color:var(--ink2);font-size:14px;max-width:680px;line-height:1.7;}
+.sbar{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:11px;color:var(--mt);margin-bottom:16px;padding:10px 14px;background:var(--sf);border:1px solid var(--bd);border-radius:4px;flex-wrap:wrap;}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--gn);animation:pulse 2s infinite;flex-shrink:0;}
 .dot.loading{background:var(--am);}
-.dot.error{background:var(--rd);animation:none;}
-footer.f{background:rgba(8,15,26,.9);border-top:1px solid var(--bd);position:relative;z-index:10;}
-.fi{max-width:1200px;margin:0 auto;padding:18px 20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:10px;color:var(--mt);}
-.fi a{color:var(--mt);text-decoration:none;}.fi a:hover{color:var(--ac);}
-.fl{display:flex;gap:14px;}
-
-.tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
-.tab{font-family:var(--mono);font-size:10px;padding:8px 16px;border:1px solid var(--bd);border-radius:4px;cursor:pointer;background:none;color:var(--ink2);letter-spacing:.08em;text-transform:uppercase;transition:all .2s;position:relative;z-index:20;}
-.tab:hover,.tab.active{border-color:var(--ac);color:var(--ac);background:rgba(0,212,255,.08);}
-.tab-count{font-size:9px;background:rgba(0,212,255,.15);color:var(--ac2);padding:1px 5px;border-radius:8px;margin-left:4px;}
-.feed-grid{display:grid;gap:10px;}
-.feed-item{background:var(--sf);border:1px solid var(--bd);border-radius:6px;padding:14px 16px;position:relative;z-index:10;transition:border-color .2s;border-left:3px solid var(--item-c,var(--bd));}
-.feed-item:hover{border-color:var(--ac2);}
-.fi-url{font-family:var(--mono);font-size:11px;color:var(--am);word-break:break-all;margin-bottom:6px;}
-.fi-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:6px;}
-.fi-desc{font-size:12px;color:var(--ink2);line-height:1.5;}
-.fi-time{font-family:var(--mono);font-size:10px;color:var(--mt);}
-.copy-btn{background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);color:var(--ac);font-family:var(--mono);font-size:9px;padding:2px 8px;border-radius:3px;cursor:pointer;white-space:nowrap;position:relative;z-index:20;}
-.copy-btn:hover{background:rgba(0,212,255,.18);}
-.auto-ref{font-family:var(--mono);font-size:11px;color:var(--mt);}
-.auto-ref strong{color:var(--ac);}
-.progress-bar{height:3px;background:rgba(14,74,122,.4);border-radius:2px;margin-top:8px;overflow:hidden;}
-.progress-fill{height:100%;background:linear-gradient(90deg,var(--ac2),var(--ac));border-radius:2px;transition:width 1s linear;}
-.empty-state{text-align:center;padding:40px;color:var(--mt);font-family:var(--mono);font-size:13px;}
+.dot.err{background:var(--rd);animation:none;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+.refresh-info{margin-left:auto;display:flex;align-items:center;gap:10px;}
+.pbr{height:3px;background:rgba(14,74,122,.4);border-radius:2px;margin-bottom:20px;overflow:hidden;}
+.pbf{height:100%;background:linear-gradient(90deg,var(--ac2),var(--ac));border-radius:2px;transition:width 1s linear;}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.tab{font-family:var(--mono);font-size:10px;padding:7px 14px;border:1px solid var(--bd);border-radius:4px;cursor:pointer;background:none;color:var(--ink2);letter-spacing:.06em;text-transform:uppercase;transition:all .2s;}
+.tab:hover,.tab.on{border-color:var(--ac);color:var(--ac);background:rgba(0,212,255,.08);}
+.tab-count{font-size:9px;background:rgba(0,212,255,.12);color:var(--ac2);padding:1px 5px;border-radius:8px;margin-left:4px;}
+.feed{display:grid;gap:10px;}
+.item{background:var(--sf);border:1px solid var(--bd);border-radius:6px;padding:14px 16px;border-left:3px solid var(--item-c,var(--bd));transition:border-color .2s;}
+.item:hover{border-color:var(--ac2);}
+.iurl{font-family:var(--mono);font-size:11px;color:var(--am);word-break:break-all;margin-bottom:6px;}
+.imeta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:6px;}
+.idesc{font-size:12px;color:var(--ink2);line-height:1.5;}
+.itime{font-family:var(--mono);font-size:10px;color:var(--mt);}
+.badge{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:3px;letter-spacing:.06em;text-transform:uppercase;}
+.b-hi{background:rgba(255,62,62,.1);color:var(--rd);border:1px solid rgba(255,62,62,.2);}
+.b-md{background:rgba(255,184,0,.1);color:var(--am);border:1px solid rgba(255,184,0,.2);}
+.b-ac{background:rgba(0,212,255,.1);color:var(--ac2);border:1px solid rgba(0,212,255,.2);}
+.b-gn{background:rgba(0,255,136,.08);color:var(--gn);border:1px solid rgba(0,255,136,.2);}
+.cpbtn{background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);color:var(--ac2);font-family:var(--mono);font-size:9px;padding:2px 8px;border-radius:3px;cursor:pointer;}
+.cpbtn:hover{background:rgba(0,212,255,.18);}
+.empty{text-align:center;padding:48px 20px;color:var(--mt);font-family:var(--mono);font-size:13px;}
+.retry-btn{display:inline-block;margin-top:16px;font-family:var(--mono);font-size:11px;padding:10px 20px;border:1px solid var(--ac);color:var(--ac);border-radius:4px;cursor:pointer;background:none;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;}
+.retry-btn:hover{background:rgba(0,212,255,.1);}
+footer{position:relative;z-index:1;border-top:1px solid var(--bd);padding:20px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:10px;color:var(--mt);}
+footer a{color:var(--mt);text-decoration:none;}
+footer a:hover{color:var(--ac);}
+.fl{display:flex;gap:16px;}
 </style>
 </head>
 <body>
-
-<header class="h">
+<div id="neural-bg"></div>
+<header>
   <div class="hi">
     <a class="brand" href="index.html"><img src="logo.svg" alt="IGRS"><span class="bn">IGRS</span></a>
     <nav>
       <a href="index.html">Home</a>
       <a href="tools.html">Tools</a>
-      <a href="playbooks.html">Playbooks</a>
-      <a href="live.html"style="color:var(--accent)">Live Feed</a>
+      <a href="live.html" class="act">Live Feed</a>
       <a href="lookup.html">IOC Lookup</a>
       <a href="cve-live.html">CVE Live</a>
       <a href="news.html">News</a>
-      <a href="threatmap.html">Threat Map</a>
     </nav>
   </div>
 </header>
-<main class="m">
+<main>
   <div class="hero">
-    <div class="stamp">Real-Time &middot; Auto-Refresh 5min &middot; Abuse.ch Sources &middot; IGRS</div>
+    <div class="stamp">Real-Time &middot; Abuse.ch Sources &middot; Auto-Refresh 5min &middot; IGRS</div>
     <h1>&gt; LIVE THREAT INTELLIGENCE FEED_</h1>
-    <p class="sub">Real-time malicious URLs, active C2 servers, and latest malware hashes pulled directly from Abuse.ch URLhaus, Feodo Tracker, and MalwareBazaar. Data refreshes automatically every 5 minutes. Defensive use only.</p>
+    <p class="sub">Real-time malicious URLs, active C2 servers, and malware hashes from Abuse.ch URLhaus, Feodo Tracker, and MalwareBazaar. Refreshes every 5 minutes.</p>
   </div>
-
-  <div class="status-bar">
-    <div class="dot" id="status-dot"></div>
-    <span id="status-text">Connecting to threat feeds...</span>
-    <span style="margin-left:auto;" class="auto-ref">Auto-refresh: <strong id="countdown">300</strong>s</span>
-  </div>
-  <div class="progress-bar"><div class="progress-fill" id="progress" style="width:100%"></div></div>
-
-  <div class="tabs" style="margin-top:16px;">
-    <button class="tab active" onclick="showTab('urls',this)">Malicious URLs <span class="tab-count" id="c-urls">-</span></button>
-    <button class="tab" onclick="showTab('c2',this)">C2 Servers <span class="tab-count" id="c-c2">-</span></button>
-    <button class="tab" onclick="showTab('malware',this)">Malware Hashes <span class="tab-count" id="c-mw">-</span></button>
-  </div>
-
-  <div id="tab-urls" class="feed-grid"></div>
-  <div id="tab-c2"   class="feed-grid" style="display:none"></div>
-  <div id="tab-mw"  class="feed-grid" style="display:none"></div>
-</main>
-
-<footer class="f">
-  <div class="fi">
-    <div class="fl">
-      <a href="index.html">Home</a><a href="tools.html">Tools</a>
-      <a href="playbooks.html">Playbooks</a><a href="cyberlaw.html">Cyber Law</a>
+  <div class="sbar">
+    <div class="dot loading" id="sdot"></div>
+    <span id="stxt">Connecting to threat feeds...</span>
+    <div class="refresh-info">
+      <span id="countdown" style="font-size:10px;"></span>
+      <button class="retry-btn" onclick="loadAll()" style="padding:5px 12px;font-size:9px;">&#8635; Refresh Now</button>
     </div>
-    <div>&copy; 2026 IGRS &mdash; Intel Grid Research Station</div>
   </div>
+  <div class="pbr"><div class="pbf" id="pbf" style="width:100%"></div></div>
+  <div class="tabs">
+    <button class="tab on" id="tab-url" onclick="showTab('url',this)">Malicious URLs <span class="tab-count" id="cu">-</span></button>
+    <button class="tab"    id="tab-c2"  onclick="showTab('c2',this)">C2 Servers <span class="tab-count" id="cc">-</span></button>
+    <button class="tab"    id="tab-mw"  onclick="showTab('mw',this)">Malware Hashes <span class="tab-count" id="cm">-</span></button>
+  </div>
+  <div class="feed" id="feed-url"></div>
+  <div class="feed" id="feed-c2"  style="display:none"></div>
+  <div class="feed" id="feed-mw"  style="display:none"></div>
+</main>
+<footer>
+  <div class="fl">
+    <a href="index.html">Home</a>
+    <a href="lookup.html">IOC Lookup</a>
+    <a href="cve-live.html">CVE Live</a>
+    <a href="https://urlhaus.abuse.ch" target="_blank" rel="noopener">URLhaus &#8599;</a>
+    <a href="https://feodotracker.abuse.ch" target="_blank" rel="noopener">Feodo &#8599;</a>
+  </div>
+  <div>&copy; 2026 IGRS &mdash; Data from Abuse.ch public feeds</div>
 </footer>
-<script src="neural.js"></script>
+<script src="neural.js" onerror="console.warn('neural failed')"></script>
 <script>
-// Redirect HTTP to HTTPS
-if(location.protocol === 'http:' && location.hostname !== 'localhost') {
-  location.replace('https://' + location.host + location.pathname + location.search);
-}
-var activeTab = 'urls';
+var activeTab = 'url';
 var countdown = 300;
-var progressInterval, countdownInterval;
+var cTimer;
 
-function showTab(name, btn) {
-  activeTab = name;
-  ['urls','c2','mw'].forEach(function(t){
-    document.getElementById('tab-'+t).style.display = t===name?'grid':'none';
+// CORS proxy options — try in order
+var PROXY = 'https://corsproxy.io/?url=';
+var PROXY2 = 'https://api.allorigins.win/raw?url=';
+
+function proxyUrl(url) {
+  return PROXY + encodeURIComponent(url);
+}
+function proxyUrl2(url) {
+  return PROXY2 + encodeURIComponent(url);
+}
+
+function showTab(id, btn) {
+  ['url','c2','mw'].forEach(function(t) {
+    document.getElementById('feed-'+t).style.display = t===id ? 'grid' : 'none';
   });
-  document.querySelectorAll('.tab').forEach(function(b){ b.classList.remove('active'); });
-  if(btn) btn.classList.add('active');
+  document.querySelectorAll('.tab').forEach(function(b){ b.classList.remove('on'); });
+  if(btn) btn.classList.add('on');
+  activeTab = id;
 }
 
-function setStatus(state, text) {
-  var dot = document.getElementById('status-dot');
-  dot.className = 'dot' + (state==='loading'?' loading':state==='error'?' error':'');
-  document.getElementById('status-text').textContent = text;
+function setStatus(state, txt) {
+  var dot = document.getElementById('sdot');
+  dot.className = 'dot' + (state==='ok' ? '' : state==='loading' ? ' loading' : ' err');
+  document.getElementById('stxt').textContent = txt;
 }
 
-function copyText(val, btn) {
+function timeAgo(str) {
+  if(!str) return '';
+  var d = new Date(str.replace(' ','T')+'Z');
+  var diff = Math.floor((Date.now()-d)/60000);
+  if(diff<1) return 'just now';
+  if(diff<60) return diff+'m ago';
+  if(diff<1440) return Math.floor(diff/60)+'h ago';
+  return Math.floor(diff/1440)+'d ago';
+}
+
+function cpv(val, btn) {
   navigator.clipboard.writeText(val).then(function(){
-    var orig = btn.textContent;
-    btn.textContent = 'COPIED!';
-    btn.style.color = 'var(--gn)';
-    setTimeout(function(){ btn.textContent = orig; btn.style.color = ''; }, 2000);
-  });
+    btn.textContent='OK!'; btn.style.color='var(--gn)';
+    setTimeout(function(){btn.textContent='COPY';btn.style.color='';},1800);
+  }).catch(function(){});
 }
 
-function timeAgo(dateStr) {
-  var d = new Date(dateStr);
-  var diff = Math.floor((Date.now() - d) / 60000);
-  if(diff < 1) return 'just now';
-  if(diff < 60) return diff + 'm ago';
-  if(diff < 1440) return Math.floor(diff/60) + 'h ago';
-  return Math.floor(diff/1440) + 'd ago';
+function errHtml(source, directUrl) {
+  return '<div class="empty">' +
+    '<div style="font-size:28px;margin-bottom:12px;">&#128680;</div>' +
+    '<strong style="color:var(--am)">'+source+' feed unavailable</strong><br><br>' +
+    '<span style="color:var(--ink2);font-size:12px;">CORS restriction or API rate limit.<br>Visit source directly:</span><br><br>' +
+    '<a href="'+directUrl+'" target="_blank" rel="noopener" style="color:var(--ac2);font-family:var(--mono);font-size:12px;">'+directUrl+' &#8599;</a>' +
+    '</div>';
 }
 
-function severityBadge(s) {
-  if(!s) return '';
-  var cls = s==='high'||s==='HIGH'?'b-hi':s==='medium'||s==='MEDIUM'?'b-md':'b-lo';
-  return '<span class="badge '+cls+'">'+s.toUpperCase()+'</span>';
-}
-
-// ── URLhaus feed ──────────────────────────────────────────────
+// ── URLhaus ──────────────────────────────────────────────────
 function loadURLhaus() {
-  return fetch('https://urlhaus-api.abuse.ch/v1/urls/recent/limit/50/', {
-    method:'POST',
-    headers:{'Content-Type':'application/x-www-form-urlencoded'},
-    body:'',
-    mode:'cors'
-  })
-  .then(function(r){ return r.json(); })
-  .then(function(data) {
-    var urls = (data.urls || []).filter(function(u){ return u.url_status === 'online'; }).slice(0,30);
-    document.getElementById('c-urls').textContent = urls.length;
-    var html = '';
-    urls.forEach(function(u) {
-      var tags = (u.tags||[]).map(function(t){ return '<span class="badge b-ac">'+t+'</span>'; }).join('');
-      html += '<div class="feed-item" style="--item-c:var(--rd)">';
-      html += '<div class="fi-url">'+u.url+'</div>';
-      html += '<div class="fi-meta"><span class="badge b-hi">ONLINE</span>'+tags;
-      html += '<button class="copy-btn" onclick='copyText("'+u.url.replace(/'/g,"\'")+'",this)'>COPY URL</button>';
-      html += '<span class="fi-time">'+timeAgo(u.date_added)+'</span></div>';
-      html += '<div class="fi-desc">Host: <span style="color:var(--ac2)">'+u.host+'</span>';
-      if(u.urlhaus_reference) html += ' &mdash; <a href="'+u.urlhaus_reference+'" target="_blank" rel="noopener" style="color:var(--ac2);font-size:10px;">URLhaus Report &#8599;</a>';
-      html += '</div></div>';
-    });
-    document.getElementById('tab-urls').innerHTML = html || '<div class="empty-state">No online malicious URLs at this moment.</div>';
-  });
+  var urls_to_try = [
+    {url: 'https://urlhaus-api.abuse.ch/v1/urls/recent/limit/50/', method:'POST', body:''},
+    {url: proxyUrl('https://urlhaus-api.abuse.ch/v1/urls/recent/limit/50/'), method:'POST', body:''},
+    {url: proxyUrl2('https://urlhaus-api.abuse.ch/v1/urls/recent/limit/50/'), method:'GET', body:null},
+  ];
+
+  function tryNext(i) {
+    if(i >= urls_to_try.length) {
+      document.getElementById('feed-url').innerHTML = errHtml('URLhaus','https://urlhaus.abuse.ch');
+      document.getElementById('cu').textContent = '0';
+      return;
+    }
+    var opt = urls_to_try[i];
+    var init = {method: opt.method, headers:{'Content-Type':'application/x-www-form-urlencoded'}};
+    if(opt.body !== null) init.body = opt.body;
+
+    fetch(opt.url, init)
+      .then(function(r){ return r.json(); })
+      .then(function(data) {
+        var urls = (data.urls || []).filter(function(u){ return u.url_status === 'online'; }).slice(0,30);
+        document.getElementById('cu').textContent = urls.length;
+        if(!urls.length) { tryNext(i+1); return; }
+        var html = '';
+        urls.forEach(function(u) {
+          var tags = (u.tags||[]).map(function(t){ return '<span class="badge b-ac">'+t+'</span>'; }).join('');
+          html += '<div class="item" style="--item-c:var(--rd)">' +
+            '<div class="iurl">'+u.url+'</div>' +
+            '<div class="imeta"><span class="badge b-hi">ONLINE</span>'+tags+
+            '<button class="cpbtn" onclick='cpv("'+u.url.replace(/'/g,"\'")+'",this)'>COPY</button>'+
+            '<span class="itime">'+timeAgo(u.date_added)+'</span></div>' +
+            '<div class="idesc">Host: <span style="color:var(--ac2)">'+u.host+'</span>'+
+            (u.urlhaus_reference ? ' &mdash; <a href="'+u.urlhaus_reference+'" target="_blank" rel="noopener" style="color:var(--ac2);font-size:10px;">Report &#8599;</a>' : '') +
+            '</div></div>';
+        });
+        document.getElementById('feed-url').innerHTML = html;
+      })
+      .catch(function(){ tryNext(i+1); });
+  }
+  tryNext(0);
 }
 
-// ── Feodo C2 feed ─────────────────────────────────────────────
+// ── Feodo C2 ─────────────────────────────────────────────────
 function loadFeodo() {
-  return fetch('https://feodotracker.abuse.ch/downloads/ipblocklist_aggressive.json', {mode:'cors'})
-  .then(function(r){ return r.json(); })
-  .then(function(data) {
-    var items = (Array.isArray(data) ? data : []).filter(function(d){ return d.status==='Online'; }).slice(0,30);
-    document.getElementById('c-c2').textContent = items.length;
-    var html = '';
-    items.forEach(function(c) {
-      html += '<div class="feed-item" style="--item-c:var(--am)">';
-      html += '<div class="fi-url">'+c.ip_address+':'+c.port+'</div>';
-      html += '<div class="fi-meta"><span class="badge b-hi">C2 ONLINE</span>';
-      if(c.malware) html += '<span class="badge b-md">'+c.malware+'</span>';
-      if(c.country) html += '<span class="badge b-ac">'+c.country+'</span>';
-      html += '<button class="copy-btn" onclick='copyText("'+c.ip_address+'",this)'>COPY IP</button>';
-      html += '<span class="fi-time">'+timeAgo(c.first_seen)+'</span></div>';
-      html += '<div class="fi-desc">C2 server for <strong style="color:var(--am)">'+( c.malware||'Unknown')+' malware</strong>';
-      if(c.as_name) html += ' &mdash; ASN: '+c.as_name;
-      html += '</div></div>';
-    });
-    document.getElementById('tab-c2').innerHTML = html || '<div class="empty-state">No C2 servers online at this moment.</div>';
-  });
+  var urls_to_try = [
+    'https://feodotracker.abuse.ch/downloads/ipblocklist_aggressive.json',
+    proxyUrl('https://feodotracker.abuse.ch/downloads/ipblocklist_aggressive.json'),
+    proxyUrl2('https://feodotracker.abuse.ch/downloads/ipblocklist_aggressive.json'),
+  ];
+
+  function tryNext(i) {
+    if(i >= urls_to_try.length) {
+      document.getElementById('feed-c2').innerHTML = errHtml('Feodo Tracker','https://feodotracker.abuse.ch');
+      document.getElementById('cc').textContent = '0';
+      return;
+    }
+    fetch(urls_to_try[i])
+      .then(function(r){ return r.json(); })
+      .then(function(data) {
+        var items = (Array.isArray(data) ? data : []).filter(function(d){ return d.status==='Online'; }).slice(0,30);
+        document.getElementById('cc').textContent = items.length;
+        if(!items.length) { tryNext(i+1); return; }
+        var html = '';
+        items.forEach(function(c) {
+          html += '<div class="item" style="--item-c:var(--am)">' +
+            '<div class="iurl">'+c.ip_address+':'+c.port+'</div>' +
+            '<div class="imeta"><span class="badge b-hi">C2 ONLINE</span>'+
+            (c.malware ? '<span class="badge b-md">'+c.malware+'</span>' : '')+
+            (c.country ? '<span class="badge b-ac">'+c.country+'</span>' : '')+
+            '<button class="cpbtn" onclick='cpv("'+c.ip_address+'",this)'>COPY IP</button>'+
+            '<span class="itime">'+timeAgo(c.first_seen)+'</span></div>' +
+            '<div class="idesc">C2 for <strong style="color:var(--am)">'+(c.malware||'Unknown')+'</strong>'+
+            (c.as_name ? ' &mdash; '+c.as_name : '')+'</div></div>';
+        });
+        document.getElementById('feed-c2').innerHTML = html;
+      })
+      .catch(function(){ tryNext(i+1); });
+  }
+  tryNext(0);
 }
 
-// ── MalwareBazaar recent samples ──────────────────────────────
-function loadMalware() {
-  return fetch('https://mb-api.abuse.ch/api/v1/', {
-    method:'POST',
-    headers:{'Content-Type':'application/x-www-form-urlencoded'},
-    body:'query=get_recent&selector=time',
-    mode:'cors'
-  })
-  .then(function(r){ return r.json(); })
-  .then(function(data) {
-    var items = (data.data || []).slice(0,25);
-    document.getElementById('c-mw').textContent = items.length;
-    var html = '';
-    items.forEach(function(m) {
-      html += '<div class="feed-item" style="--item-c:var(--ac)">';
-      html += '<div class="fi-url">'+m.sha256_hash+'</div>';
-      html += '<div class="fi-meta">';
-      if(m.signature) html += '<span class="badge b-md">'+m.signature+'</span>';
-      if(m.file_type) html += '<span class="badge b-ac">'+m.file_type+'</span>';
-      if(m.tags) m.tags.forEach(function(t){ html += '<span class="badge b-lo">'+t+'</span>'; });
-      html += '<button class="copy-btn" onclick='copyText("'+m.sha256_hash+'",this)'>COPY HASH</button>';
-      html += '<span class="fi-time">'+timeAgo(m.first_seen)+'</span></div>';
-      html += '<div class="fi-desc">File: <span style="color:var(--ac2)">'+( m.file_name||'Unknown')+' </span>';
-      if(m.file_size) html += '('+Math.round(m.file_size/1024)+'KB)';
-      if(m.reporter) html += ' &mdash; Reported by: '+m.reporter;
-      html += '</div></div>';
-    });
-    document.getElementById('tab-mw').innerHTML = html || '<div class="empty-state">No recent malware samples loaded.</div>';
-  });
+// ── MalwareBazaar ────────────────────────────────────────────
+function loadMW() {
+  var urls_to_try = [
+    {url:'https://mb-api.abuse.ch/api/v1/', method:'POST', body:'query=get_recent&selector=time'},
+    {url:proxyUrl('https://mb-api.abuse.ch/api/v1/'), method:'POST', body:'query=get_recent&selector=time'},
+  ];
+
+  function tryNext(i) {
+    if(i >= urls_to_try.length) {
+      document.getElementById('feed-mw').innerHTML = errHtml('MalwareBazaar','https://bazaar.abuse.ch');
+      document.getElementById('cm').textContent = '0';
+      return;
+    }
+    var opt = urls_to_try[i];
+    fetch(opt.url, {method:opt.method, headers:{'Content-Type':'application/x-www-form-urlencoded'}, body:opt.body})
+      .then(function(r){ return r.json(); })
+      .then(function(data) {
+        var items = (data.data || []).slice(0,25);
+        document.getElementById('cm').textContent = items.length;
+        if(!items.length) { tryNext(i+1); return; }
+        var html = '';
+        items.forEach(function(m) {
+          html += '<div class="item" style="--item-c:var(--ac)">' +
+            '<div class="iurl">'+m.sha256_hash+'</div>' +
+            '<div class="imeta">'+
+            (m.signature ? '<span class="badge b-md">'+m.signature+'</span>' : '')+
+            (m.file_type ? '<span class="badge b-ac">'+m.file_type+'</span>' : '')+
+            (m.tags ? m.tags.map(function(t){ return '<span class="badge b-gn">'+t+'</span>'; }).join('') : '')+
+            '<button class="cpbtn" onclick='cpv("'+m.sha256_hash+'",this)'>COPY HASH</button>'+
+            '<span class="itime">'+timeAgo(m.first_seen)+'</span></div>' +
+            '<div class="idesc">File: <span style="color:var(--ac2)">'+(m.file_name||'Unknown')+'</span>'+
+            (m.file_size ? ' ('+Math.round(m.file_size/1024)+'KB)' : '')+
+            (m.reporter ? ' &mdash; Reporter: '+m.reporter : '')+'</div></div>';
+        });
+        document.getElementById('feed-mw').innerHTML = html;
+      })
+      .catch(function(){ tryNext(i+1); });
+  }
+  tryNext(0);
 }
 
 function loadAll() {
-  // Check if page is served over HTTPS - required for fetch() to external APIs
-  if(location.protocol !== 'https:') {
-    setStatus('error','HTTPS required for live feeds');
-    var msg = '<div style="text-align:center;padding:30px 20px;font-family:var(--mono);font-size:12px;color:var(--mt);">' +
-      '<div style="font-size:32px;margin-bottom:16px;">&#128274;</div>' +
-      '<strong style="color:var(--am);font-size:14px;">HTTPS Required</strong><br><br>' +
-      '<span style="color:var(--ink2);line-height:1.8;">This page must be accessed over HTTPS to load live threat data.<br>' +
-      'Your browser blocks external API calls from HTTP pages for security.<br><br>' +
-      'Please access: </span><br>' +
-      '<a href="https://igrs.xyz/live.html" style="color:var(--ac);font-size:13px;text-decoration:underline;">https://igrs.xyz/live.html</a>' +
-      '</div>';
-    document.getElementById('tab-urls').innerHTML = msg;
-    document.getElementById('tab-c2').innerHTML = msg;
-    document.getElementById('tab-mw').innerHTML = msg;
-    return;
-  }
   setStatus('loading','Fetching live threat data...');
-  Promise.all([loadURLhaus(), loadFeodo(), loadMalware()])
-    .then(function(){ setStatus('live','Live — data from Abuse.ch feeds'); })
-    .catch(function(e){
-      setStatus('error','Feed error — retrying in 30s. Some feeds may use CORS proxy.');
-      console.error(e);
-    });
-}
-
-// Countdown + progress
-function startCountdown() {
+  clearInterval(cTimer);
   countdown = 300;
-  clearInterval(countdownInterval);
-  clearInterval(progressInterval);
-  countdownInterval = setInterval(function(){
+  document.getElementById('pbf').style.width = '100%';
+
+  Promise.allSettled([
+    new Promise(function(res){ loadURLhaus(); setTimeout(res,5000); }),
+    new Promise(function(res){ loadFeodo();   setTimeout(res,5000); }),
+    new Promise(function(res){ loadMW();      setTimeout(res,5000); }),
+  ]).then(function() {
+    var total = parseInt(document.getElementById('cu').textContent||0) +
+                parseInt(document.getElementById('cc').textContent||0) +
+                parseInt(document.getElementById('cm').textContent||0);
+    if(total > 0) {
+      setStatus('ok','Live — '+total+' indicators loaded from Abuse.ch');
+    } else {
+      setStatus('err','Feeds blocked by CORS — try refreshing or visit sources directly');
+    }
+  });
+
+  cTimer = setInterval(function(){
     countdown--;
-    document.getElementById('countdown').textContent = countdown;
-    document.getElementById('progress').style.width = (countdown/300*100)+'%';
-    if(countdown <= 0) { loadAll(); startCountdown(); }
+    document.getElementById('countdown').textContent = 'Next refresh: '+countdown+'s';
+    document.getElementById('pbf').style.width = (countdown/300*100)+'%';
+    if(countdown <= 0) { loadAll(); }
   }, 1000);
 }
 
 loadAll();
-startCountdown();
 </script>
-</body></html>
+</body>
+</html>
