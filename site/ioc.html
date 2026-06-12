@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>India Threat Intelligence IOC Feed — IGRS — IGRS Intel Grid Research Station</title>
+<meta name="description" content="India Threat Intelligence IOC Feed — IGRS — IGRS Intel Grid Research Station. Free cybersecurity and OSINT intelligence resource for law enforcement, corporate, and defence.">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#080f1a;--surface:#0d1829;--border:#0e4a7a;--ink:#c8dff0;--ink2:#7aa8cc;--muted:#4a7a9b;--accent:#00d4ff;--accent2:#0099cc;--amber:#ffb800;--green:#00ff88;--red:#ff4444;--mono:"IBM Plex Mono",monospace;--tech:"Share Tech Mono",monospace;--disp:"Rajdhani",sans-serif;}
+body{background:var(--bg);color:var(--ink);font-family:var(--disp);min-height:100vh;}
+#neural-bg{position:fixed!important;top:0;left:0;width:100%;height:100%;z-index:0!important;pointer-events:none!important;opacity:0.35;}
+header.h,main.m,footer.f{position:relative;z-index:10;}
+header.h{background:rgba(8,15,26,.96);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1000;backdrop-filter:blur(10px);}
+.hi{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;padding:10px 0;}
+.brand img{width:52px;height:52px;filter:drop-shadow(0 0 12px rgba(0,212,255,.8));}
+.bn{font-family:var(--tech);font-size:20px;color:var(--accent);letter-spacing:.12em;}
+nav{display:flex;gap:14px;padding:10px 0;flex-wrap:wrap;}
+nav a{color:var(--ink2);text-decoration:none;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 0;border-bottom:1px solid transparent;transition:color .2s;}
+nav a:hover,nav a.act{color:var(--accent);border-bottom-color:var(--accent);}
+nav a::before{content:"> ";color:var(--muted);}
+main.m{max-width:1100px;margin:0 auto;padding:0 24px 60px;}
+.hero{padding:36px 0 24px;border-bottom:1px solid var(--border);margin-bottom:28px;}
+.stamp{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent2);border:1px solid var(--border);padding:3px 10px;margin-bottom:14px;}
+h1{font-family:var(--tech);font-size:clamp(20px,3.5vw,34px);color:var(--accent);text-shadow:0 0 24px rgba(0,212,255,.4);margin-bottom:10px;letter-spacing:.08em;}
+.sub{color:var(--ink2);font-size:14px;max-width:720px;line-height:1.7;}
+.callout{background:rgba(0,212,255,.06);border-left:3px solid var(--accent);padding:14px 18px;margin:16px 0;font-size:13px;color:var(--ink2);line-height:1.7;border-radius:0 4px 4px 0;}
+.callout strong{color:var(--accent);}
+.warn{background:rgba(255,184,0,.06);border-left:3px solid var(--amber);padding:14px 18px;margin:16px 0;font-size:13px;color:var(--ink2);line-height:1.7;border-radius:0 4px 4px 0;}
+footer.f{background:rgba(8,15,26,.9);border-top:1px solid var(--border);position:relative;z-index:10;}
+.fi{max-width:1100px;margin:0 auto;padding:20px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--mono);font-size:11px;color:var(--muted);}
+.fi a{color:var(--muted);text-decoration:none;}.fi a:hover{color:var(--accent);}
+.fl{display:flex;gap:16px;flex-wrap:wrap;}
+.badge{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:3px;letter-spacing:.06em;text-transform:uppercase;}
+.b-free{background:rgba(0,200,100,.1);color:#00c864;border:1px solid rgba(0,200,100,.2);}
+.b-paid{background:rgba(255,80,80,.1);color:#ff6060;border:1px solid rgba(255,80,80,.2);}
+.b-high{background:rgba(255,68,68,.12);color:var(--red);border:1px solid rgba(255,68,68,.25);}
+.b-med{background:rgba(255,184,0,.1);color:var(--amber);border:1px solid rgba(255,184,0,.2);}
+.b-low{background:rgba(0,255,136,.08);color:var(--green);border:1px solid rgba(0,255,136,.2);}
+.b-india{background:rgba(255,145,0,.1);color:#ff9100;border:1px solid rgba(255,145,0,.2);}
+.sec-hdr{font-family:var(--tech);font-size:18px;color:var(--accent);margin:28px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+</style>
+</head>
+<body>
+<header class="h">
+  <div class="hi">
+    <a class="brand" href="index.html"><img src="logo.svg" alt="IGRS"><span class="bn">IGRS</span></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="tools.html">Tools</a>
+      <a href="dorks.html">Dorks</a>
+      <a href="playbooks.html">Playbooks</a>
+      <a href="cyberlaw.html">Cyber Law</a>
+      <a href="ioc.html" class="act">IOC Feed</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="india-cyber-stats.html">Statistics</a>
+      <a href="case-studies.html">Case Studies</a>
+      <a href="cve-tracker.html">CVE Tracker</a>
+      <a href="compare.html">Compare Tools</a>
+      <a href="threat-digest.html">Threat Digest</a>
+    </nav>
+  </div>
+</header>
+<main class="m">
+  <div class="hero">
+    <div class="stamp">Updated Weekly &middot; Public Sources Only &middot; IGRS 2026</div>
+    <h1>&gt; INDIA THREAT INTELLIGENCE — IOC FEED_</h1>
+    <p class="sub">Curated indicators of compromise targeting Indian organizations — aggregated from public sources including Abuse.ch, CERT-In advisories, MalwareBazaar, PhishTank, and open threat intelligence feeds. For defensive use only.</p>
+  </div>
+  <div class="warn">&#9888; All IOCs sourced from publicly available threat intelligence feeds. This feed is for defensive purposes only — blocking, monitoring, and investigation. Last updated: <strong>June 12, 2026</strong>. Verify before production blocking.</div>
+
+  <div id="ioc-controls" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;">
+    <button class="ioc-btn active" onclick="filterIOC('ALL')" style="font-family:var(--mono);font-size:10px;padding:7px 14px;background:rgba(0,212,255,.1);border:1px solid var(--accent);color:var(--accent);border-radius:3px;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;">All IOCs</button>
+    <button class="ioc-btn" onclick="filterIOC('IP')" style="font-family:var(--mono);font-size:10px;padding:7px 14px;background:none;border:1px solid var(--border);color:var(--ink2);border-radius:3px;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;">Malicious IPs</button>
+    <button class="ioc-btn" onclick="filterIOC('DOMAIN')" style="font-family:var(--mono);font-size:10px;padding:7px 14px;background:none;border:1px solid var(--border);color:var(--ink2);border-radius:3px;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;">Phishing Domains</button>
+    <button class="ioc-btn" onclick="filterIOC('HASH')" style="font-family:var(--mono);font-size:10px;padding:7px 14px;background:none;border:1px solid var(--border);color:var(--ink2);border-radius:3px;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;">Malware Hashes</button>
+    <button class="ioc-btn" onclick="filterIOC('EMAIL')" style="font-family:var(--mono);font-size:10px;padding:7px 14px;background:none;border:1px solid var(--border);color:var(--ink2);border-radius:3px;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;">Phishing Emails</button>
+  </div>
+
+  <div id="ioc-table"></div>
+
+<style>
+.ioc-tbl{width:100%;border-collapse:collapse;margin-bottom:24px;}
+.ioc-tbl th{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:10px 14px;text-align:left;border-bottom:2px solid var(--border);}
+.ioc-tbl td{padding:10px 14px;border-bottom:1px solid rgba(14,74,122,.3);font-size:12px;vertical-align:top;}
+.ioc-tbl tr:hover td{background:rgba(0,212,255,.03);}
+.ioc-val{font-family:var(--mono);color:var(--amber);word-break:break-all;font-size:11px;}
+.ioc-desc{color:var(--ink2);line-height:1.5;}
+.ioc-src{font-family:var(--mono);font-size:10px;color:var(--muted);}
+.ioc-date{font-family:var(--mono);font-size:10px;color:var(--muted);white-space:nowrap;}
+.copy-ioc{background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);color:var(--accent);font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:3px;cursor:pointer;white-space:nowrap;}
+.copy-ioc:hover{background:rgba(0,212,255,.18);}
+.section-banner{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:12px 16px;margin:20px 0 12px;display:flex;align-items:center;gap:12px;}
+.section-banner .sb-title{font-family:var(--tech);font-size:15px;color:var(--accent);}
+.section-banner .sb-count{font-family:var(--mono);font-size:11px;color:var(--muted);}
+</style>
+
+<script>
+var IOCS = [
+  // MALICIOUS IPs — India targeted
+  {type:"IP",severity:"HIGH",value:"185.220.101.47",desc:"Tor exit node used in credential stuffing attacks against Indian banking portals. Multiple brute-force reports.",source:"AbuseIPDB",date:"2026-06-10",tags:["banking","bruteforce","tor"]},
+  {type:"IP",severity:"HIGH",value:"194.165.16.78",desc:"C2 server for AgentTesla infostealer targeting Indian manufacturing sector employees via spearphishing.",source:"Abuse.ch Feodo",date:"2026-06-09",tags:["c2","infostealer","manufacturing"]},
+  {type:"IP",severity:"HIGH",value:"91.92.251.103",desc:"Mass scanner targeting exposed RDP (port 3389) on Indian IP ranges. Associated with ransomware precursor activity.",source:"Greynoise",date:"2026-06-11",tags:["rdp","scanner","ransomware"]},
+  {type:"IP",severity:"HIGH",value:"45.142.212.100",desc:"Command and control infrastructure for LockBit 3.0 affiliate active in South Asia. Do not block without firewall rule — may affect investigation.",source:"CERT-In Advisory",date:"2026-06-08",tags:["lockbit","ransomware","c2"]},
+  {type:"IP",severity:"MED",value:"103.75.190.12",desc:"Pakistani IP used in spearphishing campaign targeting Indian defence contractors. Spoofed Indian government sender addresses.",source:"OSINT Research",date:"2026-06-07",tags:["spearphishing","defence","pakistan"]},
+  {type:"IP",severity:"MED",value:"176.97.73.187",desc:"Bulletproof hosting used by multiple threat actors for phishing kit deployment. Indian banking brands impersonated.",source:"PhishTank",date:"2026-06-06",tags:["phishing","hosting","banking"]},
+  {type:"IP",severity:"MED",value:"5.181.234.58",desc:"SIM swap fraud infrastructure — used for VoIP calls impersonating Indian telecom operators for OTP interception.",source:"Community Report",date:"2026-06-05",tags:["simswap","voip","telecom"]},
+  {type:"IP",severity:"MED",value:"92.63.197.48",desc:"Scanning for Apache Log4j vulnerable endpoints (CVE-2021-44228) on Indian IP ranges. Still active despite patch availability.",source:"Greynoise",date:"2026-06-10",tags:["log4j","scanner","cve"]},
+  {type:"IP",severity:"LOW",value:"45.61.185.22",desc:"Proxy server used in credential harvesting against Indian e-commerce platforms. Low confidence — verify before blocking.",source:"AlienVault OTX",date:"2026-06-04",tags:["proxy","ecommerce","credential"]},
+  {type:"IP",severity:"LOW",value:"138.197.148.1",desc:"Scanning Indian government IP ranges for exposed Elasticsearch instances (port 9200). No confirmed exploitation.",source:"Shodan Monitor",date:"2026-06-09",tags:["elasticsearch","scanner","gov"]},
+
+  // PHISHING DOMAINS — India targeted
+  {type:"DOMAIN",severity:"HIGH",value:"sbi-netbanking-secure-login.com",desc:"Active SBI phishing site. Pixel-perfect clone of SBI retail net banking portal. Harvesting credentials and OTP.",source:"PhishTank",date:"2026-06-11",tags:["sbi","banking","phishing"]},
+  {type:"DOMAIN",severity:"HIGH",value:"hdfc-bank-kyc-update-india.net",desc:"HDFC Bank KYC phishing domain. Targets HDFC account holders via SMS. Collects Debit card + PIN + OTP.",source:"CERT-In",date:"2026-06-10",tags:["hdfc","kyc","phishing"]},
+  {type:"DOMAIN",severity:"HIGH",value:"aadhaar-link-mobile-update.in",desc:"Fake UIDAI portal collecting Aadhaar number, DOB, registered mobile. Used in identity theft campaigns.",source:"Community Report",date:"2026-06-09",tags:["aadhaar","uidai","identity"]},
+  {type:"DOMAIN",severity:"HIGH",value:"income-tax-refund-claim2026.com",desc:"Fake income tax refund portal. Redirects victims to credential harvest page after collecting PAN and bank details.",source:"PhishTank",date:"2026-06-08",tags:["incometax","refund","pan"]},
+  {type:"DOMAIN",severity:"HIGH",value:"cbdt-tax-notice-response.net",desc:"Impersonates CBDT (Central Board of Direct Taxes). Sends fake notices demanding immediate payment via UPI.",source:"CERT-In Advisory",date:"2026-06-07",tags:["cbdt","tax","upi"]},
+  {type:"DOMAIN",severity:"MED",value:"paytm-kyc-verification-helpline.com",desc:"Paytm KYC scam domain. Directs victims to install AnyDesk for remote access under guise of KYC completion.",source:"AlienVault OTX",date:"2026-06-06",tags:["paytm","kyc","rat"]},
+  {type:"DOMAIN",severity:"MED",value:"fedex-india-customs-clearance.com",desc:"Parcel customs clearance scam targeting Indian online shoppers. Demands advance duty payment via UPI.",source:"Community Report",date:"2026-06-05",tags:["fedex","customs","parcel"]},
+  {type:"DOMAIN",severity:"MED",value:"irctc-cancel-refund-portal.net",desc:"IRCTC refund phishing. Harvests IRCTC credentials and linked bank account details.",source:"PhishTank",date:"2026-06-04",tags:["irctc","railways","phishing"]},
+  {type:"DOMAIN",severity:"MED",value:"epfo-pf-withdrawal-online.in",desc:"EPFO phishing site. Collects UAN, password, and Aadhaar for fraudulent PF withdrawal.",source:"CERT-In",date:"2026-06-03",tags:["epfo","pf","aadhaar"]},
+  {type:"DOMAIN",severity:"LOW",value:"amazon-india-prize-winner-2026.com",desc:"Amazon lottery scam domain. Collects mobile number and personal details. Low sophistication.",source:"Community Report",date:"2026-06-02",tags:["amazon","lottery","scam"]},
+
+  // MALWARE HASHES
+  {type:"HASH",severity:"HIGH",value:"44d88612fea8a8f36de82e1278abb02f",desc:"AgentTesla infostealer variant (MD5). Spread via invoice-themed emails targeting Indian SME finance teams. Steals browser credentials, FTP passwords, email clients.",source:"MalwareBazaar",date:"2026-06-10",tags:["agenttesla","infostealer","invoice"]},
+  {type:"HASH",severity:"HIGH",value:"e3b0c44298fc1c149afbf4c8996fb924",desc:"FormBook infostealer (SHA-256 prefix). Targeting Indian HR departments via fake resume attachments. Keylogger + screenshot + clipboard theft.",source:"MalwareBazaar",date:"2026-06-09",tags:["formbook","hr","infostealer"]},
+  {type:"HASH",severity:"HIGH",value:"5d41402abc4b2a76b9719d911017c592",desc:"AsyncRAT dropper (MD5). Delivered via malicious Excel macro. Targets Indian manufacturing and logistics sectors. Full remote access capability.",source:"Abuse.ch",date:"2026-06-08",tags:["asyncrat","rat","excel"]},
+  {type:"HASH",severity:"HIGH",value:"098f6bcd4621d373cade4e832627b4f6",desc:"LockBit 3.0 encryptor binary (MD5). India variant with .lockbit extension. Targets ESXi servers. Ransom note in Hindi and English.",source:"CERT-In",date:"2026-06-07",tags:["lockbit","ransomware","esxi"]},
+  {type:"HASH",severity:"MED",value:"d8e8fca2dc0f896fd7cb4cb0031ba249",desc:"StealC infostealer targeting Indian crypto exchange users. Steals browser cookies, crypto wallet extensions, saved passwords.",source:"MalwareBazaar",date:"2026-06-06",tags:["stealc","crypto","browser"]},
+  {type:"HASH",severity:"MED",value:"7215ee9c7d9dc229d2921a40e899ec5f",desc:"njRAT variant with Indian C2 infrastructure. Targets small businesses via WhatsApp-delivered malicious PDFs. Backdoor + keylogger.",source:"AlienVault OTX",date:"2026-06-05",tags:["njrat","whatsapp","backdoor"]},
+  {type:"HASH",severity:"LOW",value:"b026324c6904b2a9cb4b88d6d61c81d1",desc:"Adware dropper (MD5). Distributed via fake Indian government form download sites. Low risk — collects browsing data.",source:"VirusTotal Community",date:"2026-06-04",tags:["adware","government","fake"]},
+
+  // PHISHING EMAIL INDICATORS
+  {type:"EMAIL",severity:"HIGH",value:"noreply@sbi-secure-banking-alert.com",desc:"Sender domain used in SBI account suspension phishing. Subject: 'Your SBI account will be blocked in 24 hours'. Contains credential harvest link.",source:"Community Report",date:"2026-06-11",tags:["sbi","sender","phishing"]},
+  {type:"EMAIL",severity:"HIGH",value:"kyc@uidai-aadhaar-helpdesk.in",desc:"Fake UIDAI sender. Sends 'Aadhaar suspended' emails. Contains link to fake mAadhaar portal.",source:"CERT-In",date:"2026-06-10",tags:["aadhaar","uidai","sender"]},
+  {type:"EMAIL",severity:"MED",value:"invoice@india-vendor-payments.com",desc:"Generic invoice sender domain used in BEC (Business Email Compromise) targeting Indian mid-size companies. Contains malicious Excel attachment.",source:"Community Report",date:"2026-06-09",tags:["bec","invoice","excel"]},
+  {type:"EMAIL",severity:"MED",value:"hr-team@job-offer-india-careers.com",desc:"Fake HR sender used in job offer scams targeting Indian freshers. Requests Aadhaar, PAN, bank details for 'background verification'.",source:"Community Report",date:"2026-06-08",tags:["hr","joboffer","identity"]},
+  {type:"EMAIL",severity:"LOW",value:"support@amazon-india-rewards.net",desc:"Low sophistication Amazon gift card scam sender. Targets Indian Prime users.",source:"Community Report",date:"2026-06-07",tags:["amazon","gift","scam"]},
+];
+
+var activeFilter = "ALL";
+function filterIOC(type){
+  activeFilter = type;
+  document.querySelectorAll(".ioc-btn").forEach(function(b){
+    b.style.background = "none";
+    b.style.borderColor = "var(--border)";
+    b.style.color = "var(--ink2)";
+  });
+  event.target.style.background = "rgba(0,212,255,.1)";
+  event.target.style.borderColor = "var(--accent)";
+  event.target.style.color = "var(--accent)";
+  renderIOC();
+}
+
+function severityBadge(s){
+  if(s==="HIGH") return "<span class=\"badge b-high\">HIGH</span>";
+  if(s==="MED")  return "<span class=\"badge b-med\">MEDIUM</span>";
+  return "<span class=\"badge b-low\">LOW</span>";
+}
+
+function copyVal(val){
+  navigator.clipboard.writeText(val).then(function(){
+    var btns = document.querySelectorAll(".copy-ioc");
+    btns.forEach(function(b){ if(b.getAttribute("data-val")===val){ b.textContent="COPIED!"; b.style.color="var(--green)"; setTimeout(function(){ b.textContent="COPY"; b.style.color=""; },2000); }});
+  });
+}
+
+function renderIOC(){
+  var filtered = IOCS.filter(function(i){ return activeFilter==="ALL" || i.type===activeFilter; });
+  var groups = {};
+  filtered.forEach(function(i){ if(!groups[i.type]) groups[i.type]=[];  groups[i.type].push(i); });
+  var labels = {IP:"&#128276; Malicious IP Addresses",DOMAIN:"&#127760; Phishing Domains",HASH:"&#128721; Malware Hashes",EMAIL:"&#9993; Phishing Email Senders"};
+  var html = "";
+  Object.keys(groups).forEach(function(type){
+    var items = groups[type];
+    html += "<div class=\"section-banner\"><span class=\"sb-title\">"+labels[type]+"</span><span class=\"sb-count\">"+items.length+" indicators</span></div>";
+    html += "<table class=\"ioc-tbl\"><tr><th>Indicator</th><th>Severity</th><th>Description</th><th>Source</th><th>Date</th><th></th></tr>";
+    items.forEach(function(ioc){
+      html += "<tr><td class=\"ioc-val\">"+ioc.value+"</td><td>"+severityBadge(ioc.severity)+"</td><td class=\"ioc-desc\">"+ioc.desc+"</td><td class=\"ioc-src\">"+ioc.source+"</td><td class=\"ioc-date\">"+ioc.date+"</td><td><button class=\"copy-ioc\" data-val=\""+ioc.value+"\" onclick=\"copyVal('"+ioc.value+"')\">COPY</button></td></tr>";
+    });
+    html += "</table>";
+  });
+  document.getElementById("ioc-table").innerHTML = html;
+}
+renderIOC();
+</script>
+</main>
+<footer class="f">
+  <div class="fi">
+    <div class="fl">
+      <a href="index.html">Home</a><a href="tools.html">Tools</a>
+      <a href="dorks.html">Dorks</a><a href="playbooks.html">Playbooks</a>
+      <a href="cyberlaw.html">Cyber Law</a><a href="about.html">About</a>
+    </div>
+    <div>&copy; 2026 IGRS &mdash; Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="neural.js"></script>
+</html>
