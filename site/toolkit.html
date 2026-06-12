@@ -124,7 +124,7 @@ footer a:hover{color:var(--ac);}
     <label class="lbl" for="hi">Input Text</label>
     <textarea class="inp" id="hi" rows="4" placeholder="Enter any text to hash..."></textarea>
     <div class="btns">
-      <button class="btn btn-p" onclick="doHash()">Generate Hashes</button>
+      <button class="btn btn-p" id="hash-btn" onclick="doHash()">Generate Hashes</button>
       <button class="btn btn-s" onclick="document.getElementById('hi').value='';document.getElementById('hr').innerHTML=''">Clear</button>
     </div>
     <div id="hr"></div>
@@ -298,9 +298,18 @@ footer a:hover{color:var(--ac);}
   <div>&copy; 2026 IGRS — All tools run locally in your browser.</div>
 </footer>
 
-<script src="neural.js"></script>
+<script src="neural.js" onerror="console.warn('neural.js failed')"></script>
 <script>
 // ── TAB SWITCHER ─────────────────────────────────────────────
+// Safety: confirm DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+  // Auto-activate first tab
+  var firstTab = document.getElementById('p-hash');
+  if(firstTab) firstTab.classList.add('on');
+  var firstBtn = document.getElementById('tab-hash');
+  if(firstBtn) firstBtn.classList.add('on');
+});
+
 function sw(id) {
   document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('on'); });
   document.querySelectorAll('.ttab').forEach(function(t){ t.classList.remove('on'); });
