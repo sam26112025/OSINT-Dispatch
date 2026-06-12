@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RoguePlanet: Microsoft Defender Zero-Day Exposes Fully Patched Windows 10 and 11 — IGRS</title>
+<meta name="description" content="A new Microsoft Defender zero-day named RoguePlanet was publicly released hours after June 2026 Patch Tuesday, granting SYSTEM-level privileges on fully patched Windows 10 and 11 machines. Here is what it does and what defenders should do now.">
+<link rel="canonical" href="https://igrs.xyz/articles/rogueplanet-windows-defender-zero-day-june-2026.html">
+<meta property="og:title" content="RoguePlanet: Microsoft Defender Zero-Day Exposes Fully Patched Windows 10 and 11">
+<meta property="og:description" content="A new Microsoft Defender zero-day named RoguePlanet was publicly released hours after June 2026 Patch Tuesday, granting SYSTEM-level privileges on fully patched Windows 10 and 11 machines. Here is what it does and what defenders should do now.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/rogueplanet-windows-defender-zero-day-june-2026.html">
+<meta property="og:site_name" content="IGRS">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'RoguePlanet: Microsoft Defender Zero-Day Exposes Fully Patched Windows 10 and 11',"description":'A new Microsoft Defender zero-day named RoguePlanet was publicly released hours after June 2026 Patch Tuesday, granting SYSTEM-level privileges on fully patched Windows 10 and 11 machines. Here is what it does and what defenders should do now.',"datePublished":"2026-06-12","author":{"@type":"Person","name":"Manuj Kumar Pandey"},"publisher":{"@type":"Organization","name":"IGRS","logo":{"@type":"ImageObject","url":"https://igrs.xyz/logo.svg"}},"mainEntityOfPage":"https://igrs.xyz/articles/rogueplanet-windows-defender-zero-day-june-2026.html"}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>RoguePlanet: Microsoft Defender Zero-Day Exposes Fully Patched Windows 10 and 11</h1>
+  <div class="dossier">
+    <table>
+      <tr><td>File No.</td><td>IGRS-064/2026</td></tr>
+      <tr><td>Subject</td><td>Technical analysis of the RoguePlanet zero-day exploit and defensive guidance for Windows environments</td></tr>
+      <tr><td>Category</td><td>Threat Intelligence</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-06-12</td></tr>
+      <tr><td>Reading time</td><td>6 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">A new Microsoft Defender zero-day named RoguePlanet was publicly released hours after June 2026 Patch Tuesday, granting SYSTEM-level privileges on fully patched Windows 10 and 11 machines. Here is what it does and what defenders should do now.</p>
+  
+<h2>What happened</h2>
+<p>On June 10, 2026 — the same day Microsoft released its monthly Patch Tuesday security updates — an anonymous security researcher operating under the alias <strong>Nightmare Eclipse</strong> published a new proof-of-concept exploit named <strong>RoguePlanet</strong>. The timing was not coincidental. The exploit targets a race condition vulnerability in Microsoft Defender and, when successful, produces a command shell with <strong>SYSTEM-level privileges</strong> on Windows 10 and Windows 11 machines — including those fully updated with the June 2026 security patches.</p>
+<p>ThreatLocker independently confirmed they were able to reproduce the exploit, validating that it is not merely theoretical. The exploit was published after GitHub and GitLab removed the researcher's prior repositories, following Microsoft's public condemnation of the disclosures.</p>
+
+<h2>How the exploit works (conceptually)</h2>
+<p>RoguePlanet exploits a race condition in the way Microsoft Defender's remediation process handles files. When Defender identifies a potentially malicious file and begins its remediation routine, a brief window exists during which the exploit can redirect the cleaned file to an attacker-controlled path — specifically targeting <code>wermgr.exe</code> (Windows Error Reporting) in the System32 directory. If the race is won, the attacker's code runs under the Defender engine's elevated privileges, resulting in a SYSTEM shell.</p>
+<p>The exploit currently functions only on desktop versions of Windows (10 and 11). The researcher noted it does not reliably work on Windows Server in its current form, though they believe the underlying vulnerability exists there as well.</p>
+
+<h2>Context: the Nightmare Eclipse campaign</h2>
+<p>RoguePlanet is the seventh public zero-day proof-of-concept released by Nightmare Eclipse since early April 2026. Previous releases include BlueHammer (CVE-2026-33825), RedSun, UnDefend, YellowKey, and GreenPlasma — several of which have been observed in real-world exploitation after publication. Microsoft fixed GreenPlasma and YellowKey in the same Patch Tuesday that RoguePlanet followed. The pattern — patching previous disclosures as new ones drop — represents an unusually public and adversarial disclosure dynamic.</p>
+
+<div class="callout"><strong>Detection signal:</strong> An interactive shell with SYSTEM integrity whose parent process is MsMpEng.exe (the Defender engine) should never occur in a healthy Windows environment. If your EDR or SIEM sees this parent-child process relationship, treat it as a high-priority alert.</div>
+
+<h2>What defenders should do</h2>
+<ul>
+<li><strong>Apply June 2026 Patch Tuesday immediately</strong> — it does not fix RoguePlanet, but it does address GreenPlasma and YellowKey which have confirmed wild exploitation</li>
+<li><strong>Enable application allowlisting</strong> — ThreatLocker confirmed their allowlisting controls blocked the RoguePlanet attack by default, even on machines where the PoC could execute the race condition</li>
+<li><strong>Monitor for MsMpEng.exe spawning child processes</strong> — this is the primary detection indicator; configure your EDR to alert on this process lineage</li>
+<li><strong>Restrict local user privileges</strong> — the exploit requires local access; standard user accounts with enforced least privilege reduce the attack surface significantly</li>
+<li><strong>Control SMB share access and removable media</strong> — the exploit can be triggered via specially crafted VHD/VHDX files or malicious SMB shares</li>
+</ul>
+
+<h2>India-specific relevance</h2>
+<p>Indian enterprises and government departments running Windows 10 and 11 workstations — which includes the vast majority of corporate and government desktop environments — are affected by this vulnerability. Organisations that delay patch deployment due to change management cycles should prioritise the June 2026 cumulative update and add the MsMpEng.exe process lineage detection rule to their SOC monitoring as an interim measure.</p>
+
+<h2>Current patch status</h2>
+<p>As of June 12, 2026, there is no patch specifically addressing the RoguePlanet race condition. Microsoft is expected to address it in a future update. Monitor the Microsoft Security Response Center (MSRC) and CERT-In advisories for updates. The June 2026 Patch Tuesday cumulative update remains the most important immediate action — it addresses 197 other vulnerabilities including two previously disclosed Nightmare Eclipse zero-days that have confirmed wild exploitation.</p>
+
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
