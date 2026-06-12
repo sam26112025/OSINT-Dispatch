@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OSINT Investigation Case Studies — IGRS — IGRS Intel Grid Research Station</title>
+<meta name="description" content="OSINT Investigation Case Studies — IGRS — IGRS Intel Grid Research Station. Free cybersecurity and OSINT intelligence resource for law enforcement, corporate, and defence.">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#080f1a;--surface:#0d1829;--border:#0e4a7a;--ink:#c8dff0;--ink2:#7aa8cc;--muted:#4a7a9b;--accent:#00d4ff;--accent2:#0099cc;--amber:#ffb800;--green:#00ff88;--red:#ff4444;--mono:"IBM Plex Mono",monospace;--tech:"Share Tech Mono",monospace;--disp:"Rajdhani",sans-serif;}
+body{background:var(--bg);color:var(--ink);font-family:var(--disp);min-height:100vh;}
+#neural-bg{position:fixed!important;top:0;left:0;width:100%;height:100%;z-index:0!important;pointer-events:none!important;opacity:0.35;}
+header.h,main.m,footer.f{position:relative;z-index:10;}
+header.h{background:rgba(8,15,26,.96);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1000;backdrop-filter:blur(10px);}
+.hi{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;padding:10px 0;}
+.brand img{width:52px;height:52px;filter:drop-shadow(0 0 12px rgba(0,212,255,.8));}
+.bn{font-family:var(--tech);font-size:20px;color:var(--accent);letter-spacing:.12em;}
+nav{display:flex;gap:14px;padding:10px 0;flex-wrap:wrap;}
+nav a{color:var(--ink2);text-decoration:none;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 0;border-bottom:1px solid transparent;transition:color .2s;}
+nav a:hover,nav a.act{color:var(--accent);border-bottom-color:var(--accent);}
+nav a::before{content:"> ";color:var(--muted);}
+main.m{max-width:1100px;margin:0 auto;padding:0 24px 60px;}
+.hero{padding:36px 0 24px;border-bottom:1px solid var(--border);margin-bottom:28px;}
+.stamp{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent2);border:1px solid var(--border);padding:3px 10px;margin-bottom:14px;}
+h1{font-family:var(--tech);font-size:clamp(20px,3.5vw,34px);color:var(--accent);text-shadow:0 0 24px rgba(0,212,255,.4);margin-bottom:10px;letter-spacing:.08em;}
+.sub{color:var(--ink2);font-size:14px;max-width:720px;line-height:1.7;}
+.callout{background:rgba(0,212,255,.06);border-left:3px solid var(--accent);padding:14px 18px;margin:16px 0;font-size:13px;color:var(--ink2);line-height:1.7;border-radius:0 4px 4px 0;}
+.callout strong{color:var(--accent);}
+.warn{background:rgba(255,184,0,.06);border-left:3px solid var(--amber);padding:14px 18px;margin:16px 0;font-size:13px;color:var(--ink2);line-height:1.7;border-radius:0 4px 4px 0;}
+footer.f{background:rgba(8,15,26,.9);border-top:1px solid var(--border);position:relative;z-index:10;}
+.fi{max-width:1100px;margin:0 auto;padding:20px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--mono);font-size:11px;color:var(--muted);}
+.fi a{color:var(--muted);text-decoration:none;}.fi a:hover{color:var(--accent);}
+.fl{display:flex;gap:16px;flex-wrap:wrap;}
+.badge{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:3px;letter-spacing:.06em;text-transform:uppercase;}
+.b-free{background:rgba(0,200,100,.1);color:#00c864;border:1px solid rgba(0,200,100,.2);}
+.b-paid{background:rgba(255,80,80,.1);color:#ff6060;border:1px solid rgba(255,80,80,.2);}
+.b-high{background:rgba(255,68,68,.12);color:var(--red);border:1px solid rgba(255,68,68,.25);}
+.b-med{background:rgba(255,184,0,.1);color:var(--amber);border:1px solid rgba(255,184,0,.2);}
+.b-low{background:rgba(0,255,136,.08);color:var(--green);border:1px solid rgba(0,255,136,.2);}
+.b-india{background:rgba(255,145,0,.1);color:#ff9100;border:1px solid rgba(255,145,0,.2);}
+.sec-hdr{font-family:var(--tech);font-size:18px;color:var(--accent);margin:28px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+</style>
+</head>
+<body>
+<header class="h">
+  <div class="hi">
+    <a class="brand" href="index.html"><img src="logo.svg" alt="IGRS"><span class="bn">IGRS</span></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="tools.html">Tools</a>
+      <a href="dorks.html">Dorks</a>
+      <a href="playbooks.html">Playbooks</a>
+      <a href="cyberlaw.html">Cyber Law</a>
+      <a href="ioc.html">IOC Feed</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="india-cyber-stats.html">Statistics</a>
+      <a href="case-studies.html" class="act">Case Studies</a>
+      <a href="cve-tracker.html">CVE Tracker</a>
+      <a href="compare.html">Compare Tools</a>
+      <a href="threat-digest.html">Threat Digest</a>
+    </nav>
+  </div>
+</header>
+<main class="m">
+<style>
+.case-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;margin-bottom:28px;overflow:hidden;position:relative;z-index:10;transition:border-color .2s;}
+.case-card:hover{border-color:var(--accent2);}
+.case-header{padding:22px 24px 18px;border-bottom:1px solid var(--border);}
+.case-num{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:6px;}
+.case-title{font-family:var(--tech);font-size:20px;color:var(--accent);margin-bottom:10px;}
+.case-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.case-body{padding:22px 24px;}
+.case-section{margin-bottom:20px;}
+.case-section-title{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(14,74,122,.3);}
+.case-text{font-size:13px;color:var(--ink2);line-height:1.8;}
+.timeline{margin-top:8px;}
+.tl-item{display:flex;gap:16px;margin-bottom:12px;align-items:flex-start;}
+.tl-time{font-family:var(--mono);font-size:11px;color:var(--accent);min-width:60px;flex-shrink:0;padding-top:2px;}
+.tl-content{font-size:13px;color:var(--ink2);line-height:1.6;}
+.tools-used{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.tool-tag{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:3px;background:rgba(0,212,255,.08);color:var(--accent2);border:1px solid rgba(0,212,255,.18);}
+.outcome-box{background:rgba(0,255,136,.05);border:1px solid rgba(0,255,136,.15);border-radius:6px;padding:16px 18px;margin-top:14px;}
+.outcome-title{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;}
+.outcome-text{font-size:13px;color:var(--ink2);line-height:1.7;}
+.lesson-box{background:rgba(255,184,0,.05);border:1px solid rgba(255,184,0,.15);border-radius:6px;padding:16px 18px;margin-top:12px;}
+.lesson-title{font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;}
+</style>
+  <div class="hero">
+    <div class="stamp">Anonymized &middot; Educational &middot; India Context &middot; IGRS 2026</div>
+    <h1>&gt; OSINT INVESTIGATION CASE STUDIES_</h1>
+    <p class="sub">Anonymized real-world OSINT investigation walkthroughs from the field. All identifying information has been modified to protect ongoing investigations and victim privacy. Published for educational and professional development purposes.</p>
+  </div>
+  <div class="warn" style="margin-bottom:28px;">&#9888; All cases are anonymized composites. Names, locations, amounts, and identifiers have been changed. These represent methodology demonstrations, not specific ongoing investigations.</div>
+
+  <!-- CASE 1 -->
+  <div class="case-card">
+    <div class="case-header">
+      <div class="case-num">Case Study IGRS-CS-001 &middot; Financial Crime &middot; 2025</div>
+      <div class="case-title">Tracing a Rs 47 Lakh UPI Fraud Ring Using Only Open Sources</div>
+      <div class="case-meta">
+        <span class="badge b-india">India</span>
+        <span class="badge b-high">Financial Fraud</span>
+        <span style="font-family:var(--mono);font-size:11px;color:var(--muted);">Tools: NPCI Portal, MCA21, Truecaller, Maltego, OSINT</span>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="case-section">
+        <div class="case-section-title">Background</div>
+        <div class="case-text">A manufacturing company in Pune reported a Rs 47 lakh fraud. A fraudster posing as the company's regular vendor called the accounts manager, claiming a change in bank account due to "GST audit." The manager initiated four NEFT transfers over two days before the real vendor called asking about delayed payment. By the time the complaint was registered at the local cyber cell, 36 hours had elapsed.</div>
+      </div>
+      <div class="case-section">
+        <div class="case-section-title">Investigation Timeline</div>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-time">Hour 0</div><div class="tl-content">Complaint received. UTR numbers for all four NEFT transfers obtained from company's bank statement. 1930 call made — accounts flagged but funds had already moved.</div></div>
+          <div class="tl-item"><div class="tl-time">Hour 2</div><div class="tl-content">Section 94 BNSS notice to recipient bank. Account found to be opened 3 days before the first transfer — classic mule account indicator. KYC linked to a young man in Bihar with no employment.</div></div>
+          <div class="tl-item"><div class="tl-time">Hour 8</div><div class="tl-content">NPCI transaction graph requested. Funds had moved through 3 hops in 6 hours: Bihar mule → Gujarat account → Two crypto exchange deposits. Rs 12 lakh still in the Gujarat account — frozen.</div></div>
+          <div class="tl-item"><div class="tl-time">Day 2</div><div class="tl-content">Crypto exchange (Indian) responded to Section 94 BNSS notice: KYC linked to mobile number. Truecaller identified the name. MCA21 search revealed the name was director of a shell company registered 8 months prior with no filings.</div></div>
+          <div class="tl-item"><div class="tl-time">Day 3</div><div class="tl-content">Phone number OSINT: same number used to register on a freelance platform under a different name. Profile picture reverse-searched on Yandex — matched a stolen photo from a social media profile in another state.</div></div>
+          <div class="tl-item"><div class="tl-time">Day 5</div><div class="tl-content">OSINT correlated with call records (Section 92 BNSS) from the phone number used to contact the accounts manager. Tower location data placed suspect in Rajasthan at time of calls — different from claimed address in Bihar.</div></div>
+          <div class="tl-item"><div class="tl-time">Day 9</div><div class="tl-content">Physical arrest made in Rajasthan. Device forensics revealed 23 other companies contacted using the same script. Total fraud identified: Rs 3.2 crore across 11 victims.</div></div>
+        </div>
+      </div>
+      <div class="case-section">
+        <div class="case-section-title">OSINT Tools and Techniques Used</div>
+        <div class="tools-used">
+          <span class="tool-tag">UTR Tracing</span><span class="tool-tag">NPCI Legal Process</span><span class="tool-tag">MCA21 Director Search</span><span class="tool-tag">Truecaller</span><span class="tool-tag">Yandex Reverse Image</span><span class="tool-tag">Section 94 BNSS Notices</span><span class="tool-tag">Crypto Exchange KYC</span><span class="tool-tag">CDR Analysis</span>
+        </div>
+      </div>
+      <div class="outcome-box">
+        <div class="outcome-title">&#10003; Outcome</div>
+        <div class="outcome-text">Rs 12 lakh recovered and returned to victim. Suspect arrested and charged under Sections 318, 319 BNS 2023 and Section 66D IT Act. Two mule account operators arrested separately. Case led to identification of a fraud network operating across 4 states.</div>
+      </div>
+      <div class="lesson-box">
+        <div class="lesson-title">&#128218; Key Learning</div>
+        <div class="outcome-text">The 36-hour delay in reporting significantly reduced recovery. The 1930 freeze was still partially effective. OSINT cross-referencing — phone number across multiple platforms, reverse image search, MCA21 shell company pattern — built the attribution chain without requiring any privileged access. Every data point came from public sources.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASE 2 -->
+  <div class="case-card">
+    <div class="case-header">
+      <div class="case-num">Case Study IGRS-CS-002 &middot; Corporate Security &middot; 2025</div>
+      <div class="case-title">Mapping a Fake Job Scam Network Targeting Indian IT Graduates</div>
+      <div class="case-meta">
+        <span class="badge b-india">India</span>
+        <span class="badge b-med">Job Fraud</span>
+        <span style="font-family:var(--mono);font-size:11px;color:var(--muted);">Tools: LinkedIn OSINT, Sherlock, WHOIS, Email Headers</span>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="case-section">
+        <div class="case-section-title">Background</div>
+        <div class="case-text">A large Indian IT company's HR team reported that candidates were receiving fake offer letters on their letterhead. Three candidates had paid "background verification fees" ranging from Rs 8,000 to Rs 25,000 before discovering the fraud. The HR team wanted to understand the full scale of the operation.</div>
+      </div>
+      <div class="case-section">
+        <div class="case-section-title">Investigation Methodology</div>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-time">Stage 1</div><div class="tl-content">Email header analysis of fake offer letters. "From" address spoofed to look like company domain, but SPF/DKIM failed. Originating IP traced to a bulletproof hosting provider in Eastern Europe through WHOIS and AbuseIPDB.</div></div>
+          <div class="tl-item"><div class="tl-time">Stage 2</div><div class="tl-content">The phone number on the fake offer letter searched via Truecaller: listed as "HR Recruitment." Same number found in 47 job posting sites offering roles at 12 different IT companies. All postings used similar language patterns.</div></div>
+          <div class="tl-item"><div class="tl-time">Stage 3</div><div class="tl-content">LinkedIn search for the fake "HR manager" name used in the letters. Profile found — created 6 months ago, 12 connections, profile photo reverse-searched: stolen from a genuine LinkedIn user in a different country.</div></div>
+          <div class="tl-item"><div class="tl-time">Stage 4</div><div class="tl-content">The UPI VPA used for "background verification fees" looked up via GSTIN portal: linked to a proprietorship firm registered in Mumbai with a mismatched address. MCA21 DIN of the proprietor showed two other struck-off companies with similar names.</div></div>
+          <div class="tl-item"><div class="tl-time">Stage 5</div><div class="tl-content">Sherlock username scan of email prefix used in fake HR contact revealed same username active on dark web forum, Telegram group "Job Seekers Network India" with 14,000 members, and a paste site with "templates" for fake offer letters of 8 companies.</div></div>
+        </div>
+      </div>
+      <div class="tools-used">
+        <span class="tool-tag">Email Header Analysis</span><span class="tool-tag">AbuseIPDB</span><span class="tool-tag">Truecaller</span><span class="tool-tag">LinkedIn OSINT</span><span class="tool-tag">Yandex Reverse Image</span><span class="tool-tag">GSTIN Lookup</span><span class="tool-tag">MCA21</span><span class="tool-tag">Sherlock</span><span class="tool-tag">Telegram OSINT</span>
+      </div>
+      <div class="outcome-box">
+        <div class="outcome-title">&#10003; Outcome</div>
+        <div class="outcome-text">Identified a network of 3 operators using fake HR personas for 12 different IT companies. Intelligence shared with company legal team and I4C. Telegram group reported and removed. Fake LinkedIn profiles reported and suspended. FIR filed — case transferred to cyber cell with complete OSINT dossier.</div>
+      </div>
+      <div class="lesson-box">
+        <div class="lesson-title">&#128218; Key Learning</div>
+        <div class="outcome-text">Fraud operators reuse infrastructure across multiple fake identities. The same phone number, email prefix, and payment UPI appearing across 12 companies indicated a single organized operation rather than independent actors. Pattern recognition across open sources — not any single tool — built the complete picture.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASE 3 -->
+  <div class="case-card">
+    <div class="case-header">
+      <div class="case-num">Case Study IGRS-CS-003 &middot; Corporate Due Diligence &middot; 2024</div>
+      <div class="case-title">Vendor Due Diligence OSINT That Prevented a Rs 2 Crore Procurement Fraud</div>
+      <div class="case-meta">
+        <span class="badge b-india">India</span>
+        <span class="badge b-low">Corporate Intel</span>
+        <span style="font-family:var(--mono);font-size:11px;color:var(--muted);">Tools: MCA21, GST Portal, eCourts, Zauba, LinkedIn OSINT</span>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="case-section">
+        <div class="case-section-title">Background</div>
+        <div class="case-text">A mid-sized pharmaceutical company's procurement team was about to release an advance payment of Rs 2 crore to a new chemical supplier before the compliance team requested a quick open-source check. The vendor had presented impressive documentation — company registration, GST certificate, ISO certification — all appearing genuine.</div>
+      </div>
+      <div class="case-section">
+        <div class="case-section-title">OSINT Findings (48-hour investigation)</div>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-time">Finding 1</div><div class="tl-content">MCA21 check: Company incorporated only 4 months prior. Authorized capital: Rs 1 lakh. Paid-up capital: Rs 1 lakh. No charge register entries (meaning no bank loans, which is unusual for a supplier claiming Rs 2 crore business). Filed no annual returns yet.</div></div>
+          <div class="tl-item"><div class="tl-time">Finding 2</div><div class="tl-content">GST portal: GSTIN active, but business address listed as a residential apartment. Google Maps showed the address as a small flat in a residential colony — not consistent with a chemical trading company needing warehouse facilities.</div></div>
+          <div class="tl-item"><div class="tl-time">Finding 3</div><div class="tl-content">Director DIN search: The sole director had been a director in two other companies — both struck off for non-compliance within 18 months of incorporation. The pattern: incorporate, collect advances, fail to deliver, dissolve — repeated twice previously.</div></div>
+          <div class="tl-item"><div class="tl-time">Finding 4</div><div class="tl-content">LinkedIn: No employees at the company found on LinkedIn. The "CEO" listed in company documents had a LinkedIn profile created the same month as company incorporation, with zero mutual connections and a profile photo that Yandex matched to a stock photo website.</div></div>
+          <div class="tl-item"><div class="tl-time">Finding 5</div><div class="tl-content">Zauba trade data: The company had no import or export records, despite claiming to supply imported chemicals. A genuine chemical trading company would appear in customs data within months of operation.</div></div>
+          <div class="tl-item"><div class="tl-time">Finding 6</div><div class="tl-content">ISO Certificate verification: The ISO certification number was checked on the issuing body's verification portal — the certificate number was valid but issued to a different company in a different city. The certificate had been modified.</div></div>
+        </div>
+      </div>
+      <div class="tools-used">
+        <span class="tool-tag">MCA21</span><span class="tool-tag">GST Portal</span><span class="tool-tag">Google Maps</span><span class="tool-tag">LinkedIn OSINT</span><span class="tool-tag">Yandex Reverse Image</span><span class="tool-tag">Zauba Trade Data</span><span class="tool-tag">ISO Verify Portal</span><span class="tool-tag">DIN History</span>
+      </div>
+      <div class="outcome-box">
+        <div class="outcome-title">&#10003; Outcome</div>
+        <div class="outcome-text">Payment blocked before release. Company filed police complaint — investigation revealed the vendor had executed similar advance fraud against 4 other companies in the pharmaceutical sector totaling Rs 8.6 crore. All OSINT findings compiled into a formal report submitted to economic offences wing.</div>
+      </div>
+      <div class="lesson-box">
+        <div class="lesson-title">&#128218; Key Learning</div>
+        <div class="outcome-text">No single red flag was conclusive — it was the combination that built the case. Shell company pattern in DIN history, residential address for industrial activity, stock photo director, zero trade data, and forged ISO certificate together created a compelling fraud picture. Total OSINT cost: zero. Time investment: 8 hours.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASE 4 -->
+  <div class="case-card">
+    <div class="case-header">
+      <div class="case-num">Case Study IGRS-CS-004 &middot; Threat Intelligence &middot; 2025</div>
+      <div class="case-title">Attributing a Phishing Campaign to a Known Threat Actor Using Infrastructure OSINT</div>
+      <div class="case-meta">
+        <span class="badge b-india">India-Targeted</span>
+        <span class="badge b-high">APT / Phishing</span>
+        <span style="font-family:var(--mono);font-size:11px;color:var(--muted);">Tools: URLScan, crt.sh, Shodan, VirusTotal, MITRE ATT&CK</span>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="case-section">
+        <div class="case-section-title">Background</div>
+        <div class="case-text">A defence contractor's SOC team flagged an unusual email targeting senior engineers — it contained a link to what appeared to be an internal document portal. The email had passed SPF but failed DMARC. The SOC escalated to the threat intelligence team.</div>
+      </div>
+      <div class="case-section">
+        <div class="case-section-title">Infrastructure Analysis</div>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-time">Step 1</div><div class="tl-content">URLScan.io execution of the phishing URL: page loaded a pixel-perfect clone of the target company's internal portal. Hosting IP: 94.102.49.190. SSL certificate issued to a domain registered 72 hours before the email.</div></div>
+          <div class="tl-item"><div class="tl-time">Step 2</div><div class="tl-content">crt.sh search for the phishing domain: 3 other certificates issued to the same registrant email within 30 days, each targeting a different Indian defence/aerospace organization.</div></div>
+          <div class="tl-item"><div class="tl-time">Step 3</div><div class="tl-content">VirusTotal pivot on the hosting IP: 14 other domains pointing to the same IP over 6 months, all following the pattern: [company-name]-[portal/login/secure].com. 7 had been flagged as phishing against Indian organizations.</div></div>
+          <div class="tl-item"><div class="tl-time">Step 4</div><div class="tl-content">Shodan query on the IP revealed a Go-based HTTP server on port 443 with a distinctive TLS fingerprint (JA3 hash). Searching that JA3 hash on Shodan revealed 23 other servers with the same fingerprint — all hosting similar phishing kits targeting South Asian defence organizations.</div></div>
+          <div class="tl-item"><div class="tl-time">Step 5</div><div class="tl-content">MITRE ATT&CK correlation: the spearphishing technique (T1566.002), credential harvesting via cloned portal (T1056.003), and infrastructure pattern matched documented TTPs of a threat actor group previously attributed to a nation-state adversary in CERT-In and government advisories.</div></div>
+        </div>
+      </div>
+      <div class="tools-used">
+        <span class="tool-tag">URLScan.io</span><span class="tool-tag">crt.sh</span><span class="tool-tag">VirusTotal</span><span class="tool-tag">Shodan JA3</span><span class="tool-tag">MITRE ATT&CK</span><span class="tool-tag">WHOIS Pivoting</span><span class="tool-tag">TLS Fingerprinting</span>
+      </div>
+      <div class="outcome-box">
+        <div class="outcome-title">&#10003; Outcome</div>
+        <div class="outcome-text">23 phishing domains across the actor's infrastructure identified and blocked. IOCs shared with CERT-In and peer organizations via TLP:GREEN. Four other defence organizations protected by proactive block. Attribution intelligence added to threat actor profile used for future hunting.</div>
+      </div>
+      <div class="lesson-box">
+        <div class="lesson-title">&#128218; Key Learning</div>
+        <div class="outcome-text">Infrastructure pivoting — from one phishing domain to IP, from IP to other domains, from TLS fingerprint to the actor's entire server fleet — is the most powerful technique in threat intelligence OSINT. Attackers reuse infrastructure because it is economical. This reuse creates the fingerprints that expose them.</div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer class="f">
+  <div class="fi">
+    <div class="fl">
+      <a href="index.html">Home</a><a href="tools.html">Tools</a>
+      <a href="dorks.html">Dorks</a><a href="playbooks.html">Playbooks</a>
+      <a href="cyberlaw.html">Cyber Law</a><a href="about.html">About</a>
+    </div>
+    <div>&copy; 2026 IGRS &mdash; Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="neural.js"></script>
+</html>
