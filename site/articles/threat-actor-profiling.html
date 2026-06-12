@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Threat Actor Profiling: Building Intelligence on Adversaries — IGRS</title>
+<meta name="description" content="Knowing who is targeting your organization — tools, techniques, motivation, history — fundamentally changes how you defend. How threat actor profiles are built and used.">
+<link rel="canonical" href="https://igrs.xyz/articles/threat-actor-profiling.html">
+<meta property="og:title" content="Threat Actor Profiling: Building Intelligence on Adversaries">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://igrs.xyz/articles/threat-actor-profiling.html">
+<meta property="og:site_name" content="IGRS">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":'Threat Actor Profiling: Building Intelligence on Adversaries',"description":'Knowing who is targeting your organization — tools, techniques, motivation, history — fundamentally changes how you defend. How threat actor profiles are built and used.',"datePublished":"2026-04-09","author":{"@type":"Person","name":"Manuj Kumar Pandey"},"publisher":{"@type":"Organization","name":"IGRS"}}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="mast">
+      <a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;filter:drop-shadow(0 0 8px rgba(0,212,255,0.6));">IGRS<span></span></a>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
+    </div>
+    <nav class="main" aria-label="Main">
+      <a href="../index.html">&gt; Home</a>
+      <a href="../index.html#articles">&gt; Articles</a>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<article>
+  <h1>Threat Actor Profiling: Building Intelligence on Adversaries</h1>
+  <div class="dossier">
+    <table>
+      <tr><td>File No.</td><td>IGRS-041/2026</td></tr>
+      <tr><td>Subject</td><td>Methodology for threat actor research, attribution assessment, and profile construction</td></tr>
+      <tr><td>Category</td><td>Threat Intelligence</td></tr>
+      <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
+      <tr><td>Published</td><td>2026-04-09</td></tr>
+      <tr><td>Reading time</td><td>6 minutes</td></tr>
+    </table>
+  </div>
+  <p class="lead">Knowing who is targeting your organization — tools, techniques, motivation, history — fundamentally changes how you defend. How threat actor profiles are built and used.</p>
+  <h2>Why attribution matters for defence</h2>
+<p>Defenders who know which threat actor is targeting them make significantly better decisions. Different actors use different TTPs — knowing the actor lets you prioritise defences against their specific techniques rather than defending equally against everything. It shapes intelligence requirements and calibrates the response — a nation-state APT requires different escalation than a ransomware affiliate.</p>
+<h2>Sources for threat actor research</h2>
+<p>Primary sources: vendor research reports (Mandiant, CrowdStrike, Recorded Future, Group-IB, Innefu Labs); government advisories (CERT-In, NCSC UK, CISA); academic security research; and MITRE ATT&amp;CK Groups database (free, comprehensive, with TTP mappings). For actors targeting Indian organizations, CERT-In advisories and Indian security researchers are most operationally relevant.</p>
+<h2>Building a profile</h2>
+<p>A useful threat actor profile contains: common name and aliases across vendor naming conventions; attributed nation-state sponsor or financial motivation; primary target sectors and geographies; initial access methods; post-exploitation tooling and malware families; infrastructure patterns; historical campaign timeline; and confidence assessment of each element (high confidence from multiple independent sources vs single-source inference).</p>
+<h2>MITRE ATT&amp;CK mapping</h2>
+<p>Mapping known TTPs to MITRE ATT&amp;CK immediately translates threat intelligence into detections. If an actor uses T1053 (Scheduled Tasks) for persistence, monitor Windows Event ID 4698 in your environment. ATT&amp;CK Navigator visualizes actor TTPs against your detection coverage, identifying gaps needing priority attention.</p>
+<div class="callout">Attribution confidence levels matter. Saying "this activity resembles APT28 TTPs" differs from "this is APT28 with high confidence confirmed by government attribution." Apply the same epistemic rigour to threat actor reporting that you would to any intelligence claim.</div>
+  <div class="author-box">
+    <div class="label">Analyst</div>
+    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
+  </div>
+</article>
+</main>
+<footer class="site">
+  <div class="wrap foot">
+    <div>
+      <a href="../about.html">&gt; About</a>
+      <a href="../contact.html">&gt; Contact</a>
+      <a href="../privacy-policy.html">&gt; Privacy</a>
+      <a href="../terms.html">&gt; Terms</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="../neural.js"></script>
+</body>
+</html>
