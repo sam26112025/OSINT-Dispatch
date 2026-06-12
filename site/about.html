@@ -2,72 +2,172 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — IGRS</title>
-<meta name="description" content="About IGRS and its author, a certified digital forensics and OSINT professional.">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>About IGRS — Intel Grid Research Station</title>
+<meta name="description" content="IGRS is a free cybersecurity and OSINT intelligence platform built by Manuj Kumar Pandey — OSINT Investigator, Digital Forensics Specialist, and Threat Intelligence Analyst based in New Delhi, India.">
 <link rel="canonical" href="https://igrs.xyz/about.html">
-<meta property="og:title" content="About — IGRS">
-<meta property="og:description" content="About IGRS and its author, a certified digital forensics and OSINT professional.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://igrs.xyz/about.html">
-<meta property="og:site_name" content="IGRS">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="author" content="Manuj Kumar Pandey">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"AboutPage","name":"About IGRS","url":"https://igrs.xyz/about.html",
+"author":{"@type":"Person","name":"Manuj Kumar Pandey","jobTitle":"OSINT Investigator & Digital Forensics Specialist","worksFor":{"@type":"Organization","name":"Innefu Labs"},"address":{"@type":"PostalAddress","addressLocality":"New Delhi","addressCountry":"IN"}}}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-
+<style>
+.about-wrap{max-width:860px;margin:0 auto;padding:40px 24px 80px;}
+.about-hero{border-bottom:1px solid var(--border2);padding-bottom:32px;margin-bottom:36px;}
+.about-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent2);margin-bottom:14px;}
+.about-title{font-family:var(--tech);font-size:clamp(24px,4vw,40px);color:var(--accent);margin-bottom:12px;letter-spacing:.06em;}
+.about-sub{font-size:15px;color:var(--ink2);line-height:1.8;max-width:680px;}
+.profile-card{display:flex;gap:28px;align-items:flex-start;background:var(--surface);border:1px solid var(--border2);border-radius:8px;padding:24px;margin:32px 0;flex-wrap:wrap;}
+.profile-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#0e3a5c,#0e4a7a);border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:var(--tech);font-size:28px;color:var(--accent);flex-shrink:0;letter-spacing:.05em;}
+.profile-info{flex:1;min-width:200px;}
+.profile-name{font-family:var(--tech);font-size:20px;color:var(--ink);margin-bottom:4px;}
+.profile-role{font-family:var(--mono);font-size:11px;color:var(--accent2);letter-spacing:.08em;margin-bottom:8px;}
+.profile-org{font-size:13px;color:var(--ink2);}
+.profile-links{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;}
+.profile-link{font-family:var(--mono);font-size:10px;padding:5px 12px;border:1px solid var(--border2);border-radius:4px;color:var(--accent2);text-decoration:none;transition:all .2s;letter-spacing:.06em;}
+.profile-link:hover{border-color:var(--accent);color:var(--accent);}
+.about-section{margin-bottom:36px;}
+.about-section h2{font-family:var(--tech);font-size:16px;color:var(--accent);letter-spacing:.1em;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(14,74,122,.3);}
+.about-section p{font-size:14px;color:var(--ink2);line-height:1.85;margin-bottom:14px;}
+.expertise-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:12px;}
+.exp-item{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:12px 14px;font-size:13px;color:var(--ink2);display:flex;gap:10px;align-items:flex-start;}
+.exp-icon{font-size:16px;flex-shrink:0;}
+.exp-label{font-family:var(--tech);font-size:12px;color:var(--accent);display:block;margin-bottom:2px;}
+.tools-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.tool-tag{font-family:var(--mono);font-size:10px;padding:4px 10px;background:rgba(0,212,255,.06);border:1px solid var(--border2);border-radius:4px;color:var(--ink2);}
+.mission-block{background:rgba(0,212,255,.04);border-left:3px solid var(--accent2);padding:16px 20px;border-radius:0 6px 6px 0;margin:20px 0;}
+.mission-block p{color:var(--ink);font-size:14px;line-height:1.8;margin:0;}
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0;}
+.stat-box{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:14px;text-align:center;}
+.stat-num{font-family:var(--tech);font-size:24px;color:var(--accent);font-weight:700;}
+.stat-lbl{font-family:var(--mono);font-size:9px;color:var(--mt);text-transform:uppercase;letter-spacing:.1em;margin-top:4px;}
+@media(max-width:500px){.stat-row{grid-template-columns:repeat(2,1fr);}}
+</style>
 </head>
 <body>
 <header class="site">
   <div class="wrap">
     <div class="mast">
       <a class="brand" href="index.html"><img src="logo.svg" alt="IGRS">IGRS<span></span></a>
-      <div class="mast-meta">EST. 2026 &middot; IGRS.XYZ</div>
+      <div class="mast-meta">Intel Grid Research Station &middot; EST. 2026</div>
     </div>
-    <nav class="main" aria-label="Main">
+    <nav class="main">
       <a href="index.html">Home</a>
-      <a href="index.html#articles">Articles</a>
-      <a href="about.html" aria-current="page">About</a>
-      <a href="contact.html">Contact</a>
+      <a href="articles.html">Articles</a>
+      <a href="tools.html">Tools</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="playbooks.html">Playbooks</a>
+      <a href="cyberlaw.html">Cyber Law</a>
+      <a href="about.html" aria-current="page" style="color:var(--accent)">About</a>
     </nav>
   </div>
 </header>
 
-<main class="wrap page">
-<h1>About IGRS</h1>
-<p>IGRS is an independent publication focused on <strong>open-source intelligence (OSINT), digital forensics, online privacy and cybersecurity awareness</strong>. The goal is simple: take subjects that are usually wrapped in jargon or sensationalism and explain them accurately, from the perspective of someone who does this work professionally.</p>
+<main>
+<div class="about-wrap">
+  <div class="about-hero">
+    <div class="about-eyebrow">Intel Grid Research Station &mdash; About</div>
+    <h1 class="about-title">&gt; ABOUT IGRS_</h1>
+    <p class="about-sub">A free cybersecurity and OSINT intelligence platform built for law enforcement, corporate security, and defence professionals operating in the Indian context. No paywalls, no login, no compromise.</p>
+  </div>
 
-<h2>What we publish</h2>
-<ul>
-<li><strong>OSINT methodology</strong> — how open-source research actually works, its legal boundaries and its ethical limits.</li>
-<li><strong>Digital safety guides</strong> — practical, step-by-step instructions for protecting personal data, social media accounts and devices.</li>
-<li><strong>Digital forensics and evidence</strong> — how digital evidence is collected, preserved and treated by courts, explained for students and general readers.</li>
-<li><strong>Career guidance</strong> — honest information about certifications, roles and skill paths in cybersecurity and forensics in India.</li>
-</ul>
+  <!-- Profile -->
+  <div class="profile-card">
+    <div class="profile-avatar">MK</div>
+    <div class="profile-info">
+      <div class="profile-name">Manuj Kumar Pandey</div>
+      <div class="profile-role">OSINT Investigator &middot; Digital Forensics Specialist &middot; Threat Intelligence Analyst</div>
+      <div class="profile-org">&#127968; Innefu Labs &mdash; New Delhi, India</div>
+      <div class="profile-links">
+        <a class="profile-link" href="https://www.linkedin.com/in/manujkumarpandey" target="_blank" rel="noopener">LinkedIn &#8599;</a>
+        <a class="profile-link" href="mailto:contact@igrs.xyz">contact@igrs.xyz</a>
+        <a class="profile-link" href="https://innefu.com" target="_blank" rel="noopener">Innefu Labs &#8599;</a>
+      </div>
+    </div>
+  </div>
 
-<h2>What we do not publish</h2>
-<p>This site does not publish hacking tutorials, exploitation techniques, instructions for accessing private data, or any content intended to facilitate unauthorised access or surveillance. Every article is written to be <strong>defensive, educational and lawful</strong>. Where investigative methods are discussed, they are described at the level of public understanding, not operational tradecraft.</p>
+  <!-- Stats -->
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-num">305+</div><div class="stat-lbl">Tools Indexed</div></div>
+    <div class="stat-box"><div class="stat-num">67+</div><div class="stat-lbl">Articles</div></div>
+    <div class="stat-box"><div class="stat-num">200+</div><div class="stat-lbl">Dorks</div></div>
+    <div class="stat-box"><div class="stat-num">8</div><div class="stat-lbl">SOPs</div></div>
+  </div>
 
-<h2>About the author</h2>
-<p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India. Everything published here is educational and based on hands-on investigative practice.</p>
-<p>Professional certifications held by the author include <strong>Certified Ethical Hacker (CEH)</strong>, <strong>Computer Hacking Forensic Investigator (CHFI)</strong> and <strong>EC-Council Certified Security Analyst (ECSA)</strong>. He has produced court-admissible forensic and intelligence reports and has trained law-enforcement personnel on digital investigation workflows.</p>
+  <!-- Mission -->
+  <div class="about-section">
+    <h2>MISSION</h2>
+    <div class="mission-block">
+      <p>"Every investigator deserves access to the same intelligence resources — regardless of budget, rank, or organisation size. IGRS exists to democratise cybersecurity intelligence for India's frontline defenders."</p>
+    </div>
+    <p>India's cybercrime landscape is evolving faster than most organisations can track. UPI fraud, digital arrest scams, SIM swap attacks, APT campaigns targeting critical infrastructure — the threats are real, sophisticated, and growing. Yet the tools and knowledge to fight them remain scattered, expensive, or simply inaccessible to most investigators.</p>
+    <p>IGRS was built to change that. One platform. Everything free. Built for the field, not the conference room.</p>
+  </div>
 
-<h2>Editorial standards</h2>
-<p>All articles are original, written from first-hand professional experience, and reviewed for factual accuracy before publication. When laws or statistics are cited, they are checked against primary sources such as government portals and official statutes. If you spot an error, please use the <a href="contact.html">contact page</a> — corrections are made promptly and transparently.</p>
+  <!-- Expertise -->
+  <div class="about-section">
+    <h2>CORE EXPERTISE</h2>
+    <div class="expertise-grid">
+      <div class="exp-item"><span class="exp-icon">&#128269;</span><div><span class="exp-label">OSINT & Intelligence</span>Social graph mapping, identity intelligence, dark web monitoring, financial investigation</div></div>
+      <div class="exp-item"><span class="exp-icon">&#128241;</span><div><span class="exp-label">Digital Forensics</span>Mobile forensics (Cellebrite, MSAB XRY), disk imaging, cloud artifact analysis</div></div>
+      <div class="exp-item"><span class="exp-icon">&#128683;</span><div><span class="exp-label">Threat Intelligence</span>IOC analysis, APT tracking, malware attribution, threat actor profiling</div></div>
+      <div class="exp-item"><span class="exp-icon">&#127760;</span><div><span class="exp-label">Network Security</span>Packet analysis (Wireshark), IDS/IPS, incident response, network forensics</div></div>
+      <div class="exp-item"><span class="exp-icon">&#128178;</span><div><span class="exp-label">Financial Crime</span>UPI fraud, hawala tracing, crypto transaction analysis, token-based systems</div></div>
+      <div class="exp-item"><span class="exp-icon">&#9878;</span><div><span class="exp-label">Cyber Law India</span>IT Act, BNS, BNSS, BSA 2023, DPDP 2026 — evidence admissibility, FIR drafting</div></div>
+    </div>
+  </div>
+
+  <!-- Tools -->
+  <div class="about-section">
+    <h2>TOOL ECOSYSTEM</h2>
+    <p>Actively used across investigations and red team engagements:</p>
+    <div class="tools-list">
+      <span class="tool-tag">Maltego</span><span class="tool-tag">Spiderfoot</span><span class="tool-tag">Shodan</span>
+      <span class="tool-tag">Recon-ng</span><span class="tool-tag">theHarvester</span><span class="tool-tag">Cellebrite UFED</span>
+      <span class="tool-tag">MSAB XRY</span><span class="tool-tag">Oxygen Forensics</span><span class="tool-tag">Autopsy</span>
+      <span class="tool-tag">Wireshark</span><span class="tool-tag">Burp Suite</span><span class="tool-tag">Social Links</span>
+      <span class="tool-tag">OSINT Framework</span><span class="tool-tag">Belkasoft</span><span class="tool-tag">FTK Imager</span>
+      <span class="tool-tag">Volatility</span><span class="tool-tag">Yara</span><span class="tool-tag">VirusTotal</span>
+    </div>
+  </div>
+
+  <!-- Who IGRS serves -->
+  <div class="about-section">
+    <h2>WHO THIS IS FOR</h2>
+    <p>IGRS is built for practitioners — not academics. If you investigate, respond, or defend for a living, this platform was made with you in mind:</p>
+    <div class="expertise-grid">
+      <div class="exp-item"><span class="exp-icon">&#128110;</span><div><span class="exp-label">Law Enforcement</span>Cyber cells, state police units, CBI, ED, NIA — field investigators</div></div>
+      <div class="exp-item"><span class="exp-icon">&#127970;</span><div><span class="exp-label">Corporate Security</span>SOC analysts, DFIR teams, red teamers, vendor evaluation teams</div></div>
+      <div class="exp-item"><span class="exp-icon">&#127981;</span><div><span class="exp-label">Intelligence Units</span>Agency analysts, threat intelligence teams, CERT responders</div></div>
+      <div class="exp-item"><span class="exp-icon">&#127979;</span><div><span class="exp-label">Students & Researchers</span>Cybersecurity students, ethical hackers, certification aspirants</div></div>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="about-section">
+    <h2>CONTACT & CONTRIBUTIONS</h2>
+    <p>Found an error? Know a tool that should be listed? Want to contribute an article or playbook?</p>
+    <p>Reach out at <a href="mailto:contact@igrs.xyz" style="color:var(--accent2);">contact@igrs.xyz</a> or connect on <a href="https://www.linkedin.com/in/manujkumarpandey" target="_blank" rel="noopener" style="color:var(--accent2);">LinkedIn</a>.</p>
+    <p>IGRS is a solo project maintained alongside full-time investigative work. All feedback, corrections, and contributions are welcome and genuinely appreciated.</p>
+  </div>
+
+</div>
 </main>
+
 <footer class="site">
   <div class="wrap foot">
     <div>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
       <a href="privacy-policy.html">Privacy Policy</a>
-      <a href="terms.html">Terms of Use</a>
+      <a href="terms.html">Terms</a>
       <a href="disclaimer.html">Disclaimer</a>
     </div>
-    <div>&copy; 2026 IGRS. All rights reserved.</div>
+    <div>&copy; 2026 IGRS &mdash; Intel Grid Research Station</div>
   </div>
 </footer>
-<script src="neural.js"></script>
 </body>
 </html>
