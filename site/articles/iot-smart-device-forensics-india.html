@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>IoT and Smart Device Forensics in India — Investigation Guide — IGRS</title>
+<meta name="description" content="Guide to IoT and smart device forensics for Indian investigators. Smart TV, CCTV, smart speaker, router forensics — evidence extraction, legal framework, and investigation methodology.">
+<meta name="keywords" content="IoT forensics India, smart device investigation India, CCTV forensics India, router forensics India, smart TV evidence India, IoT cybercrime investigation">
+<meta name="author" content="Manuj Kumar Pandey">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://igrs.xyz/articles/iot-smart-device-forensics-india.html">
+<meta property="og:title" content="IoT and Smart Device Forensics in India — Investigation Guide"><meta property="og:description" content="Guide to IoT and smart device forensics for Indian investigators. Smart TV, CCTV, smart speaker, router forensics — evidence extraction, legal framework, and investigation methodology.">
+<meta property="og:type" content="article"><meta property="og:image" content="https://igrs.xyz/logo.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"IoT and Smart Device Forensics in India — Investigation Guide","description":"Guide to IoT and smart device forensics for Indian investigators. Smart TV, CCTV, smart speaker, router forensics — evidence extraction, legal framework, and investigation methodology.","author":{"@type":"Person","name":"Manuj Kumar Pandey","url":"https://igrs.xyz/about.html"},"publisher":{"@type":"Organization","name":"IGRS","url":"https://igrs.xyz"},"url":"https://igrs.xyz/articles/iot-smart-device-forensics-india.html","datePublished":"2026-06-13","dateModified":"2026-06-13"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can IoT devices be used as evidence in Indian courts?","acceptedAnswer":{"@type":"Answer","text":"Yes. Data from IoT devices — CCTV footage, router logs, smart device activity — is admissible as electronic evidence under BSA 2023 with Section 63 certificate. Hash values must be computed at collect"}},{"@type":"Question","name":"How do police access smart speaker data in India?","acceptedAnswer":{"@type":"Answer","text":"Law enforcement can request smart speaker data (Alexa, Google Home) from Amazon and Google through their respective LEA portals. Indian legal process (Section 91 BNSS order) is accepted. Data includes"}},{"@type":"Question","name":"What evidence can be found in a home router?","acceptedAnswer":{"@type":"Answer","text":"Home routers contain DHCP lease logs (device-to-IP mapping), DNS query history (websites visited), connection timestamps, and port forwarding configurations. This data can prove device presence on net"}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css"><link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head><body>
+<header class="site"><div class="wrap">
+<div class="mast"><a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS Intel Grid Research Station Logo">IGRS<span></span></a><div class="mast-meta">Intel Grid Research Station</div></div>
+<nav class="main"><a href="../index.html">Home</a><a href="../articles.html">Articles</a><a href="../tools.html">Tools</a><a href="../dashboard.html">Dashboard</a><a href="../playbooks.html">Playbooks</a><a href="../cyberlaw.html">Cyber Law</a></nav>
+</div></header>
+<main class="wrap">
+<nav class="breadcrumb"><a href="../index.html">Home</a><span class="breadcrumb-sep">›</span><a href="../articles.html">Articles</a><span class="breadcrumb-sep">›</span><span>Digital Forensics</span></nav>
+<article class="entry-full">
+<div class="entry-meta"><span class="category">Digital Forensics</span><span class="date">13 June 2026</span><span class="author">Manuj Kumar Pandey</span></div>
+<h1>IoT and Smart Device Forensics in India — Investigation Guide</h1><p>The Internet of Things (IoT) has created a new frontier for digital forensics in India. Smart TVs, CCTV cameras, smart speakers, home routers, and connected vehicles now generate evidence that can be crucial in criminal investigations — from alibis to cybercrime tracing to physical crime evidence.</p>
+<h2>IoT Evidence Sources in India</h2>
+<ul><li><strong>Home routers:</strong> DHCP logs, DNS queries, connected device history</li><li><strong>CCTV/IP cameras:</strong> Video evidence, access logs, metadata</li><li><strong>Smart TVs:</strong> Viewing history, app usage, login credentials</li><li><strong>Smart speakers (Alexa/Google):</strong> Voice command history, location data</li><li><strong>Smart meters:</strong> Energy usage patterns (occupancy evidence)</li><li><strong>Fitness trackers:</strong> Location history, activity data, health metrics</li></ul>
+<h2>Router Forensics</h2>
+<p>Home routers are often overlooked but contain valuable evidence:</p>
+<ul><li>DHCP leases — which device had which IP at what time</li><li>DNS query logs — websites visited by all connected devices</li><li>Connection logs — when each device connected/disconnected</li><li>Port forwarding rules — evidence of server operation or tunneling</li></ul>
+<p>Extraction requires admin access (password) or factory reset with forensic imaging. Most consumer routers log to memory only — power loss destroys logs. Prioritize router in time-sensitive cases.</p>
+<h2>CCTV Forensics</h2>
+<ul><li>Preserve power to DVR/NVR — do not switch off</li><li>Image using forensic write blocker before viewing</li><li>Extract logs: access records, time synchronization, remote access history</li><li>Verify video authenticity — hash the recording file</li><li>Check IP camera access logs — remote logins may indicate tampering</li></ul>
+<h2>Cloud-Stored IoT Data</h2>
+<p>Most modern IoT devices sync to cloud (Google, Amazon, Apple, Chinese manufacturers). Legal process for cloud data:</p>
+<ul><li>Google (Nest, Android): google.com/transparencyreport/userdatarequests</li><li>Amazon (Alexa, Ring): amazon.com/gp/help/customer/display.html</li><li>Apple (HomeKit): apple.com/legal/privacy/law-enforcement</li><li>Chinese manufacturers (Hikvision, Dahua): require MLAT</li></ul>
+<h2>Legal Framework</h2>
+<p>IoT device seizure follows standard Section 94 BNSS procedure. Cloud data requires Section 91 BNSS notice to Indian office or MLAT for overseas servers. All evidence must be accompanied by Section 63 BSA certificate.</p>
+<div class="faq-section"><h2>Frequently Asked Questions</h2><div class="faq-item"><div class="faq-q">Can IoT devices be used as evidence in Indian courts?</div><div class="faq-a">Yes. Data from IoT devices — CCTV footage, router logs, smart device activity — is admissible as electronic evidence under BSA 2023 with Section 63 certificate. Hash values must be computed at collection to prove integrity.</div></div>
+<div class="faq-item"><div class="faq-q">How do police access smart speaker data in India?</div><div class="faq-a">Law enforcement can request smart speaker data (Alexa, Google Home) from Amazon and Google through their respective LEA portals. Indian legal process (Section 91 BNSS order) is accepted. Data includes voice command history and associated account information.</div></div>
+<div class="faq-item"><div class="faq-q">What evidence can be found in a home router?</div><div class="faq-a">Home routers contain DHCP lease logs (device-to-IP mapping), DNS query history (websites visited), connection timestamps, and port forwarding configurations. This data can prove device presence on network and websites visited by any connected device.</div></div></div>
+<div class="related-articles"><h3>&#8594; RELATED ARTICLES</h3><div class="related-grid"><a class="related-card" href="network-forensics-india-guide.html"><div class="related-card-cat">Digital Forensics</div><div class="related-card-title">Network Forensics Guide</div></a>
+<a class="related-card" href="cyber-forensics-evidence-court-india.html"><div class="related-card-cat">Digital Forensics</div><div class="related-card-title">Cyber Forensics Evidence Court</div></a>
+<a class="related-card" href="cellebrite-vs-msab-xry-comparison-india-2026.html"><div class="related-card-cat">Digital Forensics</div><div class="related-card-title">Mobile Forensics Comparison</div></a></div></div>
+<div class="entry-footer"><a href="../articles.html">&larr; All Articles</a><a href="../dashboard.html">Dashboard &rarr;</a></div>
+</article></main>
+<footer class="site"><div class="wrap foot"><div><a href="../about.html">About</a><a href="../contact.html">Contact</a><a href="../privacy-policy.html">Privacy Policy</a></div><div>&copy; 2026 IGRS</div></div></footer>
+</body></html>
