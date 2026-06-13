@@ -1,8 +1,13 @@
 User-agent: *
 Allow: /
+Disallow: /data/
 
-# Sitemaps
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
 Sitemap: https://igrs.xyz/sitemap.xml
-
-# Block non-content
-Disallow: /ads.txt
