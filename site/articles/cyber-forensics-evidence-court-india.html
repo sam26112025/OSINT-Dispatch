@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Cyber Forensics Evidence in Indian Courts — BSA 2023 Guide — IGRS</title>
+<meta name="description" content="Complete guide to presenting cyber forensics evidence in Indian courts under BSA 2023. Section 63 certificate, chain of custody, hash values, expert witness requirements.">
+<meta name="keywords" content="cyber forensics evidence India court, BSA 2023 electronic evidence, Section 63 BSA certificate, digital evidence court India, hash value evidence India">
+<meta name="author" content="Manuj Kumar Pandey">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://igrs.xyz/articles/cyber-forensics-evidence-court-india.html">
+<meta property="og:title" content="Cyber Forensics Evidence in Indian Courts — BSA 2023 Guide"><meta property="og:description" content="Complete guide to presenting cyber forensics evidence in Indian courts under BSA 2023. Section 63 certificate, chain of custody, hash values, expert witness requirements.">
+<meta property="og:type" content="article"><meta property="og:image" content="https://igrs.xyz/logo.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Cyber Forensics Evidence in Indian Courts — BSA 2023 Guide","description":"Complete guide to presenting cyber forensics evidence in Indian courts under BSA 2023. Section 63 certificate, chain of custody, hash values, expert witness requirements.","author":{"@type":"Person","name":"Manuj Kumar Pandey","url":"https://igrs.xyz/about.html"},"publisher":{"@type":"Organization","name":"IGRS","url":"https://igrs.xyz"},"url":"https://igrs.xyz/articles/cyber-forensics-evidence-court-india.html","datePublished":"2026-06-13","dateModified":"2026-06-13"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is Section 63 BSA certificate for digital evidence?","acceptedAnswer":{"@type":"Answer","text":"Section 63 of Bharatiya Sakshya Adhiniyam 2023 requires a certificate accompanying electronic evidence, signed by the person in charge of the computer system. It must include the hash value of the rec"}},{"@type":"Question","name":"Is SHA-256 hash required for digital evidence in India?","acceptedAnswer":{"@type":"Answer","text":"Yes, hash values (SHA-256 is the standard) are explicitly required under BSA 2023 Section 63 for electronic evidence admissibility. Hash values prove the evidence has not been tampered with since coll"}},{"@type":"Question","name":"What is chain of custody for digital evidence in India?","acceptedAnswer":{"@type":"Answer","text":"Chain of custody documents every person who handled digital evidence — from seizure to court. It includes seizure memo, evidence bag sealing, forensic examination log, and hash verification at each st"}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css"><link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head><body>
+<header class="site"><div class="wrap">
+<div class="mast"><a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS Intel Grid Research Station Logo">IGRS<span></span></a><div class="mast-meta">Intel Grid Research Station</div></div>
+<nav class="main"><a href="../index.html">Home</a><a href="../articles.html">Articles</a><a href="../tools.html">Tools</a><a href="../dashboard.html">Dashboard</a><a href="../playbooks.html">Playbooks</a><a href="../cyberlaw.html">Cyber Law</a></nav>
+</div></header>
+<main class="wrap">
+<nav class="breadcrumb"><a href="../index.html">Home</a><span class="breadcrumb-sep">›</span><a href="../articles.html">Articles</a><span class="breadcrumb-sep">›</span><span>Digital Forensics</span></nav>
+<article class="entry-full">
+<div class="entry-meta"><span class="category">Digital Forensics</span><span class="date">13 June 2026</span><span class="author">Manuj Kumar Pandey</span></div>
+<h1>Cyber Forensics Evidence in Indian Courts — BSA 2023 Guide</h1><p>The admissibility of digital evidence in Indian courts has fundamentally changed with the Bharatiya Sakshya Adhiniyam (BSA) 2023. Investigators must understand the new requirements to ensure their digital evidence is accepted by courts and withstands cross-examination.</p>
+<h2>BSA 2023 vs Indian Evidence Act 1872</h2>
+<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+  <tr style="background:rgba(0,212,255,.08);"><th style="padding:8px;border:1px solid #0e3a5c;">Aspect</th><th style="padding:8px;border:1px solid #0e3a5c;">IEA 1872 (old)</th><th style="padding:8px;border:1px solid #0e3a5c;">BSA 2023 (new)</th></tr>
+  <tr><td style="padding:8px;border:1px solid #0e3a5c;">Electronic records section</td><td style="padding:8px;border:1px solid #0e3a5c;">Section 65B</td><td style="padding:8px;border:1px solid #0e3a5c;">Section 63</td></tr>
+  <tr><td style="padding:8px;border:1px solid #0e3a5c;">Certificate requirement</td><td style="padding:8px;border:1px solid #0e3a5c;">Mandatory (Arjun Panditrao)</td><td style="padding:8px;border:1px solid #0e3a5c;">Mandatory</td></tr>
+  <tr><td style="padding:8px;border:1px solid #0e3a5c;">Oral evidence for e-records</td><td style="padding:8px;border:1px solid #0e3a5c;">Not permitted</td><td style="padding:8px;border:1px solid #0e3a5c;">Not permitted</td></tr>
+  <tr><td style="padding:8px;border:1px solid #0e3a5c;">Hash value requirement</td><td style="padding:8px;border:1px solid #0e3a5c;">Implied</td><td style="padding:8px;border:1px solid #0e3a5c;">Explicit</td></tr>
+</table>
+<h2>Section 63 BSA Certificate Requirements</h2>
+<p>The certificate must state:</p>
+<ol><li>The electronic record was produced by a computer</li><li>The computer was used regularly in the course of activities</li><li>The computer was functioning properly (or if malfunction, did not affect the record)</li><li>The information was derived from information fed into the computer</li><li>Hash value of the electronic record</li><li>Signature of person in charge of the computer/system</li></ol>
+<h2>Who Can Sign Section 63 Certificate</h2>
+<ul><li>Person in charge of the device (system administrator, IT head)</li><li>For bank records: bank's IT officer or designated officer</li><li>For telecom records: telecom company's technical officer</li><li>For social media: platform's India representative</li><li>For seized devices: forensic examiner who extracted the data</li></ul>
+<h2>Chain of Custody Documentation</h2>
+<ul><li>Seizure memo with device details (make, model, IMEI/serial number)</li><li>Hash value computed at time of seizure (SHA-256)</li><li>Evidence bag seal with investigator signature and date</li><li>Forensic examination report</li><li>Comparison of hash at examination with hash at seizure</li></ul>
+<h2>Expert Witness Requirements</h2>
+<p>Digital forensics experts presenting evidence must demonstrate: relevant qualifications (degree, certification like CHFI/GCFE), tools used and their validation, methodology followed, and that examination was conducted on a forensic copy (not original).</p>
+<div class="faq-section"><h2>Frequently Asked Questions</h2><div class="faq-item"><div class="faq-q">What is Section 63 BSA certificate for digital evidence?</div><div class="faq-a">Section 63 of Bharatiya Sakshya Adhiniyam 2023 requires a certificate accompanying electronic evidence, signed by the person in charge of the computer system. It must include the hash value of the record and certify the system was functioning properly.</div></div>
+<div class="faq-item"><div class="faq-q">Is SHA-256 hash required for digital evidence in India?</div><div class="faq-a">Yes, hash values (SHA-256 is the standard) are explicitly required under BSA 2023 Section 63 for electronic evidence admissibility. Hash values prove the evidence has not been tampered with since collection.</div></div>
+<div class="faq-item"><div class="faq-q">What is chain of custody for digital evidence in India?</div><div class="faq-a">Chain of custody documents every person who handled digital evidence — from seizure to court. It includes seizure memo, evidence bag sealing, forensic examination log, and hash verification at each stage. Gaps in chain of custody can result in evidence rejection.</div></div></div>
+<div class="related-articles"><h3>&#8594; RELATED ARTICLES</h3><div class="related-grid"><a class="related-card" href="cellebrite-vs-msab-xry-comparison-india-2026.html"><div class="related-card-cat">Digital Forensics</div><div class="related-card-title">Mobile Forensics Tools</div></a>
+<a class="related-card" href="network-forensics-india-guide.html"><div class="related-card-cat">Digital Forensics</div><div class="related-card-title">Network Forensics Guide</div></a>
+<a class="related-card" href="how-to-file-cybercrime-fir-india-2026.html"><div class="related-card-cat">Cyber Law</div><div class="related-card-title">Cybercrime FIR Guide</div></a></div></div>
+<div class="entry-footer"><a href="../articles.html">&larr; All Articles</a><a href="../dashboard.html">Dashboard &rarr;</a></div>
+</article></main>
+<footer class="site"><div class="wrap foot"><div><a href="../about.html">About</a><a href="../contact.html">Contact</a><a href="../privacy-policy.html">Privacy Policy</a></div><div>&copy; 2026 IGRS</div></div></footer>
+</body></html>
