@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Phishing Email Investigation — Complete Guide for India 2026 — IGRS</title>
+<meta name="description" content="Step-by-step guide to investigating phishing emails in India. Email header analysis, domain tracing, IP lookup, reporting to CERT-In, and FIR sections for phishing attacks.">
+<meta name="keywords" content="phishing email investigation India, email header analysis, phishing attack trace India, email fraud investigation, CERT-In phishing report">
+<meta name="author" content="Manuj Kumar Pandey">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://igrs.xyz/articles/phishing-email-investigation-india-2026.html">
+<meta property="og:title" content="Phishing Email Investigation — Complete Guide for India 2026"><meta property="og:description" content="Step-by-step guide to investigating phishing emails in India. Email header analysis, domain tracing, IP lookup, reporting to CERT-In, and FIR sections for phishing attacks.">
+<meta property="og:type" content="article"><meta property="og:image" content="https://igrs.xyz/logo.svg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Phishing Email Investigation — Complete Guide for India 2026","description":"Step-by-step guide to investigating phishing emails in India. Email header analysis, domain tracing, IP lookup, reporting to CERT-In, and FIR sections for phishing attacks.","author":{"@type":"Person","name":"Manuj Kumar Pandey","url":"https://igrs.xyz/about.html"},"publisher":{"@type":"Organization","name":"IGRS","url":"https://igrs.xyz"},"url":"https://igrs.xyz/articles/phishing-email-investigation-india-2026.html","datePublished":"2026-06-13","dateModified":"2026-06-13"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I trace a phishing email in India?","acceptedAnswer":{"@type":"Answer","text":"Analyze the email headers to extract the originating IP address. Check the IP on VirusTotal, AbuseIPDB, and IPInfo. Investigate the sending domain using WHOIS and crt.sh. Report to CERT-In at incident"}},{"@type":"Question","name":"How do I view email headers in Gmail for phishing investigation?","acceptedAnswer":{"@type":"Answer","text":"In Gmail, open the phishing email, click the three dots (⋮) menu, select 'Show original'. This displays the full email headers including originating IP, mail server chain, and authentication results."}},{"@type":"Question","name":"What should I report a phishing email in India?","acceptedAnswer":{"@type":"Answer","text":"Report to CERT-In (incident@cert-in.org.in), PhishTank (phishtank.org), Google Safe Browsing (safebrowsing.google.com/safebrowsing/report_phish), and cybercrime.gov.in if financial fraud was involved."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://igrs.xyz"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://igrs.xyz/articles.html"},{"@type":"ListItem","position":3,"name":"Phishing Email Investigation — Complete Guide for ","item":"https://igrs.xyz/articles/phishing-email-investigation-india-2026.html"}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css"><link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head><body>
+<header class="site"><div class="wrap">
+<div class="mast"><a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS — Intel Grid Research Station Logo">IGRS<span></span></a><div class="mast-meta">Intel Grid Research Station</div></div>
+<nav class="main"><a href="../index.html">Home</a><a href="../articles.html">Articles</a><a href="../tools.html">Tools</a><a href="../dashboard.html">Dashboard</a><a href="../playbooks.html">Playbooks</a><a href="../cyberlaw.html">Cyber Law</a></nav>
+</div></header>
+<main class="wrap">
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../index.html">Home</a><span class="breadcrumb-sep">›</span>
+  <a href="../articles.html">Articles</a><span class="breadcrumb-sep">›</span>
+  <span>Digital Forensics</span>
+</nav>
+<article class="entry-full">
+<div class="entry-meta"><span class="category">Digital Forensics</span><span class="date">13 June 2026</span><span class="author">Manuj Kumar Pandey</span></div>
+<h1>Phishing Email Investigation — Complete Guide for India 2026</h1>
+<p>Phishing emails are the entry point for over 90% of cyber attacks in India. From CEO fraud to tax refund scams, phishing email investigation is a core skill for any cybercrime investigator. This guide walks through the complete methodology.</p>
+<h2>Step 1: Email Header Analysis</h2>
+<p>Email headers contain the full path of an email — from sender's mail server to your inbox. Access headers in Gmail: three dots → "Show original". In Outlook: File → Properties.</p>
+<p>Key fields to examine:</p>
+<ul><li><strong>Return-Path:</strong> Where bounced emails go — often reveals real sender domain</li><li><strong>Received: from</strong> — chain of mail servers, read bottom to top</li><li><strong>X-Originating-IP:</strong> Sender's IP address</li><li><strong>Authentication-Results:</strong> SPF, DKIM, DMARC pass/fail</li><li><strong>Message-ID:</strong> Unique identifier for tracking</li></ul>
+<h2>Step 2: IP Address Investigation</h2>
+<p>Take the originating IP from headers and check:</p>
+<ul><li>VirusTotal — malicious activity history</li><li>AbuseIPDB — reported abuse</li><li>Shodan — open ports, server type</li><li>IPInfo — geolocation, ASN, ISP</li><li>IGRS Dashboard — check.igrs.xyz for quick lookup</li></ul>
+<h2>Step 3: Domain Investigation</h2>
+<ul><li>WHOIS — registration date, registrar, name servers</li><li>crt.sh — SSL certificates, related subdomains</li><li>URLScan — screenshot, links, technologies</li><li>PhishTank — check if domain is known phishing</li><li>VirusTotal — malware and phishing history</li></ul>
+<h2>Step 4: Reporting</h2>
+<ul><li>CERT-In: incident@cert-in.org.in — mandatory for critical infrastructure</li><li>Phishtank: phishtank.org — public phishing database</li><li>Google Safe Browsing: safebrowsing.google.com/safebrowsing/report_phish</li><li>Cybercrime.gov.in: for financial fraud phishing</li></ul>
+<h2>Applicable Legal Sections</h2>
+<p>Section 66 IT Act (computer related offences), Section 66D IT Act (personation using computer), Section 318 BNS (cheating), and Section 74 IT Act (publication for fraudulent purpose).</p>
+<div class="faq-section"><h2>Frequently Asked Questions</h2>
+    <div class="faq-item"><div class="faq-q">How do I trace a phishing email in India?</div><div class="faq-a">Analyze the email headers to extract the originating IP address. Check the IP on VirusTotal, AbuseIPDB, and IPInfo. Investigate the sending domain using WHOIS and crt.sh. Report to CERT-In at incident@cert-in.org.in and cybercrime.gov.in.</div></div>
+    <div class="faq-item"><div class="faq-q">How do I view email headers in Gmail for phishing investigation?</div><div class="faq-a">In Gmail, open the phishing email, click the three dots (⋮) menu, select 'Show original'. This displays the full email headers including originating IP, mail server chain, and authentication results.</div></div>
+    <div class="faq-item"><div class="faq-q">What should I report a phishing email in India?</div><div class="faq-a">Report to CERT-In (incident@cert-in.org.in), PhishTank (phishtank.org), Google Safe Browsing (safebrowsing.google.com/safebrowsing/report_phish), and cybercrime.gov.in if financial fraud was involved.</div></div>
+</div>
+<div class="related-articles"><h3>&#8594; RELATED ARTICLES</h3><div class="related-grid">
+    <a class="related-card" href="whatsapp-business-api-abuse-investigation-methods.html"><div class="related-card-cat">Digital Forensics</div><div class="related-card-title">WhatsApp API Abuse Investigation</div></a>
+    <a class="related-card" href="how-to-file-cybercrime-fir-india-2026.html"><div class="related-card-cat">Cyber Law</div><div class="related-card-title">Cybercrime FIR Guide</div></a>
+    <a class="related-card" href="free-osint-tools-india-2026.html"><div class="related-card-cat">OSINT</div><div class="related-card-title">Free OSINT Tools India 2026</div></a>
+</div></div>
+<div class="entry-footer"><a href="../articles.html">&larr; All Articles</a><a href="../dashboard.html">Dashboard &rarr;</a></div>
+</article></main>
+<footer class="site"><div class="wrap foot"><div><a href="../about.html">About</a><a href="../contact.html">Contact</a><a href="../privacy-policy.html">Privacy Policy</a></div><div>&copy; 2026 IGRS</div></div></footer>
+</body></html>
