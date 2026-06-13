@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Network Forensics for Cybercrime Investigation — India Guide — IGRS</title>
+<meta name="description" content="Complete network forensics guide for Indian cybercrime investigators. Packet capture, Wireshark analysis, log analysis, ISP data requests, and evidence preservation.">
+<meta name="keywords" content="network forensics India, Wireshark investigation India, packet analysis cybercrime, network traffic analysis India, ISP data request India, log analysis cybercrime">
+<meta name="author" content="Manuj Kumar Pandey">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://igrs.xyz/articles/network-forensics-india-guide.html">
+<meta property="og:title" content="Network Forensics for Cybercrime Investigation — India Guide"><meta property="og:description" content="Complete network forensics guide for Indian cybercrime investigators. Packet capture, Wireshark analysis, log analysis, ISP data requests, and evidence preservation.">
+<meta property="og:type" content="article"><meta property="og:image" content="https://igrs.xyz/logo.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Network Forensics for Cybercrime Investigation — India Guide","description":"Complete network forensics guide for Indian cybercrime investigators. Packet capture, Wireshark analysis, log analysis, ISP data requests, and evidence preservation.","author":{"@type":"Person","name":"Manuj Kumar Pandey","url":"https://igrs.xyz/about.html"},"publisher":{"@type":"Organization","name":"IGRS","url":"https://igrs.xyz"},"url":"https://igrs.xyz/articles/network-forensics-india-guide.html","datePublished":"2026-06-13","dateModified":"2026-06-13"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is network forensics in cybercrime investigation?","acceptedAnswer":{"@type":"Answer","text":"Network forensics involves capturing, preserving, and analyzing network traffic (packets, logs, DNS queries) to investigate cybercrimes. It reveals communication between attacker and victim systems, d"}},{"@type":"Question","name":"Can Wireshark be used for court evidence in India?","acceptedAnswer":{"@type":"Answer","text":"Yes, Wireshark captures (PCAP files) are accepted as evidence in Indian courts when accompanied by a Section 63 BSA 2023 certificate from the person who conducted the capture, along with SHA-256 hash "}},{"@type":"Question","name":"How do I request internet logs from ISP in India?","acceptedAnswer":{"@type":"Answer","text":"Submit a Section 91 BNSS notice or court order to the ISP's nodal officer. Provide the suspect's IP address, date, and time (in UTC). ISPs must maintain logs for 12 months per DoT regulations."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css"><link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head><body>
+<header class="site"><div class="wrap">
+<div class="mast"><a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS Intel Grid Research Station Logo">IGRS<span></span></a><div class="mast-meta">Intel Grid Research Station</div></div>
+<nav class="main"><a href="../index.html">Home</a><a href="../articles.html">Articles</a><a href="../tools.html">Tools</a><a href="../dashboard.html">Dashboard</a><a href="../playbooks.html">Playbooks</a><a href="../cyberlaw.html">Cyber Law</a></nav>
+</div></header>
+<main class="wrap">
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="breadcrumb-sep">›</span><a href="../articles.html">Articles</a><span class="breadcrumb-sep">›</span><span>Digital Forensics</span></nav>
+<article class="entry-full">
+<div class="entry-meta"><span class="category">Digital Forensics</span><span class="date">13 June 2026</span><span class="author">Manuj Kumar Pandey</span></div>
+<h1>Network Forensics for Cybercrime Investigation — India Guide</h1>
+<p>Network forensics is the capture, recording, and analysis of network packets and logs to identify, investigate, and prosecute cybercrime. In India, network evidence is increasingly accepted in courts with proper chain of custody. This guide covers the essentials.</p>
+<h2>Network Evidence Sources</h2>
+<ul><li><strong>Packet captures (PCAP):</strong> Full packet captures from network taps or endpoint agents</li><li><strong>NetFlow/IPFIX:</strong> Traffic metadata without payload — who talked to whom, when, how much</li><li><strong>Firewall logs:</strong> Allow/deny decisions with source/destination IPs and ports</li><li><strong>DNS logs:</strong> Domain lookups — reveals C2 communication and malicious domains</li><li><strong>Proxy logs:</strong> HTTP/HTTPS requests through corporate proxy</li><li><strong>ISP CDR:</strong> Call Detail Records extended to internet sessions</li></ul>
+<h2>Tools for Network Forensics (Free)</h2>
+<ul><li><strong>Wireshark</strong> — industry standard packet analyzer</li><li><strong>Zeek (Bro)</strong> — network security monitor, extracts metadata</li><li><strong>NetworkMiner</strong> — passive network sniffer, reassembles files</li><li><strong>Suricata</strong> — IDS/IPS with PCAP logging</li><li><strong>tcpdump</strong> — command-line packet capture</li></ul>
+<h2>Key Wireshark Filters for Investigation</h2>
+<ul><li><code>http.request.method == "POST"</code> — form submissions, data exfiltration</li><li><code>dns.qry.name contains "suspicious.domain"</code> — C2 DNS lookups</li><li><code>ip.addr == 192.168.1.100</code> — filter by suspect IP</li><li><code>tcp.port == 4444</code> — common malware ports</li><li><code>frame contains "password"</code> — credential exposure in plaintext</li></ul>
+<h2>ISP Data Requests in India</h2>
+<p>ISPs in India are required to maintain internet session logs (subscriber → IP mapping) for 12 months. Requests must be made with:</p>
+<ul><li>Court order or Section 91 BNSS notice</li><li>Specific IP address, date, and time in UTC</li><li>Official letterhead signed by SP or higher</li></ul>
+<h2>Evidence Admissibility</h2>
+<p>Network evidence under BSA 2023 Section 63 requires certificate from:</p>
+<ul><li>Network administrator who captured the data</li><li>SIEM/firewall vendor if logs from commercial system</li><li>Hash value of captured PCAP files</li><li>Detailed chain of custody documentation</li></ul>
+<div class="faq-section"><h2>Frequently Asked Questions</h2>    <div class="faq-item"><div class="faq-q">What is network forensics in cybercrime investigation?</div><div class="faq-a">Network forensics involves capturing, preserving, and analyzing network traffic (packets, logs, DNS queries) to investigate cybercrimes. It reveals communication between attacker and victim systems, data exfiltration paths, and C2 server connections.</div></div>
+    <div class="faq-item"><div class="faq-q">Can Wireshark be used for court evidence in India?</div><div class="faq-a">Yes, Wireshark captures (PCAP files) are accepted as evidence in Indian courts when accompanied by a Section 63 BSA 2023 certificate from the person who conducted the capture, along with SHA-256 hash values for integrity verification.</div></div>
+    <div class="faq-item"><div class="faq-q">How do I request internet logs from ISP in India?</div><div class="faq-a">Submit a Section 91 BNSS notice or court order to the ISP's nodal officer. Provide the suspect's IP address, date, and time (in UTC). ISPs must maintain logs for 12 months per DoT regulations.</div></div></div>
+<div class="related-articles"><h3>&#8594; RELATED ARTICLES</h3><div class="related-grid">    <a class="related-card" href="cellebrite-vs-msab-xry-comparison-india-2026.html"><div class="related-card-cat">Digital Forensics</div><div class="related-card-title">Mobile Forensics Comparison</div></a>
+    <a class="related-card" href="phishing-email-investigation-india-2026.html"><div class="related-card-cat">Digital Forensics</div><div class="related-card-title">Phishing Email Investigation</div></a>
+    <a class="related-card" href="how-to-file-cybercrime-fir-india-2026.html"><div class="related-card-cat">Cyber Law</div><div class="related-card-title">Cybercrime FIR Guide</div></a></div></div>
+<div class="entry-footer"><a href="../articles.html">&larr; All Articles</a><a href="../dashboard.html">Dashboard &rarr;</a></div>
+</article></main>
+<footer class="site"><div class="wrap foot"><div><a href="../about.html">About</a><a href="../contact.html">Contact</a><a href="../privacy-policy.html">Privacy Policy</a></div><div>&copy; 2026 IGRS</div></div></footer>
+</body></html>
