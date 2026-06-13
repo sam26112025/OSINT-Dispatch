@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>WhatsApp Business API Abuse — Investigation Methods for Cybercrime Units — IGRS</title>
+<meta name="description" content="How fraudsters abuse WhatsApp Business API for phishing, scam campaigns, and mass fraud in India. Investigation methodology, Meta legal process, evidence preservation, and applicable law sections.">
+<meta name="keywords" content="WhatsApp Business API abuse India, WhatsApp fraud investigation, Meta legal process India, WhatsApp phishing India, WA API scam">
+<meta name="author" content="Manuj Kumar Pandey">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://igrs.xyz/articles/whatsapp-business-api-abuse-investigation-methods.html">
+<meta property="og:title" content="WhatsApp Business API Abuse — Investigation Methods for Cybercrime Units"><meta property="og:description" content="How fraudsters abuse WhatsApp Business API for phishing, scam campaigns, and mass fraud in India. Investigation methodology, Meta legal process, evidence preservation, and applicable law sections."><meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"WhatsApp Business API Abuse — Investigation Methods for Cybercrime Units","description":"How fraudsters abuse WhatsApp Business API for phishing, scam campaigns, and mass fraud in India. Investigation methodology, Meta legal process, evidence preservation, and applicable law sections.","author":{"@type":"Person","name":"Manuj Kumar Pandey"},"publisher":{"@type":"Organization","name":"IGRS","url":"https://igrs.xyz"},"url":"https://igrs.xyz/articles/whatsapp-business-api-abuse-investigation-methods.html","datePublished":"2026-06-13","dateModified":"2026-06-13"}</script>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css"><link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head><body>
+<header class="site"><div class="wrap">
+<div class="mast"><a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS">IGRS<span></span></a><div class="mast-meta">Intel Grid Research Station</div></div>
+<nav class="main"><a href="../index.html">Home</a><a href="../articles.html">Articles</a><a href="../tools.html">Tools</a><a href="../dashboard.html">Dashboard</a><a href="../playbooks.html">Playbooks</a><a href="../cyberlaw.html">Cyber Law</a></nav>
+</div></header>
+<main class="wrap"><article class="entry-full">
+<div class="entry-meta"><span class="category">Digital Forensics</span><span class="date">13 June 2026</span><span class="author">Manuj Kumar Pandey</span></div>
+<h1>WhatsApp Business API Abuse — Investigation Methods for Cybercrime Units</h1>
+
+<p>WhatsApp Business API has become a major vector for cybercrime in India. Unlike regular WhatsApp, the Business API allows programmatic message sending at scale — making it ideal for phishing campaigns, OTP fraud, investment scams, and digital arrest extortion. Understanding how fraudsters abuse this system, and how investigators can trace them, is increasingly critical.</p>
+
+<h2>What is WhatsApp Business API?</h2>
+<p>WhatsApp Business API (now called WhatsApp Business Platform or Cloud API) allows businesses to send messages at scale through approved Business Solution Providers (BSPs). Legitimate uses include OTP delivery, order confirmations, and customer service. Fraudsters abuse it by:</p>
+<ul>
+  <li>Registering fake businesses through BSPs using forged documents</li>
+  <li>Using compromised BSP accounts to send fraudulent messages</li>
+  <li>Exploiting template approval delays to send phishing messages</li>
+  <li>Using "Meta Business Suite" compromised accounts</li>
+</ul>
+
+<h2>How Fraudsters Operate</h2>
+
+<h3>The BSP Exploitation Model</h3>
+<p>BSPs (Business Solution Providers like Gupshup, WATI, Interakt, 360Dialog) provide API access to businesses. Fraudsters create fake companies, submit forged GST certificates and business registration documents to BSPs, obtain API access, and then launch campaigns before the BSP detects fraud.</p>
+
+<h3>Compromised Business Accounts</h3>
+<p>Fraudsters phish legitimate business owners' Facebook/Meta accounts, gain access to their WhatsApp Business API accounts, and use existing approved templates to send fraudulent messages. The messages appear to come from legitimate businesses.</p>
+
+<h3>Template Abuse</h3>
+<p>WhatsApp templates must be approved by Meta. Fraudsters create templates that appear legitimate (e.g., "Your KYC is pending — click here to update") and get them approved before Meta detects the intent. Once approved, they deploy at scale.</p>
+
+<h2>Investigation Methodology</h2>
+
+<h3>Step 1: Identify the BSP</h3>
+<p>From the WhatsApp message, identify the WABA (WhatsApp Business Account) ID. This is embedded in the message metadata. The WABA ID reveals the BSP through Meta's business lookup. Common BSPs in India:</p>
+<ul>
+  <li>Gupshup — gupshup.io</li>
+  <li>WATI — wati.io</li>
+  <li>Interakt — interakt.co</li>
+  <li>AiSensy — aisensy.com</li>
+  <li>Kaleyra — kaleyra.com</li>
+</ul>
+
+<h3>Step 2: Meta Legal Process</h3>
+<p>Submit a Law Enforcement Request to Meta:</p>
+<ul>
+  <li><strong>Portal:</strong> facebook.com/records — requires registration as LE agency</li>
+  <li><strong>Emergency requests:</strong> facebook.com/records/login — for imminent harm</li>
+  <li><strong>Data available:</strong> Account registration details, IP logs, phone number, business verification documents</li>
+  <li><strong>Response time:</strong> 15-30 days standard, 24-72 hours emergency</li>
+</ul>
+
+<h3>Step 3: BSP Investigation</h3>
+<p>Once BSP is identified, issue Section 91 BNSS notice to the BSP's Indian office:</p>
+<ul>
+  <li>Account registration details of the fraudulent business account</li>
+  <li>KYC documents submitted (business registration, GST, director ID)</li>
+  <li>IP addresses used to access the BSP dashboard</li>
+  <li>Payment details (bank account/card used to pay for API access)</li>
+</ul>
+
+<h3>Step 4: Phone Number Forensics</h3>
+<ul>
+  <li>WhatsApp numbers are tied to SIM cards — TAFCOP lookup for Aadhaar linkage</li>
+  <li>CDR request for the WhatsApp registered number</li>
+  <li>Last seen location from CDR cell tower data</li>
+  <li>International numbers — MLAT process or Interpol notice</li>
+</ul>
+
+<h2>Evidence Preservation</h2>
+<ul>
+  <li>Export WhatsApp chat with "Include media" — preserves all attachments</li>
+  <li>Hash the export file immediately (SHA-256)</li>
+  <li>Screenshot individual messages with timestamp visible</li>
+  <li>Preserve message metadata by forwarding to email before deletion</li>
+  <li>Request server-side records from Meta — client-side deletions do not affect server logs</li>
+</ul>
+
+<h2>Applicable Legal Sections</h2>
+<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+  <tr style="background:rgba(0,212,255,.08);"><th style="padding:8px;border:1px solid #0e3a5c;">Section</th><th style="padding:8px;border:1px solid #0e3a5c;">Act</th><th style="padding:8px;border:1px solid #0e3a5c;">Offence</th></tr>
+  <tr><td style="padding:8px;border:1px solid #0e3a5c;">S. 66</td><td style="padding:8px;border:1px solid #0e3a5c;">IT Act 2000</td><td style="padding:8px;border:1px solid #0e3a5c;">Computer related offences</td></tr>
+  <tr><td style="padding:8px;border:1px solid #0e3a5c;">S. 66C</td><td style="padding:8px;border:1px solid #0e3a5c;">IT Act 2000</td><td style="padding:8px;border:1px solid #0e3a5c;">Identity theft (fake business identity)</td></tr>
+  <tr><td style="padding:8px;border:1px solid #0e3a5c;">S. 66D</td><td style="padding:8px;border:1px solid #0e3a5c;">IT Act 2000</td><td style="padding:8px;border:1px solid #0e3a5c;">Cheating by personation using computer</td></tr>
+  <tr><td style="padding:8px;border:1px solid #0e3a5c;">S. 318</td><td style="padding:8px;border:1px solid #0e3a5c;">BNS 2023</td><td style="padding:8px;border:1px solid #0e3a5c;">Cheating</td></tr>
+  <tr><td style="padding:8px;border:1px solid #0e3a5c;">S. 74</td><td style="padding:8px;border:1px solid #0e3a5c;">IT Act 2000</td><td style="padding:8px;border:1px solid #0e3a5c;">Publication for fraudulent purpose</td></tr>
+</table>
+
+<h2>Proactive Detection</h2>
+<p>For intelligence teams, monitoring WhatsApp Business API abuse requires:</p>
+<ul>
+  <li>Subscribing to Google Safe Browsing and PhishTank for URLs appearing in WA messages</li>
+  <li>Monitoring honeypot phone numbers that receive bulk messages</li>
+  <li>Coordinating with CERT-In for WhatsApp phishing reports</li>
+  <li>Using IGRS IOC Feed to track India-targeted phishing domains sent via WA</li>
+</ul>
+
+<h2>Conclusion</h2>
+<p>WhatsApp Business API abuse is a rapidly evolving threat that requires investigators to understand both the technical infrastructure and the legal processes for obtaining data from international platforms. The key advantage investigators have is that API access leaves a rich paper trail — BSP registration, payment records, IP logs — that physical cash-based crime does not. Early identification of the BSP and immediate legal process is critical before account data is purged.</p>
+
+<div class="entry-footer"><a href="../articles.html">&larr; All Articles</a><a href="../dashboard.html">Dashboard &rarr;</a></div>
+</article></main>
+<footer class="site"><div class="wrap foot"><div><a href="../about.html">About</a><a href="../contact.html">Contact</a><a href="../privacy-policy.html">Privacy Policy</a></div><div>&copy; 2026 IGRS</div></div></footer>
+</body></html>
