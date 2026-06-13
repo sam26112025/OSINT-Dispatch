@@ -492,3 +492,25 @@ footer.site{
   .dossier td:first-child{width:100px}
   .hero h1{font-size:28px}
 }
+
+/* BREADCRUMB */
+.breadcrumb{font-family:var(--mono);font-size:11px;color:var(--muted);padding:10px 0 0;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.breadcrumb a{color:var(--muted);text-decoration:none;transition:color .2s;}
+.breadcrumb a:hover{color:var(--accent);}
+.breadcrumb-sep{color:var(--border2);}
+
+/* RELATED ARTICLES */
+.related-articles{margin-top:40px;padding-top:24px;border-top:1px solid var(--border2);}
+.related-articles h3{font-family:var(--tech);font-size:14px;color:var(--accent);letter-spacing:.1em;margin-bottom:14px;}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;}
+.related-card{display:block;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:12px 14px;text-decoration:none;transition:all .2s;}
+.related-card:hover{border-color:var(--border2);transform:translateY(-2px);}
+.related-card-cat{font-family:var(--mono);font-size:9px;color:var(--accent2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;}
+.related-card-title{font-size:13px;color:var(--ink);line-height:1.4;}
+
+/* FAQ SECTION */
+.faq-section{margin-top:36px;padding-top:24px;border-top:1px solid var(--border2);}
+.faq-section h2{font-family:var(--tech);font-size:16px;color:var(--accent);letter-spacing:.08em;margin-bottom:16px;}
+.faq-item{margin-bottom:16px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:14px 16px;}
+.faq-q{font-family:var(--tech);font-size:14px;color:var(--ink);margin-bottom:8px;}
+.faq-a{font-size:13px;color:var(--ink2);line-height:1.75;}
