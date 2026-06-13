@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ransomware Attack Response — Incident Response Guide for Indian Organizations — IGRS</title>
+<meta name="description" content="Complete ransomware incident response guide for Indian organizations. Immediate steps, CERT-In reporting, forensic investigation, legal obligations under DPDP Act, and recovery planning.">
+<meta name="keywords" content="ransomware India 2026, ransomware attack response India, ransomware incident response, CERT-In ransomware report, ransomware recovery India">
+<meta name="author" content="Manuj Kumar Pandey">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://igrs.xyz/articles/ransomware-attack-response-india-2026.html">
+<meta property="og:title" content="Ransomware Attack Response — Incident Response Guide for Indian Organizations"><meta property="og:description" content="Complete ransomware incident response guide for Indian organizations. Immediate steps, CERT-In reporting, forensic investigation, legal obligations under DPDP Act, and recovery planning.">
+<meta property="og:type" content="article"><meta property="og:image" content="https://igrs.xyz/logo.svg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Ransomware Attack Response — Incident Response Guide for Indian Organizations","description":"Complete ransomware incident response guide for Indian organizations. Immediate steps, CERT-In reporting, forensic investigation, legal obligations under DPDP Act, and recovery planning.","author":{"@type":"Person","name":"Manuj Kumar Pandey","url":"https://igrs.xyz/about.html"},"publisher":{"@type":"Organization","name":"IGRS","url":"https://igrs.xyz"},"url":"https://igrs.xyz/articles/ransomware-attack-response-india-2026.html","datePublished":"2026-06-13","dateModified":"2026-06-13"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What to do immediately after a ransomware attack in India?","acceptedAnswer":{"@type":"Answer","text":"Isolate infected systems from the network immediately. Do not shut down (RAM may contain keys). Preserve memory dump. Report to CERT-In within 6 hours (mandatory) at incident@cert-in.org.in. Check bac"}},{"@type":"Question","name":"Is ransomware reporting mandatory in India?","acceptedAnswer":{"@type":"Answer","text":"Yes. Under CERT-In Directions 2022, ransomware attacks must be reported to CERT-In within 6 hours of detection. Failure attracts penalties. Organizations must also maintain logs for 180 days and provi"}},{"@type":"Question","name":"Should you pay ransom in India?","acceptedAnswer":{"@type":"Answer","text":"Law enforcement agencies and CERT-In advise against paying ransom. Payment funds criminal operations, does not guarantee decryption, and may make you a repeat target. First check No More Ransom (nomor"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://igrs.xyz"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://igrs.xyz/articles.html"},{"@type":"ListItem","position":3,"name":"Ransomware Attack Response — Incident Response Gui","item":"https://igrs.xyz/articles/ransomware-attack-response-india-2026.html"}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css"><link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head><body>
+<header class="site"><div class="wrap">
+<div class="mast"><a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS — Intel Grid Research Station Logo">IGRS<span></span></a><div class="mast-meta">Intel Grid Research Station</div></div>
+<nav class="main"><a href="../index.html">Home</a><a href="../articles.html">Articles</a><a href="../tools.html">Tools</a><a href="../dashboard.html">Dashboard</a><a href="../playbooks.html">Playbooks</a><a href="../cyberlaw.html">Cyber Law</a></nav>
+</div></header>
+<main class="wrap">
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../index.html">Home</a><span class="breadcrumb-sep">›</span>
+  <a href="../articles.html">Articles</a><span class="breadcrumb-sep">›</span>
+  <span>Incident Response</span>
+</nav>
+<article class="entry-full">
+<div class="entry-meta"><span class="category">Incident Response</span><span class="date">13 June 2026</span><span class="author">Manuj Kumar Pandey</span></div>
+<h1>Ransomware Attack Response — Incident Response Guide for Indian Organizations</h1>
+<p>Ransomware attacks on Indian organizations increased 138% in 2025, targeting healthcare, manufacturing, education, and government sectors. This guide provides a structured incident response framework for Indian security teams.</p>
+<h2>Phase 1: Detection and Containment (0-2 hours)</h2>
+<ol><li><strong>Isolate infected systems</strong> — disconnect from network immediately (pull ethernet, disable WiFi)</li><li><strong>Do NOT shut down</strong> — running memory may contain encryption keys</li><li><strong>Preserve memory</strong> — take RAM dump using Magnet RAM Capture or Volatility</li><li><strong>Identify patient zero</strong> — which system was first encrypted</li><li><strong>Check backups</strong> — are they intact and offline?</li></ol>
+<h2>Phase 2: CERT-In Reporting (Mandatory)</h2>
+<p>Under CERT-In directions 2022 (amended 2023), ransomware attacks must be reported to CERT-In within <strong>6 hours</strong> of detection. Report at:</p>
+<ul><li>Email: incident@cert-in.org.in</li><li>Phone: 1800-11-4949</li><li>Portal: cert-in.gov.in</li></ul>
+<p>Failure to report within 6 hours attracts penalties up to ₹1 lakh per day. Critical infrastructure organizations face higher penalties.</p>
+<h2>Phase 3: Forensic Investigation</h2>
+<ul><li>Identify ransomware strain using ID Ransomware (id-ransomware.malwarehunterteam.com)</li><li>Check for decryptors at No More Ransom (nomoreransom.org)</li><li>Preserve encrypted files — do not delete</li><li>Review Windows Event Logs: Security log 4624 (logon), 4648 (explicit logon)</li><li>Check RDP logs, firewall logs for initial access vector</li></ul>
+<h2>Phase 4: Legal Obligations</h2>
+<p>Under DPDP Act 2026, data breaches must be reported to the Data Protection Board within prescribed timelines. If customer/employee personal data was exfiltrated alongside encryption (double extortion), DPDP reporting is mandatory. Failure attracts penalties up to ₹200 crore.</p>
+<h2>Phase 5: Recovery Decision</h2>
+<p><strong>Do NOT pay ransom</strong> as a first resort. Payment funds criminal operations and does not guarantee decryption. Steps before considering payment:</p>
+<ol><li>Check No More Ransom for free decryptor</li><li>Restore from offline backups</li><li>Engage CERT-In for assistance</li><li>Contact law enforcement (cybercrime.gov.in)</li></ol>
+<div class="faq-section"><h2>Frequently Asked Questions</h2>
+    <div class="faq-item"><div class="faq-q">What to do immediately after a ransomware attack in India?</div><div class="faq-a">Isolate infected systems from the network immediately. Do not shut down (RAM may contain keys). Preserve memory dump. Report to CERT-In within 6 hours (mandatory) at incident@cert-in.org.in. Check backups and identify the ransomware strain using ID Ransomware.</div></div>
+    <div class="faq-item"><div class="faq-q">Is ransomware reporting mandatory in India?</div><div class="faq-a">Yes. Under CERT-In Directions 2022, ransomware attacks must be reported to CERT-In within 6 hours of detection. Failure attracts penalties. Organizations must also maintain logs for 180 days and provide them to CERT-In on demand.</div></div>
+    <div class="faq-item"><div class="faq-q">Should you pay ransom in India?</div><div class="faq-a">Law enforcement agencies and CERT-In advise against paying ransom. Payment funds criminal operations, does not guarantee decryption, and may make you a repeat target. First check No More Ransom (nomoreransom.org) for free decryptors and restore from backups.</div></div>
+</div>
+<div class="related-articles"><h3>&#8594; RELATED ARTICLES</h3><div class="related-grid">
+    <a class="related-card" href="india-dpdp-act-2026-investigators-guide.html"><div class="related-card-cat">Cyber Law</div><div class="related-card-title">DPDP Act 2026 Guide</div></a>
+    <a class="related-card" href="how-to-file-cybercrime-fir-india-2026.html"><div class="related-card-cat">Cyber Law</div><div class="related-card-title">Cybercrime FIR Guide</div></a>
+    <a class="related-card" href="cellebrite-vs-msab-xry-comparison-india-2026.html"><div class="related-card-cat">Digital Forensics</div><div class="related-card-title">Mobile Forensics Tool Comparison</div></a>
+</div></div>
+<div class="entry-footer"><a href="../articles.html">&larr; All Articles</a><a href="../dashboard.html">Dashboard &rarr;</a></div>
+</article></main>
+<footer class="site"><div class="wrap foot"><div><a href="../about.html">About</a><a href="../contact.html">Contact</a><a href="../privacy-policy.html">Privacy Policy</a></div><div>&copy; 2026 IGRS</div></div></footer>
+</body></html>
