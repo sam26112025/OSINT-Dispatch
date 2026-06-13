@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>OSINT for UPI Fraud — Tracing Mule Accounts in India — IGRS</title>
+<meta name="description" content="Step-by-step OSINT methodology for tracing UPI mule accounts in India. Phone number intelligence, UPI VPA analysis, bank account tracing, social media correlation, and money trail reconstruction.">
+<meta name="keywords" content="UPI mule account India, OSINT UPI fraud, money mule India investigation, UPI fraud OSINT, hawala mule account tracing">
+<meta name="author" content="Manuj Kumar Pandey">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://igrs.xyz/articles/osint-upi-mule-account-tracing-india.html">
+<meta property="og:title" content="OSINT for UPI Fraud — Tracing Mule Accounts in India"><meta property="og:description" content="Step-by-step OSINT methodology for tracing UPI mule accounts in India. Phone number intelligence, UPI VPA analysis, bank account tracing, social media correlation, and money trail reconstruction."><meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"OSINT for UPI Fraud — Tracing Mule Accounts in India","description":"Step-by-step OSINT methodology for tracing UPI mule accounts in India. Phone number intelligence, UPI VPA analysis, bank account tracing, social media correlation, and money trail reconstruction.","author":{"@type":"Person","name":"Manuj Kumar Pandey"},"publisher":{"@type":"Organization","name":"IGRS","url":"https://igrs.xyz"},"url":"https://igrs.xyz/articles/osint-upi-mule-account-tracing-india.html","datePublished":"2026-06-13","dateModified":"2026-06-13"}</script>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css"><link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head><body>
+<header class="site"><div class="wrap">
+<div class="mast"><a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS">IGRS<span></span></a><div class="mast-meta">Intel Grid Research Station</div></div>
+<nav class="main"><a href="../index.html">Home</a><a href="../articles.html">Articles</a><a href="../tools.html">Tools</a><a href="../dashboard.html">Dashboard</a><a href="../playbooks.html">Playbooks</a><a href="../cyberlaw.html">Cyber Law</a></nav>
+</div></header>
+<main class="wrap"><article class="entry-full">
+<div class="entry-meta"><span class="category">OSINT</span><span class="date">13 June 2026</span><span class="author">Manuj Kumar Pandey</span></div>
+<h1>OSINT for UPI Fraud — Tracing Mule Accounts in India</h1>
+
+<p>Mule accounts are the lifeblood of UPI fraud operations. Every major cybercrime ring in India — from digital arrest scams to investment fraud to OTP phishing — routes proceeds through a chain of mule bank accounts before the money reaches the organizers. Understanding how to trace these accounts using OSINT is one of the most valuable skills an Indian cybercrime investigator can develop.</p>
+
+<h2>What is a Mule Account?</h2>
+<p>A mule account is a bank account opened legitimately (with valid KYC documents) but used by fraudsters to receive and forward criminal proceeds. Mules are typically recruited through job fraud — they are told they will earn commission for "receiving and forwarding payments" for a foreign company. They rarely know they are participating in money laundering.</p>
+
+<h2>The Mule Account Ecosystem</h2>
+<ul>
+  <li><strong>Layer 1 (Collector):</strong> First account to receive victim's payment. Usually a new account opened specifically for the fraud.</li>
+  <li><strong>Layer 2 (Buffer):</strong> Multiple accounts that receive fragmented transfers from Layer 1. Used to confuse tracing.</li>
+  <li><strong>Layer 3 (Cashout):</strong> Final accounts from which cash is withdrawn or crypto is purchased.</li>
+</ul>
+
+<h2>OSINT Methodology — Step by Step</h2>
+
+<h3>Phase 1: UPI VPA Analysis</h3>
+<p>Every UPI transaction contains a VPA (Virtual Payment Address) in format <code>name@bank</code>. This is your starting point.</p>
+<ul>
+  <li>VPA format reveals the bank: <code>@oksbi</code> = SBI, <code>@okaxis</code> = Axis, <code>@ybl</code> = Yes Bank (PhonePe), <code>@ibl</code> = ICICI (PhonePe), <code>@paytm</code> = Paytm</li>
+  <li>Username portion often contains real name or phone number — use for identity correlation</li>
+  <li>Search VPA on Google — fraud databases like cybercrime.gov.in complaints sometimes mention VPAs publicly</li>
+  <li>Check VPA against known fraud databases: rbi.org.in mule account list</li>
+</ul>
+
+<h3>Phase 2: Phone Number Intelligence</h3>
+<ul>
+  <li><strong>Truecaller:</strong> Reveal registered name — compare with bank account name</li>
+  <li><strong>TAFCOP:</strong> Check how many SIMs on the linked Aadhaar — multiple SIMs = SIM farm indicator</li>
+  <li><strong>Google search:</strong> Phone number in quotes — check if it appears in job fraud ads, scam reports</li>
+  <li><strong>WhatsApp:</strong> Profile picture, status, last seen — behavioral intelligence</li>
+  <li><strong>Telegram:</strong> Search phone number — many mule recruiters use Telegram</li>
+  <li><strong>Social media:</strong> Search phone on Facebook, Instagram — mules often use personal phones</li>
+</ul>
+
+<h3>Phase 3: Bank Account OSINT</h3>
+<ul>
+  <li>Account number + IFSC → identifies exact branch → CDR + CCTV subpoena to that branch</li>
+  <li>Account opening date — accounts opened within 30 days of fraud = likely purpose-built mule</li>
+  <li>KYC documents — request from bank under Section 91 BNSS — reveals real identity of mule</li>
+  <li>Transaction velocity — 50+ transactions in 24 hours = strong mule indicator</li>
+</ul>
+
+<h3>Phase 4: Social Media Correlation</h3>
+<ul>
+  <li>Search mule's name + location on LinkedIn — employment history often reveals fraud ring recruitment pathway</li>
+  <li>Facebook job groups — search for posts like "earn ₹5000 per day — just receive payments" — these are mule recruitment ads</li>
+  <li>Instagram/Facebook — profile often contains location, workplace, connections</li>
+  <li>Reverse image search profile photo — find duplicate profiles used for fraud</li>
+</ul>
+
+<h3>Phase 5: Money Trail Reconstruction</h3>
+<ul>
+  <li>Map the full transaction chain: Victim → Mule 1 → Mule 2 → Mule 3 → Cashout</li>
+  <li>Each hop requires a separate Section 91 BNSS notice to the respective bank</li>
+  <li>UPI transactions have a 30-minute window before settlement — freezing in this window recovers funds</li>
+  <li>After settlement, recovery requires coordination with the beneficiary bank's cyber nodal officer</li>
+</ul>
+
+<h2>Tools for Mule Account Investigation</h2>
+<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+  <tr style="background:rgba(0,212,255,.08);"><th style="padding:8px;border:1px solid #0e3a5c;">Tool</th><th style="padding:8px;border:1px solid #0e3a5c;">Purpose</th><th style="padding:8px;border:1px solid #0e3a5c;">Access</th></tr>
+  <tr><td style="padding:8px;border:1px solid #0e3a5c;">Truecaller</td><td style="padding:8px;border:1px solid #0e3a5c;">Phone number identity</td><td style="padding:8px;border:1px solid #0e3a5c;">Free / Pro</td></tr>
+  <tr><td style="padding:8px;border:1px solid #0e3a5c;">TAFCOP</td><td style="padding:8px;border:1px solid #0e3a5c;">SIM card count on Aadhaar</td><td style="padding:8px;border:1px solid #0e3a5c;">Free</td></tr>
+  <tr><td style="padding:8px;border:1px solid #0e3a5c;">cybercrime.gov.in</td><td style="padding:8px;border:1px solid #0e3a5c;">Suspect database lookup</td><td style="padding:8px;border:1px solid #0e3a5c;">LEA login</td></tr>
+  <tr><td style="padding:8px;border:1px solid #0e3a5c;">I4C Citizen Financial Cyber Frauds</td><td style="padding:8px;border:1px solid #0e3a5c;">Account freeze request</td><td style="padding:8px;border:1px solid #0e3a5c;">LEA</td></tr>
+  <tr><td style="padding:8px;border:1px solid #0e3a5c;">Maltego</td><td style="padding:8px;border:1px solid #0e3a5c;">Link analysis, entity mapping</td><td style="padding:8px;border:1px solid #0e3a5c;">Commercial</td></tr>
+  <tr><td style="padding:8px;border:1px solid #0e3a5c;">IGRS Dashboard</td><td style="padding:8px;border:1px solid #0e3a5c;">Unified lookup tool</td><td style="padding:8px;border:1px solid #0e3a5c;">Free — igrs.xyz/dashboard.html</td></tr>
+</table>
+
+<h2>Building the Charge Sheet</h2>
+<p>For successful prosecution of mule account operators:</p>
+<ul>
+  <li>Prove knowledge — show the mule received instructions to forward money to specific accounts</li>
+  <li>WhatsApp conversations with recruiter = mens rea evidence</li>
+  <li>Multiple transactions in short period = pattern of criminal conduct</li>
+  <li>Sections: BNS S.318, IT Act S.66C/66D, PMLA S.3/4 (for the ring organizer)</li>
+</ul>
+
+<div class="entry-footer"><a href="../articles.html">&larr; All Articles</a><a href="../dashboard.html">Dashboard &rarr;</a></div>
+</article></main>
+<footer class="site"><div class="wrap foot"><div><a href="../about.html">About</a><a href="../contact.html">Contact</a><a href="../privacy-policy.html">Privacy Policy</a></div><div>&copy; 2026 IGRS</div></div></footer>
+</body></html>
