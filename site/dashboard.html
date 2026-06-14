@@ -553,6 +553,7 @@ function detectType(v) {
   if(/^[a-zA-Z0-9][a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,}$/.test(v)) return 'domain';
   return 'unknown';
 }
+function esc(s){return String(s).replace(/[&<>"\x27]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\x22":"&quot;","\x27":"&#39;"}[c];});}
 function doLookup() {
   var v = document.getElementById('ioc-in').value.trim();
   var out = document.getElementById('ioc-results');
@@ -610,7 +611,7 @@ function doLookup() {
   var badge = {ip:'IP',domain:'DOMAIN',md5:'MD5',sha1:'SHA-1',sha256:'SHA-256',url:'URL',cve:'CVE',unknown:'?'}[t]||'?';
   var html = '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-family:var(--mono);font-size:10px;">';
   html += '<span style="color:var(--mt);">Detected:</span><span class="badge b-ac">'+badge+'</span>';
-  html += '<span style="color:var(--am);word-break:break-all;">'+v+'</span></div>';
+  html += '<span style="color:var(--am);word-break:break-all;">'+esc(v)+'</span></div>';
   sources.forEach(function(s) {
     html += '<a class="lookup-source" href="'+s.u+'" target="_blank" rel="noopener">';
     html += '<span class="ls-name">'+s.n+'</span>';
@@ -627,7 +628,7 @@ function doHash() {
   var algos=[['MD5',m],['SHA-1',s1],['SHA-256',s2],['SHA-512',sha256(txt.split('').reverse().join(''))+sha256(txt)]];
   var html='';
   algos.forEach(function(a){
-    html+='<div class="hrow"><div class="halgo">'+a[0]+'</div><div class="hval">'+a[1]+'</div><button class="cpb" onclick="cpv(''+a[1]+'',this)">COPY</button></div>';
+    html+='<div class="hrow"><div class="halgo">'+a[0]+'</div><div class="hval">'+a[1]+'</div><button class="cpb" data-val="'+a[1]+'" onclick="cpv(this.dataset.val,this)">COPY</button></div>';
   });
   document.getElementById('h-out').innerHTML=html;
 }
@@ -727,7 +728,7 @@ function doCIDR(){
   var net=(ipI&msk)>>>0,bcast=(net|(~msk))>>>0,hosts=pfx>=31?Math.pow(2,32-pfx):Math.pow(2,32-pfx)-2;
   var rows=[['Network',i2ip(net)],['Broadcast',i2ip(bcast)],['Mask',i2ip(msk)],['Hosts',hosts.toLocaleString()],['First',pfx>=31?'N/A':i2ip(net+1)],['Last',pfx>=31?'N/A':i2ip(bcast-1)]];
   var html='';
-  rows.forEach(function(r){html+='<div class="hrow"><div class="halgo">'+r[0]+'</div><div class="hval">'+r[1]+'</div><button class="cpb" onclick="cpv(''+r[1]+'',this)">COPY</button></div>';});
+  rows.forEach(function(r){html+='<div class="hrow"><div class="halgo">'+r[0]+'</div><div class="hval">'+r[1]+'</div><button class="cpb" data-val="'+esc(r[1])+'" onclick="cpv(this.dataset.val,this)">COPY</button></div>';});
   res.innerHTML=html;
 }
 
@@ -751,9 +752,7 @@ function doPwd(v){
   var cs=0;if(/[a-z]/.test(v))cs+=26;if(/[A-Z]/.test(v))cs+=26;if(/[0-9]/.test(v))cs+=10;if(/[^a-zA-Z0-9]/.test(v))cs+=32;
   var secs=Math.pow(cs||26,v.length)/1e10/2;
   var ct=secs<1?'Instant':secs<60?Math.round(secs)+'s':secs<3600?Math.round(secs/60)+'m':secs<86400?Math.round(secs/3600)+'h':secs<31536000?Math.round(secs/86400)+'d':Math.round(secs/31536000)+'y';
-  out.textContent='Has: '+an.join(', ')+'
-Crack time: '+ct+' at 10B/sec'+(rec.length?'
-Fix: '+rec.join(', '):'');
+  out.textContent='Has: '+an.join(', ')+'\nCrack time: '+ct+' at 10B/sec'+(rec.length?'\nFix: '+rec.join(', '):'');
   out.className=sc<4?'out er':sc<7?'out':'out ok';
 }
 
@@ -762,8 +761,7 @@ function setRx(p){document.getElementById('rx-pat').value=p;doRx();}
 function doRx(){
   var p=document.getElementById('rx-pat').value,f=document.getElementById('rx-flg').value,t=document.getElementById('rx-txt').value,out=document.getElementById('rx-out');
   if(!p||!t){out.textContent='';return;}
-  try{var re=new RegExp(p,f),m=t.match(re)||[];out.textContent=m.length?m.map(function(x,i){return'['+(i+1)+'] '+x;}).join('
-'):'No matches';out.className=m.length?'out ok':'out er';}
+  try{var re=new RegExp(p,f),m=t.match(re)||[];out.textContent=m.length?m.map(function(x,i){return'['+(i+1)+'] '+x;}).join('\n'):'No matches';out.className=m.length?'out ok':'out er';}
   catch(e){out.textContent='Error: '+e.message;out.className='out er';}
 }
 
@@ -773,7 +771,7 @@ function doEpoch(){
   if(!v){res.innerHTML='';return;}
   var ms=v>1e10?v:v*1000,d=new Date(ms);
   var rows=[['IST',d.toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})],['UTC',d.toUTCString()],['Unix sec',Math.floor(ms/1000).toString()]];
-  var html='';rows.forEach(function(r){html+='<div class="hrow"><div class="halgo">'+r[0]+'</div><div class="hval">'+r[1]+'</div><button class="cpb" onclick="cpv(''+r[1].replace(/'/g,"\'")+'',this)">COPY</button></div>';});
+  var html='';rows.forEach(function(r){html+='<div class="hrow"><div class="halgo">'+r[0]+'</div><div class="hval">'+r[1]+'</div><button class="cpb" data-val="'+esc(r[1])+'" onclick="cpv(this.dataset.val,this)">COPY</button></div>';});
   res.innerHTML=html;
 }
 function doDate(){

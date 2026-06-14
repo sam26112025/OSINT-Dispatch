@@ -54,36 +54,11 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://igrs.xyz/cve-live.html</loc>
-    <lastmod>2026-06-13</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://igrs.xyz/live.html</loc>
-    <lastmod>2026-06-13</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://igrs.xyz/lookup.html</loc>
-    <lastmod>2026-06-13</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://igrs.xyz/news.html</loc>
-    <lastmod>2026-06-13</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://igrs.xyz/threatmap.html</loc>
-    <lastmod>2026-06-13</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
+  
+  
+  
+  
+  
   <url>
     <loc>https://igrs.xyz/threat-digest.html</loc>
     <lastmod>2026-06-13</lastmod>

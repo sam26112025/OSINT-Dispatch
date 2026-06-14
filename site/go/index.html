@@ -20,29 +20,40 @@ a{color:#00d4ff;}.box{text-align:center;}
 </div>
 <script>
 (function(){
+  var ALLOW=["igrs.xyz","www.igrs.xyz","check.igrs.xyz"];
+  function isHttp(u){return /^https?:\/\//i.test(u);}
+  function hostOf(u){try{return new URL(u).hostname.toLowerCase();}catch(e){return null;}}
+  function setMsg(html,hide){document.getElementById("msg").innerHTML=html;if(hide){var sp=document.querySelector(".spinner");if(sp)sp.style.display="none";}}
+  function trusted(h){return !!h&&ALLOW.some(function(d){return h===d||h.endsWith("."+d);});}
+  function leaving(dest){
+    var sp=document.querySelector(".spinner");if(sp)sp.style.display="none";
+    var box=document.getElementById("msg");box.innerHTML="";
+    var t=document.createElement("div");t.style.marginBottom="14px";t.textContent="\u26A0 You are leaving IGRS";
+    var sub=document.createElement("div");sub.style.cssText="font-size:12px;opacity:.75;margin-bottom:18px;word-break:break-all;";sub.textContent=dest;
+    var go=document.createElement("a");go.href=dest;go.rel="noopener noreferrer";go.textContent="Continue to destination \u2192";go.style.marginRight="18px";
+    var back=document.createElement("a");back.href="https://igrs.xyz";back.textContent="Back to IGRS";
+    box.appendChild(t);box.appendChild(sub);box.appendChild(go);box.appendChild(back);
+  }
   var params=new URLSearchParams(window.location.search);
-  // ?u= encoded URL (from public tool)
   var encUrl=params.get("u");
   if(encUrl){
     var dest=decodeURIComponent(encUrl);
-    if(!/^https?:\/\//.test(dest)) dest="https://"+dest;
-    window.location.replace(dest);
-    return;
+    if(!isHttp(dest)) dest="https://"+dest;
+    if(!isHttp(dest)){setMsg("Unsupported link.<br><br><a href='https://igrs.xyz'>IGRS Home &rarr;</a>",true);return;}
+    var h=hostOf(dest);
+    if(trusted(h)){window.location.replace(dest);return;}   // trusted -> silent
+    leaving(dest);return;                                    // external -> manual confirm (no open redirect)
   }
-  // ?slug or #slug or /go/slug (branded links)
-  var slug="";
   var qs=window.location.search.replace("?","").split("&")[0].split("=")[0];
   var hash=window.location.hash.replace("#","");
   var path=window.location.pathname.split("/go/")[1];
   if(path) path=path.replace(/\/$/,"").replace(".html","");
-  slug=(path&&path!=="index"&&path!=="")?path:(qs||hash);
+  var slug=(path&&path!=="index"&&path!=="")?path:(qs||hash);
   slug=decodeURIComponent(slug).toLowerCase().trim();
-
   if(slug&&IGRS_LINKS[slug]){
-    window.location.replace(IGRS_LINKS[slug]);
+    window.location.replace(IGRS_LINKS[slug]);               // map values are trusted
   } else if(slug){
-    document.getElementById("msg").innerHTML="Link not found.<br><br><a href='https://igrs.xyz'>IGRS Home &rarr;</a>";
-    document.querySelector(".spinner").style.display="none";
+    setMsg("Link not found.<br><br><a href='https://igrs.xyz'>IGRS Home &rarr;</a>",true);
   } else {
     window.location.replace("https://igrs.xyz/links.html");
   }
