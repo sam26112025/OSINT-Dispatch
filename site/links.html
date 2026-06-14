@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Link Tools — IGRS | URL Shortener & QR Generator</title>
+<meta name="description" content="Free URL shortener and QR code generator by IGRS. Create branded short links and QR codes instantly. No login required.">
+<meta name="keywords" content="url shortener free, QR code generator, link shortener india, free QR code, igrs link tool">
+<meta name="author" content="Manuj Kumar Pandey">
+<link rel="canonical" href="https://igrs.xyz/links.html">
+<meta property="og:title" content="Link Tools — IGRS">
+<meta property="og:description" content="Free URL shortener and QR code generator. No login.">
+<meta property="og:image" content="https://igrs.xyz/logo.svg">
+<meta name="google-adsense-account" content="ca-pub-5886568858916800">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TCBLVSTG97"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-TCBLVSTG97');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#04090f;--sf:#08111e;--bd:#0e3a5c;--bd2:#0e4a7a;--ink:#c8dff0;--ink2:#7aa8cc;--mt:#3a6a8a;--ac:#00d4ff;--ac2:#0099cc;--am:#ffb800;--gn:#00ff88;--mono:"IBM Plex Mono",monospace;--tech:"Share Tech Mono",monospace;--disp:"Rajdhani",sans-serif;}
+body{background:var(--bg);color:var(--ink);font-family:var(--disp);min-height:100vh;}
+nav.top{position:sticky;top:0;z-index:100;background:rgba(4,9,15,.97);border-bottom:1px solid var(--bd);backdrop-filter:blur(12px);height:56px;display:flex;align-items:center;padding:0 20px;gap:16px;}
+.brand{display:flex;align-items:center;gap:8px;text-decoration:none;margin-right:12px;}
+.brand img{width:34px;height:34px;}
+.brand-name{font-family:var(--tech);font-size:17px;color:var(--ac);letter-spacing:.12em;}
+.nav-links{display:flex;gap:16px;font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;flex-wrap:wrap;}
+.nav-links a{color:var(--mt);text-decoration:none;transition:color .2s;}
+.nav-links a:hover,.nav-links a.act{color:var(--ac);}
+.wrap{max-width:760px;margin:0 auto;padding:48px 24px 80px;}
+.hero{text-align:center;margin-bottom:44px;}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ac2);margin-bottom:14px;}
+h1{font-family:var(--tech);font-size:clamp(28px,5vw,44px);color:var(--ink);letter-spacing:.04em;margin-bottom:14px;}
+h1 .hl{color:var(--ac);}
+.sub{font-size:16px;color:var(--ink2);max-width:520px;margin:0 auto;line-height:1.6;}
+.tabs{display:flex;gap:8px;justify-content:center;margin-bottom:28px;}
+.tab{font-family:var(--mono);font-size:12px;padding:10px 22px;border:1px solid var(--bd);border-radius:6px;cursor:pointer;background:none;color:var(--mt);letter-spacing:.06em;text-transform:uppercase;transition:all .2s;}
+.tab:hover,.tab.on{border-color:var(--ac);color:var(--ac);background:rgba(0,212,255,.06);}
+.panel{display:none;}
+.panel.on{display:block;}
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:28px;}
+label{display:block;font-family:var(--mono);font-size:11px;color:var(--mt);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;}
+.inp{width:100%;background:rgba(0,0,0,.4);border:1px solid var(--bd);border-radius:6px;padding:14px 16px;font-family:var(--mono);font-size:14px;color:var(--ink);outline:none;transition:border-color .2s;margin-bottom:18px;}
+.inp:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(0,212,255,.1);}
+.inp::placeholder{color:var(--mt);}
+.btn{width:100%;font-family:var(--mono);font-size:13px;font-weight:600;padding:14px;border:none;border-radius:6px;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;background:var(--ac);color:#000;}
+.btn:hover{opacity:.88;transform:translateY(-1px);}
+.result{margin-top:22px;padding:18px;background:rgba(0,255,136,.05);border:1px solid rgba(0,255,136,.25);border-radius:8px;display:none;}
+.result.show{display:block;}
+.result-label{font-family:var(--mono);font-size:10px;color:var(--gn);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+.result-link{font-family:var(--mono);font-size:15px;color:var(--ac);word-break:break-all;display:flex;align-items:center;gap:10px;justify-content:space-between;}
+.copy-btn{background:rgba(0,212,255,.1);border:1px solid var(--bd2);color:var(--ac);font-family:var(--mono);font-size:10px;padding:6px 14px;border-radius:4px;cursor:pointer;white-space:nowrap;}
+.copy-btn:hover{background:rgba(0,212,255,.2);}
+#qrcode{display:flex;justify-content:center;margin-top:20px;padding:20px;background:#fff;border-radius:8px;width:fit-content;margin-left:auto;margin-right:auto;}
+.qr-download{margin-top:14px;text-align:center;}
+.note{font-family:var(--mono);font-size:11px;color:var(--mt);margin-top:16px;line-height:1.6;text-align:center;}
+.quick-links{margin-top:40px;}
+.quick-links h3{font-family:var(--tech);font-size:14px;color:var(--ac);letter-spacing:.1em;margin-bottom:14px;text-align:center;}
+.ql-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;}
+.ql{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:10px 12px;background:var(--sf);border:1px solid var(--bd);border-radius:6px;font-family:var(--mono);font-size:11px;}
+.ql-slug{color:var(--ac2);}
+.ql-copy{background:none;border:none;color:var(--mt);cursor:pointer;font-size:13px;}
+.ql-copy:hover{color:var(--ac);}
+footer{border-top:1px solid var(--bd);padding:24px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--mt);}
+footer a{color:var(--ac2);text-decoration:none;}
+@media(max-width:560px){.ql-grid{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="index.html"><img src="logo.svg" alt="IGRS Logo"><span class="brand-name">IGRS</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="tools.html">Tools</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="articles.html">Articles</a>
+    <a href="links.html" class="act">Link Tools</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="eyebrow">IGRS Utilities</div>
+    <h1>Link <span class="hl">Tools</span></h1>
+    <p class="sub">Free URL shortener and QR code generator. Create clean short links and downloadable QR codes instantly — no login, no tracking, no cost.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" onclick="swTab('short',this)">URL Shortener</button>
+    <button class="tab" onclick="swTab('qr',this)">QR Generator</button>
+  </div>
+
+  <!-- URL SHORTENER -->
+  <div class="panel on" id="p-short">
+    <div class="card">
+      <label>Long URL</label>
+      <input type="url" class="inp" id="long-url" placeholder="https://example.com/very/long/url..." autocomplete="off">
+      <label>Custom Alias (optional)</label>
+      <input type="text" class="inp" id="alias" placeholder="my-link" autocomplete="off">
+      <button class="btn" onclick="shorten()">Shorten URL</button>
+      <div class="result" id="short-result">
+        <div class="result-label">Your short link</div>
+        <div class="result-link"><span id="short-out"></span><button class="copy-btn" onclick="copyText('short-out',this)">COPY</button></div>
+      </div>
+      <div class="note">Note: This generates a clean redirect link. For permanent branded links (igrs.xyz/go/name), contact us to add it to our system.</div>
+    </div>
+  </div>
+
+  <!-- QR GENERATOR -->
+  <div class="panel" id="p-qr">
+    <div class="card">
+      <label>URL or Text</label>
+      <input type="text" class="inp" id="qr-input" placeholder="https://igrs.xyz or any text..." autocomplete="off" oninput="genQR()">
+      <button class="btn" onclick="genQR()">Generate QR Code</button>
+      <div id="qrcode"></div>
+      <div class="qr-download" id="qr-dl" style="display:none;">
+        <button class="copy-btn" onclick="downloadQR()" style="padding:10px 20px;font-size:11px;">&#8595; DOWNLOAD PNG</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK BRANDED LINKS -->
+  <div class="quick-links">
+    <h3>&#9889; IGRS Quick Links</h3>
+    <div class="ql-grid" id="ql-grid"></div>
+  </div>
+</div>
+
+<footer>
+  IGRS Link Tools &middot; Free forever &middot; <a href="index.html">Back to IGRS</a>
+</footer>
+
+<script src="go/links.js"></script>
+<script>
+function swTab(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.getElementById('p-'+id).classList.add('on');
+  btn.classList.add('on');
+}
+
+function shorten(){
+  var url=document.getElementById('long-url').value.trim();
+  var alias=document.getElementById('alias').value.trim();
+  if(!url){alert('Enter a URL');return;}
+  if(!/^https?:\/\//.test(url)) url="https://"+url;
+  // Generate a redirect link using the go system with the encoded URL
+  var slug=alias||Math.random().toString(36).substr(2,6);
+  var shortLink="https://igrs.xyz/go/?u="+encodeURIComponent(url);
+  if(alias) shortLink="https://igrs.xyz/go/?u="+encodeURIComponent(url)+"&a="+encodeURIComponent(alias);
+  document.getElementById('short-out').textContent=shortLink;
+  document.getElementById('short-result').classList.add('show');
+}
+
+function copyText(id,btn){
+  var t=document.getElementById(id).textContent;
+  navigator.clipboard.writeText(t).then(()=>{
+    var o=btn.textContent;btn.textContent='COPIED!';
+    setTimeout(()=>btn.textContent=o,1500);
+  });
+}
+
+var qrObj=null;
+function genQR(){
+  var val=document.getElementById('qr-input').value.trim();
+  var el=document.getElementById('qrcode');
+  el.innerHTML='';
+  if(!val){document.getElementById('qr-dl').style.display='none';return;}
+  qrObj=new QRCode(el,{text:val,width:200,height:200,colorDark:'#000',colorLight:'#fff',correctLevel:QRCode.CorrectLevel.H});
+  document.getElementById('qr-dl').style.display='block';
+}
+function downloadQR(){
+  var img=document.querySelector('#qrcode img')||document.querySelector('#qrcode canvas');
+  if(!img)return;
+  var url=img.src||img.toDataURL('image/png');
+  var a=document.createElement('a');a.href=url;a.download='igrs-qr.png';a.click();
+}
+
+// Populate quick links
+var grid=document.getElementById('ql-grid');
+var featured=['dashboard','tools','digital-arrest','upi-fraud','free-osint','tafcop','report-fraud','fir'];
+featured.forEach(function(slug){
+  if(IGRS_LINKS[slug]){
+    var div=document.createElement('div');
+    div.className='ql';
+    div.innerHTML='<span class="ql-slug">igrs.xyz/go/'+slug+'</span><button class="ql-copy" onclick="copyQuick(\''+slug+'\',this)">&#9112;</button>';
+    grid.appendChild(div);
+  }
+});
+function copyQuick(slug,btn){
+  navigator.clipboard.writeText('https://igrs.xyz/go/'+slug).then(()=>{
+    btn.innerHTML='&#10003;';setTimeout(()=>btn.innerHTML='&#9112;',1500);
+  });
+}
+</script>
+</body>
+</html>
