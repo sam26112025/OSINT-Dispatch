@@ -31,7 +31,7 @@
 body{background:var(--bg);color:var(--ink);font-family:var(--disp);min-height:100vh;}
 #neural-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.3;}
 header{position:sticky;top:0;z-index:1000;background:rgba(4,9,15,.96);border-bottom:1px solid var(--bd);backdrop-filter:blur(10px);}
-.hi{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;height:60px;}
+.hi{max-width:1200px;margin:0 auto;padding:8px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;min-height:60px;}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
 .brand img{width:44px;height:44px;filter:drop-shadow(0 0 10px rgba(0,212,255,.8));}
 .bn{font-family:var(--tech);font-size:19px;color:var(--ac);letter-spacing:.12em;}
@@ -92,6 +92,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--bd);padding:20px 2
 footer a{color:var(--mt);text-decoration:none;transition:color .2s;}
 footer a:hover{color:var(--ac);}
 .fl{display:flex;gap:16px;flex-wrap:wrap;}
+@media(max-width:768px){.ttabs{position:static;top:auto;}/*ttabs-mobile-fix*/}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"IGRS India OSINT Identifier Toolkit","description":"Free browser-based validators for Indian identifiers: PAN, GSTIN, IFSC, UPI and Aadhaar format/checksum verification for investigators.","url":"https://igrs.xyz/india-osint-toolkit.html","applicationCategory":"SecurityApplication","operatingSystem":"Any (browser-based)","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"author":{"@type":"Person","name":"Manuj Kumar Pandey"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://igrs.xyz/"},{"@type":"ListItem","position":2,"name":"Toolkit","item":"https://igrs.xyz/toolkit.html"},{"@type":"ListItem","position":3,"name":"India OSINT Identifier Toolkit","item":"https://igrs.xyz/india-osint-toolkit.html"}]}</script>
