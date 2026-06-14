@@ -1,0 +1,12 @@
+# IGRS Link Shortener — front controller
+# Routes every /go/<slug> request to index.html, which reads the slug from the
+# URL path (window.location) and redirects via links.js (IGRS_LINKS map).
+# Without this, Apache looks for a literal file named <slug> and returns 404.
+RewriteEngine On
+RewriteBase /go/
+
+# Real files/dirs (index.html, links.js) are served normally
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# Everything else -> the JS redirect handler
+RewriteRule ^ index.html [L]
