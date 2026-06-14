@@ -7,39 +7,43 @@
 <meta name="robots" content="noindex">
 <script src="links.js"></script>
 <style>
-body{background:#04090f;color:#00d4ff;font-family:'IBM Plex Mono',monospace,sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;flex-direction:column;gap:16px;}
-.spinner{width:40px;height:40px;border:3px solid rgba(0,212,255,.2);border-top-color:#00d4ff;border-radius:50%;animation:spin .8s linear infinite;}
+body{background:#04090f;color:#00d4ff;font-family:monospace;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;flex-direction:column;}
+.spinner{width:40px;height:40px;border:3px solid rgba(0,212,255,.2);border-top-color:#00d4ff;border-radius:50%;animation:spin .8s linear infinite;margin-bottom:16px;}
 @keyframes spin{to{transform:rotate(360deg);}}
-a{color:#00d4ff;}
-.box{text-align:center;}
+a{color:#00d4ff;}.box{text-align:center;}
 </style>
 </head>
 <body>
 <div class="box">
-  <div class="spinner" style="margin:0 auto 16px;"></div>
+  <div class="spinner"></div>
   <div id="msg">Redirecting...</div>
 </div>
 <script>
 (function(){
-  // Support both ?slug and #slug and /go/slug formats
-  var slug = "";
-  var qs = window.location.search.replace("?","").split("&")[0];
-  var hash = window.location.hash.replace("#","");
-  // Path-based: /go/slug
-  var path = window.location.pathname.split("/go/")[1];
-  if(path) path = path.replace(/\/$/,"").replace(".html","");
+  var params=new URLSearchParams(window.location.search);
+  // ?u= encoded URL (from public tool)
+  var encUrl=params.get("u");
+  if(encUrl){
+    var dest=decodeURIComponent(encUrl);
+    if(!/^https?:\/\//.test(dest)) dest="https://"+dest;
+    window.location.replace(dest);
+    return;
+  }
+  // ?slug or #slug or /go/slug (branded links)
+  var slug="";
+  var qs=window.location.search.replace("?","").split("&")[0].split("=")[0];
+  var hash=window.location.hash.replace("#","");
+  var path=window.location.pathname.split("/go/")[1];
+  if(path) path=path.replace(/\/$/,"").replace(".html","");
+  slug=(path&&path!=="index"&&path!=="")?path:(qs||hash);
+  slug=decodeURIComponent(slug).toLowerCase().trim();
 
-  slug = (path && path !== "index" && path !== "") ? path : (qs || hash);
-  slug = decodeURIComponent(slug).toLowerCase().trim();
-
-  if(slug && IGRS_LINKS[slug]){
-    document.getElementById("msg").innerHTML = "Taking you there...";
+  if(slug&&IGRS_LINKS[slug]){
     window.location.replace(IGRS_LINKS[slug]);
   } else if(slug){
-    document.getElementById("msg").innerHTML = "Link not found.<br><br><a href='https://igrs.xyz'>Go to IGRS Home &rarr;</a>";
+    document.getElementById("msg").innerHTML="Link not found.<br><br><a href='https://igrs.xyz'>IGRS Home &rarr;</a>";
     document.querySelector(".spinner").style.display="none";
   } else {
-    // No slug — redirect to the public shortener tool
     window.location.replace("https://igrs.xyz/links.html");
   }
 })();
