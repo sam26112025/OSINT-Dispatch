@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="google-adsense-account" content="ca-pub-5886568858916800">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5886568858916800" crossorigin="anonymous"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TCBLVSTG97"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-TCBLVSTG97');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free IP Address Lookup - ASN, Geolocation, VPN &amp; Hosting Detection | IGRS</title>
+<meta name="description" content="Free IP intelligence lookup for investigators. Enter any IP to get ASN, organisation, geolocation, hosting/datacenter detection, and VPN/proxy/Tor/abuser flags in one report.">
+<link rel="canonical" href="https://igrs.xyz/ip-lookup.html">
+<meta property="og:title" content="Free IP Address Lookup - IGRS">
+<meta property="og:description" content="ASN, geolocation, hosting and VPN/proxy/Tor/abuser detection for any IP address. Free, instant.">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"IGRS IP Address Lookup","url":"https://igrs.xyz/ip-lookup.html","applicationCategory":"SecurityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"description":"Free IP intelligence lookup: ASN, geolocation, hosting and VPN/proxy/Tor/abuser detection for any IP address.","publisher":{"@type":"Organization","name":"IGRS - Intel Grid Research Station"}}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{--bg:#080f1a;--surface:#0d1829;--border:#0e4a7a;--ink:#c8dff0;--ink2:#7aa8cc;--muted:#4a7a9b;--accent:#00d4ff;--accent2:#0099cc;--ok:#27d796;--warn:#ffb800;--bad:#ff5c6c;--mono:"IBM Plex Mono",monospace;--tech:"Share Tech Mono",monospace;--disp:"Rajdhani",sans-serif;}
+body{background:var(--bg);color:var(--ink);font-family:var(--disp);min-height:100vh;}
+#neural-bg{position:fixed!important;top:0;left:0;width:100%;height:100%;z-index:0!important;pointer-events:none!important;opacity:.4;}
+header.igrs-hdr,main.igrs-main,footer.igrs-ftr{position:relative;z-index:10;}
+header.igrs-hdr{background:rgba(8,15,26,.96);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1000;backdrop-filter:blur(10px);}
+.hdr-inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;padding:10px 0;}
+.brand img{width:52px;height:52px;filter:drop-shadow(0 0 12px rgba(0,212,255,.8));}
+.brand-name{font-family:var(--tech);font-size:20px;color:var(--accent);letter-spacing:.12em;text-shadow:0 0 16px rgba(0,212,255,.5);}
+nav.igrs-nav{display:flex;gap:18px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:10px 0;flex-wrap:wrap;}
+nav.igrs-nav a{color:var(--ink2);text-decoration:none;padding:4px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s;}
+nav.igrs-nav a:hover,nav.igrs-nav a.active{color:var(--accent);border-bottom-color:var(--accent);}
+nav.igrs-nav a::before{content:"> ";color:var(--muted);}
+main.igrs-main{max-width:1000px;margin:0 auto;padding:0 24px 60px;}
+.hero{padding:48px 0 24px;text-align:center;}
+.stamp{font-family:var(--mono);font-size:11px;color:var(--warn);letter-spacing:.15em;text-transform:uppercase;margin-bottom:14px;}
+.hero h1{font-family:var(--tech);font-size:32px;color:var(--accent);letter-spacing:.04em;text-shadow:0 0 18px rgba(0,212,255,.4);margin-bottom:12px;}
+.hero p{color:var(--ink2);max-width:660px;margin:0 auto;font-size:16px;line-height:1.6;}
+.search-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:22px;margin-top:24px;}
+.field{display:flex;gap:8px;flex-wrap:wrap;}
+.field input{flex:1;min-width:200px;background:#06101d;border:1px solid var(--border);color:var(--ink);padding:13px 15px;border-radius:6px;font-family:var(--mono);font-size:15px;outline:none;}
+.field input:focus{border-color:var(--accent);box-shadow:0 0 10px rgba(0,212,255,.25);}
+.btn{background:var(--accent);color:#04090f;border:none;padding:13px 22px;border-radius:6px;font-family:var(--disp);font-weight:700;font-size:15px;cursor:pointer;letter-spacing:.03em;transition:.2s;}
+.btn:hover{box-shadow:0 0 16px rgba(0,212,255,.5);}
+.btn:disabled{opacity:.5;cursor:not-allowed;}
+.btn-ghost{background:transparent;color:var(--accent);border:1px solid var(--border);}
+.btn-ghost:hover{border-color:var(--accent);background:rgba(0,212,255,.06);box-shadow:none;}
+.spinner{display:inline-block;width:14px;height:14px;border:2px solid var(--muted);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.result{margin-top:22px;display:none;}
+.result.show{display:block;}
+.ipline{font-family:var(--tech);font-size:24px;color:var(--accent);letter-spacing:.04em;margin-bottom:4px;}
+.ipsub{font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:16px;}
+.flags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+.flag{font-family:var(--mono);font-size:11px;padding:5px 10px;border-radius:14px;border:1px solid var(--border);letter-spacing:.04em;}
+.flag.no{color:var(--ok);border-color:rgba(39,215,150,.4);background:rgba(39,215,150,.08);}
+.flag.yes{color:var(--bad);border-color:rgba(255,92,108,.5);background:rgba(255,92,108,.1);}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.hero h1{font-size:25px}}
+.block{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 18px;}
+.block h3{font-family:var(--tech);font-size:13px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:8px;}
+.row{display:flex;justify-content:space-between;gap:12px;font-family:var(--mono);font-size:13px;padding:4px 0;border-bottom:1px dashed rgba(14,74,122,.3);}
+.row:last-child{border-bottom:none;}
+.row .k{color:var(--muted);flex-shrink:0;}
+.row .v{color:var(--ink);text-align:right;word-break:break-word;}
+.row .v a{color:var(--accent);text-decoration:none;}
+.notice{margin-top:20px;font-family:var(--mono);font-size:12px;color:var(--muted);background:#06101d;border:1px solid var(--border);border-radius:6px;padding:12px 14px;line-height:1.6;}
+.notice b{color:var(--ink2);}
+.info-sec{margin-top:38px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:26px;}
+.info-sec h2{font-family:var(--tech);color:var(--accent);font-size:20px;margin-bottom:14px;}
+.info-sec h3{font-family:var(--disp);color:var(--ink);font-size:16px;margin:16px 0 6px;}
+.info-sec p,.info-sec li{color:var(--ink2);font-size:15px;line-height:1.7;}
+.info-sec ul{margin:6px 0 6px 20px;}
+.info-sec a{color:var(--accent);}
+footer.igrs-ftr{background:rgba(8,15,26,.9);border-top:1px solid var(--border);margin-top:50px;}
+.ftr-inner{max-width:1280px;margin:0 auto;padding:22px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--muted);font-family:var(--mono);font-size:12px;}
+.ftr-links{display:flex;gap:16px;flex-wrap:wrap;}
+.ftr-links a{color:var(--ink2);text-decoration:none;}
+.ftr-links a:hover{color:var(--accent);}
+</style>
+</head>
+<body>
+<header class="igrs-hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="index.html"><img src="logo.svg" alt="IGRS"><span class="brand-name">IGRS</span></a>
+    <nav class="igrs-nav">
+      <a href="index.html">Home</a>
+      <a href="index.html#articles">Articles</a>
+      <a href="tools.html">Tools</a>
+      <a href="ip-lookup.html" class="active">IP Lookup</a>
+      <a href="breach-check.html">Breach Check</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+<main class="igrs-main">
+  <div class="hero">
+    <div class="stamp">Investigator Tool &middot; ASN &middot; Geo &middot; VPN/Proxy/Tor Detection</div>
+    <h1>&gt; IP ADDRESS LOOKUP_</h1>
+    <p>Enter any IPv4, IPv6, or AS number to pull a full intelligence profile &mdash; network ownership, geolocation, hosting/datacenter detection, and VPN / proxy / Tor / abuser flags &mdash; in a single report.</p>
+  </div>
+
+  <div class="search-card">
+    <div class="field">
+      <input type="text" id="ip" placeholder="e.g. 8.8.8.8  /  2606:4700::  /  AS15169" autocomplete="off" spellcheck="false">
+      <button class="btn" id="goBtn">Look Up</button>
+      <button class="btn btn-ghost" id="myBtn">My IP</button>
+    </div>
+    <div class="result" id="res"></div>
+  </div>
+
+  <div class="notice">
+    <b>Privacy:</b> This tool runs in your browser and queries the public <b>ipapi.is</b> API directly &mdash; IGRS does not store or log your lookups. Data is for OSINT / awareness purposes and may not be exhaustive or perfectly accurate at the city level.
+  </div>
+
+  <div class="info-sec">
+    <h2>How investigators read an IP profile</h2>
+    <p>A raw IP address is just an endpoint &mdash; the intelligence is in what sits behind it. This tool resolves the network ownership and behavioural signals that matter in an investigation.</p>
+    <h3>ASN &amp; ownership</h3>
+    <p>The Autonomous System Number (ASN) identifies the network operator. Knowing whether an IP belongs to an ISP, a hosting provider, an educational, government, or banking network tells you a lot about expected traffic. A consumer fraud lead coming from a <em>hosting</em> ASN, for example, is often a sign of automation or anonymisation rather than a genuine residential user.</p>
+    <h3>Anonymisation flags</h3>
+    <p>The VPN, proxy, Tor and datacenter flags indicate whether the real origin is likely being masked. The abuser flag and abuser score reflect how much malicious traffic has historically originated from that network &mdash; useful for triaging the reputation of a source.</p>
+    <h3>Geolocation caveat</h3>
+    <p>IP geolocation is reliable at the country level and often at the city level, but it is an estimate, not a precise address. Treat it as supporting context, not standalone proof, especially in evidentiary contexts.</p>
+    <h3>Attribution</h3>
+    <p>Network, geolocation and reputation data are provided by <a href="https://ipapi.is" target="_blank" rel="noopener">ipapi.is</a>. IGRS is not affiliated with ipapi.is. For high-volume or commercial use, please review and subscribe to their plans.</p>
+  </div>
+</main>
+<footer class="igrs-ftr">
+  <div class="ftr-inner">
+    <div class="ftr-links">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+    <div>&copy; 2026 IGRS &mdash; Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="neural.js"></script>
+<script>
+const res=document.getElementById('res'), goBtn=document.getElementById('goBtn'), myBtn=document.getElementById('myBtn'), ipIn=document.getElementById('ip');
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function row(k,v){if(v==null||v===''||v===undefined)return'';return'<div class="row"><span class="k">'+k+'</span><span class="v">'+v+'</span></div>';}
+function flag(label,val){return'<span class="flag '+(val?'yes':'no')+'">'+label+': '+(val?'YES':'no')+'</span>';}
+
+async function lookup(q){
+  goBtn.disabled=true;myBtn.disabled=true;
+  res.className='result show';res.innerHTML='<span class="spinner"></span> Querying IP intelligence...';
+  try{
+    const url='https://api.ipapi.is/'+(q?('?q='+encodeURIComponent(q)):'');
+    const r=await fetch(url);
+    const d=await r.json();
+    if(d.error){res.innerHTML='<span style="color:var(--bad);font-family:var(--mono)">Error: '+esc(d.error)+'</span>';goBtn.disabled=false;myBtn.disabled=false;return;}
+    const a=d.asn||{}, c=d.company||{}, l=d.location||{}, dc=d.datacenter||{};
+    let h='';
+    h+='<div class="ipline">'+esc(d.ip||q||'')+'</div>';
+    h+='<div class="ipsub">'+esc(d.rir||'')+(a.route?' &middot; route '+esc(a.route):'')+(l.country?' &middot; '+esc(l.country):'')+'</div>';
+    // flags
+    h+='<div class="flags">';
+    h+=flag('Datacenter',d.is_datacenter)+flag('VPN',d.is_vpn)+flag('Proxy',d.is_proxy)+flag('Tor',d.is_tor)+flag('Abuser',d.is_abuser)+flag('Crawler',d.is_crawler)+flag('Mobile',d.is_mobile)+flag('Bogon',d.is_bogon);
+    h+='</div>';
+    h+='<div class="grid">';
+    // ASN
+    if(a.asn){
+      h+='<div class="block"><h3>Network / ASN</h3>';
+      h+=row('ASN','AS'+esc(a.asn));
+      h+=row('Organisation',esc(a.org));
+      h+=row('Description',esc(a.descr));
+      h+=row('Type',esc(a.type));
+      h+=row('Route',esc(a.route));
+      h+=row('Country',esc(a.country));
+      h+=row('Domain',a.domain?'<a href="https://'+esc(a.domain)+'" target="_blank" rel="noopener">'+esc(a.domain)+'</a>':'');
+      h+=row('Abuse contact',esc(a.abuse));
+      h+=row('Abuser score',esc(a.abuser_score));
+      h+=row('RIR',esc(a.rir));
+      h+='</div>';
+    }
+    // Company
+    if(c.name){
+      h+='<div class="block"><h3>Owning Company</h3>';
+      h+=row('Name',esc(c.name));
+      h+=row('Type',esc(c.type));
+      h+=row('Domain',c.domain?'<a href="https://'+esc(c.domain)+'" target="_blank" rel="noopener">'+esc(c.domain)+'</a>':'');
+      h+=row('Network',esc(c.network));
+      h+=row('Abuser score',esc(c.abuser_score));
+      h+='</div>';
+    }
+    // Datacenter
+    if(d.is_datacenter && (dc.datacenter||dc.network)){
+      h+='<div class="block"><h3>Hosting / Datacenter</h3>';
+      h+=row('Provider',esc(dc.datacenter));
+      h+=row('Domain',dc.domain?'<a href="https://'+esc(dc.domain)+'" target="_blank" rel="noopener">'+esc(dc.domain)+'</a>':'');
+      h+=row('Network',esc(dc.network));
+      h+='</div>';
+    }
+    // Location
+    if(l.country||l.city){
+      const maplink=(l.latitude&&l.longitude)?'<a href="https://www.openstreetmap.org/?mlat='+l.latitude+'&mlon='+l.longitude+'#map=10/'+l.latitude+'/'+l.longitude+'" target="_blank" rel="noopener">'+esc(l.latitude)+', '+esc(l.longitude)+'</a>':'';
+      h+='<div class="block"><h3>Geolocation</h3>';
+      h+=row('City',esc(l.city));
+      h+=row('State / Region',esc(l.state));
+      h+=row('Country',esc(l.country)+(l.country_code?' ('+esc(l.country_code)+')':''));
+      h+=row('Continent',esc(l.continent));
+      h+=row('Postal',esc(l.zip));
+      h+=row('Timezone',esc(l.timezone));
+      h+=row('Coordinates',maplink);
+      h+=row('Accuracy',l.accuracy!=null?esc(l.accuracy)+' (1=best, 5=worst)':'');
+      h+='</div>';
+    }
+    h+='</div>'; // grid
+    res.innerHTML=h;
+  }catch(e){
+    res.innerHTML='<span style="color:var(--warn);font-family:var(--mono)">Could not reach the IP service (it may be rate-limited or temporarily unavailable). Please try again shortly.</span>';
+  }
+  goBtn.disabled=false;myBtn.disabled=false;
+}
+goBtn.addEventListener('click',function(){const q=ipIn.value.trim();if(!q){res.className='result show';res.innerHTML='<span style="color:var(--warn);font-family:var(--mono)">Enter an IP address or AS number.</span>';return;}lookup(q);});
+myBtn.addEventListener('click',function(){ipIn.value='';lookup('');});
+ipIn.addEventListener('keydown',function(e){if(e.key==='Enter')goBtn.click();});
+</script>
+</body>
+</html>
