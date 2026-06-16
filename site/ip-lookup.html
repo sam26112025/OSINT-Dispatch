@@ -150,7 +150,7 @@ footer.igrs-ftr{background:rgba(8,15,26,.9);border-top:1px solid var(--border);m
 <script src="neural.js"></script>
 <script>
 const res=document.getElementById('res'), goBtn=document.getElementById('goBtn'), myBtn=document.getElementById('myBtn'), ipIn=document.getElementById('ip');
-const IP2_PROXY="https://igrs-ip2.sampande29.workers.dev/"; // Cloudflare Worker proxy (key kept server-side)
+const IP2_PROXY="https://ip2.igrs.xyz/"; // Cloudflare Worker proxy (key kept server-side)
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 function row(k,v){if(v==null||v===''||v===undefined)return'';return'<div class="row"><span class="k">'+k+'</span><span class="v">'+v+'</span></div>';}
 function flag(label,val){return'<span class="flag '+(val?'yes':'no')+'">'+label+': '+(val?'YES':'no')+'</span>';}
