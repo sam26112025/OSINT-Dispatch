@@ -8,8 +8,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2          # IndexNow ko changed-files diff ke liye chahiye
+
+      - name: Validate site + regenerate sitemap
+        run: |
+          python3 scripts/validate.py
+          python3 scripts/gen_sitemap.py --write
+
       - name: Install lftp
         run: sudo apt-get install -y lftp
+
       - name: Deploy via FTP
         run: |
           lftp -c "
@@ -19,3 +28,16 @@ jobs:
           mirror --reverse --delete --verbose ./site/ public_html/;
           bye
           "
+
+      - name: Purge Cloudflare cache
+        run: |
+          curl -s -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CF_ZONE_ID }}/purge_cache" \
+            -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}'
+
+      - name: Ping IndexNow (changed pages)
+        run: |
+          for f in $(git diff --name-only HEAD~1 HEAD -- 'site/**/*.html'); do
+            curl -s "https://api.indexnow.org/indexnow?url=https://igrs.xyz/${f#site/}&key=730d77e63bce1e2d1ccc0eb43fcce464" || true
+          done
