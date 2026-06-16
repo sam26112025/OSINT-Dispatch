@@ -49,7 +49,8 @@ main.igrs-main{max-width:1000px;margin:0 auto;padding:0 24px 60px;}
 @media(max-width:760px){.tools{grid-template-columns:1fr}.hero h1{font-size:26px}}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;}
 .card h2{font-family:var(--tech);font-size:18px;color:var(--accent);margin-bottom:6px;letter-spacing:.03em;}
-.card .sub{color:var(--muted);font-size:13px;font-family:var(--mono);margin-bottom:18px;line-height:1.5;}
+.card .sub{color:var(--muted);font-size:13px;font-family:var(--mono);margin-bottom:18px;line-height:1.5;min-height:84px;}
+@media(max-width:760px){.card .sub{min-height:0;}}
 .field{display:flex;gap:8px;flex-wrap:wrap;}
 .field input{flex:1;min-width:180px;background:#06101d;border:1px solid var(--border);color:var(--ink);padding:12px 14px;border-radius:6px;font-family:var(--mono);font-size:14px;outline:none;}
 .field input:focus{border-color:var(--accent);box-shadow:0 0 10px rgba(0,212,255,.25);}
