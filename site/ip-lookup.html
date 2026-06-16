@@ -150,6 +150,7 @@ footer.igrs-ftr{background:rgba(8,15,26,.9);border-top:1px solid var(--border);m
 <script src="neural.js"></script>
 <script>
 const res=document.getElementById('res'), goBtn=document.getElementById('goBtn'), myBtn=document.getElementById('myBtn'), ipIn=document.getElementById('ip');
+const IP2_PROXY="https://ip2.igrs.xyz/"; // Cloudflare Worker proxy (key kept server-side)
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 function row(k,v){if(v==null||v===''||v===undefined)return'';return'<div class="row"><span class="k">'+k+'</span><span class="v">'+v+'</span></div>';}
 function flag(label,val){return'<span class="flag '+(val?'yes':'no')+'">'+label+': '+(val?'YES':'no')+'</span>';}
@@ -219,12 +220,36 @@ async function lookup(q){
       h+='</div>';
     }
     h+='</div>'; // grid
+    h+='<div id="ip2block"></div>';
     res.innerHTML=h;
+    addIp2(d.ip||q);
   }catch(e){
     res.innerHTML='<span style="color:var(--warn);font-family:var(--mono)">Could not reach the IP service (it may be rate-limited or temporarily unavailable). Please try again shortly.</span>';
   }
   goBtn.disabled=false;myBtn.disabled=false;
 }
+async function addIp2(ip){
+  const el=document.getElementById('ip2block'); if(!el||!ip)return;
+  try{
+    const r=await fetch(IP2_PROXY+'?ip='+encodeURIComponent(ip));
+    if(!r.ok)return;
+    const d=await r.json();
+    if(!d||d.error||(!d.country_name&&!d.city_name))return;
+    let h='<div class="block" style="margin-top:16px"><h3>IP2Location &mdash; Cross-Reference</h3>';
+    h+=row('Country',esc(d.country_name)+(d.country_code?' ('+esc(d.country_code)+')':''));
+    h+=row('Region',esc(d.region_name));
+    h+=row('City',esc(d.city_name));
+    h+=row('Postal',esc(d.zip_code));
+    h+=row('Timezone',esc(d.time_zone));
+    h+=row('Coordinates',(d.latitude&&d.longitude)?esc(d.latitude)+', '+esc(d.longitude):'');
+    h+=row('ASN',d.asn?('AS'+esc(d.asn)):'');
+    h+=row('AS / Org',esc(d.as));
+    h+=row('Proxy',d.is_proxy!=null?(d.is_proxy?'YES':'no'):'');
+    h+='</div>';
+    el.innerHTML=h;
+  }catch(e){/* Worker not configured / unavailable -> skip silently */}
+}
+
 goBtn.addEventListener('click',function(){const q=ipIn.value.trim();if(!q){res.className='result show';res.innerHTML='<span style="color:var(--warn);font-family:var(--mono)">Enter an IP address or AS number.</span>';return;}lookup(q);});
 myBtn.addEventListener('click',function(){ipIn.value='';lookup('');});
 ipIn.addEventListener('keydown',function(e){if(e.key==='Enter')goBtn.click();});
