@@ -238,9 +238,9 @@ nav.top{
 }
 .cta-secondary:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,212,255,.06);}
 /* Link Shortener — highlighted hero card */
-.cta-shortener{position:relative;overflow:visible;border-color:var(--accent);color:var(--accent);animation:shortenerPulse 2.6s ease-in-out 1.8s infinite;}
-.cta-shortener::after{content:"";position:absolute;inset:0;border-radius:4px;background:linear-gradient(120deg,transparent 35%,rgba(0,212,255,.22),transparent 65%);background-size:220% 100%;animation:shortenerSweep 3.2s linear 1.8s infinite;pointer-events:none;}
-.cta-shortener:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,212,255,.10);box-shadow:0 0 22px rgba(0,212,255,.45);}
+.cta-shortener,.cta-new{position:relative;overflow:visible;border-color:var(--accent);color:var(--accent);animation:shortenerPulse 2.6s ease-in-out 1.8s infinite;}
+.cta-shortener::after,.cta-new::after{content:"";position:absolute;inset:0;border-radius:4px;background:linear-gradient(120deg,transparent 35%,rgba(0,212,255,.22),transparent 65%);background-size:220% 100%;animation:shortenerSweep 3.2s linear 1.8s infinite;pointer-events:none;}
+.cta-shortener:hover,.cta-new:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,212,255,.10);box-shadow:0 0 22px rgba(0,212,255,.45);}
 .cta-badge{position:absolute;top:-9px;right:-9px;font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.06em;background:#ffb800;color:#04090f;padding:2px 6px;border-radius:10px;box-shadow:0 0 10px rgba(255,184,0,.6);animation:badgePulse 1.6s ease-in-out infinite;}
 @keyframes shortenerPulse{0%,100%{box-shadow:0 0 0 rgba(0,212,255,0);}50%{box-shadow:0 0 18px rgba(0,212,255,.40);}}
 @keyframes shortenerSweep{0%{background-position:220% 0;}100%{background-position:-220% 0;}}
@@ -504,8 +504,8 @@ footer a:hover{color:var(--accent);}
   <div class="hero-ctas">
     <a href="tools.html" class="cta-primary">Explore 305+ Tools</a>
     <a href="links.html" class="cta-secondary cta-shortener">&#128279; Shorten &amp; Share<span class="cta-badge">NEW</span></a>
-    <a href="breach-check.html" class="cta-secondary">&#128737; Breach Check</a>
-    <a href="ip-lookup.html" class="cta-secondary">&#127760; IP Lookup</a>
+    <a href="breach-check.html" class="cta-secondary cta-new">&#128737; Breach Check<span class="cta-badge">NEW</span></a>
+    <a href="ip-lookup.html" class="cta-secondary cta-new">&#127760; IP Lookup<span class="cta-badge">NEW</span></a>
   </div>
 
   <div class="hero-stats">
