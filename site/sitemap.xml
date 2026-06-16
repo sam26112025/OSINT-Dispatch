@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://igrs.xyz/about.html</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -20,13 +20,13 @@
   </url>
   <url>
     <loc>https://igrs.xyz/case-studies.html</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://igrs.xyz/certifications.html</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -86,7 +86,7 @@
   </url>
   <url>
     <loc>https://igrs.xyz/india-cyber-stats.html</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -128,7 +128,7 @@
   </url>
   <url>
     <loc>https://igrs.xyz/threat-digest.html</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
