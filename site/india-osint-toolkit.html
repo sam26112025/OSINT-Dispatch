@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TCBLVSTG97"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-TCBLVSTG97');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>India OSINT Identifier Toolkit — PAN, GSTIN, IFSC, UPI &amp; Aadhaar Validator | IGRS</title>
+<meta name="description" content="Free India-specific identifier validators for investigators — PAN format decoder, GSTIN checksum validator, IFSC parser, UPI handle decoder, Aadhaar Verhoeff format checker. 100% in-browser, no data sent, no lookup.">
+<link rel="canonical" href="https://igrs.xyz/india-osint-toolkit.html">
+<meta name="google-adsense-account" content="ca-pub-5886568858916800">
+<meta name="robots" content="index,follow">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="author" content="Manuj Kumar Pandey">
+<meta name="keywords" content="India identifier validator, PAN format check online, GSTIN checksum validator, IFSC code parser, UPI handle decoder, Aadhaar format validator Verhoeff, OSINT India tools, cyber investigation India">
+<meta property="og:title" content="India OSINT Identifier Toolkit — PAN, GSTIN, IFSC, UPI &amp; Aadhaar Validator">
+<meta property="og:description" content="Free browser-based India identifier validators for investigators. Format and checksum verification only — nothing is sent or looked up. Built for Indian cyber cells, LEA and corporate security.">
+<meta property="og:image" content="https://igrs.xyz/logo.svg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#04090f;--sf:#0a1628;--bd:#0e3a5c;--bd2:#0e4a7a;--ink:#c8dff0;--ink2:#7aa8cc;--mt:#3a6a8a;--ac:#00d4ff;--ac2:#0099cc;--am:#ffb800;--gn:#00ff88;--rd:#ff3e3e;--mono:"IBM Plex Mono",monospace;--tech:"Share Tech Mono",monospace;--disp:"Rajdhani",sans-serif;}
+body{background:var(--bg);color:var(--ink);font-family:var(--disp);min-height:100vh;}
+#neural-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.3;}
+header{position:sticky;top:0;z-index:1000;background:rgba(4,9,15,.96);border-bottom:1px solid var(--bd);backdrop-filter:blur(10px);}
+.hi{max-width:1200px;margin:0 auto;padding:8px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;min-height:60px;}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.brand img{width:44px;height:44px;filter:drop-shadow(0 0 10px rgba(0,212,255,.8));}
+.bn{font-family:var(--tech);font-size:19px;color:var(--ac);letter-spacing:.12em;}
+nav{display:flex;gap:16px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;flex-wrap:wrap;}
+nav a{color:var(--mt);text-decoration:none;transition:color .2s;}
+nav a:hover,nav a.act{color:var(--ac);}
+nav a::before{content:"> ";color:var(--bd2);}
+main{max-width:1100px;margin:0 auto;padding:0 24px 80px;position:relative;z-index:1;}
+.crumb{font-family:var(--mono);font-size:10px;color:var(--mt);padding:14px 0 0;letter-spacing:.05em;}
+.crumb a{color:var(--ac2);text-decoration:none;}
+.crumb a:hover{color:var(--ac);}
+.hero{padding:22px 0 24px;border-bottom:1px solid var(--bd);margin-bottom:24px;}
+.stamp{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--ac2);border:1px solid var(--bd);padding:3px 10px;margin-bottom:14px;}
+h1{font-family:var(--tech);font-size:clamp(20px,3.5vw,34px);color:var(--ac);text-shadow:0 0 20px rgba(0,212,255,.4);margin-bottom:10px;letter-spacing:.06em;}
+h2{font-family:var(--tech);font-size:18px;color:var(--ac);margin:34px 0 12px;letter-spacing:.05em;}
+h3{font-family:var(--disp);font-size:15px;color:var(--ink);margin:18px 0 6px;font-weight:600;}
+.sub{color:var(--ink2);font-size:14px;max-width:720px;line-height:1.7;}
+p.tx{color:var(--ink2);font-size:14px;line-height:1.75;margin:8px 0;max-width:780px;}
+.ttabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;position:sticky;top:60px;z-index:100;background:rgba(4,9,15,.92);padding:12px 0;backdrop-filter:blur(8px);border-bottom:1px solid var(--bd);}
+.ttab{font-family:var(--mono);font-size:10px;padding:7px 14px;border:1px solid var(--bd);border-radius:4px;cursor:pointer;background:none;color:var(--ink2);letter-spacing:.06em;text-transform:uppercase;transition:all .2s;white-space:nowrap;}
+.ttab:hover,.ttab.on{border-color:var(--ac);color:var(--ac);background:rgba(0,212,255,.08);}
+.panel{display:none;background:var(--sf);border:1px solid var(--bd);border-radius:8px;padding:24px;position:relative;z-index:1;}
+.panel.on{display:block;}
+.ptitle{font-family:var(--tech);font-size:20px;color:var(--ac);margin-bottom:6px;}
+.pdesc{font-size:13px;color:var(--ink2);margin-bottom:18px;line-height:1.65;}
+.lbl{font-family:var(--mono);font-size:10px;color:var(--mt);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;display:block;}
+.inp{width:100%;background:rgba(0,0,0,.35);border:1px solid var(--bd);border-radius:4px;padding:11px 14px;font-family:var(--mono);font-size:14px;color:var(--ink);outline:none;transition:border-color .2s;text-transform:uppercase;}
+.inp:focus{border-color:var(--ac);box-shadow:0 0 0 2px rgba(0,212,255,.1);}
+.inp::placeholder{color:var(--mt);text-transform:none;}
+.btn{font-family:var(--mono);font-size:11px;font-weight:700;padding:10px 18px;border:none;border-radius:4px;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;}
+.btn-p{background:var(--ac);color:#000;}
+.btn-p:hover{opacity:.85;transform:translateY(-1px);}
+.btn-s{background:none;border:1px solid var(--bd2);color:var(--ac2);}
+.btn-s:hover{border-color:var(--ac);color:var(--ac);}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
+.out{background:rgba(0,0,0,.45);border:1px solid var(--bd);border-radius:4px;padding:13px 15px;font-family:var(--mono);font-size:12px;color:var(--am);word-break:break-all;line-height:1.8;min-height:48px;margin-top:14px;}
+.out.ok{color:var(--gn);border-color:rgba(0,255,136,.25);}
+.out.er{color:var(--rd);border-color:rgba(255,62,62,.25);}
+.hrow{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid rgba(14,74,122,.3);}
+.hrow:last-child{border-bottom:none;}
+.halgo{font-family:var(--mono);font-size:10px;color:var(--mt);width:120px;flex-shrink:0;letter-spacing:.04em;}
+.hval{font-family:var(--mono);font-size:12px;color:var(--ink);flex:1;word-break:break-all;}
+.verdict{font-family:var(--tech);font-size:13px;letter-spacing:.06em;margin-bottom:8px;}
+.pills{display:flex;gap:5px;flex-wrap:wrap;margin-top:12px;}
+.pill{font-family:var(--mono);font-size:9px;padding:4px 10px;border:1px solid var(--bd);border-radius:10px;cursor:pointer;background:none;color:var(--ink2);transition:all .2s;}
+.pill:hover{border-color:var(--ac2);color:var(--ac2);}
+.note{background:rgba(0,212,255,.05);border-left:3px solid var(--ac2);padding:11px 15px;font-family:var(--mono);font-size:11px;color:var(--ink2);border-radius:0 4px 4px 0;margin:14px 0;line-height:1.7;}
+.note.warn{background:rgba(255,184,0,.05);border-left-color:var(--am);}
+.linkrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;}
+.linkrow a{font-family:var(--mono);font-size:11px;color:var(--ac2);text-decoration:none;border:1px solid var(--bd);border-radius:4px;padding:7px 12px;transition:all .2s;}
+.linkrow a:hover{border-color:var(--ac);color:var(--ac);}
+.faq{border-top:1px solid var(--bd);padding-top:8px;margin-top:8px;}
+.faq h3{color:var(--ac2);font-family:var(--mono);font-size:13px;margin-top:18px;}
+.rel{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;}
+.rel a{font-family:var(--mono);font-size:11px;color:var(--ac2);text-decoration:none;border:1px solid var(--bd);border-radius:4px;padding:8px 12px;transition:all .2s;}
+.rel a:hover{border-color:var(--ac);color:var(--ac);}
+footer{position:relative;z-index:1;border-top:1px solid var(--bd);padding:20px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:10px;color:var(--mt);}
+footer a{color:var(--mt);text-decoration:none;transition:color .2s;}
+footer a:hover{color:var(--ac);}
+.fl{display:flex;gap:16px;flex-wrap:wrap;}
+@media(max-width:768px){.ttabs{position:static;top:auto;}/*ttabs-mobile-fix*/}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"IGRS India OSINT Identifier Toolkit","description":"Free browser-based validators for Indian identifiers: PAN, GSTIN, IFSC, UPI and Aadhaar format/checksum verification for investigators.","url":"https://igrs.xyz/india-osint-toolkit.html","applicationCategory":"SecurityApplication","operatingSystem":"Any (browser-based)","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"author":{"@type":"Person","name":"Manuj Kumar Pandey"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://igrs.xyz/"},{"@type":"ListItem","position":2,"name":"Toolkit","item":"https://igrs.xyz/toolkit.html"},{"@type":"ListItem","position":3,"name":"India OSINT Identifier Toolkit","item":"https://igrs.xyz/india-osint-toolkit.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does this tool look up or store the identifier I enter?","acceptedAnswer":{"@type":"Answer","text":"No. Every check runs entirely inside your browser using format rules and public checksum algorithms. Nothing you type is transmitted to any server, logged, or stored."}},{"@type":"Question","name":"Does a valid result mean the PAN, GSTIN or Aadhaar belongs to a real person?","acceptedAnswer":{"@type":"Answer","text":"No. These validators only confirm that a number is well-formed and passes its built-in checksum. They cannot confirm registration, ownership or that the holder exists. For authoritative verification, use the official government portals."}},{"@type":"Question","name":"Is checking an Aadhaar number format legal?","acceptedAnswer":{"@type":"Answer","text":"This tool performs a local, offline format and Verhoeff checksum check only. It does not query UIDAI or any database. Investigators should still handle Aadhaar data lawfully under the DPDP Act and seek data through proper legal process."}},{"@type":"Question","name":"What is the Verhoeff checksum used for in Aadhaar?","acceptedAnswer":{"@type":"Answer","text":"Aadhaar's 12th digit is a Verhoeff check digit computed over the first 11 digits. It catches common typos and transposition errors, which is why a format-level validity check is useful when triaging documents."}}]}</script>
+</head>
+<body>
+<div id="neural-bg"></div>
+<header>
+  <div class="hi">
+    <a class="brand" href="index.html"><img src="logo.svg" alt="IGRS — Intel Grid Research Station Logo"><span class="bn">IGRS</span></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="articles.html">Articles</a>
+      <a href="tools.html">Tools</a>
+      <a href="breach-check.html">Breach Check</a>
+      <a href="toolkit.html">Toolkit</a>
+      <a href="india-osint-toolkit.html" class="act">India Tools</a>
+      <a href="playbooks.html">Playbooks</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="crumb"><a href="index.html">Home</a> &rsaquo; <a href="toolkit.html">Toolkit</a> &rsaquo; India OSINT Identifier Toolkit</div>
+  <div class="hero">
+    <div class="stamp">Runs In Browser &middot; No Data Sent &middot; No Lookup &middot; India &middot; IGRS 2026</div>
+    <h1>&gt; INDIA OSINT IDENTIFIER TOOLKIT_</h1>
+    <p class="sub">Five India-specific identifier validators built for cyber cells, law-enforcement units, fraud teams and corporate security. Validate the <strong>format and checksum</strong> of a PAN, GSTIN, IFSC, UPI handle or Aadhaar number during triage — entirely inside your browser. Nothing you type is uploaded, logged or looked up.</p>
+  </div>
+
+  <div class="note warn"><strong>How to read these tools:</strong> they confirm whether an identifier is <em>well-formed</em> and (where applicable) passes its public checksum. A "valid" result does <strong>not</strong> confirm a real person, a live registration, or ownership. For authoritative verification always use the official portal, and handle personal data lawfully under the DPDP Act and due legal process.</div>
+
+  <div class="ttabs">
+    <button class="ttab" id="tab-pan"     onclick="sw('pan')">PAN</button>
+    <button class="ttab" id="tab-gstin"   onclick="sw('gstin')">GSTIN</button>
+    <button class="ttab" id="tab-ifsc"    onclick="sw('ifsc')">IFSC</button>
+    <button class="ttab" id="tab-upi"     onclick="sw('upi')">UPI Handle</button>
+    <button class="ttab" id="tab-aadhaar" onclick="sw('aadhaar')">Aadhaar</button>
+  </div>
+
+  <!-- PAN -->
+  <section class="panel" id="p-pan">
+    <div class="ptitle">PAN Validator &amp; Decoder</div>
+    <p class="pdesc">A Permanent Account Number is ten characters: five letters, four digits, one letter. The 4th letter encodes the holder type and the 5th encodes the first letter of the holder's surname or entity name. This tool checks the structure and decodes those two characters.</p>
+    <label class="lbl" for="pan-in">Enter PAN</label>
+    <input class="inp" id="pan-in" placeholder="ABCDE1234F" maxlength="10" autocomplete="off" onkeydown="if(event.key==='Enter')doPAN()">
+    <div class="pills">
+      <button class="pill" onclick="ex('pan-in','ABCPE1234F',doPAN)">Individual</button>
+      <button class="pill" onclick="ex('pan-in','AABCT3518Q',doPAN)">Company/Trust</button>
+    </div>
+    <div class="btns"><button class="btn btn-p" onclick="doPAN()">Validate</button><button class="btn btn-s" onclick="clr('pan-in','pan-out')">Clear</button></div>
+    <div class="out" id="pan-out">Awaiting input&hellip;</div>
+    <p class="pdesc" style="margin-top:16px">Holder-type codes (4th character): P Individual &middot; C Company &middot; H HUF &middot; F Firm/LLP &middot; A AOP &middot; T Trust &middot; B BOI &middot; L Local Authority &middot; J Artificial Juridical Person &middot; G Government.</p>
+  </section>
+
+  <!-- GSTIN -->
+  <section class="panel" id="p-gstin">
+    <div class="ptitle">GSTIN Validator &amp; Decoder</div>
+    <p class="pdesc">A GST Identification Number is 15 characters: a 2-digit state code, the holder's 10-character PAN, a 1-character entity number, a default "Z", and a final checksum digit. This tool verifies the structure, decodes the state and embedded PAN, and recomputes the official mod-36 checksum.</p>
+    <label class="lbl" for="gstin-in">Enter GSTIN</label>
+    <input class="inp" id="gstin-in" placeholder="27AAPFU0939F1ZV" maxlength="15" autocomplete="off" onkeydown="if(event.key==='Enter')doGSTIN()">
+    <div class="pills"><button class="pill" onclick="ex('gstin-in','27AAPFU0939F1ZV',doGSTIN)">Sample</button></div>
+    <div class="btns"><button class="btn btn-p" onclick="doGSTIN()">Validate</button><button class="btn btn-s" onclick="clr('gstin-in','gstin-out')">Clear</button></div>
+    <div class="out" id="gstin-out">Awaiting input&hellip;</div>
+  </section>
+
+  <!-- IFSC -->
+  <section class="panel" id="p-ifsc">
+    <div class="ptitle">IFSC Parser</div>
+    <p class="pdesc">An Indian Financial System Code is 11 characters: the first four identify the bank, the fifth is always "0" (reserved), and the last six identify the branch. This tool validates the structure and links out to authoritative branch lookups. The Reserve Bank of India is the issuing authority.</p>
+    <label class="lbl" for="ifsc-in">Enter IFSC</label>
+    <input class="inp" id="ifsc-in" placeholder="HDFC0001234" maxlength="11" autocomplete="off" onkeydown="if(event.key==='Enter')doIFSC()">
+    <div class="pills"><button class="pill" onclick="ex('ifsc-in','SBIN0000300',doIFSC)">Sample</button></div>
+    <div class="btns"><button class="btn btn-p" onclick="doIFSC()">Validate</button><button class="btn btn-s" onclick="clr('ifsc-in','ifsc-out')">Clear</button></div>
+    <div class="out" id="ifsc-out">Awaiting input&hellip;</div>
+    <div class="linkrow" id="ifsc-links"></div>
+  </section>
+
+  <!-- UPI -->
+  <section class="panel" id="p-upi">
+    <div class="ptitle">UPI Handle Decoder</div>
+    <p class="pdesc">A UPI Virtual Payment Address looks like <code>name@bank</code>. The part after the "@" is the PSP/bank handle and often reveals which payment app or bank issued it. This tool validates the format and maps the handle to its provider where known &mdash; useful when triaging UPI-fraud complaints.</p>
+    <label class="lbl" for="upi-in">Enter UPI Handle</label>
+    <input class="inp" id="upi-in" placeholder="name@oksbi" maxlength="80" autocomplete="off" onkeydown="if(event.key==='Enter')doUPI()">
+    <div class="pills">
+      <button class="pill" onclick="ex('upi-in','victim@ybl',doUPI)">@ybl</button>
+      <button class="pill" onclick="ex('upi-in','test@oksbi',doUPI)">@oksbi</button>
+      <button class="pill" onclick="ex('upi-in','user@paytm',doUPI)">@paytm</button>
+    </div>
+    <div class="btns"><button class="btn btn-p" onclick="doUPI()">Decode</button><button class="btn btn-s" onclick="clr('upi-in','upi-out')">Clear</button></div>
+    <div class="out" id="upi-out">Awaiting input&hellip;</div>
+  </section>
+
+  <!-- AADHAAR -->
+  <section class="panel" id="p-aadhaar">
+    <div class="ptitle">Aadhaar Format Checker (Verhoeff)</div>
+    <p class="pdesc">A genuine Aadhaar number is 12 digits and its last digit is a Verhoeff check digit over the first eleven. This tool confirms the length, that it does not start with 0 or 1, and that the Verhoeff checksum is consistent &mdash; catching typos and obviously fabricated numbers during document triage.</p>
+    <div class="note warn"><strong>Privacy:</strong> this check is fully local and offline. The number you type never leaves your browser, is never stored, and is never sent to UIDAI or any service. This is a format check only &mdash; it does not confirm a real holder. Handle Aadhaar data strictly under the DPDP Act and lawful process.</div>
+    <label class="lbl" for="aadhaar-in">Enter Aadhaar (12 digits)</label>
+    <input class="inp" id="aadhaar-in" placeholder="XXXX XXXX XXXX" maxlength="14" inputmode="numeric" autocomplete="off" onkeydown="if(event.key==='Enter')doAadhaar()">
+    <div class="btns"><button class="btn btn-p" onclick="doAadhaar()">Check Format</button><button class="btn btn-s" onclick="clr('aadhaar-in','aadhaar-out')">Clear</button></div>
+    <div class="out" id="aadhaar-out">Awaiting input&hellip;</div>
+  </section>
+
+  <h2>Why identifier validation matters in Indian investigations</h2>
+  <p class="tx">In Indian cyber-fraud and financial investigations, analysts are handed dozens of identifiers from FIRs, complaint portals, screenshots and seized devices &mdash; PANs, GST numbers, bank codes, UPI handles and Aadhaar references. Many are mistyped, partially redacted, or deliberately fabricated. A fast, offline format-and-checksum check lets an investigator separate plausible identifiers from obvious noise <em>before</em> spending time on authoritative verification or raising formal requests.</p>
+  <p class="tx">Validation is a triage step, not proof. A correctly structured GSTIN or a checksum-valid Aadhaar simply means the number <em>could</em> be real; it still has to be confirmed through the official channel and, where personal data is involved, through lawful process. Used this way, these tools speed up the early "is this even worth chasing" decision while keeping the evidentiary standard intact.</p>
+
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    <h3>Does this tool look up or store anything I enter?</h3>
+    <p class="tx">No. Every check runs inside your browser using format rules and public checksum algorithms. Nothing is transmitted, logged or stored &mdash; you can confirm this by using the tools offline.</p>
+    <h3>Does a "valid" result confirm a real person or registration?</h3>
+    <p class="tx">No. It only confirms the number is well-formed and passes its checksum. Confirmation of a real holder or live registration requires the official government portal.</p>
+    <h3>Where do I verify these officially?</h3>
+    <p class="tx">PAN &mdash; the Income Tax e-filing portal; GSTIN &mdash; the GST portal's "Search Taxpayer"; IFSC &mdash; the issuing bank or RBI; Aadhaar &mdash; UIDAI, strictly under lawful authority. This toolkit never substitutes for those sources.</p>
+    <h3>Is the Aadhaar checker safe and legal to use?</h3>
+    <p class="tx">It performs a local, offline Verhoeff format check only and never contacts UIDAI. Investigators must still handle Aadhaar data lawfully under the DPDP Act and obtain data through proper process.</p>
+  </div>
+
+  <h2>Related IGRS resources</h2>
+  <div class="rel">
+    <a href="articles/osint-upi-mule-account-tracing-india.html">UPI Mule Account Tracing</a>
+    <a href="articles/aadhaar-osint-legal-limits.html">Aadhaar OSINT: Legal Limits</a>
+    <a href="articles/mobile-banking-fraud-investigation-india.html">Mobile Banking Fraud Investigation</a>
+    <a href="dashboard.html">OSINT Dashboard</a>
+    <a href="toolkit.html">Cybersecurity Toolkit</a>
+  </div>
+</main>
+
+<footer>
+  <div class="fl"><a href="index.html">Home</a><a href="tools.html">Tools</a><a href="toolkit.html">Toolkit</a><a href="playbooks.html">Playbooks</a><a href="about.html">About</a></div>
+  <div>&copy; 2026 IGRS — All checks run locally in your browser. No data is sent.</div>
+</footer>
+
+<script src="neural.js" onerror="console.warn('neural.js failed')"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var t=document.getElementById('p-pan'); if(t)t.classList.add('on');
+  var b=document.getElementById('tab-pan'); if(b)b.classList.add('on');
+});
+function sw(id){
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.ttab').forEach(function(t){t.classList.remove('on');});
+  document.getElementById('p-'+id).classList.add('on');
+  document.getElementById('tab-'+id).classList.add('on');
+}
+function ex(id,val,fn){document.getElementById(id).value=val;fn();}
+function clr(id,out){document.getElementById(id).value='';var o=document.getElementById(out);o.className='out';o.textContent='Awaiting input\u2026';var l=document.getElementById('ifsc-links');if(l&&out==='ifsc-out')l.innerHTML='';}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function show(out,ok,html){var o=document.getElementById(out);o.className='out '+(ok?'ok':'er');o.innerHTML=html;}
+function row(k,v){return '<div class="hrow"><div class="halgo">'+esc(k)+'</div><div class="hval">'+esc(v)+'</div></div>';}
+
+// ── PAN ──
+var PAN_TYPE={P:'Individual',C:'Company',H:'HUF (Hindu Undivided Family)',F:'Firm / LLP',A:'Association of Persons (AOP)',T:'Trust',B:'Body of Individuals (BOI)',L:'Local Authority',J:'Artificial Juridical Person',G:'Government'};
+function doPAN(){
+  var v=document.getElementById('pan-in').value.trim().toUpperCase();
+  if(!v){show('pan-out',false,'Enter a PAN.');return;}
+  if(!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(v)){show('pan-out',false,'\u2717 INVALID FORMAT \u2014 a PAN must be 5 letters, 4 digits, then 1 letter (e.g. ABCDE1234F).');return;}
+  var type=PAN_TYPE[v[3]]||'Unknown holder type ('+v[3]+')';
+  var html='<div class="verdict" style="color:var(--gn)">\u2713 VALID PAN FORMAT</div>';
+  html+=row('Holder type (4th)',type);
+  html+=row('Name initial (5th)',v[4]+' \u2014 first letter of surname / entity');
+  html+=row('Note','Format valid. Confirm registration on the Income Tax e-filing portal.');
+  show('pan-out',true,html);
+}
+
+// ── GSTIN ──
+var GST_STATE={'01':'Jammu & Kashmir','02':'Himachal Pradesh','03':'Punjab','04':'Chandigarh','05':'Uttarakhand','06':'Haryana','07':'Delhi','08':'Rajasthan','09':'Uttar Pradesh','10':'Bihar','11':'Sikkim','12':'Arunachal Pradesh','13':'Nagaland','14':'Manipur','15':'Mizoram','16':'Tripura','17':'Meghalaya','18':'Assam','19':'West Bengal','20':'Jharkhand','21':'Odisha','22':'Chhattisgarh','23':'Madhya Pradesh','24':'Gujarat','25':'Daman & Diu (old)','26':'Dadra & Nagar Haveli and Daman & Diu','27':'Maharashtra','28':'Andhra Pradesh (old)','29':'Karnataka','30':'Goa','31':'Lakshadweep','32':'Kerala','33':'Tamil Nadu','34':'Puducherry','35':'Andaman & Nicobar','36':'Telangana','37':'Andhra Pradesh','38':'Ladakh','97':'Other Territory','99':'Centre Jurisdiction'};
+var GST_CP='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+function gstinCheck(first14){
+  var factor=2,total=0;
+  for(var i=first14.length-1;i>=0;i--){
+    var cpv=GST_CP.indexOf(first14[i]);
+    var d=factor*cpv; factor=(factor===2)?1:2;
+    d=Math.floor(d/36)+(d%36); total+=d;
+  }
+  return GST_CP[(36-(total%36))%36];
+}
+function doGSTIN(){
+  var v=document.getElementById('gstin-in').value.trim().toUpperCase();
+  if(!v){show('gstin-out',false,'Enter a GSTIN.');return;}
+  if(!/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][1-9A-Z]Z[0-9A-Z]$/.test(v)){show('gstin-out',false,'\u2717 INVALID FORMAT \u2014 a GSTIN is 15 characters: 2-digit state code + 10-char PAN + entity digit + "Z" + checksum.');return;}
+  var expected=gstinCheck(v.substr(0,14)), got=v[14];
+  var state=GST_STATE[v.substr(0,2)]||'Unknown state code';
+  var ok=(expected===got);
+  var html='<div class="verdict" style="color:'+(ok?'var(--gn)':'var(--rd)')+'">'+(ok?'\u2713 VALID GSTIN (checksum OK)':'\u2717 CHECKSUM FAILED \u2014 format ok but check digit wrong')+'</div>';
+  html+=row('State ('+v.substr(0,2)+')',state);
+  html+=row('Embedded PAN',v.substr(2,10));
+  html+=row('Entity number',v[12]);
+  html+=row('Check digit',got+(ok?' (matches)':' (expected '+expected+')'));
+  html+=row('Note','Format check only. Confirm on the GST portal \u2014 Search Taxpayer.');
+  show('gstin-out',ok,html);
+}
+
+// ── IFSC ──
+function doIFSC(){
+  var v=document.getElementById('ifsc-in').value.trim().toUpperCase();
+  var links=document.getElementById('ifsc-links'); links.innerHTML='';
+  if(!v){show('ifsc-out',false,'Enter an IFSC.');return;}
+  if(!/^[A-Z]{4}0[A-Z0-9]{6}$/.test(v)){show('ifsc-out',false,'\u2717 INVALID FORMAT \u2014 IFSC is 4 bank letters + "0" + 6 branch characters (e.g. SBIN0000300).');return;}
+  var html='<div class="verdict" style="color:var(--gn)">\u2713 VALID IFSC FORMAT</div>';
+  html+=row('Bank code',v.substr(0,4));
+  html+=row('Branch code',v.substr(5,6));
+  html+=row('Note','Format valid. Resolve bank & branch via the links below (RBI is the issuing authority).');
+  show('ifsc-out',true,html);
+  links.innerHTML='<a href="https://razorpay.com/ifsc/'+encodeURIComponent(v)+'" target="_blank" rel="noopener noreferrer">Branch lookup \u2197</a>';
+}
+
+// ── UPI ──
+var UPI_PSP={oksbi:'Google Pay (SBI)',okhdfcbank:'Google Pay (HDFC)',okaxis:'Google Pay (Axis)',okicici:'Google Pay (ICICI)',ybl:'PhonePe (Yes Bank)',ibl:'PhonePe (ICICI)',axl:'PhonePe (Axis)',paytm:'Paytm',ptsbi:'Paytm (SBI)',ptaxis:'Paytm (Axis)',pthdfc:'Paytm (HDFC)',ptyes:'Paytm (Yes Bank)',apl:'Amazon Pay (Axis)',yapl:'Amazon Pay (Yes Bank)',upi:'BHIM (NPCI)',ikwik:'MobiKwik',freecharge:'Freecharge',jupiteraxis:'Jupiter (Axis)',fam:'Fampay',slc:'Slice',sbi:'State Bank of India',hdfcbank:'HDFC Bank',icici:'ICICI Bank',axisbank:'Axis Bank',pnb:'Punjab National Bank',kotak:'Kotak Mahindra',idfcbank:'IDFC First',yesbank:'Yes Bank',barodampay:'Bank of Baroda',airtel:'Airtel Payments Bank'};
+function doUPI(){
+  var v=document.getElementById('upi-in').value.trim().toLowerCase();
+  if(!v){show('upi-out',false,'Enter a UPI handle.');return;}
+  if(!/^[a-z0-9.\-_]{2,256}@[a-z]{2,64}$/.test(v)){show('upi-out',false,'\u2717 INVALID FORMAT \u2014 a UPI handle looks like name@bank (e.g. name@oksbi).');return;}
+  var parts=v.split('@'), handle=parts[1];
+  var psp=UPI_PSP[handle]||'Unrecognised handle \u2014 likely a bank/PSP suffix; verify manually';
+  var html='<div class="verdict" style="color:var(--gn)">\u2713 VALID UPI FORMAT</div>';
+  html+=row('VPA name',parts[0]);
+  html+=row('Handle (@'+handle+')',psp);
+  html+=row('Note','Provider mapping is best-effort. The same person may hold multiple VPAs across apps.');
+  show('upi-out',true,html);
+}
+
+// ── AADHAAR (Verhoeff) ──
+var V_D=[[0,1,2,3,4,5,6,7,8,9],[1,2,3,4,0,6,7,8,9,5],[2,3,4,0,1,7,8,9,5,6],[3,4,0,1,2,8,9,5,6,7],[4,0,1,2,3,9,5,6,7,8],[5,9,8,7,6,0,4,3,2,1],[6,5,9,8,7,1,0,4,3,2],[7,6,5,9,8,2,1,0,4,3],[8,7,6,5,9,3,2,1,0,4],[9,8,7,6,5,4,3,2,1,0]];
+var V_P=[[0,1,2,3,4,5,6,7,8,9],[1,5,7,6,2,8,3,0,9,4],[5,8,0,9,1,2,3,4,6,7],[8,9,1,6,0,4,3,5,2,7],[9,4,5,3,1,2,6,8,7,0],[4,2,8,6,5,7,3,9,0,1],[2,7,9,3,8,0,6,4,1,5],[7,0,4,6,9,1,3,2,5,8]];
+function verhoeffValid(num){
+  var c=0;
+  for(var i=0;i<num.length;i++){
+    var d=parseInt(num[num.length-1-i],10);
+    c=V_D[c][V_P[i%8][d]];
+  }
+  return c===0;
+}
+function doAadhaar(){
+  var raw=document.getElementById('aadhaar-in').value.replace(/\s+/g,'');
+  if(!raw){show('aadhaar-out',false,'Enter a 12-digit Aadhaar number.');return;}
+  if(!/^[0-9]{12}$/.test(raw)){show('aadhaar-out',false,'\u2717 INVALID \u2014 Aadhaar must be exactly 12 digits.');return;}
+  if(raw[0]==='0'||raw[0]==='1'){show('aadhaar-out',false,'\u2717 INVALID \u2014 Aadhaar numbers do not begin with 0 or 1.');return;}
+  var ok=verhoeffValid(raw);
+  var html='<div class="verdict" style="color:'+(ok?'var(--gn)':'var(--rd)')+'">'+(ok?'\u2713 VALID FORMAT (Verhoeff checksum passes)':'\u2717 CHECKSUM FAILED \u2014 likely a typo or fabricated number')+'</div>';
+  html+=row('Length','12 digits');
+  html+=row('Verhoeff check',ok?'Consistent':'Inconsistent');
+  html+=row('Note','Format check only \u2014 this does NOT confirm a real holder and contacts no database. Verify only under lawful authority (DPDP Act).');
+  show('aadhaar-out',ok,html);
+}
+</script>
+</body>
+</html>
