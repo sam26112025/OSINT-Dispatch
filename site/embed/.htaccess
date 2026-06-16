@@ -1,0 +1,5 @@
+<IfModule mod_headers.c>
+    # Embed widgets are meant to be framed on third-party sites.
+    Header always unset X-Frame-Options
+    Header always set Content-Security-Policy "default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:; frame-ancestors *;"
+</IfModule>

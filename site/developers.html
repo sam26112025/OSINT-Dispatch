@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="google-adsense-account" content="ca-pub-5886568858916800">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5886568858916800" crossorigin="anonymous"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TCBLVSTG97"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-TCBLVSTG97');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Developers &mdash; Embed Free IP Lookup &amp; Breach Check Widgets | IGRS</title>
+<meta name="description" content="Add IGRS's free IP intelligence and data-breach-check tools to your own website or app with a single copy-paste embed snippet. No API key, no cost, attribution-based.">
+<meta name="keywords" content="embed IP lookup widget, free breach check widget, OSINT widget, IP intelligence API, embed cybersecurity tool, free IP geolocation widget">
+<meta name="author" content="Manuj Kumar Pandey">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://igrs.xyz/developers.html">
+<meta property="og:title" content="Developers &mdash; Embed IGRS Tools Free">
+<meta property="og:description" content="Drop the IGRS IP Lookup or Breach Check tool into your own site with one iframe snippet. Free, attribution-based.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://igrs.xyz/logo.svg">
+<meta name="twitter:card" content="summary">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"IGRS Developers — Embed Widgets","url":"https://igrs.xyz/developers.html","description":"Embed the free IGRS IP Lookup and Breach Check tools on your own website with a single iframe snippet.","publisher":{"@type":"Organization","name":"IGRS - Intel Grid Research Station"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is embedding the IGRS tools free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The embeddable IP Lookup and Breach Check widgets are completely free. The only requirement is that the visible 'Powered by IGRS' attribution link is kept intact."}},
+{"@type":"Question","name":"Do I need an API key to embed the widgets?","acceptedAnswer":{"@type":"Answer","text":"No. The embed widgets are pure iframe snippets — no key, no signup, no backend. Just paste the snippet into your HTML."}},
+{"@type":"Question","name":"Does embedding send my visitors' data to IGRS?","acceptedAnswer":{"@type":"Answer","text":"No. The widgets run in your visitor's browser and query the public upstream APIs directly. IGRS does not store lookups. Passwords are checked using k-anonymity and never leave the browser."}},
+{"@type":"Question","name":"Is there a JSON API for server-side use?","acceptedAnswer":{"@type":"Answer","text":"A hosted JSON API is in private beta. It requires a free key and a visible attribution link, and is rate-limited. You can request access via the contact page."}}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://igrs.xyz/"},
+{"@type":"ListItem","position":2,"name":"Developers","item":"https://igrs.xyz/developers.html"}]}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{--bg:#080f1a;--surface:#0d1829;--border:#0e4a7a;--ink:#c8dff0;--ink2:#7aa8cc;--muted:#4a7a9b;--accent:#00d4ff;--accent2:#0099cc;--ok:#27d796;--warn:#ffb800;--bad:#ff5c6c;--mono:"IBM Plex Mono",monospace;--tech:"Share Tech Mono",monospace;--disp:"Rajdhani",sans-serif;}
+body{background:var(--bg);color:var(--ink);font-family:var(--disp);min-height:100vh;}
+#neural-bg{position:fixed!important;top:0;left:0;width:100%;height:100%;z-index:0!important;pointer-events:none!important;opacity:.4;}
+header.igrs-hdr,main.igrs-main,footer.igrs-ftr{position:relative;z-index:10;}
+header.igrs-hdr{background:rgba(8,15,26,.96);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1000;backdrop-filter:blur(10px);}
+.hdr-inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;padding:10px 0;}
+.brand img{width:52px;height:52px;filter:drop-shadow(0 0 12px rgba(0,212,255,.8));}
+.brand-name{font-family:var(--tech);font-size:20px;color:var(--accent);letter-spacing:.12em;text-shadow:0 0 16px rgba(0,212,255,.5);}
+nav.igrs-nav{display:flex;gap:18px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:10px 0;flex-wrap:wrap;}
+nav.igrs-nav a{color:var(--ink2);text-decoration:none;padding:4px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s;}
+nav.igrs-nav a:hover,nav.igrs-nav a.active{color:var(--accent);border-bottom-color:var(--accent);}
+nav.igrs-nav a::before{content:"> ";color:var(--muted);}
+main.igrs-main{max-width:1000px;margin:0 auto;padding:0 24px 60px;}
+.crumb{font-family:var(--mono);font-size:11px;color:var(--muted);padding:16px 0 0;}
+.crumb a{color:var(--ink2);text-decoration:none;}.crumb a:hover{color:var(--accent);}
+.hero{padding:34px 0 18px;text-align:center;}
+.stamp{font-family:var(--mono);font-size:11px;color:var(--warn);letter-spacing:.15em;text-transform:uppercase;margin-bottom:14px;}
+.hero h1{font-family:var(--tech);font-size:32px;color:var(--accent);letter-spacing:.04em;text-shadow:0 0 18px rgba(0,212,255,.4);margin-bottom:12px;}
+.hero p{color:var(--ink2);max-width:680px;margin:0 auto;font-size:16px;line-height:1.6;}
+.sec-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;margin-top:24px;}
+.sec-card h2{font-family:var(--tech);font-size:18px;color:var(--accent);letter-spacing:.05em;margin-bottom:6px;}
+.sec-card>p.lead{color:var(--ink2);font-size:15px;line-height:1.6;margin-bottom:6px;}
+.pill{display:inline-block;font-family:var(--mono);font-size:11px;color:var(--accent);border:1px solid var(--border);border-radius:12px;padding:3px 10px;margin-bottom:12px;letter-spacing:.05em;}
+.pill.amber{color:var(--warn);border-color:rgba(255,184,0,.4);}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;margin-top:6px;}
+@media(max-width:760px){.twocol{grid-template-columns:1fr}.hero h1{font-size:25px}}
+.etool h3{font-family:var(--disp);font-size:18px;color:var(--ink);margin-bottom:4px;}
+.etool .d{color:var(--ink2);font-size:14px;line-height:1.55;margin-bottom:12px;}
+.preview-frame{width:100%;height:520px;border:1px solid var(--border);border-radius:10px;background:#06101d;display:block;}
+.preview-frame.short{height:430px;}
+.codeblk{position:relative;background:#06101d;border:1px solid var(--border);border-radius:8px;padding:14px 16px;font-family:var(--mono);font-size:12px;color:var(--ink);overflow-x:auto;line-height:1.6;margin-top:12px;}
+.codeblk code{white-space:pre-wrap;word-break:break-all;color:var(--ink);}
+.copy{position:absolute;top:8px;right:8px;background:var(--surface);border:1px solid var(--border);color:var(--accent);font-family:var(--mono);font-size:10px;padding:5px 11px;border-radius:5px;cursor:pointer;letter-spacing:.04em;}
+.copy:hover{border-color:var(--accent);background:rgba(0,212,255,.07);}
+.notice{margin-top:18px;font-family:var(--mono);font-size:12px;color:var(--ink2);background:#06101d;border:1px solid var(--border);border-radius:6px;padding:13px 15px;line-height:1.6;}
+.notice b{color:var(--accent);}
+.notice.amber{border-color:rgba(255,184,0,.4);}.notice.amber b{color:var(--warn);}
+.btn{display:inline-block;background:var(--accent);color:#04090f;text-decoration:none;padding:11px 20px;border-radius:6px;font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.03em;margin-top:14px;}
+.btn:hover{box-shadow:0 0 16px rgba(0,212,255,.5);}
+.info-sec{margin-top:38px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:26px;}
+.info-sec h2{font-family:var(--tech);color:var(--accent);font-size:20px;margin-bottom:14px;}
+.info-sec h3{font-family:var(--disp);color:var(--ink);font-size:16px;margin:16px 0 6px;}
+.info-sec p,.info-sec li{color:var(--ink2);font-size:15px;line-height:1.7;}
+.info-sec ul{margin:6px 0 6px 20px;}
+.info-sec a{color:var(--accent);}
+footer.igrs-ftr{border-top:1px solid var(--border);margin-top:50px;background:rgba(8,15,26,.9);}
+.ftr-inner{max-width:1000px;margin:0 auto;padding:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--mono);font-size:12px;color:var(--muted);}
+.ftr-links{display:flex;gap:16px;flex-wrap:wrap;}
+.ftr-links a{color:var(--ink2);text-decoration:none;}.ftr-links a:hover{color:var(--accent);}
+</style>
+</head>
+<body>
+<canvas id="neural-bg"></canvas>
+<header class="igrs-hdr">
+  <div class="hdr-inner">
+    <a class="brand" href="index.html"><img src="logo.svg" alt="IGRS — Intel Grid Research Station Logo"><span class="brand-name">IGRS</span></a>
+    <nav class="igrs-nav">
+      <a href="index.html">Home</a>
+      <a href="tools.html">Tools</a>
+      <a href="ip-lookup.html">IP Lookup</a>
+      <a href="breach-check.html">Breach Check</a>
+      <a href="developers.html" class="active">Developers</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+<main class="igrs-main">
+  <div class="crumb"><a href="index.html">Home</a> / Developers</div>
+  <div class="hero">
+    <div class="stamp">Embed &middot; Free &middot; No API Key</div>
+    <h1>&gt; DEVELOPERS_</h1>
+    <p>Add IGRS investigation tools to your own website, blog, or internal portal with a single copy-paste snippet. Free, no signup, attribution-based &mdash; built for security teams, researchers, and educators.</p>
+  </div>
+
+  <!-- IP Lookup embed -->
+  <div class="sec-card">
+    <span class="pill">EMBEDDABLE WIDGET</span>
+    <div class="twocol">
+      <div class="etool">
+        <h3>&#127760; IP Lookup</h3>
+        <div class="d">Full IP intelligence in your visitor's browser &mdash; ASN, network ownership, geolocation, and VPN / proxy / Tor / abuser flags. Runs client-side, no key needed.</div>
+        <div class="codeblk">
+          <button class="copy" data-t="c1">COPY</button>
+<code id="c1">&lt;iframe src="https://igrs.xyz/embed/ip-lookup.html"
+  width="100%" height="520" loading="lazy"
+  style="max-width:480px;border:1px solid #0e4a7a;border-radius:10px"
+  title="IGRS IP Lookup"&gt;&lt;/iframe&gt;</code>
+        </div>
+      </div>
+      <div>
+        <iframe class="preview-frame" src="embed/ip-lookup.html" title="IGRS IP Lookup preview" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breach Check embed -->
+  <div class="sec-card">
+    <span class="pill">EMBEDDABLE WIDGET</span>
+    <div class="twocol">
+      <div class="etool">
+        <h3>&#128737; Breach Check</h3>
+        <div class="d">Let visitors check if an email or password has been exposed in a data breach. Privacy-first &mdash; passwords are checked with k-anonymity and never leave the browser.</div>
+        <div class="codeblk">
+          <button class="copy" data-t="c2">COPY</button>
+<code id="c2">&lt;iframe src="https://igrs.xyz/embed/breach-check.html"
+  width="100%" height="430" loading="lazy"
+  style="max-width:480px;border:1px solid #0e4a7a;border-radius:10px"
+  title="IGRS Breach Check"&gt;&lt;/iframe&gt;</code>
+        </div>
+      </div>
+      <div>
+        <iframe class="preview-frame short" src="embed/breach-check.html" title="IGRS Breach Check preview" loading="lazy"></iframe>
+      </div>
+    </div>
+    <div class="notice amber"><b>Attribution required:</b> the &ldquo;Powered by IGRS&rdquo; link inside each widget must stay visible and clickable. That link is the only thing we ask in return for free use &mdash; please don't hide or remove it.</div>
+  </div>
+
+  <!-- Customisation -->
+  <div class="sec-card">
+    <span class="pill">CUSTOMISATION</span>
+    <h2>Sizing &amp; placement</h2>
+    <p class="lead">The widgets are fully responsive. Set <code style="color:var(--accent)">width:100%</code> and cap it with <code style="color:var(--accent)">max-width</code> to fit any column. Recommended heights: <b style="color:var(--ink)">520px</b> for IP Lookup, <b style="color:var(--ink)">430px</b> for Breach Check (taller if you expect multi-breach results). The dark theme blends with most layouts; wrap it in a light card if your site is light-themed.</p>
+  </div>
+
+  <!-- API beta -->
+  <div class="sec-card">
+    <span class="pill amber">HOSTED API &mdash; PRIVATE BETA</span>
+    <h2>JSON API for server-side use</h2>
+    <p class="lead">Need raw JSON for your own backend, SIEM, or automation pipeline instead of a UI widget? A hosted IGRS intelligence API is in private beta. To keep it sustainable and within our upstream data providers' terms, access is:</p>
+    <div class="notice"><b>Key-based</b> &mdash; a free key, issued per project &middot; <b>Attribution-based</b> &mdash; a visible &ldquo;Powered by IGRS&rdquo; credit/link on the consuming page &middot; <b>Rate-limited</b> &mdash; fair-use caps with caching, to protect quota</div>
+    <p class="lead" style="margin-top:14px">If that fits your use case, request access and tell us a little about your project.</p>
+    <a class="btn" href="contact.html">Request API Access &#8599;</a>
+  </div>
+
+  <!-- E-E-A-T -->
+  <div class="info-sec">
+    <h2>Why a widget, not just a raw API</h2>
+    <p>For most websites and blogs, an embeddable widget is a better fit than a raw API. It works without any backend code, it runs entirely in your visitor's browser, and it never routes your users' lookups through a third party's logs. Because each query is made from the end-user's own browser to the public upstream services &mdash; the same way the tools work on igrs.xyz &mdash; the load is naturally distributed and no shared API quota is consumed on your behalf.</p>
+    <h3>Privacy &amp; data handling</h3>
+    <p>The IP Lookup widget queries public network-intelligence data and does not transmit any personal data you enter beyond the IP address being looked up. The Breach Check widget uses the k-anonymity model for passwords: a password is hashed locally and only the first five characters of the hash are ever sent, so the full password and its hash never leave the browser. Email breach lookups query an external breach-intelligence service directly; users should only check addresses they own or are authorised to investigate.</p>
+    <h3>Attribution &amp; fair use</h3>
+    <p>These widgets are offered free for lawful, authorised use &mdash; security awareness, research, education, and investigation within the scope of your authority. The only condition is that the &ldquo;Powered by IGRS&rdquo; link remains visible. Underlying network, geolocation, and breach data are provided by third-party services (<a href="https://ipapi.is" target="_blank" rel="noopener">ipapi.is</a>, <a href="https://xposedornot.com" target="_blank" rel="noopener">XposedOrNot</a>, <a href="https://haveibeenpwned.com/Passwords" target="_blank" rel="noopener">Have I Been Pwned</a>); IGRS is not affiliated with them, and high-volume or commercial users should review and subscribe to those providers directly.</p>
+  </div>
+</main>
+<footer class="igrs-ftr">
+  <div class="ftr-inner">
+    <div class="ftr-links">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+    <div>&copy; 2026 IGRS &mdash; Intel Grid Research Station</div>
+  </div>
+</footer>
+<script src="neural.js"></script>
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    var code=document.getElementById(b.dataset.t).textContent;
+    navigator.clipboard.writeText(code).then(function(){
+      var o=b.textContent;b.textContent='COPIED';setTimeout(function(){b.textContent=o;},1400);
+      if(window.gtag)gtag('event','copy_embed',{snippet:b.dataset.t});
+    });
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,follow">
+<title>IGRS IP Lookup &mdash; Embed Widget</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TCBLVSTG97"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-TCBLVSTG97');gtag('event','embed_load',{widget:'ip-lookup'});</script>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#080f1a;--surface:#0d1829;--border:#0e4a7a;--ink:#c8dff0;--ink2:#7aa8cc;--muted:#4a7a9b;--accent:#00d4ff;--ok:#27d796;--warn:#ffb800;--bad:#ff5c6c;--mono:"IBM Plex Mono",monospace;--tech:"Share Tech Mono",monospace;--disp:"Rajdhani",sans-serif;}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--disp);}
+.wrap{padding:16px 16px 12px;max-width:520px;margin:0 auto;}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.ttl{font-family:var(--tech);font-size:15px;color:var(--accent);letter-spacing:.08em;}
+.tag{font-family:var(--mono);font-size:9px;color:var(--warn);border:1px solid rgba(255,184,0,.4);border-radius:10px;padding:2px 8px;letter-spacing:.06em;}
+.field{display:flex;gap:6px;}
+.field input{flex:1;min-width:0;background:#06101d;border:1px solid var(--border);color:var(--ink);padding:10px 12px;border-radius:6px;font-family:var(--mono);font-size:13px;outline:none;}
+.field input:focus{border-color:var(--accent);}
+.btn{background:var(--accent);color:#04090f;border:none;padding:10px 14px;border-radius:6px;font-family:var(--disp);font-weight:700;font-size:13px;cursor:pointer;}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--border);}
+.res{margin-top:12px;display:none;font-family:var(--mono);font-size:12px;}
+.res.show{display:block;}
+.ipl{font-family:var(--tech);font-size:17px;color:var(--accent);}
+.sub{font-size:11px;color:var(--muted);margin-bottom:8px;}
+.flags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;}
+.flag{font-size:10px;padding:3px 7px;border-radius:12px;border:1px solid var(--border);}
+.flag.no{color:var(--ok);border-color:rgba(39,215,150,.4);background:rgba(39,215,150,.07);}
+.flag.yes{color:var(--bad);border-color:rgba(255,92,108,.5);background:rgba(255,92,108,.1);}
+.row{display:flex;justify-content:space-between;gap:10px;padding:3px 0;border-bottom:1px dashed rgba(14,74,122,.3);}
+.row .k{color:var(--muted);}.row .v{color:var(--ink);text-align:right;word-break:break-word;}
+.ft{margin-top:14px;text-align:center;font-family:var(--mono);font-size:11px;}
+.ft a{color:var(--accent);text-decoration:none;}
+.ft a:hover{text-decoration:underline;}
+.spin{display:inline-block;width:12px;height:12px;border:2px solid var(--muted);border-top-color:var(--accent);border-radius:50%;animation:s .7s linear infinite;vertical-align:middle;}
+@keyframes s{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><span class="ttl">&gt; IP LOOKUP</span><span class="tag">IGRS</span></div>
+  <div class="field">
+    <input type="text" id="ip" placeholder="Enter IP / AS number" autocomplete="off">
+    <button class="btn" id="go">Look Up</button>
+    <button class="btn ghost" id="my">My IP</button>
+  </div>
+  <div class="res" id="res"></div>
+  <div class="ft">&#9889; Powered by <a href="https://igrs.xyz/ip-lookup.html" target="_blank" rel="noopener">IGRS &mdash; Intel Grid Research Station &#8599;</a></div>
+</div>
+<script>
+var res=document.getElementById('res'),go=document.getElementById('go'),my=document.getElementById('my'),ip=document.getElementById('ip');
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function row(k,v){if(v==null||v==='')return'';return'<div class="row"><span class="k">'+k+'</span><span class="v">'+v+'</span></div>';}
+function flag(l,v){return'<span class="flag '+(v?'yes':'no')+'">'+l+': '+(v?'YES':'no')+'</span>';}
+function look(q){
+  go.disabled=true;my.disabled=true;res.className='res show';res.innerHTML='<span class="spin"></span> Querying...';
+  fetch('https://api.ipapi.is/'+(q?('?q='+encodeURIComponent(q)):'')).then(r=>r.json()).then(d=>{
+    if(d.error){res.innerHTML='<span style="color:var(--bad)">Error: '+esc(d.error)+'</span>';go.disabled=false;my.disabled=false;return;}
+    var a=d.asn||{},c=d.company||{},l=d.location||{};
+    var h='<div class="ipl">'+esc(d.ip||q||'')+'</div>';
+    h+='<div class="sub">'+esc(d.rir||'')+(a.route?' &middot; '+esc(a.route):'')+(l.country?' &middot; '+esc(l.country):'')+'</div>';
+    h+='<div class="flags">'+flag('Datacenter',d.is_datacenter)+flag('VPN',d.is_vpn)+flag('Proxy',d.is_proxy)+flag('Tor',d.is_tor)+flag('Abuser',d.is_abuser)+'</div>';
+    h+=row('ASN',a.asn?'AS'+esc(a.asn):'');
+    h+=row('Organisation',esc(a.org||c.name));
+    h+=row('Type',esc(a.type));
+    h+=row('City',esc(l.city));
+    h+=row('Region',esc(l.state));
+    h+=row('Country',esc(l.country)+(l.country_code?' ('+esc(l.country_code)+')':''));
+    h+=row('Abuse contact',esc(a.abuse));
+    h+=row('Abuser score',esc(a.abuser_score));
+    res.innerHTML=h;
+    if(window.gtag)gtag('event','embed_lookup',{widget:'ip-lookup'});
+  }).catch(()=>{res.innerHTML='<span style="color:var(--warn)">Service unavailable, try again shortly.</span>';}).finally(()=>{go.disabled=false;my.disabled=false;});
+}
+go.onclick=function(){var q=ip.value.trim();if(!q){res.className='res show';res.innerHTML='<span style="color:var(--warn)">Enter an IP or AS number.</span>';return;}look(q);};
+my.onclick=function(){ip.value='';look('');};
+ip.addEventListener('keydown',function(e){if(e.key==='Enter')go.click();});
+</script>
+</body>
+</html>

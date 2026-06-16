@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,follow">
+<title>IGRS Breach Check &mdash; Embed Widget</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TCBLVSTG97"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-TCBLVSTG97');gtag('event','embed_load',{widget:'breach-check'});</script>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#080f1a;--surface:#0d1829;--border:#0e4a7a;--ink:#c8dff0;--ink2:#7aa8cc;--muted:#4a7a9b;--accent:#00d4ff;--ok:#27d796;--warn:#ffb800;--bad:#ff5c6c;--mono:"IBM Plex Mono",monospace;--tech:"Share Tech Mono",monospace;--disp:"Rajdhani",sans-serif;}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--disp);}
+.wrap{padding:16px 16px 12px;max-width:520px;margin:0 auto;}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.ttl{font-family:var(--tech);font-size:15px;color:var(--accent);letter-spacing:.08em;}
+.tag{font-family:var(--mono);font-size:9px;color:var(--warn);border:1px solid rgba(255,184,0,.4);border-radius:10px;padding:2px 8px;letter-spacing:.06em;}
+.tabs{display:flex;gap:6px;margin-bottom:10px;}
+.tab{flex:1;font-family:var(--mono);font-size:12px;padding:8px;border:1px solid var(--border);background:#06101d;color:var(--ink2);border-radius:6px;cursor:pointer;text-align:center;}
+.tab.on{color:var(--accent);border-color:var(--accent);background:rgba(0,212,255,.07);}
+.pane{display:none;}.pane.on{display:block;}
+.field{display:flex;gap:6px;}
+.field input{flex:1;min-width:0;background:#06101d;border:1px solid var(--border);color:var(--ink);padding:10px 12px;border-radius:6px;font-family:var(--mono);font-size:13px;outline:none;}
+.field input:focus{border-color:var(--accent);}
+.btn{background:var(--accent);color:#04090f;border:none;padding:10px 14px;border-radius:6px;font-family:var(--disp);font-weight:700;font-size:13px;cursor:pointer;}
+.note{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:6px;}
+.result{margin-top:10px;display:none;font-family:var(--mono);font-size:12px;line-height:1.5;padding:10px 12px;border:1px solid var(--border);border-radius:6px;background:#06101d;}
+.result.show{display:block;}
+.res-ok{border-color:rgba(39,215,150,.5);color:var(--ok);}
+.res-bad{border-color:rgba(255,92,108,.5);color:var(--ink);}
+.res-warn{border-color:rgba(255,184,0,.5);color:var(--warn);}
+.riskbar{height:6px;background:#0a1726;border-radius:4px;margin:8px 0;overflow:hidden;}.riskbar i{display:block;height:100%;}
+.breach{margin-top:8px;padding-top:8px;border-top:1px dashed rgba(14,74,122,.4);}
+.breach .meta{font-size:10px;color:var(--muted);margin:2px 0;}
+.chip{display:inline-block;font-size:9px;color:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:1px 6px;margin:2px 3px 0 0;}
+.ft{margin-top:14px;text-align:center;font-family:var(--mono);font-size:11px;}
+.ft a{color:var(--accent);text-decoration:none;}.ft a:hover{text-decoration:underline;}
+.spinner{display:inline-block;width:12px;height:12px;border:2px solid var(--muted);border-top-color:var(--accent);border-radius:50%;animation:s .7s linear infinite;vertical-align:middle;}
+@keyframes s{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><span class="ttl">&gt; BREACH CHECK</span><span class="tag">IGRS</span></div>
+  <div class="tabs">
+    <div class="tab on" data-p="em">Email</div>
+    <div class="tab" data-p="pw">Password</div>
+  </div>
+  <div class="pane on" id="pane-em">
+    <div class="field"><input type="email" id="em" placeholder="you@example.com" autocomplete="off"><button class="btn" id="emBtn">Check</button></div>
+    <div class="note">Checks known breaches via XposedOrNot. Check your own address.</div>
+    <div class="result" id="emRes"></div>
+  </div>
+  <div class="pane" id="pane-pw">
+    <div class="field"><input type="password" id="pw" placeholder="Enter a password to test" autocomplete="off"><button class="btn" id="pwBtn">Check</button></div>
+    <div class="note">k-anonymity &mdash; your password never leaves your browser.</div>
+    <div class="result" id="pwRes"></div>
+  </div>
+  <div class="ft">&#9889; Powered by <a href="https://igrs.xyz/breach-check.html" target="_blank" rel="noopener">IGRS &mdash; Intel Grid Research Station &#8599;</a></div>
+</div>
+<script>
+document.querySelectorAll('.tab').forEach(function(t){t.onclick=function(){
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.pane').forEach(x=>x.classList.remove('on'));
+  t.classList.add('on');document.getElementById('pane-'+t.dataset.p).classList.add('on');
+};});
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function riskColor(s){if(s>=70)return'var(--bad)';if(s>=35)return'var(--warn)';return'var(--ok)';}
+// password (HIBP k-anonymity)
+async function sha1Hex(str){const buf=await crypto.subtle.digest('SHA-1',new TextEncoder().encode(str));return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('').toUpperCase();}
+var pwRes=document.getElementById('pwRes'),pwBtn=document.getElementById('pwBtn'),pw=document.getElementById('pw');
+async function checkPw(){var val=pw.value;if(!val){pwRes.className='result show res-warn';pwRes.textContent='Enter a password to test.';return;}
+  pwBtn.disabled=true;pwRes.className='result show';pwRes.innerHTML='<span class="spinner"></span> Checking anonymously...';
+  try{var hash=await sha1Hex(val),prefix=hash.slice(0,5),suffix=hash.slice(5);
+    var r=await fetch('https://api.pwnedpasswords.com/range/'+prefix,{headers:{'Add-Padding':'true'}});var text=await r.text();var count=0;
+    text.split('\n').forEach(function(line){var p=line.trim().split(':');if(p[0]===suffix)count=parseInt(p[1],10)||0;});
+    if(count>0){pwRes.className='result show res-bad';pwRes.innerHTML='&#9888; This password has appeared <b>'+count.toLocaleString()+'</b> times in known breaches. Do not use it.';}
+    else{pwRes.className='result show res-ok';pwRes.innerHTML='&#10004; Not found in known breach corpora. (Still keep it unique per site.)';}
+    if(window.gtag)gtag('event','embed_check',{widget:'breach-check',mode:'password'});
+  }catch(e){pwRes.className='result show res-warn';pwRes.textContent='Could not reach the password service right now.';}
+  pwBtn.disabled=false;}
+pwBtn.onclick=checkPw;pw.addEventListener('keydown',function(e){if(e.key==='Enter')checkPw();});
+// email (XposedOrNot)
+var emRes=document.getElementById('emRes'),emBtn=document.getElementById('emBtn'),em=document.getElementById('em');
+async function checkEmail(){var val=em.value.trim();if(!val||val.indexOf('@')<0){emRes.className='result show res-warn';emRes.textContent='Enter a valid email address.';return;}
+  emBtn.disabled=true;emRes.className='result show';emRes.innerHTML='<span class="spinner"></span> Querying breach database...';
+  try{var r=await fetch('https://api.xposedornot.com/v1/breach-analytics?email='+encodeURIComponent(val));var data=await r.json();
+    var bm=data.BreachMetrics,eb=data.ExposedBreaches;var details=eb&&eb.breaches_details?eb.breaches_details:[];
+    if((!bm||!bm.risk)&&details.length===0){emRes.className='result show res-ok';emRes.innerHTML='&#10004; No breaches found for this email in the XposedOrNot database.';emBtn.disabled=false;return;}
+    var risk=(bm&&bm.risk&&bm.risk[0])?bm.risk[0]:{risk_label:'Unknown',risk_score:0};
+    var html='<div>Exposure: <b style="color:'+riskColor(risk.risk_score)+'">'+esc(risk.risk_label)+' ('+esc(risk.risk_score)+'/100)</b> &middot; <b>'+details.length+'</b> breach(es)</div>';
+    html+='<div class="riskbar"><i style="width:'+Math.min(risk.risk_score,100)+'%;background:'+riskColor(risk.risk_score)+'"></i></div>';
+    details.forEach(function(b){var dt=(b.xposed_data||'').split(';').filter(Boolean);
+      html+='<div class="breach"><b>'+esc(b.breach)+'</b><div class="meta">'+esc(b.xposed_date||'')+' &middot; '+(b.xposed_records?Number(b.xposed_records).toLocaleString():'?')+' records &middot; '+esc(b.industry||'')+'</div><div>';
+      dt.forEach(function(x){html+='<span class="chip">'+esc(x)+'</span>';});html+='</div></div>';});
+    emRes.className='result show res-bad';emRes.innerHTML=html;
+    if(window.gtag)gtag('event','embed_check',{widget:'breach-check',mode:'email'});
+  }catch(e){emRes.className='result show res-warn';emRes.innerHTML='Could not reach the breach service. You can also check at <a href="https://xposedornot.com" target="_blank" rel="noopener" style="color:var(--accent)">xposedornot.com</a>.';}
+  emBtn.disabled=false;}
+emBtn.onclick=checkEmail;em.addEventListener('keydown',function(e){if(e.key==='Enter')checkEmail();});
+</script>
+</body>
+</html>
