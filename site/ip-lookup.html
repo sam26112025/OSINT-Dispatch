@@ -73,6 +73,23 @@ main.igrs-main{max-width:1000px;margin:0 auto;padding:0 24px 60px;}
 .row .k{color:var(--muted);flex-shrink:0;}
 .row .v{color:var(--ink);text-align:right;word-break:break-word;}
 .row .v a{color:var(--accent);text-decoration:none;}
+.intel{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 22px;}
+.sec{margin-top:18px;padding-top:16px;border-top:1px solid var(--border);}
+.sec h3{font-family:var(--tech);font-size:13px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;}
+.kv2{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;}
+@media(max-width:680px){.kv2{grid-template-columns:1fr;}}
+.muted2{font-family:var(--mono);font-size:12px;color:var(--muted);}
+.xrow{display:grid;grid-template-columns:112px 1fr 1fr 26px;gap:10px;align-items:center;font-family:var(--mono);font-size:13px;padding:6px 0;border-bottom:1px dashed rgba(14,74,122,.3);}
+.xrow:last-child{border-bottom:none;}
+.xrow.xhead{color:var(--accent);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:8px;}
+.xrow .xk{color:var(--muted);}
+.xrow .xv{color:var(--ink);word-break:break-word;}
+.xrow .xv.src2{color:var(--ink2);}
+.xrow .xv a{color:var(--accent);text-decoration:none;}
+.xm{text-align:center;font-weight:700;}
+.xm.ok{color:var(--ok);}
+.xm.diff{color:var(--warn);}
+@media(max-width:680px){.xrow{grid-template-columns:72px 1fr 1fr 18px;font-size:11px;gap:6px;}.xrow.xhead{font-size:9px;}}
 .notice{margin-top:20px;font-family:var(--mono);font-size:12px;color:var(--muted);background:#06101d;border:1px solid var(--border);border-radius:6px;padding:12px 14px;line-height:1.6;}
 .notice b{color:var(--ink2);}
 .info-sec{margin-top:38px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:26px;}
@@ -164,90 +181,61 @@ async function lookup(q){
     const d=await r.json();
     if(d.error){res.innerHTML='<span style="color:var(--bad);font-family:var(--mono)">Error: '+esc(d.error)+'</span>';goBtn.disabled=false;myBtn.disabled=false;return;}
     const a=d.asn||{}, c=d.company||{}, l=d.location||{}, dc=d.datacenter||{};
-    let h='';
+    let h='<div class="intel">';
     h+='<div class="ipline">'+esc(d.ip||q||'')+'</div>';
     h+='<div class="ipsub">'+esc(d.rir||'')+(a.route?' &middot; route '+esc(a.route):'')+(l.country?' &middot; '+esc(l.country):'')+'</div>';
-    // flags
+    // color-coded anonymisation / reputation flags
     h+='<div class="flags">';
     h+=flag('Datacenter',d.is_datacenter)+flag('VPN',d.is_vpn)+flag('Proxy',d.is_proxy)+flag('Tor',d.is_tor)+flag('Abuser',d.is_abuser)+flag('Crawler',d.is_crawler)+flag('Mobile',d.is_mobile)+flag('Bogon',d.is_bogon);
     h+='</div>';
-    h+='<div class="grid">';
-    // ASN
-    if(a.asn){
-      h+='<div class="block"><h3>Network / ASN</h3>';
-      h+=row('ASN','AS'+esc(a.asn));
-      h+=row('Organisation',esc(a.org));
-      h+=row('Description',esc(a.descr));
-      h+=row('Type',esc(a.type));
-      h+=row('Route',esc(a.route));
-      h+=row('Country',esc(a.country));
-      h+=row('Domain',a.domain?'<a href="https://'+esc(a.domain)+'" target="_blank" rel="noopener">'+esc(a.domain)+'</a>':'');
-      h+=row('Abuse contact',esc(a.abuse));
-      h+=row('Abuser score',esc(a.abuser_score));
-      h+=row('RIR',esc(a.rir));
-      h+='</div>';
-    }
-    // Company
-    if(c.name){
-      h+='<div class="block"><h3>Owning Company</h3>';
-      h+=row('Name',esc(c.name));
-      h+=row('Type',esc(c.type));
-      h+=row('Domain',c.domain?'<a href="https://'+esc(c.domain)+'" target="_blank" rel="noopener">'+esc(c.domain)+'</a>':'');
-      h+=row('Network',esc(c.network));
-      h+=row('Abuser score',esc(c.abuser_score));
-      h+='</div>';
-    }
-    // Datacenter
-    if(d.is_datacenter && (dc.datacenter||dc.network)){
-      h+='<div class="block"><h3>Hosting / Datacenter</h3>';
-      h+=row('Provider',esc(dc.datacenter));
-      h+=row('Domain',dc.domain?'<a href="https://'+esc(dc.domain)+'" target="_blank" rel="noopener">'+esc(dc.domain)+'</a>':'');
-      h+=row('Network',esc(dc.network));
-      h+='</div>';
-    }
-    // Location
-    if(l.country||l.city){
-      const maplink=(l.latitude&&l.longitude)?'<a href="https://www.openstreetmap.org/?mlat='+l.latitude+'&mlon='+l.longitude+'#map=10/'+l.latitude+'/'+l.longitude+'" target="_blank" rel="noopener">'+esc(l.latitude)+', '+esc(l.longitude)+'</a>':'';
-      h+='<div class="block"><h3>Geolocation</h3>';
-      h+=row('City',esc(l.city));
-      h+=row('State / Region',esc(l.state));
-      h+=row('Country',esc(l.country)+(l.country_code?' ('+esc(l.country_code)+')':''));
-      h+=row('Continent',esc(l.continent));
-      h+=row('Postal',esc(l.zip));
-      h+=row('Timezone',esc(l.timezone));
-      h+=row('Coordinates',maplink);
-      h+=row('Accuracy',l.accuracy!=null?esc(l.accuracy)+' (1=best, 5=worst)':'');
-      h+='</div>';
-    }
-    h+='</div>'; // grid
-    h+='<div id="ip2block"></div>';
+    // NETWORK & OWNERSHIP (ipapi.is) - merged ASN + company + datacenter
+    h+='<div class="sec"><h3>Network &amp; Ownership</h3><div class="kv2">';
+    h+=row('ASN',a.asn?'AS'+esc(a.asn):'');
+    h+=row('Organisation',esc(a.org));
+    h+=row('Owner',(c.name&&c.name!==a.org)?esc(c.name):'');
+    h+=row('Type',esc(a.type||c.type));
+    h+=row('Description',esc(a.descr));
+    h+=row('Route',esc(a.route));
+    h+=row('Network range',esc(c.network));
+    h+=row('Domain',a.domain?'<a href="https://'+esc(a.domain)+'" target="_blank" rel="noopener">'+esc(a.domain)+'</a>':'');
+    h+=row('Abuse contact',esc(a.abuse));
+    h+=row('Abuser score',esc(a.abuser_score!=null?a.abuser_score:c.abuser_score));
+    h+=row('RIR',esc(a.rir));
+    if(d.is_datacenter&&(dc.datacenter||dc.network)){h+=row('Hosting',esc(dc.datacenter));h+=row('DC network',esc(dc.network));}
+    h+='</div></div>';
+    // GEOLOCATION cross-reference (filled by renderGeo once IP2Location resolves)
+    h+='<div class="sec" id="geosec"><h3>Geolocation &mdash; Cross-Referenced</h3><div class="muted2"><span class="spinner"></span> cross-referencing IP2Location...</div></div>';
+    h+='</div>'; // intel
     res.innerHTML=h;
-    addIp2(d.ip||q);
+    renderGeo(l,a,d.ip||q);
   }catch(e){
     res.innerHTML='<span style="color:var(--warn);font-family:var(--mono)">Could not reach the IP service (it may be rate-limited or temporarily unavailable). Please try again shortly.</span>';
   }
   goBtn.disabled=false;myBtn.disabled=false;
 }
-async function addIp2(ip){
-  const el=document.getElementById('ip2block'); if(!el||!ip)return;
-  try{
-    const r=await fetch(IP2_PROXY+'?ip='+encodeURIComponent(ip));
-    if(!r.ok)return;
-    const d=await r.json();
-    if(!d||d.error||(!d.country_name&&!d.city_name))return;
-    let h='<div class="block" style="margin-top:16px"><h3>IP2Location &mdash; Cross-Reference</h3>';
-    h+=row('Country',esc(d.country_name)+(d.country_code?' ('+esc(d.country_code)+')':''));
-    h+=row('Region',esc(d.region_name));
-    h+=row('City',esc(d.city_name));
-    h+=row('Postal',esc(d.zip_code));
-    h+=row('Timezone',esc(d.time_zone));
-    h+=row('Coordinates',(d.latitude&&d.longitude)?esc(d.latitude)+', '+esc(d.longitude):'');
-    h+=row('ASN',d.asn?('AS'+esc(d.asn)):'');
-    h+=row('AS / Org',esc(d.as));
-    h+=row('Proxy',d.is_proxy!=null?(d.is_proxy?'YES':'no'):'');
-    h+='</div>';
-    el.innerHTML=h;
-  }catch(e){/* Worker not configured / unavailable -> skip silently */}
+function norm(s){return String(s==null?'':s).toLowerCase().replace(/[^a-z0-9]/g,'');}
+async function renderGeo(l,a,ip){
+  l=l||{}; a=a||{};
+  let ip2=null;
+  if(ip){try{const r=await fetch(IP2_PROXY+'?ip='+encodeURIComponent(ip));if(r.ok){const j=await r.json();if(j&&!j.error&&(j.country_name||j.city_name))ip2=j;}}catch(e){}}
+  const sec=document.getElementById('geosec'); if(!sec)return;
+  const A=ip2!=null;
+  function cmp(v1,v2){if(!A||v1==null||v1===''||v2==null||v2==='')return '<span></span>';return norm(v1)===norm(v2)?'<span class="xm ok">&#10003;</span>':'<span class="xm diff">&ne;</span>';}
+  function cmpCoord(){if(!A||!(l.latitude&&l.longitude&&ip2.latitude&&ip2.longitude))return '<span></span>';return (Math.abs(parseFloat(l.latitude)-parseFloat(ip2.latitude))<0.5&&Math.abs(parseFloat(l.longitude)-parseFloat(ip2.longitude))<0.5)?'<span class="xm ok">&#10003;</span>':'<span class="xm diff">&ne;</span>';}
+  const maplink=(l.latitude&&l.longitude)?'<a href="https://www.openstreetmap.org/?mlat='+l.latitude+'&mlon='+l.longitude+'#map=10/'+l.latitude+'/'+l.longitude+'" target="_blank" rel="noopener">'+esc(l.latitude)+', '+esc(l.longitude)+'</a>':'&mdash;';
+  function xr(k,v1,v2,m){v1=(v1==null||v1==='')?'&mdash;':v1;v2=A?((v2==null||v2==='')?'&mdash;':v2):'&mdash;';return '<div class="xrow"><span class="xk">'+k+'</span><span class="xv">'+v1+'</span><span class="xv src2">'+v2+'</span>'+(m||'<span></span>')+'</div>';}
+  let h='<h3>Geolocation &mdash; Cross-Referenced</h3>';
+  h+='<div class="xrow xhead"><span>Field</span><span>ipapi.is</span><span>IP2Location</span><span></span></div>';
+  h+=xr('City',esc(l.city),esc(ip2&&ip2.city_name),cmp(l.city,ip2&&ip2.city_name));
+  h+=xr('Region',esc(l.state),esc(ip2&&ip2.region_name),cmp(l.state,ip2&&ip2.region_name));
+  h+=xr('Country',esc(l.country)+(l.country_code?' ('+esc(l.country_code)+')':''),ip2?(esc(ip2.country_name)+(ip2.country_code?' ('+esc(ip2.country_code)+')':'')):'',cmp(l.country_code,ip2&&ip2.country_code));
+  h+=xr('Postal',esc(l.zip),esc(ip2&&ip2.zip_code),cmp(l.zip,ip2&&ip2.zip_code));
+  h+=xr('Timezone',esc(l.timezone),esc(ip2&&ip2.time_zone),'');
+  h+=xr('Coordinates',maplink,(ip2&&ip2.latitude)?esc(ip2.latitude)+', '+esc(ip2.longitude):'',cmpCoord());
+  h+=xr('ASN',a.asn?'AS'+esc(a.asn):'',(ip2&&ip2.asn)?'AS'+esc(ip2.asn):'',cmp(a.asn,ip2&&ip2.asn));
+  h+=xr('Accuracy',l.accuracy!=null?esc(l.accuracy)+' (1=best)':'','&mdash;','');
+  if(!A)h+='<div class="muted2" style="margin-top:10px">IP2Location cross-reference unavailable for this IP (recently-cached error or quota) &mdash; primary ipapi.is data shown.</div>';
+  sec.innerHTML=h;
 }
 
 goBtn.addEventListener('click',function(){const q=ipIn.value.trim();if(!q){res.className='result show';res.innerHTML='<span style="color:var(--warn);font-family:var(--mono)">Enter an IP address or AS number.</span>';return;}lookup(q);});
