@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta name="google-adsense-account" content="ca-pub-5886568858916800">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5886568858916800" crossorigin="anonymous"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TCBLVSTG97"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-TCBLVSTG97');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>FortiBleed: 30,000+ Fortinet Firewalls Hijacked — and India Is 60% of the Government Hits (2026) — IGRS</title>
+<meta name="description" content="FortiBleed is a live credential-harvesting campaign that has compromised tens of thousands of internet-facing Fortinet firewalls and VPN gateways worldwide — and India accounts for over 60% of the government devices in the attacker's database. What happened, which CVEs are being exploited, the forensic traces, and an immediate defensive playbook for Indian organisations.">
+<meta name="keywords" content="FortiBleed, Fortinet firewall breach, Fortinet VPN credential harvesting, FortiGate SSL VPN compromise India, CVE-2026-39813, CVE-2026-39808, CVE-2026-25089, CVE-2026-35616, edge device security, CERT-In, credential stuffing, FortiClient EMS EKZ infostealer">
+<meta name="author" content="Manuj Kumar Pandey">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://igrs.xyz/articles/fortibleed-fortinet-firewall-breach-2026.html">
+<meta property="og:title" content="FortiBleed: 30,000+ Fortinet Firewalls Hijacked — India Is 60% of the Government Hits"><meta property="og:description" content="A live credential-harvesting campaign has compromised tens of thousands of Fortinet firewalls/VPNs worldwide. India is over 60% of the government devices in the dataset. What to do now."><meta property="og:type" content="article"><meta property="og:image" content="https://igrs.xyz/og/fortibleed.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="FortiBleed — tens of thousands of Fortinet firewalls and VPNs compromised, India heavily hit">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://igrs.xyz/og/fortibleed.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"FortiBleed: 30,000+ Fortinet Firewalls Hijacked — and India Is 60% of the Government Hits","description":"FortiBleed is a live credential-harvesting campaign against internet-facing Fortinet firewalls and VPN gateways. India accounts for over 60% of the government devices in the attacker's dataset. Analysis, exploited CVEs, forensics and an immediate defensive playbook.","author":{"@type":"Person","name":"Manuj Kumar Pandey","url":"https://igrs.xyz/about.html"},"publisher":{"@type":"Organization","name":"IGRS","url":"https://igrs.xyz"},"url":"https://igrs.xyz/articles/fortibleed-fortinet-firewall-breach-2026.html","datePublished":"2026-06-18","dateModified":"2026-06-18"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://igrs.xyz/index.html"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://igrs.xyz/articles.html"},{"@type":"ListItem","position":3,"name":"FortiBleed — Fortinet Firewall Breach"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is my organisation affected by FortiBleed?","acceptedAnswer":{"@type":"Answer","text":"If you run a Fortinet FortiGate firewall or SSL-VPN gateway with its management or VPN interface reachable from the internet, you are in scope and should assume possible exposure. The safe operating assumption recommended by researchers is to treat an affected perimeter device as already compromised, rotate all administrative and VPN credentials immediately, and review authentication logs, rather than waiting for confirmation."}},{"@type":"Question","name":"Why is India significant in this campaign?","acceptedAnswer":{"@type":"Answer","text":"Analysis of the attacker's exposed dataset indicates India accounts for over 60% of all government entries, with telecom the most heavily affected sector by volume. Because Fortinet appliances are widely deployed across Indian government, telecom and enterprise networks, the campaign has direct national-security and CERT-In reporting implications here."}},{"@type":"Question","name":"Is changing the password enough to recover?","acceptedAnswer":{"@type":"Answer","text":"No. A compromised edge device may already carry persistent backdoors or traffic sniffers, so a password change alone does not evict the attacker. Organisations should rotate all credentials, upgrade to current FortiOS firmware, remove management interfaces from the public internet, enable phishing-resistant MFA, and run a full incident-response investigation."}},{"@type":"Question","name":"Which Fortinet vulnerabilities are being exploited right now?","acceptedAnswer":{"@type":"Answer","text":"Alongside credential reuse, researchers have observed active exploitation of FortiSandbox flaws CVE-2026-39813 and CVE-2026-39808 (both CVSS 9.1, patched April 2026) and CVE-2026-25089 (patched in the June 2026 cycle), plus the earlier FortiClient EMS authentication-bypass CVE-2026-35616 used to deliver an infostealer. Patching to current firmware is essential."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css"><link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head><body>
+<header class="site"><div class="wrap">
+<div class="mast"><a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS Intel Grid Research Station Logo">IGRS<span></span></a><div class="mast-meta">Intel Grid Research Station</div></div>
+<nav class="main"><a href="../index.html">Home</a><a href="../articles.html">Articles</a><a href="../tools.html">Tools</a><a href="../dashboard.html">Dashboard</a><a href="../playbooks.html">Playbooks</a><a href="../cyberlaw.html">Cyber Law</a></nav>
+</div></header>
+<main class="wrap">
+<nav class="breadcrumb"><a href="../index.html">Home</a><span class="breadcrumb-sep">›</span><a href="../articles.html">Articles</a><span class="breadcrumb-sep">›</span><span>Threat Intelligence</span></nav>
+<article class="entry-full">
+<div class="entry-meta"><span class="category">Threat Intelligence</span><span class="date">18 June 2026</span><span class="author">Manuj Kumar Pandey</span></div>
+<h1>FortiBleed: Tens of Thousands of Fortinet Firewalls Hijacked — and India Is Over 60% of the Government Hits</h1>
+<p>The device that is supposed to be your first line of defence has become the breach. A live campaign that researchers have named <strong>FortiBleed</strong> has quietly compromised tens of thousands of internet-facing Fortinet firewalls and SSL-VPN gateways across nearly 200 countries — and the most uncomfortable detail for readers here is that India makes up the single largest slice of the government devices in the attacker's database. This is not a future risk or a vendor advisory about a theoretical flaw. It is an operation that is running right now, the compromised devices are mostly still online, and the security firms that found it are telling affected organisations to assume their perimeter is already breached. Here is what is actually happening, which Fortinet vulnerabilities are being exploited alongside it, what it means for Indian networks specifically, and the immediate steps that matter.</p>
+
+<h2>What happened</h2>
+<p>The campaign came to light when security researchers found an operational server the attackers had left exposed — a mistake that handed investigators a view into the group's tooling, automation, victim database and a repository of verified credentials. SOCRadar, which published an analysis on 16 June 2026, reported login credentials for more than 30,000 devices belonging to companies and government organisations across 194 countries. Follow-on analysis the next day from other researchers put the footprint substantially higher — into the range of roughly 73,000 to 75,000 unique Fortinet firewall endpoints and over 21,000 affected domains, which by some estimates is around half of all internet-facing Fortinet firewalls. Whichever figure you take, the scale is enormous, and the assessment across the reporting is consistent: this is one of the largest perimeter-device compromises seen to date, and it is ongoing.</p>
+<p>Attribution evidence points to a Russian-speaking, multi-operator threat group, with victim selection weighted toward NATO member and NATO-adjacent states. The operation is professional and almost entirely automated — which is precisely why it scaled the way it did.</p>
+
+<h2>The India angle</h2>
+<p>For an Indian audience this is not a distant story. Analysis of the exposed dataset indicates that <strong>India accounts for over 60% of all the government entries</strong> in the attacker's database, and telecom is the most heavily affected sector by volume — significant because telecom infrastructure underpins communications for every other sector. With hundreds of government-domain entries in the dataset and Fortinet appliances deployed extensively across Indian government, telecom, banking and enterprise networks, FortiBleed carries direct national-security weight here, not just commercial risk. Any Indian organisation that finds itself in scope is also looking at a CERT-In reporting obligation, which is covered below.</p>
+
+<h2>How the attack works</h2>
+<p>FortiBleed is built as a self-sustaining loop rather than a single clever exploit, and understanding the loop is what makes the defence obvious:</p>
+<ol>
+<li><strong>Scan.</strong> Automated infrastructure continuously scans the internet for exposed Fortinet management and VPN interfaces.</li>
+<li><strong>Reuse.</strong> Against each device it tries previously leaked Fortinet credentials and curated password lists — credential stuffing, credential reuse and password spraying at massive volume. Public reporting describes on the order of a billion-plus credential attempts against hundreds of thousands of FortiGate targets.</li>
+<li><strong>Validate.</strong> Every successful login is recorded into a verified-credential database.</li>
+<li><strong>Listen and multiply.</strong> Once a device is compromised it is used as a listening post — monitoring the traffic passing through it and collecting any further credentials that flow by. Those fresh credentials are fed back into the scanner to compromise even more devices.</li>
+</ol>
+<p>Beyond the credential loop, the group's tradecraft reportedly extends to intercepting SSL-VPN authentication, cracking captured hashes on a dedicated multi-GPU cluster, and using the recovered access to pivot into internal Active Directory environments for follow-on persistence. The critical point for defenders is that much of this turns on <em>reused and previously leaked passwords</em> — when a password is recovered in plaintext, its length and complexity stop mattering. A perimeter built on a strong-but-reused admin password offers no protection here.</p>
+
+<h2>The Fortinet flaws being exploited alongside it</h2>
+<p>Credential abuse is not the only vector in play. In the same window, researchers and honeypots have observed active exploitation of several Fortinet vulnerabilities, so patching status matters as much as password hygiene:</p>
+<table>
+<tr><th>CVE</th><th>Component / type</th><th>Status</th></tr>
+<tr><td>CVE-2026-39813 (CVSS 9.1)</td><td>FortiSandbox JRPC API — path traversal / authentication bypass</td><td>Patched April 2026; exploitation observed</td></tr>
+<tr><td>CVE-2026-39808 (CVSS 9.1)</td><td>FortiSandbox — OS command injection (unauthenticated)</td><td>Patched April 2026; exploitation observed</td></tr>
+<tr><td>CVE-2026-25089 (CVSS 9.1)</td><td>FortiSandbox WEB UI — OS command injection</td><td>Patched in the June 2026 cycle; exploit attempts seen (one reportedly AI-generated and faulty)</td></tr>
+<tr><td>CVE-2026-35616 (CVSS 9.1)</td><td>FortiClient EMS — API authentication bypass</td><td>Patched April 2026; abused to push the "EKZ" credential stealer disguised as a Fortinet patch</td></tr>
+</table>
+<p>The FortiClient EMS thread is its own cautionary tale: attackers used the management server's own update pathway to deliver a credential stealer dressed up as a legitimate Fortinet endpoint patch, then exfiltrated browser-stored credentials, cookies and autofill data — the kind of session material that can grant follow-on access to cloud services even where MFA is enabled.</p>
+
+<h2>Why edge devices are now the front line</h2>
+<p>FortiBleed is the clearest illustration yet of a structural shift: the security appliance at the network edge is itself a high-value target, and a public-facing management interface in 2026 is a liability rather than a convenience. Firewalls and VPN gateways are ubiquitous, they sit directly on the internet, and a single compromised one yields a foothold plus a vantage point to harvest everything passing through. The defensive implication is to stop treating the perimeter box as a trust boundary you can set and forget, and to move toward continuous verification — zero-trust network access to supplement or replace flat SSL-VPN, micro-segmentation to contain lateral movement, and monitoring of the device itself, not just the traffic behind it.</p>
+
+<h2>Immediate defensive playbook</h2>
+<p>If you operate Fortinet firewalls or VPNs, the consensus guidance from the researchers who uncovered this is to act now and to act as though you are already in the dataset:</p>
+<ol>
+<li><strong>Treat the perimeter as compromised.</strong> Do not wait for confirmation; begin incident response on the assumption of exposure.</li>
+<li><strong>Rotate every administrative and VPN credential immediately</strong> — and do not stop at the password, because a compromised device may already hold backdoors or sniffers.</li>
+<li><strong>Pull management interfaces off the public internet.</strong> Restrict admin access to a management network or VPN; never expose the FortiOS management UI to the open internet.</li>
+<li><strong>Patch to current FortiOS / FortiSandbox / FortiClient EMS firmware</strong> to close the actively exploited CVEs above.</li>
+<li><strong>Enforce phishing-resistant MFA</strong> (FIDO2 / hardware keys or certificate-based) on all remote-access and administrative accounts.</li>
+<li><strong>Review all authentication and VPN logs</strong> for anomalous logins, impossible-travel, and access from hosting/VPN ranges; preserve logs before they roll over.</li>
+<li><strong>Hunt on the device and inside the network</strong> — look for unexpected admin accounts, configuration changes, new tunnels, and signs of Active Directory reconnaissance or lateral movement.</li>
+<li><strong>Check credential exposure.</strong> Assume leaked-password reuse is the entry point and audit accounts against known breach data; individuals can sanity-check their own exposure with a privacy-first tool such as the <a href="../breach-check.html">IGRS Breach Check</a>.</li>
+</ol>
+
+<h2>The investigator's view</h2>
+<p>An edge-device compromise leaves a different evidence trail than a typical endpoint case, and the perimeter appliance is both the crime scene and a logging goldmine if its records survive. The high-value artefacts are the device's own authentication and admin logs (successful logins, source IPs, session times, configuration changes), VPN session records, and any newly created accounts or tunnels. Because the attack reaches inward, correlate those against internal Active Directory authentication events for signs of the pivot. A practical first move on any suspicious source address pulled from the logs is to profile it — datacentre versus residential, ASN, geolocation and abuse history — before correlating it across devices and accounts; the <a href="../ip-lookup.html">IGRS IP Lookup</a> is built for exactly that triage. Preserve the device configuration and logs with hash integrity for admissibility, and remember that a wiped-and-reimaged appliance destroys the very evidence an investigation needs — capture first, remediate second.</p>
+
+<h2>The India context</h2>
+<p>Given that India is the largest source of government devices in the dataset, Indian organisations carry concrete obligations on top of the technical response. Under the CERT-In Directions of 2022, qualifying cyber incidents must be reported to CERT-In within <strong>six hours</strong> of detection, so confirming exposure should start that clock alongside containment. Operators of Critical Information Infrastructure must also notify the NCIIPC, and where personal data is exposed the Digital Personal Data Protection Act, 2023 applies. If a compromised network leads to financial fraud downstream, victims should use the <strong>1930</strong> helpline and the National Cybercrime Reporting Portal without delay. The breadth of telecom and government exposure here is exactly the scenario these reporting channels exist for.</p>
+
+<h2>Legal context (India)</h2>
+<table>
+<tr><th>Provision</th><th>Relevance</th></tr>
+<tr><td>S.43 &amp; S.66 IT Act 2000</td><td>Unauthorised access to a computer resource / dishonest or fraudulent computer offences — the core of the intrusion</td></tr>
+<tr><td>S.70 IT Act</td><td>Protected systems — relevant where compromised devices sit in Critical Information Infrastructure</td></tr>
+<tr><td>S.66F IT Act</td><td>Cyber terrorism — potentially engaged where critical infrastructure or national security is affected (applied cautiously, on the facts)</td></tr>
+<tr><td>S.43A IT Act / DPDP Act 2023</td><td>Reasonable security practices and breach handling where personal data is exposed</td></tr>
+<tr><td>CERT-In Directions 2022</td><td>Mandatory reporting of qualifying incidents to CERT-In within six hours of detection</td></tr>
+<tr><td>S.94 BNSS 2023</td><td>Production of documents and records — to compel logs from service providers and intermediaries (replaces CrPC 91)</td></tr>
+<tr><td>S.63 BSA 2023</td><td>Electronic-evidence certificate — admissibility of device logs and forensic artefacts (replaces IEA 65B)</td></tr>
+</table>
+<p class="tx"><em>Note:</em> the applicable provisions depend on the facts established during investigation; the above is indicative of how an edge-device intrusion of this kind is typically framed in India.</p>
+
+<h2>Bottom line</h2>
+<p>FortiBleed is a blunt reminder that the perimeter is not a wall you build once — it is an attack surface that has to be actively defended, patched and watched, and that reused passwords quietly undo even strong policies. With India sitting at the centre of the government exposure, this is a national-scale prompt to do the unglamorous work now: get management interfaces off the internet, rotate credentials, patch the known-exploited CVEs, turn on phishing-resistant MFA, and read the logs. The attackers automated their way to tens of thousands of devices. Defenders will have to be just as systematic.</p>
+
+<div class="faq-section"><h2>Frequently Asked Questions</h2>
+<div class="faq-item"><div class="faq-q">Is my organisation affected by FortiBleed?</div><div class="faq-a">If you run a Fortinet FortiGate firewall or SSL-VPN gateway with its management or VPN interface reachable from the internet, you are in scope and should assume possible exposure. Researchers advise treating an affected perimeter device as already compromised — rotate all admin and VPN credentials immediately and review authentication logs rather than waiting for confirmation.</div></div>
+<div class="faq-item"><div class="faq-q">Why is India significant in this campaign?</div><div class="faq-a">Analysis of the attacker's exposed dataset indicates India accounts for over 60% of all government entries, with telecom the most heavily affected sector. Because Fortinet appliances are widely deployed across Indian government, telecom and enterprise networks, the campaign has direct national-security and CERT-In reporting implications here.</div></div>
+<div class="faq-item"><div class="faq-q">Is changing the password enough to recover?</div><div class="faq-a">No. A compromised edge device may already carry persistent backdoors or traffic sniffers, so a password change alone does not evict the attacker. Rotate all credentials, upgrade to current firmware, remove management interfaces from the public internet, enable phishing-resistant MFA, and run a full incident-response investigation.</div></div>
+<div class="faq-item"><div class="faq-q">Which Fortinet vulnerabilities are being exploited right now?</div><div class="faq-a">Alongside credential reuse, researchers have observed active exploitation of FortiSandbox flaws CVE-2026-39813 and CVE-2026-39808 (both CVSS 9.1, patched April 2026) and CVE-2026-25089 (patched in the June 2026 cycle), plus the earlier FortiClient EMS authentication-bypass CVE-2026-35616 used to deliver an infostealer. Patching to current firmware is essential.</div></div></div>
+
+<div class="related-articles"><h3>&#8594; RELATED ARTICLES</h3><div class="related-grid">
+<a class="related-card" href="kali365-microsoft-365-mfa-bypass-2026.html"><div class="related-card-cat">Threat Intelligence</div><div class="related-card-title">Kali365: The Kit That Bypasses MFA</div></a>
+<a class="related-card" href="email-security-dmarc-dkim.html"><div class="related-card-cat">Incident Response</div><div class="related-card-title">Email Security: SPF, DKIM &amp; DMARC</div></a>
+<a class="related-card" href="report-cybercrime-india.html"><div class="related-card-cat">Cyber Fraud</div><div class="related-card-title">How to Report Cybercrime in India</div></a></div></div>
+<div class="entry-footer"><a href="../articles.html">&larr; All Articles</a><a href="../dashboard.html">Dashboard &rarr;</a></div>
+</article></main>
+<footer class="site"><div class="wrap foot"><div><a href="../about.html">About</a><a href="../contact.html">Contact</a><a href="../privacy-policy.html">Privacy Policy</a></div><div>&copy; 2026 IGRS</div></div></footer>
+<script src="../consent.js"></script>
+</body></html>

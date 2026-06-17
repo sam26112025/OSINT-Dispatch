@@ -15,6 +15,7 @@ const IGRS_LINKS = {
   "check": "https://check.igrs.xyz",
 
   // Top articles (short slugs)
+  "fortibleed": "https://igrs.xyz/articles/fortibleed-fortinet-firewall-breach-2026.html",
   "kali365": "https://igrs.xyz/articles/kali365-microsoft-365-mfa-bypass-2026.html",
   "ip-lookup": "https://igrs.xyz/ip-lookup.html",
   "breach-check": "https://igrs.xyz/breach-check.html",

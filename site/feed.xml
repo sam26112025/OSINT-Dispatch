@@ -5,8 +5,22 @@
 <link>https://igrs.xyz/</link>
 <description>Cybersecurity, OSINT and digital-forensics intelligence for India's frontline defenders — threat intel, investigation playbooks and free tools.</description>
 <language>en-in</language>
-<lastBuildDate>Wed, 17 Jun 2026 17:56:19 +0000</lastBuildDate>
+<lastBuildDate>Wed, 17 Jun 2026 19:33:39 +0000</lastBuildDate>
 <atom:link href="https://igrs.xyz/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>FortiBleed: 30,000+ Fortinet Firewalls Hijacked — India Is 60% of the Government Hits</title>
+<link>https://igrs.xyz/articles/fortibleed-fortinet-firewall-breach-2026.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/fortibleed-fortinet-firewall-breach-2026.html</guid>
+<pubDate>Thu, 18 Jun 2026 09:00:00 +0530</pubDate>
+<description>FortiBleed is a live credential-harvesting campaign that has compromised tens of thousands of internet-facing Fortinet firewalls and VPN gateways worldwide — and India accounts for over 60% of the government devices in the attacker&#x27;s database. What happened, which CVEs are being exploited, the forensic traces, and an immediate defensive playbook for Indian organisations.</description>
+</item>
+<item>
+<title>CERT-In&#x27;s 12-Hour Patch Rule: India&#x27;s Answer to AI-Speed Attacks (2026)</title>
+<link>https://igrs.xyz/articles/cert-in-12-hour-patch-mandate-ai-2026.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/cert-in-12-hour-patch-mandate-ai-2026.html</guid>
+<pubDate>Thu, 18 Jun 2026 09:00:00 +0530</pubDate>
+<description>CERT-In&#x27;s new 38-page blueprint urges Indian organisations to patch known-exploited, internet-facing vulnerabilities within 12 hours as AI collapses the time attackers need to find and exploit flaws. The full risk-based remediation timeline, what it means for Indian security teams, and a practical compliance playbook.</description>
+</item>
 <item>
 <title>Kali365: The Microsoft 365 Phishing Kit That Bypasses MFA (FBI Warning, 2026)</title>
 <link>https://igrs.xyz/articles/kali365-microsoft-365-mfa-bypass-2026.html</link>
@@ -202,20 +216,6 @@
 <guid isPermaLink="true">https://igrs.xyz/articles/cyber-insurance-india-guide-2026.html</guid>
 <pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
 <description>Complete guide to cyber insurance in India 2026. Coverage types, claim process, IRDAI regulations, top providers, and what to look for in a cyber insurance policy.</description>
-</item>
-<item>
-<title>Cyber Forensics Evidence in Indian Courts — BSA 2023 Guide</title>
-<link>https://igrs.xyz/articles/cyber-forensics-evidence-court-india.html</link>
-<guid isPermaLink="true">https://igrs.xyz/articles/cyber-forensics-evidence-court-india.html</guid>
-<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
-<description>Complete guide to presenting cyber forensics evidence in Indian courts under BSA 2023. Section 63 certificate, chain of custody, hash values, expert witness requirements.</description>
-</item>
-<item>
-<title>Cryptocurrency Fraud Investigation in India — Tracing and Recovery Guide</title>
-<link>https://igrs.xyz/articles/cryptocurrency-fraud-investigation-india.html</link>
-<guid isPermaLink="true">https://igrs.xyz/articles/cryptocurrency-fraud-investigation-india.html</guid>
-<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
-<description>Complete guide to investigating cryptocurrency fraud in India. Bitcoin transaction tracing, exchange KYC requests, PMLA provisions, FIR sections, and recovery methodology for crypto scams.</description>
 </item>
 </channel>
 </rss>

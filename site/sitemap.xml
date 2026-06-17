@@ -199,6 +199,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://igrs.xyz/articles/cert-in-12-hour-patch-mandate-ai-2026.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://igrs.xyz/articles/cloud-forensics-aws-azure.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -309,6 +315,12 @@
   <url>
     <loc>https://igrs.xyz/articles/email-security-dmarc-dkim.html</loc>
     <lastmod>2026-06-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://igrs.xyz/articles/fortibleed-fortinet-firewall-breach-2026.html</loc>
+    <lastmod>2026-06-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
