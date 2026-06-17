@@ -421,6 +421,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://igrs.xyz/articles/kali365-microsoft-365-mfa-bypass-2026.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://igrs.xyz/articles/malware-analysis-basics.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta name="google-adsense-account" content="ca-pub-5886568858916800">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5886568858916800" crossorigin="anonymous"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TCBLVSTG97"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-TCBLVSTG97');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Kali365: The Microsoft 365 Phishing Kit That Bypasses MFA (FBI Warning, 2026) — IGRS</title>
+<meta name="description" content="The FBI has warned about Kali365, a Phishing-as-a-Service kit that hijacks Microsoft 365 accounts by abusing the OAuth device code flow — bypassing MFA without stealing a password. How it works, why it defeats MFA, the forensic traces it leaves, and a defensive playbook for Indian organisations and users.">
+<meta name="keywords" content="Kali365, FBI Microsoft 365 warning, device code phishing, OAuth token theft, MFA bypass 2026, phishing as a service, conditional access device code flow, Microsoft 365 account hijack India, EvilTokens, token theft forensics">
+<meta name="author" content="Manuj Kumar Pandey">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://igrs.xyz/articles/kali365-microsoft-365-mfa-bypass-2026.html">
+<meta property="og:title" content="Kali365: The Microsoft 365 Phishing Kit That Bypasses MFA (FBI Warning, 2026)"><meta property="og:description" content="How Kali365 abuses Microsoft's OAuth device code flow to steal access tokens and bypass MFA without a password — and how to defend against it.">
+<meta property="og:type" content="article"><meta property="og:image" content="https://igrs.xyz/logo.svg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Kali365: The Microsoft 365 Phishing Kit That Bypasses MFA (FBI Warning, 2026)","description":"The FBI warned about Kali365, a Phishing-as-a-Service kit that hijacks Microsoft 365 accounts by abusing the OAuth device code flow, bypassing MFA without stealing a password. How it works, why it defeats MFA, the forensic traces, and a defensive playbook for India.","author":{"@type":"Person","name":"Manuj Kumar Pandey","url":"https://igrs.xyz/about.html"},"publisher":{"@type":"Organization","name":"IGRS","url":"https://igrs.xyz"},"url":"https://igrs.xyz/articles/kali365-microsoft-365-mfa-bypass-2026.html","datePublished":"2026-06-17","dateModified":"2026-06-17"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://igrs.xyz/index.html"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://igrs.xyz/articles.html"},{"@type":"ListItem","position":3,"name":"Kali365 — Microsoft 365 MFA Bypass"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does MFA still protect me against Kali365?","acceptedAnswer":{"@type":"Answer","text":"MFA is still essential, but device code phishing defeats traditional MFA because the victim completes the MFA challenge themselves on a genuine Microsoft page, and the attacker simply collects the resulting OAuth access and refresh tokens. The durable defences are phishing-resistant MFA (FIDO2 / hardware security keys) plus a Conditional Access policy that blocks the device code flow for users who do not need it."}},{"@type":"Question","name":"What is the one thing every user must remember?","acceptedAnswer":{"@type":"Answer","text":"Never enter a device code that someone sent you. The page at microsoft.com/devicelogin is genuine, but you should only ever type a code there during a sign-in you personally started on a device that lacks a keyboard. If an email, chat or document asks you to visit that page and enter a code, it is an attack — stop and report it."}},{"@type":"Question","name":"How do I tell if a Microsoft 365 account was hijacked this way?","acceptedAnswer":{"@type":"Answer","text":"Review the Entra ID sign-in logs for device code flow sign-ins and any unfamiliar device registrations, check the mailbox for new forwarding or inbox rules, and look for token-grant and MailItemsAccessed events from unexpected IPs. If compromise is suspected, revoke all refresh tokens and active sessions, reset credentials, and report to IC3.gov, CERT-In, and the 1930 helpline if money is involved."}},{"@type":"Question","name":"Is Kali365 only an enterprise problem?","acceptedAnswer":{"@type":"Answer","text":"No. Early reporting focused on organisations, but the same technique works against any individual with an Outlook, OneDrive, Teams, or Microsoft 365 account who can be tricked into entering a device code on the real Microsoft page."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css"><link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head><body>
+<header class="site"><div class="wrap">
+<div class="mast"><a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS Intel Grid Research Station Logo">IGRS<span></span></a><div class="mast-meta">Intel Grid Research Station</div></div>
+<nav class="main"><a href="../index.html">Home</a><a href="../articles.html">Articles</a><a href="../tools.html">Tools</a><a href="../dashboard.html">Dashboard</a><a href="../playbooks.html">Playbooks</a><a href="../cyberlaw.html">Cyber Law</a></nav>
+</div></header>
+<main class="wrap">
+<nav class="breadcrumb"><a href="../index.html">Home</a><span class="breadcrumb-sep">›</span><a href="../articles.html">Articles</a><span class="breadcrumb-sep">›</span><span>Threat Intelligence</span></nav>
+<article class="entry-full">
+<div class="entry-meta"><span class="category">Threat Intelligence</span><span class="date">17 June 2026</span><span class="author">Manuj Kumar Pandey</span></div>
+<h1>Kali365: The Microsoft 365 Phishing Kit That Bypasses MFA — What the FBI Warning Means for India</h1>
+<p>For more than a decade, the standard advice has been simple: turn on multi-factor authentication and you are safe from most account takeovers. A phishing kit called <strong>Kali365</strong> has quietly broken that assumption. On 21 May 2026 the FBI's Internet Crime Complaint Center issued a public service announcement (alert <strong>I-052126-PSA</strong>) warning that Kali365 is hijacking Microsoft 365 accounts <em>without stealing a single password and without tripping MFA</em>. The technique it abuses is legitimate, the infrastructure it touches is Microsoft's own, and the barrier to entry is a Telegram subscription. This briefing explains what is actually happening, why it defeats the controls most organisations rely on, the forensic traces it leaves, and what Indian organisations and users should do now.</p>
+
+<h2>What the FBI actually warned about</h2>
+<p>The FBI describes Kali365 as a <strong>Phishing-as-a-Service (PhaaS)</strong> platform — a criminal subscription product, sold and supported much like a legitimate SaaS startup. It was first observed in <strong>April 2026</strong> and has been distributed mainly through Telegram. According to the advisory, the platform lowers the barrier of entry for less-technical attackers by bundling AI-generated phishing lures, automated campaign templates, real-time dashboards for tracking targeted individuals and entities, and — the dangerous part — the ability to capture OAuth tokens and gain persistent access to a victim's Microsoft 365 environment. Independent security firms reported hundreds of attacks in April alone, spanning manufacturing, education, government, insurance, financial services and healthcare across North America and Europe. Public reporting has put the subscription price at roughly USD 250 for a month or about USD 2,000 for a year — trivial against the value of a hijacked corporate mailbox.</p>
+
+<h2>How the attack works — device code phishing</h2>
+<p>The core technique is known as <strong>device code phishing</strong>, and it abuses a genuine Microsoft feature called the <strong>OAuth device authorization (device code) flow</strong>. That flow was designed to let people sign in on devices that lack a keyboard — smart TVs, conference-room displays, industrial terminals — by showing a short code that the user types into <em>microsoft.com/devicelogin</em> on a phone or laptop. Kali365 turns this convenience into a trap. At a conceptual level the FBI describes four stages:</p>
+<ol>
+<li><strong>Lure.</strong> The victim receives a phishing email impersonating a trusted cloud or document-sharing service — a file shared on SharePoint or OneDrive, a signature request styled after DocuSign or Adobe Acrobat Sign. The email contains a short code and asks the recipient to visit a Microsoft verification page and enter it.</li>
+<li><strong>Authorization.</strong> The link genuinely goes to Microsoft's own page. The victim enters the code — and in doing so unknowingly authorises the <em>attacker's</em> device to access their account.</li>
+<li><strong>Token theft.</strong> The attacker's device receives OAuth <strong>access and refresh tokens</strong> tied to the victim's account.</li>
+<li><strong>Persistence.</strong> With those tokens, the attacker reads Outlook mail, Teams chats and OneDrive files — and keeps coming back — without ever needing the password or another MFA prompt.</li>
+</ol>
+<p>Reporting indicates Kali365 also offers a second mode, sometimes referred to as "Cookie Link" — an adversary-in-the-middle approach that proxies the victim through attacker-controlled infrastructure to capture the authenticated browser session and cookies after a normal login. Either way, the prize is the same: a live, token-backed session rather than a password.</p>
+
+<h2>Why it defeats MFA</h2>
+<p>This is the uncomfortable insight for every security team. Because the victim signs in on the real Microsoft page and <em>completes their own MFA challenge</em>, Microsoft correctly issues valid tokens — to the attacker's authorised device. There is no fake login page to spot, no suspicious domain in the address bar, and often the victim's own organisational branding is shown. Legacy secure email gateways see only a benign link to microsoft.com. Password managers do not help because no password is phished. Credential-monitoring and breach-alerting do not fire because nothing was breached in the classic sense. The control that "failed" was never bypassed technically — it was satisfied by the genuine user. That is why the FBI's framing matters: <strong>MFA remains essential, but it is no longer sufficient on its own.</strong></p>
+<p>Once inside, the blast radius extends well beyond email. Because Microsoft 365 is a single sign-on hub for many organisations, a hijacked identity can open the door to SharePoint, OneDrive, Teams and any third-party SaaS — CRM, finance, HR — connected through Microsoft SSO. Kali365 is not the only product in this space; researchers have flagged a parallel Telegram-sold kit called <strong>EvilTokens</strong> with similar ambitions, which signals a broader shift in the criminal market from password theft to token and session theft.</p>
+
+<h2>The single red flag every user must learn</h2>
+<p>Strip away the sophistication and there is one behaviour that stops this attack cold: <strong>never enter a device code that somebody sent you.</strong> The microsoft.com/devicelogin page is legitimate, and a code is legitimate <em>only</em> when it appears on a device you are personally signing into that has no keyboard. If an email, chat message, shared document, or QR code asks you to go to that page and type in a code, treat it as an attack regardless of how convincing the branding looks. A device code arriving in your inbox is the digital equivalent of a stranger handing you a key and asking you to install it in your own front door.</p>
+
+<h2>Defensive playbook — for organisations</h2>
+<p>The FBI's advisory and the wider response converge on a small set of high-impact controls. For organisations running Microsoft 365 / Entra ID:</p>
+<ol>
+<li><strong>Block the device code flow with Conditional Access.</strong> Create a Conditional Access policy that blocks device code flow for all users, with narrow, documented exceptions only for the rare workflows that genuinely need it.</li>
+<li><strong>Audit before you block.</strong> Review existing device code flow usage first to identify any legitimate dependencies, so the block does not break a real business process.</li>
+<li><strong>Restrict authentication transfer</strong> from computers to mobile devices, closing a related path attackers use.</li>
+<li><strong>Exclude emergency "break-glass" accounts</strong> from the block so administrators are not locked out.</li>
+<li><strong>Move to phishing-resistant MFA.</strong> FIDO2 / hardware security keys and certificate-based authentication tie the login to a physical device and a verified origin, and are far harder to abuse than one-time codes or push approvals.</li>
+<li><strong>Harden the token layer.</strong> Enable token protection and Continuous Access Evaluation, shorten session lifetimes for sensitive roles, and ensure your team can rapidly <em>revoke refresh tokens and active sessions</em> — because revoking a password does nothing to a stolen token.</li>
+<li><strong>Monitor for the tell-tales:</strong> device-code sign-ins, new device registrations, anomalous token grants, impossible-travel logins, and the sudden creation of mailbox forwarding or inbox rules.</li>
+</ol>
+
+<h2>Defensive playbook — for individuals</h2>
+<ol>
+<li><strong>Honour the one rule:</strong> only ever enter a device code for a sign-in you started yourself, on a device without a keyboard. Codes you receive by email or message are hostile.</li>
+<li><strong>Slow down on "urgent" document or signature requests.</strong> Urgency is the lever; a pause to verify through a known channel defeats the script.</li>
+<li><strong>Prefer passkeys / hardware keys</strong> where your account supports them.</li>
+<li><strong>Review your account's active sessions and authorised devices</strong> periodically, and remove anything you do not recognise.</li>
+<li><strong>Check your exposure.</strong> If you reuse credentials, confirm whether your email or passwords already appear in known breaches using a privacy-first checker such as the <a href="../breach-check.html">IGRS Breach Check</a> tool, and move to unique passwords plus phishing-resistant MFA.</li>
+</ol>
+
+<h2>The investigator's view</h2>
+<p>Token-theft compromises do not look like password compromises, and treating them the same way is how they go unnoticed. The durable evidence sits in the identity provider, not the endpoint. In a Microsoft 365 investigation, the high-value artefacts are the Entra ID sign-in logs (specifically authentications using the device code flow and the device/app that received the grant), unfamiliar device registrations, refresh-token issuance and reuse, and Unified Audit Log events such as <em>MailItemsAccessed</em>, new inbox or transport rules, and OneDrive/SharePoint file access from unexpected IPs or ASNs. A practical pivot is to take the suspicious source IP from a token grant and profile it — hosting versus residential, ASN, geolocation, and abuse history — before correlating it across accounts; the <a href="../ip-lookup.html">IGRS IP Lookup</a> tool is built for exactly that triage. The investigative goal is to establish the window of access, scope what the token could reach across SSO-connected applications, and preserve the relevant logs with hash integrity for admissibility — then force a clean cut by revoking tokens and sessions, not merely resetting a password.</p>
+
+<h2>The India angle</h2>
+<p>Microsoft 365 is deeply embedded across Indian enterprises, educational institutions and government bodies, which makes this threat directly relevant here rather than a distant American advisory. Indian organisations carry a specific obligation: under the CERT-In Directions of 2022, qualifying cyber incidents must be reported to CERT-In within <strong>six hours</strong> of detection, so an identity-takeover incident should trigger that clock alongside internal containment. Where money is moved off the back of a hijacked mailbox — a fake vendor-payment instruction sent from a compromised but genuine internal account is a classic follow-on — victims should call the <strong>1930</strong> cyber-fraud helpline and file on the National Cybercrime Reporting Portal immediately, because speed is what allows mule accounts to be frozen. Affected parties in the United States, and Indian entities with a US nexus, can also report to the FBI's IC3 at ic3.gov as the advisory requests.</p>
+
+<h2>Legal context (India)</h2>
+<table>
+<tr><th>Provision</th><th>Relevance</th></tr>
+<tr><td>S.43 &amp; S.66 IT Act 2000</td><td>Unauthorised access to a computer resource / dishonest or fraudulent computer offences — the core of an account takeover</td></tr>
+<tr><td>S.66C IT Act</td><td>Identity theft — fraudulent use of another person's electronic identity, including a stolen token or session</td></tr>
+<tr><td>S.66D IT Act</td><td>Cheating by personation using a computer resource — squarely covers the phishing lure and impersonated services</td></tr>
+<tr><td>S.43A IT Act / DPDP Act 2023</td><td>Reasonable security practices for sensitive personal data; obligations and breach handling when mailboxes/files are exposed</td></tr>
+<tr><td>S.318 BNS 2023</td><td>Cheating (the provision that replaced IPC 420) — for the downstream fraud the access enables</td></tr>
+<tr><td>S.319 BNS 2023</td><td>Cheating by personation</td></tr>
+<tr><td>S.111 BNS 2023</td><td>Organised crime — relevant to a PhaaS subscription model and syndicated cyber fraud</td></tr>
+<tr><td>S.94 BNSS 2023</td><td>Production of documents and records — to compel logs from intermediaries and service providers (replaces CrPC 91)</td></tr>
+<tr><td>S.63 BSA 2023</td><td>Electronic-evidence certificate — admissibility of sign-in logs, audit logs and token records (replaces IEA 65B)</td></tr>
+<tr><td>CERT-In Directions 2022</td><td>Mandatory reporting of qualifying incidents to CERT-In within six hours of detection</td></tr>
+</table>
+<p class="tx"><em>Note:</em> the exact charges depend on the facts established by investigators. The provisions above are indicative of how a token-theft account takeover and the fraud it enables are typically framed in India.</p>
+
+<h2>Bottom line</h2>
+<p>Kali365 is not a clever new exploit so much as a clever new <em>business</em> — packaging a known weakness in a legitimate authentication feature into a turnkey, AI-assisted subscription that anyone can rent. The lesson is structural, not tactical: the perimeter has moved from passwords to <strong>identities and tokens</strong>, and defences must move with it. For organisations that means blocking the device code flow, adopting phishing-resistant MFA, and being able to revoke tokens fast. For users it comes down to one durable habit — never type a code someone sent you. And for investigators, the case is built not in the inbox but in the identity logs, where the stolen token leaves its trail.</p>
+
+<div class="faq-section"><h2>Frequently Asked Questions</h2>
+<div class="faq-item"><div class="faq-q">Does MFA still protect me against Kali365?</div><div class="faq-a">MFA is still essential, but device code phishing defeats traditional MFA because the victim completes the challenge themselves on a genuine Microsoft page and the attacker collects the resulting tokens. The durable defences are phishing-resistant MFA (FIDO2 / hardware keys) plus a Conditional Access policy that blocks the device code flow for users who do not need it.</div></div>
+<div class="faq-item"><div class="faq-q">What is the one thing every user must remember?</div><div class="faq-a">Never enter a device code that someone sent you. The microsoft.com/devicelogin page is genuine, but you should only type a code there during a sign-in you personally started on a keyboard-less device. A code arriving by email, chat or document is an attack.</div></div>
+<div class="faq-item"><div class="faq-q">How do I tell if an account was hijacked this way?</div><div class="faq-a">Review Entra ID sign-in logs for device code flow sign-ins and unfamiliar device registrations, check for new mailbox forwarding or inbox rules, and look for token-grant and MailItemsAccessed events from unexpected IPs. If compromise is suspected, revoke all refresh tokens and sessions, reset credentials, and report to IC3.gov, CERT-In and the 1930 helpline if money is involved.</div></div>
+<div class="faq-item"><div class="faq-q">Is this only an enterprise problem?</div><div class="faq-a">No. Early reporting focused on organisations, but the same technique works against any individual with an Outlook, OneDrive, Teams or Microsoft 365 account who can be tricked into entering a device code on the real Microsoft page.</div></div></div>
+
+<div class="related-articles"><h3>&#8594; RELATED ARTICLES</h3><div class="related-grid">
+<a class="related-card" href="email-security-dmarc-dkim.html"><div class="related-card-cat">Incident Response</div><div class="related-card-title">Email Security: SPF, DKIM &amp; DMARC</div></a>
+<a class="related-card" href="digital-arrest-scam-investigation-guide-2026.html"><div class="related-card-cat">Threat Intelligence</div><div class="related-card-title">Digital Arrest Scam Guide</div></a>
+<a class="related-card" href="report-cybercrime-india.html"><div class="related-card-cat">Cyber Fraud</div><div class="related-card-title">How to Report Cybercrime in India</div></a></div></div>
+<div class="entry-footer"><a href="../articles.html">&larr; All Articles</a><a href="../dashboard.html">Dashboard &rarr;</a></div>
+</article></main>
+<footer class="site"><div class="wrap foot"><div><a href="../about.html">About</a><a href="../contact.html">Contact</a><a href="../privacy-policy.html">Privacy Policy</a></div><div>&copy; 2026 IGRS</div></div></footer>
+</body></html>
