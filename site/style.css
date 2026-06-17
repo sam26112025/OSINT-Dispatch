@@ -514,3 +514,8 @@ footer.site{
 .faq-item{margin-bottom:16px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:14px 16px;}
 .faq-q{font-family:var(--tech);font-size:14px;color:var(--ink);margin-bottom:8px;}
 .faq-a{font-size:13px;color:var(--ink2);line-height:1.75;}
+
+/* article header banner (card) */
+.entry-hero{margin:0 0 26px;border:1px solid rgba(0,212,255,.22);border-radius:12px;overflow:hidden;line-height:0;background:#04090f;box-shadow:0 6px 28px rgba(0,0,0,.45)}
+.entry-hero img{width:100%;height:auto;display:block}
+@media(max-width:600px){.entry-hero{margin:0 0 18px;border-radius:9px}}
