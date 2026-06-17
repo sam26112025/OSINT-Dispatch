@@ -15,6 +15,9 @@ const IGRS_LINKS = {
   "check": "https://check.igrs.xyz",
 
   // Top articles (short slugs)
+  "kali365": "https://igrs.xyz/articles/kali365-microsoft-365-mfa-bypass-2026.html",
+  "ip-lookup": "https://igrs.xyz/ip-lookup.html",
+  "breach-check": "https://igrs.xyz/breach-check.html",
   "digital-arrest": "https://igrs.xyz/articles/digital-arrest-scam-investigation-guide-2026.html",
   "upi-fraud": "https://igrs.xyz/articles/upi-reversal-fraud-investigation-playbook-2026.html",
   "report-fraud": "https://igrs.xyz/articles/how-to-report-cyber-fraud-india-step-by-step.html",
