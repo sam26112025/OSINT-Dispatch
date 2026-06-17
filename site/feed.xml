@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>IGRS — Intel Grid Research Station</title>
+<link>https://igrs.xyz/</link>
+<description>Cybersecurity, OSINT and digital-forensics intelligence for India's frontline defenders — threat intel, investigation playbooks and free tools.</description>
+<language>en-in</language>
+<lastBuildDate>Wed, 17 Jun 2026 17:56:19 +0000</lastBuildDate>
+<atom:link href="https://igrs.xyz/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>Kali365: The Microsoft 365 Phishing Kit That Bypasses MFA (FBI Warning, 2026)</title>
+<link>https://igrs.xyz/articles/kali365-microsoft-365-mfa-bypass-2026.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/kali365-microsoft-365-mfa-bypass-2026.html</guid>
+<pubDate>Wed, 17 Jun 2026 09:00:00 +0530</pubDate>
+<description>The FBI has warned about Kali365, a Phishing-as-a-Service kit that hijacks Microsoft 365 accounts by abusing the OAuth device code flow — bypassing MFA without stealing a password. How it works, why it defeats MFA, the forensic traces it leaves, and a defensive playbook for Indian organisations and users.</description>
+</item>
+<item>
+<title>Telegram Ban &amp; NEET 2026 Paper-Leak Panic — What Actually Happened</title>
+<link>https://igrs.xyz/articles/telegram-ban-neet-2026-paper-leak.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/telegram-ban-neet-2026-paper-leak.html</guid>
+<pubDate>Tue, 16 Jun 2026 09:00:00 +0530</pubDate>
+<description>Why India blocked Telegram until 22 June 2026 ahead of the NEET-UG re-exam — the Section 69A order, the message-edit fabrication trick, the paper-leak fraud economy, what students and families should do, and the legal framework.</description>
+</item>
+<item>
+<title>Southeast Asia Scam Compounds &amp; the India Connection 2026</title>
+<link>https://igrs.xyz/articles/southeast-asia-scam-compounds-india-2026.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/southeast-asia-scam-compounds-india-2026.html</guid>
+<pubDate>Tue, 16 Jun 2026 09:00:00 +0530</pubDate>
+<description>How transnational scam compounds in Myanmar, Cambodia and Laos drive pig-butchering fraud, traffic Indians into forced cyber-slavery, and the 2026 global enforcement response — DOJ seizures, OFAC sanctions, UN findings and India&#x27;s countermeasures.</description>
+</item>
+<item>
+<title>ICAI Data Breach 2026 — Alleged Examiners Portal Leak (Unverified)</title>
+<link>https://igrs.xyz/articles/icai-data-breach-2026.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/icai-data-breach-2026.html</guid>
+<pubDate>Tue, 16 Jun 2026 09:00:00 +0530</pubDate>
+<description>Threat-intelligence analysis of the alleged June 2026 ICAI examiners portal breach claimed by actor &#x27;zowico&#x27;. Unverified claim, conflicting figures, impact, legal context (IT Act, BNS, DPDP) and what CAs, students and examiners should do.</description>
+</item>
+<item>
+<title>Deepfake Financial Fraud in India 2026 — Voice Cloning, Scams &amp; the Law</title>
+<link>https://igrs.xyz/articles/deepfake-financial-fraud-india-2026.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/deepfake-financial-fraud-india-2026.html</guid>
+<pubDate>Tue, 16 Jun 2026 09:00:00 +0530</pubDate>
+<description>How AI deepfakes and voice cloning are driving financial fraud in India in 2026 — the scale, the attack playbook, executive impersonation, the new IT takedown rules, defensive guidance and the IT Act / BNS / DPDP legal framework.</description>
+</item>
+<item>
+<title>WhatsApp Business API Abuse — Investigation Methods for Cybercrime Units</title>
+<link>https://igrs.xyz/articles/whatsapp-business-api-abuse-investigation-methods.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/whatsapp-business-api-abuse-investigation-methods.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>How fraudsters abuse WhatsApp Business API for phishing, scam campaigns, and mass fraud in India. Investigation methodology, Meta legal process, evidence preservation, and applicable law sections.</description>
+</item>
+<item>
+<title>UPI Reversal Fraud — Investigation Playbook 2026</title>
+<link>https://igrs.xyz/articles/upi-reversal-fraud-investigation-playbook-2026.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/upi-reversal-fraud-investigation-playbook-2026.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Complete investigation playbook for UPI payment reversal fraud in India. NPCI complaint process, bank account freezing, mule account tracing, FIR sections under BNS and IT Act, and OSINT methodology.</description>
+</item>
+<item>
+<title>TAFCOP Portal — Complete Guide for Law Enforcement Investigators</title>
+<link>https://igrs.xyz/articles/tafcop-portal-guide-law-enforcement-2026.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/tafcop-portal-guide-law-enforcement-2026.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Step-by-step guide to using TAFCOP (Telecom Analytics for Fraud Management and Consumer Protection) for cybercrime investigation, SIM verification, and telecom fraud cases in India.</description>
+</item>
+<item>
+<title>Social Media OSINT for Indian Investigations — Complete Methodology</title>
+<link>https://igrs.xyz/articles/social-media-osint-india-investigation.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/social-media-osint-india-investigation.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Complete social media OSINT methodology for Indian investigators. Facebook, Instagram, Twitter, LinkedIn, WhatsApp investigation techniques, account recovery analysis, and evidence preservation.</description>
+</item>
+<item>
+<title>SIM Swap Fraud Investigation in India — Complete Guide 2026</title>
+<link>https://igrs.xyz/articles/sim-swap-fraud-investigation-india.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/sim-swap-fraud-investigation-india.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Complete investigation guide for SIM swap fraud in India. How SIM swap works, investigation methodology, telecom portal evidence, bank liability, and FIR sections.</description>
+</item>
+<item>
+<title>Ransomware Attack Response — Incident Response Guide for Indian Organizations</title>
+<link>https://igrs.xyz/articles/ransomware-attack-response-india-2026.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/ransomware-attack-response-india-2026.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Complete ransomware incident response guide for Indian organizations. Immediate steps, CERT-In reporting, forensic investigation, legal obligations under DPDP Act, and recovery planning.</description>
+</item>
+<item>
+<title>Phishing Email Investigation — Complete Guide for India 2026</title>
+<link>https://igrs.xyz/articles/phishing-email-investigation-india-2026.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/phishing-email-investigation-india-2026.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Step-by-step guide to investigating phishing emails in India. Email header analysis, domain tracing, IP lookup, reporting to CERT-In, and FIR sections for phishing attacks.</description>
+</item>
+<item>
+<title>OSINT for UPI Fraud — Tracing Mule Accounts in India</title>
+<link>https://igrs.xyz/articles/osint-upi-mule-account-tracing-india.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/osint-upi-mule-account-tracing-india.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Step-by-step OSINT methodology for tracing UPI mule accounts in India. Phone number intelligence, UPI VPA analysis, bank account tracing, social media correlation, and money trail reconstruction.</description>
+</item>
+<item>
+<title>Online Defamation and Cyber Harassment Investigation — India 2026</title>
+<link>https://igrs.xyz/articles/online-defamation-investigation-india.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/online-defamation-investigation-india.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Complete guide to investigating online defamation, cyber harassment, and trolling in India. Legal sections, evidence preservation, platform reporting, and FIR filing.</description>
+</item>
+<item>
+<title>Network Forensics for Cybercrime Investigation — India Guide</title>
+<link>https://igrs.xyz/articles/network-forensics-india-guide.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/network-forensics-india-guide.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Complete network forensics guide for Indian cybercrime investigators. Packet capture, Wireshark analysis, log analysis, ISP data requests, and evidence preservation.</description>
+</item>
+<item>
+<title>Mobile Banking Fraud Investigation in India — Complete Guide</title>
+<link>https://igrs.xyz/articles/mobile-banking-fraud-investigation-india.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/mobile-banking-fraud-investigation-india.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Complete investigation guide for mobile banking fraud in India. Account takeover, OTP fraud, vishing, net banking fraud — investigation methodology, bank liability, and legal sections.</description>
+</item>
+<item>
+<title>Job Fraud Investigation in India — OSINT and Legal Guide 2026</title>
+<link>https://igrs.xyz/articles/job-fraud-investigation-india-2026.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/job-fraud-investigation-india-2026.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Complete investigation guide for job fraud cases in India. Fake job portal investigation, mule recruitment fraud, OSINT methodology, FIR sections, and victim recovery steps.</description>
+</item>
+<item>
+<title>IoT and Smart Device Forensics in India — Investigation Guide</title>
+<link>https://igrs.xyz/articles/iot-smart-device-forensics-india.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/iot-smart-device-forensics-india.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Guide to IoT and smart device forensics for Indian investigators. Smart TV, CCTV, smart speaker, router forensics — evidence extraction, legal framework, and investigation methodology.</description>
+</item>
+<item>
+<title>Investment Fraud and Pig Butchering Scams India — Investigation Guide</title>
+<link>https://igrs.xyz/articles/investment-fraud-pig-butchering-india.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/investment-fraud-pig-butchering-india.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Complete guide to investigating investment fraud and pig butchering scams in India. How these scams work, OSINT methodology, fake trading platform investigation, and legal recovery options.</description>
+</item>
+<item>
+<title>India&#x27;s DPDP Act 2026 — What Cybercrime Investigators Need to Know</title>
+<link>https://igrs.xyz/articles/india-dpdp-act-2026-investigators-guide.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/india-dpdp-act-2026-investigators-guide.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Complete guide to India&#x27;s Digital Personal Data Protection Act 2026 for cybercrime investigators. Investigation exemptions, lawful interception, data localization impact, and compliance for law enforcement.</description>
+</item>
+<item>
+<title>How to Trace a Fake WhatsApp Number in India — Step by Step</title>
+<link>https://igrs.xyz/articles/how-to-trace-fake-whatsapp-number-india.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/how-to-trace-fake-whatsapp-number-india.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Complete guide to tracing fake WhatsApp numbers in India using OSINT, TAFCOP, Truecaller, and Meta legal process. For investigators and victims of WhatsApp fraud.</description>
+</item>
+<item>
+<title>How to Report Cyber Fraud in India — Complete Step by Step Guide 2026</title>
+<link>https://igrs.xyz/articles/how-to-report-cyber-fraud-india-step-by-step.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/how-to-report-cyber-fraud-india-step-by-step.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Complete guide to reporting cybercrime and cyber fraud in India. Cybercrime helpline 1930, cybercrime.gov.in portal, bank complaint, FIR filing, and what to do immediately after being defrauded.</description>
+</item>
+<item>
+<title>How to File a Cybercrime FIR in India — Section by Section Guide 2026</title>
+<link>https://igrs.xyz/articles/how-to-file-cybercrime-fir-india-2026.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/how-to-file-cybercrime-fir-india-2026.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Complete guide to filing a cybercrime FIR in India under BNS 2023, IT Act, and BSA 2023. Correct sections for different cyber offences, evidence requirements, and tips for law enforcement.</description>
+</item>
+<item>
+<title>Free OSINT Tools for Indian Investigators 2026 — Complete Directory</title>
+<link>https://igrs.xyz/articles/free-osint-tools-india-2026.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/free-osint-tools-india-2026.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Comprehensive list of free OSINT tools for Indian investigators. Phone lookup, Aadhaar verification, GST search, company check, court records, domain analysis — all free.</description>
+</item>
+<item>
+<title>Business Email Compromise (BEC) Investigation India — Complete Guide</title>
+<link>https://igrs.xyz/articles/email-fraud-bec-investigation-india.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/email-fraud-bec-investigation-india.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Complete guide to investigating Business Email Compromise (BEC) fraud in India. CEO fraud, invoice fraud, email spoofing investigation, SWIFT fraud, and legal recovery.</description>
+</item>
+<item>
+<title>Digital Arrest Scam — How It Works and How to Investigate</title>
+<link>https://igrs.xyz/articles/digital-arrest-scam-investigation-guide-2026.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/digital-arrest-scam-investigation-guide-2026.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Complete investigation guide for digital arrest scams in India. Modus operandi, FIR sections under BNS and IT Act, victim resources, and step-by-step investigation methodology for law enforcement.</description>
+</item>
+<item>
+<title>Dark Web Monitoring for Indian Organizations — Threat Intelligence Guide</title>
+<link>https://igrs.xyz/articles/dark-web-monitoring-india-guide.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/dark-web-monitoring-india-guide.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Complete guide to dark web monitoring for Indian organizations. Free and paid tools, leaked data detection, credential monitoring, and response procedures.</description>
+</item>
+<item>
+<title>Cyber Insurance India — Complete Guide for Businesses 2026</title>
+<link>https://igrs.xyz/articles/cyber-insurance-india-guide-2026.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/cyber-insurance-india-guide-2026.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Complete guide to cyber insurance in India 2026. Coverage types, claim process, IRDAI regulations, top providers, and what to look for in a cyber insurance policy.</description>
+</item>
+<item>
+<title>Cyber Forensics Evidence in Indian Courts — BSA 2023 Guide</title>
+<link>https://igrs.xyz/articles/cyber-forensics-evidence-court-india.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/cyber-forensics-evidence-court-india.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Complete guide to presenting cyber forensics evidence in Indian courts under BSA 2023. Section 63 certificate, chain of custody, hash values, expert witness requirements.</description>
+</item>
+<item>
+<title>Cryptocurrency Fraud Investigation in India — Tracing and Recovery Guide</title>
+<link>https://igrs.xyz/articles/cryptocurrency-fraud-investigation-india.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/cryptocurrency-fraud-investigation-india.html</guid>
+<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
+<description>Complete guide to investigating cryptocurrency fraud in India. Bitcoin transaction tracing, exchange KYC requests, PMLA provisions, FIR sections, and recovery methodology for crypto scams.</description>
+</item>
+</channel>
+</rss>
