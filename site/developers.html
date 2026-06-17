@@ -34,7 +34,7 @@
 {"@type":"Question","name":"Is embedding the IGRS tools free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The embeddable IP Lookup and Breach Check widgets are completely free. The only requirement is that the visible 'Powered by IGRS' attribution link is kept intact."}},
 {"@type":"Question","name":"Do I need an API key to embed the widgets?","acceptedAnswer":{"@type":"Answer","text":"No. The embed widgets are pure iframe snippets — no key, no signup, no backend. Just paste the snippet into your HTML."}},
 {"@type":"Question","name":"Does embedding send my visitors' data to IGRS?","acceptedAnswer":{"@type":"Answer","text":"No. The widgets run in your visitor's browser and query the public upstream APIs directly. IGRS does not store lookups. Passwords are checked using k-anonymity and never leave the browser."}},
-{"@type":"Question","name":"Is there a JSON API for server-side use?","acceptedAnswer":{"@type":"Answer","text":"A hosted JSON API is in private beta. It requires a free key and a visible attribution link, and is rate-limited. You can request access via the contact page."}}]}
+{"@type":"Question","name":"Is there a JSON API for server-side use?","acceptedAnswer":{"@type":"Answer","text":"A hosted JSON API is on the roadmap but not live yet. You can join the waitlist via the contact page to be notified when it opens. The embed widgets are available to use today."}}]}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
@@ -169,14 +169,14 @@ footer.igrs-ftr{border-top:1px solid var(--border);margin-top:50px;background:rg
     <p class="lead">The widgets are fully responsive. Set <code style="color:var(--accent)">width:100%</code> and cap it with <code style="color:var(--accent)">max-width</code> to fit any column. Recommended heights: <b style="color:var(--ink)">520px</b> for IP Lookup, <b style="color:var(--ink)">430px</b> for Breach Check (taller if you expect multi-breach results). The dark theme blends with most layouts; wrap it in a light card if your site is light-themed.</p>
   </div>
 
-  <!-- API beta -->
+  <!-- API waitlist -->
   <div class="sec-card">
-    <span class="pill amber">HOSTED API &mdash; PRIVATE BETA</span>
+    <span class="pill amber">HOSTED API &mdash; COMING SOON</span>
     <h2>JSON API for server-side use</h2>
-    <p class="lead">Need raw JSON for your own backend, SIEM, or automation pipeline instead of a UI widget? A hosted IGRS intelligence API is in private beta. To keep it sustainable and within our upstream data providers' terms, access is:</p>
+    <p class="lead">Need raw JSON for your own backend, SIEM, or automation pipeline instead of a UI widget? A hosted IGRS intelligence API is <b style="color:var(--warn)">on the roadmap &mdash; not live yet</b>. We're gauging demand before opening it up. When it launches, to keep it sustainable and within our upstream data providers' terms, access will be:</p>
     <div class="notice"><b>Key-based</b> &mdash; a free key, issued per project &middot; <b>Attribution-based</b> &mdash; a visible &ldquo;Powered by IGRS&rdquo; credit/link on the consuming page &middot; <b>Rate-limited</b> &mdash; fair-use caps with caching, to protect quota</div>
-    <p class="lead" style="margin-top:14px">If that fits your use case, request access and tell us a little about your project.</p>
-    <a class="btn" href="contact.html">Request API Access &#8599;</a>
+    <p class="lead" style="margin-top:14px">Want it? Join the waitlist and tell us a little about your project &mdash; we'll notify you the moment it opens. In the meantime, the embed widgets above are live and free to use today.</p>
+    <a class="btn" href="contact.html">Join the API Waitlist &#8599;</a>
   </div>
 
   <!-- E-E-A-T -->
