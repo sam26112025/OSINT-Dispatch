@@ -519,3 +519,8 @@ footer.site{
 .entry-hero{margin:0 0 26px;border:1px solid rgba(0,212,255,.22);border-radius:12px;overflow:hidden;line-height:0;background:#04090f;box-shadow:0 6px 28px rgba(0,0,0,.45)}
 .entry-hero img{width:100%;height:auto;display:block}
 @media(max-width:600px){.entry-hero{margin:0 0 18px;border-radius:9px}}
+
+/* article byline (entry-meta) — clean separators */
+.entry-meta{display:flex;flex-wrap:wrap;align-items:center;margin:2px 0 18px;font-family:var(--mono);font-size:12.5px;letter-spacing:.03em;color:var(--ink2)}
+.entry-meta .category{color:var(--accent);text-transform:uppercase;font-weight:600}
+.entry-meta span+span::before{content:"\00b7";margin:0 9px;color:var(--muted)}
