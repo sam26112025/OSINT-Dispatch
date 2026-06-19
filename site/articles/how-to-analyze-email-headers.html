@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta name="google-adsense-account" content="ca-pub-5886568858916800">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5886568858916800" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TCBLVSTG97"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-TCBLVSTG97');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>How to Analyze Email Headers: Trace the Sender &amp; Spot Spoofing (Step by Step) — IGRS</title>
+<meta name="description" content="A practical, step-by-step guide to reading raw email headers — how to extract them, follow the Received relay chain to the originating IP, interpret SPF/DKIM/DMARC, and spot spoofing. Includes a worked example and a free in-browser analyzer.">
+<meta name="keywords" content="how to analyze email headers, email header analysis, trace email sender, find sender IP from email, SPF DKIM DMARC explained, detect email spoofing, phishing investigation, received header chain">
+<meta name="author" content="Manuj Kumar Pandey">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://igrs.xyz/articles/how-to-analyze-email-headers.html">
+<meta property="og:title" content="How to Analyze Email Headers: Trace the Sender &amp; Spot Spoofing"><meta property="og:description" content="Step-by-step: extract raw headers, follow the relay chain to the originating IP, read SPF/DKIM/DMARC, and spot spoofing — with a free in-browser analyzer."><meta property="og:type" content="article"><meta property="og:url" content="https://igrs.xyz/articles/how-to-analyze-email-headers.html"><meta property="og:image" content="https://igrs.xyz/og/how-to-analyze-email-headers.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="How to Analyze Email Headers — IGRS">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://igrs.xyz/og/how-to-analyze-email-headers.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Analyze Email Headers: Trace the Sender and Spot Spoofing","description":"A step-by-step guide to reading raw email headers: extracting them, following the Received chain to the originating IP, interpreting SPF/DKIM/DMARC, and detecting spoofing.","author":{"@type":"Person","name":"Manuj Kumar Pandey","url":"https://igrs.xyz/about.html"},"publisher":{"@type":"Organization","name":"IGRS","url":"https://igrs.xyz"},"url":"https://igrs.xyz/articles/how-to-analyze-email-headers.html","datePublished":"2026-06-18","dateModified":"2026-06-18"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://igrs.xyz/index.html"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://igrs.xyz/articles.html"},{"@type":"ListItem","position":3,"name":"How to Analyze Email Headers"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to analyze an email header","step":[{"@type":"HowToStep","name":"Extract the raw headers","text":"In Gmail open the message, choose Show original; in Outlook open Properties and copy the Internet headers."},{"@type":"HowToStep","name":"Read the Received chain bottom-up","text":"The lowest Received line is closest to the origin; the top is your inbox. Note IPs, hostnames and timestamps at each hop."},{"@type":"HowToStep","name":"Find the originating IP","text":"Take the earliest public IP in the chain as the likely origin and profile it further."},{"@type":"HowToStep","name":"Check SPF, DKIM and DMARC","text":"Read the Authentication-Results header; a fail on any check, especially DMARC, is a strong spoofing indicator."},{"@type":"HowToStep","name":"Look for spoofing red flags","text":"Compare the From domain with Return-Path and Reply-To, and watch for display-name impersonation."}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can you find the real sender of an email from its headers?","acceptedAnswer":{"@type":"Answer","text":"Often, yes — the Received chain records each server that handled the message, and the earliest public IP is usually the closest to the true origin. However, senders using large mail providers, relays or anonymisation can obscure this, so the originating IP is a strong lead rather than absolute proof."}},{"@type":"Question","name":"What do SPF, DKIM and DMARC failures mean?","acceptedAnswer":{"@type":"Answer","text":"SPF validates the sending IP against the domain's authorised senders, DKIM verifies a cryptographic signature over the message, and DMARC ties both to the visible From domain. A fail — especially DMARC — strongly suggests spoofing or forwarding abuse, though legitimate mailing lists can also break SPF."}},{"@type":"Question","name":"Is analysing email headers legal?","acceptedAnswer":{"@type":"Answer","text":"Analysing the headers of an email you have lawfully received is legal and is a standard step in phishing and fraud investigation. Acting on the findings — such as accessing third-party systems — requires proper authorisation."}},{"@type":"Question","name":"Does the IGRS Email Header Analyzer upload my email?","acceptedAnswer":{"@type":"Answer","text":"No. The analyzer runs entirely in your browser using client-side JavaScript. The headers you paste are never sent to or stored on any server, which makes it safe for sensitive case material."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css"><link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head><body>
+<header class="site"><div class="wrap">
+<div class="mast"><a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS Intel Grid Research Station Logo">IGRS<span></span></a><div class="mast-meta">Intel Grid Research Station</div></div>
+<nav class="main"><a href="../index.html">Home</a><a href="../articles.html">Articles</a><a href="../tools.html">Tools</a><a href="../dashboard.html">Dashboard</a><a href="../playbooks.html">Playbooks</a><a href="../cyberlaw.html">Cyber Law</a></nav>
+</div></header>
+<main class="wrap">
+<nav class="breadcrumb"><a href="../index.html">Home</a><span class="breadcrumb-sep">›</span><a href="../articles.html">Articles</a><span class="breadcrumb-sep">›</span><span>Digital Forensics</span></nav>
+<article class="entry-full">
+<div class="entry-meta"><span class="category">Digital Forensics</span><span class="date">18 June 2026</span><span class="author">Manuj Kumar Pandey</span></div>
+<div class="entry-hero"><img src="../og/how-to-analyze-email-headers.png" width="1200" height="630" alt="How to Analyze Email Headers" fetchpriority="high"></div>
+<h1>How to Analyze Email Headers: Trace the Sender &amp; Spot Spoofing (Step by Step)</h1>
+<p>Almost every phishing case, fraudulent invoice and impersonation complaint starts with one artefact: an email. The visible From line is the easiest part of an email to fake, so the real story lives in the <strong>headers</strong> — the metadata trail that records where the message came from, every server it passed through, and whether it survived authentication. This guide walks through reading that trail end to end: extracting the raw headers, following the relay chain to the originating IP, interpreting SPF, DKIM and DMARC, and recognising the patterns that betray a spoof. You can follow along live with the free, in-browser <a href="../email-header-analyzer.html">IGRS Email Header Analyzer</a>.</p>
+
+<h2>Step 1 — Get the raw headers</h2>
+<p>You need the full, unrendered header block, not just what the mail client shows by default.</p>
+<ul>
+<li><strong>Gmail:</strong> open the message &rarr; the three-dot menu &rarr; <em>Show original</em> &rarr; copy everything.</li>
+<li><strong>Outlook (desktop):</strong> open the message &rarr; <em>File &rarr; Properties</em> &rarr; copy the <em>Internet headers</em> box.</li>
+<li><strong>Outlook on the web / Microsoft 365:</strong> open the message &rarr; the three-dot menu &rarr; <em>View &rarr; View message details</em>.</li>
+<li><strong>Apple Mail:</strong> select the message &rarr; <em>View &rarr; Message &rarr; All Headers</em> (or Raw Source).</li>
+</ul>
+<p>Paste the block into the analyzer, or read it manually using the steps below.</p>
+
+<h2>Step 2 — Read the Received chain from the bottom up</h2>
+<p>Each mail server that handles a message stamps a <code>Received:</code> line at the <em>top</em> of the header block. That means the list is in reverse chronological order: the <strong>lowest</strong> Received line is the earliest hop — usually closest to the true origin — and the topmost is your own inbox server. Reverse the order mentally (the analyzer does this for you and numbers the hops oldest-first) and note three things at each hop: the sending host (<code>from</code>), the receiving host (<code>by</code>), and the timestamp. Unusual gaps between timestamps, or a first hop from a network that has nothing to do with the claimed sender, are worth a closer look.</p>
+
+<h2>Step 3 — Identify the originating IP</h2>
+<p>Walk up from the bottom and take the first <em>public</em> IP address you encounter — private ranges such as 10.x, 192.168.x and 172.16–31.x are internal and can be skipped. That earliest public IP is your best candidate for where the message actually entered the mail system. Treat it as a strong lead, not a verdict: large providers, relays and forwarders can sit in front of the true sender. Profile it further — network owner, hosting vs residential, abuse history — with the <a href="../ip-lookup.html">IGRS IP Lookup</a>.</p>
+
+<h2>Step 4 — Check authentication: SPF, DKIM, DMARC</h2>
+<p>Modern mail servers record their verdicts in an <code>Authentication-Results:</code> header. The three checks answer different questions:</p>
+<table>
+<thead><tr><th>Check</th><th>What it proves</th><th>A &ldquo;fail&rdquo; suggests</th></tr></thead>
+<tbody>
+<tr><td><strong>SPF</strong></td><td>The sending IP is authorised to send for the envelope domain</td><td>Mail sent from an unlisted server (spoof, or a forwarder)</td></tr>
+<tr><td><strong>DKIM</strong></td><td>The message carries a valid cryptographic signature and was not altered</td><td>Tampering, or an unsigned/forged message</td></tr>
+<tr><td><strong>DMARC</strong></td><td>SPF/DKIM align with the visible From domain, under the domain&rsquo;s policy</td><td>Strong indicator of spoofing or unaligned sending</td></tr>
+</tbody>
+</table>
+<p>A DMARC <em>fail</em> on a message claiming to come from a bank or government domain is one of the clearest red flags you will find. Be aware, though, that legitimate mailing lists and forwarding can break SPF or DKIM, so weigh authentication against the rest of the evidence rather than treating one failure as conclusive.</p>
+
+<h2>Step 5 — Hunt for spoofing red flags</h2>
+<p>Beyond authentication, three header-level patterns frequently expose impersonation:</p>
+<ul>
+<li><strong>Domain mismatches.</strong> Compare the visible <code>From</code> domain with <code>Return-Path</code> (the envelope sender) and <code>Reply-To</code>. A reply that would silently go to a different domain than the one displayed is a classic business-email-compromise tactic.</li>
+<li><strong>Display-name impersonation.</strong> A friendly name like &ldquo;YourBank Security&rdquo; attached to an unrelated address (for example a generic webmail account) is designed to exploit the fact that most clients show the name, not the address.</li>
+<li><strong>Missing authentication.</strong> No SPF/DKIM/DMARC results at all, on a message that claims to be from a serious organisation, is itself suspicious.</li>
+</ul>
+
+<h2>A worked example</h2>
+<p>Consider a message whose visible From is <code>"YourBank Security" &lt;alerts@yourbank.co.in&gt;</code>, but whose headers show <code>Return-Path: bounce@secure-bank-alert.com</code>, <code>Reply-To: support@secure-bank-alert.com</code>, an <code>Authentication-Results</code> line reading <code>spf=fail; dkim=none; dmarc=fail</code>, and an earliest public hop from <code>198.51.100.23</code>. Every signal points the same way: the envelope and reply domains do not match the displayed bank domain, all three authentication checks fail, and the entry point is an unrelated server. This is a textbook spoof, and the originating IP is the lead to profile and preserve. Pasting these exact headers into the analyzer returns a <strong>HIGH RISK</strong> verdict with each of these flags itemised.</p>
+
+<h2>From finding to evidence (India)</h2>
+<p>Header analysis routinely underpins action under Indian law. Sending an email while impersonating another person or brand can attract <strong>Section 66D of the IT Act, 2000</strong> (cheating by personation using a computer resource) and <strong>Section 319 of the Bharatiya Nyaya Sanhita, 2023</strong> (cheating by personation), with <strong>Section 318 BNS</strong> covering the underlying cheating where money is lost. To trace the sender&rsquo;s network, the originating IP supports a production request to the relevant provider under <strong>Section 94 of the Bharatiya Nagarik Suraksha Sanhita, 2023</strong>. Crucially, when the headers or the analysis are to be relied on in a proceeding, preserve the original message and accompany any electronic record with a certificate under <strong>Section 63 of the Bharatiya Sakshya Adhiniyam, 2023</strong>. Where the incident qualifies, report to CERT-In within the prescribed timelines.</p>
+
+<div style="background:#0a1628;border:1px solid #0e4a7a;border-radius:12px;padding:18px 20px;margin:24px 0;">
+<div style="font-family:'Share Tech Mono',monospace;font-size:12px;color:#00d4ff;letter-spacing:.08em;margin-bottom:8px;">&#9656; TRY IT NOW</div>
+<p style="margin:0;">Paste a suspicious email&rsquo;s headers into the free <a href="../email-header-analyzer.html"><strong>IGRS Email Header Analyzer</strong></a> — it runs entirely in your browser, surfaces the originating IP, relay path, SPF/DKIM/DMARC and spoofing flags, and never uploads your data.</p>
+</div>
+
+<div class="faq-section"><h2>Frequently Asked Questions</h2>
+<div class="faq-item"><div class="faq-q">Can you find the real sender of an email from its headers?</div><div class="faq-a">Often, yes — the Received chain records each server that handled the message, and the earliest public IP is usually closest to the true origin. Large providers, relays or anonymisation can obscure this, so treat the originating IP as a strong lead rather than absolute proof.</div></div>
+<div class="faq-item"><div class="faq-q">What do SPF, DKIM and DMARC failures mean?</div><div class="faq-a">SPF validates the sending IP against the domain's authorised senders, DKIM verifies a signature over the message, and DMARC ties both to the visible From domain. A fail — especially DMARC — strongly suggests spoofing or forwarding abuse, though legitimate mailing lists can also break SPF.</div></div>
+<div class="faq-item"><div class="faq-q">Is analysing email headers legal?</div><div class="faq-a">Analysing the headers of an email you have lawfully received is legal and is a standard investigative step. Acting on the findings — such as accessing third-party systems — requires proper authorisation.</div></div>
+<div class="faq-item"><div class="faq-q">Does the IGRS Email Header Analyzer upload my email?</div><div class="faq-a">No. It runs entirely in your browser using client-side JavaScript; the headers you paste are never sent to or stored on any server, which makes it safe for sensitive case material.</div></div></div>
+
+<div class="related-articles"><h3>&#8594; RELATED ARTICLES</h3><div class="related-grid">
+<a class="related-card" href="email-header-analysis-investigations.html"><div class="related-card-cat">Digital Forensics</div><div class="related-card-title">Email Header Analysis for Investigations</div></a>
+<a class="related-card" href="email-security-dmarc-dkim.html"><div class="related-card-cat">Email Security</div><div class="related-card-title">Email Security: SPF, DKIM &amp; DMARC</div></a>
+<a class="related-card" href="spot-phishing-emails.html"><div class="related-card-cat">Awareness</div><div class="related-card-title">How to Spot Phishing Emails</div></a></div></div>
+<div class="entry-footer"><a href="../articles.html">&larr; All Articles</a><a href="../email-header-analyzer.html">Open the Analyzer &rarr;</a></div>
+</article></main>
+<footer class="site"><div class="wrap foot"><div><a href="../about.html">About</a><a href="../contact.html">Contact</a><a href="../privacy-policy.html">Privacy Policy</a></div><div>&copy; 2026 IGRS</div></div></footer>
+<script src="../consent.js"></script>
+</body></html>
