@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta name="google-adsense-account" content="ca-pub-5886568858916800">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5886568858916800" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TCBLVSTG97"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-TCBLVSTG97');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Email Header Analyzer — Trace Sender IP, SPF/DKIM/DMARC &amp; Spoofing | IGRS</title>
+<meta name="description" content="Free email header analyzer for investigators. Paste raw email headers to reveal the originating IP, full relay (Received) path with delays, SPF/DKIM/DMARC results, and spoofing red flags. Runs entirely in your browser — nothing is uploaded.">
+<meta name="keywords" content="email header analyzer, email header analysis, trace email sender IP, SPF DKIM DMARC checker, email spoofing detection, phishing investigation tool, received header parser, originating IP">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://igrs.xyz/email-header-analyzer.html">
+<meta property="og:title" content="Free Email Header Analyzer — Trace Sender IP &amp; Detect Spoofing | IGRS"><meta property="og:description" content="Paste raw email headers to reveal originating IP, relay path, SPF/DKIM/DMARC results and spoofing flags. 100% in-browser, nothing uploaded."><meta property="og:type" content="website"><meta property="og:url" content="https://igrs.xyz/email-header-analyzer.html"><meta property="og:image" content="https://igrs.xyz/og/email-header-analyzer.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="IGRS Email Header Analyzer">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://igrs.xyz/og/email-header-analyzer.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"IGRS Email Header Analyzer","url":"https://igrs.xyz/email-header-analyzer.html","applicationCategory":"SecurityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"description":"Free in-browser email header analyzer: originating IP, relay path, SPF/DKIM/DMARC results and spoofing detection.","publisher":{"@type":"Organization","name":"IGRS - Intel Grid Research Station","url":"https://igrs.xyz"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://igrs.xyz/index.html"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://igrs.xyz/tools.html"},{"@type":"ListItem","position":3,"name":"Email Header Analyzer"}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{--bg:#080f1a;--surface:#0d1829;--surface2:#0a1424;--border:#0e4a7a;--border2:#1a3a5c;--ink:#c8dff0;--ink2:#7aa8cc;--muted:#4a7a9b;--accent:#00d4ff;--accent2:#0099cc;--ok:#27d796;--warn:#ffb800;--bad:#ff5c6c;--mono:"IBM Plex Mono",monospace;--tech:"Share Tech Mono",monospace;--disp:"Rajdhani",sans-serif;}
+body{background:var(--bg);color:var(--ink);font-family:var(--mono);line-height:1.6;overflow-x:hidden}
+canvas#neural{position:fixed;inset:0;z-index:-1;opacity:.5}
+a{color:var(--accent)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+.igrs-hdr{border-bottom:1px solid var(--border2);background:rgba(8,15,26,.85);backdrop-filter:blur(8px);position:sticky;top:0;z-index:10}
+.hdr-inner{max-width:1080px;margin:0 auto;padding:0 18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;padding:10px 0}
+.brand img{width:46px;height:46px;filter:drop-shadow(0 0 12px rgba(0,212,255,.8))}
+.brand-name{font-family:var(--tech);font-size:20px;color:var(--accent);letter-spacing:.12em;text-shadow:0 0 16px rgba(0,212,255,.5)}
+nav.igrs-nav{display:flex;gap:16px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:10px 0;flex-wrap:wrap}
+nav.igrs-nav a{color:var(--ink2);text-decoration:none;border-bottom:1px solid transparent;transition:.2s}
+nav.igrs-nav a:hover,nav.igrs-nav a.active{color:var(--accent);border-bottom-color:var(--accent)}
+nav.igrs-nav a::before{content:"> ";color:var(--muted)}
+.igrs-main{max-width:1080px;margin:0 auto;padding:28px 18px 10px}
+.hero .stamp{font-family:var(--tech);font-size:11px;color:var(--muted);letter-spacing:.18em;text-transform:uppercase}
+.hero h1{font-family:var(--tech);font-size:30px;color:var(--accent);letter-spacing:.06em;margin:8px 0;text-shadow:0 0 18px rgba(0,212,255,.4)}
+.hero p{color:var(--ink2);max-width:760px;font-size:14.5px}
+.card{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:18px;margin:22px 0}
+textarea{width:100%;min-height:200px;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;color:var(--ink);font-family:var(--mono);font-size:12.5px;padding:14px;resize:vertical}
+textarea:focus{outline:none;border-color:var(--accent)}
+.btns{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.btn{font-family:var(--disp);font-weight:700;font-size:15px;letter-spacing:.04em;padding:11px 24px;border-radius:8px;border:1px solid var(--accent);background:var(--accent);color:#04141f;cursor:pointer;transition:.2s}
+.btn:hover{box-shadow:0 0 18px rgba(0,212,255,.5)}
+.btn-ghost{background:transparent;color:var(--accent)}
+.btn-ghost:hover{background:rgba(0,212,255,.08)}
+.notice{font-size:12.5px;color:var(--ink2);background:rgba(0,212,255,.05);border:1px solid var(--border2);border-radius:8px;padding:12px 14px;margin:8px 0 0}
+.out{display:none;margin-top:8px}
+.out.show{display:block}
+.verdict{display:flex;align-items:center;gap:12px;border-radius:10px;padding:14px 16px;margin-bottom:16px;font-family:var(--disp);font-weight:700;font-size:18px;border:1px solid}
+.verdict.ok{background:rgba(39,215,150,.08);border-color:var(--ok);color:var(--ok)}
+.verdict.warn{background:rgba(255,184,0,.08);border-color:var(--warn);color:var(--warn)}
+.verdict.bad{background:rgba(255,92,108,.08);border-color:var(--bad);color:var(--bad)}
+.sec{margin:18px 0}
+.sec h3{font-family:var(--tech);font-size:13px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;border-left:3px solid var(--accent);padding-left:10px;margin-bottom:10px}
+.kv{display:grid;grid-template-columns:160px 1fr;gap:6px 14px;font-size:13px}
+.kv .k{color:var(--muted)}
+.kv .v{color:var(--ink);word-break:break-word}
+.auth{display:flex;gap:10px;flex-wrap:wrap}
+.chip{font-family:var(--tech);font-size:13px;padding:9px 14px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2)}
+.chip b{font-size:11px;color:var(--muted);display:block;letter-spacing:.1em}
+.chip.pass{border-color:var(--ok);color:var(--ok)}
+.chip.fail{border-color:var(--bad);color:var(--bad)}
+.chip.none{color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:12px;margin-top:4px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border2);vertical-align:top}
+th{color:var(--muted);font-family:var(--tech);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+td .ip{color:var(--accent)}
+.flagrow{display:flex;gap:8px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border2);font-size:13px}
+.flagrow .dot{flex:none;width:9px;height:9px;border-radius:50%;margin-top:6px}
+.dot.bad{background:var(--bad)}.dot.warn{background:var(--warn)}.dot.ok{background:var(--ok)}
+.igrs-ftr{border-top:1px solid var(--border2);margin-top:30px;padding:22px 18px}
+.ftr-inner{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--muted)}
+.ftr-inner a{color:var(--ink2);text-decoration:none;margin-right:14px}
+.info-sec{max-width:900px;margin:30px auto 8px;padding:22px 0 8px;border-top:1px solid var(--border2)}
+.info-sec h2{font-family:var(--disp);color:var(--accent);font-size:24px;margin:6px 0 12px;border-left:3px solid var(--accent);padding-left:12px}
+.info-sec h3{font-family:var(--disp);color:var(--warn);font-size:18px;margin:20px 0 6px}
+.info-sec p{color:var(--ink2);font-size:15px;font-family:var(--disp);line-height:1.75;margin-bottom:12px}
+@media(max-width:600px){.kv{grid-template-columns:1fr}.hero h1{font-size:24px}}
+</style>
+</head><body>
+<canvas id="neural"></canvas>
+<header class="igrs-hdr"><div class="hdr-inner">
+  <a class="brand" href="index.html"><img src="logo.svg" alt="IGRS"><span class="brand-name">IGRS</span></a>
+  <nav class="igrs-nav">
+    <a href="index.html">Home</a><a href="articles.html">Articles</a><a href="tools.html">Tools</a>
+    <a href="email-header-analyzer.html" class="active">Email Header</a><a href="ip-lookup.html">IP Lookup</a>
+    <a href="breach-check.html">Breach Check</a><a href="about.html">About</a>
+  </nav>
+</div></header>
+<main class="igrs-main">
+  <div class="hero">
+    <div class="stamp">Investigator Tool &middot; Sender IP &middot; Relay Path &middot; SPF/DKIM/DMARC &middot; Spoofing</div>
+    <h1>&gt; EMAIL HEADER ANALYZER_</h1>
+    <p>Paste the full <strong>raw headers</strong> of a suspicious email to reconstruct its journey: the originating IP, every relay hop with delays, the SPF / DKIM / DMARC verdicts, and automatic spoofing red-flags. Everything is parsed <strong>inside your browser</strong> &mdash; nothing is uploaded.</p>
+  </div>
+
+  <div class="card">
+    <textarea id="hdr" placeholder="Paste raw email headers here&#10;&#10;(In Gmail: Open email &rarr; &#8942; &rarr; Show original &rarr; copy. In Outlook: File &rarr; Properties &rarr; Internet headers.)"></textarea>
+    <div class="btns">
+      <button class="btn" id="go">Analyze Headers</button>
+      <button class="btn btn-ghost" id="sample">Load Sample</button>
+      <button class="btn btn-ghost" id="clr">Clear</button>
+    </div>
+  </div>
+
+  <div class="notice"><b>Privacy:</b> This tool runs 100% in your browser using client-side JavaScript. Headers you paste are never sent to any server, logged, or stored &mdash; safe for sensitive case material and OPSEC-conscious work.</div>
+
+  <div class="out" id="out"></div>
+
+  <div class="info-sec">
+    <h2>How to read an email header in an investigation</h2>
+    <p>Email headers are the metadata trail every message carries. Read from the bottom up, the <em>Received</em> lines record each mail server that handled the message &mdash; the lowest one is usually closest to the true origin, while the top is your own inbox. The analyzer reverses and orders these hops so you can see the path and the time spent at each stage; unusual gaps or a first hop from an unexpected network are worth a second look.</p>
+    <h3>Authentication: SPF, DKIM and DMARC</h3>
+    <p>These three checks tell you whether the sending server was authorised and whether the message was tampered with. SPF validates the sending IP against the domain's published senders; DKIM verifies a cryptographic signature over the content; DMARC ties the two to the visible From domain and states a policy. A <em>fail</em> on any of these, especially DMARC, is a strong signal of spoofing or forwarding abuse &mdash; though legitimate mailing lists and forwarders can also break SPF, so weigh it alongside the other evidence.</p>
+    <h3>Spoofing red flags</h3>
+    <p>The tool flags common impersonation patterns: a Return-Path or Reply-To domain that differs from the visible From domain, a display name that mimics a brand while the real address does not, and outright authentication failures. None of these alone proves malice, but together they build the evidence chain. For attribution, the originating IP can be profiled further with the <a href="ip-lookup.html">IGRS IP Lookup</a>, and any finding meant for an FIR should be preserved with a certificate under Section 63 of the Bharatiya Sakshya Adhiniyam, 2023.</p>
+  </div>
+</main>
+
+<div style="max-width:1100px;margin:34px auto 10px;padding:18px 20px;border:1px solid #1a3a5c;border-radius:12px;background:#0a1628;"><div style="font-family:'Share Tech Mono',monospace;font-size:12px;color:#00d4ff;letter-spacing:.08em;margin-bottom:13px;">&#9656; RELATED READING</div><div style="display:flex;flex-wrap:wrap;gap:10px;"><a href="articles/email-header-analysis-investigations.html" style="display:inline-block;padding:9px 14px;border:1px solid #1a3a5c;border-radius:8px;background:#0d1829;color:#7aa8cc;text-decoration:none;font-family:Rajdhani,system-ui,sans-serif;font-size:14px;font-weight:600;">Email Header Analysis for Investigations &rarr;</a><a href="articles/email-security-dmarc-dkim.html" style="display:inline-block;padding:9px 14px;border:1px solid #1a3a5c;border-radius:8px;background:#0d1829;color:#7aa8cc;text-decoration:none;font-family:Rajdhani,system-ui,sans-serif;font-size:14px;font-weight:600;">Email Security: SPF, DKIM &amp; DMARC &rarr;</a><a href="articles/spot-phishing-emails.html" style="display:inline-block;padding:9px 14px;border:1px solid #1a3a5c;border-radius:8px;background:#0d1829;color:#7aa8cc;text-decoration:none;font-family:Rajdhani,system-ui,sans-serif;font-size:14px;font-weight:600;">How to Spot Phishing Emails &rarr;</a></div></div>
+
+<footer class="igrs-ftr"><div class="ftr-inner">
+  <div><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="disclaimer.html">Disclaimer</a></div>
+  <div>&copy; 2026 IGRS &mdash; Intel Grid Research Station</div>
+</div></footer>
+<script src="neural.js"></script>
+<script>
+(function(){
+  var hdr=document.getElementById('hdr'),out=document.getElementById('out');
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function unfold(raw){return raw.replace(/\r\n/g,'\n').replace(/\n[ \t]+/g,' ');}
+  function parse(raw){
+    var lines=unfold(raw).split('\n'),hs=[];
+    for(var i=0;i<lines.length;i++){
+      var m=lines[i].match(/^([A-Za-z0-9-]+):\s?([\s\S]*)$/);
+      if(m){hs.push({n:m[1].toLowerCase(),v:m[2]});}
+    }
+    return hs;
+  }
+  function all(hs,n){return hs.filter(function(h){return h.n===n;}).map(function(h){return h.v;});}
+  function one(hs,n){var a=all(hs,n);return a.length?a[0]:'';}
+  function addr(v){var m=v.match(/<([^>]+@[^>]+)>/)||v.match(/[\w.+-]+@[\w.-]+/);return m?(m[1]||m[0]):'';}
+  function dom(e){var m=String(e).match(/@([\w.-]+)/);return m?m[1].toLowerCase().replace(/\.$/,''):'';}
+  function dispName(v){var m=v.match(/^\s*"?([^"<]+?)"?\s*</);return m?m[1].trim():'';}
+  function isPriv(ip){return /^(10\.|127\.|192\.168\.|169\.254\.|172\.(1[6-9]|2\d|3[01])\.|::1|fe80|fc|fd)/i.test(ip);}
+  function ipOf(v){
+    var m=v.match(/\[?((?:\d{1,3}\.){3}\d{1,3})\]?/);if(m)return m[1];
+    m=v.match(/\[?((?:[0-9a-f]{0,4}:){3,}[0-9a-f]{0,4})\]?/i);return m?m[1]:'';
+  }
+  function parseRcv(v){
+    var from=(v.match(/from\s+([^\s;(]+)/i)||[])[1]||'';
+    var by=(v.match(/\bby\s+([^\s;(]+)/i)||[])[1]||'';
+    var date='';var p=v.split(';');if(p.length>1)date=p[p.length-1].trim();
+    return {from:from,by:by,ip:ipOf(v),date:date};
+  }
+  function authVal(blob,re){var m=blob.match(re);return m?m[1].toLowerCase():'';}
+
+  function analyze(){
+    var raw=hdr.value.trim();
+    if(!raw){out.className='out';return;}
+    var hs=parse(raw);
+    if(!hs.length){out.className='out show';out.innerHTML='<div class="verdict bad">Could not find any headers. Paste the full raw header block.</div>';return;}
+    var From=one(hs,'from'),To=one(hs,'to'),Subj=one(hs,'subject'),Date_=one(hs,'date'),
+        MsgId=one(hs,'message-id'),RetPath=one(hs,'return-path'),ReplyTo=one(hs,'reply-to');
+    var fromAddr=addr(From),fromDom=dom(fromAddr);
+    var rpDom=dom(addr(RetPath)),rtDom=dom(addr(ReplyTo)),dn=dispName(From);
+
+    var authBlob=(all(hs,'authentication-results').join(' ; ')+' '+all(hs,'received-spf').join(' ; ')).toLowerCase();
+    var spf=authVal(authBlob,/spf=(\w+)/),dkim=authVal(authBlob,/dkim=(\w+)/),dmarc=authVal(authBlob,/dmarc=(\w+)/);
+    if(!spf){var rs=one(hs,'received-spf');if(rs)spf=(rs.match(/^\s*(\w+)/)||[])[1]||'';spf=spf.toLowerCase();}
+
+    var rcv=all(hs,'received').map(parseRcv); // top=newest
+    var chrono=rcv.slice().reverse(); // bottom=oldest first
+    var origin='';
+    for(var i=0;i<chrono.length;i++){if(chrono[i].ip&&!isPriv(chrono[i].ip)){origin=chrono[i].ip;break;}}
+
+    // risk flags
+    var flags=[],risk=0;
+    function pushF(level,txt){flags.push({l:level,t:txt});if(level==='bad')risk=Math.max(risk,2);else if(level==='warn')risk=Math.max(risk,1);}
+    function bad(a){return a==='fail'||a==='softfail'||a==='hardfail'||a==='reject'||a==='permerror';}
+    if(bad(spf))pushF('bad','SPF result is "'+spf+'" — the sending IP is not authorised by the From domain.');
+    if(bad(dkim))pushF('bad','DKIM result is "'+dkim+'" — the message signature did not validate (possible tampering).');
+    if(bad(dmarc))pushF('bad','DMARC result is "'+dmarc+'" — strong indicator of spoofing or unaligned sender.');
+    if(rpDom&&fromDom&&rpDom!==fromDom)pushF('warn','Return-Path domain ('+rpDom+') differs from From domain ('+fromDom+').');
+    if(rtDom&&fromDom&&rtDom!==fromDom)pushF('warn','Reply-To domain ('+rtDom+') differs from From domain ('+fromDom+') — replies would go elsewhere.');
+    if(dn&&/[\w.-]+\.(com|in|org|net|gov|io|co)\b/i.test(dn)&&fromDom&&dn.toLowerCase().indexOf(fromDom.split('.')[0])<0)pushF('warn','Display name ("'+dn+'") references a brand/domain that differs from the actual sender — possible impersonation.');
+    if(!spf&&!dkim&&!dmarc)pushF('warn','No SPF / DKIM / DMARC authentication results found in the headers.');
+    if(!flags.length)pushF('ok','No obvious spoofing indicators. Authentication checks present and passing.');
+
+    var vClass=risk===2?'bad':risk===1?'warn':'ok';
+    var vText=risk===2?'⚠ HIGH RISK — authentication failed or spoofing indicators present':risk===1?'CAUTION — review the flags below':'LOOKS CLEAN — no obvious spoofing indicators';
+
+    var h='';
+    h+='<div class="verdict '+vClass+'">'+vText+'</div>';
+
+    // origin + key fields
+    h+='<div class="sec"><h3>Summary</h3><div class="kv">';
+    h+='<span class="k">Originating IP</span><span class="v"><span style="color:var(--accent)">'+(esc(origin)||'not found')+'</span>'+(origin?' &nbsp;<a href="ip-lookup.html" style="font-size:12px">profile this IP &#8599;</a>':'')+'</span>';
+    h+='<span class="k">From</span><span class="v">'+esc(From||'—')+'</span>';
+    h+='<span class="k">Reply-To</span><span class="v">'+esc(ReplyTo||'—')+'</span>';
+    h+='<span class="k">Return-Path</span><span class="v">'+esc(RetPath||'—')+'</span>';
+    h+='<span class="k">To</span><span class="v">'+esc(To||'—')+'</span>';
+    h+='<span class="k">Subject</span><span class="v">'+esc(Subj||'—')+'</span>';
+    h+='<span class="k">Date</span><span class="v">'+esc(Date_||'—')+'</span>';
+    h+='<span class="k">Message-ID</span><span class="v">'+esc(MsgId||'—')+'</span>';
+    h+='</div></div>';
+
+    // auth chips
+    function chip(label,val){var c=val?(bad(val)?'fail':(val==='pass'?'pass':'none')):'none';return '<div class="chip '+c+'"><b>'+label+'</b>'+(val?esc(val.toUpperCase()):'not found')+'</div>';}
+    h+='<div class="sec"><h3>Authentication</h3><div class="auth">'+chip('SPF',spf)+chip('DKIM',dkim)+chip('DMARC',dmarc)+'</div></div>';
+
+    // relay path
+    if(rcv.length){
+      h+='<div class="sec"><h3>Relay path ('+rcv.length+' hop'+(rcv.length>1?'s':'')+', oldest first)</h3><table><thead><tr><th>#</th><th>From</th><th>By</th><th>IP</th><th>Timestamp</th></tr></thead><tbody>';
+      chrono.forEach(function(r,i){
+        h+='<tr><td>'+(i+1)+'</td><td>'+esc(r.from||'—')+'</td><td>'+esc(r.by||'—')+'</td><td class="ip">'+(esc(r.ip)||'—')+'</td><td>'+esc(r.date||'—')+'</td></tr>';
+      });
+      h+='</tbody></table></div>';
+    }
+
+    // flags
+    h+='<div class="sec"><h3>Risk flags</h3>';
+    flags.forEach(function(f){h+='<div class="flagrow"><span class="dot '+f.l+'"></span><span>'+esc(f.t)+'</span></div>';});
+    h+='</div>';
+
+    out.className='out show';out.innerHTML=h;
+    out.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  document.getElementById('go').onclick=analyze;
+  document.getElementById('clr').onclick=function(){hdr.value='';out.className='out';hdr.focus();};
+  document.getElementById('sample').onclick=function(){
+    hdr.value='Delivered-To: victim@example.in\n'+
+'Received: by 2002:a17:90a:abcd with SMTP id x12; Wed, 18 Jun 2026 09:40:21 -0700 (PDT)\n'+
+'Received: from mail.example.in (mail.example.in. [203.0.113.45]) by mx.google.com with ESMTPS id k7; Wed, 18 Jun 2026 09:40:20 -0700 (PDT)\n'+
+'Received: from unknown (HELO secure-bank-alert.com) ([198.51.100.23]) by mail.example.in; Wed, 18 Jun 2026 22:10:14 +0530\n'+
+'Authentication-Results: mx.google.com; spf=fail (google.com: domain of bounce@secure-bank-alert.com does not designate 198.51.100.23 as permitted sender) smtp.mailfrom=bounce@secure-bank-alert.com; dkim=none; dmarc=fail (p=REJECT) header.from=yourbank.co.in\n'+
+'Received-SPF: fail (google.com: domain does not designate 198.51.100.23 as permitted sender)\n'+
+'Return-Path: <bounce@secure-bank-alert.com>\n'+
+'Reply-To: support@secure-bank-alert.com\n'+
+'From: "YourBank Security" <alerts@yourbank.co.in>\n'+
+'To: victim@example.in\n'+
+'Subject: Urgent: Verify your account to avoid suspension\n'+
+'Date: Wed, 18 Jun 2026 22:10:10 +0530\n'+
+'Message-ID: <20260618.abc123@secure-bank-alert.com>\n';
+    analyze();
+  };
+})();
+</script>
+</body></html>
