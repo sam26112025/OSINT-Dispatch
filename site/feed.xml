@@ -5,8 +5,15 @@
 <link>https://igrs.xyz/</link>
 <description>Cybersecurity, OSINT and digital-forensics intelligence for India's frontline defenders — threat intel, investigation playbooks and free tools.</description>
 <language>en-in</language>
-<lastBuildDate>Wed, 17 Jun 2026 19:33:39 +0000</lastBuildDate>
+<lastBuildDate>Fri, 19 Jun 2026 03:51:25 +0000</lastBuildDate>
 <atom:link href="https://igrs.xyz/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>Innefu Labs Raises $30M Series B — India&#x27;s Sovereign-AI Push</title>
+<link>https://igrs.xyz/articles/innefu-labs-30-million-series-b-funding-2026.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/innefu-labs-30-million-series-b-funding-2026.html</guid>
+<pubDate>Thu, 18 Jun 2026 09:00:00 +0530</pubDate>
+<description>New Delhi national-security AI firm Innefu Labs has raised USD 30 million (about Rs 286 crore) in a Series B round led by Panthera Growth Partners, with plans for an Agentic AI platform, a Physical AI robotics wing, global expansion and an eventual IPO. What the deal means for India&#x27;s sovereign deep-tech sector.</description>
+</item>
 <item>
 <title>FortiBleed: 30,000+ Fortinet Firewalls Hijacked — India Is 60% of the Government Hits</title>
 <link>https://igrs.xyz/articles/fortibleed-fortinet-firewall-breach-2026.html</link>
@@ -209,13 +216,6 @@
 <guid isPermaLink="true">https://igrs.xyz/articles/dark-web-monitoring-india-guide.html</guid>
 <pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
 <description>Complete guide to dark web monitoring for Indian organizations. Free and paid tools, leaked data detection, credential monitoring, and response procedures.</description>
-</item>
-<item>
-<title>Cyber Insurance India — Complete Guide for Businesses 2026</title>
-<link>https://igrs.xyz/articles/cyber-insurance-india-guide-2026.html</link>
-<guid isPermaLink="true">https://igrs.xyz/articles/cyber-insurance-india-guide-2026.html</guid>
-<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
-<description>Complete guide to cyber insurance in India 2026. Coverage types, claim process, IRDAI regulations, top providers, and what to look for in a cyber insurance policy.</description>
 </item>
 </channel>
 </rss>
