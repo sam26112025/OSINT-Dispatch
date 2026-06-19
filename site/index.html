@@ -138,7 +138,22 @@ nav.top{
   animation:blink 1.2s infinite;
 }
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
-@media(max-width:768px){.nav-links{gap:16px;font-size:9px;}.nav-links a:nth-child(n+4){display:none;}}
+.nav-burger{display:none;background:none;border:1px solid rgba(0,212,255,.35);color:var(--accent);font-size:20px;line-height:1;padding:7px 13px;border-radius:8px;cursor:pointer;}
+@media(max-width:768px){
+  nav.top{padding:0 18px;}
+  .nav-burger{display:block;}
+  .nav-links{
+    position:fixed;top:64px;left:0;right:0;
+    flex-direction:column;align-items:stretch;gap:0;
+    background:rgba(4,9,15,.98);backdrop-filter:blur(16px);
+    border-bottom:1px solid rgba(0,212,255,.15);
+    font-size:13px;max-height:0;overflow:hidden;padding:0;
+    transition:max-height .3s ease;
+  }
+  .nav-links.open{max-height:82vh;overflow-y:auto;padding:6px 0;}
+  .nav-links a{padding:14px 22px;border-bottom:1px solid rgba(0,212,255,.06);}
+  .nav-links a::after{display:none;}
+}
 
 /* ── HERO ── */
 .hero{
@@ -470,7 +485,7 @@ footer a:hover{color:var(--accent);}
     <img src="logo.svg" alt="IGRS">
     <span class="nav-name">IGRS</span>
   </a>
-  <div class="nav-links">
+  <div class="nav-links" id="navLinks">
     <a href="articles.html">Articles</a>
     <a href="tools.html">Tools</a>
       <a href="ip-lookup.html">IP Lookup</a>
@@ -484,6 +499,7 @@ footer a:hover{color:var(--accent);}
     <a href="developers.html">Developers</a>
     <a href="about.html">About</a>
   </div>
+  <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">&#9776;</button>
 </nav>
 
 <!-- Hero -->
@@ -891,5 +907,11 @@ document.querySelectorAll('.cat-group').forEach(function(g){
 });
 </script>
 <script src="consent.js"></script>
+<script>
+(function(){var b=document.getElementById('navBurger'),l=document.getElementById('navLinks');if(!b||!l)return;
+b.addEventListener('click',function(){var o=l.classList.toggle('open');b.setAttribute('aria-expanded',o);b.innerHTML=o?'&#10005;':'&#9776;';});
+l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){l.classList.remove('open');b.setAttribute('aria-expanded','false');b.innerHTML='&#9776;';});});
+})();
+</script>
 </body>
 </html>
