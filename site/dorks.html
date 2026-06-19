@@ -13,8 +13,8 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Google Dork Library — IGRS Intel Grid Research Station</title>
-<meta name="description" content="Comprehensive Google dork library for OSINT investigators, security researchers, and penetration testers. 200+ categorized dorks for authorized security assessments.">
+<title>Google Dork Library — Defensive OSINT &amp; Authorized Assessment — IGRS</title>
+<meta name="description" content="A curated library of Google search operators for defensive OSINT, attack-surface monitoring, and authorized security assessment. For use only on systems you own or are explicitly authorized to test.">
 <link rel="canonical" href="https://igrs.xyz/dorks.html">
 <meta property="og:title" content="Google Dork Library — IGRS">
 <meta property="og:type" content="website">
@@ -104,13 +104,13 @@ footer.f{background:rgba(8,15,26,.9);border-top:1px solid var(--border);position
   <div class="hero">
     <div class="stamp">Authorized Use Only &middot; Educational &middot; IGRS 2026</div>
     <h1>&gt; GOOGLE DORK LIBRARY_</h1>
-    <p class="sub">Curated collection of Google search operators for OSINT investigations, authorized security assessments, and digital forensics. Categorized for law enforcement, corporate security, and defence use.</p>
+    <p class="sub">A reference library of Google search operators for defensive OSINT, attack-surface discovery, and responsible vulnerability assessment. Intended for law enforcement, corporate security and defence teams to identify and remediate exposures on assets they own or are authorized to assess — and to monitor for their own organisation’s leaked data.</p>
     <div class="stats">
       <span><strong id="total-dorks">200+</strong> dorks indexed</span>
       <span><strong>12</strong> categories</span>
       <span>Click any dork to copy</span>
     </div>
-    <div class="disclaimer">⚠ AUTHORIZED USE ONLY — These dorks are for use exclusively on systems you own or have written authorization to test. Unauthorized use may constitute an offence under Section 66 IT Act 2000 / BNS 2023. IGRS takes no responsibility for misuse.</div>
+    <div class="disclaimer">⚠ AUTHORIZED &amp; ETHICAL USE ONLY — These operators are provided for defensive security, authorized assessment, and responsible disclosure. Use them only on systems you own or have explicit written authorization to test, and only to identify, report and remediate exposures — never to access, collect or exploit data belonging to others. Unauthorized access may constitute an offence under Section 66 of the IT Act, 2000 and the Bharatiya Nyaya Sanhita, 2023. Where you discover a third-party exposure, follow responsible-disclosure and CERT-In reporting channels. IGRS provides this for lawful, ethical use and accepts no liability for misuse.</div>
     <div class="search-wrap">
       <input type="text" id="dork-search" placeholder="Search dorks — keyword, category, use case..." autocomplete="off">
       <span class="si">&#9906;</span>
@@ -166,33 +166,33 @@ var DORKS = [
   {cat:"India Government",dork:'site:.gov.in inurl:upload filetype:pdf OR filetype:doc',desc:"Uploaded documents on government portals.",tags:["upload","document","gov"]},
   {cat:"India Government",dork:'site:epfindia.gov.in filetype:pdf "circular"',desc:"EPFO circulars and policy documents.",tags:["epfo","pf","labour"]},
   {cat:"India Government",dork:'site:tenders.gov.in "empanelled" OR "approved vendor"',desc:"Government approved vendor lists from tenders portal.",tags:["tenders","vendor","procurement"]},
-  {cat:"India Government",dork:'site:.gov.in "password" filetype:txt OR filetype:log',desc:"Accidentally exposed text or log files on government servers.",tags:["password","log","exposure"]},
+  {cat:"India Government",dork:'site:.gov.in "password" filetype:txt OR filetype:log',desc:"Accidentally exposed files on government infrastructure — surface for responsible disclosure and remediation.",tags:["password","log","exposure"]},
   {cat:"India Government",dork:'site:police.gov.in OR site:.police.in filetype:pdf',desc:"State police department documents and circulars.",tags:["police","law enforcement","state"]},
 
   // ── FILE EXPOSURE ────────────────────────────────────────────────
   {cat:"File Exposure",dork:'intitle:"index of" "parent directory" filetype:pdf',desc:"Open directory listings containing PDF files.",tags:["directory","pdf","exposure"]},
-  {cat:"File Exposure",dork:'intitle:"index of" ".env" OR "config.php" OR ".git"',desc:"Exposed environment and configuration files.",tags:[".env","config","git"]},
-  {cat:"File Exposure",dork:'intitle:"index of" "backup" filetype:sql OR filetype:zip',desc:"Database backup files exposed in open directories.",tags:["backup","sql","zip"]},
-  {cat:"File Exposure",dork:'filetype:log "username" "password" OR "passwd"',desc:"Log files containing credential information.",tags:["log","password","credentials"]},
+  {cat:"File Exposure",dork:'intitle:"index of" ".env" OR "config.php" OR ".git"',desc:"Environment and configuration files inadvertently exposed — surface so secrets can be rotated.",tags:[".env","config","git"]},
+  {cat:"File Exposure",dork:'intitle:"index of" "backup" filetype:sql OR filetype:zip',desc:"Database backups inadvertently left in open directories — surface for securing.",tags:["backup","sql","zip"]},
+  {cat:"File Exposure",dork:'filetype:log "username" "password" OR "passwd"',desc:"Log files that may inadvertently expose credentials — surface so they can be secured.",tags:["log","password","credentials"]},
   {cat:"File Exposure",dork:'filetype:csv "phone" "email" "address" site:*.in',desc:"CSV data files with PII on Indian websites.",tags:["csv","pii","india"]},
-  {cat:"File Exposure",dork:'filetype:xls "username" "password" site:*.in',desc:"Excel files with credentials on Indian sites.",tags:["xls","credentials","india"]},
-  {cat:"File Exposure",dork:'intitle:"index of" "private" OR "secret" filetype:key',desc:"Private key files exposed in directories.",tags:["private key","secret","crypto"]},
-  {cat:"File Exposure",dork:'filetype:sql "INSERT INTO" "users" "password"',desc:"SQL dump files containing user tables with passwords.",tags:["sql","database","password"]},
+  {cat:"File Exposure",dork:'filetype:xls "username" "password" site:*.in',desc:"Spreadsheets that may inadvertently expose sensitive data — for authorized review and remediation.",tags:["xls","credentials","india"]},
+  {cat:"File Exposure",dork:'intitle:"index of" "private" OR "secret" filetype:key',desc:"Private-key files left publicly accessible — surface so they can be secured and rotated.",tags:["private key","secret","crypto"]},
+  {cat:"File Exposure",dork:'filetype:sql "INSERT INTO" "users" "password"',desc:"Database dumps left publicly accessible — surface so the data can be secured.",tags:["sql","database","password"]},
   {cat:"File Exposure",dork:'intitle:"index of" "wp-content" "uploads"',desc:"WordPress upload directories — may contain sensitive files.",tags:["wordpress","upload","cms"]},
-  {cat:"File Exposure",dork:'filetype:txt "API_KEY" OR "api_secret" OR "access_token"',desc:"Text files with exposed API keys and tokens.",tags:["api key","token","credentials"]},
+  {cat:"File Exposure",dork:'filetype:txt "API_KEY" OR "api_secret" OR "access_token"',desc:"Inadvertently exposed API keys and tokens — surface so they can be revoked and rotated.",tags:["api key","token","credentials"]},
   {cat:"File Exposure",dork:'filetype:pdf "salary" "confidential" site:*.in',desc:"Salary-related confidential PDFs on Indian sites.",tags:["salary","hr","confidential"]},
   {cat:"File Exposure",dork:'intitle:"index of" "customer" filetype:csv OR filetype:xls',desc:"Customer data files in open directories.",tags:["customer","data","pii"]},
   {cat:"File Exposure",dork:'filetype:docx OR filetype:doc "internal use only" site:*.in',desc:"Internal Word documents on Indian websites.",tags:["internal","word","document"]},
-  {cat:"File Exposure",dork:'intitle:"index of" ".bash_history" OR ".bash_profile"',desc:"Exposed bash history files revealing commands run on servers.",tags:["bash","history","server"]},
-  {cat:"File Exposure",dork:'filetype:cfg "password" OR "passwd" inurl:config',desc:"Configuration files with embedded passwords.",tags:["config","password","cfg"]},
+  {cat:"File Exposure",dork:'intitle:"index of" ".bash_history" OR ".bash_profile"',desc:"Shell history files inadvertently exposed — surface so they can be secured.",tags:["bash","history","server"]},
+  {cat:"File Exposure",dork:'filetype:cfg "password" OR "passwd" inurl:config',desc:"Configuration files that may embed secrets — surface so they can be secured.",tags:["config","password","cfg"]},
   {cat:"File Exposure",dork:'intitle:"index of" "database" filetype:mdb OR filetype:accdb',desc:"Microsoft Access database files in open directories.",tags:["access","database","mdb"]},
-  {cat:"File Exposure",dork:'filetype:json "api_key" OR "secret_key" OR "private_key"',desc:"JSON files with exposed API secrets.",tags:["json","api","secret"]},
-  {cat:"File Exposure",dork:'intitle:"index of" "id_rsa" OR "id_dsa"',desc:"SSH private key files exposed in directories.",tags:["ssh","rsa","private key"]},
+  {cat:"File Exposure",dork:'filetype:json "api_key" OR "secret_key" OR "private_key"',desc:"JSON files that may expose API secrets — surface so they can be rotated.",tags:["json","api","secret"]},
+  {cat:"File Exposure",dork:'intitle:"index of" "id_rsa" OR "id_dsa"',desc:"SSH private keys left publicly accessible — surface so they can be rotated.",tags:["ssh","rsa","private key"]},
   {cat:"File Exposure",dork:'filetype:xlsx "aadhaar" OR "aadhar" OR "pan number" site:*.in',desc:"Excel files with Aadhaar or PAN data on Indian sites.",tags:["aadhaar","pan","india","pii"]},
-  {cat:"File Exposure",dork:'intitle:"index of" "passlist" OR "passwords.txt" OR "creds.txt"',desc:"Password list files exposed in open directories.",tags:["password","list","credentials"]},
-  {cat:"File Exposure",dork:'filetype:log "error" "mysql" "password" site:*.in',desc:"MySQL error logs with credential fragments on Indian sites.",tags:["mysql","error","log"]},
+  {cat:"File Exposure",dork:'intitle:"index of" "passlist" OR "passwords.txt" OR "creds.txt"',desc:"Credential files inadvertently left in open directories — surface for removal.",tags:["password","list","credentials"]},
+  {cat:"File Exposure",dork:'filetype:log "error" "mysql" "password" site:*.in',desc:"Database error logs that may leak fragments — surface so they can be secured.",tags:["mysql","error","log"]},
   {cat:"File Exposure",dork:'intitle:"index of" "invoice" filetype:pdf site:*.in',desc:"Invoice PDFs in open directories on Indian sites.",tags:["invoice","pdf","financial"]},
-  {cat:"File Exposure",dork:'filetype:pem "BEGIN CERTIFICATE" OR "BEGIN RSA PRIVATE KEY"',desc:"PEM certificate and private key files exposed publicly.",tags:["pem","certificate","ssl"]},
+  {cat:"File Exposure",dork:'filetype:pem "BEGIN CERTIFICATE" OR "BEGIN RSA PRIVATE KEY"',desc:"Certificates and private keys left publicly accessible — surface so they can be rotated.",tags:["pem","certificate","ssl"]},
   {cat:"File Exposure",dork:'intitle:"index of" "contracts" filetype:pdf OR filetype:docx',desc:"Contract documents in open directory listings.",tags:["contract","legal","document"]},
 
   // ── LOGIN PANELS ─────────────────────────────────────────────────
@@ -244,11 +244,11 @@ var DORKS = [
   {cat:"Database Exposure",dork:'intitle:"Adminer" inurl:adminer.php',desc:"Adminer database management tools exposed publicly.",tags:["adminer","database","panel"]},
   {cat:"Database Exposure",dork:'inurl:"/solr/admin" intitle:"Solr Admin"',desc:"Apache Solr admin panels exposed without authentication.",tags:["solr","search","database"]},
   {cat:"Database Exposure",dork:'intitle:"Redis" inurl:6379',desc:"Redis in-memory database instances exposed publicly.",tags:["redis","cache","database"]},
-  {cat:"Database Exposure",dork:'filetype:sql "password" site:*.in',desc:"SQL files containing password fields on Indian sites.",tags:["sql","password","india"]},
+  {cat:"Database Exposure",dork:'filetype:sql "password" site:*.in',desc:"Publicly accessible SQL files that may contain credential fields — surface for remediation.",tags:["sql","password","india"]},
   {cat:"Database Exposure",dork:'intitle:"CouchDB" inurl:5984 "_all_dbs"',desc:"CouchDB instances exposing all database names.",tags:["couchdb","nosql","database"]},
   {cat:"Database Exposure",dork:'intitle:"InfluxDB" inurl:8086',desc:"InfluxDB time-series database instances exposed.",tags:["influxdb","timeseries","iot"]},
   {cat:"Database Exposure",dork:'inurl:"/api/v1/namespaces" intitle:"kubernetes"',desc:"Kubernetes API endpoints exposed publicly.",tags:["kubernetes","api","infrastructure"]},
-  {cat:"Database Exposure",dork:'filetype:mdb site:*.in "password"',desc:"Microsoft Access databases with password fields on Indian sites.",tags:["access","mdb","india"]},
+  {cat:"Database Exposure",dork:'filetype:mdb site:*.in "password"',desc:"Publicly accessible database files that may contain credential fields — surface for remediation.",tags:["access","mdb","india"]},
   {cat:"Database Exposure",dork:'intitle:"Cassandra" inurl:9160 OR inurl:9042',desc:"Apache Cassandra database instances exposed on default ports.",tags:["cassandra","nosql","database"]},
   {cat:"Database Exposure",dork:'inurl:"/actuator/env" OR inurl:"/actuator/info"',desc:"Spring Boot actuator endpoints exposing environment configuration.",tags:["spring","actuator","java"]},
   {cat:"Database Exposure",dork:'intitle:"Couchbase" inurl:8091',desc:"Couchbase database management console exposed.",tags:["couchbase","nosql","database"]},
@@ -256,20 +256,20 @@ var DORKS = [
   {cat:"Database Exposure",dork:'inurl:"/wp-json/wp/v2/users"',desc:"WordPress REST API exposing user list without authentication.",tags:["wordpress","api","users"]},
 
   // ── EMAIL & CREDENTIALS ──────────────────────────────────────────
-  {cat:"Email & Credentials",dork:'filetype:txt "email" "password" site:pastebin.com',desc:"Credential dumps on Pastebin containing email/password pairs.",tags:["pastebin","credentials","breach"]},
+  {cat:"Email & Credentials",dork:'filetype:txt "email" "password" site:pastebin.com',desc:"Monitor paste sites for leaked credentials affecting your own organisation.",tags:["pastebin","credentials","breach"]},
   {cat:"Email & Credentials",dork:'"@company.com" filetype:txt OR filetype:csv site:pastebin.com',desc:"Company email addresses on paste sites. Replace @company.com.",tags:["email","company","paste"]},
-  {cat:"Email & Credentials",dork:'intext:"@gmail.com" "password" filetype:txt site:*.in',desc:"Text files on Indian sites with Gmail credentials.",tags:["gmail","password","india"]},
+  {cat:"Email & Credentials",dork:'intext:"@gmail.com" "password" filetype:txt site:*.in',desc:"Files that may expose email credentials — surface so affected accounts can be reset.",tags:["gmail","password","india"]},
   {cat:"Email & Credentials",dork:'site:hunter.io OR site:rocketreach.com "company domain"',desc:"Professional email intelligence from aggregator sites.",tags:["email","professional","osint"]},
   {cat:"Email & Credentials",dork:'filetype:vcf "email" "phone" site:*.in',desc:"vCard files exposing contact details on Indian websites.",tags:["vcf","contact","pii"]},
   {cat:"Email & Credentials",dork:'"admin@" OR "webmaster@" site:*.in filetype:txt',desc:"Admin email addresses exposed in text files on Indian sites.",tags:["admin","email","india"]},
   {cat:"Email & Credentials",dork:'inurl:"/autodiscover/autodiscover.xml"',desc:"Microsoft Exchange Autodiscover endpoints revealing email infrastructure.",tags:["exchange","email","autodiscover"]},
   {cat:"Email & Credentials",dork:'filetype:eml "From:" "Subject:" site:*.in',desc:"Email files (.eml) exposed on Indian web servers.",tags:["email","eml","exposure"]},
-  {cat:"Email & Credentials",dork:'"username" "password" filetype:json site:*.in',desc:"JSON config files with credentials on Indian sites.",tags:["json","credentials","india"]},
-  {cat:"Email & Credentials",dork:'inurl:config.php "DB_PASSWORD" OR "db_pass"',desc:"PHP configuration files with database passwords.",tags:["php","config","database"]},
-  {cat:"Email & Credentials",dork:'filetype:ini "password" "user" site:*.in',desc:"INI configuration files with credentials on Indian sites.",tags:["ini","config","credentials"]},
-  {cat:"Email & Credentials",dork:'site:pastebin.com "site:*.in" "password" OR "passwd"',desc:"Paste site entries referencing Indian sites with passwords.",tags:["pastebin","india","leak"]},
-  {cat:"Email & Credentials",dork:'"SMTP" "password" filetype:php OR filetype:config',desc:"SMTP configurations with embedded passwords.",tags:["smtp","email","config"]},
-  {cat:"Email & Credentials",dork:'inurl:/.htpasswd filetype:htpasswd',desc:"Apache .htpasswd files with hashed credentials.",tags:["htpasswd","apache","hash"]},
+  {cat:"Email & Credentials",dork:'"username" "password" filetype:json site:*.in',desc:"Config files that may expose credentials — surface for remediation.",tags:["json","credentials","india"]},
+  {cat:"Email & Credentials",dork:'inurl:config.php "DB_PASSWORD" OR "db_pass"',desc:"PHP config files that may expose database secrets — surface so they can be secured.",tags:["php","config","database"]},
+  {cat:"Email & Credentials",dork:'filetype:ini "password" "user" site:*.in',desc:"INI config files that may expose credentials — surface for remediation.",tags:["ini","config","credentials"]},
+  {cat:"Email & Credentials",dork:'site:pastebin.com "site:*.in" "password" OR "passwd"',desc:"Monitor paste sites for references to your own domains and leaked secrets.",tags:["pastebin","india","leak"]},
+  {cat:"Email & Credentials",dork:'"SMTP" "password" filetype:php OR filetype:config',desc:"Mail-server configs that may embed credentials — surface so they can be secured.",tags:["smtp","email","config"]},
+  {cat:"Email & Credentials",dork:'inurl:/.htpasswd filetype:htpasswd',desc:"Inadvertently exposed .htpasswd files — surface so credentials can be reset.",tags:["htpasswd","apache","hash"]},
 
   // ── CAMERA & IoT ─────────────────────────────────────────────────
   {cat:"Camera & IoT",dork:'intitle:"webcamXP" OR intitle:"webcam 7"',desc:"Exposed webcam streams from WebcamXP and similar software.",tags:["webcam","camera","stream"]},
@@ -327,7 +327,7 @@ var DORKS = [
 
   // ── DARK WEB & LEAKS ─────────────────────────────────────────────
   {cat:"Dark Web & Leaks",dork:'site:pastebin.com "india" "database" "leaked" OR "dump"',desc:"Indian database leak mentions on Pastebin.",tags:["pastebin","india","leak"]},
-  {cat:"Dark Web & Leaks",dork:'site:ghostbin.co OR site:hastebin.com "password" "india"',desc:"Credential leaks on alternative paste sites.",tags:["paste","credentials","india"]},
+  {cat:"Dark Web & Leaks",dork:'site:ghostbin.co OR site:hastebin.com "password" "india"',desc:"Monitor alternative paste sites for leaked credentials affecting your organisation.",tags:["paste","credentials","india"]},
   {cat:"Dark Web & Leaks",dork:'"domain.in" "leaked" "database" "download" site:pastebin.com',desc:"Domain-specific leak references on paste sites.",tags:["domain","leak","paste"]},
   {cat:"Dark Web & Leaks",dork:'site:pastebin.com "breach" "email" "@*.in"',desc:"Indian email address breaches on Pastebin.",tags:["breach","email","india"]},
   {cat:"Dark Web & Leaks",dork:'intext:"aadhaar" "leaked" OR "exposed" site:pastebin.com',desc:"Aadhaar data exposure mentions on paste sites.",tags:["aadhaar","leak","india"]},
@@ -336,7 +336,7 @@ var DORKS = [
   {cat:"Dark Web & Leaks",dork:'site:pastebin.com "OTP" "bypass" "india" "SIM"',desc:"SIM swap and OTP bypass discussions on Pastebin.",tags:["otp","sim swap","india"]},
   {cat:"Dark Web & Leaks",dork:'"company.in" "employees" "data" "leaked" -site:company.in',desc:"Corporate data breach mentions. Replace company.in with target.",tags:["corporate","breach","employees"]},
   {cat:"Dark Web & Leaks",dork:'site:pastebin.com "CERT-In" OR "cybercrime.gov.in"',desc:"References to Indian cyber authorities on paste sites.",tags:["cert-in","cybercrime","india"]},
-  {cat:"Dark Web & Leaks",dork:'site:pastecode.io OR site:dpaste.com "india" "password"',desc:"Indian credential data on alternative paste platforms.",tags:["paste","india","password"]},
+  {cat:"Dark Web & Leaks",dork:'site:pastecode.io OR site:dpaste.com "india" "password"',desc:"Monitor alternative paste platforms for leaked credentials affecting your organisation.",tags:["paste","india","password"]},
   {cat:"Dark Web & Leaks",dork:'"ransomware" "india" "attack" "data" site:pastebin.com OR site:ghostbin.co',desc:"Ransomware attack claims targeting Indian organizations.",tags:["ransomware","india","attack"]},
 
   // ── NETWORK & INFRASTRUCTURE ─────────────────────────────────────
@@ -370,7 +370,7 @@ var DORKS = [
   {cat:"Crypto & Finance",dork:'"pan card" OR "pan number" "india" "bank account" site:pastebin.com',desc:"PAN card and bank account combinations on paste sites.",tags:["pan","bank","india"]},
   {cat:"Crypto & Finance",dork:'"binance" OR "bybit" "india" "kyc" "id proof" site:pastebin.com',desc:"Crypto exchange KYC document references for Indian users.",tags:["binance","kyc","india"]},
   {cat:"Crypto & Finance",dork:'site:rbi.org.in "caution" OR "alert" "entity" filetype:pdf',desc:"RBI caution lists against fraudulent financial entities.",tags:["rbi","caution","fraud"]},
-  {cat:"Crypto & Finance",dork:'"payment gateway" "api key" OR "secret" site:*.in filetype:php OR filetype:js',desc:"Payment gateway API credentials exposed on Indian sites.",tags:["payment","api","credentials"]},
+  {cat:"Crypto & Finance",dork:'"payment gateway" "api key" OR "secret" site:*.in filetype:php OR filetype:js',desc:"Payment-gateway keys that may be inadvertently exposed — surface so they can be rotated.",tags:["payment","api","credentials"]},
   {cat:"Crypto & Finance",dork:'site:sebi.gov.in "debarred" OR "penalty" OR "banned" filetype:pdf',desc:"SEBI orders against debarred individuals and entities.",tags:["sebi","debarred","penalty"]},
 ];
 
