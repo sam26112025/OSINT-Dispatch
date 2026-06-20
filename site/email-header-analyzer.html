@@ -109,6 +109,7 @@ td .ip{color:var(--accent)}
   <div class="notice"><b>Privacy:</b> This tool runs 100% in your browser using client-side JavaScript. Headers you paste are never sent to any server, logged, or stored &mdash; safe for sensitive case material and OPSEC-conscious work.</div>
 
   <div class="out" id="out"></div>
+  <div id="pdfWrap" style="display:none;margin-top:14px;"><button class="btn" id="pdfBtn">&#10515; Download IGRS PDF Report</button> <span style="font-size:12px;color:var(--ink2);margin-left:6px;">Branded report &mdash; generated in your browser, nothing uploaded.</span></div>
 
   <div class="info-sec">
     <h2>How to read an email header in an investigation</h2>
@@ -127,9 +128,12 @@ td .ip{color:var(--accent)}
   <div>&copy; 2026 IGRS &mdash; Intel Grid Research Station</div>
 </div></footer>
 <script src="neural.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
 <script>
 (function(){
   var hdr=document.getElementById('hdr'),out=document.getElementById('out');
+  var LAST=null;
   function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
   function unfold(raw){return raw.replace(/\r\n/g,'\n').replace(/\n[ \t]+/g,' ');}
   function parse(raw){
@@ -159,6 +163,7 @@ td .ip{color:var(--accent)}
   function authVal(blob,re){var m=blob.match(re);return m?m[1].toLowerCase():'';}
 
   function analyze(){
+    var pw=document.getElementById('pdfWrap');if(pw)pw.style.display='none';LAST=null;
     var raw=hdr.value.trim();
     if(!raw){out.className='out';return;}
     var hs=parse(raw);
@@ -227,11 +232,13 @@ td .ip{color:var(--accent)}
     h+='</div>';
 
     out.className='out show';out.innerHTML=h;
+    LAST={From:From,To:To,Subj:Subj,Date_:Date_,MsgId:MsgId,RetPath:RetPath,ReplyTo:ReplyTo,origin:origin,spf:spf,dkim:dkim,dmarc:dmarc,chrono:chrono,flags:flags,vText:vText,vClass:vClass};
+    document.getElementById('pdfWrap').style.display='block';
     out.scrollIntoView({behavior:'smooth',block:'start'});
   }
 
   document.getElementById('go').onclick=analyze;
-  document.getElementById('clr').onclick=function(){hdr.value='';out.className='out';hdr.focus();};
+  document.getElementById('clr').onclick=function(){hdr.value='';out.className='out';LAST=null;document.getElementById('pdfWrap').style.display='none';hdr.focus();};
   document.getElementById('sample').onclick=function(){
     hdr.value='Delivered-To: victim@example.in\n'+
 'Received: by 2002:a17:90a:abcd with SMTP id x12; Wed, 18 Jun 2026 09:40:21 -0700 (PDT)\n'+
@@ -248,6 +255,72 @@ td .ip{color:var(--accent)}
 'Message-ID: <20260618.abc123@secure-bank-alert.com>\n';
     analyze();
   };
+
+  function asc(s){return String(s==null?'':s).replace(/[\u2014\u2013]/g,'-').replace(/[\u2018\u2019]/g,"'").replace(/[\u201c\u201d]/g,'"').replace(/\u2192/g,'->').replace(/\u00b7/g,'-').replace(/[^\x00-\x7F]/g,'').replace(/\s+/g,' ').trim();}
+  function makePDF(){
+    if(!LAST){return;}
+    if(!window.jspdf||!window.jspdf.jsPDF){alert('PDF engine still loading — please try again in a moment.');return;}
+    var R=LAST,jsPDF=window.jspdf.jsPDF,doc=new jsPDF({unit:'pt',format:'a4'});
+    var W=doc.internal.pageSize.getWidth(),H=doc.internal.pageSize.getHeight(),M=40,y=0,now=new Date();
+    // header band
+    doc.setFillColor(8,20,34);doc.rect(0,0,W,66,'F');
+    doc.setTextColor(0,212,255);doc.setFont('helvetica','bold');doc.setFontSize(21);doc.text('IGRS',M,33);
+    doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(150,185,210);doc.text('INTEL GRID RESEARCH STATION',M,48);
+    doc.setTextColor(0,212,255);doc.setFont('helvetica','bold');doc.setFontSize(13);doc.text('Email Header Analysis Report',W-M,30,{align:'right'});
+    doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(150,185,210);doc.text('Generated: '+asc(now.toLocaleString()),W-M,46,{align:'right'});
+    y=88;
+    // verdict
+    var vc=R.vClass==='bad'?[255,92,108]:R.vClass==='warn'?[255,184,0]:[39,215,150];
+    doc.setFillColor(vc[0],vc[1],vc[2]);doc.roundedRect(M,y,W-2*M,30,4,4,'F');
+    doc.setTextColor(15,20,25);doc.setFont('helvetica','bold');doc.setFontSize(11);doc.text(asc(R.vText),M+12,y+19);
+    y+=50;
+    // summary
+    doc.autoTable({startY:y,head:[['Field','Value']],
+      body:[['Originating IP',asc(R.origin)||'not found'],['From',asc(R.From)||'-'],['Reply-To',asc(R.ReplyTo)||'-'],['Return-Path',asc(R.RetPath)||'-'],['To',asc(R.To)||'-'],['Subject',asc(R.Subj)||'-'],['Date',asc(R.Date_)||'-'],['Message-ID',asc(R.MsgId)||'-']],
+      theme:'grid',styles:{font:'courier',fontSize:8,cellPadding:4,textColor:[35,45,55],overflow:'linebreak'},
+      headStyles:{fillColor:[8,20,34],textColor:[0,212,255],fontStyle:'bold'},
+      columnStyles:{0:{cellWidth:115,textColor:[90,120,150]}},margin:{left:M,right:M}});
+    y=doc.lastAutoTable.finalY+20;
+    // auth
+    doc.setFont('helvetica','bold').setFontSize(10);doc.setTextColor(0,140,180);doc.text('Authentication',M,y);y+=6;
+    doc.autoTable({startY:y,head:[['SPF','DKIM','DMARC']],
+      body:[[(asc(R.spf)||'not found').toUpperCase(),(asc(R.dkim)||'not found').toUpperCase(),(asc(R.dmarc)||'not found').toUpperCase()]],
+      theme:'grid',styles:{font:'courier',fontSize:9,halign:'center',cellPadding:5,textColor:[35,45,55]},
+      headStyles:{fillColor:[8,20,34],textColor:[0,212,255]},margin:{left:M,right:M}});
+    y=doc.lastAutoTable.finalY+20;
+    // relay path
+    if(R.chrono&&R.chrono.length){
+      doc.setFont('helvetica','bold').setFontSize(10);doc.setTextColor(0,140,180);doc.text('Relay path (oldest first)',M,y);y+=6;
+      doc.autoTable({startY:y,head:[['#','From','By','IP','Timestamp']],
+        body:R.chrono.map(function(r,i){return [String(i+1),asc(r.from)||'-',asc(r.by)||'-',asc(r.ip)||'-',asc(r.date)||'-'];}),
+        theme:'grid',styles:{font:'courier',fontSize:7,cellPadding:3,overflow:'linebreak',textColor:[35,45,55]},
+        headStyles:{fillColor:[8,20,34],textColor:[0,212,255]},
+        columnStyles:{0:{cellWidth:18},3:{cellWidth:78}},margin:{left:M,right:M}});
+      y=doc.lastAutoTable.finalY+20;
+    }
+    // flags
+    if(y>H-120){doc.addPage();y=50;}
+    doc.setFont('helvetica','bold').setFontSize(10);doc.setTextColor(0,140,180);doc.text('Risk flags',M,y);y+=16;
+    doc.setFont('helvetica','normal').setFontSize(8.5);
+    R.flags.forEach(function(f){
+      var c=f.l==='bad'?[210,60,75]:f.l==='warn'?[185,130,0]:[20,150,90];
+      if(y>H-70){doc.addPage();y=50;}
+      doc.setFillColor(c[0],c[1],c[2]);doc.circle(M+3,y-3,2.5,'F');
+      doc.setTextColor(45,55,65);
+      var lines=doc.splitTextToSize(asc(f.t),W-2*M-16);
+      doc.text(lines,M+13,y);y+=lines.length*11+5;
+    });
+    // footers
+    var pc=doc.internal.getNumberOfPages();
+    for(var p=1;p<=pc;p++){doc.setPage(p);
+      doc.setDrawColor(220,225,230);doc.line(M,H-30,W-M,H-30);
+      doc.setFontSize(7).setTextColor(130,150,170);doc.setFont('helvetica','normal');
+      doc.text('Generated client-side by the IGRS Email Header Analyzer - no data was uploaded. For authorized investigative use. igrs.xyz',M,H-18);
+      doc.text('Page '+p+'/'+pc,W-M,H-18,{align:'right'});
+    }
+    doc.save('IGRS-Email-Header-Report-'+now.toISOString().slice(0,10)+'.pdf');
+  }
+  document.getElementById('pdfBtn').onclick=makePDF;
 })();
 </script>
 </body></html>
