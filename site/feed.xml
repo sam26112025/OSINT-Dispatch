@@ -5,8 +5,22 @@
 <link>https://igrs.xyz/</link>
 <description>Cybersecurity, OSINT and digital-forensics intelligence for India's frontline defenders — threat intel, investigation playbooks and free tools.</description>
 <language>en-in</language>
-<lastBuildDate>Fri, 19 Jun 2026 20:49:18 +0000</lastBuildDate>
+<lastBuildDate>Mon, 22 Jun 2026 14:50:46 +0000</lastBuildDate>
 <atom:link href="https://igrs.xyz/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>Quishing: Why QR Code Phishing Is Exploding in India</title>
+<link>https://igrs.xyz/articles/quishing-qr-code-phishing-india.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/quishing-qr-code-phishing-india.html</guid>
+<pubDate>Thu, 18 Jun 2026 09:00:00 +0530</pubDate>
+<description>QR code phishing — &#x27;quishing&#x27; — is surging in India, riding on the country&#x27;s UPI QR habit. Learn how the scam works, the red flags, how to stay safe, and how investigators analyse a malicious QR safely.</description>
+</item>
+<item>
+<title>Why India&#x27;s Biggest Data Breaches Start with Insecure APIs</title>
+<link>https://igrs.xyz/articles/insecure-apis-india-data-breaches.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/insecure-apis-india-data-breaches.html</guid>
+<pubDate>Thu, 18 Jun 2026 09:00:00 +0530</pubDate>
+<description>From Aadhaar to ICMR to consumer apps, India&#x27;s largest data breaches share one root cause: insecure APIs and exposed endpoints. A clear breakdown of the failure patterns, the OWASP API risks behind them, and how to defend and test responsibly.</description>
+</item>
 <item>
 <title>Innefu Labs Raises $30M Series B — India&#x27;s Sovereign-AI Push</title>
 <link>https://igrs.xyz/articles/innefu-labs-30-million-series-b-funding-2026.html</link>
@@ -202,20 +216,6 @@
 <guid isPermaLink="true">https://igrs.xyz/articles/free-osint-tools-india-2026.html</guid>
 <pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
 <description>Comprehensive list of free OSINT tools for Indian investigators. Phone lookup, Aadhaar verification, GST search, company check, court records, domain analysis — all free.</description>
-</item>
-<item>
-<title>Business Email Compromise (BEC) Investigation India — Complete Guide</title>
-<link>https://igrs.xyz/articles/email-fraud-bec-investigation-india.html</link>
-<guid isPermaLink="true">https://igrs.xyz/articles/email-fraud-bec-investigation-india.html</guid>
-<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
-<description>Complete guide to investigating Business Email Compromise (BEC) fraud in India. CEO fraud, invoice fraud, email spoofing investigation, SWIFT fraud, and legal recovery.</description>
-</item>
-<item>
-<title>Digital Arrest Scam — How It Works and How to Investigate</title>
-<link>https://igrs.xyz/articles/digital-arrest-scam-investigation-guide-2026.html</link>
-<guid isPermaLink="true">https://igrs.xyz/articles/digital-arrest-scam-investigation-guide-2026.html</guid>
-<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
-<description>Complete investigation guide for digital arrest scams in India. Modus operandi, FIR sections under BNS and IT Act, victim resources, and step-by-step investigation methodology for law enforcement.</description>
 </item>
 </channel>
 </rss>

@@ -415,6 +415,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://igrs.xyz/articles/insecure-apis-india-data-breaches.html</loc>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://igrs.xyz/articles/insider-threat-detection.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -579,6 +585,12 @@
   <url>
     <loc>https://igrs.xyz/articles/privacy-by-design-india.html</loc>
     <lastmod>2026-06-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://igrs.xyz/articles/quishing-qr-code-phishing-india.html</loc>
+    <lastmod>2026-06-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

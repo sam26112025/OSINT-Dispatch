@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta name="google-adsense-account" content="ca-pub-5886568858916800">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5886568858916800" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TCBLVSTG97"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-TCBLVSTG97');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Why India's Biggest Data Breaches Start with Insecure APIs (2026) — IGRS</title>
+<meta name="description" content="From Aadhaar to ICMR to consumer apps, India's largest data breaches share one root cause: insecure APIs and exposed endpoints. A clear breakdown of the failure patterns, the OWASP API risks behind them, and how to defend and test responsibly.">
+<meta name="keywords" content="API security India, insecure API data breach, OWASP API Top 10, broken object level authorization, IDOR, Aadhaar breach API, API security testing, DPDP Act breach">
+<meta name="author" content="Manuj Kumar Pandey">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://igrs.xyz/articles/insecure-apis-india-data-breaches.html">
+<meta property="og:title" content="Why India's Biggest Data Breaches Start with Insecure APIs"><meta property="og:description" content="India's largest breaches share one root cause: insecure APIs and exposed endpoints. The failure patterns, the OWASP API risks, and how to defend."><meta property="og:type" content="article"><meta property="og:url" content="https://igrs.xyz/articles/insecure-apis-india-data-breaches.html"><meta property="og:image" content="https://igrs.xyz/og/insecure-apis-india-data-breaches.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Insecure APIs and India's data breaches">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://igrs.xyz/og/insecure-apis-india-data-breaches.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Why India's Biggest Data Breaches Start with Insecure APIs","description":"India's largest data breaches share one root cause: insecure APIs and exposed endpoints. A breakdown of the failure patterns, the OWASP API risks behind them, and how to defend and test responsibly.","author":{"@type":"Person","name":"Manuj Kumar Pandey","url":"https://igrs.xyz/about.html"},"publisher":{"@type":"Organization","name":"IGRS","url":"https://igrs.xyz"},"url":"https://igrs.xyz/articles/insecure-apis-india-data-breaches.html","datePublished":"2026-06-18","dateModified":"2026-06-18"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://igrs.xyz/index.html"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://igrs.xyz/articles.html"},{"@type":"ListItem","position":3,"name":"Insecure APIs &amp; India's Breaches"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why do so many Indian data breaches trace back to APIs?","acceptedAnswer":{"@type":"Answer","text":"India digitised at enormous speed and scale, and many services exposed APIs that lacked proper authentication, authorisation and rate limiting. Because APIs return structured data directly, a single weak endpoint can leak millions of records with simple, repeated requests."}},{"@type":"Question","name":"What is broken object level authorization (BOLA / IDOR)?","acceptedAnswer":{"@type":"Answer","text":"It is when an API trusts a user-supplied identifier without checking that the caller is allowed to access that specific record. Changing an ID in the request returns someone else's data. It is the single most common and damaging API flaw."}},{"@type":"Question","name":"What does the DPDP Act require after a personal data breach?","acceptedAnswer":{"@type":"Answer","text":"The Digital Personal Data Protection Act, 2023 requires data fiduciaries to notify the Data Protection Board and affected individuals of a personal data breach. Separately, CERT-In rules require reporting qualifying cyber incidents within six hours of detection."}},{"@type":"Question","name":"How can an organisation test its APIs safely?","acceptedAnswer":{"@type":"Answer","text":"Only test systems you own or are authorised to assess. Combine an inventory of every endpoint, automated and manual checks against the OWASP API Security Top 10, authentication and authorisation testing per object, and rate-limit and logging validation."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css"><link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head><body>
+<header class="site"><div class="wrap">
+<div class="mast"><a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS Intel Grid Research Station Logo">IGRS<span></span></a><div class="mast-meta">Intel Grid Research Station</div></div>
+<nav class="main"><a href="../index.html">Home</a><a href="../articles.html">Articles</a><a href="../tools.html">Tools</a><a href="../dashboard.html">Dashboard</a><a href="../playbooks.html">Playbooks</a><a href="../cyberlaw.html">Cyber Law</a></nav>
+</div></header>
+<main class="wrap">
+<nav class="breadcrumb"><a href="../index.html">Home</a><span class="breadcrumb-sep">›</span><a href="../articles.html">Articles</a><span class="breadcrumb-sep">›</span><span>Threat Intelligence</span></nav>
+<article class="entry-full">
+<div class="entry-meta"><span class="category">Threat Intelligence</span><span class="date">18 June 2026</span><span class="author">Manuj Kumar Pandey</span></div>
+<div class="entry-hero"><img src="../og/insecure-apis-india-data-breaches.png" width="1200" height="630" alt="Insecure APIs and India's data breaches" fetchpriority="high"></div>
+<h1>Why India's Biggest Data Breaches Start with Insecure APIs</h1>
+<p>Look closely at the post-mortems of India's largest data exposures and a single thread runs through almost all of them. The headlines name the organisation; the root cause is usually the same plumbing &mdash; an <strong>Application Programming Interface (API)</strong> or endpoint that handed out data it should never have. Analyses of incidents from the Aadhaar exposure to the ICMR leak to a string of consumer-app breaches repeatedly point to APIs that lacked proper authentication, authorisation or rate-limiting. APIs are the connective tissue of modern digital India &mdash; and when they are weak, they leak at scale.</p>
+
+<h2>Why APIs are the soft underbelly</h2>
+<p>A web page is built for humans; an API is built for machines, and it returns clean, structured data on request. That is precisely what makes a weak API so dangerous. Where a website might force an attacker to scrape page by page, a poorly secured API can return records in neat JSON, a thousand at a time, to anyone who asks. Add India's sheer scale &mdash; population-level identity systems, UPI, hundreds of millions of app users &mdash; and a single flawed endpoint becomes a firehose. The breaches that defined the last few years were rarely Hollywood-style intrusions; they were ordinary requests to endpoints that never checked who was asking.</p>
+
+<h2>The recurring failure patterns</h2>
+<p>The same handful of weaknesses show up again and again. They map almost one-to-one onto the OWASP API Security Top 10:</p>
+<table>
+<thead><tr><th>Failure</th><th>What goes wrong</th></tr></thead>
+<tbody>
+<tr><td><strong>Broken Object Level Authorization (BOLA / IDOR)</strong></td><td>The API trusts an ID in the request without checking ownership. Change the ID, get someone else's record. The most common and damaging API flaw.</td></tr>
+<tr><td><strong>Broken authentication</strong></td><td>Weak, missing or guessable tokens; endpoints that never required a login in the first place.</td></tr>
+<tr><td><strong>Excessive data exposure</strong></td><td>The API returns the full record (including fields the UI never shows) and relies on the client to hide them.</td></tr>
+<tr><td><strong>No rate limiting</strong></td><td>Nothing stops an attacker from enumerating IDs or scraping the entire dataset through millions of automated calls.</td></tr>
+<tr><td><strong>Security misconfiguration</strong></td><td>Debug endpoints, default credentials, verbose errors and exposed documentation left in production.</td></tr>
+</tbody>
+</table>
+<p>None of these are exotic. They are the cumulative result of shipping fast and bolting security on later &mdash; which is exactly what rapid digitisation incentivises.</p>
+
+<h2>Why it keeps happening in India specifically</h2>
+<p>The pressure to digitise public services, finance and commerce at population scale has produced an explosion of APIs, often built and integrated by multiple vendors under tight deadlines. Authentication and per-object authorisation are easy to get wrong and easy to defer. Third-party and vendor integrations &mdash; the same supply-chain pathway behind several recent enterprise breaches &mdash; widen the surface further: your data is only as safe as the least careful partner holding a key to your API. When the data in question is Aadhaar numbers, PAN, health records or financial details, the blast radius is national.</p>
+
+<h2>How to defend (and test responsibly)</h2>
+<p>Defence starts with knowing what you have. You cannot protect an endpoint you forgot you published, so a complete, continuously updated <strong>API inventory</strong> is step one. From there:</p>
+<ul>
+<li><strong>Authorise every object, every time.</strong> Check that the authenticated caller owns or may access the specific record &mdash; never trust an ID from the client.</li>
+<li><strong>Authenticate strongly</strong> with short-lived tokens, and apply <strong>rate limiting</strong> and anomaly detection to choke enumeration and scraping.</li>
+<li><strong>Return only what the use case needs.</strong> Filter at the server, not the client; never ship hidden fields and hope the UI conceals them.</li>
+<li><strong>Test against the OWASP API Security Top 10</strong> &mdash; on systems you own or are explicitly authorised to assess &mdash; combining automated scanning with manual per-object authorisation checks, and validate that logging and monitoring would actually catch abuse.</li>
+</ul>
+<p>For investigators and red teams, the discovery phase overlaps heavily with OSINT &mdash; mapping subdomains, documentation and exposed endpoints is the same recon discipline covered in our guide to <a href="api-security-osint-recon.html">API security and OSINT recon</a>, always within an authorised scope.</p>
+
+<h2>When prevention fails: the legal clock (India)</h2>
+<p>If a personal-data breach occurs, the <strong>Digital Personal Data Protection Act, 2023</strong> requires the data fiduciary to notify the Data Protection Board and affected individuals. In parallel, <strong>CERT-In</strong> directions require reporting qualifying cyber incidents within <strong>six hours</strong> of detection, and listed companies face separate disclosure timelines to the exchanges. Building the response runbook before an incident &mdash; not during one &mdash; is the difference between a contained event and a crisis, a theme we expand on in our <a href="india-data-breach-response.html">India data-breach response guide</a>.</p>
+
+<div class="faq-section"><h2>Frequently Asked Questions</h2>
+<div class="faq-item"><div class="faq-q">Why do so many Indian data breaches trace back to APIs?</div><div class="faq-a">India digitised at enormous speed and scale, and many services exposed APIs that lacked proper authentication, authorisation and rate limiting. Because APIs return structured data directly, a single weak endpoint can leak millions of records with simple, repeated requests.</div></div>
+<div class="faq-item"><div class="faq-q">What is broken object level authorization (BOLA / IDOR)?</div><div class="faq-a">It is when an API trusts a user-supplied identifier without checking that the caller is allowed to access that specific record. Changing an ID in the request returns someone else's data — the single most common and damaging API flaw.</div></div>
+<div class="faq-item"><div class="faq-q">What does the DPDP Act require after a personal data breach?</div><div class="faq-a">The Digital Personal Data Protection Act, 2023 requires data fiduciaries to notify the Data Protection Board and affected individuals. Separately, CERT-In rules require reporting qualifying cyber incidents within six hours of detection.</div></div>
+<div class="faq-item"><div class="faq-q">How can an organisation test its APIs safely?</div><div class="faq-a">Only test systems you own or are authorised to assess. Combine a full endpoint inventory, automated and manual checks against the OWASP API Security Top 10, per-object authentication and authorisation testing, and rate-limit and logging validation.</div></div></div>
+
+<div class="related-articles"><h3>&#8594; RELATED ARTICLES</h3><div class="related-grid">
+<a class="related-card" href="api-security-osint-recon.html"><div class="related-card-cat">OSINT</div><div class="related-card-title">API Security &amp; OSINT Recon</div></a>
+<a class="related-card" href="india-data-breach-response.html"><div class="related-card-cat">Incident Response</div><div class="related-card-title">India Data-Breach Response Guide</div></a>
+<a class="related-card" href="fortibleed-fortinet-firewall-breach-2026.html"><div class="related-card-cat">Threat Intelligence</div><div class="related-card-title">FortiBleed: Fortinet Firewalls Hijacked</div></a></div></div>
+<div class="entry-footer"><a href="../articles.html">&larr; All Articles</a><a href="../dashboard.html">Dashboard &rarr;</a></div>
+</article></main>
+<footer class="site"><div class="wrap foot"><div><a href="../about.html">About</a><a href="../contact.html">Contact</a><a href="../privacy-policy.html">Privacy Policy</a></div><div>&copy; 2026 IGRS</div></div></footer>
+<script src="../consent.js"></script>
+</body></html>
