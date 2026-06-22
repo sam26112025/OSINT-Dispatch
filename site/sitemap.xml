@@ -1,783 +1,913 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://igrs.xyz/about.html</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://igrs.xyz/og/about.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image><image:loc>https://igrs.xyz/og/articles.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/breach-check.html</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://igrs.xyz/og/breach-check.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/case-studies.html</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://igrs.xyz/og/case-studies.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/certifications.html</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://igrs.xyz/og/certifications.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/compare.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://igrs.xyz/og/compare.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/contact.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://igrs.xyz/og/contact.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/cve-tracker.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://igrs.xyz/og/cve-tracker.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/cyberlaw.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image><image:loc>https://igrs.xyz/og/cyberlaw.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/dashboard.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image><image:loc>https://igrs.xyz/og/dashboard.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/developers.html</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://igrs.xyz/og/developers.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/disclaimer.html</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://igrs.xyz/og/disclaimer.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/dorks.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image><image:loc>https://igrs.xyz/og/dorks.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/email-header-analyzer.html</loc>
     <lastmod>2026-06-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://igrs.xyz/og/email-header-analyzer.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image><image:loc>https://igrs.xyz/og/index.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/india-cyber-stats.html</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://igrs.xyz/og/india-cyber-stats.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/ioc.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://igrs.xyz/og/ioc.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/ip-lookup.html</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://igrs.xyz/og/ip-lookup.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/links.html</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://igrs.xyz/og/links.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/playbooks.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image><image:loc>https://igrs.xyz/og/playbooks.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/privacy-policy.html</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://igrs.xyz/og/privacy-policy.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/terms.html</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://igrs.xyz/og/terms.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/threat-digest.html</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://igrs.xyz/og/threat-digest.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/toolkit.html</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image><image:loc>https://igrs.xyz/og/toolkit.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/tools.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image><image:loc>https://igrs.xyz/og/tools.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/aadhaar-linked-sim-check-online-india.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/aadhaar-linked-sim-check-online-india.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/aadhaar-osint-legal-limits.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/aadhaar-osint-legal-limits.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/active-directory-attack-defence.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/active-directory-attack-defence.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/api-security-osint-recon.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/api-security-osint-recon.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/audia6-crypto-laundering-shutdown-june-2026.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/audia6-crypto-laundering-shutdown-june-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/audit-your-digital-footprint.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/audit-your-digital-footprint.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/browser-forensics-investigation.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/browser-forensics-investigation.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/burp-suite-web-testing.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/burp-suite-web-testing.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/cellebrite-vs-msab-xry-comparison-india-2026.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/cellebrite-vs-msab-xry-comparison-india-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/cert-in-12-hour-patch-mandate-ai-2026.html</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/cert-in.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/cloud-forensics-aws-azure.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/cloud-forensics-aws-azure.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/cryptocurrency-fraud-investigation-india.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/cryptocurrency-fraud-investigation-india.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/cryptocurrency-tracing-osint.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/cryptocurrency-tracing-osint.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/cve-exploitation-osint-2026.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/cve-exploitation-osint-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/cyber-forensics-evidence-court-india.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/cyber-forensics-evidence-court-india.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/cyber-insurance-india-guide-2026.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/cyber-insurance-india-guide-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/cybersecurity-career-india-2026.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/cybersecurity-career-india-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/dark-web-explained.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/dark-web-explained.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/dark-web-monitoring-india-guide.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/dark-web-monitoring-india-guide.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/data-aggregation-attacks-onlyfans-re-identification.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/data-aggregation-attacks-onlyfans-re-identification.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/deepfake-detection-osint.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/deepfake-detection-osint.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/deepfake-financial-fraud-india-2026.html</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/deepfake-financial-fraud-india-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/digital-arrest-scam-investigation-guide-2026.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/digital-arrest-scam-investigation-guide-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/digital-evidence-indian-courts.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/digital-evidence-indian-courts.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/digital-forensics-career-india.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/digital-forensics-career-india.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/dns-investigation-osint.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/dns-investigation-osint.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/email-fraud-bec-investigation-india.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/email-fraud-bec-investigation-india.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/email-header-analysis-investigations.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/email-header-analysis-investigations.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/email-security-dmarc-dkim.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/email-security-dmarc-dkim.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/fortibleed-fortinet-firewall-breach-2026.html</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/fortibleed.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/free-osint-tools-india-2026.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/free-osint-tools-india-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/google-dorking-advanced-2026.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/google-dorking-advanced-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/honeypot-deception-defence.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/honeypot-deception-defence.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/how-to-analyze-email-headers.html</loc>
     <lastmod>2026-06-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/how-to-analyze-email-headers.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/how-to-file-cybercrime-fir-india-2026.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/how-to-file-cybercrime-fir-india-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/how-to-report-cyber-fraud-india-step-by-step.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/how-to-report-cyber-fraud-india-step-by-step.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/how-to-trace-fake-whatsapp-number-india.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/how-to-trace-fake-whatsapp-number-india.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/icai-data-breach-2026.html</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/icai-data-breach-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/india-critical-infrastructure-threats.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/india-critical-infrastructure-threats.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/india-cyber-law-updates-2026.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/india-cyber-law-updates-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/india-data-breach-response.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/india-data-breach-response.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/india-dpdp-act-2026-investigators-guide.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/india-dpdp-act-2026-investigators-guide.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/india-sim-swap-fraud-2026.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/india-sim-swap-fraud-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/innefu-labs-30-million-series-b-funding-2026.html</loc>
     <lastmod>2026-06-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/innefu-labs-30-million-series-b-funding-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/insecure-apis-india-data-breaches.html</loc>
     <lastmod>2026-06-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/insecure-apis-india-data-breaches.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/insider-threat-detection.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/insider-threat-detection.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/investment-fraud-pig-butchering-india.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/investment-fraud-pig-butchering-india.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/ios-android-privacy-settings.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/ios-android-privacy-settings.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/iot-device-forensics.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/iot-device-forensics.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/iot-smart-device-forensics-india.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/iot-smart-device-forensics-india.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/job-fraud-investigation-india-2026.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/job-fraud-investigation-india-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/kali365-microsoft-365-mfa-bypass-2026.html</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/kali365.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/malware-analysis-basics.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/malware-analysis-basics.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/mobile-banking-fraud-investigation-india.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/mobile-banking-fraud-investigation-india.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/mobile-forensics-india-2026.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/mobile-forensics-india-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/network-forensics-india-guide.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/network-forensics-india-guide.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/network-forensics-traffic-analysis.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/network-forensics-traffic-analysis.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/online-defamation-investigation-india.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/online-defamation-investigation-india.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/open-corporate-osint.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/open-corporate-osint.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/open-ports-attack-surface.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/open-ports-attack-surface.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/opsec-investigators-india.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/opsec-investigators-india.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/oracle-peoplesoft-rce-zero-day-cve-2026-35273.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/oracle-peoplesoft-rce-zero-day-cve-2026-35273.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/osint-dark-web-monitoring-india.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/osint-dark-web-monitoring-india.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/osint-geolocation-techniques.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/osint-geolocation-techniques.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/osint-image-metadata.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/osint-image-metadata.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/osint-linkedin-investigation.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/osint-linkedin-investigation.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/osint-phone-number-investigation.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/osint-phone-number-investigation.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/osint-tools-beginners.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/osint-tools-beginners.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/osint-upi-mule-account-tracing-india.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/osint-upi-mule-account-tracing-india.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/password-security-2026.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/password-security-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/phishing-email-investigation-india-2026.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/phishing-email-investigation-india-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/phishing-infrastructure-investigation.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/phishing-infrastructure-investigation.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/privacy-by-design-india.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/privacy-by-design-india.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/quishing-qr-code-phishing-india.html</loc>
     <lastmod>2026-06-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/quishing-qr-code-phishing-india.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/ransomware-attack-response-india-2026.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/ransomware-attack-response-india-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/ransomware-incident-response-india.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/ransomware-incident-response-india.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/report-cybercrime-india.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/report-cybercrime-india.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/reverse-image-search-verification.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/reverse-image-search-verification.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/rogueplanet-windows-defender-zero-day-june-2026.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/rogueplanet-windows-defender-zero-day-june-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/security-awareness-training-india.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/security-awareness-training-india.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/servicenow-breach-silent-patch-june-2026.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/servicenow-breach-silent-patch-june-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/sim-swap-fraud-investigation-india.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/sim-swap-fraud-investigation-india.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/social-engineering-anatomy-2026.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/social-engineering-anatomy-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/social-media-osint-india-investigation.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/social-media-osint-india-investigation.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/social-media-privacy-hardening.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/social-media-privacy-hardening.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/southeast-asia-scam-compounds-india-2026.html</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/southeast-asia-scam-compounds-india-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/spear-phishing-defense.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/spear-phishing-defense.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/spot-phishing-emails.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/spot-phishing-emails.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/stalkerware-detection-removal.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/stalkerware-detection-removal.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/supply-chain-attack-osint.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/supply-chain-attack-osint.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/tafcop-portal-guide-law-enforcement-2026.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/tafcop-portal-guide-law-enforcement-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/telegram-ban-neet-2026-paper-leak.html</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/telegram-ban-neet-2026-paper-leak.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/threat-actor-profiling.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/threat-actor-profiling.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/threat-hunting-soc-india.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/threat-hunting-soc-india.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/threat-intelligence-explained.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/threat-intelligence-explained.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/threat-intelligence-platforms.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/threat-intelligence-platforms.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/upi-fraud-investigation-guide.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/upi-fraud-investigation-guide.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/upi-reversal-fraud-investigation-playbook-2026.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/upi-reversal-fraud-investigation-playbook-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/vpn-privacy-india-2026.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/vpn-privacy-india-2026.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/what-is-osint.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/what-is-osint.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/whatsapp-business-api-abuse-investigation-methods.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/whatsapp-business-api-abuse-investigation-methods.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/whatsapp-forensics-investigation.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/whatsapp-forensics-investigation.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/wifi-security-investigation.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/wifi-security-investigation.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/windows-event-log-forensics.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/windows-event-log-forensics.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/zero-trust-india-implementation.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/zero-trust-india-implementation.png</image:loc></image:image>
   </url>
 </urlset>
