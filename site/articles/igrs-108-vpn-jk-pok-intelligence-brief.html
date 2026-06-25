@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VPN Usage in J&K and PoK: District-Level OSINT Intelligence Brief 2026 | IGRS</title>
+<meta name="description" content="Comprehensive OSINT intelligence report on VPN usage patterns in Jammu & Kashmir and Pakistan Occupied Kashmir (PoK/AJK). District-level threat heatmap, enforcement data, legal framework analysis, and cross-LoC threat vectors — December 2025 to June 2026.">
+<meta name="keywords" content="VPN ban Kashmir 2026, J&K VPN crackdown, Section 163 BNSS VPN, Pulwama Kulgam VPN enforcement, PoK AJK VPN threat, OSINT Kashmir, VPN ban India, cross-LoC digital threat, Kashmir cybersecurity, VPN militant Kashmir">
+<meta name="author" content="Manuj Kumar Pandey">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://igrs.xyz/articles/igrs-108-vpn-jk-pok-intelligence-brief.html">
+
+<!-- OG Tags -->
+<meta property="og:title" content="VPN Usage in J&K and PoK: OSINT Intelligence Brief 2026">
+<meta property="og:description" content="District-level OSINT intelligence report on VPN usage, enforcement crackdowns, and cross-LoC threat vectors in J&K and PoK — based on 20 verified open sources.">
+<meta property="og:image" content="https://igrs.xyz/logo.svg">
+<meta property="og:url" content="https://igrs.xyz/articles/igrs-108-vpn-jk-pok-intelligence-brief.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="IGRS — Intel Grid Research Station">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="VPN Usage in J&K and PoK: OSINT Intelligence Brief 2026">
+<meta name="twitter:description" content="District-level OSINT intelligence on VPN crackdowns, legal framework, and cross-LoC digital threat vectors in Kashmir.">
+<meta name="twitter:image" content="https://igrs.xyz/logo.svg">
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TCBLVSTG97"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-TCBLVSTG97');</script>
+
+<!-- Schema: Article -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "VPN Usage in J&K and PoK: District-Level OSINT Intelligence Brief 2026",
+  "description": "Comprehensive OSINT intelligence report on VPN usage patterns in Jammu & Kashmir and Pakistan Occupied Kashmir covering district-level threat data, enforcement actions, and cross-LoC digital threat vectors.",
+  "image": "https://igrs.xyz/logo.svg",
+  "author": {"@type": "Person", "name": "Manuj Kumar Pandey", "url": "https://igrs.xyz/about.html"},
+  "publisher": {"@type": "Organization", "name": "IGRS — Intel Grid Research Station", "logo": {"@type": "ImageObject", "url": "https://igrs.xyz/logo.svg"}},
+  "datePublished": "2026-06-25",
+  "dateModified": "2026-06-25",
+  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://igrs.xyz/articles/igrs-108-vpn-jk-pok-intelligence-brief.html"},
+  "articleSection": "Threat Intelligence",
+  "keywords": "VPN ban Kashmir, J&K VPN crackdown, Section 163 BNSS, PoK AJK VPN, OSINT Kashmir, cross-LoC cyber threat"
+}
+</script>
+
+<!-- Schema: BreadcrumbList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://igrs.xyz/"},
+    {"@type": "ListItem", "position": 2, "name": "Articles", "item": "https://igrs.xyz/articles.html"},
+    {"@type": "ListItem", "position": 3, "name": "VPN Usage in J&K and PoK: OSINT Intelligence Brief 2026", "item": "https://igrs.xyz/articles/igrs-108-vpn-jk-pok-intelligence-brief.html"}
+  ]
+}
+</script>
+
+<!-- Schema: FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is VPN illegal in Jammu & Kashmir?",
+      "acceptedAnswer": {"@type": "Answer", "text": "VPN use is not illegal under national Indian law. However, district magistrates in J&K have issued emergency prohibitory orders under Section 163 of the Bharatiya Nagarik Suraksha Sanhita (BNSS) 2023, banning VPN use in 14 of 20 districts for a 2-month period from December 2025. Violators face security proceedings and potential FIRs."}
+    },
+    {
+      "@type": "Question",
+      "name": "Which districts in J&K have banned VPNs?",
+      "acceptedAnswer": {"@type": "Answer", "text": "As of January 2026, VPN bans have been imposed in at least 14 districts: Pulwama, Kulgam, Shopian, Budgam, Kupwara, Srinagar, Baramulla, Bandipora, Ganderbal, Anantnag (Kashmir Valley) and Doda, Kishtwar, Rajouri, Poonch, Udhampur, Kathua (Jammu region)."}
+    },
+    {
+      "@type": "Question",
+      "name": "How many people were identified for VPN use in Kashmir?",
+      "acceptedAnswer": {"@type": "Answer", "text": "As of January 6, 2026, J&K Police identified over 1,100 individuals for using VPNs in violation of prohibitory orders. On January 1, 2026 alone, over 130 were detained in the Kashmir Valley for device checks. Two FIRs were filed against individuals with adverse terror-related antecedents in Budgam district."}
+    },
+    {
+      "@type": "Question",
+      "name": "What is the VPN situation in Pakistan Occupied Kashmir (PoK)?",
+      "acceptedAnswer": {"@type": "Answer", "text": "PoK/AJK is Pakistan-administered territory with no direct enumeration data available. Intelligence assessment based on PTA regulatory filings and open sources rates Muzaffarabad, Neelum Valley, Rawalakot, and Mirpur as HIGH-threat zones for VPN usage, primarily for militant C2 communications, social media bypass (X/Twitter is blocked in Pakistan), and diaspora financial communications."}
+    },
+    {
+      "@type": "Question",
+      "name": "What legal section governs the VPN ban in J&K?",
+      "acceptedAnswer": {"@type": "Answer", "text": "The VPN bans in J&K are issued under Section 163 of the Bharatiya Nagarik Suraksha Sanhita (BNSS) 2023 — the successor to Section 144 CrPC — which grants emergency powers to executive magistrates to issue urgent preventive orders. Violators are bound down under Sections 126 and 170 BNSS. Criminal FIRs are registered under Section 223 BNS where terror links are established."}
+    }
+  ]
+}
+</script>
+
+<link rel="stylesheet" href="../style.css">
+<style>
+  .intel-header {
+    background: linear-gradient(135deg, #0d2233 0%, #122d44 60%, #0a2d1e 100%);
+    border-left: 4px solid #00c9a7;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    border-radius: 4px;
+  }
+  .intel-header .file-id {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: #00c9a7;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .intel-header h1 {
+    font-size: 26px;
+    color: #ffffff;
+    margin: 0 0 10px 0;
+    line-height: 1.3;
+  }
+  .intel-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: #c8e6e0;
+    margin-top: 10px;
+  }
+  .intel-meta span { display: flex; align-items: center; gap: 6px; }
+  .intel-meta .dot { color: #00c9a7; }
+
+  .classification-banner {
+    background: #0d2233;
+    border: 1px solid #00c9a7;
+    border-radius: 3px;
+    text-align: center;
+    padding: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: #00c9a7;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+  }
+
+  .pir-box {
+    background: #122d44;
+    border-left: 3px solid #ffd166;
+    border-radius: 0 4px 4px 0;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+  }
+  .pir-box h3 {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: #ffd166;
+    letter-spacing: 2px;
+    margin: 0 0 12px 0;
+  }
+  .pir-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+  .pir-code {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: #ffd166;
+    min-width: 40px;
+    padding-top: 2px;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin: 20px 0;
+  }
+  @media (max-width: 768px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
+  .stat-card {
+    background: #122d44;
+    border-top: 3px solid;
+    border-radius: 4px;
+    padding: 14px;
+    text-align: center;
+  }
+  .stat-card .num {
+    font-size: 24px;
+    font-weight: 900;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    line-height: 1.1;
+  }
+  .stat-card .lbl {
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    color: #c8e6e0;
+    letter-spacing: 1px;
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+  .stat-card .sub { font-size: 10px; color: #5a7a8a; margin-top: 2px; }
+
+  .section-header {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #00c9a7;
+    border-bottom: 1px solid #1a3d57;
+    padding-bottom: 6px;
+    margin: 28px 0 14px 0;
+  }
+  .section-header.purple { color: #c77dff; border-bottom-color: #8338ec; }
+
+  .heatbar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .heatbar-label {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: #c8e6e0;
+    min-width: 260px;
+    max-width: 260px;
+  }
+  .heatbar-track {
+    flex: 1;
+    height: 16px;
+    background: #1a3d57;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+  .heatbar-fill {
+    height: 100%;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    padding-right: 6px;
+    justify-content: flex-end;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    font-weight: bold;
+    color: #fff;
+    transition: width 1.4s ease;
+  }
+  .heatbar-fill.critical { background: linear-gradient(90deg, #c1121f, #e63946); }
+  .heatbar-fill.high { background: linear-gradient(90deg, #c35d3e, #e07a5f); }
+  .heatbar-fill.medium { background: linear-gradient(90deg, #d4a853, #f2cc8f); color: #111; }
+  .heatbar-fill.low { background: linear-gradient(90deg, #4b8c7c, #a3c4bc); color: #111; }
+  .heatbar-fill.pok { background: linear-gradient(90deg, #5c1fa8, #8338ec); }
+  .heatbar-val {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: #fff;
+    min-width: 28px;
+  }
+
+  .threat-pill {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  .pill-critical { background: rgba(230,57,70,0.2); color: #ff6b6b; border: 1px solid #e63946; }
+  .pill-high { background: rgba(224,122,95,0.2); color: #f4a261; border: 1px solid #e07a5f; }
+  .pill-medium { background: rgba(242,204,143,0.15); color: #f2cc8f; border: 1px solid #f2cc8f; }
+  .pill-low { background: rgba(163,196,188,0.15); color: #a3c4bc; border: 1px solid #a3c4bc; }
+  .pill-pok { background: rgba(131,56,236,0.2); color: #c77dff; border: 1px solid #8338ec; }
+
+  .intel-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 20px; }
+  .intel-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #00c9a7;
+    background: #0d2233;
+    padding: 8px 10px;
+    text-align: left;
+    border-bottom: 2px solid #00c9a7;
+  }
+  .intel-table td {
+    padding: 7px 10px;
+    border-bottom: 1px solid rgba(26,61,87,0.5);
+    color: #f0faf8;
+    vertical-align: middle;
+  }
+  .intel-table tr:nth-child(even) td { background: rgba(18,45,68,0.4); }
+  .intel-table tr:hover td { background: rgba(0,201,167,0.05); }
+
+  .pok-disclaimer {
+    background: rgba(131,56,236,0.1);
+    border-left: 3px solid #8338ec;
+    padding: 12px 16px;
+    border-radius: 0 4px 4px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: #c77dff;
+    margin-bottom: 20px;
+    line-height: 1.7;
+  }
+
+  .legal-box {
+    background: #0d2233;
+    border: 1px solid #1a3d57;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .legal-box-head {
+    background: #122d44;
+    padding: 10px 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: #ffd166;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #1a3d57;
+  }
+
+  .tl-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 768px) { .tl-grid { grid-template-columns: 1fr; } }
+  .tl-col-head {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid;
+  }
+  .tl-col-head.jk { background: #122d44; color: #00c9a7; border-color: #00c9a7; }
+  .tl-col-head.pk { background: rgba(131,56,236,0.15); color: #c77dff; border-color: #8338ec; }
+  .tl-event { margin-bottom: 14px; }
+  .tl-date {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 0;
+    margin-bottom: 4px;
+    border-top: 1px solid;
+    padding-top: 6px;
+  }
+  .tl-date.red { color: #e63946; border-color: #e63946; }
+  .tl-date.orange { color: #ff6b35; border-color: #ff6b35; }
+  .tl-date.teal { color: #00c9a7; border-color: #00c9a7; }
+  .tl-date.yellow { color: #ffd166; border-color: #ffd166; }
+  .tl-date.purple { color: #c77dff; border-color: #8338ec; }
+  .tl-text { font-size: 12px; color: #c8e6e0; line-height: 1.6; }
+
+  .rec-card {
+    display: flex;
+    gap: 14px;
+    background: #122d44;
+    border-radius: 4px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    border-left: 3px solid;
+  }
+  .rec-pri {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    font-weight: bold;
+    min-width: 52px;
+    padding-top: 2px;
+  }
+  .rec-content h4 {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: #fff;
+    margin: 0 0 5px 0;
+  }
+  .rec-content p { font-size: 12px; color: #c8e6e0; margin: 0; line-height: 1.6; }
+
+  .source-table { width: 100%; border-collapse: collapse; font-size: 11px; margin-bottom: 20px; }
+  .source-table th {
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    color: #00c9a7;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    background: #0d2233;
+    padding: 7px 8px;
+    border-bottom: 2px solid #00c9a7;
+    text-align: left;
+  }
+  .source-table td {
+    padding: 6px 8px;
+    border-bottom: 1px solid rgba(26,61,87,0.4);
+    color: #c8e6e0;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .source-table tr:nth-child(even) td { background: rgba(18,45,68,0.4); }
+  .source-table a { color: #00c9a7; text-decoration: none; word-break: break-all; }
+  .source-table a:hover { text-decoration: underline; }
+
+  .admr-box {
+    background: #0d2233;
+    border: 1px solid #ffd166;
+    border-radius: 4px;
+    padding: 12px 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: #c8e6e0;
+    margin-bottom: 20px;
+    line-height: 1.8;
+  }
+  .admr-box strong { color: #ffd166; }
+
+  .download-box {
+    background: linear-gradient(135deg, #0d2233, #122d44);
+    border: 1px solid #00c9a7;
+    border-radius: 6px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .download-box .dl-text h3 { color: #fff; margin: 0 0 4px 0; font-size: 16px; }
+  .download-box .dl-text p { color: #c8e6e0; margin: 0; font-size: 12px; font-family: 'Courier New', monospace; }
+  .dl-btn {
+    background: #00c9a7;
+    color: #0d2233;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 10px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+  }
+  .dl-btn:hover { background: #00b896; }
+
+  .conclusion-box {
+    background: #122d44;
+    border-left: 4px solid #00c9a7;
+    padding: 18px 20px;
+    border-radius: 0 4px 4px 0;
+    margin: 20px 0;
+  }
+
+  /* Animate heatbars on scroll */
+  .heatbar-fill { width: 0; }
+  .heatbar-fill.animated { }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="../index.html" class="nav-logo">
+      <img src="../logo.svg" alt="IGRS — Intel Grid Research Station Logo" width="36" height="36">
+      <span>IGRS</span>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../articles.html" class="active">Articles</a>
+      <a href="../tools.html">Tools</a>
+      <a href="../dorks.html">Dorks</a>
+      <a href="../dashboard.html">Dashboard</a>
+      <a href="../about.html">About</a>
+    </div>
+  </div>
+</nav>
+
+<main class="article-container">
+
+  <!-- BREADCRUMB -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../articles.html">Articles</a></li>
+      <li>VPN Usage in J&amp;K and PoK: OSINT Intelligence Brief 2026</li>
+    </ol>
+  </nav>
+
+  <!-- CLASSIFICATION BANNER -->
+  <div class="classification-banner">
+    ▌ OSINT INTELLIGENCE BRIEF &nbsp;|&nbsp; FILE: IGRS-108 &nbsp;|&nbsp; PERIOD: DEC 2025 – JUN 2026 &nbsp;|&nbsp; SOURCE TYPE: OPEN SOURCE AGGREGATION ▐
+  </div>
+
+  <!-- ARTICLE HEADER -->
+  <div class="intel-header">
+    <div class="file-id">FILE IGRS-108 &nbsp;▌&nbsp; Threat Intelligence &nbsp;▌&nbsp; J&K + PoK Digital Terrain</div>
+    <h1>VPN Usage in Jammu &amp; Kashmir and Pakistan Occupied Kashmir: District-Level OSINT Intelligence Brief 2026</h1>
+    <div class="intel-meta">
+      <span><span class="dot">▌</span> Manuj Kumar Pandey</span>
+      <span><span class="dot">▌</span> Published: 25 Jun 2026</span>
+      <span><span class="dot">▌</span> Admiralty: B2 (J&amp;K) / C3 (PoK)</span>
+      <span><span class="dot">▌</span> Sources: 20 Verified OSINT</span>
+      <span><span class="dot">▌</span> Category: Threat Intelligence</span>
+    </div>
+  </div>
+
+  <!-- PRIORITY INTELLIGENCE REQUIREMENTS -->
+  <div class="pir-box">
+    <h3>▌ Priority Intelligence Requirements (PIR)</h3>
+    <div class="pir-item">
+      <span class="pir-code">PIR-1</span>
+      <span>What is the geographic distribution and intensity of VPN usage across J&amp;K districts and assessed PoK/AJK zones?</span>
+    </div>
+    <div class="pir-item">
+      <span class="pir-code">PIR-2</span>
+      <span>Which VPN usage patterns indicate militant OPSEC vs. civilian bypass activity — and how are they differentiated by enforcement?</span>
+    </div>
+    <div class="pir-item">
+      <span class="pir-code">PIR-3</span>
+      <span>What legal framework governs VPN prohibition in J&amp;K UT, and what enforcement actions have been taken?</span>
+    </div>
+    <div class="pir-item">
+      <span class="pir-code">PIR-4</span>
+      <span>How does the Pakistan/PoK VPN regulatory landscape create cross-LoC digital threat vectors into J&amp;K?</span>
+    </div>
+  </div>
+
+  <!-- KEY METRICS -->
+  <div class="section-header">▌ 1. Key Metrics Summary</div>
+  <div class="stat-grid">
+    <div class="stat-card" style="border-top-color:#e63946;">
+      <div class="num">1,100+</div>
+      <div class="lbl">Identified VPN Users</div>
+      <div class="sub">J&amp;K Crackdown — Jan 2026</div>
+    </div>
+    <div class="stat-card" style="border-top-color:#ff6b35;">
+      <div class="num">14 / 20</div>
+      <div class="lbl">Districts Banned</div>
+      <div class="sub">J&amp;K UT active orders</div>
+    </div>
+    <div class="stat-card" style="border-top-color:#ffd166;">
+      <div class="num">2 FIRs</div>
+      <div class="lbl">Terror-Link Cases</div>
+      <div class="sub">Budgam + Doda districts</div>
+    </div>
+    <div class="stat-card" style="border-top-color:#00c9a7;">
+      <div class="num">130+</div>
+      <div class="lbl">Detained — 1 Jan</div>
+      <div class="sub">Kashmir Valley, single day</div>
+    </div>
+    <div class="stat-card" style="border-top-color:#c77dff;">
+      <div class="num">31K+</div>
+      <div class="lbl">PTA Registered VPNs</div>
+      <div class="sub">Pakistan-wide (incl. PoK)</div>
+    </div>
+  </div>
+
+  <!-- SYNOPSIS -->
+  <div class="section-header">▌ 2. Synopsis</div>
+  <p>Between December 2025 and June 2026, authorities in the Union Territory of Jammu &amp; Kashmir (J&amp;K) implemented a sweeping district-level prohibition on VPN services across 14 of 20 districts, citing national security threats, militant communication evasion, and coordination of anti-national activity. Issued under emergency powers (Section 163, BNSS 2023), the ban triggered the identification of over 1,100 individuals, the filing of 2 FIRs against persons with adverse terror-related antecedents, and the detention of 130+ persons on a single day (01 Jan 2026).</p>
+  <p style="margin-top:12px;">The crackdown originated in the Doda–Kishtwar Chenab Valley corridor — a zone of heightened militant contact — and expanded across all 10 Kashmir Valley districts and key Jammu region districts including Rajouri, Poonch, Udhampur, and Kathua. On the Pakistan-Occupied Kashmir (PoK/AJK) side, intelligence assessed from PTA regulatory filings, Freedom House Pakistan 2025 reporting, and cross-border militant communications doctrine indicates HIGH probability of VPN usage across Muzaffarabad, Neelum Valley, Rawalakot, and Mirpur — serving vectors including militant C2 communication, propaganda dissemination, and hawala/financial concealment.</p>
+
+  <!-- ADMIRALTY RATING -->
+  <div class="admr-box">
+    <strong>Admiralty Source Rating:</strong> J&amp;K Data: <strong>B2</strong> — Mainly reliable, unconfirmed. Cross-verified across The Tribune, The Wire, Al Jazeera, Zee News, MediaNama, and police statements. &nbsp;|&nbsp; PoK Assessment: <strong>C3</strong> — Fairly reliable, possibly true. Inferred from PTA official filings, Freedom House, Pakistan Interior Ministry statements. No direct enumeration data available for PoK.
+  </div>
+
+  <!-- J&K DISTRICT HEATMAP -->
+  <div class="section-header">▌ 3. J&amp;K District VPN Threat Heatmap</div>
+  <p>The following heat index represents a composite score derived from: number of users identified, FIR filed (weighted ×1.5), proximity to active militant zones, SSP/DM flag status, and background check outcomes. This is an analytical index, not a direct user count.</p>
+
+  <div style="margin: 20px 0;" id="heatbars">
+    <div class="heatbar-row">
+      <span class="heatbar-label">PULWAMA + KULGAM (South Kashmir)</span>
+      <div class="heatbar-track"><div class="heatbar-fill critical" data-w="95">95</div></div>
+      <span class="heatbar-val"><span class="threat-pill pill-critical">CRITICAL</span></span>
+    </div>
+    <div class="heatbar-row">
+      <span class="heatbar-label">SHOPIAN (South Kashmir)</span>
+      <div class="heatbar-track"><div class="heatbar-fill high" data-w="78">78</div></div>
+      <span class="heatbar-val"><span class="threat-pill pill-high">HIGH</span></span>
+    </div>
+    <div class="heatbar-row">
+      <span class="heatbar-label">BUDGAM (Central Kashmir) — 2 FIRs</span>
+      <div class="heatbar-track"><div class="heatbar-fill high" data-w="75">75</div></div>
+      <span class="heatbar-val"><span class="threat-pill pill-high">HIGH</span></span>
+    </div>
+    <div class="heatbar-row">
+      <span class="heatbar-label">KUPWARA (North Kashmir) — SSP flagged</span>
+      <div class="heatbar-track"><div class="heatbar-fill high" data-w="70">70</div></div>
+      <span class="heatbar-val"><span class="threat-pill pill-high">HIGH</span></span>
+    </div>
+    <div class="heatbar-row">
+      <span class="heatbar-label">SRINAGAR (Central Kashmir)</span>
+      <div class="heatbar-track"><div class="heatbar-fill high" data-w="65">65</div></div>
+      <span class="heatbar-val"><span class="threat-pill pill-high">HIGH</span></span>
+    </div>
+    <div class="heatbar-row">
+      <span class="heatbar-label">DODA + KISHTWAR (Chenab Valley) — Origin</span>
+      <div class="heatbar-track"><div class="heatbar-fill medium" data-w="55">55</div></div>
+      <span class="heatbar-val"><span class="threat-pill pill-medium">MEDIUM</span></span>
+    </div>
+    <div class="heatbar-row">
+      <span class="heatbar-label">BARAMULLA / SOPORE (North Kashmir)</span>
+      <div class="heatbar-track"><div class="heatbar-fill medium" data-w="48">48</div></div>
+      <span class="heatbar-val"><span class="threat-pill pill-medium">MEDIUM</span></span>
+    </div>
+    <div class="heatbar-row">
+      <span class="heatbar-label">RAJOURI + POONCH (Pir Panjal)</span>
+      <div class="heatbar-track"><div class="heatbar-fill medium" data-w="42">42</div></div>
+      <span class="heatbar-val"><span class="threat-pill pill-medium">MEDIUM</span></span>
+    </div>
+    <div class="heatbar-row">
+      <span class="heatbar-label">ANANTNAG (South Kashmir)</span>
+      <div class="heatbar-track"><div class="heatbar-fill medium" data-w="30">30</div></div>
+      <span class="heatbar-val"><span class="threat-pill pill-medium">MEDIUM</span></span>
+    </div>
+    <div class="heatbar-row">
+      <span class="heatbar-label">PoK — MUZAFFARABAD + NEELUM (Assessed)</span>
+      <div class="heatbar-track"><div class="heatbar-fill pok" data-w="85">85</div></div>
+      <span class="heatbar-val"><span class="threat-pill pill-pok">ASSESSED HIGH</span></span>
+    </div>
+    <div class="heatbar-row">
+      <span class="heatbar-label">PoK — RAWALAKOT + MIRPUR (Assessed)</span>
+      <div class="heatbar-track"><div class="heatbar-fill pok" data-w="80">80</div></div>
+      <span class="heatbar-val"><span class="threat-pill pill-pok">ASSESSED HIGH</span></span>
+    </div>
+  </div>
+
+  <!-- DISTRICT TABLE -->
+  <div class="section-header">▌ 4. District-Wise Enforcement Log — J&amp;K UT</div>
+  <div style="overflow-x:auto;">
+  <table class="intel-table">
+    <thead>
+      <tr>
+        <th>District</th>
+        <th>Region</th>
+        <th>Users ID'd</th>
+        <th>Legal Basis</th>
+        <th>FIR</th>
+        <th>Ban Status</th>
+        <th>Threat Level</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Pulwama</td><td>South Kashmir</td><td>95+ identified</td><td>Sec 163 BNSS</td><td>—</td><td>2-month active</td><td><span class="threat-pill pill-critical">CRITICAL</span></td></tr>
+      <tr><td>Kulgam</td><td>South Kashmir</td><td>100+ (combined)</td><td>Sec 163 BNSS</td><td>—</td><td>2-month active</td><td><span class="threat-pill pill-critical">CRITICAL</span></td></tr>
+      <tr><td>Budgam</td><td>Central Kashmir</td><td>24 identified</td><td>Sec 163 BNSS</td><td><strong style="color:#ff6b6b;">2 FIRs</strong></td><td>2-month active</td><td><span class="threat-pill pill-high">HIGH</span></td></tr>
+      <tr><td>Shopian</td><td>South Kashmir</td><td>15 confirmed</td><td>Sec 163 BNSS</td><td>—</td><td>2-month active</td><td><span class="threat-pill pill-high">HIGH</span></td></tr>
+      <tr><td>Kupwara</td><td>North Kashmir</td><td>Surge reported</td><td>DM order (Suse)</td><td>—</td><td>2-month active</td><td><span class="threat-pill pill-high">HIGH</span></td></tr>
+      <tr><td>Srinagar</td><td>Central Kashmir</td><td>High volume</td><td>Sec 163 BNSS</td><td>—</td><td>2-month active</td><td><span class="threat-pill pill-high">HIGH</span></td></tr>
+      <tr><td>Baramulla</td><td>North Kashmir</td><td>23 (Sopore area)</td><td>Sec 163 BNSS</td><td>—</td><td>2-month active</td><td><span class="threat-pill pill-medium">MEDIUM</span></td></tr>
+      <tr><td>Anantnag</td><td>South Kashmir</td><td>5 actioned</td><td>Sec 163 BNSS</td><td>—</td><td>2-month active</td><td><span class="threat-pill pill-medium">MEDIUM</span></td></tr>
+      <tr><td>Doda</td><td>Chenab Valley</td><td>2 booked (origin)</td><td>DM order</td><td><strong style="color:#ff6b6b;">1 FIR</strong></td><td>2-month active</td><td><span class="threat-pill pill-medium">MEDIUM</span></td></tr>
+      <tr><td>Kishtwar</td><td>Chenab Valley</td><td>Militant zone</td><td>Sec 163 BNSS</td><td>—</td><td>2-month active</td><td><span class="threat-pill pill-medium">MEDIUM</span></td></tr>
+      <tr><td>Rajouri</td><td>Pir Panjal</td><td>1 arrested</td><td>Sec 163 BNSS</td><td>—</td><td>2-month active</td><td><span class="threat-pill pill-medium">MEDIUM</span></td></tr>
+      <tr><td>Poonch</td><td>Pir Panjal</td><td>Monitoring active</td><td>Sec 163 BNSS</td><td>—</td><td>2-month active</td><td><span class="threat-pill pill-medium">MEDIUM</span></td></tr>
+      <tr><td>Udhampur</td><td>Jammu Division</td><td>—</td><td>DM order issued</td><td>—</td><td>2-month active</td><td><span class="threat-pill pill-medium">MEDIUM</span></td></tr>
+      <tr><td>Kathua</td><td>Jammu Division</td><td>—</td><td>Sec 163 BNSS</td><td>—</td><td>2-month active</td><td><span class="threat-pill pill-low">LOW</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- LEGAL FRAMEWORK -->
+  <div class="section-header">▌ 5. Legal Framework — J&amp;K VPN Enforcement</div>
+  <div style="overflow-x:auto;">
+  <table class="intel-table">
+    <thead>
+      <tr><th>Provision</th><th>Instrument</th><th>Application in J&amp;K VPN Context</th><th>Scope</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Section 163 BNSS 2023</strong></td><td>Emergency Magistrate Power</td><td>Core ban instrument — ex-parte, no public notice required, 2-month window per order. Successor to S.144 CrPC.</td><td>All 14 district bans</td></tr>
+      <tr><td><strong>Section 126 BNSS</strong></td><td>Bound-Down Proceedings</td><td>Non-criminal VPN users bound down as deterrent; released after device forensic check and warning.</td><td>Civilian violators</td></tr>
+      <tr><td><strong>Section 170 BNSS</strong></td><td>Security Proceedings</td><td>Used against individuals aged 18–40. Bind-down mechanism under BNSS; released post-warning.</td><td>Non-terror users</td></tr>
+      <tr><td><strong>Section 223 BNS</strong></td><td>Criminal FIR</td><td>Applied where VPN use overlaps with active anti-militancy operation zones or terror-background antecedents.</td><td>Doda + Budgam FIRs</td></tr>
+      <tr><td><strong>MeitY KYC Directive (Apr 2022)</strong></td><td>Central Advisory</td><td>VPN providers must KYC users, retain 5-year logs. Has removed most foreign VPN physical servers from India.</td><td>National — all providers</td></tr>
+      <tr><td><strong>TRAI/DoT Consultation</strong></td><td>Regulatory Gap</td><td>DoT asked TRAI to exclude VPNs from ISP authorization — creates national policy vacuum exploited by district emergency orders.</td><td>Unresolved nationally</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- PoK SECTION -->
+  <div class="section-header purple">▌ 6. Pakistan Occupied Kashmir (PoK / AJK) — Assessed Intelligence</div>
+  <div class="pok-disclaimer">
+    ⚠ PoK/AJK is Pakistan-administered territory. Direct enumeration data is unavailable through Indian or neutral open sources. This assessment is based on: PTA official regulatory filings, Freedom House Pakistan 2025 (Freedom on the Net), Pakistan Interior Ministry public statements, and cross-border militant communications doctrine. All threat levels are ASSESSED — not confirmed. Source rating: C3.
+  </div>
+
+  <div style="overflow-x:auto;">
+  <table class="intel-table">
+    <thead>
+      <tr><th>Region</th><th>Division</th><th>VPN Use Vector</th><th>Assessed Level</th><th>Intelligence Basis</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Muzaffarabad</td><td>Muzaffarabad Div.</td><td>Militant C2 / media bypass</td><td><span class="threat-pill pill-pok">ASSESSED HIGH</span></td><td>PTA filings + militant comms doctrine</td></tr>
+      <tr><td>Neelum Valley</td><td>Muzaffarabad Div.</td><td>LoC crossing / comms relay</td><td><span class="threat-pill pill-pok">ASSESSED HIGH</span></td><td>Geographic proximity to LoC</td></tr>
+      <tr><td>Rawalakot</td><td>Poonch AJK Div.</td><td>Anti-India propaganda / militant support</td><td><span class="threat-pill pill-pok">ASSESSED HIGH</span></td><td>Pir Panjal-facing militant belt</td></tr>
+      <tr><td>Mirpur</td><td>Mirpur Division</td><td>Diaspora bypass / hawala nexus</td><td><span class="threat-pill pill-pok">ASSESSED HIGH</span></td><td>UK diaspora + financial intelligence</td></tr>
+      <tr><td>Hattian Bala</td><td>Muzaffarabad Div.</td><td>Transit zone routing</td><td><span class="threat-pill pill-medium">ASSESSED MED</span></td><td>Geographic transit assessment</td></tr>
+      <tr><td>Bagh</td><td>Poonch AJK Div.</td><td>Civilian bypass — PTI/X block</td><td><span class="threat-pill pill-medium">ASSESSED MED</span></td><td>Pakistan X block impact (Feb 2024)</td></tr>
+      <tr><td>Kotli</td><td>Mirpur Division</td><td>Cross-border communications</td><td><span class="threat-pill pill-medium">ASSESSED MED</span></td><td>Border zone proximity</td></tr>
+      <tr><td>Sudhnati</td><td>Poonch AJK Div.</td><td>Minimal — civilian bypass only</td><td><span class="threat-pill pill-low">ASSESSED LOW</span></td><td>Limited open source signal</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="section-header">▌ 7. Chronological Event Timeline</div>
+  <div class="tl-grid">
+    <div>
+      <div class="tl-col-head jk">J&amp;K — Enforcement Timeline</div>
+      <div class="tl-event"><div class="tl-date teal">APR 2022</div><p class="tl-text">MeitY directs VPN providers: KYC users, retain logs 5 years. Major foreign providers shut India servers.</p></div>
+      <div class="tl-event"><div class="tl-date orange">16 DEC 2025</div><p class="tl-text">J&amp;K Police SOG personnel killed in Udhampur militant ambush. Heightened digital surveillance push initiated across Chenab Valley.</p></div>
+      <div class="tl-event"><div class="tl-date red">27 DEC 2025 — ORIGIN</div><p class="tl-text">Doda DM issues first VPN prohibitory order under Sec 163 BNSS. Two individuals (Khalid Abrar, Mohammad Irfan) booked. FIR at Doda PS under Sec 223 BNS.</p></div>
+      <div class="tl-event"><div class="tl-date red">29 DEC 2025</div><p class="tl-text">Shopian SSP flags "unprecedented high usage." Kupwara, Kulgam, Pulwama, Rajouri DMs issue simultaneous ban orders. 9 initial districts covered.</p></div>
+      <div class="tl-event"><div class="tl-date red">01 JAN 2026 — PEAK</div><p class="tl-text">130+ detained in Kashmir Valley — single day. Device forensics conducted on-spot. Terror-linked individuals separated. Civilians warned and released.</p></div>
+      <div class="tl-event"><div class="tl-date orange">03 JAN 2026</div><p class="tl-text">2 FIRs filed in Budgam against terror-background individuals. 11 persons bound down under Sec 126/170 BNSS. Total identified crosses 1,100.</p></div>
+      <div class="tl-event"><div class="tl-date orange">06 JAN 2026</div><p class="tl-text">Udhampur DM extends ban to Jammu region. Street-level phone checks begin on Srinagar–Jammu NH. Sopore (Baramulla): 23 identified.</p></div>
+      <div class="tl-event"><div class="tl-date yellow">12 JAN 2026</div><p class="tl-text">Al Jazeera reports VPN ban causing mental distress. Freelancers considering leaving Kashmir. Legislative assembly question filed (PDP MLA, Feb 2026).</p></div>
+    </div>
+    <div>
+      <div class="tl-col-head pk">Pakistan / PoK — Regulatory Timeline</div>
+      <div class="tl-event"><div class="tl-date purple">FEB 2024</div><p class="tl-text">Pakistan blocks X (Twitter) ahead of elections. VPN demand surges 235% nationally. PoK population among primary bypass users.</p></div>
+      <div class="tl-event"><div class="tl-date purple">MID 2024</div><p class="tl-text">Pakistan deploys China-style national internet firewall. ISPs disrupted. WhatsApp, Signal throttled nationwide.</p></div>
+      <div class="tl-event"><div class="tl-date red">NOV 2024</div><p class="tl-text">Pakistan Interior Ministry seeks total VPN ban — militants using VPNs to "facilitate violent activities." Top clerics declare VPN use un-Islamic.</p></div>
+      <div class="tl-event"><div class="tl-date yellow">30 NOV 2024</div><p class="tl-text">Pakistan Law Ministry halts VPN ban — lacks legal standing. 31,000+ VPNs already registered on PTA portal before withdrawal.</p></div>
+      <div class="tl-event"><div class="tl-date purple">19 DEC 2024</div><p class="tl-text">PTA introduces new VPN licensing framework: providers must obtain Data Services license and share user data on request. Effective soft ban.</p></div>
+      <div class="tl-event"><div class="tl-date orange">JAN 2025</div><p class="tl-text">PECA amendments signed — ambiguous language enables broader VPN regulation. Surprise blocks hit Pakistan users.</p></div>
+      <div class="tl-event"><div class="tl-date red">MAY 2025</div><p class="tl-text">X unblocked during India–Pakistan military conflict (post-Pahalgam). Pakistan-linked accounts spread misinformation — validates cross-border IO concern.</p></div>
+      <div class="tl-event"><div class="tl-date purple">2025 ONGOING</div><p class="tl-text">Freedom House rates Pakistan "Not Free." AJK/PoK excluded from scope. Unregistered VPN use remains dominant across PoK belt.</p></div>
+    </div>
+  </div>
+
+  <!-- THREAT ANALYSIS -->
+  <div class="section-header">▌ 8. Threat Intelligence Analysis</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
+    <div>
+      <h3 style="font-family:monospace;font-size:12px;color:#e63946;letter-spacing:1px;border-bottom:1px solid #e63946;padding-bottom:6px;margin-bottom:12px;">J&amp;K — PRIMARY THREAT VECTORS</h3>
+      <p style="font-size:12px;color:#c8e6e0;line-height:1.7;"><strong style="color:#ff6b6b;">▶ Militant OPSEC:</strong> Device forensics on seized phones confirms terrorist VPN usage to mask identity and access encrypted apps. 2 FIRs in Budgam filed against terror-antecedent individuals.</p>
+      <p style="font-size:12px;color:#c8e6e0;line-height:1.7;margin-top:10px;"><strong style="color:#ff6b6b;">▶ Propaganda Dissemination:</strong> VPN geo-spoofing enables upload of anti-national content from within J&amp;K with masked local attribution, correlated with high-threat district zones.</p>
+      <p style="font-size:12px;color:#c8e6e0;line-height:1.7;margin-top:10px;"><strong style="color:#ff6b35;">▶ Cross-LoC C2:</strong> Encrypted VPN tunnels facilitate real-time command-and-control between handlers in PoK and active militants in Doda–Kishtwar–Pir Panjal corridor. Aligned with post-Pahalgam security timeline.</p>
+      <p style="font-size:12px;color:#c8e6e0;line-height:1.7;margin-top:10px;"><strong style="color:#ff6b35;">▶ Lawful Interception Evasion:</strong> VPNs directly defeat CDR-based monitoring and IMSI/cell-tower correlation — rendering J&amp;K Police lawful interception frameworks ineffective for VPN-tunnelled traffic.</p>
+      <p style="font-size:12px;color:#c8e6e0;line-height:1.7;margin-top:10px;"><strong style="color:#ffd166;">▶ Civilian Signal Noise:</strong> Majority of the 1,100+ identified are journalists, IT professionals, and students. This creates high false-positive noise masking the actual threat population within enforcement data.</p>
+    </div>
+    <div>
+      <h3 style="font-family:monospace;font-size:12px;color:#c77dff;letter-spacing:1px;border-bottom:1px solid #8338ec;padding-bottom:6px;margin-bottom:12px;">PoK/AJK — ASSESSED THREAT VECTORS</h3>
+      <p style="font-size:12px;color:#c8e6e0;line-height:1.7;"><strong style="color:#c77dff;">▶ Militant Launchpad C2 (Muzaffarabad/Neelum):</strong> ASSESSED HIGH probability of VPN-based communications between LeT/JeM AJK infrastructure and active cells across LoC. PTA registration deliberately evaded.</p>
+      <p style="font-size:12px;color:#c8e6e0;line-height:1.7;margin-top:10px;"><strong style="color:#c77dff;">▶ Information Operations:</strong> PoK-based handlers use VPNs to operate social media accounts with Indian-region IP facades — amplifying propaganda while evading platform geo-restrictions.</p>
+      <p style="font-size:12px;color:#c8e6e0;line-height:1.7;margin-top:10px;"><strong style="color:#c77dff;">▶ Mirpur Diaspora Nexus:</strong> Mirpur is a historic hawala and financial support channel. VPN use assessed HIGH for concealing communications with UK-based Kashmir diaspora for fund transfers.</p>
+      <p style="font-size:12px;color:#c8e6e0;line-height:1.7;margin-top:10px;"><strong style="color:#ff6b35;">▶ PTI Political Cover Traffic:</strong> Mass VPN adoption driven by Pakistan's crackdown on PTI/Imran Khan supporters provides high-volume civilian traffic that operationally conceals militant communications.</p>
+      <p style="font-size:12px;color:#c8e6e0;line-height:1.7;margin-top:10px;"><strong style="color:#ffd166;">▶ PTA Firewall Effect:</strong> China-style national firewall deployed in 2024 drives nationwide VPN demand, creating a high-baseline VPN environment that degrades signal-to-noise ratio for all law enforcement.</p>
+    </div>
+  </div>
+
+  <!-- RECOMMENDATIONS -->
+  <div class="section-header">▌ 9. Intelligence Recommendations</div>
+  <div class="rec-card" style="border-color:#ff6b35;">
+    <span class="rec-pri" style="color:#ff6b35;">[HIGH]</span>
+    <div class="rec-content">
+      <h4>Priority Monitoring Zones</h4>
+      <p>Focus active digital surveillance on Pulwama–Kulgam–Shopian (South Kashmir) and Doda–Kishtwar (Chenab Valley). Correlate VPN traffic spikes with incident timelines and known militant activity calendars. Establish dedicated monitoring cells at district SSP level in these zones.</p>
+    </div>
+  </div>
+  <div class="rec-card" style="border-color:#ff6b35;">
+    <span class="rec-pri" style="color:#ff6b35;">[HIGH]</span>
+    <div class="rec-content">
+      <h4>Deep Packet Inspection Deployment</h4>
+      <p>Deploy DPI at ISP level to detect VPN handshake patterns (OpenVPN, WireGuard, Shadowsocks, Obfs4). Even without payload decryption, destination IP blocks, connection timing, and session duration can flag suspicious encrypted sessions for further investigation.</p>
+    </div>
+  </div>
+  <div class="rec-card" style="border-color:#ff6b35;">
+    <span class="rec-pri" style="color:#ff6b35;">[HIGH]</span>
+    <div class="rec-content">
+      <h4>Cross-LoC IO Attribution</h4>
+      <p>Identify PoK-origin social media accounts operating via VPN with Indian-region IP spoofing. Correlate posting patterns, timing, and narratives with known Information Operations campaigns. Flag accounts showing J&amp;K-origin posting behavior from PoK VPN exit nodes.</p>
+    </div>
+  </div>
+  <div class="rec-card" style="border-color:#ffd166;">
+    <span class="rec-pri" style="color:#ffd166;">[MED]</span>
+    <div class="rec-content">
+      <h4>App Store Intelligence — Early Warning</h4>
+      <p>Monitor VPN app download spikes via I4C channel (Apple/Google data) correlated by district geolocation. Sudden surges in high-threat districts are tactical early warning indicators of impending militant activity or civil unrest windows.</p>
+    </div>
+  </div>
+  <div class="rec-card" style="border-color:#ffd166;">
+    <span class="rec-pri" style="color:#ffd166;">[MED]</span>
+    <div class="rec-content">
+      <h4>Signal-Noise Differentiation Protocol</h4>
+      <p>Of 1,100+ identified, the majority are civilians. Establish a tiered response: Level 1 (warning + device check), Level 2 (security proceedings), Level 3 (FIR) — based on background check outcomes, VPN app characteristics, and behavioral indicators. Avoid blanket criminalisation of civilian use.</p>
+    </div>
+  </div>
+  <div class="rec-card" style="border-color:#00c9a7;">
+    <span class="rec-pri" style="color:#00c9a7;">[LOW]</span>
+    <div class="rec-content">
+      <h4>National VPN Policy Alignment</h4>
+      <p>Advocate for resolution of the MoC–MeitY jurisdictional gap. A clear national VPN framework aligned with TRAI recommendations would provide more durable enforcement capability than district-level Section 163 emergency orders which are legally fragile and finite.</p>
+    </div>
+  </div>
+
+  <!-- CONCLUSION -->
+  <div class="section-header">▌ 10. Conclusion</div>
+  <div class="conclusion-box">
+    <p>VPN usage in J&amp;K is a documented, active threat vector being operationally exploited by militant actors for communication security, lawful interception evasion, and cross-LoC coordination. The enforcement data confirms meaningful threat presence in South Kashmir (Pulwama–Kulgam–Shopian) and Chenab Valley (Doda–Kishtwar). The administration's enforcement response, while operationally aggressive, requires a more targeted signal-differentiation methodology to maintain efficacy while minimising civilian impact.</p>
+    <p style="margin-top:12px;">In PoK/AJK, the threat landscape is assessed as HIGH across Muzaffarabad, Neelum, Rawalakot, and Mirpur — with convergence of militant operational use and mass civilian VPN adoption driven by Pakistan's internet censorship environment. The same digital tool that enables cross-LoC militant C2 is being used by millions of ordinary Pakistani and PoK citizens to access blocked social media — creating a structural challenge for signal intelligence extraction that no simple enforcement order can resolve.</p>
+    <p style="margin-top:12px;"><strong style="color:#00c9a7;">This report is an OSINT intelligence brief. Download the full PDF version below for the complete district heatmaps, PoK region assessment tables, comparative bar charts, and the full 20-source reference annexure.</strong></p>
+  </div>
+
+  <!-- PDF DOWNLOAD -->
+  <div class="download-box">
+    <div class="dl-text">
+      <h3>📄 Full Intelligence Report — PDF Download</h3>
+      <p>9 pages | District heatmaps | PoK assessment | 20 verified sources | Classification: RESTRICTED // OSINT</p>
+    </div>
+    <a href="https://igrs.xyz/reports/VPN_Intelligence_Report_JK_PoK_2026.pdf" class="dl-btn" download>⬇ DOWNLOAD REPORT</a>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section-header">▌ Frequently Asked Questions</div>
+
+  <div class="faq-item">
+    <h3 class="faq-question">Is VPN illegal in Jammu &amp; Kashmir?</h3>
+    <div class="faq-answer">
+      <p>VPN use is not illegal under national Indian law. However, district magistrates in J&amp;K have issued emergency prohibitory orders under Section 163 of the BNSS 2023, banning VPN use in 14 of 20 districts for a 2-month period from December 2025. Violators face security proceedings under Sections 126/170 BNSS, and in cases with terror-related antecedents, criminal FIRs under Section 223 BNS.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <h3 class="faq-question">Which districts in J&amp;K have VPN bans in 2026?</h3>
+    <div class="faq-answer">
+      <p>As of January 2026, VPN bans have been imposed in at least 14 districts: Pulwama, Kulgam, Shopian, Budgam, Kupwara, Srinagar, Baramulla, Bandipora, Ganderbal, Anantnag (all 10 Kashmir Valley districts) and Doda, Kishtwar, Rajouri, Poonch, Udhampur, and Kathua in the Jammu region.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <h3 class="faq-question">How many people were identified for VPN use in Kashmir?</h3>
+    <div class="faq-answer">
+      <p>As of January 6, 2026, J&amp;K Police identified over 1,100 individuals for using VPNs in violation of district prohibitory orders. On January 1, 2026 alone, over 130 were detained in the Kashmir Valley. Two FIRs were filed in Budgam against individuals with adverse terror-related antecedents confirmed through device forensics and technical analysis.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <h3 class="faq-question">What is the VPN situation in Pakistan Occupied Kashmir (PoK/AJK)?</h3>
+    <div class="faq-answer">
+      <p>PoK/AJK is Pakistan-administered with no direct enumeration data. Based on PTA regulatory filings and open-source assessment, Muzaffarabad, Neelum Valley, Rawalakot, and Mirpur are rated ASSESSED HIGH for VPN usage — serving militant C2 communications, social media bypass (X/Twitter is blocked in Pakistan since Feb 2024), and diaspora financial communications.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <h3 class="faq-question">What legal section governs the J&amp;K VPN ban?</h3>
+    <div class="faq-answer">
+      <p>The bans are issued under Section 163 of the Bharatiya Nagarik Suraksha Sanhita (BNSS) 2023 — the successor to Section 144 CrPC — which grants emergency powers to executive magistrates to issue urgent preventive orders. Enforcement uses Sections 126 and 170 BNSS (bound-down proceedings) and Section 223 BNS (criminal FIR where terror links are established).</p>
+    </div>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="section-header">▌ Source Reference List (20 Verified OSINT Sources)</div>
+  <div style="overflow-x:auto;">
+  <table class="source-table">
+    <thead>
+      <tr><th>Ref</th><th>Source</th><th>Date</th><th>Title</th><th>URL</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>S-01</td><td>The Tribune India</td><td>06 Jan 2026</td><td>1,100 found using VPN network in Kashmir</td><td><a href="https://www.tribuneindia.com/news/j-k/violating-ban-order-around-1100-found-using-vpn-network-in-kashmir/" target="_blank" rel="noopener">tribuneindia.com/news/j-k/violating-ban-order...</a></td></tr>
+      <tr><td>S-02</td><td>The Tribune India</td><td>03 Jan 2026</td><td>Police identify 800 users as crackdown intensifies</td><td><a href="https://www.tribuneindia.com/news/j-k/police-identify-800-users-as-crackdown-on-unauthorised-vpns-intensifies-in-kashmir/" target="_blank" rel="noopener">tribuneindia.com/news/j-k/police-identify-800-users...</a></td></tr>
+      <tr><td>S-03</td><td>The Wire</td><td>03 Jan 2026</td><td>J&amp;K Police Crack Down on VPN Use, File FIRs</td><td><a href="https://m.thewire.in/article/government/jammu-and-kashmir-police-crack-down-on-vpn-use-file-firs-and-bind-down-dozens-across-districts" target="_blank" rel="noopener">m.thewire.in/article/government/jammu-and-kashmir-police...</a></td></tr>
+      <tr><td>S-04</td><td>The Wire</td><td>30 Dec 2025</td><td>J&amp;K Admin Bans Use of VPNs in Parts of UT</td><td><a href="https://m.thewire.in/article/rights/jammu-and-kashmir-admin-bans-use-of-vpns-in-parts-of-union-territory" target="_blank" rel="noopener">m.thewire.in/article/rights/jammu-and-kashmir-admin-bans...</a></td></tr>
+      <tr><td>S-05</td><td>Zee News India</td><td>02 Jan 2026</td><td>J&amp;K Police Crack Down on Unauthorised VPN Use, 150 Booked</td><td><a href="https://zeenews.india.com/india/jammu-and-kashmir-police-crack-down-on-unauthorised-vpn-use-150-booked-3002645.html" target="_blank" rel="noopener">zeenews.india.com/india/jammu-and-kashmir-police...</a></td></tr>
+      <tr><td>S-06</td><td>MediaNama</td><td>06 Jan 2026</td><td>Police Search Phones as VPN Ban Enforced in entire J&amp;K</td><td><a href="https://www.medianama.com/2026/01/223-jammu-kashmir-vpn-ban-search-phones/" target="_blank" rel="noopener">medianama.com/2026/01/223-jammu-kashmir-vpn-ban-search-phones/</a></td></tr>
+      <tr><td>S-07</td><td>The Quint</td><td>16 Jan 2026</td><td>VPN Ban in Kashmir Raises Right to Privacy Questions</td><td><a href="https://www.thequint.com/news/india/vpn-ban-kashmir-terrorism-freedom-of-speech-censorship" target="_blank" rel="noopener">thequint.com/news/india/vpn-ban-kashmir-terrorism...</a></td></tr>
+      <tr><td>S-08</td><td>Al Jazeera</td><td>12 Jan 2026</td><td>India's VPN ban in Kashmir adds to psychological pressure</td><td><a href="https://www.aljazeera.com/news/2026/1/12/indias-vpn-ban-in-kashmir-adds-to-psychological-pressure-say-residents" target="_blank" rel="noopener">aljazeera.com/news/2026/1/12/indias-vpn-ban-in-kashmir...</a></td></tr>
+      <tr><td>S-09</td><td>Dailyhunt / Article 14</td><td>May 2026</td><td>A VPN Ban, Vanishing Work: How A Security Order Froze Digital Livelihoods</td><td><a href="https://m.dailyhunt.in/news/india/english/article+14-epaper-artlfrtn/a+vpn+ban+vanishing+work+how+a+security+order+in+kashmir+has+frozen+digital+livelihoods-newsid-n711785844" target="_blank" rel="noopener">dailyhunt.in — Article 14 (May 2026)</a></td></tr>
+      <tr><td>S-10</td><td>Kashmir Horizon</td><td>30 Dec 2025</td><td>VPN services banned in Kupwara, Shopian</td><td><a href="https://thekashmirhorizon.com/2025/12/30/vpn-services-banned-in-kupwara-shopian/" target="_blank" rel="noopener">thekashmirhorizon.com/2025/12/30/vpn-services-banned...</a></td></tr>
+      <tr><td>S-11</td><td>Kashmir Media Service</td><td>30 Dec 2025</td><td>VPN ban imposed in South and North Kashmir</td><td><a href="https://kmsnews.org/kms/2025/12/30/iiojk-authorities-impose-sweeping-ban-on-vpn-services-in-north-kashmir.html" target="_blank" rel="noopener">kmsnews.org/kms/2025/12/30/iiojk-authorities...</a></td></tr>
+      <tr><td>S-12</td><td>KittoNews</td><td>01 Jan 2026</td><td>69 Booked for VPN Use: Police Crackdown in Pulwama &amp; Sopore</td><td><a href="https://kittonews.com/69-booked-for-vpn-use-in-kashmir-police-crackdown-in-pulwama-sopore/" target="_blank" rel="noopener">kittonews.com/69-booked-for-vpn-use-in-kashmir...</a></td></tr>
+      <tr><td>S-13</td><td>Tom's Guide / Surfshark</td><td>21 Jan 2026</td><td>4.6 billion people affected by internet censorship in 2025</td><td><a href="https://www.tomsguide.com/computing/vpns/4-6-billion-people-were-affected-by-internet-censorship-in-2025-with-asia-continuing-to-lead-the-way" target="_blank" rel="noopener">tomsguide.com/computing/vpns/4-6-billion-people...</a></td></tr>
+      <tr><td>S-14</td><td>TechRadar</td><td>10 Jan 2025</td><td>Pakistan's quest to regulate VPN usage is still up and running</td><td><a href="https://www.techradar.com/vpn/vpn-privacy-security/pakistans-quest-to-regulate-vpn-usage-is-still-up-and-running" target="_blank" rel="noopener">techradar.com/vpn/vpn-privacy-security/pakistans-quest...</a></td></tr>
+      <tr><td>S-15</td><td>Freedom House</td><td>Nov 2025</td><td>Pakistan: Freedom on the Net 2025 Country Report</td><td><a href="https://freedomhouse.org/country/pakistan/freedom-net/2025" target="_blank" rel="noopener">freedomhouse.org/country/pakistan/freedom-net/2025</a></td></tr>
+      <tr><td>S-16</td><td>ECOI.net / Freedom House</td><td>Nov 2025</td><td>Freedom on the Net 2025 — Pakistan (full document)</td><td><a href="https://www.ecoi.net/en/document/2133586.html" target="_blank" rel="noopener">ecoi.net/en/document/2133586.html</a></td></tr>
+      <tr><td>S-17</td><td>GlobalSecurity / RFE-RL</td><td>Dec 2024</td><td>Pakistan's Push For Digital Control Adds To Climate Of Fear</td><td><a href="https://www.globalsecurity.org/wmd/library/news/pakistan/2024/pakistan-241219-rferl01.htm" target="_blank" rel="noopener">globalsecurity.org/wmd/library/news/pakistan/2024...</a></td></tr>
+      <tr><td>S-18</td><td>Newsweek</td><td>18 Nov 2024</td><td>Pakistan's Top Cleric Declares VPN Use Un-Islamic</td><td><a href="https://www.newsweek.com/pakistans-top-cleric-declares-vpn-use-un-islamic-ban-1987370" target="_blank" rel="noopener">newsweek.com/pakistans-top-cleric-declares-vpn-use...</a></td></tr>
+      <tr><td>S-19</td><td>PTA Official</td><td>Dec 2024</td><td>PTA Public Announcement — 31,000+ VPNs registered</td><td><a href="https://www.pta.gov.pk/category/public-announcement-838342883-2024-12-10" target="_blank" rel="noopener">pta.gov.pk/category/public-announcement-838342883-2024-12-10</a></td></tr>
+      <tr><td>S-20</td><td>Top10VPN / Surfshark</td><td>Live tracker</td><td>VPN Demand Statistics — Pakistan spike data (Feb 2024 onwards)</td><td><a href="https://www.top10vpn.com/research/vpn-demand-statistics/" target="_blank" rel="noopener">top10vpn.com/research/vpn-demand-statistics/</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- RELATED ARTICLES -->
+  <div class="section-header">▌ Related Articles</div>
+  <div class="related-articles">
+    <a href="igrs-103-quishing-qr-phishing.html" class="related-card">
+      <span class="related-tag">Cyber Crime</span>
+      <h4>Quishing: The QR Code Phishing Threat Targeting India</h4>
+    </a>
+    <a href="igrs-104-api-security-osint.html" class="related-card">
+      <span class="related-tag">OSINT</span>
+      <h4>API Security Intelligence: Exposed Endpoints and OSINT Recon</h4>
+    </a>
+    <a href="igrs-101-fortibleed-cve.html" class="related-card">
+      <span class="related-tag">Threat Intel</span>
+      <h4>FortiBleed: Critical FortiGate Vulnerability OSINT Analysis</h4>
+    </a>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <img src="../logo.svg" alt="IGRS Logo" width="28" height="28">
+      <span>IGRS — Intel Grid Research Station</span>
+    </div>
+    <div class="footer-links">
+      <a href="../privacy-policy.html">Privacy Policy</a>
+      <a href="../terms.html">Terms</a>
+      <a href="../disclaimer.html">Disclaimer</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+    <p class="footer-copy">© 2026 IGRS. All intelligence content is derived from open sources for educational and research purposes. <a href="../disclaimer.html">Read disclaimer.</a></p>
+  </div>
+</footer>
+
+<script>
+// Animate heatbars on scroll into view
+const bars = document.querySelectorAll('.heatbar-fill');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const w = el.getAttribute('data-w');
+      el.style.width = w + '%';
+      observer.unobserve(el);
+    }
+  });
+}, { threshold: 0.2 });
+bars.forEach(b => observer.observe(b));
+
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.style.cursor = 'pointer';
+  q.addEventListener('click', () => {
+    const ans = q.nextElementSibling;
+    const isOpen = ans.style.display === 'block';
+    document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+    ans.style.display = isOpen ? 'none' : 'block';
+  });
+});
+document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+</script>
+</body>
+</html>
