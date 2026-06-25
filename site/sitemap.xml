@@ -924,4 +924,10 @@
     <priority>0.8</priority>
     <image:image><image:loc>https://igrs.xyz/og/zero-trust-india-implementation.png</image:loc></image:image>
   </url>
+  <url>
+    <loc>https://igrs.xyz/articles/igrs-108-vpn-jk-pok-intelligence-brief.html</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
