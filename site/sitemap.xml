@@ -344,6 +344,13 @@
     <image:image><image:loc>https://igrs.xyz/og/digital-evidence-indian-courts.png</image:loc></image:image>
   </url>
   <url>
+    <loc>https://igrs.xyz/articles/digital-evidence-preservation-india-court.html</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/digital-evidence-preservation-india-court.png</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://igrs.xyz/articles/digital-forensics-career-india.html</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -846,6 +853,13 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image><image:loc>https://igrs.xyz/og/threat-intelligence-platforms.png</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://igrs.xyz/articles/trace-phone-number-india-osint.html</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://igrs.xyz/og/trace-phone-number-india-osint.png</image:loc></image:image>
   </url>
   <url>
     <loc>https://igrs.xyz/articles/upi-fraud-investigation-guide.html</loc>

@@ -5,8 +5,22 @@
 <link>https://igrs.xyz/</link>
 <description>Cybersecurity, OSINT and digital-forensics intelligence for India's frontline defenders — threat intel, investigation playbooks and free tools.</description>
 <language>en-in</language>
-<lastBuildDate>Mon, 22 Jun 2026 14:50:46 +0000</lastBuildDate>
+<lastBuildDate>Thu, 25 Jun 2026 05:02:03 +0000</lastBuildDate>
 <atom:link href="https://igrs.xyz/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>Digital Evidence in India: How to Preserve It So It Holds Up in Court</title>
+<link>https://igrs.xyz/articles/digital-evidence-preservation-india-court.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/digital-evidence-preservation-india-court.html</guid>
+<pubDate>Thu, 25 Jun 2026 09:00:00 +0530</pubDate>
+<description>A practical guide to preserving digital evidence in India so it survives court scrutiny: hashing and integrity, chain of custody, the Section 63 BSA certificate (formerly 65B), and the mistakes that get electronic evidence thrown out.</description>
+</item>
+<item>
+<title>How to Trace a Phone Number in India: A Lawful OSINT Guide</title>
+<link>https://igrs.xyz/articles/trace-phone-number-india-osint.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/trace-phone-number-india-osint.html</guid>
+<pubDate>Wed, 24 Jun 2026 09:00:00 +0530</pubDate>
+<description>What you can — and cannot — legally learn from an Indian phone number using OSINT. A responsible, investigator-focused guide to caller-ID, public records, social-media pivots, the legal process for subscriber data, and the privacy limits that matter.</description>
+</item>
 <item>
 <title>Quishing: Why QR Code Phishing Is Exploding in India</title>
 <link>https://igrs.xyz/articles/quishing-qr-code-phishing-india.html</link>
@@ -202,20 +216,6 @@
 <guid isPermaLink="true">https://igrs.xyz/articles/how-to-report-cyber-fraud-india-step-by-step.html</guid>
 <pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
 <description>Complete guide to reporting cybercrime and cyber fraud in India. Cybercrime helpline 1930, cybercrime.gov.in portal, bank complaint, FIR filing, and what to do immediately after being defrauded.</description>
-</item>
-<item>
-<title>How to File a Cybercrime FIR in India — Section by Section Guide 2026</title>
-<link>https://igrs.xyz/articles/how-to-file-cybercrime-fir-india-2026.html</link>
-<guid isPermaLink="true">https://igrs.xyz/articles/how-to-file-cybercrime-fir-india-2026.html</guid>
-<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
-<description>Complete guide to filing a cybercrime FIR in India under BNS 2023, IT Act, and BSA 2023. Correct sections for different cyber offences, evidence requirements, and tips for law enforcement.</description>
-</item>
-<item>
-<title>Free OSINT Tools for Indian Investigators 2026 — Complete Directory</title>
-<link>https://igrs.xyz/articles/free-osint-tools-india-2026.html</link>
-<guid isPermaLink="true">https://igrs.xyz/articles/free-osint-tools-india-2026.html</guid>
-<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
-<description>Comprehensive list of free OSINT tools for Indian investigators. Phone lookup, Aadhaar verification, GST search, company check, court records, domain analysis — all free.</description>
 </item>
 </channel>
 </rss>

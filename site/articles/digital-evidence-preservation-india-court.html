@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta name="google-adsense-account" content="ca-pub-5886568858916800">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5886568858916800" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TCBLVSTG97"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-TCBLVSTG97');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Digital Evidence in India: How to Preserve It So It Holds Up in Court (2026) — IGRS</title>
+<meta name="description" content="A practical guide to preserving digital evidence in India so it survives court scrutiny: hashing and integrity, chain of custody, the Section 63 BSA certificate (formerly 65B), and the mistakes that get electronic evidence thrown out.">
+<meta name="keywords" content="digital evidence India, Section 63 BSA certificate, 65B certificate, chain of custody, electronic evidence court, hash value evidence, digital forensics India, preserve evidence">
+<meta name="author" content="Manuj Kumar Pandey">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://igrs.xyz/articles/digital-evidence-preservation-india-court.html">
+<meta property="og:title" content="Digital Evidence in India: How to Preserve It So It Holds Up in Court"><meta property="og:description" content="Hashing and integrity, chain of custody, the Section 63 BSA certificate, and the mistakes that get electronic evidence thrown out."><meta property="og:type" content="article"><meta property="og:url" content="https://igrs.xyz/articles/digital-evidence-preservation-india-court.html"><meta property="og:image" content="https://igrs.xyz/og/digital-evidence-preservation-india-court.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Preserving digital evidence for court in India">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://igrs.xyz/og/digital-evidence-preservation-india-court.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Digital Evidence in India: How to Preserve It So It Holds Up in Court","description":"Hashing and integrity, chain of custody, the Section 63 BSA certificate, and the mistakes that get electronic evidence thrown out.","author":{"@type":"Person","name":"Manuj Kumar Pandey","url":"https://igrs.xyz/about.html"},"publisher":{"@type":"Organization","name":"IGRS","url":"https://igrs.xyz"},"url":"https://igrs.xyz/articles/digital-evidence-preservation-india-court.html","datePublished":"2026-06-25","dateModified":"2026-06-25"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://igrs.xyz/index.html"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://igrs.xyz/articles.html"},{"@type":"ListItem","position":3,"name":"Preserving Digital Evidence"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a Section 63 BSA certificate?","acceptedAnswer":{"@type":"Answer","text":"Under the Bharatiya Sakshya Adhiniyam, 2023, Section 63 governs the admissibility of electronic records and requires an accompanying certificate (the successor to Section 65B of the Indian Evidence Act) attesting how the electronic record was produced and that the source device was working properly. Without it, electronic evidence is often inadmissible."}},{"@type":"Question","name":"Why is a hash value important for digital evidence?","acceptedAnswer":{"@type":"Answer","text":"A cryptographic hash (such as SHA-256) is a digital fingerprint of the data. Recording the hash at seizure and showing the same hash later proves the evidence has not been altered, which is central to establishing integrity in court."}},{"@type":"Question","name":"What is chain of custody?","acceptedAnswer":{"@type":"Answer","text":"It is the documented, unbroken record of who handled the evidence, when, where and why, from seizure to court. Any unexplained gap lets the defence argue the evidence could have been tampered with."}},{"@type":"Question","name":"What is the most common reason digital evidence is rejected in India?","acceptedAnswer":{"@type":"Answer","text":"A missing or defective Section 63 (formerly 65B) certificate, working on the original instead of a verified copy, and a broken or undocumented chain of custody are the most common reasons electronic evidence is challenged or excluded."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css"><link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head><body>
+<header class="site"><div class="wrap">
+<div class="mast"><a class="brand" href="../index.html"><img src="../logo.svg" alt="IGRS Intel Grid Research Station Logo">IGRS<span></span></a><div class="mast-meta">Intel Grid Research Station</div></div>
+<nav class="main"><a href="../index.html">Home</a><a href="../articles.html">Articles</a><a href="../tools.html">Tools</a><a href="../dashboard.html">Dashboard</a><a href="../playbooks.html">Playbooks</a><a href="../cyberlaw.html">Cyber Law</a></nav>
+</div></header>
+<main class="wrap">
+<nav class="breadcrumb"><a href="../index.html">Home</a><span class="breadcrumb-sep">›</span><a href="../articles.html">Articles</a><span class="breadcrumb-sep">›</span><span>Digital Forensics</span></nav>
+<article class="entry-full">
+<div class="entry-meta"><span class="category">Digital Forensics</span><span class="date">25 June 2026</span><span class="author">Manuj Kumar Pandey</span></div>
+<div class="entry-hero"><img src="../og/digital-evidence-preservation-india-court.png" width="1200" height="630" alt="Preserving digital evidence for court in India" fetchpriority="high"></div>
+<h1>Digital Evidence in India: How to Preserve It So It Holds Up in Court</h1>
+<p>An investigation can be brilliant and still collapse in the courtroom &mdash; not because the evidence was wrong, but because it was not <strong>preserved properly</strong>. Digital evidence is uniquely fragile: it can be altered in a click, it carries no obvious sign of tampering, and Indian courts rightly demand proof that what is shown to them is exactly what was seized. Getting this right is less about expensive tools and more about discipline. Here is the workflow that keeps electronic evidence defensible, framed for the Indian legal context under the new criminal codes.</p>
+
+<h2>The golden rule: never work on the original</h2>
+<p>The single most important principle in digital forensics is that you do not investigate the original. You create a <strong>verified copy</strong> (a forensic image) and work on that, leaving the seized device or data untouched and sealed. Every examination, every search, every export happens on the copy. If the original is ever needed, it is pristine. Acting directly on the original &mdash; opening files, &ldquo;just checking&rdquo; a phone &mdash; is the fastest way to taint a case.</p>
+
+<h2>Integrity by hashing</h2>
+<p>A cryptographic <strong>hash</strong> &mdash; SHA-256 is the practical standard &mdash; is a fixed-length fingerprint of a file or image. Change a single bit and the hash changes completely. The discipline is simple:</p>
+<ul>
+<li>Compute and record the hash of the evidence <strong>at the moment of seizure/imaging</strong>.</li>
+<li>Re-compute it after copying to confirm the copy is bit-for-bit identical.</li>
+<li>Be able to reproduce that same hash at any later stage to prove nothing changed.</li>
+</ul>
+<p>A matching hash is the most persuasive, objective answer to &ldquo;how do we know this wasn't altered?&rdquo; You can generate SHA-256 and other hashes entirely offline in the <a href="../toolkit.html">IGRS Toolkit</a> without uploading anything.</p>
+
+<h2>Chain of custody: the unbroken story</h2>
+<p>Chain of custody is the documented, continuous record of the evidence's life: who seized it, when and where, who held it, who examined it, and every transfer in between. Each handover is logged and signed. A single unexplained gap &mdash; an hour where no one can say where the device was &mdash; is an opening for the defence to argue the evidence could have been substituted or modified. Maintain a custody log from the first minute, store evidence sealed and access-controlled, and record actions contemporaneously, not from memory afterwards.</p>
+
+<h2>The Section 63 BSA certificate (the old 65B)</h2>
+<p>This is where many otherwise-solid cases falter. Under the <strong>Bharatiya Sakshya Adhiniyam, 2023</strong>, <strong>Section 63</strong> governs the admissibility of electronic records &mdash; the successor to the well-known Section 65B of the Indian Evidence Act. As a rule, an electronic record produced from a device must be accompanied by a <strong>certificate</strong> that identifies the record, describes how it was produced, and attests that the device was operating properly. Indian courts have repeatedly treated this certificate as essential for secondary electronic evidence. Prepare it correctly and contemporaneously; a missing or defective certificate is one of the most common reasons electronic evidence is excluded.</p>
+
+<h2>Document everything, in the right order</h2>
+<p>Good forensic reporting follows the evidence: <strong>Input</strong> (what was received and its hash), <strong>Analysis</strong> (what was done, with which tools and versions), <strong>Output</strong> (what was found, with artefacts), and <strong>Conclusion</strong> (what it supports, and the limits). Photograph the scene and device state, note timestamps and time zones, and keep your working copy separate from your exhibits. The aim is that an independent examiner could repeat your steps and reach the same result.</p>
+
+<h2>The mistakes that sink cases</h2>
+<ul>
+<li>Working on the original device or data instead of a verified image.</li>
+<li>No hash at seizure &mdash; integrity becomes impossible to prove later.</li>
+<li>A broken or undocumented chain of custody.</li>
+<li>A missing, late, or defective Section 63 (formerly 65B) certificate.</li>
+<li>Ignoring time-zone and clock-drift issues on devices, creating timeline contradictions.</li>
+</ul>
+
+<h2>Why this matters</h2>
+<p>In India's move to the <strong>Bharatiya Nyaya Sanhita</strong>, <strong>Bharatiya Nagarik Suraksha Sanhita</strong> and <strong>Bharatiya Sakshya Adhiniyam of 2023</strong>, electronic evidence has only grown in importance &mdash; the codes expressly recognise digital records and digital processes. That makes preservation discipline a core investigative skill, not an afterthought for the forensic lab. The investigator who hashes early, never touches the original, keeps a clean custody log, and prepares the certificate correctly is the one whose evidence survives cross-examination.</p>
+
+<div class="faq-section"><h2>Frequently Asked Questions</h2>
+<div class="faq-item"><div class="faq-q">What is a Section 63 BSA certificate?</div><div class="faq-a">Under the Bharatiya Sakshya Adhiniyam, 2023, Section 63 governs admissibility of electronic records and requires a certificate (successor to Section 65B) attesting how the record was produced and that the source device worked properly. Without it, electronic evidence is often inadmissible.</div></div>
+<div class="faq-item"><div class="faq-q">Why is a hash value important?</div><div class="faq-a">A cryptographic hash such as SHA-256 is a digital fingerprint. Recording it at seizure and showing the same hash later proves the evidence was not altered — central to establishing integrity in court.</div></div>
+<div class="faq-item"><div class="faq-q">What is chain of custody?</div><div class="faq-a">The documented, unbroken record of who handled the evidence, when, where and why, from seizure to court. Any unexplained gap lets the defence argue tampering.</div></div>
+<div class="faq-item"><div class="faq-q">What is the most common reason digital evidence is rejected?</div><div class="faq-a">A missing or defective Section 63 (formerly 65B) certificate, working on the original instead of a verified copy, and a broken chain of custody are the most common reasons it is challenged or excluded.</div></div></div>
+
+<div class="related-articles"><h3>&#8594; RELATED ARTICLES</h3><div class="related-grid">
+<a class="related-card" href="how-to-analyze-email-headers.html"><div class="related-card-cat">Digital Forensics</div><div class="related-card-title">How to Analyze Email Headers</div></a>
+<a class="related-card" href="india-data-breach-response.html"><div class="related-card-cat">Incident Response</div><div class="related-card-title">India Data-Breach Response Guide</div></a>
+<a class="related-card" href="how-to-report-cyber-fraud-india-step-by-step.html"><div class="related-card-cat">Cyber Fraud</div><div class="related-card-title">How to Report Cyber Fraud in India</div></a></div></div>
+<div class="entry-footer"><a href="../articles.html">&larr; All Articles</a><a href="../toolkit.html">Open the Toolkit &rarr;</a></div>
+</article></main>
+<footer class="site"><div class="wrap foot"><div><a href="../about.html">About</a><a href="../contact.html">Contact</a><a href="../privacy-policy.html">Privacy Policy</a></div><div>&copy; 2026 IGRS</div></div></footer>
+<script src="../consent.js"></script>
+</body></html>
