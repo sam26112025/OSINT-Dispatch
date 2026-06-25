@@ -1,3 +1,4 @@
 # IGRS - Authorized Digital Sellers (ads.txt)
 # https://igrs.xyz
 google.com, pub-5886568858916800, DIRECT, f08c47fec0942fa0
+# deploy trigger igrs-108
