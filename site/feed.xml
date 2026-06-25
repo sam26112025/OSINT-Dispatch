@@ -5,7 +5,7 @@
 <link>https://igrs.xyz/</link>
 <description>Cybersecurity, OSINT and digital-forensics intelligence for India's frontline defenders — threat intel, investigation playbooks and free tools.</description>
 <language>en-in</language>
-<lastBuildDate>Thu, 25 Jun 2026 05:02:03 +0000</lastBuildDate>
+<lastBuildDate>Thu, 25 Jun 2026 08:14:03 +0000</lastBuildDate>
 <atom:link href="https://igrs.xyz/feed.xml" rel="self" type="application/rss+xml"/>
 <item>
 <title>Digital Evidence in India: How to Preserve It So It Holds Up in Court</title>
@@ -20,6 +20,13 @@
 <guid isPermaLink="true">https://igrs.xyz/articles/trace-phone-number-india-osint.html</guid>
 <pubDate>Wed, 24 Jun 2026 09:00:00 +0530</pubDate>
 <description>What you can — and cannot — legally learn from an Indian phone number using OSINT. A responsible, investigator-focused guide to caller-ID, public records, social-media pivots, the legal process for subscriber data, and the privacy limits that matter.</description>
+</item>
+<item>
+<title>VPNs Explained: How They Work, India&#x27;s CERT-In Rules &amp; the Global Censorship Picture</title>
+<link>https://igrs.xyz/articles/vpn-censorship-india-explained.html</link>
+<guid isPermaLink="true">https://igrs.xyz/articles/vpn-censorship-india-explained.html</guid>
+<pubDate>Mon, 22 Jun 2026 09:00:00 +0530</pubDate>
+<description>A plain-English guide to VPNs: how they actually work, whether they are legal in India, what the CERT-In 2022 directive requires, and where VPNs are restricted around the world — with clear diagrams and no jargon.</description>
 </item>
 <item>
 <title>Quishing: Why QR Code Phishing Is Exploding in India</title>
@@ -209,13 +216,6 @@
 <guid isPermaLink="true">https://igrs.xyz/articles/how-to-trace-fake-whatsapp-number-india.html</guid>
 <pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
 <description>Complete guide to tracing fake WhatsApp numbers in India using OSINT, TAFCOP, Truecaller, and Meta legal process. For investigators and victims of WhatsApp fraud.</description>
-</item>
-<item>
-<title>How to Report Cyber Fraud in India — Complete Step by Step Guide 2026</title>
-<link>https://igrs.xyz/articles/how-to-report-cyber-fraud-india-step-by-step.html</link>
-<guid isPermaLink="true">https://igrs.xyz/articles/how-to-report-cyber-fraud-india-step-by-step.html</guid>
-<pubDate>Sat, 13 Jun 2026 09:00:00 +0530</pubDate>
-<description>Complete guide to reporting cybercrime and cyber fraud in India. Cybercrime helpline 1930, cybercrime.gov.in portal, bank complaint, FIR filing, and what to do immediately after being defrauded.</description>
 </item>
 </channel>
 </rss>
