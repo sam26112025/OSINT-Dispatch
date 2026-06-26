@@ -30,7 +30,10 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <meta property="og:image" content="https://igrs.xyz/og/dns-investigation-osint.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="DNS Investigation: Reading the Internet&#x27;s Phone Book for OSINT Intelligence"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://igrs.xyz/og/dns-investigation-osint.png">
 <meta name="keywords" content="OSINT India, open source intelligence, OSINT tools, cyber investigation India">
-<meta property="og:description" content="DNS records contain significant intelligence about how an organization or threat actor operates online. How to read, analyse, and use them in investigations."></head>
+<meta property="og:description" content="DNS records contain significant intelligence about how an organization or threat actor operates online. How to read, analyse, and use them in investigations."><script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do you investigate a domain using DNS?","acceptedAnswer":{"@type":"Answer","text":"DNS investigation examines A, MX, TXT, NS, and CNAME records, historical DNS data, reverse DNS lookups, and passive DNS databases. Tools like dig, dnsdumpster, SecurityTrails, and VirusTotal reveal infrastructure and related domains."}},{"@type":"Question","name":"What is passive DNS and why is it useful?","acceptedAnswer":{"@type":"Answer","text":"Passive DNS records historical domain-to-IP mappings over time. It is useful for tracking infrastructure changes, finding related malicious domains sharing an IP, and uncovering an attacker's broader footprint even after records change."}},{"@type":"Question","name":"How can DNS records reveal malicious infrastructure?","acceptedAnswer":{"@type":"Answer","text":"Shared IPs, common name servers, similar registration patterns, and matching TXT records can link malicious domains. Pivoting on these data points through passive DNS reveals entire attacker infrastructure networks."}}]}
+</script>
+</head>
 <body>
 <header class="site">
   <div class="wrap">
@@ -74,7 +77,14 @@
     <div class="label">Analyst</div>
     <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
   </div>
-</article>
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item"><div class="faq-q">How do you investigate a domain using DNS?</div><div class="faq-a">DNS investigation examines A, MX, TXT, NS, and CNAME records, historical DNS data, reverse DNS lookups, and passive DNS databases. Tools like dig, dnsdumpster, SecurityTrails, and VirusTotal reveal infrastructure and related domains.</div></div>
+    <div class="faq-item"><div class="faq-q">What is passive DNS and why is it useful?</div><div class="faq-a">Passive DNS records historical domain-to-IP mappings over time. It is useful for tracking infrastructure changes, finding related malicious domains sharing an IP, and uncovering an attacker&#x27;s broader footprint even after records change.</div></div>
+    <div class="faq-item"><div class="faq-q">How can DNS records reveal malicious infrastructure?</div><div class="faq-a">Shared IPs, common name servers, similar registration patterns, and matching TXT records can link malicious domains. Pivoting on these data points through passive DNS reveals entire attacker infrastructure networks.</div></div>
+  </div>
+
+  </article>
 </main>
 <footer class="site">
   <div class="wrap foot">
