@@ -37,6 +37,9 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <meta property="og:image" content="https://igrs.xyz/og/api-security-osint-recon.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="API Security Reconnaissance: How Attackers Map Your APIs Before You Know They Exist"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://igrs.xyz/og/api-security-osint-recon.png">
 <meta name="keywords" content="OSINT India, open source intelligence, OSINT tools, cyber investigation India">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do attackers find exposed APIs through OSINT?","acceptedAnswer":{"@type":"Answer","text":"Attackers discover APIs through Google dorking, GitHub code searches for API keys, Shodan/Censys scans, mobile app reverse engineering, JavaScript file analysis, and API documentation discovery. Exposed endpoints and leaked keys are common findings."}},{"@type":"Question","name":"What are common API security vulnerabilities?","acceptedAnswer":{"@type":"Answer","text":"Common API flaws include broken object level authorization (BOLA), broken authentication, excessive data exposure, lack of rate limiting, mass assignment, and improper inventory management \u2014 as documented in the OWASP API Security Top 10."}},{"@type":"Question","name":"How can you protect APIs from OSINT-based attacks?","acceptedAnswer":{"@type":"Answer","text":"Protect APIs by removing keys from client-side code, rotating exposed credentials, implementing rate limiting, using API gateways, enforcing strong authentication, monitoring for leaked keys on GitHub, and maintaining an accurate API inventory."}}]}
+</script>
 </head>
 <body>
 <header class="site">
@@ -73,7 +76,14 @@
     <div class="label">Analyst</div>
     <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
   </div>
-</article>
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item"><div class="faq-q">How do attackers find exposed APIs through OSINT?</div><div class="faq-a">Attackers discover APIs through Google dorking, GitHub code searches for API keys, Shodan/Censys scans, mobile app reverse engineering, JavaScript file analysis, and API documentation discovery. Exposed endpoints and leaked keys are common findings.</div></div>
+    <div class="faq-item"><div class="faq-q">What are common API security vulnerabilities?</div><div class="faq-a">Common API flaws include broken object level authorization (BOLA), broken authentication, excessive data exposure, lack of rate limiting, mass assignment, and improper inventory management — as documented in the OWASP API Security Top 10.</div></div>
+    <div class="faq-item"><div class="faq-q">How can you protect APIs from OSINT-based attacks?</div><div class="faq-a">Protect APIs by removing keys from client-side code, rotating exposed credentials, implementing rate limiting, using API gateways, enforcing strong authentication, monitoring for leaked keys on GitHub, and maintaining an accurate API inventory.</div></div>
+  </div>
+
+  </article>
 </main>
 <footer class="site">
   <div class="wrap foot">
