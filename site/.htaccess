@@ -21,6 +21,15 @@ RewriteRule ^index\.html$ / [R=301,L]
 # Prevent directory listing
 Options -Indexes
 
+# === 301 Redirects (replaced HTML meta-refresh stubs) ===
+Redirect 301 /live.html /
+Redirect 301 /news.html https://thehackernews.com
+Redirect 301 /lookup.html https://www.virustotal.com
+Redirect 301 /threatmap.html https://feodotracker.abuse.ch
+Redirect 301 /cve-live.html /cve-tracker.html
+Redirect 301 /articles/igrs-108-vpn-jk-pok-intelligence-brief.html /articles/vpn-censorship-india-explained.html
+
+
 # Protect sensitive files
 <FilesMatch "\.(env|git|log|sql|bak)$">
     Order allow,deny
