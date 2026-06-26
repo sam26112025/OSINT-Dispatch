@@ -30,7 +30,10 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <meta property="og:image" content="https://igrs.xyz/og/browser-forensics-investigation.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Browser Forensics: What Chrome, Firefox, and Edge Leave Behind"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://igrs.xyz/og/browser-forensics-investigation.png">
 <meta name="keywords" content="digital forensics India, mobile forensics, DFIR India, forensic investigation">
-<meta property="og:description" content="Web browsers accumulate rich evidence of online activity — history, downloads, saved passwords, cached content, and session data. How investigators extract and use it."></head>
+<meta property="og:description" content="Web browsers accumulate rich evidence of online activity — history, downloads, saved passwords, cached content, and session data. How investigators extract and use it."><script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What evidence can be recovered from browser forensics?","acceptedAnswer":{"@type":"Answer","text":"Browser forensics recovers browsing history, cached files, cookies, saved passwords, autofill data, downloads, bookmarks, search terms, and session data. Even deleted history can often be recovered from SQLite databases and unallocated space."}},{"@type":"Question","name":"Where does Chrome store browsing data for forensics?","acceptedAnswer":{"@type":"Answer","text":"Chrome stores data in SQLite databases under the user profile folder \u2014 History, Cookies, Login Data, Web Data files. On Windows these are in AppData/Local/Google/Chrome/User Data/Default. Tools like DB Browser for SQLite can parse them."}},{"@type":"Question","name":"Can incognito or private browsing be recovered?","acceptedAnswer":{"@type":"Answer","text":"Incognito sessions leave minimal disk traces but can sometimes be recovered from RAM, DNS cache, or pagefile if the system is analyzed before reboot. Network-level logs and DNS queries may also reveal private browsing activity."}}]}
+</script>
+</head>
 <body>
 <header class="site">
   <div class="wrap">
@@ -74,7 +77,14 @@
     <div class="label">Analyst</div>
     <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
   </div>
-</article>
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item"><div class="faq-q">What evidence can be recovered from browser forensics?</div><div class="faq-a">Browser forensics recovers browsing history, cached files, cookies, saved passwords, autofill data, downloads, bookmarks, search terms, and session data. Even deleted history can often be recovered from SQLite databases and unallocated space.</div></div>
+    <div class="faq-item"><div class="faq-q">Where does Chrome store browsing data for forensics?</div><div class="faq-a">Chrome stores data in SQLite databases under the user profile folder — History, Cookies, Login Data, Web Data files. On Windows these are in AppData/Local/Google/Chrome/User Data/Default. Tools like DB Browser for SQLite can parse them.</div></div>
+    <div class="faq-item"><div class="faq-q">Can incognito or private browsing be recovered?</div><div class="faq-a">Incognito sessions leave minimal disk traces but can sometimes be recovered from RAM, DNS cache, or pagefile if the system is analyzed before reboot. Network-level logs and DNS queries may also reveal private browsing activity.</div></div>
+  </div>
+
+  </article>
 </main>
 <footer class="site">
   <div class="wrap foot">
