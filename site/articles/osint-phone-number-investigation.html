@@ -60,23 +60,62 @@
       <tr><td>Category</td><td>OSINT Fundamentals</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-04-30</td></tr>
-      <tr><td>Reading time</td><td>6 minutes</td></tr>
+      <tr><td>Reading time</td><td>11 minutes</td></tr>
     </table>
   </div>
   <p class="lead">A mobile number is one of the most information-rich identifiers in an investigation. What can be determined from open sources, what requires legal process, and what the limits are.</p>
-  <h2>The investigative value of a phone number</h2>
-<p>In India, mobile numbers are linked to Aadhaar, bank accounts, UPI, government portals, social media, delivery services, and professional directories. A mobile number is often the starting point for a comprehensive subject profile. However, investigation sources divide sharply: public (no legal process needed) and restricted (requires legal authority).</p>
-<h2>Open-source investigation of phone numbers</h2>
-<p>Available without legal process: Caller-ID databases — Truecaller being dominant in India — aggregate crowd-sourced contact book entries to associate names with numbers. Not authoritative, but provides a starting point. Social media search: most platforms allow search by phone number or display numbers on profile pages. Breach data: paste sites and breach dumps often contain numbers with associated email addresses, revealing linked accounts. Business directories (Just Dial, India Mart) list contact numbers associated with business names and addresses.</p>
-<h2>Truecaller intelligence</h2>
-<p>Beyond name association, Truecaller reveals the carrier (narrowing geography), account type (business vs personal), and spam report count and category. A number heavily reported as "bank fraud" or "telecom scam" provides investigative context even when the subscriber's identity is protected. The spam report count and recency indicate active vs dormant use.</p>
-<h2>What requires legal process</h2>
-<p>Subscriber identity — the name and address of the person to whom a number is registered — requires a Section 91 BNSS notice to the relevant operator (Jio, Airtel, Vi, BSNL). Call detail records (CDR) — all calls made and received, duration, approximate tower location — require a separate court order or Section 92 BNSS authorization.</p>
-<div class="callout">CDR authorization is separate from subscriber KYC. An officer who has obtained subscriber KYC through Section 91 must obtain separate authority before obtaining CDR. Conflating the two is a procedural error affecting the admissibility of both.</div>
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
-  </div>
+  <h2>Why a Phone Number Is a Powerful Investigative Lead</h2>
+<p>In India, the mobile phone number is one of the most valuable starting points in any investigation. It is linked to Aadhaar through SIM registration, tied to bank accounts and UPI handles, used for OTP authentication across services, and connected to social media and messaging profiles. A single phone number, properly worked, can unlock identity, location patterns, financial connections, and social networks. This guide covers the complete lawful methodology for phone number OSINT in the Indian context.</p>
+
+<h2>Stage One: Open-Source Phone Number Investigation</h2>
+<p>The first stage uses freely available tools and requires no legal process. These techniques establish a preliminary identity picture before any formal request:</p>
+<table>
+<tr><th>Technique</th><th>Tool / Method</th><th>Intelligence Yield</th></tr>
+<tr><td>Caller ID lookup</td><td>Truecaller, Eyecon, Sync.me</td><td>Registered name, spam reports</td></tr>
+<tr><td>Messaging app check</td><td>WhatsApp, Telegram, Signal</td><td>Profile photo, about text, activity</td></tr>
+<tr><td>Payment app probe</td><td>UPI Rs 1 request</td><td>Bank account holder name</td></tr>
+<tr><td>Search engine</td><td>Google with number in quotes</td><td>Listings, ads, leaked databases</td></tr>
+<tr><td>Social media</td><td>Facebook, Instagram contact sync</td><td>Linked profiles</td></tr>
+</table>
+<p>A disciplined investigator runs all of these in sequence, because each tool sees a different slice of the number's footprint. Truecaller may show one name while a UPI probe reveals another — discrepancies themselves are intelligence.</p>
+
+<h2>Truecaller and Crowd-Sourced Caller ID Intelligence</h2>
+<p>Truecaller deserves special attention because it is the most comprehensive caller-ID database for Indian numbers. Built from crowdsourced contact data, it can reveal how a number is saved across many users' phonebooks — sometimes exposing a name the owner never intended to make public.</p>
+<p>However, investigators must treat Truecaller data critically. Names can be outdated, spoofed, or reflect a previous owner of a recycled number. Truecaller intelligence is a lead, not proof. It should always be corroborated through additional sources before being relied upon in a case.</p>
+
+<h2>SIM Registration Intelligence via TAFCOP</h2>
+<p>The Department of Telecommunications' TAFCOP portal (sancharsaathi.gov.in) is a critical free resource. While the public portal lets individuals check SIMs on their own number, the principle behind it is central to phone investigations: every legitimate SIM is tied to an Aadhaar, and the number of SIMs per Aadhaar is capped.</p>
+<p>A suspect number registered on an Aadhaar that holds many SIMs is a strong indicator of a mule or fraud operation. For law enforcement, the enhanced DoT portal provides Aadhaar-linked SIM data, subject to proper authorization at the appropriate rank.</p>
+
+<h2>Stage Two: What Requires Legal Process</h2>
+<p>Beyond open-source techniques, the most powerful phone intelligence requires lawful authority. These are not accessible through OSINT and demand proper legal process under the BNSS:</p>
+<table>
+<tr><th>Data Type</th><th>Source</th><th>Legal Basis</th></tr>
+<tr><td>Subscriber details (CAF)</td><td>Telecom operator</td><td>Section 94 BNSS notice</td></tr>
+<tr><td>Call Detail Records (CDR)</td><td>Telecom operator</td><td>Authorized LEA request</td></tr>
+<tr><td>Tower dump / location</td><td>Telecom operator</td><td>Authorized request with justification</td></tr>
+<tr><td>IPDR (data sessions)</td><td>Telecom operator</td><td>LEA request</td></tr>
+</table>
+<p>CDR analysis is particularly powerful — it reveals the suspect's contact network, frequently-called numbers, call timing patterns, and approximate location through cell tower data. Mapping a CDR often exposes the broader criminal network around a single suspect.</p>
+
+<h2>Correlating Phone Numbers Across Identities</h2>
+<p>The real skill in phone OSINT is correlation. A number discovered in one context (a fraud complaint) can be cross-referenced against social media, messaging apps, payment platforms, and breach databases to build a unified identity profile. When the same number appears across a fake job advertisement, a Telegram fraud channel, and a mule account, the investigator has connected disparate cases into a single network.</p>
+
+<h2>The Limits and Pitfalls of Phone Investigation</h2>
+<p>Phone OSINT has important limitations that investigators must respect:</p>
+<ul>
+<li><strong>VoIP and virtual numbers</strong> (from internet services) often lack CDR and Aadhaar linkage in India, breaking the traceability chain.</li>
+<li><strong>Recycled numbers</strong> may show data belonging to a previous owner, leading to misattribution.</li>
+<li><strong>Spoofed caller ID</strong> can make a call appear to come from a number the suspect does not control.</li>
+<li><strong>International numbers</strong> require MLAT processes, which are slow and complex.</li>
+</ul>
+<p>An investigator who treats every data point as definitive will make errors. The discipline is to weigh each source, corroborate across multiple channels, and clearly distinguish open-source leads from legally-obtained evidence.</p>
+
+<h2>Legal and Privacy Framework</h2>
+<p>Phone number investigation in India operates within the IT Act, the Telegraph Act, and the DPDP Act 2026. Open-source lookups of publicly available information are generally permissible, but accessing subscriber data, CDR, or location requires lawful authority and documented purpose. Unauthorized access to telecom data can attract penalties, and personal data gathered must be handled in line with data protection obligations. Every phone investigation conducted officially should rest on a clear legal basis and be documented to withstand judicial scrutiny.</p>
+
+<h2>Building a Phone Investigation Workflow</h2>
+<p>The effective workflow moves from least intrusive to most: begin with open-source caller ID and messaging app checks, enrich through payment and social media probes, escalate to TAFCOP and breach-database correlation, and only then move to legally-authorized CDR and subscriber requests. Document each step, preserve screenshots with timestamps and hashes, and maintain chain of custody for anything destined for court. The IGRS Dashboard at igrs.xyz/dashboard.html supports this workflow with quick lookups and India-specific references, helping investigators move efficiently from a bare number to a corroborated identity.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">How do you investigate a phone number using OSINT?</div><div class="faq-a">Investigate phone numbers using Truecaller, TAFCOP for SIM data, social media searches, messaging app lookups (WhatsApp, Telegram), payment app name reveals, and Google searches. Each reveals different identity attributes.</div></div>
