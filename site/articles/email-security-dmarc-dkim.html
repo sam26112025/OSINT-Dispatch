@@ -30,7 +30,10 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <meta property="og:image" content="https://igrs.xyz/og/email-security-dmarc-dkim.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Email Authentication: Implementing SPF, DKIM and DMARC to Stop Domain Spoofing"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://igrs.xyz/og/email-security-dmarc-dkim.png">
 <meta name="keywords" content="cybersecurity India, OSINT, digital forensics, threat intelligence, cyber law India">
-<meta property="og:description" content="Spoofing your organization&amp;#x27;s email domain is trivially easy without authentication controls. SPF, DKIM, and DMARC together stop it. Implementation guide for Indian IT teams."></head>
+<meta property="og:description" content="Spoofing your organization&amp;#x27;s email domain is trivially easy without authentication controls. SPF, DKIM, and DMARC together stop it. Implementation guide for Indian IT teams."><script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What are SPF, DKIM, and DMARC?","acceptedAnswer":{"@type":"Answer","text":"SPF lists authorized sending servers for a domain, DKIM adds a cryptographic signature verifying integrity, and DMARC sets policy for handling failures and provides reporting. Together they prevent email spoofing and phishing."}},{"@type":"Question","name":"How do I set up DMARC for my domain?","acceptedAnswer":{"@type":"Answer","text":"Publish a DMARC TXT record at _dmarc.yourdomain.com, starting with p=none for monitoring, then progress to p=quarantine and p=reject. Configure SPF and DKIM first, monitor aggregate reports, then tighten the policy."}},{"@type":"Question","name":"Why is DMARC important for organizations?","acceptedAnswer":{"@type":"Answer","text":"DMARC prevents attackers from spoofing your domain in phishing emails, protects brand reputation, improves email deliverability, and provides visibility into who is sending email using your domain through aggregate reports."}}]}
+</script>
+</head>
 <body>
 <header class="site">
   <div class="wrap">
@@ -74,7 +77,14 @@
     <div class="label">Analyst</div>
     <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
   </div>
-</article>
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item"><div class="faq-q">What are SPF, DKIM, and DMARC?</div><div class="faq-a">SPF lists authorized sending servers for a domain, DKIM adds a cryptographic signature verifying integrity, and DMARC sets policy for handling failures and provides reporting. Together they prevent email spoofing and phishing.</div></div>
+    <div class="faq-item"><div class="faq-q">How do I set up DMARC for my domain?</div><div class="faq-a">Publish a DMARC TXT record at _dmarc.yourdomain.com, starting with p=none for monitoring, then progress to p=quarantine and p=reject. Configure SPF and DKIM first, monitor aggregate reports, then tighten the policy.</div></div>
+    <div class="faq-item"><div class="faq-q">Why is DMARC important for organizations?</div><div class="faq-a">DMARC prevents attackers from spoofing your domain in phishing emails, protects brand reputation, improves email deliverability, and provides visibility into who is sending email using your domain through aggregate reports.</div></div>
+  </div>
+
+  </article>
 </main>
 <footer class="site">
   <div class="wrap foot">
