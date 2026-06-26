@@ -28,7 +28,7 @@
 {"@context":"https://schema.org","@type":"Article","headline":"Free OSINT Tools for Indian Investigators 2026 — Complete Directory","description":"Comprehensive list of free OSINT tools for Indian investigators. Phone lookup, Aadhaar verification, GST search, company check, court records, domain analysis — all free.",
 "author":{"@type":"Person","name":"Manuj Kumar Pandey","url":"https://igrs.xyz/about.html"},
 "publisher":{"@type":"Organization","name":"IGRS","url":"https://igrs.xyz","logo":{"@type":"ImageObject","url":"https://igrs.xyz/logo.svg"}},
-"url":"https://igrs.xyz/articles/free-osint-tools-india-2026.html","datePublished":"2026-06-13","dateModified":"2026-06-13",
+"url":"https://igrs.xyz/articles/free-osint-tools-india-2026.html","datePublished":"2026-06-13","dateModified":"2026-06-14",
 "mainEntityOfPage":{"@type":"WebPage","@id":"https://igrs.xyz/articles/free-osint-tools-india-2026.html"}}
 </script>
 <script type="application/ld+json">
@@ -63,57 +63,85 @@
     <div class="entry-meta"><span class="category">OSINT</span><span class="date">13 June 2026</span><span class="author">Manuj Kumar Pandey</span></div>
     <div class="entry-hero"><img src="../og/free-osint-tools-india-2026.png" width="1200" height="630" alt="Free OSINT Tools for Indian Investigators 2026 — Complete Directory" fetchpriority="high"></div>
 <h1>Free OSINT Tools for Indian Investigators 2026 — Complete Directory</h1>
-    <p>India has a rich ecosystem of free investigative tools — many government portals provide data that costs thousands of dollars to access in other countries. This directory covers the best free OSINT resources for Indian investigators, organized by category.</p>
+  <h2>Why Free OSINT Tools Matter for Indian Investigators</h2>
+<p>India occupies a unique position in the open-source intelligence landscape. The government has digitised an enormous range of public records — company filings, GST registrations, court cases, vehicle registrations, telecom data — and made much of it freely searchable. For investigators, cyber cells, journalists, and corporate due-diligence teams, this means a wealth of intelligence is available without expensive commercial subscriptions. The challenge is knowing which tool to use for which question. This guide maps the complete free OSINT toolkit for the Indian context.</p>
 
-<h2>Phone Number Intelligence (Free)</h2>
-<table style="width:100%;border-collapse:collapse;margin:16px 0;">
-  <tr style="background:rgba(0,212,255,.08);"><th style="padding:8px;border:1px solid #0e3a5c;">Tool</th><th style="padding:8px;border:1px solid #0e3a5c;">URL</th><th style="padding:8px;border:1px solid #0e3a5c;">What It Reveals</th></tr>
-  <tr><td style="padding:8px;border:1px solid #0e3a5c;">Truecaller</td><td style="padding:8px;border:1px solid #0e3a5c;">truecaller.com</td><td style="padding:8px;border:1px solid #0e3a5c;">Registered name, spam score, location</td></tr>
-  <tr><td style="padding:8px;border:1px solid #0e3a5c;">TAFCOP</td><td style="padding:8px;border:1px solid #0e3a5c;">sancharsaathi.gov.in</td><td style="padding:8px;border:1px solid #0e3a5c;">SIM count on Aadhaar</td></tr>
-  <tr><td style="padding:8px;border:1px solid #0e3a5c;">CEIR</td><td style="padding:8px;border:1px solid #0e3a5c;">ceir.gov.in</td><td style="padding:8px;border:1px solid #0e3a5c;">Device IMEI status</td></tr>
-  <tr><td style="padding:8px;border:1px solid #0e3a5c;">Epieos</td><td style="padding:8px;border:1px solid #0e3a5c;">epieos.com</td><td style="padding:8px;border:1px solid #0e3a5c;">Email/phone to social media</td></tr>
+<h2>Phone Number Intelligence Tools (Free)</h2>
+<p>The phone number is often the starting point of an Indian investigation, and several free tools extract intelligence from it:</p>
+<table>
+<tr><th>Tool</th><th>URL</th><th>What It Reveals</th></tr>
+<tr><td>Truecaller</td><td>truecaller.com</td><td>Registered name, spam score, location hints</td></tr>
+<tr><td>TAFCOP</td><td>sancharsaathi.gov.in</td><td>Number of SIMs registered on an Aadhaar</td></tr>
+<tr><td>CEIR</td><td>ceir.gov.in</td><td>Device IMEI status (lost/blocked)</td></tr>
+<tr><td>Eyecon / Sync.me</td><td>app-based</td><td>Caller ID and social linkage</td></tr>
+<tr><td>WhatsApp / Telegram</td><td>app</td><td>Profile photo, about, last seen patterns</td></tr>
+</table>
+<p>A practical tip: send a Rs 1 payment request via a UPI app to a suspect number — the registered account holder name is often revealed in the request screen, a powerful free attribution technique.</p>
+
+<h2>Corporate and Business Intelligence Tools (Free)</h2>
+<p>India's corporate transparency portals are among the richest free OSINT sources anywhere. They reveal company ownership, directors, financial filings, and trade activity:</p>
+<table>
+<tr><th>Tool</th><th>URL</th><th>Data Available</th></tr>
+<tr><td>MCA21</td><td>mca.gov.in</td><td>Company registration, directors, charges, filings</td></tr>
+<tr><td>GST Search</td><td>gst.gov.in</td><td>GSTIN verification, legal name, state, status</td></tr>
+<tr><td>Zauba</td><td>zauba.com</td><td>Import/export shipment data</td></tr>
+<tr><td>SEBI</td><td>sebi.gov.in</td><td>Market filings, registered intermediaries</td></tr>
+<tr><td>IRDAI</td><td>irdai.gov.in</td><td>Insurance entity verification</td></tr>
+<tr><td>EPFO</td><td>epfindia.gov.in</td><td>Employee provident fund establishment data</td></tr>
+</table>
+<p>Cross-referencing MCA21 directors against multiple companies is a classic technique for detecting shell company networks — the same individuals appearing as directors across dozens of dormant entities is a strong fraud indicator.</p>
+
+<h2>Domain, IP and Website Intelligence (Free)</h2>
+<p>For investigating phishing sites, fraudulent platforms, and malicious infrastructure, these free tools are indispensable:</p>
+<table>
+<tr><th>Tool</th><th>URL</th><th>Purpose</th></tr>
+<tr><td>VirusTotal</td><td>virustotal.com</td><td>URL/domain/IP/file malware reputation</td></tr>
+<tr><td>Shodan</td><td>shodan.io</td><td>Open ports, exposed services, server banners</td></tr>
+<tr><td>URLScan</td><td>urlscan.io</td><td>Website screenshot, resources, redirects</td></tr>
+<tr><td>crt.sh</td><td>crt.sh</td><td>SSL certificate logs, subdomain discovery</td></tr>
+<tr><td>DNSDumpster</td><td>dnsdumpster.com</td><td>DNS records and infrastructure mapping</td></tr>
+<tr><td>Web-Check</td><td>check.igrs.xyz</td><td>33+ checks: SSL, DNS, headers, ports in one scan</td></tr>
 </table>
 
-<h2>Corporate & Business Intelligence (Free)</h2>
-<table style="width:100%;border-collapse:collapse;margin:16px 0;">
-  <tr style="background:rgba(0,212,255,.08);"><th style="padding:8px;border:1px solid #0e3a5c;">Tool</th><th style="padding:8px;border:1px solid #0e3a5c;">URL</th><th style="padding:8px;border:1px solid #0e3a5c;">Data Available</th></tr>
-  <tr><td style="padding:8px;border:1px solid #0e3a5c;">MCA21</td><td style="padding:8px;border:1px solid #0e3a5c;">mca.gov.in</td><td style="padding:8px;border:1px solid #0e3a5c;">Company registration, directors, financials</td></tr>
-  <tr><td style="padding:8px;border:1px solid #0e3a5c;">GST Search</td><td style="padding:8px;border:1px solid #0e3a5c;">gst.gov.in/searchTaxpayer</td><td style="padding:8px;border:1px solid #0e3a5c;">GSTIN verification, business name, state</td></tr>
-  <tr><td style="padding:8px;border:1px solid #0e3a5c;">Zauba</td><td style="padding:8px;border:1px solid #0e3a5c;">zauba.com</td><td style="padding:8px;border:1px solid #0e3a5c;">Import/export data, company info</td></tr>
-  <tr><td style="padding:8px;border:1px solid #0e3a5c;">SEBI</td><td style="padding:8px;border:1px solid #0e3a5c;">sebi.gov.in</td><td style="padding:8px;border:1px solid #0e3a5c;">Stock market filings, investor complaints</td></tr>
-  <tr><td style="padding:8px;border:1px solid #0e3a5c;">IRDAI</td><td style="padding:8px;border:1px solid #0e3a5c;">irdai.gov.in</td><td style="padding:8px;border:1px solid #0e3a5c;">Insurance company verification</td></tr>
+<h2>Court and Legal Records (Free)</h2>
+<p>Verifying litigation history and criminal records is a core part of due diligence and investigation in India:</p>
+<table>
+<tr><th>Portal</th><th>URL</th><th>Records</th></tr>
+<tr><td>eCourts</td><td>ecourts.gov.in</td><td>District and High Court case status</td></tr>
+<tr><td>Supreme Court</td><td>sci.gov.in</td><td>SC case status and judgments</td></tr>
+<tr><td>NCRB</td><td>ncrb.gov.in</td><td>Crime statistics, missing persons</td></tr>
+<tr><td>NJDG</td><td>njdg.ecourts.gov.in</td><td>National Judicial Data Grid</td></tr>
 </table>
 
-<h2>Domain & IP Intelligence (Free)</h2>
-<table style="width:100%;border-collapse:collapse;margin:16px 0;">
-  <tr style="background:rgba(0,212,255,.08);"><th style="padding:8px;border:1px solid #0e3a5c;">Tool</th><th style="padding:8px;border:1px solid #0e3a5c;">URL</th><th style="padding:8px;border:1px solid #0e3a5c;">Purpose</th></tr>
-  <tr><td style="padding:8px;border:1px solid #0e3a5c;">VirusTotal</td><td style="padding:8px;border:1px solid #0e3a5c;">virustotal.com</td><td style="padding:8px;border:1px solid #0e3a5c;">URL/domain/IP/hash malware scan</td></tr>
-  <tr><td style="padding:8px;border:1px solid #0e3a5c;">Shodan</td><td style="padding:8px;border:1px solid #0e3a5c;">shodan.io</td><td style="padding:8px;border:1px solid #0e3a5c;">Open ports, server info, vulnerabilities</td></tr>
-  <tr><td style="padding:8px;border:1px solid #0e3a5c;">URLScan</td><td style="padding:8px;border:1px solid #0e3a5c;">urlscan.io</td><td style="padding:8px;border:1px solid #0e3a5c;">Website screenshot, links, cookies</td></tr>
-  <tr><td style="padding:8px;border:1px solid #0e3a5c;">crt.sh</td><td style="padding:8px;border:1px solid #0e3a5c;">crt.sh</td><td style="padding:8px;border:1px solid #0e3a5c;">SSL certificates, subdomain discovery</td></tr>
-  <tr><td style="padding:8px;border:1px solid #0e3a5c;">Web-Check</td><td style="padding:8px;border:1px solid #0e3a5c;">check.igrs.xyz</td><td style="padding:8px;border:1px solid #0e3a5c;">33+ checks: SSL, DNS, headers, ports</td></tr>
-</table>
-
-<h2>Court & Legal Records (Free)</h2>
-<table style="width:100%;border-collapse:collapse;margin:16px 0;">
-  <tr style="background:rgba(0,212,255,.08);"><th style="padding:8px;border:1px solid #0e3a5c;">Portal</th><th style="padding:8px;border:1px solid #0e3a5c;">URL</th><th style="padding:8px;border:1px solid #0e3a5c;">Records</th></tr>
-  <tr><td style="padding:8px;border:1px solid #0e3a5c;">eCourts</td><td style="padding:8px;border:1px solid #0e3a5c;">ecourts.gov.in</td><td style="padding:8px;border:1px solid #0e3a5c;">District/High Court case status</td></tr>
-  <tr><td style="padding:8px;border:1px solid #0e3a5c;">Supreme Court</td><td style="padding:8px;border:1px solid #0e3a5c;">sci.gov.in</td><td style="padding:8px;border:1px solid #0e3a5c;">SC case status and orders</td></tr>
-  <tr><td style="padding:8px;border:1px solid #0e3a5c;">NCRB</td><td style="padding:8px;border:1px solid #0e3a5c;">ncrb.gov.in</td><td style="padding:8px;border:1px solid #0e3a5c;">Crime statistics, wanted persons</td></tr>
-</table>
-
-<h2>Social Media OSINT (Free)</h2>
+<h2>Social Media OSINT Tools (Free)</h2>
+<p>Social platforms remain a primary intelligence source. These free tools help investigators extract maximum value:</p>
 <ul>
-  <li><strong>Social Searcher</strong> (social-searcher.com) — monitor mentions across platforms</li>
-  <li><strong>Whopostedwhat.com</strong> — Facebook post search by keyword</li>
-  <li><strong>Twitter Advanced Search</strong> — search tweets by phone, email, location</li>
-  <li><strong>Botometer</strong> — check if Twitter account is a bot</li>
-  <li><strong>InVID/WeVerify</strong> — video verification and reverse search</li>
+<li><strong>Sherlock / WhatsMyName:</strong> Hunt a username across hundreds of platforms simultaneously</li>
+<li><strong>Social Searcher:</strong> Monitor mentions and keywords across networks</li>
+<li><strong>Whopostedwhat.com:</strong> Keyword and date-based Facebook post search</li>
+<li><strong>Twitter/X Advanced Search:</strong> Filter by date, location (geocode), and keywords</li>
+<li><strong>InVID / WeVerify:</strong> Video verification and frame-level reverse search</li>
+<li><strong>ExifTool:</strong> Extract metadata from images (where not stripped)</li>
 </ul>
 
-<h2>IGRS Free Tools</h2>
-<p>The IGRS Intelligence Dashboard (igrs.xyz/dashboard.html) provides a unified free interface with quick access to 16 investigation tools, IOC lookup, hash generator, CIDR calculator, India quick references, and dork builder — all without login or API keys.</p>
-    <div class="faq-section">
+<h2>Image and Geolocation Tools (Free)</h2>
+<p>Verifying and locating images is increasingly central to OSINT, especially for countering misinformation:</p>
+<table>
+<tr><th>Tool</th><th>Best For</th></tr>
+<tr><td>Yandex Images</td><td>Faces, landmarks, location matching (often best for India)</td></tr>
+<tr><td>Google Lens / Images</td><td>General objects and text recognition</td></tr>
+<tr><td>TinEye</td><td>Finding the oldest instance of an image</td></tr>
+<tr><td>SunCalc</td><td>Shadow analysis for time and direction</td></tr>
+<tr><td>Google Earth / Street View</td><td>Visual confirmation against satellite and street imagery</td></tr>
+</table>
+
+<h2>Building a Free OSINT Workflow</h2>
+<p>Owning a list of tools is not the same as having a methodology. The investigators who get results follow a structured workflow: start with the seed data point (a phone number, name, domain, or image), enrich it through the relevant free tools, pivot on every new data point discovered, and document the chain of evidence as they go. The IGRS Intelligence Dashboard at igrs.xyz/dashboard.html unifies many of these lookups into a single free interface — IOC detection, hash generation, India quick references, and direct tool launchers — reducing the friction of switching between fifteen browser tabs.</p>
+<p>The key advantage of mastering free OSINT tools in India is not cost savings alone; it is the speed and self-sufficiency of being able to extract court-grade intelligence from public sources without waiting on commercial subscriptions or third-party vendors. For frontline investigators, that independence is often the difference between a case that moves and one that stalls.</p>
+
+<h2>Legal and Ethical Boundaries</h2>
+<p>Free does not mean unrestricted. Indian investigators must operate within the boundaries of the IT Act, the DPDP Act 2026, and the principle of proportionality. Accessing public records is legal; using deception that breaches law, accessing private systems without authority, or aggregating personal data beyond a legitimate purpose can cross into illegality. Every OSINT action taken for an official investigation should have a documented lawful purpose, and personal data must be handled in line with data protection obligations. Responsible OSINT is both more ethical and more legally robust when the evidence reaches court.</p>
+  <div class="faq-section">
       <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">What are the best free OSINT tools for India?</div><div class="faq-a">Best free OSINT tools for India include TAFCOP (SIM verification), MCA21 (company data), GST Search (business verification), eCourts (court records), Truecaller (phone lookup), VirusTotal (URL/IP checking), and the IGRS Intelligence Dashboard at igrs.xyz/dashboard.html.</div></div>
     <div class="faq-item"><div class="faq-q">How can I verify a business in India for free?</div><div class="faq-a">Visit MCA21 (mca.gov.in) for company registration and director details, GST Search (gst.gov.in) for GSTIN verification, and Zauba (zauba.com) for import/export data. All are free and require no registration.</div></div>
