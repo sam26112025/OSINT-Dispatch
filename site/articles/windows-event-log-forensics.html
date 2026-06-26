@@ -30,7 +30,10 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <meta property="og:image" content="https://igrs.xyz/og/windows-event-log-forensics.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Windows Event Log Forensics: The Critical Events Every Investigator Must Know"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://igrs.xyz/og/windows-event-log-forensics.png">
 <meta name="keywords" content="digital forensics India, mobile forensics, DFIR India, forensic investigation">
-<meta property="og:description" content="Windows Event Logs record virtually every significant action on a Windows system. Knowing which events matter — and reading them correctly — is a core DFIR skill."></head>
+<meta property="og:description" content="Windows Event Logs record virtually every significant action on a Windows system. Knowing which events matter — and reading them correctly — is a core DFIR skill."><script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What are Windows event logs used for in forensics?","acceptedAnswer":{"@type":"Answer","text":"Windows event logs record system, security, and application events crucial for forensics \u2014 logons (4624), failed logons (4625), process creation, account changes, and service installs. They reconstruct attacker activity and timelines."}},{"@type":"Question","name":"Which Windows event IDs are important for investigations?","acceptedAnswer":{"@type":"Answer","text":"Key event IDs include 4624 (logon), 4625 (failed logon), 4634 (logoff), 4648 (explicit credential logon), 4688 (process creation), 4720 (account created), and 7045 (service installed) \u2014 all valuable for tracing intrusions."}},{"@type":"Question","name":"How long are Windows event logs retained?","acceptedAnswer":{"@type":"Answer","text":"Windows event log retention depends on configuration and log size limits \u2014 defaults may overwrite within days on busy systems. For forensics, organizations should forward logs to a SIEM for long-term retention beyond local limits."}}]}
+</script>
+</head>
 <body>
 <header class="site">
   <div class="wrap">
@@ -72,7 +75,14 @@
     <div class="label">Analyst</div>
     <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
   </div>
-</article>
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item"><div class="faq-q">What are Windows event logs used for in forensics?</div><div class="faq-a">Windows event logs record system, security, and application events crucial for forensics — logons (4624), failed logons (4625), process creation, account changes, and service installs. They reconstruct attacker activity and timelines.</div></div>
+    <div class="faq-item"><div class="faq-q">Which Windows event IDs are important for investigations?</div><div class="faq-a">Key event IDs include 4624 (logon), 4625 (failed logon), 4634 (logoff), 4648 (explicit credential logon), 4688 (process creation), 4720 (account created), and 7045 (service installed) — all valuable for tracing intrusions.</div></div>
+    <div class="faq-item"><div class="faq-q">How long are Windows event logs retained?</div><div class="faq-a">Windows event log retention depends on configuration and log size limits — defaults may overwrite within days on busy systems. For forensics, organizations should forward logs to a SIEM for long-term retention beyond local limits.</div></div>
+  </div>
+
+  </article>
 </main>
 <footer class="site">
   <div class="wrap foot">
