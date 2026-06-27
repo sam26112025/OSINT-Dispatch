@@ -28,7 +28,7 @@
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article","headline":"Aadhaar in Investigations: What OSINT Can Legally Access and What It Cannot",
-"description":"Aadhaar data is central to Indian identity — but strict legal protections govern how it can be accessed and used in investigations. Where the lines are, and what happens when they are crossed.","datePublished":"2026-04-23","dateModified":"2026-04-23",
+"description":"Aadhaar data is central to Indian identity — but strict legal protections govern how it can be accessed and used in investigations. Where the lines are, and what happens when they are crossed.","datePublished":"2026-04-23","dateModified":"2026-06-14",
 "author":{"@type":"Person","name":"Manuj Kumar Pandey"},
 "publisher":{"@type":"Organization","name":"IGRS"},
 "mainEntityOfPage":"https://igrs.xyz/articles/aadhaar-osint-legal-limits.html"}
@@ -67,15 +67,74 @@
       <tr><td>Category</td><td>Law & Evidence</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-04-23</td></tr>
-      <tr><td>Reading time</td><td>6 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">Aadhaar data is central to Indian identity — but strict legal protections govern how it can be accessed and used in investigations. Where the lines are, and what happens when they are crossed.</p>
-  <h2>Why Aadhaar matters in investigations</h2><p>With over 1.3 billion enrolments, Aadhaar is India's most comprehensive identity infrastructure. Its linkage to bank accounts, mobile numbers, government benefits, and increasingly private services means that Aadhaar data — when available — can anchor identity verification across an entire investigation. However, the Aadhaar Act, 2016 and its 2019 amendments impose strict legal constraints on who can access Aadhaar information and how, making this one of the most legally fraught areas of Indian investigative practice.</p><h2>What the law prohibits</h2><p>Section 29 of the Aadhaar Act is the critical provision for investigators. It prohibits sharing of core biometric information — fingerprints, iris scans — under any circumstances whatsoever. It prohibits disclosure of identity information (including Aadhaar number and demographic data) except for purposes specified in the Act. Section 33 provides the law enforcement exception: a court or a designated officer of at least Joint Secretary rank can direct UIDAI to disclose identity information in the interests of national security or to investigate criminal offences. Accessing Aadhaar data through any other route — including unofficial APIs, data broker services that claim to provide Aadhaar lookups, or databases obtained from insider sources — constitutes a criminal offence under Section 37 of the Aadhaar Act, punishable with imprisonment up to three years.</p><div class="callout"><strong>Illegal Aadhaar APIs:</strong> Services that claim to offer Aadhaar-to-name/address lookups via API are operating illegally. Using such services exposes the investigator to prosecution under Section 37 of the Aadhaar Act, regardless of the purpose of the investigation.</div><h2>Lawful pathways</h2><p>The lawful routes to Aadhaar-linked identity information in investigations are narrow but real. A Section 33 order from a competent court or the designated authority allows UIDAI to provide identity information. For mobile number investigations, the DoT's TAFCOP portal allows checking which mobile numbers are linked to a given identity document — a legitimate investigative tool. Bank KYC obtained through proper Section 91 BNSS legal process often includes the account holder's Aadhaar-linked mobile and address without directly accessing UIDAI systems.</p><h2>Virtual ID and partial numbers</h2><p>Aadhaar's Virtual ID (VID) system allows authentication without revealing the actual Aadhaar number. In investigation contexts, an entity that conducted Aadhaar authentication may have a VID rather than the full Aadhaar number in its records — UIDAI can resolve this to the full number under proper legal process, but the receiving organization typically cannot do so independently.</p><h2>Implications for intelligence reports</h2><p>Intelligence reports that cite Aadhaar-linked information should clearly document the legal basis on which that information was obtained. Reports that appear to use Aadhaar data obtained through informal channels expose the investigator and the organization to legal liability and may result in evidence being excluded or, in serious cases, prosecution.</p>
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
-  </div>
+  <h2>Aadhaar and the OSINT Investigator's Dilemma</h2>
+<p>Aadhaar, India's biometric identity system covering over a billion people, presents both an opportunity and a serious legal minefield for investigators. While it is the master key to identity in India, the law surrounding its access and use is strict, and crossing the line can expose an investigator to criminal liability. This guide explains the legal limits of using Aadhaar in OSINT and investigations, helping practitioners stay on the right side of the law.</p>
+
+<h2>What the Law Says About Aadhaar Access</h2>
+<p>The Aadhaar Act 2016, together with the DPDP Act 2026, tightly governs who can access Aadhaar data and how. Key principles include:</p>
+<ul>
+<li>Unauthorised access to Aadhaar data is a criminal offence</li>
+<li>Authentication requires a logged, lawful purpose</li>
+<li>Storing Aadhaar numbers carries strict obligations</li>
+<li>Even authorised agencies must operate within defined channels</li>
+</ul>
+<p>This means an investigator cannot simply look up or use someone's Aadhaar number freely, even in the course of an investigation, without proper authority and process.</p>
+
+<h2>Penalties for Aadhaar Misuse</h2>
+<table>
+<tr><th>Violation</th><th>Consequence</th></tr>
+<tr><td>Unauthorised access</td><td>Imprisonment up to 3 years and fine (Aadhaar Act)</td></tr>
+<tr><td>Data protection failure</td><td>Penalties up to ₹250 crore (DPDP Act 2026)</td></tr>
+<tr><td>Identity theft using Aadhaar</td><td>Section 66C IT Act</td></tr>
+<tr><td>Unauthorised disclosure</td><td>Criminal liability under Aadhaar Act</td></tr>
+</table>
+
+<h2>What Investigators Can and Cannot Do</h2>
+<p>The distinction is crucial:</p>
+<ul>
+<li><strong>Permitted:</strong> Acting on Aadhaar data lawfully obtained through proper authority and documented process</li>
+<li><strong>Permitted:</strong> Using TAFCOP-style verification within authorised channels for SIM investigation</li>
+<li><strong>Not permitted:</strong> Looking up someone's Aadhaar number through unofficial means</li>
+<li><strong>Not permitted:</strong> Purchasing leaked Aadhaar databases, even for investigation</li>
+<li><strong>Not permitted:</strong> Storing or sharing Aadhaar data outside authorised systems</li>
+</ul>
+
+<h2>The Leaked Aadhaar Database Trap</h2>
+<p>Leaked Aadhaar databases circulate on the dark web and Telegram, and they present a serious trap for investigators. Accessing or purchasing such data — even with the intention of using it for a legitimate investigation — can constitute receiving stolen data and unauthorised access, exposing the investigator to the very liability they are trying to enforce against others. The legally sound approach is to obtain identity verification through official channels with proper authority, never through leaked data.</p>
+
+<h2>Legitimate Identity Verification Channels</h2>
+<p>Where identity verification is needed, lawful channels exist:</p>
+<table>
+<tr><th>Channel</th><th>Use</th></tr>
+<tr><td>Authorised LEA portals</td><td>Identity verification with proper authority</td></tr>
+<tr><td>Section 94 BNSS notice</td><td>Compel disclosure from banks/telecoms</td></tr>
+<tr><td>UIDAI authorised process</td><td>For agencies with lawful authority</td></tr>
+<tr><td>Court orders</td><td>Judicial direction for data access</td></tr>
+</table>
+
+<h2>Aadhaar in the Investigation Workflow</h2>
+<p>Rather than seeking Aadhaar data directly, skilled investigators use lawful pivots. A phone number obtained in an investigation can be verified through authorised telecom channels; a bank account can yield KYC through legal notice. The Aadhaar linkage emerges through these proper channels rather than through direct, unauthorised Aadhaar lookups. This approach achieves the investigative goal while remaining legally robust.</p>
+
+<h2>The DPDP Act's Impact</h2>
+<p>The DPDP Act 2026 adds another layer of obligation. Personal data, including Aadhaar-linked information, must be processed for a lawful purpose with appropriate safeguards. While the Act provides exemptions for legitimate investigation under Section 17, these exemptions are not a blanket licence — the processing must still be necessary, proportionate, and documented. Investigators handling Aadhaar-linked data must ensure their practices align with data protection obligations.</p>
+
+<h2>Best Practices for Investigators</h2>
+<p>To stay legally sound when Aadhaar intersects with an investigation:</p>
+<ul>
+<li>Always operate through authorised channels with documented lawful purpose</li>
+<li>Never access, purchase, or store leaked Aadhaar data</li>
+<li>Use proper legal process (Section 94 BNSS) to compel identity disclosure</li>
+<li>Document the legal basis for every Aadhaar-related action</li>
+<li>Apply data minimisation — access only what the investigation requires</li>
+<li>Ensure compliance with both the Aadhaar Act and DPDP Act</li>
+</ul>
+
+<h2>Conclusion: Lawful Investigation Is Robust Investigation</h2>
+<p>The temptation to take shortcuts with Aadhaar data is understandable given its investigative power, but shortcuts expose both the case and the investigator to serious risk. Evidence obtained unlawfully can be challenged and excluded, and the investigator can face criminal liability. The disciplined approach — using authorised channels, proper legal process, and documented purpose — is not only legally safe but produces stronger, more defensible cases. In Aadhaar investigations, lawful and effective are the same path.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">Is it legal to look up someone&#x27;s Aadhaar details in India?</div><div class="faq-a">No. Accessing or attempting to access another person&#x27;s Aadhaar data without authorization is an offence under the Aadhaar Act 2016 and the DPDP Act 2026. Only authorized agencies with lawful authority can access Aadhaar information, and even then only through approved channels.</div></div>
