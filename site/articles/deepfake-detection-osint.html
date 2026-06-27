@@ -28,7 +28,7 @@
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article","headline":"Detecting Deepfakes: A Practical Guide for Investigators and Journalists",
-"description":"Synthetic media — AI-generated or AI-manipulated video and audio — is increasingly used in fraud, disinformation, and extortion. How to detect it with currently available techniques.","datePublished":"2026-06-05","dateModified":"2026-06-05",
+"description":"Synthetic media — AI-generated or AI-manipulated video and audio — is increasingly used in fraud, disinformation, and extortion. How to detect it with currently available techniques.","datePublished":"2026-06-05","dateModified":"2026-06-14",
 "author":{"@type":"Person","name":"Manuj Kumar Pandey"},
 "publisher":{"@type":"Organization","name":"IGRS"},
 "mainEntityOfPage":"https://igrs.xyz/articles/deepfake-detection-osint.html"}
@@ -67,15 +67,74 @@
       <tr><td>Category</td><td>Verification</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-06-05</td></tr>
-      <tr><td>Reading time</td><td>6 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">Synthetic media — AI-generated or AI-manipulated video and audio — is increasingly used in fraud, disinformation, and extortion. How to detect it with currently available techniques.</p>
-  <h2>The deepfake threat landscape</h2><p>Deepfake technology — AI synthesis and manipulation of video and audio to depict people saying or doing things they never did — has moved from research curiosity to operational threat in the span of three years. In India, deepfake video has been used in political disinformation campaigns, in "CEO fraud" attacks where executives' voices are cloned to authorize transfers, in non-consensual intimate imagery, and in extortion schemes targeting public figures and private individuals alike. The technology has democratized to the point where a convincing voice clone requires only a few minutes of source audio and a consumer laptop.</p><h2>Visual artefacts in video deepfakes</h2><p>Current face-swap and face-synthesis deepfakes, despite their sophistication, often exhibit characteristic visual artefacts that are visible under careful examination. Focus on the face boundary — the edges where the synthetic face meets the real hair, neck, and background. Inconsistent lighting direction between the face and the surrounding scene is a common tell. Look at the teeth and eyes: synthesized teeth sometimes blur or merge, and eyes may lack the specular highlight (catchlight) that characterizes real eyes or may not blink at natural intervals. Examine rapid head movements — these stress the synthesis model and often produce visible distortion or smearing.</p><h2>Physical consistency checks</h2><p>Beyond visual artefacts, real video has physical properties that deepfakes often fail to replicate. The movement of hair, loose clothing, and earrings in response to head movement should be physically consistent. Reflections on shiny surfaces (glasses, jewellery, water) should be consistent with the claimed lighting environment. Facial landmark positions (the distance between eyes, mouth width, nose position) should remain consistent across frames — synthesis models sometimes produce subtle inconsistencies in facial geometry between frames.</p><h2>Audio deepfake detection</h2><p>AI voice cloning is now significantly more accessible and convincing than video deepfakes, and in many ways more dangerous in an organizational context. Listening for: an unusual absence of background noise (synthesized audio is often cleaner than real audio from the claimed environment), inconsistent ambient sound between speech segments, unusual breathing patterns or the absence of natural breathing sounds, and "robotic" transitions between phonemes that human speech does not produce. Spectrogram analysis using tools like Audacity can reveal synthesis artefacts in frequency distribution that are not audible but are visually evident.</p><div class="callout">AI detection tools — including Deepware Scanner, Microsoft Video Authenticator, and various commercial platforms — should be used as one input among many, not as definitive arbiters. Detection accuracy varies significantly by generation method, compression, and platform. A detection tool saying "real" does not definitively mean the content is authentic.</div><h2>Provenance and context verification</h2><p>The most reliable deepfake detection in practice is not technical analysis of the video itself but provenance investigation. Does the video originate from a reliable source? Is the claimed context verifiable from independent sources? Do other accounts of the depicted event corroborate the video's content? Has the depicted person denied it, and through what channels? Video that circulates only through anonymous channels with no corroboration should be treated as unverified regardless of how technically convincing it appears.</p>
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
-  </div>
+  <h2>The Deepfake Threat in India</h2>
+<p>Deepfakes — AI-generated synthetic media that convincingly fabricates faces, voices, and videos — have moved from novelty to serious threat. In India, deepfakes are being weaponised for financial fraud, political disinformation, non-consensual imagery, and impersonation of executives and public figures. For investigators, journalists, and security teams, the ability to detect deepfakes and verify media authenticity is now an essential skill. This guide covers detection techniques, OSINT verification tools, and the legal framework in India.</p>
+
+<h2>How Deepfakes Are Used Maliciously</h2>
+<table>
+<tr><th>Use Case</th><th>How It Causes Harm</th></tr>
+<tr><td>CEO/executive impersonation</td><td>Authorise fraudulent fund transfers</td></tr>
+<tr><td>Voice cloning scams</td><td>Fake distress calls demanding money</td></tr>
+<tr><td>Non-consensual imagery</td><td>Harassment, extortion, reputation damage</td></tr>
+<tr><td>Political disinformation</td><td>Fabricated statements by leaders</td></tr>
+<tr><td>Identity fraud</td><td>Bypass video KYC verification</td></tr>
+</table>
+
+<h2>Visual Detection Techniques</h2>
+<p>Many deepfakes still contain detectable artifacts, especially under careful examination:</p>
+<ul>
+<li><strong>Unnatural blinking</strong> — irregular or absent eye blinking</li>
+<li><strong>Inconsistent lighting</strong> — face lighting that does not match the environment</li>
+<li><strong>Edge blurring</strong> — distortion around the face boundary and hairline</li>
+<li><strong>Audio-lip mismatch</strong> — speech that does not sync precisely with mouth movement</li>
+<li><strong>Skin texture anomalies</strong> — overly smooth or inconsistent skin</li>
+<li><strong>Reflection inconsistencies</strong> — mismatched reflections in eyes or glasses</li>
+</ul>
+
+<h2>Detection Tools and Platforms</h2>
+<table>
+<tr><th>Tool</th><th>Function</th></tr>
+<tr><td>Intel FakeCatcher</td><td>Real-time deepfake detection using blood-flow analysis</td></tr>
+<tr><td>Sensity AI</td><td>Deepfake and synthetic media detection</td></tr>
+<tr><td>Microsoft Video Authenticator</td><td>Confidence scoring for manipulation</td></tr>
+<tr><td>Deepware Scanner</td><td>Video deepfake scanning</td></tr>
+<tr><td>Hive Moderation</td><td>AI-generated content detection</td></tr>
+</table>
+
+<h2>OSINT Verification of Media</h2>
+<p>Beyond specialised detectors, OSINT techniques verify whether media is authentic:</p>
+<ul>
+<li><strong>Reverse image search</strong> (Google, Yandex, TinEye) to find the original or source</li>
+<li><strong>InVID/WeVerify</strong> for frame-by-frame video analysis and keyframe reverse search</li>
+<li><strong>Metadata analysis</strong> with ExifTool to check creation details</li>
+<li><strong>Source verification</strong> — trace the media to its earliest appearance and original poster</li>
+<li><strong>Cross-referencing</strong> against known authentic footage of the subject</li>
+</ul>
+<p>Often the fastest verification is finding the original, unaltered media through reverse search — exposing the deepfake by comparison.</p>
+
+<h2>Voice Deepfake Detection</h2>
+<p>Audio deepfakes and voice cloning are increasingly used in vishing scams, including fake distress calls from "family members." Detection focuses on unnatural cadence, inconsistent background noise, robotic artifacts in certain phonemes, and the absence of natural breathing patterns. When in doubt, verification through a known channel — calling the supposed person back on their real number — defeats the scam.</p>
+
+<h2>Are Deepfakes Illegal in India?</h2>
+<p>While India does not yet have a dedicated deepfake law, several provisions apply:</p>
+<table>
+<tr><th>Section</th><th>Act</th><th>Application</th></tr>
+<tr><td>Section 319</td><td>BNS 2023</td><td>Cheating by personation</td></tr>
+<tr><td>Section 66C/66D</td><td>IT Act 2000</td><td>Identity theft, personation</td></tr>
+<tr><td>Section 67/67A</td><td>IT Act 2000</td><td>Obscene/sexual content</td></tr>
+<tr><td>Section 356</td><td>BNS 2023</td><td>Defamation</td></tr>
+</table>
+<p>The IT Rules 2021 also require intermediaries to remove flagged deepfake content, and the government has signalled stronger regulation of synthetic media. Creating deepfakes to defraud, defame, or create non-consensual imagery is clearly illegal under existing law.</p>
+
+<h2>Responding to Deepfake Incidents</h2>
+<p>Victims of malicious deepfakes should preserve all evidence including URLs and copies of the content, report to the platform for removal under IT Rules 2021, file a complaint at cybercrime.gov.in, and where non-consensual imagery is involved, use the confidential reporting channels for crimes against women and children. Speed in reporting and content removal limits the spread and harm.</p>
+
+<h2>The Future of Deepfake Detection</h2>
+<p>As generative AI improves, deepfakes become harder to detect by eye alone, making automated detection and provenance technologies increasingly important. Content authentication standards that cryptographically sign genuine media at creation, watermarking of AI-generated content, and AI-powered detectors are the emerging defences. For investigators in India, staying current with both the threat and the detection toolset is essential, because the deepfake arms race shows no sign of slowing.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">How can you detect a deepfake?</div><div class="faq-a">Detect deepfakes by examining unnatural blinking, inconsistent lighting and shadows, blurring around face edges, mismatched audio-lip sync, and artifacts near hairlines. Tools like Intel FakeCatcher, Sensity, and Microsoft Video Authenticator assist analysis.</div></div>
