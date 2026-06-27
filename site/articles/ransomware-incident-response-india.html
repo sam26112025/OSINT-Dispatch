@@ -28,7 +28,7 @@
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article","headline":"Ransomware Incident Response: A Practical Playbook for Indian Organizations",
-"description":"Ransomware attacks on Indian organizations have tripled in the past two years. The first 48 hours of response determine whether the organization recovers cleanly or pays.","datePublished":"2026-04-20","dateModified":"2026-04-20",
+"description":"Ransomware attacks on Indian organizations have tripled in the past two years. The first 48 hours of response determine whether the organization recovers cleanly or pays.","datePublished":"2026-04-20","dateModified":"2026-06-14",
 "author":{"@type":"Person","name":"Manuj Kumar Pandey"},
 "publisher":{"@type":"Organization","name":"IGRS"},
 "mainEntityOfPage":"https://igrs.xyz/articles/ransomware-incident-response-india.html"}
@@ -67,15 +67,67 @@
       <tr><td>Category</td><td>Incident Response</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-04-20</td></tr>
-      <tr><td>Reading time</td><td>7 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">Ransomware attacks on Indian organizations have tripled in the past two years. The first 48 hours of response determine whether the organization recovers cleanly or pays.</p>
-  <h2>The Indian ransomware landscape</h2><p>India has seen a dramatic increase in ransomware incidents targeting manufacturing, healthcare, logistics, and financial services organizations. Groups including LockBit affiliates, Royal, and several India-specific threat actors have been active. Indian organizations are particularly targeted because many combine sensitive data with security maturity that lags their sector globally, and because the regulatory environment — while tightening — has historically imposed lower penalties for breaches than European or North American equivalents.</p><h2>Hour 0–4: Contain and preserve</h2><p>The moment ransomware is confirmed, the priority is stopping lateral movement — not recovering encrypted files. Immediately isolate affected systems from the network by disconnecting ethernet cables and disabling Wi-Fi adapters. Do not shut systems down — in-memory forensic artefacts are valuable and shutdown may trigger additional encryption or wiping. Disable VPN access for all remote users. Identify the patient zero — the initial infection point — by checking the earliest encryption timestamp and working backward through logs.</p><p>Simultaneously, preserve everything available: network flow logs, DNS query logs, proxy logs, EDR telemetry, and any email logs that may contain the initial phishing vector. These logs have short retention windows on many systems and are critical for the subsequent forensic investigation and insurance claim.</p><h2>Hour 4–24: Assess scope and notify</h2><p>Map which systems are encrypted, which are clean, and which may be infected but not yet triggered. Check backup integrity immediately — many ransomware operators deliberately target backups in the days before triggering encryption. If backups are online and uncompromised, recovery options are vastly better. Assess whether data was exfiltrated before encryption — most modern ransomware groups operate "double extortion," threatening to publish stolen data if ransom is not paid. Look for evidence of data staging (large compressed archives, unusual outbound transfer volumes in the days prior).</p><div class="callout"><strong>CERT-In notification:</strong> Under the CERT-In directions of April 2022, ransomware incidents must be reported to CERT-In within 6 hours of detection. Failure to report carries penalties. Keep the notification concise and factual — do not speculate about attribution at this stage.</div><h2>The ransom decision</h2><p>Paying ransomware is not illegal in India, but it is strongly discouraged by CERT-In and law enforcement. Payment does not guarantee decryption, does not prevent data publication, and directly funds future attacks. Before considering payment, exhaust all options: check NoMoreRansom.org for free decryptors for your ransomware variant, verify backup integrity fully, and engage a specialist incident response firm who may have access to threat actor decryptors through prior negotiations.</p><h2>Recovery and post-incident</h2><p>Recovery should proceed from verified clean backups to isolated environments, with systems returning to production only after forensic confirmation they are clean. The root cause must be identified and remediated before anything returns to the network — re-infection during recovery is common. Conduct a full post-incident review, update incident response plans, and implement the defensive improvements identified. If data was confirmed exfiltrated, notify affected individuals per DPDP Act 2023 requirements.</p>
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
-  </div>
+  <h2>Ransomware Incident Response: A Structured Approach</h2>
+<p>When ransomware strikes, the quality of the incident response determines whether an organisation recovers quickly or suffers catastrophic, prolonged damage. A structured, practised incident response framework is the difference between a managed crisis and chaos. This guide provides a comprehensive ransomware incident response methodology for Indian organisations, aligned with CERT-In requirements and the DPDP Act.</p>
+
+<h2>The Incident Response Lifecycle</h2>
+<table>
+<tr><th>Phase</th><th>Objective</th></tr>
+<tr><td>Preparation</td><td>Plans, backups, tools ready before an incident</td></tr>
+<tr><td>Detection</td><td>Identify the ransomware quickly</td></tr>
+<tr><td>Containment</td><td>Stop the spread</td></tr>
+<tr><td>Eradication</td><td>Remove the threat</td></tr>
+<tr><td>Recovery</td><td>Restore operations</td></tr>
+<tr><td>Lessons learned</td><td>Improve defences</td></tr>
+</table>
+
+<h2>Phase 1: Detection and Initial Assessment</h2>
+<p>Rapid detection limits damage. Indicators include encrypted files with unusual extensions, ransom notes, systems becoming inaccessible, and security tool alerts. The initial assessment determines the scope — which systems are affected — and identifies the ransomware strain, which informs the response. Speed here is critical, as ransomware spreads rapidly across networks.</p>
+
+<h2>Phase 2: Containment</h2>
+<p>Containment stops the spread before it engulfs the entire environment:</p>
+<ul>
+<li>Isolate infected systems from the network immediately</li>
+<li>Do NOT power off — preserve volatile memory and potential keys</li>
+<li>Disable network shares and propagation paths</li>
+<li>Preserve a RAM dump from infected systems</li>
+<li>Identify and isolate patient zero</li>
+</ul>
+
+<h2>Phase 3: Mandatory CERT-In Reporting</h2>
+<p>Under CERT-In directions, the incident must be reported within 6 hours of detection via incident@cert-in.org.in or 1800-11-4949. This is a legal obligation, not optional. Simultaneously, assess whether personal data was exfiltrated, triggering DPDP Act breach notification requirements to the Data Protection Board and affected individuals.</p>
+
+<h2>Phase 4: Investigation and Eradication</h2>
+<p>The investigation identifies the strain (via ID Ransomware), checks for free decryptors (No More Ransom), determines the initial access vector through log analysis, and assesses what data was accessed or stolen. Eradication then removes the ransomware and closes the entry point — whether a phishing email, exposed RDP, or unpatched vulnerability — to prevent reinfection.</p>
+
+<h2>Phase 5: Recovery Decision</h2>
+<p>The recovery approach prioritises avoiding ransom payment:</p>
+<ul>
+<li>Check No More Ransom for a free decryptor</li>
+<li>Restore from offline, immutable backups</li>
+<li>Rebuild systems from known-good images where needed</li>
+<li>Engage CERT-In assistance</li>
+<li>Treat payment as an absolute last resort with full awareness it may not work</li>
+</ul>
+
+<h2>The Double Extortion Complication</h2>
+<p>Modern ransomware exfiltrates data before encrypting, then threatens to leak it. This means backups alone do not resolve the threat — the stolen data remains a liability. For Indian organisations, exfiltrated personal data is a reportable breach under the DPDP Act regardless of whether systems are restored. The investigation must determine what data left the network, as this drives both the legal response and the negotiation dynamics.</p>
+
+<h2>Preserving Evidence During Response</h2>
+<p>Even amid the crisis, evidence preservation matters for later prosecution and insurance claims. Preserve memory dumps, ransom notes, encrypted file samples, relevant logs, and the timeline of events, with hash values and Section 63 BSA certification. This evidence supports law enforcement investigation, any insurance claim, and the lessons-learned analysis.</p>
+
+<h2>Communication and Coordination</h2>
+<p>Effective incident response requires clear communication: internal stakeholders need updates, CERT-In and possibly the Data Protection Board must be notified, customers may need notification under DPDP, and if cyber insurance exists, the insurer must be engaged early. A predefined communication plan prevents the confusion that compounds technical chaos during a ransomware crisis.</p>
+
+<h2>Post-Incident: Lessons Learned</h2>
+<p>After recovery, a thorough post-incident review extracts lessons: how did the attacker gain entry, what allowed spread, what worked and what failed in the response, and what improvements are needed. This review should produce concrete actions — patching gaps, improving backups, enhancing detection, updating the response plan — that strengthen resilience against the next attack.</p>
+
+<h2>Building Ransomware Readiness</h2>
+<p>The best incident response is enabled by preparation: maintained offline immutable backups, a tested incident response plan, EDR and monitoring, network segmentation, and regular drills. For Indian organisations, building this readiness — combined with awareness of the 6-hour CERT-In reporting requirement and DPDP breach obligations — transforms ransomware from a potential extinction event into a serious but survivable incident. Preparation is the single greatest determinant of how an organisation fares when ransomware inevitably comes.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">What are the first steps after a ransomware attack in India?</div><div class="faq-a">Isolate infected systems immediately without shutting down (to preserve RAM), report to CERT-In within 6 hours, identify the ransomware strain, check backups, and engage your incident response team. Do not pay ransom as a first resort.</div></div>
