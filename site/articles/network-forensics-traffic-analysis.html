@@ -28,7 +28,7 @@
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article","headline":"Network Forensics: Reading Packet Captures Like an Investigator",
-"description":"Network traffic doesn&#x27;t lie. A properly captured PCAP can reconstruct exactly what happened during an intrusion, data exfiltration, or attack. How to read it.","datePublished":"2026-05-17","dateModified":"2026-05-17",
+"description":"Network traffic doesn&#x27;t lie. A properly captured PCAP can reconstruct exactly what happened during an intrusion, data exfiltration, or attack. How to read it.","datePublished":"2026-05-17","dateModified":"2026-06-14",
 "author":{"@type":"Person","name":"Manuj Kumar Pandey"},
 "publisher":{"@type":"Organization","name":"IGRS"},
 "mainEntityOfPage":"https://igrs.xyz/articles/network-forensics-traffic-analysis.html"}
@@ -67,15 +67,64 @@
       <tr><td>Category</td><td>Digital Forensics</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-05-17</td></tr>
-      <tr><td>Reading time</td><td>6 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">Network traffic doesn&#x27;t lie. A properly captured PCAP can reconstruct exactly what happened during an intrusion, data exfiltration, or attack. How to read it.</p>
-  <h2>What network forensics tells you</h2><p>When an endpoint is compromised, the attacker must communicate — with command and control infrastructure, with lateral movement targets, with exfiltration endpoints. That communication traverses the network and, if captured, provides an objective record of what occurred that is independent of the attacker's ability to tamper with endpoint logs. Network forensics reconstructs the who, what, when, and where of network-layer activity with a precision that endpoint-based evidence alone cannot match.</p><h2>Capture points and their limitations</h2><p>The most useful capture points for forensic network analysis are: the network perimeter (capturing all traffic crossing the firewall — shows external communication but not internal lateral movement), core switches (capturing inter-VLAN traffic — reveals lateral movement and internal data transfers), and endpoint-level captures (using tools like Wireshark or tcpdump directly on hosts — highest granularity but requires pre-positioned capability or memory forensics post-incident). Full packet capture at scale requires significant storage — a realistic deployment strategy involves capturing full packets at perimeter choke points and collecting only metadata (NetFlow/IPFIX) from internal segments.</p><h2>Wireshark as an investigation tool</h2><p>Wireshark is the primary tool for investigative PCAP analysis. Key workflows for incident investigation: follow TCP stream (reconstructs the full conversation between two endpoints, including transferred content for unencrypted protocols); protocol statistics (shows the volume distribution across protocols — unusual proportions suggest specific attack types); display filters (isolates traffic by IP, port, protocol, or content patterns — the most powerful investigation tool in Wireshark); and export objects (extracts files transferred over HTTP, SMB, FTP directly from the capture for analysis).</p><h2>Identifying attack patterns in PCAPs</h2><p>Common attack patterns have distinctive network signatures. Port scans appear as rapid sequential SYN packets to multiple ports with mostly SYN-ACK or RST responses. Brute force authentication shows repeated connection attempts to authentication services (SMB port 445, RDP port 3389, SSH port 22) with authentication failure responses. C2 communication often shows regular, periodic outbound connections to unusual external IPs — a beaconing pattern that stands out against normal traffic baselines. Data exfiltration appears as unusually large outbound transfers, often to cloud storage services, file transfer sites, or unusual IPs, particularly during off-hours.</p><div class="callout"><strong>Encrypted traffic challenge:</strong> TLS encryption prevents content inspection of most modern traffic. However, metadata — connection frequency, timing, volume, destination, and TLS handshake characteristics — is still visible and often sufficient to identify malicious communication patterns.</div><h2>Documentation for legal use</h2><p>Network forensic evidence must be documented carefully for use in legal proceedings. The chain of custody for capture files must be established — who captured the traffic, on what equipment, using what software version, with what configuration. Hash values of the raw PCAP files must be computed immediately after capture and recorded. The analysis methodology — what filters were applied, what conclusions were drawn and from which packets — must be documented in sufficient detail that another examiner could reproduce the analysis and reach the same conclusions.</p>
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
-  </div>
+  <h2>Network Traffic Analysis: Seeing What Happened on the Wire</h2>
+<p>Network traffic analysis is the discipline of examining captured packets and flow data to detect threats, investigate incidents, and reconstruct activity. Where logs tell you what systems recorded, traffic analysis shows you what actually crossed the network — the communication, the data transfers, the malicious patterns. This guide covers the methodology and tools of network traffic analysis for security professionals and investigators.</p>
+
+<h2>Types of Network Data</h2>
+<table>
+<tr><th>Data Type</th><th>Detail Level</th><th>Use</th></tr>
+<tr><td>Full packet capture (PCAP)</td><td>Complete content</td><td>Deep investigation, reconstruction</td></tr>
+<tr><td>NetFlow/IPFIX</td><td>Metadata only</td><td>Scalable analysis, patterns</td></tr>
+<tr><td>Session data</td><td>Connection summaries</td><td>Communication mapping</td></tr>
+<tr><td>Alert data</td><td>IDS/IPS triggers</td><td>Known-threat detection</td></tr>
+</table>
+
+<h2>Essential Tools</h2>
+<p>The network traffic analysis toolkit is largely open-source and powerful:</p>
+<ul>
+<li><strong>Wireshark</strong> — the definitive packet analyser for deep inspection</li>
+<li><strong>Zeek</strong> — generates rich connection logs and protocol metadata</li>
+<li><strong>NetworkMiner</strong> — passively reconstructs files and sessions</li>
+<li><strong>Suricata</strong> — IDS/IPS with detailed logging</li>
+<li><strong>tcpdump</strong> — lightweight command-line capture</li>
+<li><strong>Arkime</strong> — large-scale PCAP indexing and search</li>
+</ul>
+
+<h2>Capturing Traffic Effectively</h2>
+<p>Effective analysis starts with good capture. Traffic is captured at strategic points — network taps, SPAN/mirror ports, or on key hosts. The capture location determines visibility: perimeter captures show external communication, while internal captures reveal lateral movement. For investigation, capturing at multiple points provides the complete picture of how traffic flowed through the environment.</p>
+
+<h2>Identifying Malicious Patterns</h2>
+<p>Network traffic analysis reveals attacker behaviour through characteristic patterns:</p>
+<ul>
+<li><strong>Beaconing</strong> — regular callbacks to C2 servers</li>
+<li><strong>Data exfiltration</strong> — large or unusual outbound transfers</li>
+<li><strong>DNS tunnelling</strong> — data hidden in DNS queries</li>
+<li><strong>Lateral movement</strong> — unusual internal connections</li>
+<li><strong>Port scanning</strong> — reconnaissance activity</li>
+<li><strong>Protocol anomalies</strong> — non-standard use of common ports</li>
+</ul>
+
+<h2>Reconstructing Sessions and Files</h2>
+<p>One of traffic analysis's most powerful capabilities is reconstruction. Tools like NetworkMiner and Wireshark can reassemble TCP streams to recover transferred files, extract credentials sent in plaintext, and reconstruct web sessions. In an investigation, this reveals exactly what data an attacker accessed or exfiltrated — critical for both prosecution and breach scope assessment.</p>
+
+<h2>Detecting Command and Control</h2>
+<p>Identifying C2 communication is central to threat investigation. C2 traffic often exhibits beaconing — regular, periodic connections to the controller — sometimes disguised within normal protocols like HTTPS or DNS. Analysis of timing regularity, destination reputation, and traffic patterns exposes C2 channels even when the content is encrypted. Cutting the C2 connection is a key containment action.</p>
+
+<h2>Encrypted Traffic Analysis</h2>
+<p>The growth of encryption presents challenges, as packet content is hidden. However, much can still be learned from metadata: connection patterns, timing, volumes, destinations, and TLS handshake details (including certificate information and JA3 fingerprints). Even without decrypting content, these signals reveal beaconing, identify suspicious destinations, and fingerprint malware families through their TLS characteristics.</p>
+
+<h2>Legal Considerations in India</h2>
+<p>Network traffic capture and analysis must respect legal boundaries. Within an organisation's own network, monitoring is generally permissible with appropriate policy and notice. For investigation, captured traffic used as evidence requires Section 63 BSA certification and hash verification. Intercepting communications beyond one's own network requires lawful authority. Investigators must ensure their traffic analysis is conducted within proper legal authority.</p>
+
+<h2>Integrating with Investigation</h2>
+<p>Network traffic analysis rarely stands alone — it integrates with the broader investigation. Traffic findings correlate with endpoint forensics (which host generated suspicious traffic), log analysis (authentication and system events), and threat intelligence (known-bad destinations). This correlation builds the complete attack narrative from initial access through to impact.</p>
+
+<h2>Building Traffic Analysis Skills</h2>
+<p>Proficiency in network traffic analysis comes from understanding protocols deeply, recognising normal versus anomalous patterns, mastering tools like Wireshark and Zeek, and practising on real captures. For Indian security professionals and investigators, combining technical traffic analysis with the legal framework for evidence produces network investigations that are both insightful and court-ready. As networks carry ever more of both legitimate activity and attacks, the ability to read the traffic remains a foundational security skill.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">What is network traffic analysis?</div><div class="faq-a">Network traffic analysis examines captured packets and flow data to detect intrusions, investigate incidents, and reconstruct activity. It reveals communication between hosts, data transfers, and malicious patterns.</div></div>
