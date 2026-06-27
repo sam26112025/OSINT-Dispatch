@@ -28,7 +28,7 @@
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article","headline":"Threat Hunting in Indian SOCs: Moving from Reactive to Proactive Defence",
-"description":"Most Indian SOCs still operate in reactive mode — waiting for alerts before investigating. Threat hunting flips this. How to implement it with the tools and talent most Indian teams already have.","datePublished":"2026-04-29","dateModified":"2026-04-29",
+"description":"Most Indian SOCs still operate in reactive mode — waiting for alerts before investigating. Threat hunting flips this. How to implement it with the tools and talent most Indian teams already have.","datePublished":"2026-04-29","dateModified":"2026-06-14",
 "author":{"@type":"Person","name":"Manuj Kumar Pandey"},
 "publisher":{"@type":"Organization","name":"IGRS"},
 "mainEntityOfPage":"https://igrs.xyz/articles/threat-hunting-soc-india.html"}
@@ -67,15 +67,56 @@
       <tr><td>Category</td><td>Threat Intelligence</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-04-29</td></tr>
-      <tr><td>Reading time</td><td>7 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">Most Indian SOCs still operate in reactive mode — waiting for alerts before investigating. Threat hunting flips this. How to implement it with the tools and talent most Indian teams already have.</p>
-  <h2>What threat hunting actually is</h2><p>Threat hunting is the proactive, human-led search for evidence of attacker activity that has not triggered automated alerts. It operates on the assumption that sophisticated attackers are already inside the network — moving laterally, establishing persistence, and exfiltrating data — while evading the signature and anomaly-based detections that reactive security depends on. The hunter's job is to find these threats before they cause maximum damage, using hypotheses derived from threat intelligence, TTPs, and knowledge of the environment.</p><h2>Why Indian SOCs need it now</h2><p>Indian organizations face a maturing threat landscape. The days when Indian networks were targeted only by opportunistic, commodity malware are over. APT groups from multiple nations, ransomware-as-a-service operators, and sophisticated fraud networks specifically target Indian financial services, government contractors, pharmaceutical companies, and critical infrastructure. These actors use legitimate tools — PowerShell, WMI, PsExec, Cobalt Strike — that generate few or no SIEM alerts in default configurations. Reactive monitoring will not catch them.</p><h2>The hypothesis-driven approach</h2><p>Every hunt begins with a hypothesis — a specific, testable proposition about how an attacker might operate in the environment. Hypotheses come from three sources: threat intelligence (a report describes a threat actor using a specific technique against organizations like yours — you hunt for evidence of that technique in your logs); analytics (your SIEM identifies an anomaly that doesn't rise to an alert threshold — you hunt for related activity); and situational awareness (a new vulnerability has been published — you hunt for exploitation indicators before a patch is deployed). A hypothesis might be: "A threat actor has compromised a domain-joined workstation and is using scheduled tasks to maintain persistence." The hunt then searches endpoint logs for scheduled task creation events, correlates them with parent process and user context, and investigates anomalies.</p><h2>Data sources that matter most</h2><p>Effective threat hunting requires the right telemetry. For Indian SOC teams working with typical enterprise environments, the highest-value data sources are: Windows Event Logs (particularly Security, System, and PowerShell operational logs), EDR telemetry (process creation, network connections, file writes, registry modifications), DNS query logs (revealing C2 communication patterns), proxy and firewall logs (showing data exfiltration and unusual outbound patterns), and Active Directory authentication logs (revealing lateral movement and credential misuse). If you are not collecting all of these, prioritise getting them into your SIEM before building a hunting program.</p><div class="callout"><strong>Starting point for Indian teams:</strong> Hunt for LOLBins (Living Off the Land Binaries) — legitimate Windows tools like certutil, bitsadmin, regsvr32, and mshta used maliciously. These are used heavily by advanced attackers targeting Indian networks and generate distinctive but often un-alerted log patterns.</div><h2>Building the capability with existing resources</h2><p>Most Indian SOCs can begin meaningful threat hunting with existing tools. If you have a SIEM and endpoint logs, you have the minimum viable hunting environment. Start with three hunts per month — one from a recent threat intelligence report, one from MITRE ATT&CK techniques relevant to your sector, and one from the previous month's alert backlog that was closed without full investigation. Document findings systematically. Each hunt that finds nothing is still valuable — it confirms that particular technique is not present, or identifies gaps in your logging that need filling.</p>
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
-  </div>
+  <h2>Threat Hunting: Proactive Defence</h2>
+<p>Threat hunting represents a fundamental shift in cybersecurity — from waiting for alerts to proactively searching for threats that have evaded existing defences. For Security Operations Centres (SOCs) in India, threat hunting is becoming an essential capability as adversaries grow more sophisticated at bypassing automated detection. This guide explains threat hunting methodology and how to build the capability in an Indian SOC context.</p>
+
+<h2>What Is Threat Hunting?</h2>
+<p>Threat hunting is the proactive, hypothesis-driven search through networks and systems for threats that automated tools have missed. Rather than responding to alerts, hunters assume a breach may have occurred and actively look for evidence of it. This proactive stance catches advanced threats — particularly those using legitimate tools and living-off-the-land techniques — that signature-based detection overlooks.</p>
+
+<h2>The Threat Hunting Process</h2>
+<ul>
+<li><strong>Hypothesis:</strong> Form a hypothesis based on threat intelligence or attacker techniques</li>
+<li><strong>Data collection:</strong> Gather relevant data from SIEM, EDR, and logs</li>
+<li><strong>Investigation:</strong> Search for indicators and anomalies supporting the hypothesis</li>
+<li><strong>Analysis:</strong> Examine findings, confirm or refute the hypothesis</li>
+<li><strong>Response:</strong> Escalate confirmed threats to incident response</li>
+<li><strong>Improvement:</strong> Convert findings into new detection rules</li>
+</ul>
+
+<h2>Hypothesis-Driven Hunting</h2>
+<p>Effective hunting starts with a strong hypothesis. These are often derived from the MITRE ATT&CK framework — for example, "an adversary may be using Kerberoasting to escalate privileges" — or from threat intelligence about active campaigns. The hypothesis focuses the hunt, defining what data to examine and what patterns to seek, transforming an open-ended search into a structured investigation.</p>
+
+<h2>The MITRE ATT&CK Framework</h2>
+<p>MITRE ATT&CK is the foundation of modern threat hunting. It catalogues adversary tactics, techniques, and procedures (TTPs) observed in real attacks, organised by stages from initial access to impact. Hunters use ATT&CK to generate hypotheses, understand what evidence each technique leaves, and ensure comprehensive coverage of how adversaries operate. Mapping detection coverage against ATT&CK reveals blind spots.</p>
+
+<h2>Data Sources for Hunting</h2>
+<table>
+<tr><th>Source</th><th>Hunting Value</th></tr>
+<tr><td>EDR telemetry</td><td>Process, file, registry, network activity on endpoints</td></tr>
+<tr><td>SIEM logs</td><td>Aggregated logs across the environment</td></tr>
+<tr><td>Network traffic</td><td>C2, lateral movement, exfiltration</td></tr>
+<tr><td>DNS logs</td><td>Malicious domain lookups, tunnelling</td></tr>
+<tr><td>Authentication logs</td><td>Anomalous logons, privilege use</td></tr>
+</table>
+
+<h2>Common Hunting Techniques</h2>
+<p>Practical hunts target known adversary behaviours: searching for anomalous PowerShell execution, unusual parent-child process relationships, suspicious scheduled tasks and services, abnormal authentication patterns (impossible travel, off-hours admin logons), beaconing network traffic, and signs of credential dumping. Each hunt looks for the subtle traces that automated alerting did not flag.</p>
+
+<h2>Tools for Threat Hunting</h2>
+<p>Threat hunters use a combination of tools: SIEM platforms for log search and correlation, EDR for endpoint telemetry and response, network analysis tools for traffic inspection, and frameworks like Velociraptor for endpoint hunting at scale. Scripting skills (PowerShell, Python) enable custom analysis. Threat intelligence platforms provide the context that drives hypotheses.</p>
+
+<h2>Skills a Threat Hunter Needs</h2>
+<p>Effective threat hunting demands a blend of skills: deep knowledge of attacker TTPs and the MITRE ATT&CK framework, proficiency in log analysis and query languages, understanding of normal network and system behaviour to spot anomalies, scripting ability for custom analysis, and the analytical mindset to pursue subtle leads. Hunters must think like attackers to find them.</p>
+
+<h2>Building a Hunting Capability in an Indian SOC</h2>
+<p>Establishing threat hunting in an Indian SOC involves ensuring adequate data collection and retention (aligned with CERT-In's 180-day requirement), developing hunting hypotheses from threat intelligence relevant to Indian targets, training analysts in ATT&CK and hunting techniques, allocating dedicated hunting time rather than only reactive alert handling, and feeding hunt findings back into detection engineering. Maturity grows as hunts become more systematic and findings continually improve automated detection.</p>
+
+<h2>From Hunting to Improved Defence</h2>
+<p>The ultimate value of threat hunting is not just catching current threats but continuously improving defences. Every hunt — whether it finds a threat or not — generates insight: new detection rules, identified blind spots, better understanding of the environment. This virtuous cycle, where proactive hunting strengthens automated defence, is what makes threat hunting a force multiplier for any SOC. For Indian organisations facing increasingly sophisticated adversaries, building this proactive capability is becoming essential to staying ahead of threats rather than merely reacting to them.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">What is threat hunting?</div><div class="faq-a">Threat hunting is the proactive search for threats that evade existing security controls. Rather than waiting for alerts, hunters hypothesize about attacker behavior and search logs and systems for evidence of compromise.</div></div>
