@@ -60,23 +60,68 @@
       <tr><td>Category</td><td>Threat Intelligence</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-06-02</td></tr>
-      <tr><td>Reading time</td><td>6 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">India&#x27;s power grid, financial system, telecom networks, and government services face persistent cyber threats. What the public intelligence record shows about the current threat landscape.</p>
-  <h2>What the public record shows</h2>
-<p>India's critical infrastructure has been targeted by a range of threat actors over the past several years, from opportunistic ransomware affecting hospital operations to more sophisticated intrusions targeting energy and telecommunications infrastructure. The 2020 power grid incident in Mumbai — investigated by Recorded Future and attributed to Chinese state-linked actors — was the most prominent public example of sustained, patient targeting of Indian critical infrastructure by sophisticated threat actors with geopolitical motivation.</p>
-<h2>The sectors under pressure</h2>
-<p><strong>Power and energy:</strong> Grid SCADA and operational technology systems are persistent targets. OT environments in Indian utilities often run legacy systems with limited security monitoring and incomplete air-gapping. The convergence of IT and OT networks for monitoring and efficiency purposes creates pathways from compromised corporate networks to operational systems. <strong>Financial sector:</strong> Banks, payment processors, and UPI infrastructure are high-value targets for financially motivated actors. Bank-facing fraud campaigns targeting employees with spearphishing remain high-volume. <strong>Telecom:</strong> India's backbone carries both civilian and government traffic, making it a priority intelligence target for nation-state actors.</p>
-<h2>The threat actor landscape</h2>
-<p>The public intelligence record identifies: nation-state aligned actors from China and Pakistan attributed with varying confidence to campaigns targeting Indian government and infrastructure; ransomware-as-a-service operators including LockBit affiliates and Royal that have affected Indian healthcare, manufacturing, and logistics; and hacktivist groups periodically targeting Indian government web infrastructure during geopolitical tensions, particularly around border incidents and diplomatic events.</p>
-<div class="callout">This assessment is based entirely on public information — vendor reports, government advisories, and published research. It reflects what is known from open sources, not the full classified picture held by NTRO, RAW, and IB. The actual threat is broader than what is publicly documented.</div>
-<h2>The defensive gap</h2>
-<p>CERT-In's empanelled security auditor framework and the National Cyber Security Policy provide regulatory structures for critical infrastructure security. The implementation gap is significant: many critical infrastructure operators have not completed required baseline assessments, OT security skills are scarce, and the 6-hour CERT-In incident reporting requirement is inconsistently met outside the financial sector.</p>
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
-  </div>
+  <h2>Critical Infrastructure: India's High-Value Targets</h2>
+<p>India's critical information infrastructure — power grids, banking systems, telecommunications, transportation, healthcare, and government services — represents the highest-value target for cyber adversaries. A successful attack on these systems can disrupt the lives of millions, cause economic damage, and threaten national security. Understanding the threats and India's defensive framework is essential for security professionals. This guide examines the critical infrastructure threat landscape in India.</p>
+
+<h2>The Threat Landscape</h2>
+<table>
+<tr><th>Threat Actor</th><th>Motivation</th><th>Typical Target</th></tr>
+<tr><td>State-sponsored APTs</td><td>Espionage, disruption</td><td>Power, defence, government</td></tr>
+<tr><td>Ransomware groups</td><td>Financial</td><td>Healthcare, manufacturing</td></tr>
+<tr><td>Hacktivists</td><td>Ideological</td><td>Government, high-profile targets</td></tr>
+<tr><td>Cybercriminals</td><td>Financial</td><td>Banking, financial systems</td></tr>
+</table>
+
+<h2>Key Vulnerabilities in Critical Infrastructure</h2>
+<p>Critical infrastructure faces distinct vulnerabilities:</p>
+<ul>
+<li><strong>Legacy systems</strong> — old SCADA and OT systems not designed for security</li>
+<li><strong>IT/OT convergence</strong> — connecting operational technology to IT networks expands the attack surface</li>
+<li><strong>Supply chain risk</strong> — compromised vendors and components</li>
+<li><strong>Insider threats</strong> — privileged access misuse</li>
+<li><strong>Unpatched systems</strong> — operational constraints delaying updates</li>
+</ul>
+
+<h2>NCIIPC: India's Protective Framework</h2>
+<p>The National Critical Information Infrastructure Protection Centre (NCIIPC) is India's nodal agency for protecting critical information infrastructure. Established under the IT Act, NCIIPC identifies and protects critical sectors, issues guidelines and advisories, facilitates information sharing, and coordinates response to threats against protected systems. Organisations designated as critical information infrastructure have specific obligations under NCIIPC oversight.</p>
+
+<h2>Sectors Designated as Critical</h2>
+<table>
+<tr><th>Sector</th><th>Examples</th></tr>
+<tr><td>Power and energy</td><td>Grid, generation, distribution</td></tr>
+<tr><td>Banking and finance</td><td>RBI systems, payment infrastructure</td></tr>
+<tr><td>Telecommunications</td><td>Network operators, internet backbone</td></tr>
+<tr><td>Transport</td><td>Railways, aviation, ports</td></tr>
+<tr><td>Government</td><td>E-governance, defence systems</td></tr>
+<tr><td>Healthcare</td><td>Hospital systems, health data</td></tr>
+</table>
+
+<h2>The CERT-In Reporting Mandate</h2>
+<p>CERT-In directions require critical infrastructure organisations to report cyber incidents within 6 hours of detection. This rapid reporting enables coordinated national response and threat intelligence sharing. Combined with 180-day log retention requirements, the framework ensures that incidents are both reported promptly and investigable. Critical infrastructure operators face heightened obligations given the national-security implications of attacks on their systems.</p>
+
+<h2>OT and SCADA Security</h2>
+<p>Operational Technology and SCADA systems controlling physical processes present unique security challenges. Unlike IT systems, they prioritise availability and safety over confidentiality, often run legacy software, and cannot easily be patched or taken offline. Attacks on these systems can cause physical consequences — power outages, equipment damage, safety hazards. Protecting them requires network segmentation, strict access control, and continuous monitoring adapted to the OT environment.</p>
+
+<h2>State-Sponsored Threats to India</h2>
+<p>India faces persistent threats from state-sponsored advanced persistent threat groups targeting critical infrastructure for espionage and potential disruption. These actors are patient, well-resourced, and sophisticated, often maintaining long-term access to gather intelligence or pre-position for future disruption. Defending against them requires advanced threat detection, threat intelligence, and the assumption that determined adversaries may already be present in the network.</p>
+
+<h2>Building Critical Infrastructure Resilience</h2>
+<p>Protecting critical infrastructure requires a comprehensive approach:</p>
+<ul>
+<li>Network segmentation isolating OT from IT and the internet</li>
+<li>Continuous monitoring and threat detection</li>
+<li>Strict access control and privileged access management</li>
+<li>Supply chain risk management</li>
+<li>Incident response plans tested through drills</li>
+<li>Compliance with NCIIPC guidelines and CERT-In directions</li>
+</ul>
+
+<h2>The National Security Dimension</h2>
+<p>Attacks on critical infrastructure transcend ordinary cybercrime — they are matters of national security. India's framework, anchored by NCIIPC and CERT-In, reflects this seriousness. For security professionals working in or protecting critical sectors, the stakes are exceptionally high: the systems they defend underpin the functioning of the nation. Vigilance, robust defences, rapid incident response, and adherence to the national framework are the responsibilities that come with protecting India's critical information infrastructure.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">What are the main cyber threats to India&#x27;s critical infrastructure?</div><div class="faq-a">India&#x27;s critical infrastructure faces threats from state-sponsored APTs, ransomware targeting power and healthcare, supply chain attacks, and attacks on financial and telecom systems. Power grids, ports, and banking are high-value targets.</div></div>
