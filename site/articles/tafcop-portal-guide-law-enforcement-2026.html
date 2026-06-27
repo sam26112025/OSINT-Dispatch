@@ -23,7 +23,7 @@
 <meta property="og:description" content="Step-by-step guide to using TAFCOP (Telecom Analytics for Fraud Management and Consumer Protection) for cybercrime investigation, SIM verification, and telecom fraud cases in India.">
 <meta property="og:type" content="article">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"TAFCOP Portal — Complete Guide for Law Enforcement Investigators","description":"Step-by-step guide to using TAFCOP (Telecom Analytics for Fraud Management and Consumer Protection) for cybercrime investigation, SIM verification, and telecom fraud cases in India.","author":{"@type":"Person","name":"Manuj Kumar Pandey"},"publisher":{"@type":"Organization","name":"IGRS","url":"https://igrs.xyz"},"url":"https://igrs.xyz/articles/tafcop-portal-guide-law-enforcement-2026.html","datePublished":"2026-06-13","dateModified":"2026-06-13"}
+{"@context":"https://schema.org","@type":"Article","headline":"TAFCOP Portal — Complete Guide for Law Enforcement Investigators","description":"Step-by-step guide to using TAFCOP (Telecom Analytics for Fraud Management and Consumer Protection) for cybercrime investigation, SIM verification, and telecom fraud cases in India.","author":{"@type":"Person","name":"Manuj Kumar Pandey"},"publisher":{"@type":"Organization","name":"IGRS","url":"https://igrs.xyz"},"url":"https://igrs.xyz/articles/tafcop-portal-guide-law-enforcement-2026.html","datePublished":"2026-06-13","dateModified":"2026-06-14"}
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../style.css">
@@ -59,68 +59,59 @@
   <div class="entry-meta"><span class="category">OSINT</span><span class="date">13 June 2026</span><span class="author">Manuj Kumar Pandey</span></div>
   <div class="entry-hero"><img src="../og/tafcop-portal-guide-law-enforcement-2026.png" width="1200" height="630" alt="TAFCOP Portal — Complete Guide for Law Enforcement Investigators" fetchpriority="high"></div>
 <h1>TAFCOP Portal — Complete Guide for Law Enforcement Investigators</h1>
-  
-    <p>TAFCOP — Telecom Analytics for Fraud Management and Consumer Protection — is one of India's most powerful and underutilised investigative tools. Hosted at <strong>sancharsaathi.gov.in</strong>, it allows citizens and investigators to check how many SIM cards are registered against any Aadhaar number, report fraudulent connections, and track telecom-related fraud. For cybercrime investigators, it is a critical first-stop for any case involving mobile numbers.</p>
+  <h2>TAFCOP: An Underused Investigative Powerhouse</h2>
+<p>TAFCOP — Telecom Analytics for Fraud Management and Consumer Protection — may be the most underutilised investigation tool available to Indian law enforcement and citizens alike. Part of the Department of Telecommunications' Sanchar Saathi initiative, it sits at the intersection of identity, telecom, and fraud. For any investigation involving a phone number, TAFCOP is often the ideal starting point. This guide explains its full capabilities for law enforcement.</p>
 
-    <h2>What TAFCOP Can Tell You</h2>
-    <ul>
-      <li>How many mobile connections are registered under a suspect's Aadhaar</li>
-      <li>Which telecom operator issued each SIM</li>
-      <li>Whether connections have been reported as fraudulent</li>
-      <li>Whether a mobile number is active or inactive</li>
-    </ul>
+<h2>What TAFCOP Does</h2>
+<p>At its core, TAFCOP reveals how many mobile connections are registered against a given Aadhaar. Since every legitimate SIM in India is tied to an Aadhaar, and the number of SIMs per Aadhaar is capped, TAFCOP exposes a critical fraud indicator: identities with an abnormal number of registered SIMs, which signals mule operations or identity misuse.</p>
 
-    <h2>Accessing TAFCOP</h2>
-    <p><strong>Public portal:</strong> sancharsaathi.gov.in/telecom/MH/tafcop.jsp</p>
-    <p>The public portal allows any mobile subscriber to check connections registered to their own mobile number. For investigators requiring Aadhaar-linked lookups, the portal operates through DoT's Law Enforcement Agency (LEA) interface, accessible through your state's cyber cell or DoT regional office.</p>
+<h2>The SIM Limit Framework</h2>
+<table>
+<tr><th>Region</th><th>Maximum SIMs</th></tr>
+<tr><td>Most of India</td><td>9</td></tr>
+<tr><td>Jammu &amp; Kashmir</td><td>6</td></tr>
+<tr><td>Northeast &amp; Assam</td><td>6</td></tr>
+</table>
+<p>An Aadhaar with connections approaching or exceeding these limits warrants investigative attention, as fraudsters frequently register multiple SIMs on stolen or complicit identities.</p>
 
-    <h2>Step-by-Step: Public Portal Investigation</h2>
-    <ol>
-      <li>Navigate to sancharsaathi.gov.in</li>
-      <li>Select "Know Your Mobile Connections"</li>
-      <li>Enter the mobile number under investigation</li>
-      <li>Enter the OTP sent to that number (requires access to the device/SIM)</li>
-      <li>Review all connections registered to the linked Aadhaar</li>
-      <li>Report suspicious connections directly from the portal</li>
-    </ol>
+<h2>Investigative Use Cases</h2>
+<p>TAFCOP supports numerous investigation types:</p>
+<ul>
+<li><strong>SIM swap fraud</strong> — verify unauthorised connections issued on a victim's Aadhaar</li>
+<li><strong>OTP fraud</strong> — identify the SIM registration behind fraudulent numbers</li>
+<li><strong>Mule networks</strong> — detect identities with many SIMs feeding fraud operations</li>
+<li><strong>Digital arrest scams</strong> — trace the SIM registration behind extortion calls</li>
+<li><strong>WhatsApp scams</strong> — identify the Aadhaar behind fake account numbers</li>
+</ul>
 
-    <h2>LEA Portal — Enhanced Access</h2>
-    <p>Law enforcement agencies have access to an enhanced DoT portal through which investigators can:</p>
-    <ul>
-      <li>Query connections by Aadhaar number (not just mobile number)</li>
-      <li>Request CDR (Call Detail Records) through the portal</li>
-      <li>File requests for SIM block/suspension</li>
-      <li>Access subscriber verification data</li>
-    </ul>
-    <p>Access to the LEA portal requires a letter from the SP or higher rank officer through the state's nodal officer to DoT.</p>
+<h2>The Law Enforcement Portal</h2>
+<p>Beyond the public-facing TAFCOP, law enforcement has access to enhanced DoT capabilities for Aadhaar-linked SIM queries, connection details, and SIM blocking orders. Access requires appropriate authorisation — typically at SP rank or above through the state's DoT nodal officer. This authorised access provides the authoritative data needed to attribute numbers to identities in formal investigations.</p>
 
-    <h2>Key Use Cases in Investigation</h2>
+<h2>Complementary Portals</h2>
+<table>
+<tr><th>Portal</th><th>Function</th></tr>
+<tr><td>TAFCOP</td><td>SIM-to-Aadhaar verification</td></tr>
+<tr><td>CEIR (ceir.gov.in)</td><td>Device blocking by IMEI</td></tr>
+<tr><td>Chakshu</td><td>Reporting suspected fraud communication</td></tr>
+<tr><td>ASTR</td><td>AI-based duplicate SIM detection</td></tr>
+</table>
+<p>Together, these Sanchar Saathi tools provide comprehensive coverage — TAFCOP for the connection layer, CEIR for the device layer, and Chakshu for citizen fraud reporting.</p>
 
-    <h3>SIM Swap Fraud Investigation</h3>
-    <p>When a victim reports unauthorized SIM swap, TAFCOP reveals whether multiple SIMs were issued on the same Aadhaar within a short timeframe — a key indicator of fraudulent activity at the telecom retailer level.</p>
+<h2>Legal Authority for TAFCOP Access</h2>
+<p>Law enforcement access to Aadhaar-linked SIM data operates under proper legal authority. The relevant provisions include Section 92/94 BNSS for production of records and the authorised LEA processes established with the DoT. Investigators must ensure their access is authorised, purpose-documented, and compliant with data protection obligations under the DPDP Act 2026.</p>
 
-    <h3>Digital Arrest Scam</h3>
-    <p>Fraudsters often use SIMs registered on others' Aadhaar. TAFCOP verification quickly reveals whether the SIM used by the suspect belongs to a genuine subscriber or a mule Aadhaar.</p>
+<h2>From SIM Data to Full Investigation</h2>
+<p>TAFCOP rarely concludes an investigation — it begins one. Once a SIM is linked to an identity, the investigation expands: CDR analysis maps the suspect's network, bank account correlation reveals financial connections, and social media OSINT builds the identity picture. TAFCOP provides the crucial first link between an anonymous number and a real identity, from which the broader investigation unfolds.</p>
 
-    <h3>OTP Fraud</h3>
-    <p>Criminals who obtain unauthorized OTPs often use SIM farming — multiple SIMs on one Aadhaar. TAFCOP identifies SIM farms instantly.</p>
+<h2>Detecting Mule SIM Operations</h2>
+<p>One of TAFCOP's most powerful applications is detecting mule SIM operations. Fraud syndicates register many SIMs on stolen or rented Aadhaar credentials to power their operations. When investigation reveals a number is one of many on a single Aadhaar, or that an individual's Aadhaar hosts SIMs they never authorised, it exposes the mule SIM supply chain that underpins much of India's telecom-enabled fraud.</p>
 
-    <h2>Complementary Portals</h2>
-    <table style="width:100%;border-collapse:collapse;margin:16px 0;">
-      <tr style="background:rgba(0,212,255,.08);"><th style="padding:8px;text-align:left;border:1px solid #0e3a5c;">Portal</th><th style="padding:8px;text-align:left;border:1px solid #0e3a5c;">URL</th><th style="padding:8px;text-align:left;border:1px solid #0e3a5c;">Purpose</th></tr>
-      <tr><td style="padding:8px;border:1px solid #0e3a5c;">Sanchar Saathi</td><td style="padding:8px;border:1px solid #0e3a5c;">sancharsaathi.gov.in</td><td style="padding:8px;border:1px solid #0e3a5c;">SIM verification, TAFCOP, CEIR</td></tr>
-      <tr><td style="padding:8px;border:1px solid #0e3a5c;">CEIR</td><td style="padding:8px;border:1px solid #0e3a5c;">ceir.gov.in</td><td style="padding:8px;border:1px solid #0e3a5c;">IMEI blocking for stolen devices</td></tr>
-      <tr><td style="padding:8px;border:1px solid #0e3a5c;">DoT LEA Portal</td><td style="padding:8px;border:1px solid #0e3a5c;">LEA access only</td><td style="padding:8px;border:1px solid #0e3a5c;">CDR, subscriber data</td></tr>
-      <tr><td style="padding:8px;border:1px solid #0e3a5c;">NPCI</td><td style="padding:8px;border:1px solid #0e3a5c;">npci.org.in</td><td style="padding:8px;border:1px solid #0e3a5c;">UPI linked mobile verification</td></tr>
-    </table>
+<h2>Citizen Use and Public Awareness</h2>
+<p>While this guide focuses on law enforcement, TAFCOP's public function is itself an investigative asset. Citizens who regularly check their connections and report unauthorised SIMs help shrink the pool of mule SIMs available to fraudsters. Investigators should promote public awareness of TAFCOP as both a protective measure and a way to surface fraud that might otherwise go undetected.</p>
 
-    <h2>Legal Authority</h2>
-    <p>CDR and subscriber data requests must be accompanied by a written order under Section 92 BNSS (formerly Section 91 CrPC). For real-time interception, an order under Section 5(2) of the Indian Telegraph Act 1885 is required, issued by the Home Secretary or authorized officer.</p>
-
-    <h2>Conclusion</h2>
-    <p>TAFCOP should be the first tool any cybercrime investigator reaches for when a mobile number is involved. Combined with CDR analysis and UPI transaction trails, it provides a powerful foundation for building the suspect identification chain.</p>
-
-    <div class="faq-section">
+<h2>Maximising TAFCOP in Investigations</h2>
+<p>To use TAFCOP effectively, investigators should treat it as the standard first step for any phone-number investigation, combine it with CDR and CEIR for complete telecom intelligence, ensure proper legal authorisation for enhanced access, and recognise the fraud indicators it reveals — particularly abnormal SIM counts signalling mule operations. Mastering TAFCOP and the broader Sanchar Saathi ecosystem gives Indian investigators a decisive advantage in the telecom-enabled cybercrime that dominates the current threat landscape.</p>
+  <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item">
       <div class="faq-q">What is TAFCOP and how does it work?</div>
