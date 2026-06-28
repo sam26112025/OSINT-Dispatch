@@ -60,23 +60,67 @@
       <tr><td>Category</td><td>OSINT Fundamentals</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-05-03</td></tr>
-      <tr><td>Reading time</td><td>5 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">DNS records contain significant intelligence about how an organization or threat actor operates online. How to read, analyse, and use them in investigations.</p>
-  <h2>Why DNS matters for investigators</h2>
-<p>DNS is the internet's address book — translating domain names into IP addresses and routing email. Every domain's DNS configuration is public, and the records it contains reveal substantial intelligence about the organization behind it: hosting infrastructure, email provider, security configuration, and sometimes subdomains not publicly advertised. For threat actor investigation, DNS records and their historical versions are primary attribution and infrastructure-mapping tools.</p>
-<h2>DNS record types and what they reveal</h2>
-<p><strong>A record:</strong> Maps a domain to an IPv4 address. The IP reveals the hosting provider and may link to other domains on the same server. <strong>MX record:</strong> Identifies the mail server — reveals email provider (Google Workspace, Microsoft 365, in-house). <strong>TXT record:</strong> Contains SPF records, DMARC policy, DKIM public keys, and domain verification records for third-party services — each verification record reveals a service the organization uses. <strong>NS record:</strong> Identifies name servers — sometimes correlates with other domains managed by the same actor. <strong>CNAME:</strong> Aliases revealing CDN providers or SaaS services in use.</p>
-<h2>Investigation tools</h2>
-<p>MXToolbox provides comprehensive DNS lookups across all record types. SecurityTrails and PassiveTotal provide historical DNS data — what IP addresses a domain pointed to in the past. VirusTotal's domain report combines DNS data with threat intelligence. DNSdumpster for subdomain enumeration. Command-line: <code>dig</code> on Linux/Mac, <code>nslookup</code> on Windows.</p>
-<h2>Historical DNS for attribution</h2>
-<p>Threat actors rotate domains and IPs to evade blocklists. Historical DNS databases record past IP resolutions — and which other domains shared those IPs. Pivoting from a known malicious domain to its historical IPs, then to other domains that pointed to those same IPs, reveals the actor's broader infrastructure across multiple campaigns.</p>
-<div class="callout">Subdomain enumeration via DNS brute-forcing against a target is active reconnaissance — only appropriate in authorized security assessments. Certificate transparency logs (crt.sh) and SecurityTrails are appropriate passive alternatives for open-source investigation.</div>
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
-  </div>
+  <h2>DNS Investigation: Mapping Digital Infrastructure</h2>
+<p>The Domain Name System (DNS) is the internet's address book, translating human-readable domain names into IP addresses. For investigators, DNS is a treasure trove of intelligence — revealing infrastructure, connecting related domains, exposing malicious operations, and tracing the digital footprint of threat actors. DNS investigation is a core OSINT skill. This guide covers the complete methodology.</p>
+
+<h2>Understanding DNS Records</h2>
+<table>
+<tr><th>Record Type</th><th>What It Reveals</th></tr>
+<tr><td>A / AAAA</td><td>IPv4/IPv6 address of the domain</td></tr>
+<tr><td>MX</td><td>Mail servers handling email</td></tr>
+<tr><td>NS</td><td>Name servers managing the domain</td></tr>
+<tr><td>TXT</td><td>Verification records, SPF, DKIM</td></tr>
+<tr><td>CNAME</td><td>Aliases pointing to other domains</td></tr>
+<tr><td>SOA</td><td>Authority and administrative info</td></tr>
+</table>
+
+<h2>Basic DNS Investigation Tools</h2>
+<p>The foundational tools for DNS investigation include:</p>
+<ul>
+<li><strong>dig / nslookup</strong> — command-line DNS queries</li>
+<li><strong>DNSDumpster</strong> — visual DNS mapping and discovery</li>
+<li><strong>SecurityTrails</strong> — historical and current DNS data</li>
+<li><strong>VirusTotal</strong> — DNS resolutions and reputation</li>
+<li><strong>MXToolbox</strong> — comprehensive DNS and mail diagnostics</li>
+</ul>
+
+<h2>Passive DNS: The Historical Record</h2>
+<p>Passive DNS is one of the most valuable investigative resources. It records historical domain-to-IP mappings over time, allowing investigators to see what a domain resolved to in the past — even after records change. This is invaluable for tracking infrastructure evolution, finding related malicious domains that once shared an IP, and uncovering an attacker's broader operation despite their attempts to cover tracks.</p>
+
+<h2>Reverse DNS and IP Pivoting</h2>
+<p>Reverse DNS lookups find what domains resolve to a given IP, enabling powerful pivoting. When multiple malicious domains share an IP address, they are likely part of the same operation. By pivoting between domains and IPs — finding all domains on a malicious IP, then all IPs those domains used — investigators map entire attacker infrastructure networks from a single starting point.</p>
+
+<h2>Investigating Malicious Infrastructure</h2>
+<p>DNS investigation exposes malicious infrastructure through several signals:</p>
+<ul>
+<li>Multiple malicious domains sharing an IP or name server</li>
+<li>Common registration patterns across domains</li>
+<li>Matching TXT or SOA records linking domains</li>
+<li>Recently registered domains used in attacks</li>
+<li>Fast-flux DNS rapidly changing IPs to evade blocking</li>
+</ul>
+
+<h2>Subdomain Discovery</h2>
+<p>Finding a domain's subdomains reveals its full attack surface and infrastructure. Techniques include certificate transparency logs (crt.sh), DNS brute-forcing, passive DNS data, and search engine enumeration. Subdomains often expose development servers, admin panels, and forgotten infrastructure that the main domain conceals — valuable both for security assessment and investigation.</p>
+
+<h2>Certificate Transparency and DNS</h2>
+<p>Certificate transparency logs, searchable via crt.sh, complement DNS investigation by revealing all SSL certificates issued for a domain and its subdomains. Since certificates are issued for specific hostnames, these logs expose subdomains and related infrastructure. Combining certificate transparency with passive DNS provides a comprehensive view of an entity's digital footprint.</p>
+
+<h2>DNS in Phishing and Fraud Investigation</h2>
+<p>DNS investigation is central to phishing and fraud cases. Analysing a phishing domain's DNS reveals its hosting, its mail configuration, related domains in the campaign, and registration details. Newly registered domains, suspicious name servers, and infrastructure shared with known-bad domains all flag fraudulent operations. The DNS trail frequently connects a single phishing site to an entire campaign.</p>
+
+<h2>Detecting DNS-Based Attacks</h2>
+<p>Beyond investigating domains, DNS analysis detects attacks: DNS tunnelling (data exfiltration hidden in DNS queries), fast-flux networks (rapidly changing infrastructure), domain generation algorithms (malware-generated domains), and cache poisoning. Monitoring DNS query logs for these patterns is an important defensive and investigative capability.</p>
+
+<h2>Legal and Practical Considerations</h2>
+<p>DNS investigation primarily uses public data and is generally unrestricted. WHOIS data, while increasingly redacted for privacy, still provides registration insights, and legal process can obtain registrant details from registrars where needed. For evidence purposes, DNS findings should be documented with timestamps and, where used in court, supported by proper certification. The largely open nature of DNS data makes it an accessible yet powerful investigative resource.</p>
+
+<h2>Building DNS Investigation Skills</h2>
+<p>Mastering DNS investigation requires understanding record types, learning to pivot between domains and IPs, leveraging passive DNS and certificate transparency, and recognising the infrastructure patterns that connect malicious operations. For Indian investigators tracing phishing campaigns, fraudulent platforms, and threat actor infrastructure, DNS investigation transforms a single domain or IP into a map of an entire operation — making it an indispensable technique in the OSINT toolkit.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">How do you investigate a domain using DNS?</div><div class="faq-a">DNS investigation examines A, MX, TXT, NS, and CNAME records, historical DNS data, reverse DNS lookups, and passive DNS databases. Tools like dig, dnsdumpster, SecurityTrails, and VirusTotal reveal infrastructure and related domains.</div></div>
