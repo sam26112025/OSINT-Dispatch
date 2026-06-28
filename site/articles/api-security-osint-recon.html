@@ -28,7 +28,7 @@
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article","headline":"API Security Reconnaissance: How Attackers Map Your APIs Before You Know They Exist",
-"description":"Most organizations do not have complete inventories of their own APIs. Attackers find what defenders miss. The discovery techniques and how to get ahead of them.","datePublished":"2026-06-03","dateModified":"2026-06-03",
+"description":"Most organizations do not have complete inventories of their own APIs. Attackers find what defenders miss. The discovery techniques and how to get ahead of them.","datePublished":"2026-06-03","dateModified":"2026-06-14",
 "author":{"@type":"Person","name":"Manuj Kumar Pandey"},
 "publisher":{"@type":"Organization","name":"IGRS"},
 "mainEntityOfPage":"https://igrs.xyz/articles/api-security-osint-recon.html"}
@@ -67,15 +67,67 @@
       <tr><td>Category</td><td>Threat Intelligence</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-06-03</td></tr>
-      <tr><td>Reading time</td><td>6 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">Most organizations do not have complete inventories of their own APIs. Attackers find what defenders miss. The discovery techniques and how to get ahead of them.</p>
-  <h2>The API sprawl problem</h2><p>Modern applications are built from APIs — internal services, partner integrations, mobile backends, and third-party connections that collectively represent an organization's most sensitive data pathways. The security problem is that most organizations do not have accurate, complete inventories of their own APIs. APIs are created by development teams without security review, exposed in mobile apps, published to developer portals, and sometimes forgotten when the product they served is deprecated. Attackers — and security researchers doing authorized assessments — use OSINT techniques to discover this undocumented API surface before defenders know it exists.</p><h2>JavaScript file analysis</h2><p>Modern web applications load JavaScript bundles that contain API endpoint references — the paths, parameters, and sometimes authentication patterns for every API call the frontend makes. These bundles are publicly accessible to any user of the application. Tools like LinkFinder and JSParser extract API endpoints from JavaScript files automatically. The process: load the target application, identify all JS files from the network tab of browser developer tools, pass each through the analysis tool, and review the extracted paths for undocumented or sensitive endpoints. This regularly surfaces internal API paths that developers assumed were not publicly discoverable.</p><h2>Mobile application analysis</h2><p>Mobile apps are another rich source of API endpoint discovery. Android APKs and iOS IPAs can be decompiled to reveal hardcoded API endpoints, authentication tokens (a frequent security failure), environment-specific endpoints (staging, development, production), and sometimes internal documentation comments that reveal system architecture. Tools: jadx for Android APK decompilation, frida for dynamic analysis. For basic endpoint extraction without full decompilation, strings extraction from the binary often reveals URL patterns.</p><h2>Public sources</h2><p>Before touching the application, check public sources for API documentation: the organization's developer portal (developer.company.com is a common subdomain); Postman's public API network, where organizations sometimes publish internal API collections; GitHub repositories where employees may have committed code containing API endpoint references or, in serious cases, API keys; and Wayback Machine snapshots of developer portals or API documentation that may have been removed.</p><div class="callout">This reconnaissance methodology is appropriate for authorized security assessments of your own organization's APIs or in scope systems during a penetration test. Applying it to systems you do not have authorization to test constitutes unauthorized access under Section 66 of the IT Act.</div><h2>Shodan for API discovery</h2><p>Shodan indexes internet-facing services including API servers. Queries combining organization name, known IP ranges, and port patterns can surface API servers that are not linked from the organization's public website. Non-standard ports (8080, 8443, 3000, 5000) are particularly worth checking — development and staging APIs often run on these ports and may be exposed to the internet without the security controls applied to production systems.</p>
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
-  </div>
+  <h2>API Security: The Expanding Attack Surface</h2>
+<p>Application Programming Interfaces (APIs) power the modern digital world — mobile apps, web services, and integrations all rely on them. But this ubiquity has made APIs a primary target for attackers, and OSINT reconnaissance is often the first step in API attacks. Understanding how attackers discover and exploit APIs, and how to defend them, is essential. This guide covers API security from the reconnaissance perspective.</p>
+
+<h2>Why APIs Are Attractive Targets</h2>
+<p>APIs often expose sensitive functionality and data directly, sometimes with weaker security than user-facing applications. They may lack the scrutiny applied to websites, expose business logic, and provide programmatic access that attackers can automate. As organisations expose more functionality through APIs, the attack surface grows correspondingly, making API security a critical concern.</p>
+
+<h2>How Attackers Discover APIs Through OSINT</h2>
+<table>
+<tr><th>Method</th><th>What It Finds</th></tr>
+<tr><td>Google dorking</td><td>API documentation, endpoints, keys</td></tr>
+<tr><td>GitHub searches</td><td>Hardcoded API keys, endpoints</td></tr>
+<tr><td>Mobile app analysis</td><td>API endpoints in app code</td></tr>
+<tr><td>JavaScript analysis</td><td>API calls in front-end code</td></tr>
+<tr><td>Shodan/Censys</td><td>Exposed API servers</td></tr>
+</table>
+
+<h2>The GitHub Key Leak Problem</h2>
+<p>One of the most common API security failures is leaked credentials in public code repositories. Developers accidentally commit API keys, tokens, and secrets to GitHub, where attackers actively search for them. A single leaked key can grant access to sensitive data or services. GitHub searches for patterns like "api_key" alongside a company name frequently reveal exposed credentials — a reconnaissance technique that requires no sophistication but yields serious findings.</p>
+
+<h2>Mobile App API Discovery</h2>
+<p>Mobile applications communicate with backend APIs, and reverse-engineering an app reveals these endpoints. Attackers decompile APKs, inspect network traffic, and analyse app code to map the API surface. Endpoints intended only for the app become accessible for direct attack. This is why APIs must enforce security independently rather than relying on the app as a gatekeeper.</p>
+
+<h2>The OWASP API Security Top 10</h2>
+<p>The OWASP API Security Top 10 catalogues the most critical API vulnerabilities:</p>
+<ul>
+<li><strong>Broken Object Level Authorization (BOLA)</strong> — accessing other users' data by changing IDs</li>
+<li><strong>Broken Authentication</strong> — weak or flawed authentication</li>
+<li><strong>Excessive Data Exposure</strong> — returning more data than needed</li>
+<li><strong>Lack of Rate Limiting</strong> — enabling abuse and brute force</li>
+<li><strong>Broken Function Level Authorization</strong> — accessing unauthorised functions</li>
+<li><strong>Mass Assignment</strong> — modifying unintended object properties</li>
+</ul>
+
+<h2>BOLA: The Most Common API Flaw</h2>
+<p>Broken Object Level Authorization is the most prevalent API vulnerability. It occurs when an API fails to verify that the requesting user is authorised to access the specific object requested. An attacker simply changes an ID in the request — for example, from their own account number to another's — and accesses data that should be off-limits. Preventing BOLA requires authorisation checks on every object access, validated server-side.</p>
+
+<h2>API Reconnaissance Tools</h2>
+<table>
+<tr><th>Tool</th><th>Purpose</th></tr>
+<tr><td>Postman</td><td>API testing and exploration</td></tr>
+<tr><td>Burp Suite</td><td>Intercepting and manipulating API calls</td></tr>
+<tr><td>Kiterunner</td><td>API endpoint discovery</td></tr>
+<tr><td>GitHub search</td><td>Leaked keys and endpoints</td></tr>
+<tr><td>Swagger/OpenAPI files</td><td>API documentation discovery</td></tr>
+</table>
+
+<h2>GraphQL-Specific Risks</h2>
+<p>GraphQL APIs introduce distinct risks. Introspection queries can reveal the entire API schema, exposing all available operations. Overly permissive queries enable data harvesting, and nested queries can cause denial of service. Investigating GraphQL endpoints involves checking whether introspection is enabled and analysing the schema for sensitive operations. Disabling introspection in production and implementing query depth limiting are key defences.</p>
+
+<h2>Defending APIs</h2>
+<p>Protecting APIs requires layered measures: removing all credentials from client-side code, rotating any exposed keys immediately, implementing strong authentication and authorisation checked server-side on every request, enforcing rate limiting, using API gateways, maintaining an accurate API inventory, and monitoring GitHub for leaked keys. Treating the API as the security boundary — never trusting the client — is the fundamental principle.</p>
+
+<h2>API Inventory and Shadow APIs</h2>
+<p>A frequently overlooked risk is shadow and zombie APIs — undocumented or forgotten endpoints that remain accessible but unmonitored. These often lack current security controls and become easy targets. Maintaining a complete, current API inventory, and decommissioning unused endpoints, eliminates this hidden attack surface. For organisations, knowing exactly what APIs exist is the prerequisite to securing them.</p>
+
+<h2>Building API Security Capability</h2>
+<p>Effective API security combines understanding how attackers discover and exploit APIs, applying the OWASP API Security Top 10, securing the development lifecycle, and continuous testing. For security professionals and investigators in India, recognising that API reconnaissance via OSINT — GitHub leaks, mobile app analysis, exposed documentation — is often the attacker's starting point enables proactive defence. Securing APIs at the source, with server-side authorisation and credential hygiene, protects the data and functionality that increasingly flows through them.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">How do attackers find exposed APIs through OSINT?</div><div class="faq-a">Attackers discover APIs through Google dorking, GitHub code searches for API keys, Shodan/Censys scans, mobile app reverse engineering, JavaScript file analysis, and API documentation discovery. Exposed endpoints and leaked keys are common findings.</div></div>
