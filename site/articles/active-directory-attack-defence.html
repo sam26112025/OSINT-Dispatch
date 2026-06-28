@@ -60,25 +60,64 @@
       <tr><td>Category</td><td>Threat Intelligence</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-06-04</td></tr>
-      <tr><td>Reading time</td><td>7 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">Active Directory is the authentication backbone of most Indian enterprise environments — and the primary target of attackers who have established a foothold. The most important attacks and how to defend.</p>
-  <h2>Why Active Directory is the prize</h2>
-<p>Active Directory manages authentication and access control for every user account, computer, and server in a Windows domain network. Compromising Active Directory gives an attacker control over every resource in the domain. The overwhelming majority of Indian enterprise and government Windows environments use Active Directory, making AD attack and defence one of the highest-priority knowledge areas for Indian security teams.</p>
-<h2>Kerberoasting</h2>
-<p>Any domain user can request a Kerberos service ticket for any service account that has a Service Principal Name (SPN) registered. The ticket is encrypted with the service account's password hash. Attackers request these tickets and crack them offline. Service accounts often have weak passwords and rarely rotate. Defence: use long, complex, regularly rotated service account passwords; use Group Managed Service Accounts (gMSAs) for automatic password rotation; monitor Event ID 4769 for unusual encryption types (RC4) which may indicate Kerberoasting in progress.</p>
-<h2>Pass-the-Hash</h2>
-<p>Windows stores NTLM password hashes in memory (LSASS process) and uses them for authentication. Attackers with local administrator access extract these hashes and use them to authenticate to other systems without knowing the plaintext password — the hash is the credential. Defence: enable Windows Credential Guard to prevent LSASS dumping on modern systems; restrict local administrator accounts rigorously using LAPS (Local Administrator Password Solution) to randomize local admin passwords; monitor Event ID 4624 Type 3 with NTLM from unusual sources.</p>
-<h2>DCSync</h2>
-<p>An account with Directory Replication permissions can request that domain controllers replicate credential data, effectively pulling all password hashes from the domain. This abuses legitimate replication functionality using compromised privileged credentials. Defence: audit which accounts have replication permissions (should be only domain controllers and specific backup accounts); alert on unexpected replication requests.</p>
-<div class="callout"><strong>The most impactful single defensive step:</strong> Enable the Protected Users security group for all privileged accounts. This prevents credential caching, forces Kerberos with no NTLM fallback, and limits ticket lifetimes — significantly raising the cost of credential-based attacks against your most privileged accounts.</div>
-<h2>Tier-based administration</h2>
-<p>The most effective structural defence is tiered administration: Tier 0 (Domain Controllers — managed only by dedicated Tier 0 admin accounts that never log into lower-tier systems); Tier 1 (servers); Tier 2 (workstations). This prevents credential theft from workstations, where most initial compromises occur, from enabling direct access to domain controllers.</p>
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
-  </div>
+  <h2>Active Directory: The Crown Jewel Attackers Target</h2>
+<p>Active Directory (AD) is the identity backbone of most enterprise networks, controlling authentication and authorisation across the organisation. This central role makes it the prime target for attackers — compromising AD often means controlling the entire network. Understanding AD attacks and defences is essential for security professionals. This guide covers the major attack techniques and how to defend against them.</p>
+
+<h2>Why Active Directory Is a Target</h2>
+<p>Active Directory holds the keys to the kingdom: user accounts, group memberships, access permissions, and authentication for the entire domain. An attacker who gains domain admin privileges effectively controls every system and account. This concentration of control makes AD the focal point of most enterprise attacks, with adversaries methodically working toward domain dominance.</p>
+
+<h2>Common Active Directory Attacks</h2>
+<table>
+<tr><th>Attack</th><th>Technique</th></tr>
+<tr><td>Kerberoasting</td><td>Extract and crack service account passwords</td></tr>
+<tr><td>Pass-the-Hash</td><td>Authenticate using stolen password hashes</td></tr>
+<tr><td>Pass-the-Ticket</td><td>Reuse stolen Kerberos tickets</td></tr>
+<tr><td>Golden Ticket</td><td>Forge tickets using the KRBTGT hash</td></tr>
+<tr><td>DCSync</td><td>Impersonate a DC to extract credentials</td></tr>
+<tr><td>LDAP enumeration</td><td>Map the AD structure for targets</td></tr>
+</table>
+
+<h2>Kerberoasting Explained</h2>
+<p>Kerberoasting is among the most common AD attacks. It exploits the Kerberos protocol: any authenticated user can request a service ticket for accounts with a Service Principal Name (SPN), and that ticket is encrypted with the service account's password hash. The attacker extracts these tickets and cracks them offline to recover service account passwords — which are often weak and over-privileged. Defending requires strong, long service account passwords and managed service accounts.</p>
+
+<h2>Credential Theft Techniques</h2>
+<p>Pass-the-Hash and Pass-the-Ticket exploit how Windows authentication works. Rather than cracking passwords, attackers steal the hash or Kerberos ticket and reuse it directly to authenticate. These techniques enable lateral movement across the network using harvested credentials. Mitigations include credential guard, restricting privileged account usage, and limiting where high-privilege accounts log in.</p>
+
+<h2>The Golden Ticket Attack</h2>
+<p>A Golden Ticket is among the most severe AD compromises. By obtaining the KRBTGT account hash, an attacker can forge Kerberos tickets for any user, including domain admins, granting persistent, near-undetectable access. Recovering from a Golden Ticket attack requires rotating the KRBTGT password twice. This devastating attack underscores why protecting domain controllers and the KRBTGT account is paramount.</p>
+
+<h2>BloodHound: Mapping Attack Paths</h2>
+<p>BloodHound is a tool that maps relationships in Active Directory to reveal attack paths — chains of permissions and group memberships that lead from a low-privilege foothold to domain admin. Attackers use it to find the shortest path to domination; defenders use it to identify and close those paths. Understanding your own AD attack paths through BloodHound is a powerful defensive practice.</p>
+
+<h2>Detecting Active Directory Attacks</h2>
+<p>Detection focuses on key Windows event logs and behaviours:</p>
+<ul>
+<li><strong>Event 4769</strong> — Kerberos ticket requests (abnormal patterns suggest Kerberoasting)</li>
+<li><strong>Event 4624/4625</strong> — logons and failed logons</li>
+<li><strong>Event 4728/4732</strong> — privileged group membership changes</li>
+<li><strong>DCSync detection</strong> — unexpected replication requests</li>
+<li><strong>Anomalous ticket lifetimes</strong> — indicators of forged tickets</li>
+</ul>
+
+<h2>Defending Active Directory</h2>
+<table>
+<tr><th>Defence</th><th>Protects Against</th></tr>
+<tr><td>Tiered administration</td><td>Credential theft escalation</td></tr>
+<tr><td>Strong service passwords</td><td>Kerberoasting</td></tr>
+<tr><td>LAPS</td><td>Local admin reuse</td></tr>
+<tr><td>MFA</td><td>Credential-based access</td></tr>
+<tr><td>Privileged Access Workstations</td><td>Admin credential exposure</td></tr>
+</table>
+
+<h2>The Tiered Administration Model</h2>
+<p>A foundational AD defence is tiered administration, which separates accounts and systems into tiers — domain controllers and domain admins (Tier 0), servers (Tier 1), and workstations (Tier 2) — and prevents high-tier credentials from being exposed on lower-tier systems. This containment stops attackers from harvesting domain admin credentials from a compromised workstation, breaking the escalation path that most attacks rely on.</p>
+
+<h2>Continuous AD Security Assessment</h2>
+<p>Active Directory security is not a one-time configuration but a continuous practice. Regular assessment using tools like BloodHound and PingCastle identifies attack paths, misconfigurations, and risky permissions. Auditing privileged group memberships, reviewing service accounts, and monitoring for attack indicators maintain security as the environment evolves. For organisations, treating AD as the critical asset it is — with the monitoring, hardening, and assessment that importance demands — is the foundation of enterprise security against the attacks that inevitably target this crown jewel.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">What are the most common Active Directory attacks?</div><div class="faq-a">Common AD attacks include Kerberoasting, Pass-the-Hash, Pass-the-Ticket, Golden Ticket attacks, DCSync, and LDAP enumeration. Most begin with credential theft and escalate to domain admin through privilege escalation paths.</div></div>
