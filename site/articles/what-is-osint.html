@@ -28,7 +28,7 @@
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article","headline":"What Is OSINT? A Practical Introduction to Open-Source Intelligence",
-"description":"OSINT is the discipline of producing intelligence from publicly available information. Here is what it actually involves, who uses it, and where the legal lines are.","datePublished":"2026-04-06","dateModified":"2026-04-06",
+"description":"OSINT is the discipline of producing intelligence from publicly available information. Here is what it actually involves, who uses it, and where the legal lines are.","datePublished":"2026-04-06","dateModified":"2026-06-14",
 "author":{"@type":"Person","name":"Manuj Kumar Pandey"},
 "publisher":{"@type":"Organization","name":"IGRS"},
 "mainEntityOfPage":"https://igrs.xyz/articles/what-is-osint.html"}
@@ -68,52 +68,66 @@
       <tr><td>Category</td><td>OSINT Fundamentals</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-04-06</td></tr>
-      <tr><td>Reading time</td><td>6 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">OSINT is the discipline of producing intelligence from publicly available information. Here is what it actually involves, who uses it, and where the legal lines are.</p>
-  
-<h2>The definition that actually matters</h2>
-<p>Open-Source Intelligence (OSINT) is intelligence produced from <strong>publicly available information</strong> — information that anyone can lawfully obtain by request, purchase or observation. The key word is <em>intelligence</em>, not <em>information</em>. A pile of search results is not OSINT. OSINT is what you get after raw public data has been collected, evaluated for reliability, correlated and analysed to answer a specific question.</p>
-<p>That distinction separates a professional investigator from someone who is "good at Googling". Anybody can find data. The discipline lies in knowing what question you are answering, which sources can be trusted, and how to turn fragments into a defensible conclusion.</p>
+  <h2>What Is OSINT? The Foundation of Modern Investigation</h2>
+<p>Open Source Intelligence (OSINT) is intelligence gathered from publicly available sources — websites, social media, public records, news, and more. It has become a cornerstone of cyber investigation, security research, journalism, due diligence, and law enforcement. Unlike intelligence requiring covert access, OSINT draws entirely on information anyone can legally access. This guide explains what OSINT is, how it works, and its applications.</p>
 
-<h2>The OSINT cycle</h2>
-<p>Professional OSINT work follows a version of the classic intelligence cycle:</p>
-<ol>
-<li><strong>Requirement.</strong> Define the question precisely. "Find out about Company X" is not a requirement; "verify whether Company X has the manufacturing capacity it claims in its tender bid" is.</li>
-<li><strong>Collection.</strong> Gather data from public sources: websites, news archives, corporate registries, court records, social media, satellite imagery, academic papers, government databases.</li>
-<li><strong>Processing.</strong> Organise, translate, deduplicate and timestamp what was collected.</li>
-<li><strong>Analysis.</strong> Evaluate source reliability and information credibility, correlate independent sources, and separate fact from inference.</li>
-<li><strong>Dissemination.</strong> Produce a report a decision-maker can act on — with every claim traceable to a source.</li>
-</ol>
+<h2>Defining OSINT</h2>
+<p>OSINT is the collection and analysis of information from open, publicly available sources to produce actionable intelligence. The key word is "open" — the information is accessible to anyone, without hacking, special clearance, or covert methods. What transforms open data into intelligence is the systematic collection, correlation, and analysis that reveals insights not obvious from any single source.</p>
 
-<h2>Who actually uses OSINT</h2>
+<h2>Sources of OSINT</h2>
+<table>
+<tr><th>Category</th><th>Examples</th></tr>
+<tr><td>Social media</td><td>Facebook, Instagram, Twitter/X, LinkedIn</td></tr>
+<tr><td>Public records</td><td>Company filings, court records, property records</td></tr>
+<tr><td>Web content</td><td>Websites, blogs, forums, archives</td></tr>
+<tr><td>Technical data</td><td>WHOIS, DNS, certificates, breach data</td></tr>
+<tr><td>Media</td><td>News, images, videos</td></tr>
+<tr><td>Geospatial</td><td>Maps, satellite imagery, geotags</td></tr>
+</table>
+
+<h2>The OSINT Process</h2>
+<p>Effective OSINT follows a structured process: defining the intelligence requirement (what question are we answering), identifying relevant sources, collecting information systematically, correlating data across sources, analysing to derive insight, and documenting findings. This discipline distinguishes professional OSINT from random searching — it ensures thoroughness, repeatability, and defensibility.</p>
+
+<h2>Common OSINT Use Cases</h2>
+<p>OSINT serves a remarkable range of purposes:</p>
 <ul>
-<li><strong>Law enforcement</strong> uses it to develop leads, verify alibis and map criminal networks before seeking legal process for private data.</li>
-<li><strong>Journalists</strong> use it to verify images, geolocate events and investigate corporate wrongdoing — outfits like Bellingcat built their reputation entirely on open sources.</li>
-<li><strong>Corporate security teams</strong> use it for vendor due diligence, fraud investigation, executive protection and brand monitoring.</li>
-<li><strong>Cybersecurity teams</strong> use it to map their own organisation's exposed attack surface — finding leaked credentials, forgotten subdomains and exposed services before attackers do.</li>
-<li><strong>Humanitarian organisations</strong> use it to document conflict events and human-rights violations from imagery and social media.</li>
+<li><strong>Cyber investigations</strong> — tracing fraudsters, attackers, and threats</li>
+<li><strong>Due diligence</strong> — verifying individuals and companies</li>
+<li><strong>Threat intelligence</strong> — understanding adversaries</li>
+<li><strong>Journalism</strong> — verification and investigation</li>
+<li><strong>Law enforcement</strong> — supporting criminal investigations</li>
+<li><strong>Locating people</strong> — finding individuals from digital traces</li>
 </ul>
 
-<h2>Where the legal line sits</h2>
-<p>"Publicly available" does not mean "anything goes". A few boundaries every beginner should internalise:</p>
-<ul>
-<li><strong>Accessing data behind authentication you are not entitled to is not OSINT</strong> — it is unauthorised access, an offence under Section 66 of India's IT Act, 2000 and equivalent laws elsewhere.</li>
-<li><strong>Pretexting and social engineering</strong> (lying to a person to extract information) falls outside OSINT and may constitute fraud.</li>
-<li><strong>Stalking and harassment laws apply regardless of how public the data is.</strong> Compiling a person's public information to intimidate them is an offence in most jurisdictions.</li>
-<li><strong>Data-protection law matters.</strong> Under regimes like the GDPR and India's DPDP Act 2023, even lawfully collected personal data carries obligations about purpose and retention when processed at scale.</li>
-</ul>
-<div class="callout"><strong>Rule of thumb:</strong> if you need to deceive a person, bypass a control, or violate a platform's authentication to get the data, it is not open-source intelligence.</div>
+<h2>OSINT Techniques</h2>
+<p>Core OSINT techniques include search engine dorking (advanced search operators), reverse image search (finding image sources and matches), username and email pivoting (tracking identities across platforms), metadata analysis (extracting hidden data from files), social media analysis, and geolocation (determining where images or events occurred). Mastery comes from combining these techniques fluidly to follow a trail of evidence.</p>
 
-<h2>The skill that matters most</h2>
-<p>Beginners obsess over tools. Professionals obsess over <strong>verification</strong>. Any single source can be wrong, outdated, or deliberately planted. The habit that defines good OSINT work is corroboration: a claim supported by two independent sources is information; a claim supported by one screenshot is a lead. Learn source evaluation before you learn your tenth tool, and you will already be ahead of most of the field.</p>
-<p>In future articles we will cover the beginner tool landscape, verification techniques like reverse image search, and how findings are documented so they survive scrutiny — including in court.</p>
+<h2>Essential OSINT Tools</h2>
+<table>
+<tr><th>Tool</th><th>Purpose</th></tr>
+<tr><td>Google dorking</td><td>Targeted search</td></tr>
+<tr><td>Reverse image search</td><td>Image verification (Google, Yandex, TinEye)</td></tr>
+<tr><td>Sherlock/WhatsMyName</td><td>Username hunting</td></tr>
+<tr><td>Have I Been Pwned</td><td>Breach checking</td></tr>
+<tr><td>Maltego</td><td>Link analysis and visualisation</td></tr>
+<tr><td>Wayback Machine</td><td>Historical web content</td></tr>
+</table>
 
-  <div class="author-box">
-    <div class="label">About the author</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India. Everything published here is educational and based on hands-on investigative practice.</p>
-  </div>
+<h2>Is OSINT Legal?</h2>
+<p>OSINT using genuinely public information is legal. The legal line is crossed when one accesses private systems without authority, uses deception that breaches law, or violates data protection regulations like the DPDP Act 2026. In India, OSINT must respect the IT Act and data protection obligations — gathering public information is permissible, but the manner of collection and the handling of personal data must remain lawful. Professional OSINT is conducted within clear legal and ethical boundaries.</p>
+
+<h2>OSINT in the Indian Context</h2>
+<p>India offers a particularly rich OSINT environment due to extensive digitisation of public records — MCA21 for companies, GST portals, eCourts for litigation, and more. Combined with the prevalence of social media use, this makes India-focused OSINT highly productive. Indian investigators benefit from government transparency portals that provide free access to data costing significant sums elsewhere.</p>
+
+<h2>The Ethics of OSINT</h2>
+<p>Beyond legality, OSINT carries ethical responsibilities. The same techniques that serve investigation can enable stalking or harassment. Responsible practitioners use OSINT for legitimate purposes, respect privacy where information was not intended to be public, handle personal data carefully, and consider the impact of their work. Ethical OSINT is not only the right approach but produces more defensible, professional results.</p>
+
+<h2>Building OSINT Skills</h2>
+<p>Developing OSINT capability requires learning the techniques, practising on real scenarios (starting with investigating yourself), building a methodical workflow, staying current with evolving tools and platforms, and understanding the legal and ethical framework. OSINT is a skill that rewards curiosity, persistence, and disciplined thinking. For anyone in cybersecurity, investigation, or research, it is among the most versatile and valuable capabilities to master — turning the vast ocean of public information into focused, actionable intelligence.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">What is OSINT?</div><div class="faq-a">OSINT (Open Source Intelligence) is intelligence gathered from publicly available sources — websites, social media, public records, news, and more. It is used in investigations, security, journalism, and due diligence without accessing private systems.</div></div>
