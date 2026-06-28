@@ -28,7 +28,7 @@
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article","headline":"What Is Threat Intelligence? IOCs, TTPs and Feeds, Explained Simply",
-"description":"'Threat intelligence' is one of the most used and least understood terms in cybersecurity. What it actually means, the difference between an IOC and a TTP, and why context is everything.","datePublished":"2026-06-05","dateModified":"2026-06-05",
+"description":"'Threat intelligence' is one of the most used and least understood terms in cybersecurity. What it actually means, the difference between an IOC and a TTP, and why context is everything.","datePublished":"2026-06-05","dateModified":"2026-06-14",
 "author":{"@type":"Person","name":"Manuj Kumar Pandey"},
 "publisher":{"@type":"Organization","name":"IGRS"},
 "mainEntityOfPage":"https://igrs.xyz/articles/threat-intelligence-explained.html"}
@@ -68,44 +68,63 @@
       <tr><td>Category</td><td>Threat Intelligence</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-06-05</td></tr>
-      <tr><td>Reading time</td><td>6 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">'Threat intelligence' is one of the most used and least understood terms in cybersecurity. What it actually means, the difference between an IOC and a TTP, and why context is everything.</p>
-  
-<h2>Data, information, intelligence</h2>
-<p>The security industry sells "threat intelligence" on everything, so the term has blurred. The clean definition: <strong>threat intelligence is analysed knowledge about adversaries — their capabilities, infrastructure, methods and intent — produced to support a specific defensive decision.</strong> The hierarchy matters: a raw malicious IP address is <em>data</em>; that IP tied to a phishing campaign is <em>information</em>; an assessment that the campaign targets Indian banking customers via fake KYC pages, with indicators your team should block and patterns your staff should watch for — <em>that</em> is intelligence. The difference is context plus relevance plus actionability.</p>
+  <h2>Threat Intelligence: Turning Data into Defence</h2>
+<p>Threat intelligence is evidence-based knowledge about cyber threats — the actors, their methods, their infrastructure, and their motivations — used to inform defensive decisions. In an era of sophisticated, persistent adversaries, threat intelligence transforms security from reactive firefighting into proactive defence. This guide explains what threat intelligence is, its types, and how organisations use it effectively.</p>
 
-<h2>The three levels</h2>
+<h2>What Threat Intelligence Actually Is</h2>
+<p>Threat intelligence is not raw data — it is processed, analysed, and contextualised knowledge that supports decisions. A list of malicious IPs is data; understanding which threat actor uses those IPs, against which targets, and why, is intelligence. The distinction matters because intelligence drives action, while raw data alone often just adds noise.</p>
+
+<h2>The Four Levels of Threat Intelligence</h2>
+<table>
+<tr><th>Level</th><th>Audience</th><th>Content</th></tr>
+<tr><td>Strategic</td><td>Leadership</td><td>High-level trends, risk, threat landscape</td></tr>
+<tr><td>Tactical</td><td>Defenders</td><td>Attacker TTPs and techniques</td></tr>
+<tr><td>Operational</td><td>SOC/IR teams</td><td>Specific campaign details</td></tr>
+<tr><td>Technical</td><td>Security tools</td><td>Indicators: IPs, hashes, domains</td></tr>
+</table>
+
+<h2>The Intelligence Lifecycle</h2>
+<p>Threat intelligence is produced through a structured lifecycle: direction (defining requirements), collection (gathering data from sources), processing (organising the data), analysis (deriving insight), dissemination (delivering to consumers), and feedback (refining the process). This cycle ensures intelligence is relevant, timely, and actionable rather than an undirected accumulation of data.</p>
+
+<h2>Sources of Threat Intelligence</h2>
+<p>Intelligence is gathered from diverse sources:</p>
 <ul>
-<li><strong>Strategic</strong> — for leadership: threat landscape trends, sector targeting, risk to the business. Informs budgets and policy. ("Ransomware groups are increasingly targeting Indian manufacturing.")</li>
-<li><strong>Operational</strong> — for security managers: details of specific campaigns and adversary groups, their tooling and infrastructure. Informs defensive priorities and hunts.</li>
-<li><strong>Tactical/technical</strong> — for the SOC and its tools: concrete indicators to detect and block, right now.</li>
+<li><strong>Open source (OSINT)</strong> — public reports, research, news</li>
+<li><strong>Commercial feeds</strong> — vendor threat intelligence services</li>
+<li><strong>Information sharing communities</strong> — sector ISACs, CERT-In advisories</li>
+<li><strong>Internal telemetry</strong> — the organisation's own incident data</li>
+<li><strong>Dark web monitoring</strong> — threat actor forums and marketplaces</li>
 </ul>
 
-<h2>IOCs vs TTPs — the distinction that matters most</h2>
-<p><strong>Indicators of Compromise (IOCs)</strong> are forensic artefacts of malicious activity: file hashes, malicious domains and IPs, registry keys, sender addresses. They are precise but perishable — an attacker can re-hash malware or rotate a domain in minutes.</p>
-<p><strong>TTPs — Tactics, Techniques and Procedures</strong> — describe adversary <em>behaviour</em>: how they gain initial access, escalate privileges, move laterally, exfiltrate. Behaviour is expensive to change. This asymmetry is captured in David Bianco's "Pyramid of Pain": blocking a hash barely inconveniences an attacker; detecting their techniques forces them to retool. Mature defence therefore climbs the pyramid — from chasing indicators toward detecting behaviours.</p>
-<p>The industry's shared vocabulary for TTPs is the <strong>MITRE ATT&amp;CK framework</strong>, a public, continuously updated matrix of adversary techniques observed in the real world. When a report says an actor used "T1566 — Phishing", every defender on earth knows precisely what is meant.</p>
+<h2>Indicators of Compromise</h2>
+<p>Technical threat intelligence centres on Indicators of Compromise (IOCs) — observable artifacts that signal malicious activity. These include malicious IP addresses, domain names, file hashes, URLs, and email addresses. IOCs feed directly into security tools for automated blocking and detection. However, IOCs are often short-lived as attackers change infrastructure, which is why TTP-based intelligence is increasingly valued for its durability.</p>
 
-<h2>Where intelligence comes from</h2>
+<h2>From IOCs to TTPs</h2>
+<p>While IOCs are easily changed by attackers, their tactics, techniques, and procedures (TTPs) are more stable. An attacker can switch IP addresses instantly but is less likely to change their fundamental methods. The MITRE ATT&CK framework catalogues TTPs, enabling defenders to detect attacker behaviour even when specific indicators change. This shift from IOC-focused to TTP-focused intelligence reflects the maturing of the discipline.</p>
+
+<h2>How Organisations Use Threat Intelligence</h2>
+<p>Threat intelligence drives multiple security functions:</p>
 <ul>
-<li><strong>Open sources (OSINT):</strong> vendor research blogs, CERT advisories (in India, CERT-In alerts), abuse databases, public sandboxes.</li>
-<li><strong>Internal telemetry:</strong> your own logs, incidents and phishing reports — the most relevant source any organisation has, and the most neglected.</li>
-<li><strong>Commercial feeds and platforms:</strong> curated indicators and finished reporting, valuable when matched to your sector.</li>
-<li><strong>Sharing communities:</strong> sector ISACs and trust groups where peers exchange sightings.</li>
-<li><strong>Dark-web monitoring:</strong> lawful observation of criminal markets and forums for stolen data and access being traded.</li>
+<li>Prioritising patching based on actively exploited vulnerabilities</li>
+<li>Enriching SOC alerts with context for faster triage</li>
+<li>Blocking known-malicious indicators automatically</li>
+<li>Informing threat hunting hypotheses</li>
+<li>Supporting incident response with attacker context</li>
+<li>Guiding strategic security investment</li>
 </ul>
-<p>Standards like <strong>STIX</strong> (a structured format for describing threat information) and <strong>TAXII</strong> (a protocol for exchanging it), plus open platforms like MISP, let all of this flow between organisations and tools automatically.</p>
 
-<h2>The lifecycle — and the step everyone skips</h2>
-<p>Good intelligence programmes run a cycle: define <strong>requirements</strong> (what decisions need supporting?), collect, process, analyse, disseminate, and gather <strong>feedback</strong>. The step organisations skip is the first one. Without explicit requirements — "we need early warning of credential leaks affecting our domains" — teams drown in generic feeds that generate alerts nobody acts on. Intelligence that supports no decision is just expensive noise.</p>
-<div class="callout"><strong>For students:</strong> the fastest way to build genuine TI skill costs nothing — read vendor research reports actively, map each described attack to MITRE ATT&amp;CK techniques yourself, and write one-page summaries answering "who, targeting whom, how, and what should a defender do". That exercise is the actual job.</div>
+<h2>CERT-In and India-Specific Intelligence</h2>
+<p>For Indian organisations, CERT-In is a key intelligence source, issuing advisories on vulnerabilities and threats relevant to India. Sector-specific bodies and the broader Sanchar Saathi ecosystem add context. India-focused threat intelligence — understanding the threat actors, campaigns, and fraud typologies specifically targeting Indian organisations and citizens — is more actionable than generic global intelligence for defending Indian assets.</p>
 
-  <div class="author-box">
-    <div class="label">About the author</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India. Everything published here is educational and based on hands-on investigative practice.</p>
-  </div>
+<h2>Operationalising Threat Intelligence</h2>
+<p>Intelligence only delivers value when operationalised. This means integrating feeds into security tools for automated action, establishing processes to act on advisories, training analysts to use intelligence in their workflows, and measuring whether intelligence actually improved outcomes. Many organisations collect intelligence but fail to operationalise it, leaving its potential value unrealised.</p>
+
+<h2>Building a Threat Intelligence Capability</h2>
+<p>Developing threat intelligence capability involves defining clear intelligence requirements based on the organisation's risks, selecting relevant sources, establishing processes to analyse and disseminate intelligence, integrating it into security operations, and continuously refining based on feedback. For Indian organisations, combining global feeds with CERT-In advisories and India-specific context produces intelligence that genuinely strengthens defence. As threats grow more sophisticated, the organisations that effectively harness threat intelligence gain a decisive advantage in anticipating and countering attacks before they cause harm.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">What is threat intelligence?</div><div class="faq-a">Threat intelligence is evidence-based knowledge about cyber threats — actors, their methods, indicators, and motivations — used to inform defensive decisions. It transforms raw data into actionable insight for security teams.</div></div>
