@@ -36,13 +36,34 @@ Redirect 301 /articles/igrs-108-vpn-jk-pok-intelligence-brief.html /articles/vpn
     Deny from all
 </FilesMatch>
 
-# Cache static assets
+# === CACHING STRATEGY ===
+# HTML: always revalidate (so site updates appear immediately).
+# Static assets: cached long, but version-busted via ?v= query strings.
+<IfModule mod_headers.c>
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header unset Expires
+        Header set Expires "0"
+    </FilesMatch>
+    <FilesMatch "\.(css|js|svg|png|jpg|jpeg|gif|webp|ico|woff|woff2)$">
+        Header set Cache-Control "public, max-age=604800"
+    </FilesMatch>
+</IfModule>
+
+# Disable LiteSpeed server-side page cache (GoDaddy) so HTML is never stale
+<IfModule LiteSpeed>
+    CacheDisable public /
+    RewriteEngine On
+    RewriteRule .* - [E=Cache-Control:no-cache]
+</IfModule>
+
 <IfModule mod_expires.c>
     ExpiresActive On
-    ExpiresByType text/css "access plus 1 month"
-    ExpiresByType application/javascript "access plus 1 month"
-    ExpiresByType image/svg+xml "access plus 1 month"
-    ExpiresByType text/html "access plus 1 hour"
+    ExpiresByType text/css "access plus 7 days"
+    ExpiresByType application/javascript "access plus 7 days"
+    ExpiresByType image/svg+xml "access plus 7 days"
+    ExpiresByType text/html "access plus 0 seconds"
 </IfModule>
 
 # Gzip compression
