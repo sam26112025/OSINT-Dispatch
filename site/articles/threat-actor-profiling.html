@@ -60,23 +60,55 @@
       <tr><td>Category</td><td>Threat Intelligence</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-04-09</td></tr>
-      <tr><td>Reading time</td><td>6 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">Knowing who is targeting your organization — tools, techniques, motivation, history — fundamentally changes how you defend. How threat actor profiles are built and used.</p>
-  <h2>Why attribution matters for defence</h2>
-<p>Defenders who know which threat actor is targeting them make significantly better decisions. Different actors use different TTPs — knowing the actor lets you prioritise defences against their specific techniques rather than defending equally against everything. It shapes intelligence requirements and calibrates the response — a nation-state APT requires different escalation than a ransomware affiliate.</p>
-<h2>Sources for threat actor research</h2>
-<p>Primary sources: vendor research reports (Mandiant, CrowdStrike, Recorded Future, Group-IB, Innefu Labs); government advisories (CERT-In, NCSC UK, CISA); academic security research; and MITRE ATT&amp;CK Groups database (free, comprehensive, with TTP mappings). For actors targeting Indian organizations, CERT-In advisories and Indian security researchers are most operationally relevant.</p>
-<h2>Building a profile</h2>
-<p>A useful threat actor profile contains: common name and aliases across vendor naming conventions; attributed nation-state sponsor or financial motivation; primary target sectors and geographies; initial access methods; post-exploitation tooling and malware families; infrastructure patterns; historical campaign timeline; and confidence assessment of each element (high confidence from multiple independent sources vs single-source inference).</p>
-<h2>MITRE ATT&amp;CK mapping</h2>
-<p>Mapping known TTPs to MITRE ATT&amp;CK immediately translates threat intelligence into detections. If an actor uses T1053 (Scheduled Tasks) for persistence, monitor Windows Event ID 4698 in your environment. ATT&amp;CK Navigator visualizes actor TTPs against your detection coverage, identifying gaps needing priority attention.</p>
-<div class="callout">Attribution confidence levels matter. Saying "this activity resembles APT28 TTPs" differs from "this is APT28 with high confidence confirmed by government attribution." Apply the same epistemic rigour to threat actor reporting that you would to any intelligence claim.</div>
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
-  </div>
+  <h2>Threat Actor Profiling: Knowing Your Adversary</h2>
+<p>Effective cyber defence requires understanding who is attacking, how they operate, and why. Threat actor profiling builds this understanding — characterising adversaries by their tactics, techniques, motivations, and infrastructure. This intelligence enables prediction, attribution, and targeted defence. For security teams and investigators, profiling transforms faceless attacks into understood adversaries. This guide explains threat actor profiling methodology.</p>
+
+<h2>Types of Threat Actors</h2>
+<table>
+<tr><th>Actor Type</th><th>Motivation</th><th>Typical Targets</th></tr>
+<tr><td>Nation-state / APT</td><td>Espionage, disruption</td><td>Government, critical infra, defence</td></tr>
+<tr><td>Cybercriminals</td><td>Financial gain</td><td>Banks, businesses, individuals</td></tr>
+<tr><td>Hacktivists</td><td>Ideological</td><td>Government, corporations</td></tr>
+<tr><td>Insiders</td><td>Grievance, gain</td><td>Their own organisation</td></tr>
+<tr><td>Script kiddies</td><td>Notoriety, curiosity</td><td>Opportunistic targets</td></tr>
+</table>
+
+<h2>What Goes Into a Profile</h2>
+<p>A threat actor profile assembles multiple dimensions: the actor's tactics, techniques, and procedures (TTPs), their typical targets and objectives, their tools and malware, their infrastructure, their skill level and resources, and their motivations. Together these create a characterisation that enables defenders to recognise the actor, anticipate their behaviour, and tailor defences specifically against them.</p>
+
+<h2>TTPs: The Behavioural Fingerprint</h2>
+<p>Tactics, techniques, and procedures form the core of profiling because they are relatively stable. While an actor easily changes infrastructure like IP addresses, their fundamental methods — how they gain access, escalate privileges, move laterally, and exfiltrate data — change more slowly. The MITRE ATT&CK framework catalogues these TTPs, providing a common language for characterising and recognising actors by their behavioural fingerprint.</p>
+
+<h2>Attribution: The Hardest Challenge</h2>
+<p>Attributing an attack to a specific actor is notoriously difficult and rarely certain. Attribution analyses TTPs, malware signatures, infrastructure reuse, language and timezone artifacts, targeting patterns, and code similarities. However, sophisticated actors deliberately plant false flags and mimic others to mislead. Responsible attribution combines technical indicators with intelligence context, expresses appropriate confidence levels, and avoids overconfident claims.</p>
+
+<h2>Profiling Frameworks</h2>
+<table>
+<tr><th>Framework</th><th>Purpose</th></tr>
+<tr><td>MITRE ATT&CK</td><td>Cataloguing adversary TTPs</td></tr>
+<tr><td>Diamond Model</td><td>Analysing intrusion relationships</td></tr>
+<tr><td>Cyber Kill Chain</td><td>Mapping attack stages</td></tr>
+</table>
+<p>These frameworks structure profiling analysis, ensuring comprehensive and consistent characterisation. The Diamond Model, for instance, analyses the relationships between adversary, capability, infrastructure, and victim, revealing patterns that aid both profiling and attribution.</p>
+
+<h2>Infrastructure Analysis</h2>
+<p>An actor's infrastructure — their servers, domains, and tools — provides profiling insights. Reuse of infrastructure across attacks links them to the same actor. Patterns in how infrastructure is registered, configured, and operated form part of the actor's signature. Tracking infrastructure through passive DNS, certificate analysis, and threat intelligence reveals an actor's operational footprint and connections between seemingly separate campaigns.</p>
+
+<h2>Motivation Analysis</h2>
+<p>Understanding why an actor attacks shapes defence. Financial motivation suggests targeting of valuable data and systems; espionage suggests patient, stealthy access for intelligence; ideological motivation suggests high-profile, disruptive targets. Motivation also predicts behaviour — a financially motivated actor behaves differently from a nation-state seeking long-term access. Profiling motivation helps defenders anticipate what an actor will target and how they will operate.</p>
+
+<h2>Threat Actor Profiling in India</h2>
+<p>For Indian organisations, profiling includes understanding the actors that specifically target India — nation-state groups conducting espionage against government and critical infrastructure, financially motivated groups targeting India's banking and digital payment systems, and the fraud syndicates behind the country's pervasive cyber fraud. India-specific threat intelligence, including CERT-In advisories, helps build profiles relevant to the actual adversaries Indian organisations face.</p>
+
+<h2>Using Profiles for Defence</h2>
+<p>The value of profiling lies in application. Profiles inform threat hunting (searching for a known actor's TTPs), prioritise defences (against the techniques actors actually use), enrich incident response (with context about the likely adversary), and guide strategic security investment. A profile that sits unused provides no value; the goal is to translate understanding of the adversary into concrete defensive action.</p>
+
+<h2>Building Profiling Capability</h2>
+<p>Threat actor profiling combines threat intelligence, TTP analysis using frameworks like MITRE ATT&CK, infrastructure tracking, and motivation assessment. For Indian security teams and investigators, developing this capability — understanding not just that attacks happen but who conducts them and how — enables proactive, targeted defence. In a threat landscape of diverse and determined adversaries, knowing your enemy is the foundation of defending against them effectively, making threat actor profiling an increasingly vital intelligence discipline.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">What is threat actor profiling?</div><div class="faq-a">Threat actor profiling builds a picture of attackers — their tactics, techniques, procedures (TTPs), motivations, infrastructure, and targets. It helps attribute attacks, predict behavior, and improve defenses against specific adversaries.</div></div>
