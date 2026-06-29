@@ -60,23 +60,31 @@
       <tr><td>Category</td><td>Threat Intelligence</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-05-27</td></tr>
-      <tr><td>Reading time</td><td>6 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">Spoofing your organization&#x27;s email domain is trivially easy without authentication controls. SPF, DKIM, and DMARC together stop it. Implementation guide for Indian IT teams.</p>
-  <h2>The domain spoofing problem</h2>
-<p>Without email authentication controls, anyone can send email claiming to be from your-organization.com. This requires no system access, no credentials, and no technical skill beyond configuring a mail server. It enables CEO fraud impersonating your executive to authorize payments, spear phishing from your IT team or HR department, and reputational damage when your domain is used to send spam or phishing to others.</p>
-<h2>SPF (Sender Policy Framework)</h2>
-<p>SPF is a DNS TXT record specifying which servers are authorized to send email on behalf of your domain. When a receiving server gets a message claiming to be from your domain, it checks whether the sending server's IP is on the authorized list. Implementation: identify all servers and services that send email for your domain (mail server, marketing platforms, CRM, ticketing systems), find their sending IPs, and publish them in a TXT record: <code>v=spf1 include:_spf.google.com ip4:203.0.113.10 -all</code>. The <code>-all</code> at the end specifies that messages from unlisted sources should be rejected.</p>
-<h2>DKIM (DomainKeys Identified Mail)</h2>
-<p>DKIM adds a cryptographic signature to outgoing emails that receiving servers verify. It proves the message originated from a server with the private key and was not modified in transit. Implementation requires generating a key pair, configuring your mail server to sign messages, and publishing the public key in DNS. Most cloud email providers (Google Workspace, Microsoft 365) provide guided DKIM setup in their admin consoles.</p>
-<h2>DMARC</h2>
-<p>DMARC ties SPF and DKIM together and specifies what happens to messages that fail authentication. Start with <code>p=none</code> and a reporting address (<code>rua=mailto:dmarc@yourdomain.com</code>). Review aggregate reports to understand your legitimate email flows. Then progressively move to <code>p=quarantine</code> then <code>p=reject</code>.</p>
-<div class="callout">The goal is DMARC at <code>p=reject</code> — full enforcement blocking all spoofed messages. Rushing to reject without first monitoring legitimate sending sources with <code>p=none</code> will block legitimate email from services your organization uses and is not aware of. Monitor first, then enforce.</div>
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
-  </div>
+  <h2>Email Authentication: SPF, DKIM, and DMARC</h2>
+<p>Email is the most common attack vector, and email spoofing — forging the sender to impersonate trusted entities — underlies phishing and business email compromise. SPF, DKIM, and DMARC are the authentication standards that prevent spoofing and protect both an organisation's domain and its recipients. For Indian organisations, implementing these correctly is a foundational security and brand-protection measure. This guide explains them.</p>
+<h2>The Email Spoofing Problem</h2>
+<p>By default, email allows anyone to claim any sender address. Attackers exploit this to send messages appearing to come from trusted domains — a bank, a company, or a colleague. Email authentication closes this gap by letting receiving servers verify that a message genuinely comes from an authorised sender for that domain, rejecting forgeries before they reach inboxes.</p>
+<h2>The Three Standards</h2>
+<table>
+<tr><th>Standard</th><th>Function</th></tr>
+<tr><td>SPF</td><td>Specifies which servers may send for a domain</td></tr>
+<tr><td>DKIM</td><td>Cryptographically signs messages to prove authenticity</td></tr>
+<tr><td>DMARC</td><td>Sets policy and reporting for failures</td></tr>
+</table>
+<h2>SPF: Authorising Senders</h2>
+<p>Sender Policy Framework (SPF) is a DNS record listing the mail servers authorised to send email for a domain. When a message arrives, the receiving server checks whether it came from an authorised server. SPF prevents attackers from sending spoofed mail through unauthorised servers, though it has limitations — it does not survive forwarding well and only checks the envelope sender.</p>
+<h2>DKIM: Signing Messages</h2>
+<p>DomainKeys Identified Mail (DKIM) adds a cryptographic signature to outgoing messages, which receiving servers verify using a public key in DNS. This proves the message genuinely originated from the domain and was not altered in transit. DKIM complements SPF by providing tamper-evidence and surviving forwarding better, strengthening the overall authentication picture.</p>
+<h2>DMARC: Policy and Enforcement</h2>
+<p>DMARC ties SPF and DKIM together with a policy telling receivers what to do when authentication fails — monitor, quarantine, or reject. Crucially, DMARC also provides reports showing who is sending mail using the domain, revealing both legitimate sources and spoofing attempts. Moving from a monitoring policy to strict rejection, once legitimate senders are confirmed, decisively blocks domain spoofing.</p>
+<h2>Implementation Approach</h2>
+<p>Implementing email authentication follows a careful sequence: publish an SPF record listing authorised senders, configure DKIM signing on mail systems, deploy DMARC initially in monitoring mode to gather reports, identify and authorise all legitimate senders, then progressively tighten the DMARC policy to quarantine and finally reject. Rushing to strict enforcement before confirming legitimate senders risks blocking valid mail, so the staged approach is essential.</p>
+<h2>Why It Matters for India</h2>
+<p>For Indian organisations, email authentication protects against the spoofing that powers phishing and BEC fraud — among the most damaging threats. It also protects brand reputation by preventing attackers from impersonating the organisation to its customers. As phishing and BEC continue to cause major losses, properly implemented SPF, DKIM, and DMARC are a foundational defence that every organisation should deploy. The reporting DMARC provides also offers ongoing visibility into who is attempting to abuse the domain, turning email authentication into both a preventive control and an intelligence source.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">What are SPF, DKIM, and DMARC?</div><div class="faq-a">SPF lists authorized sending servers for a domain, DKIM adds a cryptographic signature verifying integrity, and DMARC sets policy for handling failures and provides reporting. Together they prevent email spoofing and phishing.</div></div>
