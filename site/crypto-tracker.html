@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5886568858916800" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TCBLVSTG97"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-TCBLVSTG97');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Crypto Address Tracker &amp; Converter — Bitcoin &amp; Ethereum Investigation | IGRS</title>
+<meta name="description" content="Free crypto address investigation tool for India. Trace any Bitcoin or Ethereum wallet address: see senders, recipients, amounts and transaction counts from public blockchain data. Live BTC/ETH to INR converter included.">
+<meta name="keywords" content="crypto address tracker, bitcoin address investigation, ethereum wallet trace, crypto transaction tracer India, BTC to INR converter, blockchain OSINT India, crypto fraud investigation, wallet counterparty analysis, crypto forensics India">
+<meta name="author" content="Manuj Kumar Pandey">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://igrs.xyz/crypto-tracker.html">
+<meta property="og:title" content="Crypto Address Tracker &amp; Converter — BTC &amp; ETH Investigation | IGRS">
+<meta property="og:description" content="Trace any Bitcoin or Ethereum address: senders, recipients, amounts and tx counts from public on-chain data. Free, no login. Live crypto-to-INR converter.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://igrs.xyz/crypto-tracker.html">
+<meta property="og:image" content="https://igrs.xyz/logo.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"IGRS Crypto Address Tracker & Converter","applicationCategory":"SecurityApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"description":"Free Bitcoin and Ethereum address investigation tool tracing senders, recipients, amounts and transaction counts from public blockchain data, with a live crypto-to-INR converter."}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://igrs.xyz/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://igrs.xyz/tools.html"},{"@type":"ListItem","position":3,"name":"Crypto Address Tracker","item":"https://igrs.xyz/crypto-tracker.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Can I trace a Bitcoin or Ethereum address for free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Bitcoin and Ethereum blockchains are public, so any address and its transactions can be viewed for free. The IGRS Crypto Address Tracker reads this public on-chain data to show who sent funds to an address, who it sent funds to, the amounts, and transaction counts, with no login required."}},
+{"@type":"Question","name":"Is tracing a crypto wallet address legal in India?","acceptedAnswer":{"@type":"Answer","text":"Viewing public blockchain data is lawful, as the data is openly recorded on a public ledger. Identifying the real person behind an address requires KYC or subscriber records from a regulated exchange, obtained through due legal process under Section 94 BNSS. On-chain analysis provides investigative leads; attribution to an individual requires lawful records."}},
+{"@type":"Question","name":"What is counterparty or breadcrumb analysis?","acceptedAnswer":{"@type":"Answer","text":"Counterparty analysis maps the addresses that sent funds to a target address (inflows) and the addresses it sent funds to (outflows), with amounts and counts. This breadcrumb view helps investigators follow the flow of funds across a network of wallets, a key technique in cryptocurrency fraud and money laundering investigation."}},
+{"@type":"Question","name":"Does this tool work for high-volume exchange addresses?","acceptedAnswer":{"@type":"Answer","text":"Headline totals reflect full on-chain history, but the counterparty breakdown is sampled from recent transactions for performance. For very high-volume addresses such as exchange wallets with thousands of transactions, use the linked full block explorer for complete data."}}
+]}
+</script>
+<body>
+<canvas id="bg-canvas"></canvas>
+<nav class="top">
+  <a class="nav-brand" href="index.html">
+    <img src="logo.svg" alt="IGRS">
+    <span class="nav-name">IGRS</span>
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="articles.html">Articles</a>
+    <a href="tools.html">Tools</a>
+    <a href="dorks.html">Dorks</a>
+    <a href="playbooks.html">Playbooks</a>
+    <a href="cyberlaw.html">Cyber Law</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="toolkit.html">Toolkit</a>
+    <a href="about.html">About</a>
+  </div>
+  <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+</nav>
+<nav class="crumbs" aria-label="Breadcrumb" style="max-width:1080px;margin:14px auto 0;padding:0 16px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6f8aa3">
+  <a href="index.html" style="color:#0099cc;text-decoration:none">Home</a> &rsaquo;
+  <a href="tools.html" style="color:#0099cc;text-decoration:none">Tools</a> &rsaquo;
+  <span>Crypto Address Tracker</span>
+</nav>
+<style>
+#ct-app{
+  --cyan:#00d4ff;--cyan2:#0099cc;--amber:#ffb800;--green:#00ff88;--red:#ff4d5e;--purple:#b56cff;
+  --bg:#04090f;--panel:#0a131f;--panel2:#0d1826;--line:#15293d;--txt:#cfe3f2;--mut:#6f8aa3;
+  --mono:'IBM Plex Mono',monospace;--brand:'Share Tech Mono',monospace;--disp:'Rajdhani',sans-serif;
+  max-width:1080px;margin:0 auto;padding:18px 16px 60px;position:relative;z-index:2;
+  font-family:var(--mono);color:var(--txt);font-size:14px;line-height:1.55}
+#ct-app *{box-sizing:border-box}
+#ct-app .eyebrow{font-family:var(--brand);color:var(--cyan2);font-size:11px;letter-spacing:3px;text-transform:uppercase}
+#ct-app h1{font-family:var(--disp);font-weight:700;font-size:30px;letter-spacing:.5px;color:#fff;margin:4px 0 6px;line-height:1.1}
+#ct-app h1 b{color:var(--cyan)}
+#ct-app .sub{color:var(--mut);font-size:13px;max-width:700px}
+#ct-app .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:18px;position:relative;overflow:hidden}
+#ct-app .card::before{content:"";position:absolute;top:0;left:0;width:34px;height:34px;border-top:2px solid var(--cyan);border-left:2px solid var(--cyan);opacity:.5}
+#ct-app .card h2{font-family:var(--disp);font-weight:600;font-size:18px;color:#fff;margin-bottom:3px;display:flex;align-items:center;gap:8px}
+#ct-app .card .hint{color:var(--mut);font-size:12px;margin-bottom:14px}
+#ct-app label{display:block;font-family:var(--brand);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mut);margin-bottom:6px}
+#ct-app input,#ct-app select{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--txt);font-family:var(--mono);font-size:14px;padding:11px 12px;border-radius:8px;outline:none}
+#ct-app input:focus,#ct-app select:focus{border-color:var(--cyan);box-shadow:0 0 0 2px rgba(0,212,255,.12)}
+#ct-app .row{display:flex;gap:10px;flex-wrap:wrap}
+#ct-app .row>div{flex:1;min-width:120px}
+#ct-app button{font-family:var(--brand);letter-spacing:1px;text-transform:uppercase;font-size:12px;cursor:pointer;border:none;border-radius:8px;padding:12px 18px;background:linear-gradient(135deg,var(--cyan),var(--cyan2));color:#021018;font-weight:600;transition:.15s}
+#ct-app button:hover{filter:brightness(1.1)}
+#ct-app button:disabled{opacity:.5;cursor:not-allowed}
+#ct-app button.ghost{background:transparent;border:1px solid var(--line);color:var(--mut)}
+#ct-app button.ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+#ct-app .conv-out{font-family:var(--disp);font-weight:700;font-size:26px;color:var(--green);margin-top:4px}
+#ct-app .conv-rate{color:var(--mut);font-size:11px}
+#ct-app .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+#ct-app .chip{font-family:var(--brand);font-size:11px;padding:5px 10px;border:1px solid var(--line);border-radius:20px;color:var(--mut);cursor:pointer}
+#ct-app .chip:hover{border-color:var(--cyan);color:var(--cyan)}
+#ct-app .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:6px}
+#ct-app .stat{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:13px}
+#ct-app .stat .k{font-family:var(--brand);font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--mut)}
+#ct-app .stat .v{font-family:var(--disp);font-weight:700;font-size:21px;color:#fff;margin-top:3px;word-break:break-all}
+#ct-app .stat .v.in{color:var(--green)}#ct-app .stat .v.out{color:var(--red)}#ct-app .stat .v.cy{color:var(--cyan)}
+#ct-app .stat .fiat{font-size:11px;color:var(--mut);font-family:var(--mono)}
+#ct-app .cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+@media(max-width:680px){#ct-app .cols{grid-template-columns:1fr}}
+#ct-app .flowbox{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px}
+#ct-app .flowbox h3{font-family:var(--disp);font-size:15px;font-weight:600;margin-bottom:2px}
+#ct-app .flowbox h3.in{color:var(--green)}#ct-app .flowbox h3.out{color:var(--red)}
+#ct-app .flowbox .cnt{font-family:var(--brand);font-size:10px;color:var(--mut);letter-spacing:1px;margin-bottom:10px}
+#ct-app .cp{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-top:1px solid var(--line)}
+#ct-app .cp:first-of-type{border-top:none}
+#ct-app .cp .addr{font-size:12px;color:var(--cyan);text-decoration:none;word-break:break-all}
+#ct-app .cp .addr:hover{text-decoration:underline}
+#ct-app .cp .meta{text-align:right;white-space:nowrap}
+#ct-app .cp .amt{font-family:var(--disp);font-weight:600;font-size:14px;color:#fff}
+#ct-app .cp .amt.in{color:var(--green)}#ct-app .cp .amt.out{color:var(--red)}
+#ct-app .cp .sub2{font-size:10px;color:var(--mut)}
+#ct-app .txlist{margin-top:14px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+#ct-app .txrow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid var(--line);font-size:12px}
+#ct-app .txrow:first-child{border-top:none}
+#ct-app .tag{font-family:var(--brand);font-size:9px;letter-spacing:1px;padding:3px 7px;border-radius:5px}
+#ct-app .tag.in{background:rgba(0,255,136,.12);color:var(--green)}#ct-app .tag.out{background:rgba(255,77,94,.12);color:var(--red)}
+#ct-app .note{font-size:11px;color:var(--mut);margin-top:14px;border-left:2px solid var(--amber);padding-left:10px;line-height:1.6}
+#ct-app .loader{display:none;align-items:center;gap:10px;color:var(--cyan);font-size:12px;margin-top:14px}
+#ct-app .loader.show{display:flex}
+#ct-app .spin{width:14px;height:14px;border:2px solid var(--line);border-top-color:var(--cyan);border-radius:50%;animation:ctsp .7s linear infinite}
+@keyframes ctsp{to{transform:rotate(360deg)}}
+#ct-app .err{display:none;background:rgba(255,77,94,.08);border:1px solid rgba(255,77,94,.3);color:#ffb3bb;border-radius:8px;padding:12px;margin-top:14px;font-size:12px}
+#ct-app .err.show{display:block}
+#ct-app .err a{color:var(--cyan)}
+#ct-app .results{display:none}#ct-app .results.show{display:block}
+#ct-app .toolbar{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+#ct-app .toolbar a{text-decoration:none}
+#ct-app .seo{margin-top:26px;color:var(--mut);font-size:13px;line-height:1.7;max-width:780px}
+#ct-app .seo h2{font-family:var(--disp);color:#fff;font-size:19px;margin:18px 0 6px}
+@media(prefers-reduced-motion:reduce){#ct-app .spin{animation:none}}
+</style>
+
+<div id="ct-app">
+  <div class="eyebrow">Intel Grid Research Station · Blockchain OSINT</div>
+  <h1>Crypto Address <b>Tracker</b> &amp; Converter</h1>
+  <p class="sub">Trace any Bitcoin or Ethereum address from public blockchain data — see who sent funds to it, who it sent funds to, amounts, and transaction counts. Built for investigators, cyber cells, and analysts. All data is public on-chain; no login.</p>
+
+  <div class="card">
+    <h2>&#8644; Crypto Converter</h2>
+    <div class="hint">Live rates. Convert crypto &#8644; INR / USD.</div>
+    <div class="row">
+      <div style="flex:1.3"><label>Amount</label><input id="cvAmt" type="number" value="1" min="0" step="any"></div>
+      <div><label>Coin</label><select id="cvCoin">
+        <option value="bitcoin">BTC</option><option value="ethereum">ETH</option>
+        <option value="tether">USDT</option><option value="binancecoin">BNB</option>
+        <option value="solana">SOL</option><option value="ripple">XRP</option>
+        <option value="dogecoin">DOGE</option><option value="cardano">ADA</option>
+      </select></div>
+      <div><label>To</label><select id="cvFiat"><option value="inr">INR &#8377;</option><option value="usd">USD $</option></select></div>
+    </div>
+    <div style="margin-top:14px">
+      <div class="conv-out" id="cvOut">&mdash;</div>
+      <div class="conv-rate" id="cvRate">Loading live rates&hellip;</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>&#8982; Address Investigation</h2>
+    <div class="hint">Paste a BTC or ETH address. Chain auto-detected.</div>
+    <label>Wallet Address</label>
+    <input id="addr" type="text" placeholder="bc1... / 1... / 3...  or  0x..." spellcheck="false">
+    <div class="chips">
+      <span class="chip" data-a="bc1qgdjqv0av3q56jvd82tkdjpy7gdp9ut8tlqmgrpmv24sq90ecnvqqjwvw97">Sample BTC</span>
+      <span class="chip" data-a="0xae2fc483527b8ef99eb5d9b44875f005ba1fae13">Sample ETH</span>
+    </div>
+    <div class="toolbar">
+      <button id="goBtn">&#9654; Investigate</button>
+      <button class="ghost" id="clrBtn">Clear</button>
+    </div>
+    <div class="loader" id="loader"><span class="spin"></span><span id="loadTxt">Querying blockchain&hellip;</span></div>
+    <div class="err" id="err"></div>
+    <div class="results" id="res">
+      <div class="grid" id="stats"></div>
+      <div class="cols">
+        <div class="flowbox">
+          <h3 class="in">&#8595; Inflows &mdash; Senders</h3>
+          <div class="cnt" id="inCnt"></div>
+          <div id="inList"></div>
+        </div>
+        <div class="flowbox">
+          <h3 class="out">&#8593; Outflows &mdash; Recipients</h3>
+          <div class="cnt" id="outCnt"></div>
+          <div id="outList"></div>
+        </div>
+      </div>
+      <div class="txlist" id="txlist"></div>
+      <div class="toolbar">
+        <button class="ghost" id="copyBtn">&#9094; copy investigation summary</button>
+        <a id="explLink" href="#" target="_blank" rel="noopener"><button class="ghost">open in block explorer &#8599;</button></a>
+      </div>
+      <div class="note" id="methodNote"></div>
+    </div>
+  </div>
+
+  <div class="seo">
+    <h2>Blockchain investigation for Indian cyber cells</h2>
+    <p>Cryptocurrency features in a growing share of fraud, extortion, and money-laundering cases in India. Because the Bitcoin and Ethereum ledgers are public, investigators can follow the movement of funds across wallets without any special access. This tool reads that public data and presents a counterparty breakdown &mdash; the addresses that funded a wallet and the addresses it paid &mdash; so analysts can build the breadcrumb trail that underpins a financial investigation.</p>
+    <h2>From on-chain lead to lawful attribution</h2>
+    <p>On-chain analysis identifies wallets and flows, but it does not name a person. Linking an address to a real identity requires KYC or subscriber records from a regulated exchange, obtained through due legal process under Section 94 BNSS, with electronic evidence certified under Section 63 BSA. Cryptocurrency laundering also engages the Prevention of Money Laundering Act, Sections 3 and 4. Used together, open-source on-chain tracing and lawful records turn a single wallet address into a defensible investigation.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+let PRICE={};
+async function loadPrice(){
+  try{
+    const r=await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether,binancecoin,solana,ripple,dogecoin,cardano&vs_currencies=inr,usd');
+    PRICE=await r.json(); convert();
+  }catch(e){ $('cvRate').textContent='Price feed unavailable right now.'; }
+}
+function fmt(n,d=2){ if(n==null||isNaN(n))return '\u2014'; return Number(n).toLocaleString('en-IN',{maximumFractionDigits:d}); }
+function convert(){
+  const a=parseFloat($('cvAmt').value), coin=$('cvCoin').value, fiat=$('cvFiat').value;
+  if(!PRICE[coin]){return;}
+  const rate=PRICE[coin][fiat]; const sym=fiat==='inr'?'\u20B9':'$';
+  $('cvOut').textContent = isNaN(a)?'\u2014':sym+fmt(a*rate, fiat==='inr'?0:2);
+  $('cvRate').textContent = '1 '+$('cvCoin').selectedOptions[0].text+' = '+sym+fmt(rate, fiat==='inr'?0:2)+' \u00B7 live';
+}
+['cvAmt','cvCoin','cvFiat'].forEach(id=>$(id).addEventListener('input',convert));
+function priceOf(chain){ const id=chain==='btc'?'bitcoin':'ethereum'; return PRICE[id]||{inr:0,usd:0}; }
+function fiatStr(coinAmt,chain){ const p=priceOf(chain); if(!p.inr)return ''; return '\u20B9'+fmt(coinAmt*p.inr,0)+' \u00B7 $'+fmt(coinAmt*p.usd,2); }
+function detect(a){a=a.trim();
+  if(/^0x[a-fA-F0-9]{40}$/.test(a)) return 'eth';
+  if(/^(bc1[a-z0-9]{20,90}|[13][a-km-zA-HJ-NP-Z1-9]{25,39})$/.test(a)) return 'btc';
+  return null;}
+function short(a){ return a.length>20 ? a.slice(0,9)+'\u2026'+a.slice(-6) : a; }
+const SATS=1e8, WEI=1e18, CAP_PAGES=5;
+
+async function investBTC(addr){
+  const base='https://mempool.space/api';
+  const st=await (await fetch(base+'/address/'+addr)).json();
+  const cs=st.chain_stats, ms=st.mempool_stats||{tx_count:0};
+  const recv=cs.funded_txo_sum/SATS, sent=cs.spent_txo_sum/SATS, bal=recv-sent;
+  const txCount=cs.tx_count+(ms.tx_count||0);
+  let txs=await (await fetch(base+'/address/'+addr+'/txs')).json();
+  let pages=1, last=txs.length?txs[txs.length-1].txid:null;
+  while(pages<CAP_PAGES && last){
+    const more=await (await fetch(base+'/address/'+addr+'/txs/chain/'+last)).json();
+    if(!more.length)break; txs=txs.concat(more); last=more[more.length-1].txid; pages++;
+  }
+  const senders={}, recips={}, recent=[];
+  for(const tx of txs){
+    const ourOut=tx.vout.filter(o=>o.scriptpubkey_address===addr).reduce((s,o)=>s+o.value,0);
+    const spends=tx.vin.some(i=>i.prevout&&i.prevout.scriptpubkey_address===addr);
+    const t=tx.status&&tx.status.block_time?tx.status.block_time*1000:Date.now();
+    if(spends){
+      let sentOut=0; const seen=new Set();
+      tx.vout.forEach(o=>{const a=o.scriptpubkey_address; if(a&&a!==addr){recips[a]=recips[a]||{v:0,c:0}; recips[a].v+=o.value; if(!seen.has(a)){recips[a].c++;seen.add(a);} sentOut+=o.value;}});
+      if(sentOut>0) recent.push({dir:'out',amt:sentOut/SATS,t,cp:[...seen]});
+    } else if(ourOut>0){
+      let best=null,bv=-1; tx.vin.forEach(i=>{const p=i.prevout; if(p&&p.scriptpubkey_address&&p.value>bv){bv=p.value;best=p.scriptpubkey_address;}});
+      if(best){senders[best]=senders[best]||{v:0,c:0}; senders[best].v+=ourOut; senders[best].c++;}
+      recent.push({dir:'in',amt:ourOut/SATS,t,cp:best?[best]:[]});
+    }
+  }
+  return pack('btc',addr,{recv,sent,bal},senders,recips,recent,txs.length,txCount);
+}
+async function investETH(addr){
+  const base='https://eth.blockscout.com/api/v2';
+  const a=addr.toLowerCase();
+  let info={}; try{ info=await (await fetch(base+'/addresses/'+addr)).json(); }catch(e){}
+  const bal=info.coin_balance?Number(info.coin_balance)/WEI:0;
+  let url=base+'/addresses/'+addr+'/transactions', pages=0;
+  const senders={}, recips={}, recent=[]; let scanned=0, recvT=0, sentT=0;
+  while(pages<CAP_PAGES){
+    let d; try{ d=await (await fetch(url)).json(); }catch(e){ break; }
+    if(!d.items||!d.items.length)break;
+    for(const tx of d.items){
+      const from=tx.from&&tx.from.hash?tx.from.hash.toLowerCase():'';
+      const to=tx.to&&tx.to.hash?tx.to.hash.toLowerCase():'';
+      const v=tx.value?Number(tx.value)/WEI:0;
+      const t=tx.timestamp?new Date(tx.timestamp).getTime():Date.now();
+      scanned++;
+      if(to===a&&from){ senders[from]=senders[from]||{v:0,c:0}; senders[from].v+=v; senders[from].c++; recvT+=v; if(v>0)recent.push({dir:'in',amt:v,t,cp:[from]}); }
+      else if(from===a&&to){ recips[to]=recips[to]||{v:0,c:0}; recips[to].v+=v; recips[to].c++; sentT+=v; recent.push({dir:'out',amt:v,t,cp:[to]}); }
+    }
+    if(!d.next_page_params)break;
+    const q=new URLSearchParams(d.next_page_params).toString();
+    url=base+'/addresses/'+addr+'/transactions?'+q; pages++;
+  }
+  const txCount=info.transactions_count?Number(info.transactions_count):scanned;
+  return pack('eth',addr,{recv:recvT,sent:sentT,bal},senders,recips,recent,scanned,txCount);
+}
+function pack(chain,addr,tot,senders,recips,recent,scanned,txCount){
+  const sArr=Object.entries(senders).map(([a,o])=>({a,...o})).sort((x,y)=>y.v-x.v);
+  const rArr=Object.entries(recips).map(([a,o])=>({a,...o})).sort((x,y)=>y.v-x.v);
+  recent.sort((x,y)=>y.t-x.t);
+  return {chain,addr,tot,sArr,rArr,recent,scanned,txCount};
+}
+function explorerAddr(chain,a){ return chain==='btc'?'https://mempool.space/address/'+a:'https://eth.blockscout.com/address/'+a; }
+function unit(chain){ return chain==='btc'?'BTC':'ETH'; }
+let LASTR=null;
+function render(R){
+  LASTR=R; const u=unit(R.chain);
+  $('stats').innerHTML=[
+    ['Balance',fmt(R.tot.bal,6)+' '+u,'cy',fiatStr(R.tot.bal,R.chain)],
+    ['Total Received',fmt(R.tot.recv,6)+' '+u,'in',fiatStr(R.tot.recv,R.chain)],
+    ['Total Sent',fmt(R.tot.sent,6)+' '+u,'out',fiatStr(R.tot.sent,R.chain)],
+    ['Transactions',fmt(R.txCount,0),'',''],
+    ['Unique Senders',fmt(R.sArr.length,0),'in',''],
+    ['Unique Recipients',fmt(R.rArr.length,0),'out','']
+  ].map(x=>'<div class="stat"><div class="k">'+x[0]+'</div><div class="v '+x[2]+'">'+x[1]+'</div>'+(x[3]?'<div class="fiat">'+x[3]+'</div>':'')+'</div>').join('');
+  $('inCnt').textContent=R.sArr.length+' addresses sent funds in (top 10 shown)';
+  $('outCnt').textContent=R.rArr.length+' addresses received funds out (top 10 shown)';
+  const rowCP=(o,dir)=>'<div class="cp"><a class="addr" href="'+explorerAddr(R.chain,o.a)+'" target="_blank" rel="noopener">'+short(o.a)+'</a><div class="meta"><div class="amt '+dir+'">'+fmt(o.v,4)+' '+unit(R.chain)+'</div><div class="sub2">'+o.c+' tx'+(o.c>1?'s':'')+' \u00B7 '+fiatStr(o.v,R.chain)+'</div></div></div>';
+  $('inList').innerHTML = R.sArr.length?R.sArr.slice(0,10).map(o=>rowCP(o,'in')).join(''):'<div class="cp"><span class="sub2">No inflows in sampled range.</span></div>';
+  $('outList').innerHTML= R.rArr.length?R.rArr.slice(0,10).map(o=>rowCP(o,'out')).join(''):'<div class="cp"><span class="sub2">No outflows in sampled range.</span></div>';
+  $('txlist').innerHTML = '<div class="txrow" style="background:#0a131f"><span style="font-family:Share Tech Mono,monospace;font-size:10px;color:#6f8aa3">RECENT TRANSACTIONS ('+Math.min(R.recent.length,15)+')</span><span></span></div>'+
+    R.recent.slice(0,15).map(t=>{
+      const d=new Date(t.t).toLocaleString('en-IN',{day:'2-digit',month:'short',year:'2-digit',hour:'2-digit',minute:'2-digit'});
+      const cp=t.cp&&t.cp.length?short(t.cp[0]):'\u2014';
+      return '<div class="txrow"><span><span class="tag '+t.dir+'">'+(t.dir==='in'?'IN':'OUT')+'</span> &nbsp;'+cp+'</span><span style="text-align:right"><b style="color:'+(t.dir==='in'?'#00ff88':'#ff4d5e')+'">'+(t.dir==='in'?'+':'\u2212')+fmt(t.amt,4)+' '+unit(R.chain)+'</b><br><span class="sub2" style="font-size:10px;color:#6f8aa3">'+d+'</span></span></div>';
+    }).join('');
+  $('explLink').href=explorerAddr(R.chain,R.addr);
+  $('methodNote').innerHTML = '<b>Method:</b> Headline totals (balance, received, sent) reflect full on-chain history. Counterparty breakdown and recent list are computed from the most recent ~'+R.scanned+' transactions (sampling cap for performance) &mdash; for very high-volume addresses (e.g. exchanges) use the full block explorer. '+(R.chain==='btc'?'Bitcoin uses a UTXO model, so each inflow sender is the dominant input address of that transaction (heuristic); outflow recipients are exact output addresses.':'Ethereum is account-based, so senders/recipients are exact per transaction. ERC-20 token transfers are not included in this view.')+' This is investigative lead data, not entity attribution &mdash; confirm via subscriber / KYC records under due legal process (S.94 BNSS).';
+  $('res').classList.add('show');
+}
+async function go(){
+  const a=$('addr').value.trim(); $('err').classList.remove('show'); $('res').classList.remove('show');
+  const chain=detect(a);
+  if(!chain){ $('err').textContent='Not a valid Bitcoin or Ethereum address. Check the format and try again.'; $('err').classList.add('show'); return; }
+  $('goBtn').disabled=true; $('loader').classList.add('show'); $('loadTxt').textContent='Querying '+chain.toUpperCase()+' chain & building counterparty graph\u2026';
+  try{
+    const R = chain==='btc' ? await investBTC(a) : await investETH(a);
+    render(R);
+  }catch(e){
+    $('err').innerHTML='Could not retrieve data. The blockchain API may be rate-limiting or the address has no activity.<br>Try again shortly, or open it directly: <a href="'+explorerAddr(chain,a)+'" target="_blank" rel="noopener">block explorer \u2197</a>';
+    $('err').classList.add('show');
+  }finally{ $('goBtn').disabled=false; $('loader').classList.remove('show'); }
+}
+$('goBtn').addEventListener('click',go);
+$('addr').addEventListener('keydown',e=>{if(e.key==='Enter')go();});
+$('clrBtn').addEventListener('click',()=>{$('addr').value='';$('res').classList.remove('show');$('err').classList.remove('show');});
+document.querySelectorAll('#ct-app .chip').forEach(c=>c.addEventListener('click',()=>{$('addr').value=c.dataset.a;go();}));
+$('copyBtn').addEventListener('click',()=>{
+  const R=LASTR; if(!R)return;
+  const lines=['IGRS CRYPTO ADDRESS INVESTIGATION','Chain: '+R.chain.toUpperCase()+' | Address: '+R.addr,
+    'Balance: '+fmt(R.tot.bal,6)+' '+unit(R.chain)+' ('+fiatStr(R.tot.bal,R.chain)+')',
+    'Total Received: '+fmt(R.tot.recv,6)+' '+unit(R.chain)+' | Total Sent: '+fmt(R.tot.sent,6)+' '+unit(R.chain),
+    'Transactions: '+R.txCount+' | Unique Senders: '+R.sArr.length+' | Unique Recipients: '+R.rArr.length,'',
+    'TOP SENDERS (inflows):',...R.sArr.slice(0,10).map((o,i)=>(i+1)+'. '+o.a+' \u2014 '+fmt(o.v,4)+' '+unit(R.chain)+' ('+o.c+' tx)'),'',
+    'TOP RECIPIENTS (outflows):',...R.rArr.slice(0,10).map((o,i)=>(i+1)+'. '+o.a+' \u2014 '+fmt(o.v,4)+' '+unit(R.chain)+' ('+o.c+' tx)'),'',
+    'Source: public blockchain (sampled recent tx). Generated via IGRS \u2014 igrs.xyz'];
+  navigator.clipboard.writeText(lines.join('\n')).then(()=>{$('copyBtn').innerHTML='\u2713 copied to clipboard';setTimeout(()=>$('copyBtn').innerHTML='\u2394 copy investigation summary',1800);});
+});
+loadPrice(); setInterval(loadPrice,60000);
+})();
+</script>
+<footer>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="articles.html">Articles</a>
+    <a href="tools.html">Tools</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy-policy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="disclaimer.html">Disclaimer</a>
+  </div>
+  <div>&copy; 2026 IGRS &mdash; Intel Grid Research Station. Educational &amp; Defensive Use Only.</div>
+</footer>
+<script src="neural.js"></script>
+<script>
+(function(){var b=document.getElementById('navBurger'),l=document.getElementById('navLinks');if(!b||!l)return;
+b.addEventListener('click',function(){var o=l.classList.toggle('open');b.setAttribute('aria-expanded',o);b.innerHTML=o?'&#10005;':'&#9776;';});
+l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){l.classList.remove('open');b.setAttribute('aria-expanded','false');b.innerHTML='&#9776;';});});
+})();
+</script>
+</body>
+</html>
