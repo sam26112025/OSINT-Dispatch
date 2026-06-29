@@ -60,23 +60,40 @@
       <tr><td>Category</td><td>Cyber Awareness</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-04-21</td></tr>
-      <tr><td>Reading time</td><td>6 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">Generic phishing filters don&#x27;t stop spear phishing. Targeted attacks succeed because they&#x27;re built from OSINT research. Understanding how they&#x27;re constructed is the key to defeating them.</p>
-  <h2>Spear phishing versus phishing</h2>
-<p>Phishing is mass targeting — the same message sent to thousands, relying on a small percentage falling for a generic lure. Spear phishing is precision targeting — a message crafted specifically for one individual using personal and professional information gathered through OSINT research. It appears indistinguishable from legitimate communication, because it references things the target is actually working on.</p>
-<h2>How attackers research their targets</h2>
-<p>A spear phishing campaign begins with OSINT collection. LinkedIn reveals the target's role, reporting structure, current projects, and colleagues' names. Company websites reveal email format. Press releases reveal partners, clients, and business activities. Social media reveals personal interests and communication style. Job postings reveal which internal software the company uses — a pretext referencing a specific tool (Jira, Workday, Salesforce) immediately increases plausibility.</p>
-<h2>Common pretexts against Indian organizations</h2>
-<p>Highest-volume patterns targeting Indian businesses and government: IT helpdesk credential reset requests referencing real internal systems; finance department vendor payment update requests timed to actual procurement cycles; senior executive impersonation requesting urgent wire transfers or data; HR benefit and payroll update notifications. Each is designed to be processed quickly without verification — the combination of familiarity, authority, and urgency defeats careful thinking.</p>
-<div class="callout"><strong>The single most effective control:</strong> Out-of-band verification. Any request involving money movement, credential entry, or sensitive data disclosure — regardless of how legitimate the email appears — should be verified by calling the requester on a known phone number before acting. This defeats the vast majority of successful spear phishing outcomes.</div>
-<h2>Technical controls that help</h2>
-<p>DMARC enforcement at reject policy prevents domain spoofing. External email banners on messages from outside the organization train users to pause before acting on messages claiming to be from internal senders. Advanced email filtering with attachment sandboxing and URL analysis catches known-malicious content. But technical controls alone are insufficient against well-crafted attacks using legitimate services.</p>
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
-  </div>
+  <h2>Spear Phishing: Targeted Deception</h2>
+<p>While ordinary phishing casts a wide net, spear phishing targets specific individuals with personalised, researched messages that are far harder to detect. These tailored attacks are behind many major breaches and business email compromise frauds. For Indian organisations and individuals in sensitive roles, understanding and defending against spear phishing is critical. This guide covers how it works and how to defend.</p>
+<h2>What Makes Spear Phishing Different</h2>
+<p>Spear phishing is distinguished by personalisation and research. Rather than generic mass emails, the attacker studies the target — their role, relationships, and habits — and crafts a message that is contextually convincing. It may appear to come from a known colleague, reference real projects, or exploit current circumstances. This specificity makes spear phishing dramatically more effective and harder to recognise than ordinary phishing.</p>
+<h2>The Role of OSINT</h2>
+<p>Spear phishing is powered by reconnaissance. Attackers gather information from LinkedIn, social media, company websites, and data breaches to understand their target and craft believable messages. The more an attacker knows — reporting structure, ongoing projects, personal interests — the more convincing the approach. This connection means an organisation's and individual's public information directly fuels the attacks against them.</p>
+<h2>Common Spear Phishing Scenarios</h2>
+<table>
+<tr><th>Scenario</th><th>Method</th></tr>
+<tr><td>CEO fraud</td><td>Impersonating an executive to authorise transfers</td></tr>
+<tr><td>Vendor impersonation</td><td>Fake invoices from spoofed suppliers</td></tr>
+<tr><td>Credential harvesting</td><td>Targeted fake login pages</td></tr>
+<tr><td>Malware delivery</td><td>Personalised malicious attachments</td></tr>
+</table>
+<h2>Business Email Compromise</h2>
+<p>The most financially damaging form of spear phishing is business email compromise (BEC), where attackers impersonate executives or vendors to trick employees into transferring money or data. These attacks often involve no malware — just convincing deception exploiting authority and urgency. BEC has caused enormous losses to Indian businesses, making it a priority threat that technical filters alone cannot stop, since the emails are clean.</p>
+<h2>Recognising Spear Phishing</h2>
+<p>Because spear phishing is personalised, recognition requires vigilance: unexpected requests involving money or sensitive data, pressure to act urgently or bypass procedures, slight inconsistencies in sender addresses, and anything that discourages verification. The key habit is treating any sensitive request — however authoritative it appears — as warranting independent verification through a separate, trusted channel before acting.</p>
+<h2>Defending Against Spear Phishing</h2>
+<p>Effective defence is layered:</p>
+<ul>
+<li>Verification procedures for financial and sensitive requests</li>
+<li>Email authentication (DMARC, DKIM, SPF) to reduce spoofing</li>
+<li>Security awareness training with simulated spear phishing</li>
+<li>Limiting publicly available information that aids reconnaissance</li>
+<li>Technical controls flagging external and suspicious emails</li>
+<li>A culture where verifying unusual requests is encouraged</li>
+</ul>
+<h2>Building Resilience</h2>
+<p>For Indian organisations, spear phishing and BEC represent a severe and growing threat that exploits people rather than technology. Building resilience means combining technical controls like email authentication with human defences — verification habits, awareness, and a culture that supports caution. The single most protective measure is independent verification of sensitive requests, which defeats the urgency and authority that spear phishing depends on. In an environment where these targeted attacks cause major financial losses, investing in both the technical and human elements of defence is essential.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">What is spear phishing?</div><div class="faq-a">Spear phishing is a targeted phishing attack tailored to a specific individual or organization, using personalized information to appear legitimate. Unlike mass phishing, it researches the target to increase success rates.</div></div>
