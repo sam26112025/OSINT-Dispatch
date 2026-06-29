@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5886568858916800" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TCBLVSTG97"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-TCBLVSTG97');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Live Air Quality Index (AQI) — India &amp; World Real-Time | IGRS</title>
+<meta name="description" content="Check live, real-time Air Quality Index (AQI) for New Delhi, Mumbai, Bengaluru and any city worldwide. Free real-time AQI, PM2.5 and PM10 monitor with local time and date.">
+<meta name="keywords" content="live AQI India, Delhi AQI today, Mumbai air quality, real time AQI, PM2.5 India, air quality index live, current AQI, world air quality">
+<meta name="author" content="Manuj Kumar Pandey">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://igrs.xyz/air-quality.html">
+<meta property="og:title" content="Live Air Quality Index (AQI) — India &amp; World Real-Time | IGRS">
+<meta property="og:description" content="Free real-time AQI monitor for New Delhi and any city worldwide, with live local time, date, PM2.5 and PM10.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://igrs.xyz/air-quality.html">
+<meta property="og:image" content="https://igrs.xyz/logo.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="livebar.css">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"IGRS Live Air Quality Index","applicationCategory":"UtilitiesApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"description":"Free real-time Air Quality Index monitor for India and worldwide cities with live local time and date."}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is a good AQI level?","acceptedAnswer":{"@type":"Answer","text":"An AQI between 0 and 50 is considered Good, meaning air quality is satisfactory and poses little or no risk. 51 to 100 is Moderate, while values above 100 are increasingly unhealthy, especially for sensitive groups."}},
+{"@type":"Question","name":"What is the AQI in Delhi today?","acceptedAnswer":{"@type":"Answer","text":"This page shows the live, real-time Air Quality Index for New Delhi by default, updated continuously from open monitoring data. You can also search any other city, state, or country to see its current AQI."}},
+{"@type":"Question","name":"What does PM2.5 mean?","acceptedAnswer":{"@type":"Answer","text":"PM2.5 refers to fine particulate matter smaller than 2.5 micrometres. These tiny particles penetrate deep into the lungs and bloodstream, making PM2.5 one of the most health-significant air pollutants and a key driver of the AQI value."}},
+{"@type":"Question","name":"How is the Air Quality Index calculated?","acceptedAnswer":{"@type":"Answer","text":"The AQI converts measured pollutant concentrations such as PM2.5, PM10, ozone, and nitrogen dioxide into a single standardised scale from 0 upward. The pollutant with the worst sub-index determines the overall AQI for that location and time."}}
+]}
+</script>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<nav class="top">
+  <a class="nav-brand" href="index.html">
+    <img src="logo.svg" alt="IGRS">
+    <span class="nav-name">IGRS</span>
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="articles.html">Articles</a>
+    <a href="tools.html">Tools</a>
+      <a href="ip-lookup.html">IP Lookup</a>
+      <a href="breach-check.html">Breach Check</a>
+    <a href="dorks.html">Dorks</a>
+    <a href="playbooks.html">Playbooks</a>
+    <a href="cyberlaw.html">Cyber Law</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="ioc.html">IOC Feed</a>
+    <a href="toolkit.html">Toolkit</a>
+    <a href="developers.html">Developers</a>
+    <a href="about.html">About</a>
+  </div>
+  <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+</nav>
+<section style="max-width:1100px;margin:0 auto;padding:30px 16px 10px;text-align:center;">
+  <div style="font-family:'Share Tech Mono',monospace;color:#00d4ff;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Live Real-Time Data</div>
+  <h1 style="font-family:Rajdhani,sans-serif;font-size:2.1rem;color:#e8f4ff;margin:0 0 10px;">Live Air Quality Index &amp; Local Time</h1>
+  <p style="color:#9fb3c6;max-width:680px;margin:0 auto 22px;font-size:1rem;line-height:1.6;">Real-time AQI, PM2.5 and local time for <strong style="color:#00d4ff;">New Delhi</strong> by default. Search any city, state or country worldwide to track its current air quality and time instantly.</p>
+  <div id="igrs-livebar" style="display:flex;justify-content:center;margin-bottom:8px;"></div>
+  <p style="color:#7a8a99;font-size:.78rem;margin-top:14px;">Tap <strong style="color:#00d4ff;">⚙ Location</strong> above to switch to any city, state or country. Your choice is remembered on this device.</p>
+</section>
+
+<section style="max-width:900px;margin:10px auto;padding:0 16px;">
+  <h2 style="font-family:Rajdhani,sans-serif;color:#c8dff0;font-size:1.4rem;border-left:3px solid #00d4ff;padding-left:12px;">Understanding the AQI Scale</h2>
+  <p style="color:#9fb3c6;line-height:1.7;">The Air Quality Index (AQI) translates complex air pollution data into a single, easy-to-understand number. It reflects the concentration of key pollutants — primarily fine particulate matter (PM2.5 and PM10), ground-level ozone, nitrogen dioxide, sulphur dioxide, and carbon monoxide. The higher the AQI, the greater the level of air pollution and the associated health concern.</p>
+  <table style="width:100%;border-collapse:collapse;margin:18px 0;font-family:'IBM Plex Mono',monospace;font-size:.85rem;">
+    <tr style="background:rgba(0,212,255,0.08);"><th style="padding:10px;text-align:left;color:#00d4ff;border:1px solid rgba(0,212,255,0.2);">AQI Range</th><th style="padding:10px;text-align:left;color:#00d4ff;border:1px solid rgba(0,212,255,0.2);">Category</th><th style="padding:10px;text-align:left;color:#00d4ff;border:1px solid rgba(0,212,255,0.2);">Health Implication</th></tr>
+    <tr><td style="padding:10px;color:#00ff88;border:1px solid rgba(0,212,255,0.12);">0 – 50</td><td style="padding:10px;color:#cfe;border:1px solid rgba(0,212,255,0.12);">Good</td><td style="padding:10px;color:#9fb3c6;border:1px solid rgba(0,212,255,0.12);">Air quality is satisfactory; minimal risk.</td></tr>
+    <tr><td style="padding:10px;color:#ffb800;border:1px solid rgba(0,212,255,0.12);">51 – 100</td><td style="padding:10px;color:#cfe;border:1px solid rgba(0,212,255,0.12);">Moderate</td><td style="padding:10px;color:#9fb3c6;border:1px solid rgba(0,212,255,0.12);">Acceptable; sensitive individuals should take care.</td></tr>
+    <tr><td style="padding:10px;color:#ff7e00;border:1px solid rgba(0,212,255,0.12);">101 – 150</td><td style="padding:10px;color:#cfe;border:1px solid rgba(0,212,255,0.12);">Unhealthy for Sensitive Groups</td><td style="padding:10px;color:#9fb3c6;border:1px solid rgba(0,212,255,0.12);">Sensitive groups may experience effects.</td></tr>
+    <tr><td style="padding:10px;color:#ff3b3b;border:1px solid rgba(0,212,255,0.12);">151 – 200</td><td style="padding:10px;color:#cfe;border:1px solid rgba(0,212,255,0.12);">Unhealthy</td><td style="padding:10px;color:#9fb3c6;border:1px solid rgba(0,212,255,0.12);">Everyone may begin to feel effects.</td></tr>
+    <tr><td style="padding:10px;color:#b56cff;border:1px solid rgba(0,212,255,0.12);">201 – 300</td><td style="padding:10px;color:#cfe;border:1px solid rgba(0,212,255,0.12);">Very Unhealthy</td><td style="padding:10px;color:#9fb3c6;border:1px solid rgba(0,212,255,0.12);">Health alert; serious effects possible.</td></tr>
+    <tr><td style="padding:10px;color:#ff2d6f;border:1px solid rgba(0,212,255,0.12);">301+</td><td style="padding:10px;color:#cfe;border:1px solid rgba(0,212,255,0.12);">Hazardous</td><td style="padding:10px;color:#9fb3c6;border:1px solid rgba(0,212,255,0.12);">Emergency conditions; whole population affected.</td></tr>
+  </table>
+
+  <h2 style="font-family:Rajdhani,sans-serif;color:#c8dff0;font-size:1.4rem;border-left:3px solid #00d4ff;padding-left:12px;">Why Air Quality Matters in India</h2>
+  <p style="color:#9fb3c6;line-height:1.7;">India is home to several of the world's most polluted cities, and air quality is a daily concern for hundreds of millions of people. During winter months, cities across the northern plains — including New Delhi, Ghaziabad, and Noida — frequently record AQI values in the Very Unhealthy and Hazardous ranges. Real-time AQI awareness helps individuals decide when to limit outdoor activity, wear protective masks, or use air purifiers. For organisations and investigators working long hours, monitoring local air quality is a practical health and wellbeing measure.</p>
+
+  <h2 style="font-family:Rajdhani,sans-serif;color:#c8dff0;font-size:1.4rem;border-left:3px solid #00d4ff;padding-left:12px;">PM2.5 and PM10 Explained</h2>
+  <p style="color:#9fb3c6;line-height:1.7;">Particulate matter is among the most health-significant pollutants. PM10 refers to particles up to 10 micrometres in diameter, which can irritate the airways. PM2.5 — fine particles under 2.5 micrometres — is far more dangerous, penetrating deep into the lungs and entering the bloodstream, where it contributes to respiratory and cardiovascular disease. Because of this, PM2.5 is often the dominant factor in determining a city's AQI, particularly in India's urban centres.</p>
+
+  <h2 style="font-family:Rajdhani,sans-serif;color:#c8dff0;font-size:1.4rem;border-left:3px solid #00d4ff;padding-left:12px;">Frequently Asked Questions</h2>
+  <div style="color:#9fb3c6;line-height:1.7;">
+    <p><strong style="color:#e8f4ff;">What is a good AQI level?</strong><br>An AQI between 0 and 50 is Good, meaning air quality is satisfactory with little or no health risk. Values above 100 become increasingly unhealthy, especially for sensitive groups.</p>
+    <p><strong style="color:#e8f4ff;">What is the AQI in Delhi today?</strong><br>This page shows the live AQI for New Delhi by default, updated continuously. You can search any other city, state, or country to see its current air quality.</p>
+    <p><strong style="color:#e8f4ff;">What does PM2.5 mean?</strong><br>PM2.5 is fine particulate matter under 2.5 micrometres. It penetrates deep into the lungs and bloodstream, making it one of the most health-significant pollutants and a key driver of AQI.</p>
+    <p><strong style="color:#e8f4ff;">How is the AQI calculated?</strong><br>The AQI converts pollutant concentrations such as PM2.5, PM10, ozone, and nitrogen dioxide into a single standardised scale. The pollutant with the worst sub-index sets the overall AQI.</p>
+  </div>
+
+  <p style="color:#7a8a99;font-size:.82rem;margin-top:24px;border-top:1px solid rgba(0,212,255,0.12);padding-top:16px;">Air quality data is sourced from open real-time monitoring networks and is provided for general informational and wellbeing purposes. For official health advisories, consult the Central Pollution Control Board (CPCB) and local authorities. IGRS also offers a free <a href="dashboard.html" style="color:#00d4ff;">OSINT Dashboard</a>, <a href="articles.html" style="color:#00d4ff;">intelligence articles</a>, and <a href="tools.html" style="color:#00d4ff;">305+ investigation tools</a>.</p>
+</section>
+<footer>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="articles.html">Articles</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy-policy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="disclaimer.html">Disclaimer</a>
+  </div>
+  <div>&copy; 2026 IGRS &mdash; Intel Grid Research Station. Educational &amp; Defensive Use Only.</div>
+</footer>
+<script src="neural.js" defer></script>
+<script src="livebar.js" defer></script>
+<script>
+(function(){var b=document.getElementById('navBurger'),l=document.getElementById('navLinks');if(!b||!l)return;
+b.addEventListener('click',function(){var o=l.classList.toggle('open');b.setAttribute('aria-expanded',o);b.innerHTML=o?'&#10005;':'&#9776;';});
+l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){l.classList.remove('open');b.setAttribute('aria-expanded','false');b.innerHTML='&#9776;';});});
+})();
+</script>
+</body>
+</html>
