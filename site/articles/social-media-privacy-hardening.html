@@ -28,7 +28,7 @@
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article","headline":"Social Media Privacy Hardening: A Step-by-Step Guide",
-"description":"A practical, settings-level walkthrough for locking down Instagram, Facebook, WhatsApp, X and LinkedIn without abandoning them.","datePublished":"2026-04-30","dateModified":"2026-04-30",
+"description":"A practical, settings-level walkthrough for locking down Instagram, Facebook, WhatsApp, X and LinkedIn without abandoning them.","datePublished":"2026-04-30","dateModified":"2026-06-14",
 "author":{"@type":"Person","name":"Manuj Kumar Pandey"},
 "publisher":{"@type":"Organization","name":"IGRS"},
 "mainEntityOfPage":"https://igrs.xyz/articles/social-media-privacy-hardening.html"}
@@ -68,69 +68,33 @@
       <tr><td>Category</td><td>Privacy & Safety</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-04-30</td></tr>
-      <tr><td>Reading time</td><td>7 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">A practical, settings-level walkthrough for locking down Instagram, Facebook, WhatsApp, X and LinkedIn without abandoning them.</p>
-  
-<h2>The principle: shrink the public surface</h2>
-<p>You do not need to delete your accounts to be safe. You need to control three things: <strong>who can see your content</strong>, <strong>who can find and contact you</strong>, and <strong>what the platform leaks about you by default</strong>. Work through each platform below; the whole exercise takes about an hour.</p>
-
-<h2>Universal steps (do these everywhere first)</h2>
-<ul>
-<li><strong>Enable two-factor authentication</strong> — prefer an authenticator app or passkey over SMS where offered. Account takeover, not snooping, is the most common real-world harm.</li>
-<li><strong>Review active sessions and connected apps.</strong> Log out unknown devices; revoke third-party apps you no longer use — old quiz apps and "who viewed my profile" services retain access for years.</li>
-<li><strong>Audit your profile fields.</strong> Birth date, hometown, school and employer answer the security questions used by banks and telecom providers. Remove or restrict them.</li>
-<li><strong>Turn off contact syncing.</strong> Uploading your phone book maps your entire social graph to the platform and exposes you in others' "people you may know".</li>
-</ul>
-
-<h2>Instagram</h2>
-<ul>
-<li>Settings → Account privacy → <strong>Private account</strong> (if your account is personal, not a creator page).</li>
-<li>Settings → Tags and mentions → require approval before tagged posts appear on your profile.</li>
-<li>Settings → Story → hide story from specific people; disable story sharing/resharing.</li>
-<li>Review old posts for location tags; remove geotags on anything showing your home, gym or office routine.</li>
-<li>Disable <strong>Activity status</strong> so contacts cannot see when you are online.</li>
-</ul>
-
-<h2>Facebook</h2>
-<ul>
-<li>Run the built-in <strong>Privacy Checkup</strong>, then go further: set past posts to Friends via "Limit past posts" (one click retroactively restricts your entire history).</li>
-<li>Settings → Profile details → set friend list, birthday, hometown and family members to <strong>Only me</strong>.</li>
-<li>Settings → How people can find you → restrict lookup by phone number and email to Friends.</li>
-<li>Enable <strong>Timeline review</strong> so tags require your approval.</li>
-</ul>
-
-<h2>WhatsApp</h2>
-<ul>
-<li>Settings → Privacy → set <strong>Profile photo, About, and Last seen/Online</strong> to "My contacts" (or "My contacts except…").</li>
-<li>Set <strong>Groups</strong> to "My contacts" — this stops strangers adding you to scam groups, a major fraud vector in India.</li>
-<li>Enable <strong>two-step verification</strong> (a PIN that blocks SIM-swap account hijacks).</li>
-<li>Turn on <strong>Silence unknown callers</strong> to cut off international spam-call campaigns.</li>
-</ul>
-
-<h2>X (Twitter)</h2>
-<ul>
-<li>Privacy and safety → Audience and tagging → <strong>Protect your posts</strong> if the account is personal; disable photo tagging.</li>
-<li>Privacy and safety → Discoverability → untick discovery by email and phone number.</li>
-<li>Remove precise location from posts and delete location history.</li>
-</ul>
-
-<h2>LinkedIn</h2>
-<p>LinkedIn is deliberately public — but you still control the edges:</p>
-<ul>
-<li>Settings → Visibility → <strong>Profile viewing options</strong> → Private mode (others cannot see you viewed them).</li>
-<li>Restrict <strong>connections list visibility</strong> — your network map is valuable to social engineers crafting pretexts.</li>
-<li>Think before posting "excited to join…" announcements with start dates; new-joiner posts are a known target list for CEO-fraud and fake-IT-helpdesk scams.</li>
-</ul>
-
-<h2>The behavioural layer</h2>
-<p>Settings cannot fix what behaviour leaks. Three habits with outsized payoff: <strong>post travel photos after you return</strong>, not live; keep your residential building, vehicle plate and children's school out of frame; and remember that anything sent to a "close friends" list can still be screenshotted. Configure once, then let habit do the rest.</p>
-
-  <div class="author-box">
-    <div class="label">About the author</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India. Everything published here is educational and based on hands-on investigative practice.</p>
-  </div>
+  <h2>Hardening Your Social Media Privacy</h2>
+<p>Social media platforms are designed to encourage sharing, and their default settings often expose more than users realise. This exposure fuels social engineering, fraud, stalking, and reconnaissance against individuals. Hardening social media privacy reduces this exposure significantly. For Indian users, and especially those in sensitive roles, configuring social media privacy is an important protective measure. This guide explains how.</p>
+<h2>Why Social Media Privacy Matters</h2>
+<p>Information shared on social media becomes ammunition for attackers. Personal details, location, relationships, routines, and interests enable convincing social engineering, support identity theft, and aid stalkers and fraudsters. For investigators and security professionals, publicly visible social media also undermines operational security. Reducing what is publicly visible directly reduces the raw material available to those who would exploit it.</p>
+<h2>Key Privacy Areas</h2>
+<table>
+<tr><th>Area</th><th>Action</th></tr>
+<tr><td>Profile visibility</td><td>Restrict who can see your profile</td></tr>
+<tr><td>Post audience</td><td>Limit posts to known contacts</td></tr>
+<tr><td>Location data</td><td>Disable location tagging</td></tr>
+<tr><td>Contact discovery</td><td>Limit how others find you</td></tr>
+<tr><td>Third-party apps</td><td>Review and revoke access</td></tr>
+</table>
+<h2>Controlling Visibility</h2>
+<p>The foundation of social media privacy is controlling who can see your content. Setting profiles to private, limiting posts to confirmed contacts, and restricting who can view personal information dramatically reduces public exposure. Each platform offers these controls, though defaults often favour visibility. Reviewing and tightening audience settings ensures that personal content reaches only intended audiences rather than the entire internet.</p>
+<h2>Location and Metadata</h2>
+<p>Location sharing is a significant privacy risk on social media. Disabling location tagging on posts, turning off location history, and being mindful that photos and check-ins reveal location protects against stalking and reconnaissance. Even without explicit tagging, content can reveal location through visible landmarks or patterns. Awareness of how posts disclose location, and disabling automatic location features, reduces this exposure considerably.</p>
+<h2>Managing Connections and Discovery</h2>
+<p>How others find and connect with you affects privacy. Limiting contact discovery (who can find you by phone or email), being selective about connection requests, and reviewing existing connections reduces exposure to unknown parties. Fake profiles used for reconnaissance and social engineering often attempt to connect with targets; being selective about who is granted access to your network is an important defensive habit.</p>
+<h2>Third-Party App Access</h2>
+<p>Over time, users grant many third-party apps access to their social media accounts and data. These apps can access personal information and may pose privacy and security risks, especially if abandoned or compromised. Periodically reviewing connected apps and revoking access for those no longer needed closes a frequently overlooked exposure. Minimising third-party access limits how widely personal data is shared beyond the platform itself.</p>
+<h2>Building Privacy Habits</h2>
+<p>For Indian users, hardening social media privacy combines restricting visibility, controlling location sharing, managing connections, and limiting third-party access — configured once and reviewed periodically as platforms change settings. For those in sensitive roles, this hardening is part of personal operational security, reducing the public footprint that enables targeting. While social media offers genuine value, taking deliberate control of privacy settings ensures that value does not come at the cost of exposure to fraud, stalking, social engineering, and reconnaissance. The effort required is modest; the protective benefit, particularly for those who may be targeted, is substantial.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">How do I make my social media accounts more private?</div><div class="faq-a">Set profiles to private, limit who can see posts and personal info, disable location tagging, review tagged photos, restrict friend/follower lists from public view, turn off ad personalization, and audit connected third-party apps.</div></div>
