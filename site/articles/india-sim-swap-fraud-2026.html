@@ -28,7 +28,7 @@
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article","headline":"The SIM Swap Epidemic: How Indian Mobile Numbers Are Being Hijacked in 2026",
-"description":"SIM swap attacks have surged across Indian metros. Attackers need only your Aadhaar number and a corrupt telecom agent to seize your number — and everything tied to it.","datePublished":"2026-04-02","dateModified":"2026-04-02",
+"description":"SIM swap attacks have surged across Indian metros. Attackers need only your Aadhaar number and a corrupt telecom agent to seize your number — and everything tied to it.","datePublished":"2026-04-02","dateModified":"2026-06-14",
 "author":{"@type":"Person","name":"Manuj Kumar Pandey"},
 "publisher":{"@type":"Organization","name":"IGRS"},
 "mainEntityOfPage":"https://igrs.xyz/articles/india-sim-swap-fraud-2026.html"}
@@ -67,15 +67,31 @@
       <tr><td>Category</td><td>Cyber Fraud</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-04-02</td></tr>
-      <tr><td>Reading time</td><td>7 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">SIM swap attacks have surged across Indian metros. Attackers need only your Aadhaar number and a corrupt telecom agent to seize your number — and everything tied to it.</p>
-  <h2>What SIM swapping actually is</h2><p>A SIM swap is not a technical hack. It is a social engineering attack against a telecom provider. The attacker convinces the provider — through forged documents, insider assistance, or impersonation — to transfer your mobile number to a SIM card they control. The moment the transfer completes, your phone loses signal. Every call and SMS intended for you now goes to the attacker's device — including OTPs for banking, UPI, and email recovery.</p><h2>The Indian threat landscape in 2026</h2><p>India's telecom subscriber base exceeds 1.1 billion, making it one of the largest attack surfaces globally. Multiple operators still process SIM replacement requests at retail outlets with minimal verification. Dark-web markets openly advertise "SIM porting services" targeting specific Indian operators, with prices ranging from ₹2,000 to ₹15,000 depending on operator and turnaround.</p><p>Victims typically discover the attack when their phone displays "No SIM" or "No Service" — often in early morning hours when fraud helplines are least staffed. By the time a complaint is filed, funds have already moved through mule accounts.</p><h2>Attack sequence</h2><p>The attacker gathers your phone number, name, address, and Aadhaar from data broker sites or previous breaches. They visit a telecom outlet with forged documents or contact a complicit retailer. The replacement SIM is activated. Within minutes, password resets begin on email, UPI apps, and banking portals. Funds transfer to mule accounts within the first hour.</p><div class="callout">If your phone suddenly loses all signal, call your operator immediately from another phone. Simultaneously call 1930 and your primary bank. Every minute matters.</div><h2>Defence</h2><ul><li><strong>Replace SMS OTP</strong> with authenticator apps wherever the service permits — TOTP codes are not intercepted by SIM swaps</li><li><strong>Set a SIM lock PIN</strong> with your operator — most carriers allow a secondary PIN before any replacement is processed</li><li><strong>Use a separate number for banking</strong> — a number not published anywhere, used only for financial OTPs</li><li><strong>Register alternate contact details</strong> with your operator for pre-change notifications</li></ul><h2>Legal recourse</h2><p>SIM swap fraud is cognizable under Section 66C (identity theft) and Section 66D of the IT Act, 2000, and Section 318 of the BNS 2023. File an FIR at the cyber police station, report to 1930, and lodge a written complaint with your telecom operator to trigger an internal fraud investigation.</p>
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. He is certified in CEH, CHFI and ECSA, and works with law enforcement agencies and enterprise security teams in India.</p>
-  </div>
+  <h2>SIM Swap Fraud in India: The 2026 Picture</h2>
+<p>SIM swap fraud — where criminals hijack a victim's mobile number to intercept OTPs and take over accounts — remains one of the most damaging fraud techniques in India. As banking, UPI, and government services increasingly rely on mobile-based authentication, the consequences of a hijacked number have grown severe. This guide examines SIM swap fraud in India and how to investigate and prevent it.</p>
+<h2>How SIM Swap Fraud Works</h2>
+<p>SIM swap fraud exploits the process by which a mobile number is transferred to a new SIM. Criminals gather the victim's personal information, then impersonate them to the mobile operator — through social engineering, fraudulent documentation, or insider collusion — to get the number issued on a SIM they control. Once they control the number, they intercept the OTPs that protect bank accounts, UPI, and email, enabling account takeover and theft.</p>
+<h2>The Attack Chain</h2>
+<table>
+<tr><th>Stage</th><th>Action</th></tr>
+<tr><td>Reconnaissance</td><td>Gather victim's personal data</td></tr>
+<tr><td>SIM swap</td><td>Hijack number via operator</td></tr>
+<tr><td>OTP interception</td><td>Receive victim's verification codes</td></tr>
+<tr><td>Account takeover</td><td>Access banking, UPI, email</td></tr>
+<tr><td>Cash-out</td><td>Transfer funds, mule accounts</td></tr>
+</table>
+<h2>Warning Signs for Victims</h2>
+<p>Victims often receive warning signs before the fraud completes: unexpected loss of mobile network signal (the moment the number transfers to the criminal's SIM), inability to make calls or send messages, notifications about a SIM change, and unexpected account activity. Recognising sudden, unexplained loss of mobile service as a potential SIM swap — and acting immediately — can prevent the account takeover that follows.</p>
+<h2>Investigating SIM Swap Fraud</h2>
+<p>Investigation reconstructs the attack chain through records obtained under legal authority. Mobile operator records reveal when and how the SIM swap occurred and may identify the point of compromise or insider involvement. Banking records trace the unauthorised transactions and fund flow. Production of these records is obtained under Section 94 BNSS, and electronic evidence is certified under Section 63 BSA. The investigation aims to trace both the money and the method of the swap.</p>
+<h2>Applicable Legal Provisions</h2>
+<p>SIM swap fraud attracts multiple provisions: Section 318 BNS (cheating), Section 319 BNS (cheating by personation), and Section 66C and 66D IT Act (identity theft and personation using a computer resource). Where insider involvement at the operator is established, additional charges apply. The fraud's reliance on impersonation and unauthorised access makes these identity and cheating provisions central to prosecution.</p>
+<h2>Prevention and Response</h2>
+<p>Individuals reduce SIM swap risk by preferring app-based authenticators or hardware keys over SMS OTP for critical accounts, setting a SIM PIN, limiting personal information exposure, and acting immediately if mobile service is unexpectedly lost. If victimised, the priority response is to contact the mobile operator to reclaim the number, alert banks to freeze accounts, change passwords, report to the bank and the cybercrime helpline 1930, and file a complaint at cybercrime.gov.in. Rapid action within the critical early window can limit or prevent loss, making awareness of the warning signs and the response steps the most valuable protection against this pervasive and damaging fraud.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">What is SIM swap fraud?</div><div class="faq-a">SIM swap fraud is when criminals fraudulently transfer your mobile number to a SIM they control, intercepting your OTPs to take over bank accounts, UPI, and email. Your original SIM stops working as the first warning sign.</div></div>
