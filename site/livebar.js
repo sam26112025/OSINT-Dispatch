@@ -54,9 +54,11 @@
     try{
       var now=new Date();
       var t=new Intl.DateTimeFormat('en-GB',{timeZone:state.tz,hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(now);
-      var d=new Intl.DateTimeFormat('en-IN',{timeZone:state.tz,weekday:'short',day:'2-digit',month:'short',year:'numeric'}).format(now);
-      var ce=document.getElementById('ilb-clock'),de=document.getElementById('ilb-date');
+      var day=new Intl.DateTimeFormat('en-IN',{timeZone:state.tz,weekday:'long'}).format(now);
+      var d=new Intl.DateTimeFormat('en-IN',{timeZone:state.tz,day:'2-digit',month:'long',year:'numeric'}).format(now);
+      var ce=document.getElementById('ilb-clock'),de=document.getElementById('ilb-date'),dy=document.getElementById('ilb-day');
       if(ce)ce.textContent=t;
+      if(dy)dy.textContent=day;
       if(de)de.textContent=d;
     }catch(e){}
   }
