@@ -60,21 +60,32 @@
       <tr><td>Category</td><td>Threat Intelligence</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-05-15</td></tr>
-      <tr><td>Reading time</td><td>5 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">A honeypot is a trap — a fake asset that legitimate users never touch. When an attacker accesses it, you know immediately. Low cost, high signal, zero false positives.</p>
-  <h2>The logic of deception defence</h2>
-<p>A honeypot is a system, service, or data asset that has no legitimate business purpose — it exists solely to detect unauthorized access. Because no authorized user should ever interact with it, any interaction is an unambiguous signal of malicious activity. This eliminates the false-positive problem that plagues most security monitoring: honeypot alerts require no investigation to determine whether they are genuine — they are, by definition, suspicious.</p>
-<h2>Types of honeypots</h2>
-<p><strong>Low-interaction honeypots</strong> simulate services without running actual vulnerable software. Cowrie (SSH/Telnet honeypot) and Dionaea (multi-protocol) are common examples. Safe to deploy — the attacker cannot use them to pivot into the real network — and provide volume data on attack patterns. <strong>High-interaction honeypots</strong> run real operating systems and services, producing richer intelligence but carrying more risk if the attacker escapes the environment. <strong>Honeytokens</strong> are fake data items — credentials, documents, database records — that trigger alerts when accessed. A fake admin credential that has never been legitimately used will alert the moment an attacker extracts and uses it.</p>
-<h2>Strategic placement in Indian networks</h2>
-<p>Highest-value placements: a fake RDP server at the perimeter (attackers scanning for exposed RDP will connect immediately); fake database servers on internal segments (any connection indicates lateral movement); honeytokens in file shares (fake "Salary_2026.xlsx" that alerts on access); fake admin credentials in Active Directory (a service account that is never legitimately logged into — its first login is an attacker).</p>
-<div class="callout">Honeypot alerts require rapid response. The value of early detection is only realized if you act on it. An attacker who triggers a honeypot alert and encounters no defensive response will proceed to cause damage while the alert sits unacknowledged in a queue.</div>
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
-  </div>
+  <h2>Honeypots and Deception: Turning the Tables</h2>
+<p>Most cyber defence is reactive — detecting and responding to attacks. Deception technology flips this dynamic, planting traps that lure attackers into revealing themselves. Honeypots and broader deception techniques give defenders early warning, intelligence on attacker behaviour, and a way to detect intrusions that evade conventional defences. This guide explains how deception-based defence works and how organisations can use it.</p>
+<h2>What Is a Honeypot?</h2>
+<p>A honeypot is a decoy system or resource designed to attract attackers. Because legitimate users have no reason to interact with it, any access to a honeypot is inherently suspicious — a strong, low-false-positive signal of malicious activity. Honeypots range from simple decoy files to fully simulated systems, and they reveal both that an intrusion is underway and how the attacker operates.</p>
+<h2>Types of Deception</h2>
+<table>
+<tr><th>Type</th><th>Purpose</th></tr>
+<tr><td>Honeypot system</td><td>Decoy server to attract and study attackers</td></tr>
+<tr><td>Honeytokens</td><td>Fake credentials or files that alert when used</td></tr>
+<tr><td>Honeynets</td><td>Networks of honeypots for richer intelligence</td></tr>
+<tr><td>Decoy documents</td><td>Trap files that signal exfiltration</td></tr>
+</table>
+<h2>Why Deception Works</h2>
+<p>Deception is effective because it exploits the attacker's own methods against them. Attackers explore networks, harvest credentials, and access files — and deception plants irresistible but fake versions of exactly these. An attacker cannot easily distinguish decoys from real assets, so they trip the trap during normal reconnaissance. This makes deception a high-fidelity detection method with very few false positives.</p>
+<h2>Honeytokens: Simple and Powerful</h2>
+<p>Honeytokens are among the most practical deception tools. A honeytoken is a piece of fake data — credentials, an API key, a database record, or a document — that no legitimate process should ever use. When it is accessed or used, an alert fires, revealing an intrusion. Honeytokens are cheap to deploy, work across environments, and can detect both external attackers and malicious insiders, making them an accessible entry point into deception.</p>
+<h2>Intelligence from Deception</h2>
+<p>Beyond detection, deception generates intelligence. By observing how an attacker interacts with a honeypot, defenders learn their tools, techniques, and objectives. This intelligence informs broader defence — revealing what attackers seek, how they move, and what indicators to hunt for elsewhere. A honeypot effectively turns an intrusion attempt into a source of actionable threat intelligence.</p>
+<h2>Deployment Considerations</h2>
+<p>Effective deception requires thoughtful deployment. Decoys must be believable and well-placed to attract attackers, isolated so a compromised honeypot cannot become a real foothold, and monitored so alerts are acted upon. Deception should complement, not replace, conventional defences. Poorly deployed honeypots that are obviously fake or insufficiently isolated provide little value and can introduce risk.</p>
+<h2>Deception for Indian Organisations</h2>
+<p>For Indian organisations, deception offers an accessible way to improve detection, particularly against sophisticated attackers who evade signature-based tools. Honeytokens require minimal investment and can be deployed widely, while honeypots provide deeper intelligence for organisations with the capacity to operate them. As part of a layered defence, deception adds a detection mechanism that is difficult for attackers to avoid — because to attack is to reveal themselves. In a threat landscape where determined adversaries increasingly bypass perimeter defences, deception provides an inside-the-network early-warning capability that complements traditional security investments.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">What is a honeypot in cybersecurity?</div><div class="faq-a">A honeypot is a decoy system designed to attract attackers, detect intrusions, and study attack techniques. It appears to be a legitimate target but is isolated and monitored, alerting defenders to malicious activity.</div></div>
