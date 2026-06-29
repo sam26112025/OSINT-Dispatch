@@ -60,21 +60,62 @@
       <tr><td>Category</td><td>Digital Forensics</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-05-18</td></tr>
-      <tr><td>Reading time</td><td>7 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">Windows Event Logs record virtually every significant action on a Windows system. Knowing which events matter — and reading them correctly — is a core DFIR skill.</p>
-  <h2>Authentication events</h2>
-<p><strong>Event ID 4624 — Successful logon:</strong> Records every successful authentication. The Logon Type field is critical: Type 2 is interactive (console), Type 3 is network (file share, WMI), Type 10 is remote interactive (RDP), Type 5 is service. Type 3 events from unusual source IPs indicate lateral movement. <strong>Event ID 4625 — Failed logon:</strong> Large numbers from a single source indicate brute force. Failure reason code 0xC000006A means wrong password; 0xC0000064 means unknown username. <strong>Event ID 4648 — Explicit credential use:</strong> Indicates pass-the-hash, credential stuffing, or legitimate service account use. <strong>Event IDs 4768/4769 — Kerberos ticket requests:</strong> Unusual encryption types (RC4) in 4769 events may indicate pass-the-hash or Kerberoasting activity.</p>
-<h2>Process and execution events</h2>
-<p><strong>Event ID 4688 — Process creation:</strong> Records every new process launched, including full command line if audit policy is configured (not enabled by default — enable this immediately). Parent-child relationships reveal execution chains: cmd.exe spawned by Word is malicious; spawned by Explorer is normal. <strong>Event ID 7045 — New service installed:</strong> Attackers frequently install services for persistence — any new service on production systems merits review. <strong>Event ID 4698 — Scheduled task created:</strong> Includes the full task XML configuration showing what the task will execute and when.</p>
-<h2>Account and privilege events</h2>
-<p><strong>Event ID 4720 — User account created:</strong> New accounts outside business hours or by unexpected actors are high-priority triggers. <strong>Event IDs 4728/4732 — Member added to security or local group:</strong> Adding users to Administrators or Domain Admins is a critical indicator. <strong>Event ID 4776 — Domain controller credential validation:</strong> Pattern analysis across these events reveals credential-based attacks in progress.</p>
-<div class="callout"><strong>Log retention is critical:</strong> Default Windows Event Log sizes are dangerously small — Security logs default to 20MB, covering only hours on an active system. Increase all critical logs to minimum 1GB and enable forwarding to a SIEM. An investigation that cannot answer "what happened two weeks ago" because logs rolled over has failed before it began.</div>
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
-  </div>
+  <h2>Windows Event Logs: The Forensic Record</h2>
+<p>Windows event logs are the detailed record of everything that happens on a Windows system — logons, process execution, account changes, service installations, and more. For investigators and incident responders, these logs are indispensable, reconstructing attacker activity, establishing timelines, and providing the evidence that proves what occurred. This guide covers Windows event log forensics and the key events every investigator should know.</p>
+
+<h2>Understanding Windows Event Logs</h2>
+<p>Windows records events in several logs — primarily Security, System, and Application — stored as .evtx files. The Security log is the most forensically valuable, recording authentication, authorisation, and audit events. Each event has an Event ID identifying its type, along with details like the account, time, and source. Knowing which Event IDs matter transforms an overwhelming log into focused intelligence.</p>
+
+<h2>Critical Event IDs for Investigation</h2>
+<table>
+<tr><th>Event ID</th><th>Meaning</th></tr>
+<tr><td>4624</td><td>Successful logon</td></tr>
+<tr><td>4625</td><td>Failed logon</td></tr>
+<tr><td>4634 / 4647</td><td>Logoff</td></tr>
+<tr><td>4648</td><td>Logon with explicit credentials</td></tr>
+<tr><td>4688</td><td>Process creation</td></tr>
+<tr><td>4720</td><td>User account created</td></tr>
+<tr><td>4728 / 4732</td><td>Added to privileged group</td></tr>
+<tr><td>7045</td><td>Service installed</td></tr>
+</table>
+
+<h2>Logon Analysis</h2>
+<p>Logon events (4624) are central to investigation, revealing who accessed the system, when, from where, and how. The logon type is particularly important — distinguishing interactive logons, network logons, and remote desktop sessions. Failed logons (4625) reveal brute-force attempts and unauthorised access attempts. Analysing logon patterns exposes anomalies like off-hours access, impossible travel, and credential attacks.</p>
+
+<h2>Tracking Process Execution</h2>
+<p>Event 4688 records process creation, providing a record of what programs ran on the system. When command-line auditing is enabled, this includes the full command line — invaluable for understanding attacker actions. Examining process creation events reveals malicious tools, scripts, and the parent-child process relationships that expose how an attack unfolded. This is among the most useful events for reconstructing attacker activity.</p>
+
+<h2>Detecting Account Manipulation</h2>
+<p>Attackers frequently create accounts and modify group memberships to establish persistence and escalate privileges. Event 4720 (account creation), 4728 and 4732 (additions to privileged groups), and related events reveal this activity. Unexpected account creation or privilege grants are strong indicators of compromise, exposing how an attacker entrenched their access.</p>
+
+<h2>Service and Persistence Indicators</h2>
+<p>Event 7045 records service installation, a common persistence mechanism. Attackers install malicious services to maintain access and execute payloads. Examining service installation events, especially for unusual or suspiciously named services, reveals persistence mechanisms. Combined with scheduled task events and registry monitoring, this exposes how attackers ensure their access survives reboots.</p>
+
+<h2>The Log Retention Challenge</h2>
+<p>A significant challenge is that Windows event logs have size limits and may overwrite older events, sometimes within days on busy systems. This means critical evidence can be lost before investigation begins. For forensic readiness, organisations should forward logs to a SIEM for long-term retention beyond local limits — also aligning with CERT-In's 180-day retention requirement. Without adequate retention, investigation is severely hampered.</p>
+
+<h2>Tools for Event Log Analysis</h2>
+<table>
+<tr><th>Tool</th><th>Purpose</th></tr>
+<tr><td>Event Viewer</td><td>Built-in Windows log viewing</td></tr>
+<tr><td>EvtxECmd</td><td>Parsing evtx to structured output</td></tr>
+<tr><td>Chainsaw / Hayabusa</td><td>Rapid threat hunting in logs</td></tr>
+<tr><td>SIEM platforms</td><td>Centralised analysis and correlation</td></tr>
+<tr><td>PowerShell</td><td>Scripted log queries</td></tr>
+</table>
+
+<h2>Building a Timeline</h2>
+<p>One of the most powerful applications of event log analysis is timeline reconstruction. By correlating logon events, process creation, account changes, and service installations chronologically, investigators reconstruct the complete sequence of an attack — from initial access through escalation, persistence, and actions on objectives. This timeline is often the backbone of both the technical investigation and the eventual court presentation.</p>
+
+<h2>Evidence Handling and Admissibility</h2>
+<p>Windows event logs used as evidence require proper handling — preservation of the original evtx files, hash verification, and a Section 63 BSA 2023 certificate. The logs should be acquired forensically and their integrity demonstrable. Properly preserved and analysed, Windows event logs provide compelling, detailed evidence of system activity that holds up in court.</p>
+
+<h2>Building Event Log Forensics Skills</h2>
+<p>Windows event log analysis is a foundational skill for incident response and digital forensics, given Windows's dominance in enterprise environments. Developing capability requires memorising the critical Event IDs, understanding logon types and process auditing, mastering analysis tools, and practising timeline reconstruction. For Indian investigators and incident responders, fluency in Windows event logs is essential — these logs frequently contain the definitive record of what an attacker did, making them one of the most valuable evidence sources in any Windows-based investigation.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">What are Windows event logs used for in forensics?</div><div class="faq-a">Windows event logs record system, security, and application events crucial for forensics — logons (4624), failed logons (4625), process creation, account changes, and service installs. They reconstruct attacker activity and timelines.</div></div>
