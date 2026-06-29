@@ -60,19 +60,33 @@
       <tr><td>Category</td><td>Privacy & Safety</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-05-24</td></tr>
-      <tr><td>Reading time</td><td>5 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">Most privacy advice focuses on apps. The settings that matter most are built into the operating system itself. The complete list, explained.</p>
-  <h2>Android: the critical settings</h2>
-<p><strong>App permissions review:</strong> Settings &rarr; Privacy &rarr; Permission Manager. Review Location, Camera, Microphone, Contacts, Phone, and SMS for each app. Revoke any permission not needed for the app's core function. Pay particular attention to "Allow all the time" location access — few apps legitimately require it. <strong>Advertising ID:</strong> Settings &rarr; Privacy &rarr; Ads &rarr; Delete advertising ID. This removes the cross-app tracking identifier advertising networks use to build usage profiles. On Android 12 and later, you can delete it entirely. <strong>Google Activity Controls:</strong> myaccount.google.com &rarr; Data and Privacy — review and pause Web and App Activity, Location History, and YouTube History if you do not want Google building a browsing profile. <strong>Google Play Services location:</strong> Settings &rarr; Location &rarr; App permissions &rarr; Google Play Services — a hidden permission controlling whether Google can access location independently of any other app.</p>
-<h2>iOS: the critical settings</h2>
-<p><strong>App Tracking Transparency:</strong> Settings &rarr; Privacy and Security &rarr; Tracking &rarr; Allow Apps to Request to Track &rarr; OFF. This prevents apps from even asking permission to track you across apps using the advertising identifier. <strong>Location permissions audit:</strong> Settings &rarr; Privacy and Security &rarr; Location Services — most apps should be "While Using" or "Never", not "Always". Navigation apps are the main legitimate exception. <strong>Precise location toggle:</strong> For each app with location access, the Precise Location toggle controls whether the app receives exact GPS or an approximate location — turn off for social media, shopping, and other apps that do not require precise location. <strong>App Privacy Report:</strong> Settings &rarr; Privacy and Security &rarr; App Privacy Report — shows which apps accessed your camera, microphone, contacts, and location, and which external domains they contacted, in the last seven days.</p>
-<div class="callout"><strong>For both platforms:</strong> Regularly review installed apps and delete anything unused in the last 30 days. Apps you are not using still run background processes, collect data, and represent unnecessary attack surface. Fewer apps means meaningfully less exposure.</div>
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
-  </div>
+  <h2>Hardening Privacy on iOS and Android</h2>
+<p>Smartphones hold our most sensitive data — location, messages, photos, contacts, and accounts — and their default settings often favour convenience over privacy. Hardening the privacy settings on iOS and Android meaningfully reduces data exposure and tracking. For Indian users, and especially those in sensitive roles, configuring these settings is a practical, high-impact privacy measure. This guide walks through the essential settings.</p>
+<h2>Why Default Settings Fall Short</h2>
+<p>Out of the box, smartphones share considerable data — with apps, advertisers, and platform vendors. Location is tracked, app permissions are broad, advertising identifiers enable cross-app tracking, and various features transmit data by default. While much of this is benign, it creates a substantial privacy footprint. Reviewing and tightening these settings gives users control over what their device shares.</p>
+<h2>Critical Permission Controls</h2>
+<table>
+<tr><th>Permission</th><th>Recommendation</th></tr>
+<tr><td>Location</td><td>Grant only while using, deny background</td></tr>
+<tr><td>Microphone</td><td>Allow only for apps that need it</td></tr>
+<tr><td>Camera</td><td>Restrict to necessary apps</td></tr>
+<tr><td>Contacts</td><td>Limit access; many apps don't need it</td></tr>
+<tr><td>Photos</td><td>Grant selected access, not full library</td></tr>
+</table>
+<h2>Managing App Permissions</h2>
+<p>The single most impactful privacy step is reviewing app permissions. Both iOS and Android let users see which apps have access to location, microphone, camera, contacts, and more, and revoke unnecessary access. Many apps request far more than they need. Granting location only while using an app, restricting photo access to selected items, and denying permissions apps don't require dramatically reduces data exposure with no loss of essential function.</p>
+<h2>Location Privacy</h2>
+<p>Location is among the most sensitive data a phone holds. Beyond per-app controls, users should disable background location for apps that don't need it, turn off location history where offered, and review which system services use location. Precise versus approximate location settings, available on modern devices, let users share only general location with apps that don't need exact positioning — a useful privacy compromise.</p>
+<h2>Limiting Tracking and Advertising</h2>
+<p>Both platforms enable advertising-based tracking by default. iOS App Tracking Transparency lets users deny apps permission to track across other apps and websites, and resetting or disabling the advertising identifier limits profiling. On Android, opting out of ad personalisation and resetting the advertising ID achieves similar protection. These settings curtail the cross-app tracking that builds detailed advertising profiles.</p>
+<h2>Securing Accounts and Data</h2>
+<p>Privacy and security overlap on mobile devices. A strong screen lock, enabled device encryption (default on modern devices), two-factor authentication on the platform account, and careful management of cloud backup settings all protect data. For sensitive users, reviewing what is backed up to the cloud and ensuring backups are encrypted prevents data exposure through the backup channel.</p>
+<h2>Building Mobile Privacy Habits</h2>
+<p>For Indian users, hardening mobile privacy combines reviewing and restricting app permissions, controlling location sharing, limiting advertising tracking, and securing accounts and backups. These settings, configured once and reviewed periodically, substantially reduce the data a phone shares without sacrificing usability. For those in sensitive roles, this configuration is an important part of personal operational security. As smartphones become ever more central to daily life and hold ever more sensitive data, taking control of their privacy settings is among the most practical and effective privacy measures available to any user.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">How do I improve privacy on my Android phone?</div><div class="faq-a">Review app permissions, disable ad personalization, turn off location history, use a privacy-focused browser, limit Google data collection, enable encryption, and audit which apps access your microphone, camera, and contacts.</div></div>
