@@ -60,23 +60,51 @@
       <tr><td>Category</td><td>Digital Forensics</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-05-12</td></tr>
-      <tr><td>Reading time</td><td>6 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">Web browsers accumulate rich evidence of online activity — history, downloads, saved passwords, cached content, and session data. How investigators extract and use it.</p>
-  <h2>Why browser forensics matters</h2>
-<p>Browsers retain detailed records of every online interaction. For cybercrime investigations, browser artifacts can establish what websites a suspect visited, when, what they searched for, what files they downloaded, and what accounts they logged into. For incident response, browser forensics reveals how a user was compromised — which phishing page they visited, which drive-by download delivered the malware, which malicious extension was installed.</p>
-<h2>Key artifact categories</h2>
-<p><strong>History:</strong> URLs with timestamps, visit counts, and page titles stored in a SQLite database. Forensic tools can recover deleted records from unallocated SQLite database pages. <strong>Downloads:</strong> Records all downloaded files — URL, file name, path, timestamp — often surviving even when the downloaded file itself has been deleted. <strong>Cookies:</strong> Session tokens and authentication cookies establishing which accounts were active and when. <strong>Cached content:</strong> Locally cached web pages can reveal content that has since been removed from the internet — valuable for phishing page reconstruction. <strong>Saved passwords:</strong> Stored encrypted in the browser profile. <strong>Extensions:</strong> Installed browser extensions — malicious extensions are an increasingly common initial access vector.</p>
-<h2>Artifact locations on disk</h2>
-<p>Chrome on Windows stores its profile in the Local AppData directory under Google Chrome. Firefox stores profiles in the AppData Roaming directory under Mozilla Firefox. On Linux, Chrome profiles are in the user's home directory under .config/google-chrome and Firefox under .mozilla/firefox. The key files are SQLite databases: History, Downloads, Cookies, Login Data (saved passwords), and Web Data (form autofill).</p>
-<div class="callout">Always work on a forensic copy of browser artifact databases — not the originals. SQLite databases are locked while the browser is running; copy files to a separate location before analysis. In live forensics, terminate the browser process before copying.</div>
-<h2>Analysis tools</h2>
-<p>Hindsight (open-source Python tool for Chrome and Edge artifact parsing with timeline output), DB Browser for SQLite (direct database examination), and commercial forensic platforms including Cellebrite UFED and Magnet AXIOM which incorporate browser artifact parsing into their general forensic workflows.</p>
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
-  </div>
+  <h2>Browser Forensics: A Window into User Activity</h2>
+<p>Web browsers are among the richest sources of evidence in digital forensics. Every search, every site visited, every download, and every saved credential leaves traces. Browser forensics — the recovery and analysis of this data — reveals a detailed picture of a user's online activity, intentions, and actions. This guide covers browser forensics methodology, the artifacts available, and their investigative value.</p>
+
+<h2>What Browser Forensics Recovers</h2>
+<table>
+<tr><th>Artifact</th><th>Investigative Value</th></tr>
+<tr><td>Browsing history</td><td>Sites visited, timestamps, frequency</td></tr>
+<tr><td>Search terms</td><td>User intent and interests</td></tr>
+<tr><td>Downloads</td><td>Files obtained, sources</td></tr>
+<tr><td>Cookies</td><td>Sites used, session data</td></tr>
+<tr><td>Cached files</td><td>Content viewed, even if deleted online</td></tr>
+<tr><td>Saved passwords</td><td>Accounts accessed</td></tr>
+<tr><td>Autofill data</td><td>Personal information entered</td></tr>
+</table>
+
+<h2>Where Browsers Store Data</h2>
+<p>Modern browsers store data in SQLite databases within the user profile folder. Chrome, for instance, keeps History, Cookies, Login Data, and Web Data files under its user data directory. Firefox uses places.sqlite and related files. These databases can be parsed with forensic tools or SQLite browsers to reconstruct the user's activity in detail, including precise timestamps.</p>
+
+<h2>Chrome Forensics</h2>
+<p>Chrome, the most widely used browser, stores rich forensic data. The History database contains visited URLs with visit counts and timestamps. The Cookies database reveals sites the user interacted with. Login Data holds saved credentials (encrypted). Web Data contains autofill and form data. On Windows, these reside in AppData/Local/Google/Chrome/User Data/Default. Parsing them reconstructs comprehensive browsing activity.</p>
+
+<h2>Firefox and Other Browsers</h2>
+<p>Firefox stores history and bookmarks in places.sqlite, cookies in cookies.sqlite, and form history separately, within the profile folder. Edge, being Chromium-based, resembles Chrome's structure. Each browser has its own storage specifics, but the principle is consistent: SQLite databases in the profile folder hold the forensic gold. Investigators must know where each browser stores its data to recover it.</p>
+
+<h2>Recovering Deleted Browser Data</h2>
+<p>Even when a user clears their history, data may be recoverable. Deleted entries can persist in the SQLite database's unallocated pages, in the file system's unallocated space, in synced cloud data, or in related artifacts like DNS cache. Forensic recovery techniques and SQLite analysis can often retrieve browsing data the user believed was deleted, making "clearing history" less effective than users assume.</p>
+
+<h2>The Incognito/Private Browsing Question</h2>
+<p>Private browsing modes leave minimal traces on disk by design, but they are not perfectly private. Traces may persist in RAM (recoverable if the system is analysed before reboot), in DNS cache, in the pagefile or swap, and in network-level logs. While private browsing reduces local artifacts, forensic analysis of a live or recently-used system can sometimes recover private browsing activity. Network logs at the ISP or organisation level capture it regardless.</p>
+
+<h2>Cache Analysis</h2>
+<p>The browser cache stores copies of viewed content for faster loading, and this is forensically valuable. Cached images, pages, and files reveal what content the user actually viewed, sometimes preserving material that has since been deleted from the live web. Cache analysis can reconstruct what a user saw, providing evidence of viewed content even when the original source is gone.</p>
+
+<h2>Browser Sync and Cloud Data</h2>
+<p>Modern browsers sync data across devices through cloud accounts. This means browser evidence may exist not just on the device but in the cloud — Google account sync for Chrome, Firefox sync, Microsoft account for Edge. With appropriate legal process, this synced data can be obtained from the provider, potentially revealing activity across all the user's devices, not just the one in hand.</p>
+
+<h2>Legal Framework and Admissibility</h2>
+<p>Browser forensic evidence requires proper handling for admissibility. Acquisition should occur on a forensic image rather than the live system where possible, with hash verification and a Section 63 BSA 2023 certificate. Chrome and other browser artifacts are well-established forensic evidence, but their admissibility depends on sound extraction methodology and documentation. The chain of custody from device seizure through analysis must be unbroken.</p>
+
+<h2>Building Browser Forensics Capability</h2>
+<p>Browser forensics is a core digital forensics skill, applicable to virtually any investigation involving a computer. Developing capability requires knowing where each browser stores data, mastering SQLite analysis, understanding deleted-data recovery, and recognising the limits of private browsing. For Indian investigators, browser forensics frequently provides decisive evidence — establishing what a suspect searched, viewed, and downloaded. Combined with sound legal handling, it turns the everyday act of web browsing into a detailed, court-admissible record of user activity.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">What evidence can be recovered from browser forensics?</div><div class="faq-a">Browser forensics recovers browsing history, cached files, cookies, saved passwords, autofill data, downloads, bookmarks, search terms, and session data. Even deleted history can often be recovered from SQLite databases and unallocated space.</div></div>
