@@ -60,23 +60,73 @@
       <tr><td>Category</td><td>Digital Forensics</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-04-24</td></tr>
-      <tr><td>Reading time</td><td>5 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">Wi-Fi routers are often overlooked as evidence sources. They record DHCP leases, connection events, and DNS queries that can place devices at specific times. How to extract this data.</p>
-  <h2>The router as evidence source</h2>
-<p>Most investigations focus on end devices — phones, laptops, tablets. The Wi-Fi router through which these devices communicated is frequently overlooked, yet it records information that complements device-level evidence significantly. Router logs can establish that a specific device was connected to a network at a specific time, even when the device has been wiped.</p>
-<h2>What routers log by default</h2>
-<p>Consumer routers typically log: DHCP lease assignments (which MAC address received which IP, at what time, for how long), connection and disconnection events for wireless clients, and basic system events (reboots, configuration changes). What requires configuration: DNS queries, detailed traffic statistics, packet-level data. Enterprise and managed access points provide significantly richer logging.</p>
-<h2>Extraction methods</h2>
-<p>For devices with administrative access: access the admin interface (typically 192.168.1.1) and export logs from the system log section. Syslog to an external server stores logs forensically outside the router and is ideal for organizations that anticipate needing router evidence. For seized consumer devices: the web interface is usually accessible from any connected device after seizure.</p>
-<div class="callout">Router logs are volatile — most consumer routers store logs in RAM and lose them on power cycle. Preserve router logs BEFORE disconnecting power. If a router has been power-cycled since the relevant incident, logs from that period are likely gone.</div>
-<h2>ISP logs</h2>
-<p>When router-level logs are insufficient, ISPs maintain session records — connection times, assigned IP addresses, data volume. Indian ISPs are required to retain these under the IT Act. A Section 91 BNSS legal notice to the ISP for records associated with a specific IP address and time period is a standard investigative step that identifies the account holder.</p>
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
-  </div>
+  <h2>WiFi Security: Protecting the Wireless Gateway</h2>
+<p>WiFi networks are the gateway to most home and business internet access, and an insecure WiFi network is an open door to attackers. From eavesdropping on traffic to gaining network access for further attacks, WiFi vulnerabilities pose real risks. For investigators, WiFi can also be a source of evidence and an attack vector to understand. This guide covers WiFi security investigation, vulnerabilities, and protection.</p>
+
+<h2>WiFi Security Standards</h2>
+<table>
+<tr><th>Standard</th><th>Security Level</th></tr>
+<tr><td>WEP</td><td>Broken — easily cracked, never use</td></tr>
+<tr><td>WPA</td><td>Outdated, vulnerable</td></tr>
+<tr><td>WPA2</td><td>Strong with good password</td></tr>
+<tr><td>WPA3</td><td>Current best, strongest protection</td></tr>
+</table>
+<p>Networks still using WEP or WPA are seriously vulnerable. WPA2 with a strong password remains secure for most uses, while WPA3 offers the strongest available protection and should be used where supported.</p>
+
+<h2>Common WiFi Vulnerabilities</h2>
+<p>WiFi networks face several attack vectors:</p>
+<ul>
+<li><strong>Weak passwords</strong> — vulnerable to dictionary and brute-force attacks</li>
+<li><strong>WPS flaws</strong> — the WiFi Protected Setup PIN can be brute-forced</li>
+<li><strong>Evil twin attacks</strong> — rogue access points impersonating legitimate networks</li>
+<li><strong>Deauthentication attacks</strong> — forcing devices to disconnect</li>
+<li><strong>Default credentials</strong> — unchanged router admin passwords</li>
+<li><strong>Outdated firmware</strong> — unpatched router vulnerabilities</li>
+</ul>
+
+<h2>The Evil Twin Threat</h2>
+<p>An evil twin is a rogue access point that mimics a legitimate WiFi network, tricking users into connecting. Once connected, the attacker can intercept traffic, harvest credentials, and inject malicious content. Public WiFi is especially vulnerable to this. Users should be cautious connecting to open networks, verify network names carefully, and use a VPN on untrusted WiFi to protect their traffic even if connected to a malicious access point.</p>
+
+<h2>WiFi Investigation Tools</h2>
+<table>
+<tr><th>Tool</th><th>Purpose</th></tr>
+<tr><td>Wireshark</td><td>Traffic capture and analysis</td></tr>
+<tr><td>Kismet</td><td>Wireless network detection and monitoring</td></tr>
+<tr><td>Aircrack-ng</td><td>WiFi security auditing</td></tr>
+<tr><td>WiFi analyzer apps</td><td>Network discovery, signal, channels</td></tr>
+</table>
+<p>These tools, used on networks you own or are authorised to test, reveal security weaknesses. Using them against networks without permission is illegal under the IT Act in India.</p>
+
+<h2>Router Forensics</h2>
+<p>For investigators, the router is a valuable evidence source. It may hold DHCP logs (which devices connected and when), DNS query logs (sites visited by connected devices), connection history, and configuration revealing port forwarding or other setup. Because many consumer routers log only to volatile memory, capturing this data before power loss is important in time-sensitive investigations.</p>
+
+<h2>Detecting Unauthorised Access</h2>
+<p>Identifying unauthorised devices on a network is a key security practice. The router's admin interface lists connected devices, and unfamiliar devices may indicate unauthorised access. WiFi analyzer tools and network scanners reveal what is connected. Regularly reviewing connected devices, and investigating anything unrecognised, helps detect intruders who have gained network access.</p>
+
+<h2>Securing a WiFi Network</h2>
+<p>Comprehensive WiFi security involves multiple measures:</p>
+<ul>
+<li>Use WPA3, or WPA2 with a strong, long password</li>
+<li>Change default router admin credentials</li>
+<li>Disable WPS to eliminate its vulnerabilities</li>
+<li>Keep router firmware updated</li>
+<li>Use a separate guest network for visitors</li>
+<li>Consider hiding the network SSID</li>
+<li>Enable the router firewall and monitor connected devices</li>
+</ul>
+
+<h2>Public WiFi Safety</h2>
+<p>Public WiFi carries inherent risks — eavesdropping, evil twins, and man-in-the-middle attacks. On public networks, use a VPN to encrypt your traffic, avoid accessing sensitive accounts where possible, verify network names with staff, disable automatic connection to open networks, and ensure websites use HTTPS. These precautions protect your data even on potentially compromised networks.</p>
+
+<h2>WiFi in Corporate Security</h2>
+<p>For organisations, WiFi security is part of network defence. Enterprise WiFi should use strong authentication (often WPA2/WPA3 Enterprise with individual credentials), segment guest and corporate networks, monitor for rogue access points, and include WiFi in security assessments. A poorly secured corporate WiFi can provide attackers a foothold that bypasses perimeter defences entirely.</p>
+
+<h2>Building WiFi Security Awareness</h2>
+<p>WiFi security combines using current standards and strong passwords, hardening router configuration, monitoring for unauthorised access, and exercising caution on public networks. For Indian users and organisations, where WiFi is ubiquitous across homes, offices, and public spaces, these practices protect against eavesdropping, unauthorised access, and the attacks that exploit wireless vulnerabilities. Understanding WiFi as both a convenience and a security boundary — one that requires active protection — is the foundation of wireless security.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">How do you investigate WiFi security?</div><div class="faq-a">WiFi investigation examines network configurations, connected devices, encryption type, access logs, and rogue access points. Tools like Wireshark, Kismet, and Aircrack-ng analyze traffic and detect vulnerabilities.</div></div>
