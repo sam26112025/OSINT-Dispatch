@@ -60,23 +60,33 @@
       <tr><td>Category</td><td>Threat Intelligence</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-05-09</td></tr>
-      <tr><td>Reading time</td><td>6 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">Most Indian security teams cannot afford commercial TI platforms costing thousands of dollars per month. Open-source alternatives provide most of the capability at zero licensing cost.</p>
-  <h2>What a TI platform does</h2>
-<p>A Threat Intelligence Platform (TIP) aggregates indicators from multiple feeds, stores intelligence in structured format, enables sharing with peer organizations, integrates with detection and response tooling to operationalize intelligence, and supports the analyst workflow of creating and disseminating intelligence products. Commercial TIPs from Recorded Future, ThreatConnect, and Anomali cost tens of thousands of dollars annually. Open-source alternatives provide most essential functionality.</p>
-<h2>MISP</h2>
-<p>MISP (Malware Information Sharing Platform) is the most widely deployed open-source TIP globally, used by hundreds of organizations including national CERTs. It provides: structured storage of indicators and threat events using a flexible taxonomy; bi-directional sharing with the global MISP network; REST API for SIEM, EDR, and firewall integration; support for STIX and multiple intelligence formats; and a web interface for analyst workflows. Deployable on-premises maintaining full data sovereignty — appropriate for sensitive investigative environments.</p>
-<h2>OpenCTI</h2>
-<p>OpenCTI, developed by ANSSI (France's national cybersecurity agency), emphasises relationship-based intelligence — storing not just indicators but the full context of threat actor campaigns, TTPs, and entity relationships. Its knowledge graph approach is particularly powerful for APT tracking and campaign analysis. Natively supports STIX 2.1, integrates with MITRE ATT&amp;CK, and provides connectors to dozens of intelligence sources.</p>
-<h2>Building a functional TI capability from zero</h2>
-<p>Practical starting stack for an Indian security team: MISP deployed on-premises; free feed integration from Abuse.ch (URLhaus, MalwareBazaar, Feodo Tracker), AlienVault OTX, CERT-In advisories; SIEM integration to automatically alert on ingested IOCs; structured analyst workflow for creating internal intelligence products from incident findings.</p>
-<div class="callout">Join the CERT-In information sharing community and sector-specific ISACs relevant to your industry. Peer sharing of indicators — particularly early indicators of campaigns targeting your sector — is among the highest-value TI activities and costs nothing.</div>
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
-  </div>
+  <h2>Threat Intelligence Platforms: Operationalising Intelligence</h2>
+<p>Threat intelligence is only valuable when it reaches the right systems and people in usable form. Threat Intelligence Platforms (TIPs) are the tools that collect, organise, analyse, and distribute threat data, turning scattered feeds into operational defence. For Indian security teams building intelligence capability, understanding TIPs is essential. This guide explains what they do and how to use them.</p>
+<h2>What a TIP Does</h2>
+<p>A Threat Intelligence Platform aggregates threat data from many sources, normalises it into a common format, enriches it with context, and distributes it to security tools and analysts. Rather than analysts manually tracking dozens of feeds, a TIP centralises intelligence, deduplicates it, scores it, and feeds it where it is needed — into firewalls, SIEMs, and investigation workflows.</p>
+<h2>Core Capabilities</h2>
+<table>
+<tr><th>Capability</th><th>Function</th></tr>
+<tr><td>Aggregation</td><td>Collect feeds from many sources</td></tr>
+<tr><td>Normalisation</td><td>Standardise diverse data formats</td></tr>
+<tr><td>Enrichment</td><td>Add context to indicators</td></tr>
+<tr><td>Scoring</td><td>Prioritise by relevance and confidence</td></tr>
+<tr><td>Integration</td><td>Feed intelligence to security tools</td></tr>
+</table>
+<h2>Indicators and Context</h2>
+<p>TIPs manage indicators of compromise — malicious IPs, domains, file hashes, and URLs — but their real value is context. A bare indicator has limited use; enriched with the associated threat actor, campaign, confidence level, and recommended action, it becomes actionable intelligence. Good TIPs preserve this context, linking indicators to the broader picture of who is attacking and how.</p>
+<h2>Open-Source and Commercial Options</h2>
+<p>Organisations can choose from open-source TIPs like MISP, which is widely used for sharing structured threat intelligence, and commercial platforms offering integrated feeds and advanced features. MISP in particular has strong community adoption and supports intelligence sharing between organisations. The choice depends on resources and maturity, but even open-source options provide substantial capability for teams beginning their intelligence journey.</p>
+<h2>Intelligence Sharing</h2>
+<p>A key TIP function is enabling intelligence sharing between organisations and sectors. Threat sharing communities and ISACs allow members to exchange indicators and warnings, multiplying everyone's defensive awareness. In India, sectoral sharing and CERT-In coordination play this role. Platforms like MISP facilitate structured sharing, letting one organisation's detection become another's prevention — a force multiplier against common adversaries.</p>
+<h2>Integrating with Defences</h2>
+<p>The value of a TIP is realised through integration. By feeding curated indicators into firewalls, intrusion detection, SIEMs, and endpoint tools, intelligence drives automated blocking and detection. Integration with investigation workflows enriches alerts with intelligence context, helping analysts triage faster. Without integration, a TIP is just a database; with it, intelligence actively strengthens the entire security stack.</p>
+<h2>Building Intelligence Capability in India</h2>
+<p>For Indian organisations, a TIP is the backbone of an intelligence-driven security programme. Starting with an open-source platform like MISP, integrating relevant feeds including India-specific sources and CERT-In advisories, and connecting the TIP to existing defences builds a capability that turns raw threat data into operational protection. As threats grow more sophisticated and India-targeted, the ability to collect, contextualise, and operationalise threat intelligence becomes a defining factor in effective defence — and the TIP is the tool that makes it possible.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">What is a threat intelligence platform?</div><div class="faq-a">A threat intelligence platform (TIP) aggregates, correlates, and operationalizes threat data from multiple sources. It manages indicators, enriches context, and integrates with security tools to automate defensive actions.</div></div>
