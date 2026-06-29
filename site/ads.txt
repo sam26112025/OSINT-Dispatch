@@ -3,3 +3,5 @@
 google.com, pub-5886568858916800, DIRECT, f08c47fec0942fa0
 # deploy trigger igrs-108
 # retry igrs-108
+
+# crypto-tracker redeploy
