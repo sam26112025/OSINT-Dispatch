@@ -60,21 +60,58 @@
       <tr><td>Category</td><td>Threat Intelligence</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-06-11</td></tr>
-      <tr><td>Reading time</td><td>6 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">Zero Trust is everywhere as a buzzword and rarely understood as an architecture. What it actually means, and how to move toward it practically with tools most Indian organizations already have.</p>
-  <h2>Zero Trust defined precisely</h2>
-<p>Zero Trust is a security model based on the principle "never trust, always verify" — replacing the traditional perimeter model (trust everything inside the network, block everything outside) with continuous verification of every access request regardless of network location. A user on your corporate VPN gets no more inherent trust than one accessing from the internet. Every access request must be authenticated, authorized for the specific resource requested, and subject to ongoing validation based on device health, user behaviour, and contextual risk signals.</p>
-<h2>The three core pillars</h2>
-<p><strong>Identity-centric access:</strong> Access decisions are made based on verified identity, not network location. Every user and service account must authenticate strongly — MFA at minimum, phishing-resistant methods like FIDO2 for privileged accounts. Access is granted only to specific resources needed for the verified identity's role, not to entire network segments. <strong>Device health verification:</strong> The health and compliance posture of the requesting device is a factor in access decisions. A managed, patched, endpoint-protected corporate device is treated differently from an unmanaged personal device. Conditional access policies (in Azure AD/Entra ID and MDM platforms) implement this automatically. <strong>Least privilege and microsegmentation:</strong> Network access is granted at the application or service level, not the network segment level — users access the specific application they need, not the network the application sits on. This contains the blast radius of compromised credentials.</p>
-<h2>Implementation priorities for Indian organizations</h2>
-<p><strong>Identity first:</strong> MFA for all users — 100% coverage, no exceptions for senior executives or VIPs; conditional access policies blocking access from non-compliant devices or unusual locations; continuous access evaluation where supported. <strong>Devices:</strong> Enrol all corporate devices in MDM; enforce device compliance (patch status, antivirus, disk encryption) as an access condition. <strong>Applications:</strong> Migrate from VPN-based to application-level proxies (Microsoft Entra Application Proxy, Cloudflare Access, Zscaler). <strong>Data:</strong> Classify sensitive data; apply access controls at the data level; enable DLP policies that follow data rather than relying on perimeter controls.</p>
-<div class="callout"><strong>For Indian organizations starting from zero:</strong> The highest-impact single investment is MFA for all identities, especially privileged accounts and remote access. Identity compromise is the leading initial access vector for breaches — strong authentication stops most attacks before they start. Everything else builds on this foundation.</div>
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
-  </div>
+  <h2>Zero Trust: Never Trust, Always Verify</h2>
+<p>The traditional security model — a trusted internal network protected by a perimeter — has collapsed under cloud adoption, remote work, and sophisticated attacks. Zero Trust replaces it with a simple but powerful principle: never trust, always verify. Every access request is authenticated and authorised regardless of where it originates. For Indian organisations facing rising threats and DPDP compliance demands, Zero Trust is increasingly essential. This guide explains Zero Trust and its implementation.</p>
+
+<h2>What Zero Trust Means</h2>
+<p>Zero Trust assumes that no user, device, or network is inherently trustworthy. Rather than trusting anything inside the network perimeter, it requires continuous verification for every access request based on identity, device health, and context. The perimeter-based assumption that internal equals safe is abandoned — because attackers who breach the perimeter, or malicious insiders, exploit exactly that misplaced trust.</p>
+
+<h2>The Core Principles</h2>
+<table>
+<tr><th>Principle</th><th>Application</th></tr>
+<tr><td>Verify explicitly</td><td>Authenticate every request fully</td></tr>
+<tr><td>Least privilege</td><td>Grant minimum necessary access</td></tr>
+<tr><td>Assume breach</td><td>Design as if attackers are already inside</td></tr>
+</table>
+
+<h2>Why Traditional Security Failed</h2>
+<p>The traditional castle-and-moat model trusted everything inside the network. But this model fails against modern realities: cloud services sit outside the perimeter, remote workers connect from anywhere, attackers who breach the perimeter move freely, and insiders abuse their trusted position. Zero Trust addresses all of these by removing the assumption of internal trust and verifying every access continuously.</p>
+
+<h2>Components of Zero Trust</h2>
+<p>Implementing Zero Trust involves several elements:</p>
+<ul>
+<li><strong>Strong identity verification</strong> — MFA for all users</li>
+<li><strong>Device posture checks</strong> — verifying device security before access</li>
+<li><strong>Micro-segmentation</strong> — dividing networks to limit lateral movement</li>
+<li><strong>Least-privilege access</strong> — minimal permissions, just-in-time where possible</li>
+<li><strong>Continuous monitoring</strong> — ongoing verification and anomaly detection</li>
+<li><strong>Encryption</strong> — protecting data in transit and at rest</li>
+</ul>
+
+<h2>Identity as the New Perimeter</h2>
+<p>In Zero Trust, identity becomes the primary security boundary. Strong authentication — particularly MFA — is foundational, since verifying who is requesting access is the first step in every decision. Identity and access management systems, conditional access policies, and continuous authentication ensure that access is granted based on verified identity and context rather than network location.</p>
+
+<h2>Micro-Segmentation</h2>
+<p>Micro-segmentation divides the network into small zones, each requiring separate authentication. This contains breaches — an attacker who compromises one segment cannot freely move to others. Unlike the flat internal networks of traditional models, where one foothold enables lateral movement across the whole environment, micro-segmentation limits the blast radius of any compromise, a key Zero Trust defence.</p>
+
+<h2>Implementing Zero Trust in India</h2>
+<p>For Indian organisations, Zero Trust implementation is a phased journey rather than a single project. It typically begins with strengthening identity through MFA, then progresses to device verification, network segmentation, and least-privilege access. The approach should be risk-based, prioritising the most critical assets and data. Given DPDP Act data protection obligations, Zero Trust's strong access controls and monitoring also support compliance.</p>
+
+<h2>Zero Trust and DPDP Compliance</h2>
+<p>Zero Trust principles align well with the DPDP Act 2026's data protection requirements. Least-privilege access ensures only authorised individuals access personal data, continuous monitoring detects unauthorised access, and strong authentication prevents account compromise. Organisations implementing Zero Trust find it strengthens both security and their ability to demonstrate the data protection controls the DPDP Act requires, with its penalties reaching ₹250 crore.</p>
+
+<h2>Common Implementation Challenges</h2>
+<p>Zero Trust adoption faces challenges: legacy systems not designed for it, user experience friction from additional verification, the complexity of micro-segmentation, and the organisational change required. Successful implementation balances security with usability, phases the rollout to manage complexity, and secures leadership support for the cultural shift. Treating Zero Trust as a journey rather than a destination helps organisations make steady progress.</p>
+
+<h2>Zero Trust for Remote Work</h2>
+<p>Remote and hybrid work make Zero Trust especially valuable. With employees connecting from various locations and devices, the traditional perimeter is meaningless. Zero Trust verifies each remote access request based on identity, device health, and context, providing secure access without the vulnerabilities of traditional VPN-based perimeter models. This makes Zero Trust well-suited to the modern, distributed workforce.</p>
+
+<h2>The Path Forward</h2>
+<p>For Indian organisations, Zero Trust represents the modern approach to security in a world without trusted perimeters. Beginning with strong identity and MFA, progressing through device verification, segmentation, and least privilege, and maintaining continuous monitoring, organisations can build security that matches today's threats. Combined with DPDP compliance benefits, Zero Trust is becoming not just a security best practice but a business necessity for organisations serious about protecting their systems and the personal data they hold.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">What is zero trust security?</div><div class="faq-a">Zero trust is a security model that assumes no user or device is inherently trusted, requiring continuous verification for every access request. It follows &#x27;never trust, always verify&#x27; regardless of network location.</div></div>
