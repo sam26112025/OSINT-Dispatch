@@ -35,10 +35,10 @@
 
   function buildHTML(){
     return '<div class="ilb-wrap">'
-      +'<div class="ilb-block ilb-time"><div class="ilb-clock" id="ilb-clock">--:--:--</div><div class="ilb-date" id="ilb-date">Loading…</div></div>'
+      +'<div class="ilb-block ilb-time"><div class="ilb-cap">🕐 Local Time</div><div class="ilb-clock" id="ilb-clock">--:--:--</div><div class="ilb-day" id="ilb-day">—</div><div class="ilb-date" id="ilb-date">Loading…</div></div>'
       +'<div class="ilb-sep"></div>'
-      +'<div class="ilb-block ilb-aqi"><div class="ilb-aqi-top"><span class="ilb-aqi-val" id="ilb-aqi-val">…</span><span class="ilb-aqi-cat" id="ilb-aqi-cat">AQI</span></div><div class="ilb-loc" id="ilb-loc">'+state.name+'</div></div>'
-      +'<button type="button" class="ilb-change" id="ilb-change">⚙ Location</button>'
+      +'<div class="ilb-block ilb-aqi"><div class="ilb-cap">🌫 Air Quality (AQI)</div><div class="ilb-aqi-top"><span class="ilb-aqi-val" id="ilb-aqi-val">…</span><span class="ilb-aqi-cat" id="ilb-aqi-cat">AQI</span></div><div class="ilb-loc" id="ilb-loc">'+state.name+'</div></div>'
+      +'<button type="button" class="ilb-change" id="ilb-change">⚙ Change<br>Location</button>'
       +'</div>'
       +'<div class="ilb-modal" id="ilb-modal" style="display:none;">'
         +'<div class="ilb-modal-card">'
