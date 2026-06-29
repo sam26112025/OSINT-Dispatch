@@ -60,23 +60,33 @@
       <tr><td>Category</td><td>Threat Intelligence</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-04-27</td></tr>
-      <tr><td>Reading time</td><td>5 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">Attackers map your internet-facing systems before they attack. Security teams should do the same — regularly. The free tools and methodology for attack surface discovery.</p>
-  <h2>Attack surface discovery — the attacker's first step</h2>
-<p>Before any intrusion, attackers enumerate an organization's internet-facing infrastructure — identifying exposed systems, services, software versions, and vulnerable configurations. This reconnaissance uses the same tools defenders have: Shodan, Censys, and similar services that continuously index internet-connected systems. The difference is timing: attackers do this to exploit; defenders should do it first, and regularly.</p>
-<h2>Shodan for attack surface mapping</h2>
-<p>Shodan is a search engine for internet-connected devices and services, continuously scanning the internet and indexing what it finds — open ports, service banners, SSL certificate details, and vulnerability indicators. Search <code>org:"Company Name"</code> or <code>net:IP-RANGE</code> to see everything indexed for your organization. Review every result — forgotten test servers, misconfigured services, and exposed administrative interfaces regularly appear this way.</p>
-<h2>Censys as a complement</h2>
-<p>Censys has different scanning coverage than Shodan — systems missed by one often appear in the other. It is particularly useful for certificate-based discovery: searching for SSL certificates issued to your domain reveals every subdomain that has obtained a certificate, including infrastructure not in your asset inventory. Certificate transparency logs at crt.sh serve the same function for free.</p>
-<h2>What to investigate in scan results</h2>
-<p>Priority exposures: administrative interfaces (routers, firewalls, server management) directly exposed to the internet; remote access services (RDP 3389, SSH 22, VNC) without VPN in front; databases (MySQL 3306, MongoDB 27017, Elasticsearch 9200) with no visible authentication; old software versions with known critical CVEs; development or staging environments with production data or credentials.</p>
-<div class="callout">Run this assessment quarterly at minimum, and immediately after any infrastructure change. Cloud environments scale dynamically in ways that manual asset management cannot track — new exposure can appear within hours of a deployment.</div>
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
-  </div>
+  <h2>Open Ports and Attack Surface Management</h2>
+<p>Every open port on an internet-facing system is a potential entry point for attackers. Attack surface management — the practice of discovering, assessing, and reducing exposed services — is fundamental to defence. For Indian organisations and investigators, understanding open ports reveals both an organisation's exposure and an attacker's reconnaissance view. This guide explains open ports, attack surface, and how to manage them.</p>
+<h2>What Open Ports Reveal</h2>
+<p>Ports are the doors through which network services communicate. An open port indicates a running service that accepts connections — a web server, database, remote access, or other application. Each exposed service represents attack surface: a potential target for exploitation if it is vulnerable, misconfigured, or weakly authenticated. Attackers begin reconnaissance by scanning for open ports to map what they can attack.</p>
+<h2>Commonly Exposed Services</h2>
+<table>
+<tr><th>Port</th><th>Service</th><th>Risk If Exposed</th></tr>
+<tr><td>22</td><td>SSH</td><td>Brute force, weak credentials</td></tr>
+<tr><td>3389</td><td>RDP</td><td>Ransomware entry point</td></tr>
+<tr><td>3306</td><td>MySQL</td><td>Database exposure</td></tr>
+<tr><td>445</td><td>SMB</td><td>Worm and ransomware spread</td></tr>
+<tr><td>23</td><td>Telnet</td><td>Unencrypted, easily compromised</td></tr>
+</table>
+<h2>The Attacker's Reconnaissance View</h2>
+<p>Tools like Shodan and Censys continuously scan the internet, cataloguing exposed services. Attackers use these to find vulnerable targets without even scanning themselves. An organisation can use the same tools to see itself as attackers do — discovering forgotten servers, exposed databases, and services that should never face the internet. This outside-in view is a powerful starting point for attack surface management.</p>
+<h2>Discovering Your Attack Surface</h2>
+<p>Effective management begins with discovery. This involves scanning your own IP ranges for open ports, querying Shodan and Censys for your assets, identifying shadow IT and forgotten systems, and mapping all internet-facing services. Many breaches exploit assets the organisation did not know were exposed, so comprehensive, ongoing discovery is essential — the attack surface is not static and grows as systems are added.</p>
+<h2>Reducing Exposure</h2>
+<p>Once discovered, exposure is reduced systematically: closing unnecessary ports and disabling unused services, placing services behind VPNs or firewalls rather than exposing them directly, enforcing strong authentication on what must be exposed, and patching exposed services promptly. The principle is minimisation — every service that does not need to face the internet should not, dramatically shrinking what attackers can reach.</p>
+<h2>High-Risk Exposures</h2>
+<p>Certain exposures are especially dangerous. Exposed RDP is a leading ransomware entry point and should never face the internet directly. Exposed databases frequently leak data when left without authentication. Legacy protocols like Telnet transmit credentials in plaintext. Industrial control and IoT devices often have weak security. Prioritising these high-risk exposures for immediate remediation addresses the most likely attack paths first.</p>
+<h2>Continuous Attack Surface Management</h2>
+<p>Attack surface management is ongoing, not a one-time audit. New systems, cloud deployments, and configuration changes continuously alter exposure. Continuous monitoring detects new exposures quickly, while regular assessment ensures controls remain effective. For Indian organisations facing persistent scanning and exploitation, maintaining a minimal, well-understood attack surface is among the most effective defensive measures — you cannot be attacked through a door that is not open. Combining self-scanning, Shodan monitoring, and disciplined service minimisation turns attack surface management into a continuous defensive advantage.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">What is an attack surface?</div><div class="faq-a">An attack surface is the sum of all points where an attacker could attempt to enter or extract data from a system — open ports, exposed services, web applications, APIs, and misconfigurations visible to attackers.</div></div>
