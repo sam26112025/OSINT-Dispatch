@@ -61,40 +61,32 @@
       <tr><td>Category</td><td>Incident Response</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-06-12</td></tr>
-      <tr><td>Reading time</td><td>7 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">ServiceNow disclosed a security incident in which attackers used an unauthenticated API endpoint to query customer instance data. The four-day gap between patch and public disclosure raises serious questions about enterprise breach notification obligations.</p>
-  
-<h2>What happened</h2>
-<p>ServiceNow, the enterprise IT service management platform used by a significant portion of the Fortune 500, disclosed that attackers exploited a misconfigured API endpoint to access data stored in customer instances without requiring any credentials. The company applied a security patch to hosted customer instances on <strong>June 5, 2026</strong> but did not publish a public advisory until <strong>June 9, 2026</strong> — a four-day gap that has drawn criticism from security professionals and compliance teams.</p>
-<p>The advisory itself was placed behind ServiceNow's customer support login portal, meaning only existing customers with portal access could see it. Organizations subject to regulatory breach notification requirements — GDPR's 72-hour window, SEC cybersecurity disclosure rules, or HIPAA Business Associate Agreement obligations — cannot start their notification clock without a signal that a breach occurred. A silent patch provides no such signal.</p>
-
-<h2>The technical root cause</h2>
-<p>The vulnerability appears to have been a Scripted REST API endpoint — specifically <code>/api/now/related_list_edit/create</code> — that was configured with <code>requires_authentication=false</code>. This meant the endpoint accepted and processed requests from anyone on the internet without requiring a valid session token, password, or any form of credential check. Attackers exploited this window to query "instance tables" — the structured data stores within each customer's ServiceNow environment.</p>
-<p>ServiceNow instances typically contain highly sensitive enterprise data: IT support tickets (which can contain credentials and system architecture details), employee records, internal documentation, asset inventories, security incident reports, workflow configuration, and corporate system credentials embedded in automation scripts.</p>
-
-<div class="callout"><strong>Key disclosure concern:</strong> Community reports on Reddit and security forums claim that a customer security team reported the vulnerability to ServiceNow around April 7, 2026 — approximately two months before the June 5 patch. ServiceNow reportedly classified the issue as non-urgent initially, with remediation scheduled for a future planned release. If accurate, this significantly extends the window during which the vulnerability may have been exploitable.</div>
-
-<h2>How to determine if your organization was affected</h2>
-<p>ServiceNow has stated that it opened support cases with affected customers. If your organization has not received a support case from ServiceNow regarding this incident, the company says you are not believed to be affected. However, given the transparency concerns around the disclosure itself, security teams should independently verify by:</p>
-<ul>
-<li>Reviewing ServiceNow access logs for the period April–June 2026 for unusual API calls to the <code>/api/now/related_list_edit/create</code> endpoint</li>
-<li>Checking for anomalous data query volumes from unauthenticated or unexpected source IPs in that period</li>
-<li>Contacting your ServiceNow account representative directly for written confirmation of impact status</li>
-<li>Logging into the ServiceNow customer support portal and reviewing support bulletin KB3067321</li>
-</ul>
-
-<h2>Regulatory implications for Indian organizations</h2>
-<p>Indian organizations using ServiceNow that store personal data of Indian users in their instances have obligations under the DPDP Act 2023 and CERT-In's 6-hour incident reporting directions. If personal data was accessed during this incident, the CERT-In notification clock starts from the moment the organization becomes aware — which for ServiceNow customers who received a support case may be June 9, 2026 when the advisory was shared. Organizations should document their awareness date carefully and consult legal counsel on notification obligations.</p>
-
-<h2>Broader lesson: the silent patch problem</h2>
-<p>The ServiceNow incident illustrates a systemic problem in enterprise software security: vendors applying security fixes without simultaneously notifying customers in a clear, accessible way. A patch that closes a vulnerability is valuable. A patch applied without customer notification — when exploitation has already occurred — is a transparency failure that compounds the original security failure. Enterprises should require vendors to contractually commit to timely, clear breach notification as part of their SaaS procurement process.</p>
-
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
-  </div>
+  <h2>Enterprise Platform Breach: An Analytical Brief</h2>
+<p>When a widely used enterprise platform suffers a security incident, the impact ripples across every organisation that depends on it. The handling of such incidents — including how and when patches are released and disclosed — has significant implications for the many businesses relying on the platform. This analytical brief examines the lessons from enterprise platform breaches relevant to Indian organisations and security teams.</p>
+<h2>Why Enterprise Platforms Are High-Value Targets</h2>
+<p>Enterprise platforms — for IT service management, workflow, and business operations — hold sensitive data and sit at the centre of organisational processes. A vulnerability or breach in such a platform can expose data across all its customers and provide attackers a path into many organisations at once. This concentration of risk makes enterprise platforms attractive targets and makes their security incidents consequential far beyond a single organisation.</p>
+<h2>The Silent Patch Question</h2>
+<table>
+<tr><th>Approach</th><th>Implication</th></tr>
+<tr><td>Silent patching</td><td>Fix without full disclosure</td></tr>
+<tr><td>Coordinated disclosure</td><td>Patch with timed public advisory</td></tr>
+<tr><td>Full transparency</td><td>Immediate detailed disclosure</td></tr>
+</table>
+<p>How a vendor handles a vulnerability — whether patched quietly or disclosed openly — affects how well customers can protect themselves. Silent patching may reduce immediate exploitation by withholding details, but it can also leave customers unaware of the urgency to update.</p>
+<h2>The Customer's Dilemma</h2>
+<p>When a platform vendor patches a vulnerability without full disclosure, customers face a dilemma: they may not understand the severity or urgency, may not know whether they were affected, and may not be able to investigate potential compromise effectively. This is why disclosure practices matter — customers depend on clear information to assess their exposure, prioritise patching, and investigate whether they have been breached. Inadequate disclosure leaves defenders operating with incomplete information.</p>
+<h2>Assessing Your Exposure</h2>
+<p>When an enterprise platform incident emerges, customers should assess their exposure: confirm whether they use the affected platform and version, apply available patches promptly, review the vendor's advisories and any indicators provided, and monitor for signs of compromise. Where the platform holds personal data, organisations must also consider DPDP Act implications. Treating vendor security incidents as potential exposures requiring active assessment — rather than assuming the vendor has handled everything — is prudent.</p>
+<h2>Investigating Potential Compromise</h2>
+<p>If compromise is possible, investigation examines the platform's logs and the organisation's data for signs of unauthorised access or exfiltration. Because enterprise platforms often hold or connect to sensitive data, a confirmed breach engages DPDP Act 2026 notification obligations and requires proper evidence handling under Section 63 BSA. The investigation must establish whether the organisation's data was affected, which determines both response and compliance obligations.</p>
+<h2>The Supply Chain Dimension</h2>
+<p>Enterprise platform incidents are fundamentally a supply chain security issue — the organisation's security depends on a third party. This underscores the importance of vendor risk management: assessing platform vendors' security, monitoring their advisories, limiting the data and access they hold where possible, and having a plan for vendor security incidents. Organisations cannot outsource accountability for their data, even when it resides in a vendor's platform.</p>
+<h2>Lessons for Indian Organisations</h2>
+<p>For Indian organisations relying on enterprise platforms, these incidents reinforce key lessons: maintain awareness of vendor security and disclosure practices, apply patches promptly, assess exposure actively rather than passively, investigate potential compromise thoroughly, and manage vendor risk as part of overall security. As organisations depend ever more on shared enterprise platforms, the security of those platforms becomes integral to their own — making vendor risk management, prompt patching, and the ability to assess and investigate third-party incidents essential capabilities in a landscape where a single platform vulnerability can affect thousands of organisations simultaneously.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">What was the ServiceNow breach in June 2026?</div><div class="faq-a">The June 2026 ServiceNow incident involved a vulnerability that was silently patched, raising concerns about disclosure transparency. Silent patches fix flaws without public announcement, leaving customers unaware of the risk they faced.</div></div>
