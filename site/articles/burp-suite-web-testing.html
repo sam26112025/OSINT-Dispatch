@@ -60,23 +60,58 @@
       <tr><td>Category</td><td>Threat Intelligence</td></tr>
       <tr><td>Author</td><td>Manuj Kumar Pandey</td></tr>
       <tr><td>Published</td><td>2026-04-06</td></tr>
-      <tr><td>Reading time</td><td>6 minutes</td></tr>
+      <tr><td>Reading time</td><td>12 minutes</td></tr>
     </table>
   </div>
   <p class="lead">Burp Suite is the industry-standard tool for web application security testing. The essential workflow for beginners doing authorized assessments.</p>
-  <h2>What Burp Suite does</h2>
-<p>Burp Suite sits between your browser and the target application, intercepting, analysing, and manipulating HTTP/HTTPS traffic. It combines a proxy, request repeater, scanner, and intruder into a single platform. The Community Edition is free and covers core functionality for most web application testing work.</p>
-<h2>Setup</h2>
-<p>Burp Suite operates as an HTTP proxy on localhost:8080 by default. Configure Firefox to route traffic through this proxy via Network Settings. For HTTPS sites, install Burp's CA certificate from Proxy &rarr; Proxy Settings &rarr; CA Certificate, then install in your browser's certificate store.</p>
-<h2>The intercept workflow</h2>
-<p>With the proxy configured, every request passes through Burp. Turn on Intercept (Proxy &rarr; Intercept is on). Each request pauses showing full headers, parameters, and body. You can modify any aspect before forwarding — this is how testers inject SQL injection strings, XSS payloads, and path traversal sequences into parameters to test for vulnerabilities.</p>
-<h2>The Repeater — your most used tool</h2>
-<p>Send any captured request to Repeater (right-click &rarr; Send to Repeater). Modify the request and resend. The response appears side-by-side. Iterate across multiple modifications to identify how the application handles different inputs. This iterative process is how most manual vulnerability discovery happens.</p>
-<div class="callout">All testing must be performed only on systems you have written authorization to test. Running Burp Suite against a web application without authorization constitutes unauthorized access under Section 66 IT Act regardless of whether vulnerabilities are found.</div>
-  <div class="author-box">
-    <div class="label">Analyst</div>
-    <p>Manuj Kumar Pandey is a senior cybersecurity professional with 6+ years of experience in OSINT investigations, digital forensics and threat intelligence. Certified CEH, CHFI, ECSA. Works with law enforcement agencies and enterprise security teams across India.</p>
-  </div>
+  <h2>Burp Suite: The Web Security Testing Standard</h2>
+<p>Burp Suite is the industry-standard platform for web application security testing. Used by penetration testers, bug bounty hunters, and security researchers worldwide, it intercepts and manipulates web traffic, scans for vulnerabilities, and provides a comprehensive toolkit for assessing web application security. This guide introduces Burp Suite's capabilities and how it is used in authorised security testing.</p>
+
+<h2>What Burp Suite Does</h2>
+<p>At its core, Burp Suite acts as an intercepting proxy, sitting between the browser and the web application. This position lets it capture, inspect, and modify every request and response. From this foundation, Burp provides tools for scanning, fuzzing, replaying requests, and analysing application behaviour — making it a complete web security testing environment.</p>
+
+<h2>Community vs Professional</h2>
+<table>
+<tr><th>Feature</th><th>Community</th><th>Professional</th></tr>
+<tr><td>Intercepting proxy</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Automated scanner</td><td>No</td><td>Yes</td></tr>
+<tr><td>Intruder (full speed)</td><td>Throttled</td><td>Yes</td></tr>
+<tr><td>Extensions (BApp)</td><td>Limited</td><td>Full</td></tr>
+<tr><td>Reporting</td><td>No</td><td>Yes</td></tr>
+</table>
+<p>The Community edition is free and excellent for learning and manual testing, while Professional adds the automated scanner and advanced features essential for professional engagements.</p>
+
+<h2>The Core Tools</h2>
+<p>Burp Suite comprises several integrated tools:</p>
+<ul>
+<li><strong>Proxy</strong> — intercept and modify traffic</li>
+<li><strong>Repeater</strong> — manually modify and resend requests</li>
+<li><strong>Intruder</strong> — automated customised attacks (fuzzing, brute force)</li>
+<li><strong>Scanner</strong> — automated vulnerability detection (Pro)</li>
+<li><strong>Decoder</strong> — encode/decode data</li>
+<li><strong>Comparer</strong> — diff requests and responses</li>
+</ul>
+
+<h2>Setting Up Burp Suite</h2>
+<p>Using Burp requires configuring the browser to route traffic through Burp's proxy (default 127.0.0.1:8080) and installing Burp's CA certificate to intercept HTTPS. Once configured, all browser traffic flows through Burp, where it can be inspected and manipulated. Proper setup, including scoping to only the target in authorised testing, is the foundation of effective and responsible use.</p>
+
+<h2>Using Repeater for Manual Testing</h2>
+<p>Repeater is among the most-used tools, allowing testers to take a request, modify it, and resend it repeatedly to observe how the application responds. This is essential for manually probing for vulnerabilities — testing parameter manipulation, authorisation flaws, injection points, and business logic issues. The iterative modify-and-observe cycle in Repeater is central to thorough manual testing.</p>
+
+<h2>Intruder for Automated Attacks</h2>
+<p>Intruder automates customised attacks by inserting payloads into defined positions in a request. It enables fuzzing for vulnerabilities, brute-forcing credentials, enumerating values, and testing for injection across many inputs. With configurable payload sets and attack types, Intruder scales manual testing techniques across large numbers of requests — invaluable for thorough assessment.</p>
+
+<h2>The Scanner (Professional)</h2>
+<p>Burp Suite Professional's scanner automatically crawls applications and tests for a wide range of vulnerabilities — injection flaws, XSS, authentication issues, and more. While automated scanning never replaces skilled manual testing, it efficiently identifies common vulnerabilities and provides a baseline, freeing the tester to focus expertise on complex logic flaws that automation misses.</p>
+
+<h2>Legal and Authorisation Requirements</h2>
+<p>Critically, Burp Suite must only be used against systems you own or have explicit written authorisation to test. Using it against systems without permission constitutes unauthorised access under Sections 43 and 66 of the IT Act in India, carrying serious legal consequences. Professional testing always operates under a clear scope and authorisation. Responsible use within legal boundaries is non-negotiable.</p>
+
+<h2>Extensions and Customisation</h2>
+<p>Burp's BApp Store offers extensions that expand its capabilities — additional scanners, specialised tools, and integrations. Popular extensions enhance everything from authentication testing to specific vulnerability classes. For advanced users, Burp's extensibility allows tailoring the platform to specific testing needs, making it adaptable to virtually any web security assessment.</p>
+
+<h2>Building Web Security Testing Skills</h2>
+<p>Mastering Burp Suite is a cornerstone of web application security skill. Learning comes through hands-on practice on authorised targets — deliberately vulnerable applications like those in security training labs provide safe practice environments. Combined with understanding web vulnerabilities (the OWASP Top 10) and the legal framework for authorised testing, Burp Suite proficiency enables effective security assessment. For Indian security professionals, it is among the most valuable practical skills, underpinning the web application testing that protects organisations from the vulnerabilities attackers seek to exploit.</p>
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">What is Burp Suite used for?</div><div class="faq-a">Burp Suite is a web application security testing platform used to intercept HTTP/HTTPS traffic, scan for vulnerabilities, manipulate requests, test authentication, and analyze web app behavior. It is the industry standard for web penetration testing.</div></div>
