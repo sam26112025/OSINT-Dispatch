@@ -71,6 +71,13 @@
     <image:image><image:loc>https://igrs.xyz/og/dashboard.png</image:loc></image:image>
   </url>
   <url>
+    <loc>https://igrs.xyz/crypto-tracker.html</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://igrs.xyz/logo.svg</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://igrs.xyz/developers.html</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
