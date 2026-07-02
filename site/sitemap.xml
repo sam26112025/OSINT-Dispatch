@@ -932,6 +932,12 @@
     <image:image><image:loc>https://igrs.xyz/og/zero-trust-india-implementation.png</image:loc></image:image>
   </url>
   <url>
+    <loc>https://igrs.xyz/articles/igrs-109-gujarat-dirty-crypto-investigation.html</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://igrs.xyz/articles/vpn-censorship-india-explained.html</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
