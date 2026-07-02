@@ -13,7 +13,7 @@
 // CONFIG — paste your free Blockscout PRO key here
 // Get free key (no card) at: https://dev.blockscout.com/
 // ============================================================
-define('BLOCKSCOUT_API_KEY', 'PASTE_YOUR_BLOCKSCOUT_PRO_KEY_HERE');
+define('BLOCKSCOUT_API_KEY', 'proapi_bDp0RnsbAYNjCPiPd8PYlTgHQGieSKhrcGfM1T41xfVJEUxdPdZdiQQWpAC7tN6e2_d9K4Ji');
 define('BLOCKSCOUT_BASE',    'https://api.blockscout.com');
 
 // ============================================================
