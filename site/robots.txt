@@ -11,3 +11,6 @@ Allow: /
 Crawl-delay: 2
 
 Sitemap: https://igrs.xyz/sitemap.xml
+
+User-agent: Mediapartners-Google
+Allow: /
