@@ -703,13 +703,13 @@ main {
     <p class="hero-sub">Trace blockchain addresses across 6 major chains. Map counterparty fund flows, identify top senders/receivers, and generate LEA-ready investigation summaries.</p>
     <div class="chain-grid">
       <div class="chain-pill"><div class="dot" style="background:#f7931a"></div>Bitcoin (BTC)</div>
-      <div class="chain-pill"><div class="dot" style="background:#627eea"></div>ETH + ERC-20 → Explorer</div>
+      <div class="chain-pill"><div class="dot" style="background:#627eea"></div>Ethereum + ERC-20</div>
       <div class="chain-pill"><div class="dot" style="background:#eb0029"></div>Tron + TRC-20 (USDT)</div>
-      <div class="chain-pill"><div class="dot" style="background:#f3ba2f"></div>BNB Smart Chain → Explorer</div>
+      <div class="chain-pill"><div class="dot" style="background:#f3ba2f"></div>BNB Smart Chain</div>
       <div class="chain-pill"><div class="dot" style="background:#a4b2c1"></div>Litecoin (LTC)</div>
       <div class="chain-pill"><div class="dot" style="background:#00aae4"></div>XRP Ledger</div>
       <div class="chain-pill"><div class="dot" style="background:#9945ff"></div>Solana (SOL)</div>
-      <div class="chain-pill"><div class="dot" style="background:#2775ca"></div>USDT / USDC (TRC-20)</div>
+      <div class="chain-pill"><div class="dot" style="background:#2775ca"></div>USDT / USDC / DAI</div>
     </div>
   </div>
 
@@ -761,8 +761,7 @@ main {
         </div>
 
         <div class="method-note">
-          ⚠ <strong>Method note:</strong> This tool analyses publicly available on-chain data via open blockchain APIs (mempool.space · Tronscan · Blockchair · XRPL · Solana RPC). Sampling cap: ~250 most recent transactions per address. For KYC/subscriber data, serve notice under <strong>S.94 BNSS</strong> to the relevant exchange. For foreign exchanges, initiate MLAT via CBI.
-          <br><br>⬡ <strong>ETH / BNB / ERC-20 / BEP-20:</strong> All free EVM indexer APIs block browser-side requests (CORS restriction). Selecting these chains will open the address directly in Etherscan/BSCScan — full history available there. <strong>BTC · TRX · USDT(TRC-20) · XRP · SOL · LTC work fully in-browser.</strong>
+          ⚠ <strong>Method note:</strong> This tool analyses publicly available on-chain data via open blockchain APIs (mempool.space · Blockscout PRO via igrs.xyz/proxy.php · Tronscan · Blockchair · XRPL · Solana RPC). Sampling cap: ~250 most recent transactions per address. For KYC/subscriber data, serve notice under <strong>S.94 BNSS</strong> to the relevant exchange. For foreign exchanges, initiate MLAT via CBI.
         </div>
 
         <div class="status-bar" id="statusBar">
@@ -1329,30 +1328,106 @@ async function fetchBTC(addr) {
 }
 
 // ============================================================
-// EVM CHAINS (Ethereum + BSC) — CORS limitation note
-// Browser-side fetch to Blockscout PRO API blocked by CORS (no permissive headers)
-// ETH/BNB addresses are redirected to their block explorers directly
+// EVM CHAINS (Ethereum + BNB Smart Chain)
+// Uses igrs.xyz/proxy.php — server-side Blockscout PRO API call (no CORS issue)
+// proxy.php needs BLOCKSCOUT_API_KEY set (free key at dev.blockscout.com)
 // ============================================================
+const PROXY = '/proxy.php'; // same-origin, no CORS issue
+
 async function fetchEVM(addr, chain) {
-  let explorerBase, symbol, chainLabel;
+  let chainId, explorerBase, symbol, chainLabel, tokenContract;
 
   if(chain.startsWith('bnb')) {
-    explorerBase = 'https://bscscan.com/address/';
-    symbol = chain==='bnb-usdt'?'USDT':chain==='bnb-usdc'?'USDC':'BNB';
-    chainLabel = 'BNB Smart Chain';
+    chainId = 56;
+    explorerBase = 'https://bscscan.com';
+    symbol = 'BNB'; chainLabel = 'BNB Smart Chain';
+    if(chain==='bnb-usdt') { tokenContract = BEP20.usdt; symbol='USDT'; }
+    if(chain==='bnb-usdc') { tokenContract = BEP20.usdc; symbol='USDC'; }
   } else {
-    explorerBase = 'https://etherscan.io/address/';
-    symbol = chain==='eth-usdt'?'USDT':chain==='eth-usdc'?'USDC':chain==='eth-dai'?'DAI':'ETH';
-    chainLabel = 'Ethereum';
+    chainId = 1;
+    explorerBase = 'https://etherscan.io';
+    symbol = 'ETH'; chainLabel = 'Ethereum';
+    if(chain==='eth-usdt') { tokenContract = ERC20.usdt; symbol='USDT'; }
+    if(chain==='eth-usdc') { tokenContract = ERC20.usdc; symbol='USDC'; }
+    if(chain==='eth-dai')  { tokenContract = ERC20.dai;  symbol='DAI';  }
   }
 
-  // Open in explorer — best available free option due to CORS restrictions
-  window.open(explorerBase + addr, '_blank');
-  throw new Error(
-    `${chainLabel} (${symbol}) addresses cannot be fetched directly from the browser due to API CORS restrictions on all available free EVM indexers (Etherscan, Blockscout PRO, BSCScan). ` +
-    `Opening ${explorerBase}${addr} in a new tab for full transaction history. ` +
-    `For BTC · TRX · USDT(TRC-20) · XRP · SOL · LTC — use those chain options above, they work fully in-browser.`
-  );
+  const price = prices[symbol]?.inr || prices.ETH?.inr || 0;
+
+  showStatus(`Fetching ${chainLabel} address info...`);
+
+  // Proxy call — server-side, bypasses CORS
+  const proxyGet = async (path, extra='') => {
+    const url = `${PROXY}?chain=${chainId}&path=${encodeURIComponent(path)}${extra}`;
+    const res = await fetch(url);
+    const json = await res.json();
+    if(json.error) throw new Error(`Proxy: ${json.message || json.error}`);
+    return json;
+  };
+
+  // Get address info (balance, tx count)
+  const addrInfo = await proxyGet(`addresses/${addr}`);
+  const bal = addrInfo.coin_balance ? parseInt(addrInfo.coin_balance) / 1e18 : 0;
+
+  // Get transactions
+  let txList = [];
+  let decimalDivisor = 1e18;
+
+  showStatus(`Fetching ${symbol} transaction history...`);
+
+  if(tokenContract) {
+    const res = await proxyGet(`addresses/${addr}/token-transfers`, `&token=${tokenContract}`);
+    txList = (res.items || []).map(t => ({
+      hash: t.transaction_hash || t.tx_hash,
+      from: t.from?.hash, to: t.to?.hash,
+      value: t.total?.value || t.total?.amount || '0',
+      timeStamp: t.timestamp ? Math.floor(new Date(t.timestamp).getTime()/1000) : null
+    }));
+    decimalDivisor = (symbol==='USDT'||symbol==='USDC') ? 1e6 : 1e18;
+  } else {
+    const res = await proxyGet(`addresses/${addr}/transactions`);
+    txList = (res.items || []).map(t => ({
+      hash: t.hash,
+      from: t.from?.hash, to: t.to?.hash,
+      value: t.value || '0',
+      timeStamp: t.timestamp ? Math.floor(new Date(t.timestamp).getTime()/1000) : null
+    }));
+  }
+
+  showStatus(`Processing ${txList.length} transactions...`);
+
+  const inflowMap = {}, outflowMap = {};
+  const recentTxs = [];
+  let totalReceived = 0, totalSent = 0;
+
+  txList.slice(0,250).forEach(tx => {
+    const isIn  = tx.to?.toLowerCase()   === addr.toLowerCase();
+    const isOut = tx.from?.toLowerCase() === addr.toLowerCase();
+    const amt   = parseInt(tx.value||0) / decimalDivisor;
+    const time  = tx.timeStamp ? new Date(tx.timeStamp*1000) : null;
+    const dir   = isIn ? 'in' : isOut ? 'out' : 'self';
+    const cp    = isIn ? tx.from : tx.to;
+
+    if(isIn) {
+      totalReceived += amt;
+      if(cp) { if(!inflowMap[cp]) inflowMap[cp]={amt:0,cnt:0}; inflowMap[cp].amt+=amt; inflowMap[cp].cnt++; }
+    } else if(isOut) {
+      totalSent += amt;
+      if(cp) { if(!outflowMap[cp]) outflowMap[cp]={amt:0,cnt:0}; outflowMap[cp].amt+=amt; outflowMap[cp].cnt++; }
+    }
+    recentTxs.push({ time, hash: tx.hash, dir, amt, inr: amt*price, counterparty: cp||'—', symbol });
+  });
+
+  return {
+    chain: chainLabel, symbol, addr,
+    balance: tokenContract ? '—' : bal,
+    balanceINR: tokenContract ? 0 : bal * price,
+    totalReceived, totalSent,
+    txCount: txList.length,
+    price, inflowMap, outflowMap, recentTxs,
+    explorer: `${explorerBase}/address/${addr}`,
+    txExplorer: `${explorerBase}/tx/`
+  };
 }
 
 // ============================================================
