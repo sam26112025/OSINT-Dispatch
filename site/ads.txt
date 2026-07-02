@@ -1,19 +1,1 @@
-# IGRS - Authorized Digital Sellers (ads.txt)
-# https://igrs.xyz
 google.com, pub-5886568858916800, DIRECT, f08c47fec0942fa0
-# deploy trigger igrs-108
-# retry igrs-108
-
-# crypto-tracker redeploy
-# deploy-trigger-1782798698
-# retry-1782798885
-# fix-evm-cors-1783010242
-# retry3-1783010444
-# proxy-deploy-1783012633
-# key-deploy-1783012993
-# brand-clean-1783013426
-# crypto-hero-btn-1783014809
-# igrs109-deploy-1783016062
-# retry-1783016238
-# card-embed-1783017299
-# seo-batch-1783018053
