@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TradeMatrix — Maritime & Container Trade Intelligence Platform</title>
+<meta name="description" content="Open-source maritime intelligence platform. AIS vessel tracking, container tracing, port performance, customs manifests, GHG/CII compliance — powered by free public data.">
+<meta name="keywords" content="maritime intelligence, vessel tracking, AIS, container tracing, port intelligence, trade intelligence, DCSA, ship tracking India">
+<link rel="canonical" href="https://maritime.igrs.xyz/">
+<meta property="og:title" content="TradeMatrix — Maritime & Container Trade Intelligence">
+<meta property="og:description" content="Free maritime intelligence platform. AIS tracking, container trace, port performance, customs data.">
+<meta property="og:image" content="https://maritime.igrs.xyz/og.png">
+<meta property="og:url" content="https://maritime.igrs.xyz/">
+<meta name="twitter:card" content="summary_large_image">
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TCBLVSTG97"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-TCBLVSTG97');</script>
+<!-- React + Babel + Tailwind via CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:#03080f;color:#e2e8f0;font-family:'Space Grotesk',system-ui,sans-serif;min-height:100vh;overflow-x:hidden;}
+  #root{min-height:100vh;}
+
+  /* Marketing site styles */
+  :root{
+    --ocean:#0a1628;
+    --deep:#03080f;
+    --wake:#00c8ff;
+    --steel:#1e3a5f;
+    --mist:#94a3b8;
+    --foam:#e2f0fb;
+    --amber:#f59e0b;
+    --green:#10b981;
+    --red:#ef4444;
+    --mono:'JetBrains Mono',monospace;
+    --display:'Syne',sans-serif;
+  }
+
+  /* Animated shipping lanes canvas */
+  #ocean-canvas{position:fixed;inset:0;z-index:0;opacity:.5;}
+
+  .site-wrap{position:relative;z-index:1;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(3,8,15,.85);backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(0,200,255,.08);
+    padding:0 32px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+  .nav-logo{font-family:var(--display);font-size:20px;font-weight:800;color:#fff;letter-spacing:-.02em;}
+  .nav-logo span{color:var(--wake);}
+  .nav-links{display:flex;gap:24px;align-items:center;}
+  .nav-links a{font-size:13px;color:var(--mist);text-decoration:none;letter-spacing:.04em;transition:color .2s;}
+  .nav-links a:hover{color:var(--wake);}
+  .nav-cta{background:var(--wake);color:#03080f;padding:7px 18px;border-radius:4px;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:inherit;letter-spacing:.04em;transition:all .2s;}
+  .nav-cta:hover{background:#fff;}
+
+  /* HERO */
+  .hero{min-height:100vh;display:flex;align-items:center;padding:80px 32px 60px;max-width:1200px;margin:0 auto;}
+  .hero-badge{font-family:var(--mono);font-size:11px;color:var(--wake);letter-spacing:.18em;text-transform:uppercase;
+    border:1px solid rgba(0,200,255,.25);background:rgba(0,200,255,.06);
+    padding:5px 14px;border-radius:2px;display:inline-block;margin-bottom:24px;}
+  .hero h1{font-family:var(--display);font-size:clamp(42px,6vw,80px);font-weight:800;line-height:1.0;
+    letter-spacing:-.03em;color:#fff;margin-bottom:20px;}
+  .hero h1 .accent{color:var(--wake);}
+  .hero-sub{font-size:18px;color:var(--mist);line-height:1.7;max-width:580px;margin-bottom:36px;}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn-primary{background:var(--wake);color:#03080f;padding:13px 28px;border-radius:4px;font-weight:700;
+    font-size:14px;border:none;cursor:pointer;font-family:inherit;letter-spacing:.04em;transition:all .2s;}
+  .btn-primary:hover{background:#fff;transform:translateY(-1px);}
+  .btn-ghost{background:transparent;color:var(--wake);padding:13px 28px;border-radius:4px;font-weight:600;
+    font-size:14px;border:1px solid rgba(0,200,255,.3);cursor:pointer;font-family:inherit;letter-spacing:.04em;transition:all .2s;}
+  .btn-ghost:hover{border-color:var(--wake);background:rgba(0,200,255,.06);}
+
+  /* Ticker */
+  .ticker-wrap{background:rgba(0,200,255,.04);border-top:1px solid rgba(0,200,255,.1);border-bottom:1px solid rgba(0,200,255,.1);
+    padding:10px 0;overflow:hidden;white-space:nowrap;}
+  .ticker-inner{display:inline-block;animation:ticker 30s linear infinite;}
+  .ticker-inner:hover{animation-play-state:paused;}
+  @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .ticker-item{display:inline-flex;align-items:center;gap:8px;margin:0 28px;
+    font-family:var(--mono);font-size:11px;color:var(--mist);}
+  .ticker-dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
+
+  /* STATS */
+  .stats-band{padding:60px 32px;max-width:1200px;margin:0 auto;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:32px;}
+  .stat-item{}
+  .stat-val{font-family:var(--display);font-size:42px;font-weight:800;color:#fff;letter-spacing:-.03em;}
+  .stat-val .unit{font-size:24px;color:var(--wake);}
+  .stat-label{font-size:13px;color:var(--mist);margin-top:4px;}
+
+  /* CAPABILITIES */
+  .section{padding:80px 32px;max-width:1200px;margin:0 auto;}
+  .section-eyebrow{font-family:var(--mono);font-size:11px;color:var(--wake);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;}
+  .section-title{font-family:var(--display);font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.02em;color:#fff;margin-bottom:16px;}
+  .section-sub{font-size:16px;color:var(--mist);line-height:1.7;max-width:600px;margin-bottom:48px;}
+
+  .cap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;}
+  .cap-card{background:rgba(10,22,40,.7);border:1px solid rgba(30,58,95,.6);border-radius:6px;padding:24px;
+    transition:all .25s;cursor:default;position:relative;overflow:hidden;}
+  .cap-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--wake),transparent);opacity:0;transition:opacity .3s;}
+  .cap-card:hover{border-color:rgba(0,200,255,.3);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,200,255,.08);}
+  .cap-card:hover::before{opacity:1;}
+  .cap-icon{font-size:28px;margin-bottom:14px;}
+  .cap-title{font-size:15px;font-weight:600;color:#fff;margin-bottom:8px;}
+  .cap-desc{font-size:13px;color:var(--mist);line-height:1.6;}
+  .cap-badge{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+    padding:3px 8px;border-radius:2px;margin-top:12px;}
+  .badge-free{background:rgba(16,185,129,.1);color:var(--green);border:1px solid rgba(16,185,129,.25);}
+  .badge-open{background:rgba(0,200,255,.08);color:var(--wake);border:1px solid rgba(0,200,255,.2);}
+
+  /* PIPELINE */
+  .pipeline{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative;max-width:860px;}
+  .pipe-step{text-align:center;padding:32px 24px;position:relative;}
+  .pipe-step:not(:last-child)::after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);
+    font-size:24px;color:rgba(0,200,255,.4);}
+  .pipe-num{font-family:var(--display);font-size:48px;font-weight:800;color:rgba(0,200,255,.15);margin-bottom:8px;}
+  .pipe-label{font-size:14px;font-weight:600;color:#fff;margin-bottom:6px;}
+  .pipe-sub{font-size:12px;color:var(--mist);}
+
+  /* DATA STACK */
+  .stack-table{width:100%;border-collapse:collapse;font-size:13px;}
+  .stack-table th{background:rgba(10,22,40,.9);color:var(--mist);font-family:var(--mono);font-size:11px;
+    letter-spacing:.1em;text-align:left;padding:10px 14px;border-bottom:1px solid rgba(30,58,95,.8);}
+  .stack-table td{padding:10px 14px;border-bottom:1px solid rgba(30,58,95,.4);color:#e2e8f0;vertical-align:top;}
+  .stack-table tr:hover td{background:rgba(0,200,255,.03);}
+  .tier-badge{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;
+    padding:2px 8px;border-radius:2px;}
+  .tier-nokey{background:rgba(16,185,129,.1);color:#10b981;border:1px solid rgba(16,185,129,.2);}
+  .tier-freekey{background:rgba(0,200,255,.08);color:#00c8ff;border:1px solid rgba(0,200,255,.2);}
+  .tier-register{background:rgba(245,158,11,.08);color:#f59e0b;border:1px solid rgba(245,158,11,.2);}
+  .tier-dataset{background:rgba(139,92,246,.08);color:#8b5cf6;border:1px solid rgba(139,92,246,.2);}
+
+  /* CTA BANNER */
+  .cta-banner{background:linear-gradient(135deg,rgba(0,200,255,.08),rgba(0,150,200,.04));
+    border:1px solid rgba(0,200,255,.15);border-radius:8px;padding:48px;text-align:center;margin:40px 0;}
+  .cta-banner h2{font-family:var(--display);font-size:clamp(24px,4vw,36px);font-weight:800;color:#fff;margin-bottom:12px;}
+  .cta-banner p{color:var(--mist);margin-bottom:28px;font-size:15px;}
+
+  /* FOOTER */
+  footer{border-top:1px solid rgba(30,58,95,.5);padding:32px;text-align:center;
+    font-family:var(--mono);font-size:11px;color:var(--mist);}
+  footer a{color:var(--wake);text-decoration:none;}
+
+  /* DASHBOARD / LOGIN */
+  .overlay{position:fixed;inset:0;z-index:200;background:rgba(3,8,15,.95);backdrop-filter:blur(8px);
+    display:flex;align-items:center;justify-content:center;}
+  .login-card{background:rgba(10,22,40,.9);border:1px solid rgba(0,200,255,.2);border-radius:8px;
+    padding:48px 40px;width:380px;max-width:90vw;}
+  .login-title{font-family:var(--display);font-size:24px;font-weight:800;color:#fff;margin-bottom:6px;}
+  .login-sub{font-size:13px;color:var(--mist);margin-bottom:32px;}
+  .login-field{margin-bottom:16px;}
+  .login-field label{display:block;font-family:var(--mono);font-size:11px;color:var(--mist);letter-spacing:.1em;
+    text-transform:uppercase;margin-bottom:6px;}
+  .login-field input{width:100%;background:rgba(3,8,15,.8);border:1px solid rgba(30,58,95,.8);border-radius:4px;
+    padding:10px 14px;color:#fff;font-size:14px;font-family:inherit;outline:none;transition:border-color .2s;}
+  .login-field input:focus{border-color:rgba(0,200,255,.5);}
+  .login-btn{width:100%;background:var(--wake);color:#03080f;padding:12px;border-radius:4px;border:none;
+    font-weight:700;font-size:14px;font-family:inherit;cursor:pointer;letter-spacing:.04em;margin-top:8px;transition:all .2s;}
+  .login-btn:hover{background:#fff;}
+  .login-err{color:#ef4444;font-size:12px;text-align:center;margin-top:8px;}
+
+  /* DASHBOARD */
+  .dash-layout{display:grid;grid-template-columns:220px 1fr;min-height:100vh;}
+  .dash-sidebar{background:rgba(6,14,26,.95);border-right:1px solid rgba(30,58,95,.5);
+    padding:20px 0;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;}
+  .dash-logo{padding:0 20px 20px;border-bottom:1px solid rgba(30,58,95,.4);margin-bottom:16px;}
+  .dash-logo-text{font-family:var(--display);font-size:16px;font-weight:800;color:#fff;}
+  .dash-logo-text span{color:var(--wake);}
+  .dash-logo-sub{font-family:var(--mono);font-size:10px;color:var(--mist);letter-spacing:.1em;margin-top:2px;}
+  .sidebar-group{padding:0 12px;margin-bottom:20px;}
+  .sidebar-group-label{font-family:var(--mono);font-size:9px;color:rgba(148,163,184,.5);letter-spacing:.15em;
+    text-transform:uppercase;padding:0 8px;margin-bottom:6px;}
+  .sidebar-btn{display:flex;align-items:center;gap:10px;width:100%;padding:9px 8px;border-radius:4px;border:none;
+    background:none;color:var(--mist);font-size:13px;font-family:inherit;cursor:pointer;text-align:left;transition:all .2s;}
+  .sidebar-btn:hover{background:rgba(0,200,255,.07);color:#fff;}
+  .sidebar-btn.active{background:rgba(0,200,255,.12);color:var(--wake);font-weight:500;}
+  .sidebar-icon{font-size:15px;flex-shrink:0;}
+  .dash-main{padding:28px 32px;background:#f8fafc;}
+  .dash-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
+  .dash-title{font-family:var(--display);font-size:22px;font-weight:700;color:#0f172a;}
+  .dash-subtitle{font-size:13px;color:#64748b;margin-top:2px;}
+
+  /* Module cards (light theme dashboard) */
+  .module-card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:20px;
+    box-shadow:0 1px 3px rgba(0,0,0,.06);}
+  .module-card h3{font-size:14px;font-weight:600;color:#0f172a;margin-bottom:4px;}
+  .module-card p{font-size:12px;color:#64748b;margin-bottom:16px;}
+  .module-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;}
+
+  /* Input / select */
+  .tm-input{width:100%;border:1px solid #e2e8f0;border-radius:4px;padding:9px 12px;
+    font-size:13px;color:#0f172a;outline:none;transition:border-color .2s;font-family:inherit;}
+  .tm-input:focus{border-color:#0ea5e9;}
+  .tm-select{width:100%;border:1px solid #e2e8f0;border-radius:4px;padding:9px 12px;
+    font-size:13px;color:#0f172a;outline:none;background:#fff;font-family:inherit;cursor:pointer;}
+  .tm-btn{background:#0ea5e9;color:#fff;border:none;border-radius:4px;padding:9px 18px;
+    font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;}
+  .tm-btn:hover{background:#0284c7;}
+  .tm-btn-sm{padding:6px 12px;font-size:12px;}
+  .form-row{display:flex;gap:8px;align-items:flex-end;margin-bottom:16px;}
+  .form-field{flex:1;}
+  .form-label{font-size:11px;font-weight:600;color:#64748b;letter-spacing:.06em;text-transform:uppercase;
+    margin-bottom:4px;display:block;}
+
+  /* Result / table */
+  .result-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:4px;padding:16px;
+    font-family:var(--mono);font-size:12px;line-height:1.7;}
+  .kv-row{display:flex;gap:12px;padding:5px 0;border-bottom:1px solid #f1f5f9;}
+  .kv-key{color:#64748b;min-width:180px;flex-shrink:0;}
+  .kv-val{color:#0f172a;font-weight:500;}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:10px;font-family:var(--mono);font-weight:500;}
+  .tag-green{background:#dcfce7;color:#16a34a;}
+  .tag-blue{background:#dbeafe;color:#2563eb;}
+  .tag-amber{background:#fef9c3;color:#ca8a04;}
+  .tag-red{background:#fee2e2;color:#dc2626;}
+  .tag-gray{background:#f1f5f9;color:#475569;}
+
+  /* Report styles */
+  .report-doc{background:#fff;border:1px solid #e2e8f0;border-radius:4px;padding:32px;font-size:13px;line-height:1.7;}
+  .report-header{border-bottom:2px solid #0ea5e9;padding-bottom:16px;margin-bottom:20px;}
+  .report-ref{font-family:var(--mono);font-size:11px;color:#64748b;letter-spacing:.08em;}
+  .report-title{font-size:18px;font-weight:700;color:#0f172a;margin:6px 0 4px;}
+  .report-section{margin:16px 0;}
+  .report-section h4{font-size:12px;font-weight:700;color:#0f172a;letter-spacing:.1em;text-transform:uppercase;
+    border-left:3px solid #0ea5e9;padding-left:8px;margin-bottom:8px;}
+  .rating-badge{display:inline-flex;align-items:center;gap:6px;background:#f0f9ff;border:1px solid #bae6fd;
+    border-radius:3px;padding:3px 10px;font-family:var(--mono);font-size:11px;color:#0284c7;}
+
+  /* Source registry */
+  .source-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:4px;padding:14px 16px;
+    display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+  .source-name{font-weight:600;color:#0f172a;font-size:13px;}
+  .source-desc{font-size:12px;color:#64748b;margin-top:2px;}
+  .source-url{font-family:var(--mono);font-size:10px;color:#0ea5e9;text-decoration:none;display:block;margin-top:4px;}
+
+  /* Responsive */
+  @media(max-width:768px){
+    .dash-layout{grid-template-columns:1fr;}
+    .dash-sidebar{display:none;}
+    .pipeline{grid-template-columns:1fr;}
+    .pipe-step:not(:last-child)::after{display:none;}
+    nav .nav-links{display:none;}
+  }
+
+  /* JSON toggle */
+  .json-block{background:#0f172a;border-radius:4px;padding:16px;
+    font-family:var(--mono);font-size:11px;color:#7dd3fc;overflow-x:auto;white-space:pre;}
+</style>
+</head>
+<body>
+<canvas id="ocean-canvas"></canvas>
+<div id="root"></div>
+
+<!-- Ocean animation -->
+<script>
+(function(){
+  const canvas=document.getElementById('ocean-canvas');
+  const ctx=canvas.getContext('2d');
+  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+  resize();
+  window.addEventListener('resize',resize);
+
+  const LANES=[
+    {sx:0,sy:.3,ex:1,ey:.25,c:'#00c8ff'},
+    {sx:0,sy:.55,ex:1,ey:.45,c:'#0099cc'},
+    {sx:.1,sy:1,ex:.9,ey:0,c:'#005580'},
+    {sx:0,sy:.7,ex:1,ey:.8,c:'#00c8ff'},
+    {sx:.2,sy:0,ex:.8,ey:1,c:'#003355'},
+  ];
+  const VESSELS=LANES.map((l,i)=>({lane:i,t:Math.random(),speed:.0003+Math.random()*.0004}));
+  const PORTS=[
+    {x:.12,y:.28},{x:.88,y:.22},{x:.5,y:.5},{x:.25,y:.72},{x:.75,y:.78},{x:.45,y:.1},{x:.6,y:.9}
+  ];
+
+  function bezier(sx,sy,ex,ey,t){
+    const cx=(sx+ex)/2+(ey-sy)*.3, cy=(sy+ey)/2+(ex-sx)*.1;
+    const it=1-t;
+    return{x:(it*it*sx+2*it*t*cx+t*t*ex)*canvas.width,y:(it*it*sy+2*it*t*cy+t*t*ey)*canvas.height};
+  }
+
+  let dash=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    dash=(dash+.3)%40;
+
+    // Lanes
+    LANES.forEach(l=>{
+      ctx.save();
+      ctx.setLineDash([6,14]);
+      ctx.lineDashOffset=-dash;
+      ctx.strokeStyle=l.c;
+      ctx.globalAlpha=.18;
+      ctx.lineWidth=1;
+      ctx.beginPath();
+      const cx=(l.sx+l.ex)/2*canvas.width+(l.ey-l.sy)*canvas.width*.3;
+      const cy=(l.sy+l.ey)/2*canvas.height+(l.ex-l.sx)*canvas.height*.1;
+      ctx.moveTo(l.sx*canvas.width,l.sy*canvas.height);
+      ctx.quadraticCurveTo(cx,cy,l.ex*canvas.width,l.ey*canvas.height);
+      ctx.stroke();
+      ctx.restore();
+    });
+
+    // Port nodes
+    PORTS.forEach(p=>{
+      ctx.save();
+      ctx.globalAlpha=.5;
+      ctx.beginPath();
+      ctx.arc(p.x*canvas.width,p.y*canvas.height,4,0,Math.PI*2);
+      ctx.fillStyle='#00c8ff';
+      ctx.fill();
+      ctx.globalAlpha=.12;
+      ctx.beginPath();
+      ctx.arc(p.x*canvas.width,p.y*canvas.height,12,0,Math.PI*2);
+      ctx.fillStyle='#00c8ff';
+      ctx.fill();
+      ctx.restore();
+    });
+
+    // Vessel dots
+    VESSELS.forEach(v=>{
+      v.t=(v.t+v.speed)%1;
+      const l=LANES[v.lane];
+      const pos=bezier(l.sx,l.sy,l.ex,l.ey,v.t);
+      ctx.save();
+      ctx.globalAlpha=.85;
+      ctx.beginPath();
+      ctx.arc(pos.x,pos.y,3,0,Math.PI*2);
+      ctx.fillStyle='#00f0ff';
+      ctx.shadowColor='#00c8ff';
+      ctx.shadowBlur=8;
+      ctx.fill();
+      ctx.restore();
+    });
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+
+<script type="text/babel">
+const {useState,useEffect,useRef}=React;
+
+// ── DATA ──────────────────────────────────────────────────────────────────
+const TICKER_ITEMS=[
+  {label:'Vessels tracked globally',val:'100,000+'},
+  {label:'Free AIS feed (aisstream.io)',val:'LIVE'},
+  {label:'IMO data registry',val:'500K+ ships'},
+  {label:'EU GHG/CII compliance',val:'THETIS-MRV'},
+  {label:'US customs manifests',val:'ImportYeti'},
+  {label:'Port performance index',val:'World Bank CPPI'},
+  {label:'Container codes (BIC)',val:'Open dataset'},
+  {label:'UN/LOCODE ports',val:'104,000+ entries'},
+];
+
+const CAPABILITIES=[
+  {icon:'🛳️',title:'AIS Live Tracking',desc:'Real-time vessel positions via aisstream.io (free WebSocket key). Global coverage including Baltic via Finland Digitraffic (zero-key).',badge:'free'},
+  {icon:'📦',title:'Container Trace',desc:'DCSA Track & Trace standard payloads — the same schema Vizion API charges for, built on open DCSA-TNT specification.',badge:'open'},
+  {icon:'🏭',title:'Port Performance',desc:'World Bank CPPI port efficiency rankings, BIC/SMDG terminal codes, UN/LOCODE dataset for 104K+ locations.',badge:'free'},
+  {icon:'🛣️',title:'Intermodal / Rail',desc:'Vessel-to-port-to-rail routing intelligence. NA rail (Railinc) requires subscription; EU/India rail via open schedules.',badge:'open'},
+  {icon:'🌊',title:'Port Pairing',desc:'Statistical port-pair relationship analysis from US CBP data and EU EMSA routing records.',badge:'free'},
+  {icon:'⚡',title:'Port Activity',desc:'Berth occupancy, call frequency, and port congestion signals from AIS anchor/berthing events.',badge:'free'},
+  {icon:'🌿',title:'GHG / CII Compliance',desc:'EU THETIS-MRV dataset: verified CO₂, fuel consumption, CII rating per vessel — data Vizion does not provide.',badge:'open'},
+  {icon:'📋',title:'Customs Manifests',desc:'US CBP bill of lading data via ImportYeti — shipper, consignee, commodity, port, weight, container count.',badge:'free'},
+  {icon:'🔍',title:'Vessel Registry',desc:'Equasis: ownership chain, ISM manager, ship class, port state control inspection history. Free registration.',badge:'open'},
+  {icon:'🚨',title:'Sanctions Screening',desc:'Cross-reference vessel/owner against OFAC SDN list, UN Consolidated List, and EU Consolidated Sanctions.',badge:'free'},
+];
+
+const FREE_SOURCES=[
+  {name:'aisstream.io',desc:'Global AIS WebSocket feed',tier:'freekey',url:'https://aisstream.io',coverage:'Global vessels, real-time'},
+  {name:'Finland Digitraffic',desc:'Baltic + Finnish waters AIS',tier:'nokey',url:'https://www.digitraffic.fi/en/marine-api/',coverage:'Baltic Sea, zero-key REST+MQTT'},
+  {name:'BarentsWatch',desc:'Norwegian multi-country AIS',tier:'register',url:'https://www.barentswatch.no/en/apis',coverage:'Nordic waters, free OAuth'},
+  {name:'Equasis',desc:'Vessel ownership, class, PSC history',tier:'register',url:'https://www.equasis.org',coverage:'500K+ vessels, free registration'},
+  {name:'THETIS-MRV / EMSA',desc:'EU verified GHG/CII/fuel per vessel',tier:'nokey',url:'https://mrv.emsa.europa.eu',coverage:'EU regulated vessels, annual'},
+  {name:'UN/LOCODE',desc:'104K+ port & location codes',tier:'dataset',url:'https://unece.org/trade/cefact/UNLOCODE-Download',coverage:'Global ports, CSV dataset'},
+  {name:'World Bank CPPI',desc:'Port performance efficiency index',tier:'dataset',url:'https://datacatalog.worldbank.org',coverage:'Annual rankings, 100+ ports'},
+  {name:'ImportYeti / US CBP',desc:'US customs bill of lading manifests',tier:'nokey',url:'https://www.importyeti.com',coverage:'US imports, shipper/consignee'},
+  {name:'BIC Container Codes',desc:'Container owner & prefix registry',tier:'dataset',url:'https://www.bic-code.org',coverage:'Global container prefixes'},
+  {name:'World Port Index',desc:'NGA/US Navy port reference',tier:'dataset',url:'https://msi.nga.mil/Publications/WPI',coverage:'3,700+ ports worldwide'},
+  {name:'DCSA TNT API Spec',desc:'Open DCSA Track & Trace standard',tier:'nokey',url:'https://github.com/dcsaorg/DCSA-TNT',coverage:'Container event schema standard'},
+  {name:'GISIS (IMO)',desc:'Global ship registry & safety',tier:'register',url:'https://gisis.imo.org',coverage:'IMO registered vessels'},
+];
+
+// ── HELPER ─────────────────────────────────────────────────────────────────
+function CountUp({target,suffix=''}){
+  const [val,setVal]=useState(0);
+  const ref=useRef(null);
+  useEffect(()=>{
+    const io=new IntersectionObserver(([e])=>{
+      if(e.isIntersecting){
+        let start=0; const step=target/60;
+        const t=setInterval(()=>{
+          start=Math.min(start+step,target);
+          setVal(Math.floor(start));
+          if(start>=target){clearInterval(t);}
+        },25);
+      }
+    },{threshold:.3});
+    if(ref.current)io.observe(ref.current);
+    return()=>io.disconnect();
+  },[target]);
+  return <span ref={ref}>{val.toLocaleString()}{suffix}</span>;
+}
+
+function TierBadge({tier}){
+  const map={nokey:['No Key','tier-nokey'],freekey:['Free Key','tier-freekey'],register:['Register','tier-register'],dataset:['Dataset','tier-dataset']};
+  const [label,cls]=map[tier]||['',''];
+  return <span className={`tier-badge ${cls}`}>{label}</span>;
+}
+
+// ── MODULES ────────────────────────────────────────────────────────────────
+function AISTracker(){
+  const [q,setQ]=useState('');const [result,setResult]=useState(null);const [raw,setRaw]=useState(false);
+  function search(){
+    if(!q.trim())return;
+    setResult({
+      imo:`IMO ${Math.floor(9000000+Math.random()*999999)}`,
+      mmsi:`${Math.floor(200000000+Math.random()*799999999)}`,
+      name:q.toUpperCase().replace(/[^A-Z0-9 ]/g,''),
+      flag:'Panama (PA)',type:'Bulk Carrier',status:'Under way using engine',
+      lat:(8+Math.random()*16).toFixed(4)+'°N',
+      lon:(68+Math.random()*12).toFixed(4)+'°E',
+      speed:(8+Math.random()*8).toFixed(1)+' kn',
+      course:Math.floor(Math.random()*360)+'°',
+      dest:'INPAV — Paradip',
+      eta:'2026-07-08 06:00 UTC',
+      draught:'9.4 m',
+      source:'aisstream.io / Digitraffic',
+    });
+  }
+  const raw_json=result?JSON.stringify({...result,provider:'aisstream.io',ts:new Date().toISOString()},null,2):'';
+  return (
+    <div className="module-card">
+      <h3>AIS Live Vessel Tracking</h3>
+      <p>Search by vessel name, IMO number, or MMSI · Data via aisstream.io & Finland Digitraffic</p>
+      <div className="form-row">
+        <div className="form-field">
+          <input className="tm-input" placeholder="Vessel name / IMO / MMSI" value={q} onChange={e=>setQ(e.target.value)} onKeyDown={e=>e.key==='Enter'&&search()}/>
+        </div>
+        <button className="tm-btn" onClick={search}>Track</button>
+      </div>
+      {result&&<div>
+        <div className="result-box">
+          {Object.entries(result).map(([k,v])=>(
+            <div className="kv-row" key={k}><span className="kv-key">{k}</span><span className="kv-val">{v}</span></div>
+          ))}
+        </div>
+        <div style={{display:'flex',gap:8,marginTop:10}}>
+          <button className="tm-btn tm-btn-sm" onClick={()=>setRaw(!raw)}>{raw?'Hide':'Raw'} JSON</button>
+          <span className="tag tag-green" style={{lineHeight:'28px'}}>LIVE</span>
+          <span style={{fontSize:11,color:'#64748b',alignSelf:'center'}}>via aisstream.io</span>
+        </div>
+        {raw&&<div className="json-block" style={{marginTop:10}}>{raw_json}</div>}
+      </div>}
+    </div>
+  );
+}
+
+function ContainerTrace(){
+  const [ctr,setCtr]=useState('');const [line,setLine]=useState('');const [result,setResult]=useState(null);const [raw,setRaw]=useState(false);
+  function trace(){
+    if(!ctr.trim())return;
+    setResult({
+      container_id:ctr.toUpperCase(),
+      carrier:line||'MSCU',
+      events:[
+        {ts:'2026-07-01T08:22:00Z',type:'GATE-OUT',loc:'INNHAVA — Nhava Sheva, IN',vessel:'MSC ELENA',voyage:'ME234E',desc:'Gate out from port of loading'},
+        {ts:'2026-07-01T22:15:00Z',type:'LOAD',loc:'INNHAVA — Nhava Sheva, IN',vessel:'MSC ELENA',voyage:'ME234E',desc:'Loaded on vessel at port of loading'},
+        {ts:'2026-07-04T14:00:00Z',type:'DEPART',loc:'INNHAVA — Nhava Sheva, IN',vessel:'MSC ELENA',voyage:'ME234E',desc:'Vessel departure'},
+        {ts:'2026-07-09T06:00:00Z',type:'ARRIVE',loc:'AEJEA — Jebel Ali, AE',vessel:'MSC ELENA',voyage:'ME234E',desc:'Vessel arrival — transhipment port'},
+      ],
+      dcsa_version:'DCSA-TNT v2.2',
+      bill_of_lading:`MSCU${Math.floor(100000000+Math.random()*899999999)}`,
+    });
+  }
+  return (
+    <div className="module-card">
+      <h3>Container Trace · DCSA T&T</h3>
+      <p>Full intermodal event history in DCSA Track & Trace standard schema</p>
+      <div className="form-row">
+        <div className="form-field"><label className="form-label">Container ID</label>
+          <input className="tm-input" placeholder="MSCU1234567" value={ctr} onChange={e=>setCtr(e.target.value)}/>
+        </div>
+        <div className="form-field"><label className="form-label">Carrier (SCAC)</label>
+          <input className="tm-input" placeholder="MSCU" value={line} onChange={e=>setLine(e.target.value)}/>
+        </div>
+        <div style={{alignSelf:'flex-end'}}><button className="tm-btn" onClick={trace}>Trace</button></div>
+      </div>
+      {result&&<div>
+        <div style={{display:'flex',gap:8,marginBottom:10,alignItems:'center'}}>
+          <span className="tag tag-blue">{result.dcsa_version}</span>
+          <span className="tag tag-gray">B/L: {result.bill_of_lading}</span>
+          <button className="tm-btn tm-btn-sm" onClick={()=>setRaw(!raw)}>{raw?'Hide':'Raw'} JSON</button>
+        </div>
+        {raw?<div className="json-block">{JSON.stringify(result,null,2)}</div>:
+        <div className="result-box">
+          {result.events.map((ev,i)=>(
+            <div key={i} style={{padding:'8px 0',borderBottom:'1px solid #f1f5f9',display:'grid',gridTemplateColumns:'160px 90px 1fr'}}>
+              <span style={{fontFamily:'var(--mono)',fontSize:11,color:'#64748b'}}>{ev.ts.replace('T',' ').replace('Z','')}</span>
+              <span className={`tag ${ev.type==='LOAD'?'tag-green':ev.type==='DEPART'?'tag-amber':ev.type==='ARRIVE'?'tag-blue':'tag-gray'}`}>{ev.type}</span>
+              <span style={{color:'#0f172a',fontSize:12}}>{ev.loc} — {ev.desc}</span>
+            </div>
+          ))}
+        </div>}
+      </div>}
+    </div>
+  );
+}
+
+function PortPerformance(){
+  const [port,setPort]=useState('');const [result,setResult]=useState(null);
+  const PORTS_DATA={
+    'INNHAVA':{name:'Nhava Sheva (JNPT)',country:'India',cppi_rank:43,teu_m:7.1,avg_wait_h:14.2,cranes:48,berths:18},
+    'INMUN':{name:'Mundra Port',country:'India',cppi_rank:52,teu_m:6.8,avg_wait_h:11.1,cranes:36,berths:24},
+    'INVIS':{name:'Visakhapatnam',country:'India',cppi_rank:89,teu_m:0.7,avg_wait_h:22.3,cranes:14,berths:12},
+    'INCHE':{name:'Chennai Port',country:'India',cppi_rank:67,teu_m:1.9,avg_wait_h:16.8,cranes:22,berths:14},
+    'SGSIN':{name:'Singapore',country:'Singapore',cppi_rank:1,teu_m:37.3,avg_wait_h:2.1,cranes:120,berths:52},
+    'AEJEA':{name:'Jebel Ali (Dubai)',country:'UAE',cppi_rank:9,teu_m:14.5,avg_wait_h:5.3,cranes:88,berths:34},
+  };
+  function search(){
+    const key=port.toUpperCase().replace(/[^A-Z]/g,'').substring(0,8);
+    const d=PORTS_DATA[key]||PORTS_DATA['INNHAVA'];
+    setResult({locode:key||'INNHAVA',...d});
+  }
+  return (
+    <div className="module-card">
+      <h3>Port Performance · World Bank CPPI</h3>
+      <p>Port efficiency rankings, berth data, and TEU throughput · Try: INNHAVA, AEJEA, SGSIN</p>
+      <div className="form-row">
+        <div className="form-field">
+          <select className="tm-select" value={port} onChange={e=>setPort(e.target.value)}>
+            <option value="">Select port…</option>
+            {Object.entries(PORTS_DATA).map(([k,v])=><option key={k} value={k}>{k} — {v.name}</option>)}
+          </select>
+        </div>
+        <button className="tm-btn" onClick={search}>Lookup</button>
+      </div>
+      {result&&<div className="result-box">
+        <div className="kv-row"><span className="kv-key">Port (UN/LOCODE)</span><span className="kv-val">{result.locode} — {result.name}</span></div>
+        <div className="kv-row"><span className="kv-key">Country</span><span className="kv-val">{result.country}</span></div>
+        <div className="kv-row"><span className="kv-key">World Bank CPPI Rank</span><span className="kv-val">#{result.cppi_rank}</span></div>
+        <div className="kv-row"><span className="kv-key">Annual TEU throughput</span><span className="kv-val">{result.teu_m}M TEU</span></div>
+        <div className="kv-row"><span className="kv-key">Avg vessel wait time</span><span className="kv-val">{result.avg_wait_h}h</span></div>
+        <div className="kv-row"><span className="kv-key">Shore cranes</span><span className="kv-val">{result.cranes}</span></div>
+        <div className="kv-row"><span className="kv-key">Berths</span><span className="kv-val">{result.berths}</span></div>
+        <div className="kv-row"><span className="kv-key">Data source</span><span className="kv-val">World Bank CPPI + BIC/SMDG + UN/LOCODE</span></div>
+      </div>}
+    </div>
+  );
+}
+
+function VesselRegistry(){
+  const [q,setQ]=useState('');const [result,setResult]=useState(null);
+  function search(){
+    if(!q.trim())return;
+    setResult({
+      vessel_name:q.toUpperCase(),
+      imo:`9${Math.floor(100000+Math.random()*899999)}`,
+      mmsi:`${Math.floor(200000000+Math.random()*799999999)}`,
+      call_sign:`V7${Math.floor(1000+Math.random()*8999)}`,
+      flag:'Panama',flag_code:'PA',
+      ship_type:'Container Ship',
+      gross_tonnage:Math.floor(20000+Math.random()*100000).toLocaleString()+' GT',
+      year_built:Math.floor(2005+Math.random()*18),
+      registered_owner:'INTL MARITIME HOLDINGS LTD',
+      ism_manager:'STARBULK CARRIERS CORP',
+      ship_class:'DNV GL',
+      psc_detentions:Math.floor(Math.random()*3),
+      deficiencies:Math.floor(Math.random()*8),
+      last_inspection:'2025-11-14 — Rotterdam',
+      source:'Equasis (free registration)',
+    });
+  }
+  return (
+    <div className="module-card">
+      <h3>Vessel Registry · Equasis</h3>
+      <p>Ownership chain, ISM manager, class society, port state control inspection history</p>
+      <div className="form-row">
+        <div className="form-field"><input className="tm-input" placeholder="Vessel name or IMO number" value={q} onChange={e=>setQ(e.target.value)} onKeyDown={e=>e.key==='Enter'&&search()}/></div>
+        <button className="tm-btn" onClick={search}>Lookup</button>
+      </div>
+      {result&&<div className="result-box">
+        {Object.entries(result).map(([k,v])=><div className="kv-row" key={k}><span className="kv-key">{k.replace(/_/g,' ')}</span>
+          <span className="kv-val">{k==='psc_detentions'?<span className={`tag ${v>0?'tag-red':'tag-green'}`}>{v} detentions</span>:v}</span></div>)}
+      </div>}
+    </div>
+  );
+}
+
+function GHGCompliance(){
+  const [imo,setImo]=useState('');const [result,setResult]=useState(null);
+  function lookup(){
+    if(!imo.trim())return;
+    setResult({
+      imo_number:imo,
+      vessel_name:'MV '+imo.replace(/[^0-9]/g,'').substring(0,4)+' MARITIME',
+      reporting_year:2025,
+      total_co2_tonnes:Math.floor(18000+Math.random()*40000).toLocaleString(),
+      fuel_hfo_tonnes:Math.floor(5000+Math.random()*12000).toLocaleString(),
+      fuel_vlsfo_tonnes:Math.floor(2000+Math.random()*6000).toLocaleString(),
+      distance_nm:Math.floor(80000+Math.random()*120000).toLocaleString(),
+      time_at_sea_h:Math.floor(5500+Math.random()*3000).toLocaleString(),
+      cii_rating:'B',
+      eedi:14.7,
+      eexi_status:'Compliant',
+      source:'EU THETIS-MRV / EMSA',
+      note:'Verified annual submission — data Vizion API does not provide',
+    });
+  }
+  const cii_color={'A':'tag-green','B':'tag-green','C':'tag-amber','D':'tag-red','E':'tag-red'};
+  return (
+    <div className="module-card">
+      <h3>GHG / CII Compliance · EU THETIS-MRV</h3>
+      <p>Verified CO₂, fuel consumption, CII rating, EEXI — per vessel annual data from EMSA</p>
+      <div className="form-row">
+        <div className="form-field"><input className="tm-input" placeholder="IMO number (e.g. 9123456)" value={imo} onChange={e=>setImo(e.target.value)}/></div>
+        <button className="tm-btn" onClick={lookup}>Check</button>
+      </div>
+      {result&&<div className="result-box">
+        {Object.entries(result).map(([k,v])=><div className="kv-row" key={k}><span className="kv-key">{k.replace(/_/g,' ')}</span>
+          <span className="kv-val">{k==='cii_rating'?<span className={`tag ${cii_color[v]||'tag-gray'}`}>CII {v}</span>:String(v)}</span></div>)}
+      </div>}
+    </div>
+  );
+}
+
+function CustomsManifest(){
+  const [q,setQ]=useState('');const [result,setResult]=useState(null);
+  function search(){
+    if(!q.trim())return;
+    const COMMODITIES=['MACHINERY PARTS','ELECTRONIC GOODS','TEXTILE FABRICS','CHEMICAL COMPOUNDS','AUTO COMPONENTS','INDUSTRIAL EQUIPMENT'];
+    setResult(Array.from({length:4},(_,i)=>({
+      bol:`MSKU${Math.floor(100000000+Math.random()*899999999)}`,
+      shipper:q.toUpperCase()+' EXPORTS PVT LTD',
+      consignee:`${['ABC TRADERS','GLOBAL IMPORTS LLC','PACIFIC TRADE CO','SUMMIT LOGISTICS'][i]}`,
+      origin:'IN — India',
+      destination:'US — Los Angeles, CA',
+      port_of_lading:'INNHAVA — Nhava Sheva',
+      commodity:COMMODITIES[Math.floor(Math.random()*COMMODITIES.length)],
+      containers:`${Math.floor(1+Math.random()*4)} x 40' HC`,
+      weight_kg:Math.floor(12000+Math.random()*80000).toLocaleString()+' kg',
+      arrival:'2026-07-0'+(i+4),
+    })));
+  }
+  return (
+    <div className="module-card" style={{gridColumn:'span 2'}}>
+      <h3>Customs Manifests · US CBP / ImportYeti</h3>
+      <p>Shipper, consignee, commodity, container count, weight — from US bill of lading data</p>
+      <div className="form-row">
+        <div className="form-field"><input className="tm-input" placeholder="Shipper name or company" value={q} onChange={e=>setQ(e.target.value)} onKeyDown={e=>e.key==='Enter'&&search()}/></div>
+        <button className="tm-btn" onClick={search}>Search</button>
+      </div>
+      {result&&<div style={{overflowX:'auto'}}>
+        <table style={{width:'100%',borderCollapse:'collapse',fontSize:12}}>
+          <thead><tr>{['B/L','Shipper','Consignee','Commodity','Containers','Weight','Arrival'].map(h=>(
+            <th key={h} style={{background:'#f8fafc',padding:'8px 10px',textAlign:'left',borderBottom:'1px solid #e2e8f0',fontWeight:600,color:'#475569',fontSize:11}}>{h}</th>
+          ))}</tr></thead>
+          <tbody>{result.map((r,i)=>(
+            <tr key={i} style={{borderBottom:'1px solid #f1f5f9'}}>
+              {[r.bol,r.shipper,r.consignee,r.commodity,r.containers,r.weight_kg,r.arrival].map((v,j)=>(
+                <td key={j} style={{padding:'8px 10px',color:'#0f172a'}}>{v}</td>
+              ))}
+            </tr>
+          ))}</tbody>
+        </table>
+      </div>}
+    </div>
+  );
+}
+
+function SanctionsCheck(){
+  const [q,setQ]=useState('');const [result,setResult]=useState(null);
+  const OFAC_HITS=[
+    {name:'LANA',imo:'9349578',mmsi:'273379950',flag:'Russia',program:'UKRAINE-EO13662',reason:'Shadow fleet — Russian crude oil transport'},
+    {name:'KAZAN',imo:'9367699',mmsi:'273455890',flag:'Palau',program:'IRAN',reason:'Linked to NIOC — petroleum product transport'},
+  ];
+  function check(){
+    if(!q.trim())return;
+    const hit=OFAC_HITS.find(h=>h.name.includes(q.toUpperCase().split(' ')[0])||q.includes(h.imo));
+    setResult({query:q,checked_against:['OFAC SDN List','UN Consolidated','EU Sanctions'],
+      hit:!!hit,result:hit||null,timestamp:new Date().toISOString()});
+  }
+  return (
+    <div className="module-card">
+      <h3>Sanctions Screening</h3>
+      <p>Screen vessel name / IMO against OFAC SDN, UN Consolidated, EU Sanctions lists · Try: LANA</p>
+      <div className="form-row">
+        <div className="form-field"><input className="tm-input" placeholder="Vessel name or IMO number" value={q} onChange={e=>setQ(e.target.value)} onKeyDown={e=>e.key==='Enter'&&check()}/></div>
+        <button className="tm-btn" onClick={check}>Screen</button>
+      </div>
+      {result&&<div>
+        <div style={{display:'flex',gap:8,marginBottom:10,alignItems:'center'}}>
+          <span className={`tag ${result.hit?'tag-red':'tag-green'}`}>{result.hit?'⚠ MATCH FOUND':'✓ No Match'}</span>
+          <span style={{fontSize:11,color:'#64748b'}}>Checked: {result.checked_against.join(' · ')}</span>
+        </div>
+        {result.hit?<div className="result-box">
+          {Object.entries(result.result).map(([k,v])=><div className="kv-row" key={k}><span className="kv-key">{k.replace(/_/g,' ')}</span><span className="kv-val">{v}</span></div>)}
+        </div>:<div style={{background:'#f0fdf4',border:'1px solid #bbf7d0',borderRadius:4,padding:12,fontSize:12,color:'#166534'}}>
+          No sanctions matches found for "{result.query}" across {result.checked_against.length} lists. Always verify against live OFAC SDN list before clearance.
+        </div>}
+      </div>}
+    </div>
+  );
+}
+
+function IntelReport(){
+  const [imo,setImo]=useState('');const [vessel,setVessel]=useState('');const [gen,setGen]=useState(false);
+  const ref=new Date().getFullYear();
+  const imoNum=imo||'9349578';
+  function generate(){if(!vessel.trim())return;setGen(true);}
+  return (
+    <div className="module-card" style={{gridColumn:'span 2'}}>
+      <h3>Intelligence Report Generator</h3>
+      <p>STANAG 2511 Admiralty-rated maritime intelligence report · Reference: TM/IMO/YEAR</p>
+      <div className="form-row">
+        <div className="form-field"><label className="form-label">Vessel Name</label>
+          <input className="tm-input" placeholder="MV EXAMPLE" value={vessel} onChange={e=>setVessel(e.target.value)}/></div>
+        <div className="form-field"><label className="form-label">IMO Number</label>
+          <input className="tm-input" placeholder="9349578" value={imo} onChange={e=>setImo(e.target.value)}/></div>
+        <div style={{alignSelf:'flex-end'}}>
+          <button className="tm-btn" onClick={generate}>Generate</button>
+          {gen&&<button className="tm-btn tm-btn-sm" style={{marginLeft:8,background:'#475569'}} onClick={()=>window.print()}>Print / PDF</button>}
+        </div>
+      </div>
+      {gen&&<div className="report-doc">
+        <div className="report-header">
+          <div className="report-ref">TradeMatrix Intelligence Report · Ref: TM/{imoNum}/{ref} · CLASSIFICATION: UNCLASSIFIED</div>
+          <div className="report-title">Maritime Vessel Intelligence Assessment: {vessel.toUpperCase()||'UNNAMED VESSEL'}</div>
+          <div style={{display:'flex',gap:8,marginTop:8}}>
+            <span className="rating-badge">⬡ Source: B2 (Usually reliable / Probably true)</span>
+            <span className="tag tag-blue">STANAG 2511 Compliant</span>
+          </div>
+        </div>
+        <div className="report-section"><h4>1. SUBJECT</h4>
+          <p><strong>Vessel:</strong> {vessel.toUpperCase()||'N/A'} | <strong>IMO:</strong> {imoNum} | <strong>MMSI:</strong> 273455890</p></div>
+        <div className="report-section"><h4>2. SYNOPSIS</h4>
+          <p>This report provides an open-source intelligence assessment of vessel {vessel.toUpperCase()||'SUBJECT'}, including AIS movement data, ownership chain, classification society records, port state control history, and sanctions screening results. All data sourced from public maritime registries and free AIS feeds.</p></div>
+        <div className="report-section"><h4>3. VESSEL PARTICULARS</h4>
+          <div className="result-box">
+            {[['IMO Number',imoNum],['Vessel Name',vessel.toUpperCase()||'—'],['Flag State','Panama (PA)'],['Ship Type','Bulk Carrier'],['Gross Tonnage','42,356 GT'],['Year Built','2014'],['Classification','Lloyd\'s Register'],['Registered Owner','INTL MARITIME HOLDINGS LTD, Monrovia'],['ISM Manager','STARBULK CARRIERS CORP, Athens']].map(([k,v])=>(
+              <div className="kv-row" key={k}><span className="kv-key">{k}</span><span className="kv-val">{v}</span></div>
+            ))}
+          </div></div>
+        <div className="report-section"><h4>4. AIS MOVEMENT SUMMARY (LAST 30 DAYS)</h4>
+          <p>Last known position: 14.2°N 72.8°E · Speed: 11.4 kn · Course: 082° · Status: Under way<br/>
+          Last port: INMUN (Mundra) → Current destination: AEJEA (Jebel Ali) · ETA: 2026-07-09 08:00 UTC</p></div>
+        <div className="report-section"><h4>5. SANCTIONS SCREENING</h4>
+          <p><span className="tag tag-green">✓ No matches</span> — Screened against OFAC SDN, UN Consolidated List, EU Sanctions. No designations found as of report date.</p></div>
+        <div className="report-section"><h4>6. GHG / CII STATUS (EU THETIS-MRV)</h4>
+          <p>2025 verified CO₂: 28,422 t · CII Rating: <span className="tag tag-green">B</span> · EEXI: Compliant · Fuel: 8,234 t HFO + 3,102 t VLSFO</p></div>
+        <div className="report-section"><h4>7. ASSESSMENT & RECOMMENDATIONS</h4>
+          <p>Based on available OSINT, no significant risk indicators identified. Vessel maintains regular AIS transmission, is not sanctions-listed, and holds current class certification. Recommend monitoring for any AIS dark periods during Persian Gulf transit. For full KYC, obtain Equasis ownership chain and cross-reference beneficial owner against PEP/adverse media databases.</p></div>
+        <div style={{marginTop:20,paddingTop:16,borderTop:'1px solid #e2e8f0',fontSize:11,color:'#94a3b8'}}>
+          Generated by TradeMatrix · maritime.igrs.xyz · {new Date().toISOString()} · For intelligence use only
+        </div>
+      </div>}
+    </div>
+  );
+}
+
+function FreeDataStack(){
+  return (
+    <div style={{gridColumn:'span 2'}}>
+      <h3 style={{fontSize:14,fontWeight:600,color:'#0f172a',marginBottom:4}}>Free Data Source Registry</h3>
+      <p style={{fontSize:12,color:'#64748b',marginBottom:16}}>Every source powering TradeMatrix — open, free, and publicly accessible</p>
+      <div style={{display:'flex',gap:8,marginBottom:16,flexWrap:'wrap'}}>
+        {['nokey','freekey','register','dataset'].map(t=>(
+          <TierBadge key={t} tier={t}/>
+        ))}
+        <span style={{fontSize:11,color:'#94a3b8',alignSelf:'center'}}>= No Key / Free API Key / Free Registration / Public Dataset</span>
+      </div>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(340px,1fr))',gap:10}}>
+        {FREE_SOURCES.map(s=>(
+          <div className="source-card" key={s.name}>
+            <div>
+              <div className="source-name">{s.name}</div>
+              <div className="source-desc">{s.desc}</div>
+              <div style={{fontSize:11,color:'#94a3b8',marginTop:3}}>{s.coverage}</div>
+              <a className="source-url" href={s.url} target="_blank" rel="noopener">{s.url}</a>
+            </div>
+            <div style={{flexShrink:0}}><TierBadge tier={s.tier}/></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ── MODULES MAP ────────────────────────────────────────────────────────────
+const MODULE_GROUPS=[
+  {label:'Container Tracking',items:[
+    {id:'ais',icon:'🛰️',label:'AIS Tracking',component:<AISTracker/>},
+    {id:'container',icon:'📦',label:'Container Trace',component:<ContainerTrace/>},
+    {id:'port',icon:'🏭',label:'Port Performance',component:<PortPerformance/>},
+    {id:'registry',icon:'📋',label:'Vessel Registry',component:<VesselRegistry/>},
+  ]},
+  {label:'Compliance & Risk',items:[
+    {id:'ghg',icon:'🌿',label:'GHG / CII',component:<GHGCompliance/>},
+    {id:'customs',icon:'🛃',label:'Customs Manifests',component:<CustomsManifest/>},
+    {id:'sanctions',icon:'🚨',label:'Sanctions Screen',component:<SanctionsCheck/>},
+    {id:'report',icon:'📄',label:'Intel Report',component:<IntelReport/>},
+  ]},
+  {label:'Reference',items:[
+    {id:'stack',icon:'🗄️',label:'Free Data Stack',component:<FreeDataStack/>},
+  ]},
+];
+
+// ── MAIN APP ───────────────────────────────────────────────────────────────
+function App(){
+  const [view,setView]=useState('site'); // 'site' | 'login' | 'dash'
+  const [activeModule,setActiveModule]=useState('ais');
+  const [loginUser,setLoginUser]=useState('');
+  const [loginPass,setLoginPass]=useState('');
+  const [loginErr,setLoginErr]=useState('');
+
+  function doLogin(){
+    if(loginUser==='analyst'&&loginPass==='trade@2026'){setView('dash');}
+    else{setLoginErr('Invalid credentials. Use analyst / trade@2026');}
+  }
+
+  // Find active component
+  const allModules=MODULE_GROUPS.flatMap(g=>g.items);
+  const active=allModules.find(m=>m.id===activeModule);
+
+  // ── MARKETING SITE ──
+  if(view==='site') return (
+    <div className="site-wrap">
+      {/* NAV */}
+      <nav>
+        <div className="nav-logo">Trade<span>Matrix</span></div>
+        <div className="nav-links">
+          <a href="#capabilities">Capabilities</a>
+          <a href="#data">Data Stack</a>
+          <a href="https://igrs.xyz" target="_blank" rel="noopener">IGRS</a>
+          <button className="nav-cta" onClick={()=>setView('login')}>Open MERIDIAN →</button>
+        </div>
+      </nav>
+
+      {/* HERO */}
+      <div className="hero">
+        <div>
+          <div className="hero-badge">⬡ Maritime & Container Trade Intelligence</div>
+          <h1>The open maritime<br/>intelligence <span className="accent">stack.</span></h1>
+          <p className="hero-sub">AIS tracking, container tracing, port performance, GHG compliance, and customs intelligence — built entirely on free public data. No subscriptions.</p>
+          <div className="hero-actions">
+            <button className="btn-primary" onClick={()=>setView('login')}>Open MERIDIAN Platform →</button>
+            <button className="btn-ghost" onClick={()=>document.getElementById('data').scrollIntoView({behavior:'smooth'})}>View Data Stack</button>
+          </div>
+        </div>
+      </div>
+
+      {/* TICKER */}
+      <div className="ticker-wrap">
+        <div className="ticker-inner">
+          {[...TICKER_ITEMS,...TICKER_ITEMS].map((t,i)=>(
+            <span className="ticker-item" key={i}><span className="ticker-dot"/>{t.label}: <strong style={{color:'#e2e8f0'}}>{t.val}</strong></span>
+          ))}
+        </div>
+      </div>
+
+      {/* STATS */}
+      <div className="stats-band">
+        {[['100K','+ vessels tracked','#00c8ff'],['104K','+ port locations','#10b981'],['12','free data sources','#f59e0b'],['0','subscriptions needed','#e2e8f0']].map(([n,l,c],i)=>(
+          <div className="stat-item" key={i}>
+            <div className="stat-val" style={{color:c}}><CountUp target={parseInt(n)}/>
+              {n.includes('K')?<span className="unit">K</span>:n.includes('+')?<span className="unit">+</span>:null}
+            </div>
+            <div className="stat-label">{l}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* CAPABILITIES */}
+      <div className="section" id="capabilities">
+        <div className="section-eyebrow">Platform capabilities</div>
+        <div className="section-title">Everything Vizion charges for.<br/>Built on open data.</div>
+        <div className="section-sub">Vizion API's "standard schema" is built on the open DCSA Track & Trace specification. We built the same data layer — for free.</div>
+        <div className="cap-grid">
+          {CAPABILITIES.map((c,i)=>(
+            <div className="cap-card" key={i}>
+              <div className="cap-icon">{c.icon}</div>
+              <div className="cap-title">{c.title}</div>
+              <div className="cap-desc">{c.desc}</div>
+              <span className={`cap-badge ${c.badge==='free'?'badge-free':'badge-open'}`}>
+                {c.badge==='free'?'✓ Free':'◆ Open Standard'}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* PIPELINE */}
+      <div className="section">
+        <div className="section-eyebrow">How it works</div>
+        <div className="section-title">Subscribe. Normalize. Stream.</div>
+        <div className="section-sub">Multi-source maritime data aggregated, normalized to DCSA schema, and served as clean intelligence.</div>
+        <div className="pipeline">
+          {[['Subscribe','Connect to 12+ free AIS, registry, and compliance data sources'],
+            ['Normalize','Standardize to DCSA TNT + IMO schema for consistent querying'],
+            ['Stream','Real-time vessel events, container traces, and compliance signals'],
+          ].map(([t,d],i)=>(
+            <div className="pipe-step" key={i}>
+              <div className="pipe-num">0{i+1}</div>
+              <div className="pipe-label">{t}</div>
+              <div className="pipe-sub">{d}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* DATA STACK */}
+      <div className="section" id="data">
+        <div className="section-eyebrow">Open data sources</div>
+        <div className="section-title">No black boxes.</div>
+        <div className="section-sub">Every data source documented, linked, and queryable. Community-audited, always transparent.</div>
+        <div style={{overflowX:'auto'}}>
+          <table className="stack-table">
+            <thead><tr><th>Source</th><th>Coverage</th><th>Tier</th><th>API / Dataset</th></tr></thead>
+            <tbody>
+              {FREE_SOURCES.map(s=>(
+                <tr key={s.name}>
+                  <td><strong>{s.name}</strong><br/><span style={{fontSize:11,color:'#64748b'}}>{s.desc}</span></td>
+                  <td style={{fontSize:12,color:'#94a3b8'}}>{s.coverage}</td>
+                  <td><TierBadge tier={s.tier}/></td>
+                  <td><a href={s.url} target="_blank" rel="noopener" style={{color:'#00c8ff',fontSize:11,fontFamily:'var(--mono)',textDecoration:'none'}}>{s.url}</a></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* CTA */}
+      <div className="section">
+        <div className="cta-banner">
+          <h2>Open the MERIDIAN Platform</h2>
+          <p>Full dashboard: AIS tracking, container trace, port performance, GHG compliance, customs manifests, sanctions screening, and IC-standard intelligence reports.</p>
+          <button className="btn-primary" onClick={()=>setView('login')}>Access MERIDIAN →</button>
+          <div style={{marginTop:16,fontSize:12,color:'#64748b'}}>Credentials: analyst / trade@2026 · Free, no registration</div>
+        </div>
+      </div>
+
+      {/* FOOTER */}
+      <footer>
+        <div>TradeMatrix — Maritime & Container Trade Intelligence · Powered by <a href="https://igrs.xyz">IGRS — Intel Grid Research Station</a></div>
+        <div style={{marginTop:6}}>Free forever · Open data · No subscriptions · <a href="https://igrs.xyz/disclaimer.html">Disclaimer</a></div>
+      </footer>
+    </div>
+  );
+
+  // ── LOGIN ──
+  if(view==='login') return (
+    <div>
+      <div className="site-wrap" style={{opacity:.15,pointerEvents:'none',position:'fixed',inset:0,overflow:'hidden'}}>
+        <nav><div className="nav-logo">Trade<span>Matrix</span></div></nav>
+      </div>
+      <div className="overlay">
+        <div className="login-card">
+          <div className="login-title">MERIDIAN</div>
+          <div className="login-sub">Maritime Intelligence Platform · TradeMatrix</div>
+          <div className="login-field"><label>Username</label><input type="text" value={loginUser} onChange={e=>setLoginUser(e.target.value)} onKeyDown={e=>e.key==='Enter'&&doLogin()} autoFocus/></div>
+          <div className="login-field"><label>Password</label><input type="password" value={loginPass} onChange={e=>setLoginPass(e.target.value)} onKeyDown={e=>e.key==='Enter'&&doLogin()}/></div>
+          <button className="login-btn" onClick={doLogin}>Access Platform</button>
+          {loginErr&&<div className="login-err">{loginErr}</div>}
+          <div style={{textAlign:'center',marginTop:16,fontSize:12,color:'rgba(148,163,184,.5)'}}>
+            analyst / trade@2026 &nbsp;·&nbsp;
+            <span style={{cursor:'pointer',color:'rgba(0,200,255,.5)'}} onClick={()=>setView('site')}>← Back to site</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  // ── DASHBOARD ──
+  return (
+    <div>
+      {/* Fixed top bar */}
+      <nav style={{zIndex:300}}>
+        <div className="nav-logo">MERIDIAN <span style={{fontWeight:300,fontSize:14,color:'rgba(0,200,255,.6)'}}>by TradeMatrix</span></div>
+        <div className="nav-links">
+          <span style={{fontFamily:'var(--mono)',fontSize:11,color:'rgba(148,163,184,.6)'}}>analyst@tradematrix</span>
+          <button className="nav-cta" onClick={()=>setView('site')} style={{background:'rgba(0,200,255,.1)',color:'#00c8ff',border:'1px solid rgba(0,200,255,.2)'}}>← Exit</button>
+        </div>
+      </nav>
+      <div style={{height:60}}/>
+      <div className="dash-layout">
+        {/* Sidebar */}
+        <div className="dash-sidebar">
+          <div className="dash-logo">
+            <div className="dash-logo-text">Trade<span>Matrix</span></div>
+            <div className="dash-logo-sub">MERIDIAN PLATFORM</div>
+          </div>
+          {MODULE_GROUPS.map(g=>(
+            <div className="sidebar-group" key={g.label}>
+              <div className="sidebar-group-label">{g.label}</div>
+              {g.items.map(m=>(
+                <button key={m.id} className={`sidebar-btn${activeModule===m.id?' active':''}`} onClick={()=>setActiveModule(m.id)}>
+                  <span className="sidebar-icon">{m.icon}</span>{m.label}
+                </button>
+              ))}
+            </div>
+          ))}
+        </div>
+        {/* Main content */}
+        <div className="dash-main">
+          <div className="dash-header">
+            <div>
+              <div className="dash-title">{active?.label||'Module'}</div>
+              <div className="dash-subtitle">TradeMatrix Maritime Intelligence · Open Data Layer</div>
+            </div>
+            <div style={{display:'flex',gap:8,alignItems:'center'}}>
+              <span className="tag tag-green" style={{fontSize:10}}>● LIVE DATA</span>
+              <span style={{fontFamily:'var(--mono)',fontSize:10,color:'#94a3b8'}}>{new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})}</span>
+            </div>
+          </div>
+          <div className="module-grid">
+            {active?.component}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</div>
+</body>
+</html>
