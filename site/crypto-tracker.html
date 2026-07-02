@@ -761,7 +761,7 @@ main {
         </div>
 
         <div class="method-note">
-          ⚠ <strong>Method note:</strong> This tool analyses publicly available on-chain data via open blockchain APIs (mempool.space · Blockscout PRO via igrs.xyz/proxy.php · Tronscan · Blockchair · XRPL · Solana RPC). Sampling cap: ~250 most recent transactions per address. For KYC/subscriber data, serve notice under <strong>S.94 BNSS</strong> to the relevant exchange. For foreign exchanges, initiate MLAT via CBI.
+          ⚠ <strong>Method note:</strong> This tool analyses publicly available on-chain data. Sampling cap: ~250 most recent transactions per address. For KYC/subscriber data, serve notice under <strong>S.94 BNSS</strong> to the relevant exchange. For foreign exchanges, initiate MLAT via CBI.
         </div>
 
         <div class="status-bar" id="statusBar">
@@ -1005,7 +1005,7 @@ main {
           </div>
         </div>
         <div style="font-family:var(--mono);font-size:11px;color:var(--text3);text-align:center">
-          Live rates via CoinGecko · Auto-refresh every 60s
+          Live rates · Auto-refresh every 60s
         </div>
       </div>
     </div>
@@ -1322,7 +1322,7 @@ async function fetchBTC(addr) {
     totalReceived: funded, totalSent: spent,
     txCount, price,
     inflowMap, outflowMap, recentTxs,
-    explorer: `https://mempool.space/address/${addr}`,
+    explorer: `https://igrs.xyz/crypto-tracker.html#btc-${addr}`,
     txExplorer: 'https://mempool.space/tx/'
   };
 }
@@ -1488,7 +1488,7 @@ async function fetchTRON(addr, chain) {
     totalReceived, totalSent,
     txCount: txList.length,
     price, inflowMap, outflowMap, recentTxs,
-    explorer: `https://tronscan.org/#/address/${addr}`,
+    explorer: `https://igrs.xyz/crypto-tracker.html#trx-${addr}`,
     txExplorer: 'https://tronscan.org/#/transaction/'
   };
 }
@@ -1521,7 +1521,7 @@ async function fetchLTC(addr) {
     balance: bal, balanceINR: bal*price,
     totalReceived, totalSent, txCount, price,
     inflowMap, outflowMap, recentTxs,
-    explorer: `https://blockchair.com/litecoin/address/${addr}`,
+    explorer: `https://igrs.xyz/crypto-tracker.html#ltc-${addr}`,
     txExplorer: 'https://blockchair.com/litecoin/transaction/'
   };
 }
