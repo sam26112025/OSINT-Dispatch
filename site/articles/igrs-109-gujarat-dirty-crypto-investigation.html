@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gujarat ₹226 Crore Dirty Crypto Case: How Investigators Traced USDT from Dark Web to Terror Financing | IGRS</title>
+<meta name="description" content="A step-by-step blockchain investigation walkthrough of the Gujarat CCoE May 2026 dirty crypto bust — ₹226 crore traced across USDT, Monero, Hamas wallet links, hawala, and dark web narcotics. Includes live demo using IGRS Crypto Investigation Suite.">
+<meta name="keywords" content="Gujarat dirty crypto case 2026, USDT terror financing India, blockchain investigation India, IGRS crypto tracker, CCoE Gujarat arrest Hamas USDT, crypto money laundering India investigation, OSINT blockchain tracing India LEA">
+<meta name="author" content="Manuj Kumar Pandey">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://igrs.xyz/articles/igrs-109-gujarat-dirty-crypto-investigation.html">
+<meta property="og:title" content="Gujarat ₹226 Crore Dirty Crypto Case: Blockchain Investigation Walkthrough | IGRS">
+<meta property="og:description" content="How Gujarat CCoE traced ₹226 crore from dark web narcotics to Hamas wallet links — and how IGRS Crypto Investigation Suite replicates the methodology for Indian investigators.">
+<meta property="og:image" content="https://igrs.xyz/logo.svg">
+<meta property="og:url" content="https://igrs.xyz/articles/igrs-109-gujarat-dirty-crypto-investigation.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://igrs.xyz/logo.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Gujarat ₹226 Crore Dirty Crypto Case: Blockchain Investigation Walkthrough",
+  "description": "Step-by-step analysis of the Gujarat CCoE May 2026 dirty crypto bust using IGRS Crypto Investigation Suite",
+  "author": {"@type": "Person", "name": "Manuj Kumar Pandey", "url": "https://igrs.xyz/about.html"},
+  "publisher": {"@type": "Organization", "name": "IGRS — Intel Grid Research Station", "url": "https://igrs.xyz"},
+  "datePublished": "2026-07-02",
+  "dateModified": "2026-07-02",
+  "mainEntityOfPage": "https://igrs.xyz/articles/igrs-109-gujarat-dirty-crypto-investigation.html",
+  "image": "https://igrs.xyz/logo.svg",
+  "articleSection": "Crypto Intelligence",
+  "keywords": "Gujarat dirty crypto, USDT terror financing, blockchain investigation India, IGRS crypto tool"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "IGRS", "item": "https://igrs.xyz"},
+    {"@type": "ListItem", "position": 2, "name": "Articles", "item": "https://igrs.xyz/articles.html"},
+    {"@type": "ListItem", "position": 3, "name": "Gujarat Dirty Crypto Investigation", "item": "https://igrs.xyz/articles/igrs-109-gujarat-dirty-crypto-investigation.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is 'dirty crypto' as used by Gujarat CID CCoE?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Dirty crypto refers to cryptocurrency derived from or used for illegal activities — including cyber fraud proceeds, dark web narcotics payments, hawala settlements, and terror financing. In the Gujarat case, approximately 30-40% of the ₹226 crore total was classified as dirty crypto. The remainder involved ostensibly legal trading, gold deals, and hawala, but even this was used to provide cover for illegal flows."}
+    },
+    {
+      "@type": "Question",
+      "name": "How can Indian investigators trace USDT transactions?",
+      "acceptedAnswer": {"@type": "Answer", "text": "USDT on TRC-20 (Tron) is fully transparent on the Tron blockchain. Indian investigators can trace every transaction using the IGRS Crypto Investigation Suite at igrs.xyz/crypto-tracker.html — no paid tool required. The tool shows counterparty wallets, total inflow/outflow, INR equivalent, and generates LEA-ready summaries. For KYC of the exchange account at the end of the chain, serve a S.94 BNSS notice to the Indian exchange, or initiate MLAT via CBI for foreign exchanges."}
+    },
+    {
+      "@type": "Question",
+      "name": "Which legal sections apply to crypto terror financing in India?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Gujarat CID registered this case under S.111(2)(B) BNS (aiding terrorist operations through financial channels), S.153 BNS (waging activities detrimental to national safety), S.61 BNS (criminal conspiracy), and S.66C/66D of the IT Act. PMLA S.3/4 applies for money laundering aspects investigated by the Enforcement Directorate. UAPA S.17 (raising funds for terrorism) and S.40 (membership) may apply where terror organisation links are established."}
+    },
+    {
+      "@type": "Question",
+      "name": "What is OFAC's Specially Designated Nationals list and why does it matter for India?",
+      "acceptedAnswer": {"@type": "Answer", "text": "OFAC's SDN list designates individuals, entities, and wallet addresses linked to sanctioned organisations including Hamas, Houthi/Ansar Allah, IRGC-QF, and Russian exchange Garantex. Transactions with SDN-listed wallets are prohibited under US law and trigger asset freezes globally. In the Gujarat case, investigators cross-referenced suspect wallets against OFAC's list and found direct transfer links — a fact that was used to establish the terror financing element and secure international cooperation."}
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="../style.css">
+<style>
+.art-wrap{max-width:860px;margin:0 auto;padding:32px 20px 60px}
+.breadcrumb{font-size:12px;color:#6a8faf;margin-bottom:24px;font-family:'Share Tech Mono',monospace}
+.breadcrumb a{color:#6a8faf;text-decoration:none}.breadcrumb a:hover{color:#00d4ff}
+.file-no{font-family:'Share Tech Mono',monospace;font-size:11px;color:#00d4ff;letter-spacing:.12em;margin-bottom:8px}
+h1{font-family:Rajdhani,sans-serif;font-size:clamp(24px,4vw,36px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:16px}
+.meta{font-size:12px;color:#6a8faf;font-family:'IBM Plex Mono',monospace;margin-bottom:32px}
+.meta span{margin-right:16px}
+h2{font-family:Rajdhani,sans-serif;font-size:22px;font-weight:700;color:#00d4ff;margin:36px 0 12px;border-left:3px solid #00d4ff;padding-left:12px}
+h3{font-family:Rajdhani,sans-serif;font-size:17px;font-weight:600;color:#ffb800;margin:24px 0 8px}
+p{color:#c8dff0;line-height:1.8;margin-bottom:16px;font-size:15px}
+.callout{background:#0a1628;border:1px solid #1a3a5c;border-left:3px solid #00d4ff;border-radius:4px;padding:16px 20px;margin:20px 0}
+.callout.amber{border-left-color:#ffb800}
+.callout.red{border-left-color:#ff4455}
+.callout.green{border-left-color:#00ff88}
+.callout p{margin:0;font-size:14px}
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px}
+th{background:#0a1628;color:#00d4ff;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.08em;text-align:left;padding:10px 12px;border-bottom:1px solid #1a3a5c}
+td{padding:9px 12px;border-bottom:1px solid #0d2040;color:#c8dff0;vertical-align:top}
+tr:hover td{background:rgba(0,212,255,.03)}
+.step-block{background:#060d16;border:1px solid #0d2040;border-radius:4px;padding:16px 20px;margin:12px 0}
+.step-no{font-family:'Share Tech Mono',monospace;font-size:11px;color:#00d4ff;margin-bottom:4px;letter-spacing:.1em}
+.step-title{font-family:Rajdhani,sans-serif;font-size:16px;font-weight:600;color:#fff;margin-bottom:8px}
+.tool-link{display:inline-block;background:#0a1628;border:1px solid #1a3a5c;border-radius:3px;padding:6px 14px;font-family:'Share Tech Mono',monospace;font-size:12px;color:#00d4ff;text-decoration:none;margin:4px 4px 4px 0;transition:all .2s}
+.tool-link:hover{border-color:#00d4ff;background:rgba(0,212,255,.08)}
+.wallet-box{background:#04090f;border:1px solid #1a3a5c;border-radius:4px;padding:12px 16px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#00ff88;word-break:break-all;margin:12px 0}
+.tag{display:inline-block;padding:2px 8px;border-radius:2px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase}
+.tag.red{background:rgba(255,68,85,.12);color:#ff4455;border:1px solid rgba(255,68,85,.25)}
+.tag.amber{background:rgba(255,184,0,.12);color:#ffb800;border:1px solid rgba(255,184,0,.25)}
+.tag.green{background:rgba(0,255,136,.12);color:#00ff88;border:1px solid rgba(0,255,136,.25)}
+.tag.cyan{background:rgba(0,212,255,.12);color:#00d4ff;border:1px solid rgba(0,212,255,.25)}
+.demo-cta{background:linear-gradient(135deg,#0a1628,#060d16);border:1px solid #1a3a5c;border-radius:6px;padding:24px 28px;margin:32px 0;text-align:center}
+.demo-cta h3{color:#ffb800;margin:0 0 8px}
+.demo-cta p{color:#6a8faf;margin:0 0 16px;font-size:14px}
+.btn-demo{display:inline-block;background:#ffb800;color:#04090f;font-family:'Share Tech Mono',monospace;font-size:13px;font-weight:700;padding:12px 28px;border-radius:4px;text-decoration:none;letter-spacing:.08em;transition:all .2s}
+.btn-demo:hover{background:#fff}
+.faq-block{margin:16px 0;border:1px solid #0d2040;border-radius:4px;overflow:hidden}
+.faq-q{background:#0a1628;padding:14px 18px;font-family:Rajdhani,sans-serif;font-size:16px;font-weight:600;color:#fff}
+.faq-a{padding:14px 18px;color:#c8dff0;font-size:14px;line-height:1.7}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}
+.related-card{background:#0a1628;border:1px solid #0d2040;border-radius:4px;padding:14px 16px;text-decoration:none;transition:border-color .2s}
+.related-card:hover{border-color:#00d4ff}
+.related-card .rc-cat{font-family:'Share Tech Mono',monospace;font-size:10px;color:#00d4ff;margin-bottom:6px;letter-spacing:.1em}
+.related-card .rc-title{font-family:Rajdhani,sans-serif;font-size:15px;color:#fff;font-weight:600}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav class="igrs-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="brand"><img src="../logo.svg" width="32" height="32" alt="IGRS Logo"> IGRS</a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../articles.html" class="act">Articles</a>
+      <a href="../tools.html">Tools</a>
+      <a href="../dashboard.html">Dashboard</a>
+      <a href="../cyberlaw.html">Cyber Law</a>
+    </div>
+  </div>
+</nav>
+
+<div class="art-wrap">
+
+  <div class="breadcrumb">
+    <a href="../index.html">IGRS</a> › <a href="../articles.html">Articles</a> › Gujarat Dirty Crypto Investigation
+  </div>
+
+  <div class="file-no">FILE IGRS-109 · CRYPTO INTELLIGENCE · 02 JULY 2026</div>
+
+  <h1>Gujarat ₹226 Crore Dirty Crypto Case: How Investigators Traced USDT from Dark Web to Terror Financing</h1>
+
+  <div class="meta">
+    <span>By Manuj Kumar Pandey</span>
+    <span>2 July 2026</span>
+    <span>Crypto Intelligence</span>
+    <span class="tag red">Terror Financing</span>
+    <span class="tag amber">USDT TRC-20</span>
+    <span class="tag cyan">OFAC SDN</span>
+  </div>
+
+  <div class="callout amber">
+    <p><strong>⚠ Disclaimer:</strong> This article is based entirely on publicly available information from official Gujarat CID press statements, PTI/IANS wire reports, and OFAC public SDN records. No confidential investigation data is referenced. Wallet addresses cited are from published OFAC/OpenSanctions public lists. This analysis is for investigative education and methodology demonstration only.</p>
+  </div>
+
+  <p>On 19 May 2026, Gujarat CID Crime's Cyber Centre of Excellence (CCoE) announced the arrest of nine individuals across Ahmedabad, Mumbai, and Karnal — dismantling what SP Rajdeepsinh Zala called a network of "dirty crypto." The total transaction volume traced: <strong>₹226.54 crore ($23.96 million)</strong> across USDT stablecoins, Monero (XMR), peer-to-peer exchanges, and hawala channels — with links stretching from a dark web narcotics marketplace to designated terrorist organisations including Hamas, Houthi (Ansar Allah), and IRGC-QF.</p>
+
+  <p>This article reconstructs the investigative methodology that Gujarat CCoE used, and demonstrates how Indian investigators can apply the same approach using the <strong>IGRS Crypto Investigation Suite</strong> — a free, no-login tool built specifically for Indian law enforcement and cybercrime units.</p>
+
+  <h2>Case Summary: What Happened</h2>
+
+  <div class="callout">
+    <p><strong>Operation trigger:</strong> CCoE technical unit detected suspicious cryptocurrency transactions flowing from a dark web narcotics marketplace — ARTEMISLAB.CC — into an Indian IP address in Ahmedabad.</p>
+  </div>
+
+  <table>
+    <tr><th>Parameter</th><th>Detail</th></tr>
+    <tr><td>Date of arrest</td><td>19 May 2026</td></tr>
+    <tr><td>Investigating agency</td><td>Gujarat CID Crime — Cyber Centre of Excellence (CCoE)</td></tr>
+    <tr><td>Accused arrested</td><td>9 (Ahmedabad: 7, Mumbai: 1, Karnal: 1)</td></tr>
+    <tr><td>Key absconder</td><td>Mohammed Zuber Popatiya (Dubai) — under Red Notice pursuit</td></tr>
+    <tr><td>Total transaction volume</td><td>₹226.54 crore (~$23.96 million USD)</td></tr>
+    <tr><td>Estimated dirty crypto</td><td>30–40% of total (~₹68–90 crore)</td></tr>
+    <tr><td>Top individual handler</td><td>Mohammedzaid Siddi — $7.52 million</td></tr>
+    <tr><td>Primary crypto used</td><td>USDT (TRC-20), Monero (XMR)</td></tr>
+    <tr><td>Terror links confirmed</td><td>Hamas (via Israel NBCTF frozen wallet), Ansar Allah (Houthi), IRGC-QF, Garantex</td></tr>
+    <tr><td>Cyber fraud victims linked</td><td>935 complaints on NCCRP portal</td></tr>
+    <tr><td>Dark web marketplace</td><td>ARTEMISLAB.CC (narcotics, UK deliveries)</td></tr>
+    <tr><td>Legal sections</td><td>S.111(2)(B), S.153, S.61 BNS + S.66C/66D IT Act</td></tr>
+  </table>
+
+  <h2>The Money Trail: How Dirty Crypto Flows</h2>
+
+  <p>The syndicate used a layering method common across India's crypto fraud-to-terror pipeline. Understanding this flow is essential for investigators building a transaction graph:</p>
+
+  <div class="step-block">
+    <div class="step-no">LAYER 1 — COLLECTION</div>
+    <div class="step-title">Cyber fraud victims → mule bank accounts</div>
+    <p>Victims of 935+ registered cyber fraud cases transferred money to mule bank accounts controlled by the syndicate across India. This is the primary fiat entry point.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-no">LAYER 2 — CRYPTO CONVERSION</div>
+    <div class="step-title">Mule accounts → P2P crypto → USDT (TRC-20)</div>
+    <p>Cash from mule accounts was converted into USDT via peer-to-peer (P2P) cryptocurrency trading accounts. USDT on TRC-20 (Tron blockchain) was chosen for its speed, low fees, and near-instant settlement. This is the most common off-ramp in Indian cybercrime cases — and the most traceable.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-no">LAYER 3 — OBFUSCATION</div>
+    <div class="step-title">USDT rotation across wallets + Monero conversion</div>
+    <p>Funds were rotated internally across multiple wallets linked to the nine accused. Some flows were converted to Monero (XMR) — a privacy coin with ring signature anonymisation — making the Monero leg significantly harder to trace. Gujarat CCoE recovered two Monero wallets worth ₹2 crore from accused. XMR was used specifically for the dark web narcotics payments to ARTEMISLAB.CC.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-no">LAYER 4 — TERROR ROUTING</div>
+    <div class="step-title">USDT → OFAC-sanctioned wallets → international criminal networks</div>
+    <p>Cleaned USDT was routed into wallets associated with internationally sanctioned entities: Hamas (via Al-Kahira Gaza front, wallet frozen by Israel NBCTF in 2025), Ansar Allah (Houthi), IRGC-QF, and Russia's Garantex exchange. These final destinations are what triggered the terror financing sections under BNS.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-no">LAYER 5 — CASH OUT</div>
+    <div class="step-title">USDT → Hawala → INR cash in India</div>
+    <p>Simultaneously, a portion of USDT was converted back to Indian rupees through hawala networks (angadia channels). Molani in Ahmedabad collected the cash and distributed it to Ansari's network. This dual-direction flow — exporting dirty crypto internationally while importing clean cash domestically — is the hallmark of the India-Dubai-UK narco-finance triangle.</p>
+  </div>
+
+  <h2>The OFAC Link: Garantex and the Gujarat Case</h2>
+
+  <p>Gujarat CCoE investigators cross-referenced suspect wallet transaction histories against OFAC's Specially Designated Nationals (SDN) list. They found that wallets belonging to Dubai-based absconding accused Mohammed Zuber Popatiya had received funds from wallets linked to Al-Kahira, a Gaza-based entity designated by Israel's National Bureau for Counter Terror Financing as a Hamas financing front. Those wallets had already been frozen by Israel NBCTF in 2025 via court order.</p>
+
+  <p>Additionally, investigators confirmed inbound transactions from entities sanctioned by OFAC: Garantex (the Russia-based exchange sanctioned and shut down in March 2025) and wallets linked to the Ilan Shor network (Moldova-based money laundering cluster).</p>
+
+  <div class="callout red">
+    <p><strong>Investigative significance:</strong> The OFAC SDN connection is what transformed this from a cyber fraud/PMLA case into a terror financing case under S.111(2)(B) BNS. Without blockchain tracing of the international wallet linkages, those sections could not have been invoked.</p>
+  </div>
+
+  <h2>Live Investigation Demo: Tracing a Sanctioned USDT Wallet with IGRS Tool</h2>
+
+  <p>To demonstrate how Indian investigators can replicate this methodology, we traced <strong>Garantex's publicly disclosed TRC-20 USDT wallet</strong> — which is on the OFAC SDN list and was cross-referenced in the Gujarat investigation. The wallet address is published by OpenSanctions and the EU Financial Sanctions Files:</p>
+
+  <div class="wallet-box">TRX Wallet (Garantex — OFAC SDN): TA1hsikRfsgGiW9nEBpT4tEXEySTNYLr2d</div>
+
+  <p>Using the IGRS Crypto Investigation Suite (igrs.xyz/crypto-tracker.html), the following investigative steps were performed:</p>
+
+  <div class="step-block">
+    <div class="step-no">STEP 1 — ADDRESS INPUT</div>
+    <div class="step-title">Enter TRX address, auto-detect Tron chain</div>
+    <p>Paste <code>TA1hsikRfsgGiW9nEBpT4tEXEySTNYLr2d</code> into the IGRS tool. The system auto-detects the Tron chain from the address format (T-prefix, 34 characters) and selects Tron (TRX) automatically. No manual chain selection required.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-no">STEP 2 — COUNTERPARTY MAP</div>
+    <div class="step-title">Identify top senders and recipients</div>
+    <p>The tool queries on-chain transaction data and returns: current balance, total funds received, total sent, transaction count, and the top 10 senders and recipients by volume with INR equivalents. This is equivalent to the blockchain analytics step performed by CCoE — identifying which wallets transacted with the subject address.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-no">STEP 3 — GRAPH VIEW</div>
+    <div class="step-title">Visualise the counterparty network</div>
+    <p>Switch to the Graph Investigator tab. Build a force-directed node graph showing the subject wallet and all its direct counterparties. Click any counterparty node to expand one hop deeper — this is the fund-tracing chain the Gujarat CCoE built across nine accused wallets. Green edges = inflow, red edges = outflow.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-no">STEP 4 — COMMUNITY LABELS</div>
+    <div class="step-title">Tag known entities and share with IGRS community</div>
+    <p>Click the Garantex wallet node and add a community label: "⚠ Scam / Fraud — OFAC SDN Sanctioned — Garantex Russia — Terror Financing links." Labels persist in shared storage and are visible to all IGRS investigators — building a community-sourced threat intelligence layer for Indian LEA.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-no">STEP 5 — PATHFINDER</div>
+    <div class="step-title">Trace connection between victim wallet and suspect wallet</div>
+    <p>If a victim's wallet address is known (from FIR), enter it as Source in PathFinder. Enter the suspect/sanctioned wallet as Destination. The tool performs BFS across counterparty graphs up to 3 hops to determine if and how funds moved between the two wallets — proving the fund flow chain that a prosecution requires.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-no">STEP 6 — LEA REPORT GENERATION</div>
+    <div class="step-title">Export investigation summary + PDF</div>
+    <p>The tool auto-generates a structured LEA Investigation Summary with: subject address, chain, balance, total received/sent in both crypto and INR, risk flags, counterparty data, and legal process recommendations (S.94 BNSS for Indian exchanges, MLAT via CBI for foreign). Export as PDF for FIR annexure or court submission. All data sourced from public blockchain — admissible as electronic evidence with S.63 BSA certificate.</p>
+  </div>
+
+  <div class="demo-cta">
+    <h3>⬡ Try It Yourself — Free, No Login</h3>
+    <p>IGRS Crypto Investigation Suite: BTC · ETH · USDT (TRC-20/ERC-20) · BNB · XRP · SOL · LTC. Graph view, PathFinder, community labels, LEA PDF export.</p>
+    <a href="../crypto-tracker.html" class="btn-demo">Open Crypto Investigation Tool →</a>
+  </div>
+
+  <h2>Legal Framework: What Sections Apply</h2>
+
+  <table>
+    <tr><th>Section</th><th>Applicability</th><th>Trigger</th></tr>
+    <tr><td>S.111(2)(B) BNS</td><td>Aiding terrorist operations through financial channels</td><td>Proved transfers to Hamas/Houthi-linked wallets</td></tr>
+    <tr><td>S.153 BNS</td><td>Waging activities against national safety</td><td>International terror financing via Indian soil</td></tr>
+    <tr><td>S.61 BNS</td><td>Criminal conspiracy</td><td>Organised multi-person operation across states</td></tr>
+    <tr><td>S.66C IT Act</td><td>Identity theft</td><td>Mule accounts used with false/borrowed identities</td></tr>
+    <tr><td>S.66D IT Act</td><td>Cheating by personation using computer</td><td>P2P trading accounts under false identities</td></tr>
+    <tr><td>PMLA S.3/4</td><td>Money laundering</td><td>ED parallel investigation — crypto as laundering vehicle</td></tr>
+    <tr><td>UAPA S.17</td><td>Raising funds for terrorism</td><td>Where Hamas/Houthi receiving entity is specified as terrorist organisation under UAPA</td></tr>
+  </table>
+
+  <h2>Evidence Collection Requirements for Court</h2>
+
+  <div class="callout green">
+    <p><strong>S.63 BSA 2023 certificate mandatory:</strong> All blockchain data presented in court must be accompanied by a certificate under Section 63 of the Bharatiya Sakshya Adhiniyam 2023 (formerly S.65B IEA). The certificate must identify: the tool used for extraction, the query performed, the date/time of extraction, and the operator. Without this, blockchain evidence is inadmissible regardless of how accurate or damning it is.</p>
+  </div>
+
+  <table>
+    <tr><th>Evidence Type</th><th>How to Obtain</th><th>Legal Instrument</th></tr>
+    <tr><td>Wallet transaction history (public chain)</td><td>IGRS Crypto Tool + screenshot with timestamp</td><td>S.63 BSA certificate</td></tr>
+    <tr><td>Exchange KYC of wallet owner</td><td>Notice to Indian exchange (WazirX/CoinDCX/ZebPay)</td><td>S.94 BNSS notice</td></tr>
+    <tr><td>Exchange KYC for foreign wallet</td><td>MLAT request via CBI to jurisdiction where exchange is registered</td><td>MLAT + S.94 BNSS</td></tr>
+    <tr><td>Bank account linked to exchange</td><td>Notice to receiving bank after exchange provides account number</td><td>S.94 BNSS to bank</td></tr>
+    <tr><td>OFAC SDN list records</td><td>Download from sanctionssearch.ofac.treas.gov — public government record</td><td>Self-authenticating public record</td></tr>
+    <tr><td>Wallet freeze (active funds)</td><td>Request exchange to freeze account pending investigation + simultaneous FIR</td><td>FIR + exchange cooperation</td></tr>
+  </table>
+
+  <h2>What Made This Investigation Successful</h2>
+
+  <p>The Gujarat CCoE's approach demonstrates several principles that every cyber investigator tracing crypto should internalise:</p>
+
+  <h3>1. Start from the blockchain, not the suspect</h3>
+  <p>The investigation began with a suspicious blockchain transaction flagged on ARTEMISLAB.CC — not with a named suspect. The blockchain led to the IP address, the IP led to the wallet, the wallet led to the network. This is fundamentally different from traditional investigations and requires the investigator to treat the blockchain as a primary evidence source.</p>
+
+  <h3>2. Cross-reference against sanctions databases</h3>
+  <p>The terror financing angle was discovered only because investigators cross-referenced wallet transaction histories against OFAC and Israel NBCTF records. This step costs nothing and takes minutes — but transforms a PMLA case into a BNS S.111 case. IGRS community labels can serve this function: when any investigator tags a wallet as OFAC-sanctioned, that intelligence is visible to all subsequent investigators encountering the same wallet.</p>
+
+  <h3>3. Follow the fiat off-ramp</h3>
+  <p>Despite the sophistication of the layering, the syndicate's hawala network was the weak link. Physical cash handoffs are the most traceable element once you know the participants — and interrogation of the first arrested (Molani) exposed the entire domestic cash distribution chain. Crypto investigators should always push toward the fiat exit point.</p>
+
+  <h3>4. USDT TRC-20 is not anonymous</h3>
+  <p>Every USDT transfer on the Tron blockchain is permanently recorded and publicly accessible. The notion among criminals that USDT is "untraceable" is false. What offers partial cover is Monero — but even XMR leaves metadata that can support circumstantial investigation. The Gujarat case recovered XMR wallets from physical devices during arrest, bypassing the cryptographic anonymity entirely.</p>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq-block">
+    <div class="faq-q">What is 'dirty crypto' as used by Gujarat CID CCoE?</div>
+    <div class="faq-a">Dirty crypto refers to cryptocurrency derived from or used for illegal activities — including cyber fraud proceeds, dark web narcotics payments, hawala settlements, and terror financing. In the Gujarat case, approximately 30-40% of the ₹226 crore total was classified as dirty crypto. The remainder involved ostensibly legal trading, gold deals, and hawala, but even this was used to provide cover for illegal flows.</div>
+  </div>
+  <div class="faq-block">
+    <div class="faq-q">How can Indian investigators trace USDT transactions?</div>
+    <div class="faq-a">USDT on TRC-20 (Tron) is fully transparent on the Tron blockchain. Indian investigators can trace every transaction using the IGRS Crypto Investigation Suite at igrs.xyz/crypto-tracker.html — no paid tool or login required. The tool shows counterparty wallets, total inflow/outflow, INR equivalent, and generates LEA-ready summaries. For KYC of the exchange account, serve a S.94 BNSS notice to the Indian exchange, or initiate MLAT via CBI for foreign exchanges.</div>
+  </div>
+  <div class="faq-block">
+    <div class="faq-q">Which legal sections apply to crypto terror financing in India?</div>
+    <div class="faq-a">Gujarat CID registered this case under S.111(2)(B) BNS (aiding terrorist operations through financial channels), S.153 BNS (waging activities detrimental to national safety), S.61 BNS (criminal conspiracy), and S.66C/66D of the IT Act. PMLA S.3/4 applies for money laundering aspects investigated by the Enforcement Directorate. UAPA S.17 and S.40 may apply where a specifically designated terrorist organisation is the receiving entity.</div>
+  </div>
+  <div class="faq-block">
+    <div class="faq-q">What is OFAC's SDN list and why does it matter for India?</div>
+    <div class="faq-a">OFAC's SDN list designates individuals, entities, and wallet addresses linked to sanctioned organisations including Hamas, Houthi/Ansar Allah, IRGC-QF, and Garantex. In the Gujarat case, investigators cross-referenced suspect wallets against OFAC's list and found direct transfer links — a fact used to establish the terror financing element and secure international cooperation with Israel, US, and UK agencies.</div>
+  </div>
+
+  <h2>Related Articles</h2>
+  <div class="related-grid">
+    <a class="related-card" href="igrs-108-crypto-fraud-india.html">
+      <div class="rc-cat">CRYPTO INTELLIGENCE</div>
+      <div class="rc-title">Crypto Fraud Patterns in India 2026: Typologies and Tracing Methods</div>
+    </a>
+    <a class="related-card" href="../crypto-tracker.html">
+      <div class="rc-cat">IGRS TOOL</div>
+      <div class="rc-title">IGRS Crypto Investigation Suite — Free Blockchain Tracing Tool</div>
+    </a>
+    <a class="related-card" href="../playbooks.html">
+      <div class="rc-cat">SOP</div>
+      <div class="rc-title">Cryptocurrency Tracing Investigation Playbook — Step by Step</div>
+    </a>
+  </div>
+
+</div>
+
+<footer class="igrs-ftr">
+  <div class="ftr-inner">
+    <div class="ftr-links">
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../privacy-policy.html">Privacy</a>
+      <a href="../terms.html">Terms</a>
+      <a href="../disclaimer.html">Disclaimer</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+</body>
+</html>
