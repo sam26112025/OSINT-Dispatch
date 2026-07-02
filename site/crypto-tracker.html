@@ -703,13 +703,13 @@ main {
     <p class="hero-sub">Trace blockchain addresses across 6 major chains. Map counterparty fund flows, identify top senders/receivers, and generate LEA-ready investigation summaries.</p>
     <div class="chain-grid">
       <div class="chain-pill"><div class="dot" style="background:#f7931a"></div>Bitcoin (BTC)</div>
-      <div class="chain-pill"><div class="dot" style="background:#627eea"></div>Ethereum + ERC-20</div>
-      <div class="chain-pill"><div class="dot" style="background:#eb0029"></div>Tron + TRC-20</div>
-      <div class="chain-pill"><div class="dot" style="background:#f3ba2f"></div>BNB Smart Chain</div>
+      <div class="chain-pill"><div class="dot" style="background:#627eea"></div>ETH + ERC-20 → Explorer</div>
+      <div class="chain-pill"><div class="dot" style="background:#eb0029"></div>Tron + TRC-20 (USDT)</div>
+      <div class="chain-pill"><div class="dot" style="background:#f3ba2f"></div>BNB Smart Chain → Explorer</div>
       <div class="chain-pill"><div class="dot" style="background:#a4b2c1"></div>Litecoin (LTC)</div>
       <div class="chain-pill"><div class="dot" style="background:#00aae4"></div>XRP Ledger</div>
       <div class="chain-pill"><div class="dot" style="background:#9945ff"></div>Solana (SOL)</div>
-      <div class="chain-pill"><div class="dot" style="background:#2775ca"></div>USDT / USDC / DAI</div>
+      <div class="chain-pill"><div class="dot" style="background:#2775ca"></div>USDT / USDC (TRC-20)</div>
     </div>
   </div>
 
@@ -761,12 +761,8 @@ main {
         </div>
 
         <div class="method-note">
-          ⚠ <strong>Method note:</strong> This tool analyses publicly available on-chain data via open blockchain APIs (mempool.space · Blockscout PRO API · Tronscan · Blockchair · XRPL). 
-          Token contract addresses are matched for USDT/USDC/DAI. Sampling cap: ~250 most recent transactions per address. 
-          For KYC/subscriber data, serve notice under <strong>S.94 BNSS</strong> to the relevant exchange. For foreign exchanges, initiate MLAT via CBI.
-        </div>
-        <div class="method-note" id="evmConfigNote" style="border-left-color:var(--amber);display:none">
-          ⚙ <strong>Setup needed:</strong> Ethereum/BNB/ERC-20/BEP-20 lookups require a free Blockscout PRO API key (no credit card). Get one in 2 minutes at <a href="https://dev.blockscout.com/" target="_blank" style="color:var(--amber)">dev.blockscout.com</a> and paste it into <code>BLOCKSCOUT_API_KEY</code> in the page source. Bitcoin, Tron, XRP, Solana, and Litecoin work without any setup.
+          ⚠ <strong>Method note:</strong> This tool analyses publicly available on-chain data via open blockchain APIs (mempool.space · Tronscan · Blockchair · XRPL · Solana RPC). Sampling cap: ~250 most recent transactions per address. For KYC/subscriber data, serve notice under <strong>S.94 BNSS</strong> to the relevant exchange. For foreign exchanges, initiate MLAT via CBI.
+          <br><br>⬡ <strong>ETH / BNB / ERC-20 / BEP-20:</strong> All free EVM indexer APIs block browser-side requests (CORS restriction). Selecting these chains will open the address directly in Etherscan/BSCScan — full history available there. <strong>BTC · TRX · USDT(TRC-20) · XRP · SOL · LTC work fully in-browser.</strong>
         </div>
 
         <div class="status-bar" id="statusBar">
@@ -1055,10 +1051,6 @@ main {
 // ============================================================
 // GLOBALS
 // ============================================================
-// API CONFIG — set this once before deploying
-// Get a free Blockscout PRO API key (no credit card) at https://dev.blockscout.com/
-const BLOCKSCOUT_API_KEY = 'PASTE_YOUR_BLOCKSCOUT_PRO_KEY_HERE';
-const CHAIN_IDS = { eth: 1, bnb: 56 };
 const TRONSCAN_API_KEY = ''; // optional — free key from tronscan.org for higher limits
 
 let prices = {}; // { BTC: { inr: ..., usd: ... }, ... }
@@ -1182,13 +1174,6 @@ function convertNow() {
 
 setInterval(fetchPrices, 60000);
 fetchPrices();
-
-// Show setup banner if EVM chains aren't configured yet
-if(!BLOCKSCOUT_API_KEY || BLOCKSCOUT_API_KEY.startsWith('PASTE_')) {
-  const showNote = () => { const n = document.getElementById('evmConfigNote'); if(n) n.style.display = 'block'; };
-  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', showNote);
-  else showNote();
-}
 
 // ============================================================
 // AUTO-DETECT CHAIN FROM ADDRESS
@@ -1344,115 +1329,30 @@ async function fetchBTC(addr) {
 }
 
 // ============================================================
-// EVM CHAINS (Ethereum + BSC) via Blockscout PRO API
-// Free tier: 100K credits/day, no credit card. Get key at dev.blockscout.com
+// EVM CHAINS (Ethereum + BSC) — CORS limitation note
+// Browser-side fetch to Blockscout PRO API blocked by CORS (no permissive headers)
+// ETH/BNB addresses are redirected to their block explorers directly
 // ============================================================
 async function fetchEVM(addr, chain) {
-  let chainId, explorerBase, symbol, chainLabel, tokenContract;
+  let explorerBase, symbol, chainLabel;
 
   if(chain.startsWith('bnb')) {
-    chainId = CHAIN_IDS.bnb;
-    explorerBase = 'https://bscscan.com';
-    symbol = 'BNB'; chainLabel = 'BNB Smart Chain';
-    if(chain==='bnb-usdt') { tokenContract = BEP20.usdt; symbol='USDT'; }
-    if(chain==='bnb-usdc') { tokenContract = BEP20.usdc; symbol='USDC'; }
+    explorerBase = 'https://bscscan.com/address/';
+    symbol = chain==='bnb-usdt'?'USDT':chain==='bnb-usdc'?'USDC':'BNB';
+    chainLabel = 'BNB Smart Chain';
   } else {
-    chainId = CHAIN_IDS.eth;
-    explorerBase = 'https://etherscan.io';
-    symbol = 'ETH'; chainLabel = 'Ethereum';
-    if(chain==='eth-usdt') { tokenContract = ERC20.usdt; symbol='USDT'; }
-    if(chain==='eth-usdc') { tokenContract = ERC20.usdc; symbol='USDC'; }
-    if(chain==='eth-dai')  { tokenContract = ERC20.dai;  symbol='DAI';  }
+    explorerBase = 'https://etherscan.io/address/';
+    symbol = chain==='eth-usdt'?'USDT':chain==='eth-usdc'?'USDC':chain==='eth-dai'?'DAI':'ETH';
+    chainLabel = 'Ethereum';
   }
 
-  if(!BLOCKSCOUT_API_KEY || BLOCKSCOUT_API_KEY.startsWith('PASTE_')) {
-    throw new Error('Blockscout API key not configured. Get a free key at dev.blockscout.com and add it to the tool config.');
-  }
-
-  const price = prices[symbol]?.inr || prices.ETH?.inr || 0;
-  const base = `https://api.blockscout.com/${chainId}/api/v2`;
-  const keyParam = `apikey=${BLOCKSCOUT_API_KEY}`;
-
-  showStatus(`Fetching ${chainLabel} address data...`);
-
-  // Get address info (balance + tx count)
-  const addrInfo = await fetch(`${base}/addresses/${addr}?${keyParam}`).then(r=>r.json());
-  const bal = addrInfo.coin_balance ? parseInt(addrInfo.coin_balance) / 1e18 : 0;
-
-  // Get transactions (native or token transfers)
-  let txList = [];
-  let decimalDivisor = 1e18;
-
-  if(tokenContract) {
-    showStatus(`Fetching ${symbol} token transfers...`);
-    const url = `${base}/addresses/${addr}/token-transfers?${keyParam}&token=${tokenContract}`;
-    const res = await fetch(url).then(r=>r.json());
-    txList = (res.items || []).map(t => ({
-      hash: t.transaction_hash || t.tx_hash,
-      from: t.from?.hash, to: t.to?.hash,
-      value: t.total?.value || t.total?.amount || '0',
-      timeStamp: t.timestamp ? Math.floor(new Date(t.timestamp).getTime()/1000) : null
-    }));
-    decimalDivisor = (symbol==='USDT'||symbol==='USDC') ? 1e6 : 1e18;
-  } else {
-    const url = `${base}/addresses/${addr}/transactions?${keyParam}&filter=to%7Cfrom`;
-    const res = await fetch(url).then(r=>r.json());
-    txList = (res.items || []).map(t => ({
-      hash: t.hash,
-      from: t.from?.hash, to: t.to?.hash,
-      value: t.value || '0',
-      timeStamp: t.timestamp ? Math.floor(new Date(t.timestamp).getTime()/1000) : null
-    }));
-  }
-
-  showStatus(`Processing ${txList.length} transactions...`);
-
-  const inflowMap = {}, outflowMap = {};
-  const recentTxs = [];
-  let totalReceived = 0, totalSent = 0;
-
-  txList.slice(0,250).forEach(tx => {
-    const isIn = tx.to?.toLowerCase() === addr.toLowerCase();
-    const isOut = tx.from?.toLowerCase() === addr.toLowerCase();
-    const rawVal = parseInt(tx.value||0);
-    const amt = rawVal / decimalDivisor;
-    const time = tx.timeStamp ? new Date(tx.timeStamp*1000) : null;
-    const dir = isIn ? 'in' : isOut ? 'out' : 'self';
-    const counterparty = isIn ? tx.from : tx.to;
-
-    if(isIn) {
-      totalReceived += amt;
-      if(counterparty) {
-        if(!inflowMap[counterparty]) inflowMap[counterparty] = {amt:0,cnt:0};
-        inflowMap[counterparty].amt += amt;
-        inflowMap[counterparty].cnt++;
-      }
-    } else if(isOut) {
-      totalSent += amt;
-      if(counterparty) {
-        if(!outflowMap[counterparty]) outflowMap[counterparty] = {amt:0,cnt:0};
-        outflowMap[counterparty].amt += amt;
-        outflowMap[counterparty].cnt++;
-      }
-    }
-
-    recentTxs.push({
-      time, hash: tx.hash, dir, amt,
-      inr: amt * price, counterparty: counterparty||'—', symbol
-    });
-  });
-
-  return {
-    chain: chainLabel, symbol, addr,
-
-    balance: tokenContract ? '—' : bal,
-    balanceINR: tokenContract ? 0 : bal * price,
-    totalReceived, totalSent,
-    txCount: txList.length,
-    price, inflowMap, outflowMap, recentTxs,
-    explorer: `${explorerBase}/address/${addr}`,
-    txExplorer: `${explorerBase}/tx/`
-  };
+  // Open in explorer — best available free option due to CORS restrictions
+  window.open(explorerBase + addr, '_blank');
+  throw new Error(
+    `${chainLabel} (${symbol}) addresses cannot be fetched directly from the browser due to API CORS restrictions on all available free EVM indexers (Etherscan, Blockscout PRO, BSCScan). ` +
+    `Opening ${explorerBase}${addr} in a new tab for full transaction history. ` +
+    `For BTC · TRX · USDT(TRC-20) · XRP · SOL · LTC — use those chain options above, they work fully in-browser.`
+  );
 }
 
 // ============================================================
