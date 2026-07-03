@@ -612,7 +612,7 @@ function doLogin(){
 
 function showMod(id,btn){
   // Stop map drift if leaving AIS
-  if(id!=='ais'&&_driftInterval){clearInterval(_driftInterval);_driftInterval=null;}
+  if(id!=='ais'){if(_mapInterval){clearInterval(_mapInterval);_mapInterval=null;}if(_driftInterval){clearInterval(_driftInterval);_driftInterval=null;}}
   // Update sidebar active state
   document.querySelectorAll('.sb-btn').forEach(b=>b.classList.remove('active'));
   if(btn)btn.classList.add('active');
@@ -791,6 +791,8 @@ function drawWorldMap(ctx,W,H){
 
 // ── MAP STATE ──
 var _cvs=null,_ctx=null,_W=0,_H=0;
+var _panX=0,_panY=0,_dragStart={x:0,y:0},_panStart={x:0,y:0};
+var _darkBlink=0,_driftInterval=null;
 var _zoom=1,_panX=0,_panY=0;
 var _dragging=false,_dragStart={x:0,y:0},_panStart={x:0,y:0};
 var _tooltip=null,_tooltipV=null;
