@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TradeMatrix — Maritime & Container Trade Intelligence</title>
+<style>
+/* Critical render-blocking styles — inline for instant paint */
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:#03080f !important;color:#e2e8f0 !important;min-height:100vh;}
+#site{display:block !important;visibility:visible !important;opacity:1 !important;position:relative;z-index:2;}
+#login,#dash{display:none;}
+nav{position:fixed;top:0;left:0;right:0;height:60px;background:rgba(3,8,15,.95);z-index:300;
+    display:flex;align-items:center;padding:0 24px;}
+.nav-logo{color:#fff;font-size:20px;font-weight:800;}
+.nav-logo span{color:#00c8ff;}
+</style>
 <meta name="description" content="Free maritime intelligence platform. AIS vessel tracking, container tracing, port performance, GHG/CII compliance, customs manifests, sanctions screening.">
 <meta name="keywords" content="maritime intelligence, vessel tracking, AIS, container tracing, port intelligence, trade intelligence, DCSA, ship tracking India, maritime OSINT">
 <link rel="canonical" href="https://maritime.igrs.xyz/">
@@ -15,6 +26,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-TCBLVSTG97"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-TCBLVSTG97');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -24,11 +37,11 @@
   --red:#ef4444;--mono:'JetBrains Mono',monospace;--display:'Syne',sans-serif;
   --body:'Space Grotesk',system-ui,sans-serif;
 }
-body{background:var(--deep);color:#e2e8f0;font-family:var(--body);min-height:100vh;overflow-x:hidden;-webkit-text-size-adjust:100%;}
-canvas#oc{position:fixed;inset:0;z-index:0;opacity:.35;pointer-events:none;}
+body{background:#03080f;color:#e2e8f0;font-family:'Space Grotesk',system-ui,sans-serif;min-height:100vh;overflow-x:hidden;-webkit-text-size-adjust:100%;}
+canvas#oc{position:fixed;inset:0;z-index:-1;opacity:.35;pointer-events:none;}
 
 /* ── MARKETING SITE ─────────────────────────────────── */
-#site{position:relative;z-index:1;isolation:isolate;}
+#site{position:relative;z-index:2;}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;
   background:rgba(3,8,15,.9);backdrop-filter:blur(14px);
   border-bottom:1px solid rgba(0,200,255,.08);
@@ -465,12 +478,7 @@ footer a{color:var(--wake);text-decoration:none;}
 @media(max-width:768px){
   canvas#oc{display:none !important;} /* disable canvas on mobile — big perf + rendering win */
   body{background:var(--deep);}
-  #site{
-    position:relative;z-index:2;
-    background:transparent;
-    -webkit-transform:translateZ(0);
-    transform:translateZ(0);
-  }
+  #site{position:relative;z-index:2;}
   #login{z-index:210 !important;}
   #dash{z-index:1 !important;}
   nav{z-index:300 !important;}
