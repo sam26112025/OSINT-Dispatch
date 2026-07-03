@@ -252,12 +252,162 @@ footer a{color:var(--wake);text-decoration:none;}
 /* Wide panel spanning full width */
 .full{grid-column:1/-1;}
 
+
+/* ── TABLET (≤1024px) ── */
+@media(max-width:1024px){
+  .hero h1.hero-h{font-size:clamp(36px,5vw,64px);}
+  .cap-grid{grid-template-columns:repeat(2,1fr);}
+  .stats{grid-template-columns:repeat(2,1fr);}
+  .stk-tbl{font-size:12px;}
+}
+
+/* ── MOBILE (≤768px) ── */
 @media(max-width:768px){
+  /* NAV */
+  nav{padding:0 14px;height:52px;}
+  .nav-logo{font-size:16px;}
+  nav .nav-links{
+    display:none;position:fixed;top:52px;left:0;right:0;
+    background:rgba(3,8,15,.98);backdrop-filter:blur(14px);
+    flex-direction:column;padding:12px 0;gap:0;
+    border-bottom:1px solid rgba(0,200,255,.1);z-index:200;
+  }
+  nav .nav-links.open{display:flex;}
+  nav .nav-links a{
+    padding:13px 20px;border-bottom:1px solid rgba(255,255,255,.04);
+    font-size:14px;min-height:44px;display:flex;align-items:center;
+    color:#e2e8f0;
+  }
+  nav .nav-links a:last-child{border:none;}
+  .nav-cta{
+    margin:10px 16px 6px;width:calc(100% - 32px);
+    text-align:center;border-radius:4px;
+    display:none; /* hide in mobile nav — separate CTA on page */
+  }
+
+  /* HAMBURGER */
+  .mob-ham{
+    display:flex;flex-direction:column;gap:5px;
+    background:none;border:none;cursor:pointer;
+    padding:8px;margin-left:auto;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .mob-ham span{
+    display:block;width:22px;height:2px;
+    background:#00c8ff;border-radius:2px;transition:all .3s;
+  }
+  .mob-ham.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+  .mob-ham.active span:nth-child(2){opacity:0;}
+  .mob-ham.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+  /* HERO / MARKETING */
+  .hero{padding:70px 16px 40px;min-height:auto;}
+  h1.hero-h{font-size:clamp(28px,8vw,44px)!important;line-height:1.1;}
+  .hero-sub{font-size:14px!important;}
+  .hero-btns{flex-direction:column;gap:10px;}
+  .btn-p,.btn-g{width:100%;text-align:center;min-height:44px;padding:12px 20px;}
+
+  /* STATS BAND */
+  .stats{grid-template-columns:repeat(2,1fr);gap:20px;padding:32px 16px;}
+  .sv{font-size:32px!important;}
+
+  /* CAPABILITIES GRID */
+  .cap-grid{grid-template-columns:1fr;gap:10px;}
+  .cap-card{padding:18px;}
+
+  /* DATA TABLE */
+  .stk-tbl{min-width:600px;}
+  .stk-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+
+  /* TICKER */
+  .ticker-wrap{display:none;} /* hide on mobile — space concern */
+
+  /* CTA BANNER */
+  .cta-ban{padding:28px 16px;}
+  .cta-ban h2{font-size:22px!important;}
+
+  /* LOGIN CARD */
+  .lc{width:calc(100% - 32px);padding:32px 20px;margin:16px;}
+  .lt{font-size:22px;}
+
+  /* DASHBOARD LAYOUT */
   .dash-body{grid-template-columns:1fr;}
-  .sidebar{display:none;}
-  nav .nav-links{display:none;}
-  .form-row{flex-direction:column;}
-  .ff{min-width:unset;}
+  .sidebar{display:none!important;}
+  .dash-main{padding:16px 12px!important;background:#f8fafc;}
+  .mod-header{flex-direction:column;align-items:flex-start;gap:8px;}
+  .mod-title{font-size:18px!important;}
+
+  /* MOBILE SIDEBAR TOGGLE */
+  .mob-sidebar-btn{
+    display:flex;align-items:center;gap:8px;
+    background:#0a1628;border:1px solid rgba(0,200,255,.2);
+    color:#00c8ff;font-size:12px;font-family:var(--mono);
+    padding:8px 14px;border-radius:4px;cursor:pointer;
+    margin-bottom:12px;letter-spacing:.06em;
+  }
+  .mobile-sidebar{
+    display:none;background:#06141f;
+    border:1px solid rgba(30,58,95,.5);
+    border-radius:6px;padding:12px;margin-bottom:16px;
+  }
+  .mobile-sidebar.open{display:block;}
+  .mobile-sidebar .sb-grp{padding:0;margin-bottom:12px;}
+  .mobile-sidebar .sb-btn{padding:11px 10px;font-size:13px;}
+
+  /* MAP */
+  #vessel-map{height:260px!important;}
+  .map-overlay{font-size:10px!important;padding:7px 10px;min-width:140px;}
+  .map-overlay-title{font-size:8px;}
+  .map-stat{font-size:10px;}
+  .map-legend{padding:6px 10px;}
+  .map-legend div{font-size:9px!important;margin-bottom:2px;}
+
+  /* MODULE CARDS */
+  .mod-panel{padding:14px;}
+  .mod-panel h3{font-size:14px;}
+  .module-grid{grid-template-columns:1fr!important;}
+
+  /* FORMS */
+  .form-row{flex-direction:column;gap:8px;}
+  .ff{min-width:unset;width:100%;}
+  .fi,.fsel{width:100%;min-height:44px;font-size:16px!important;}
+  .tbtn{min-height:44px;width:100%;}
+  .tbtn.sm{min-height:36px;width:auto;}
+
+  /* RESULT BOXES */
+  .res-box{font-size:12px;}
+  .kv{flex-direction:column;gap:2px;padding:7px 10px;}
+  .kk{min-width:unset;font-size:10px;color:#94a3b8;}
+  .kv-v{font-size:12px;}
+
+  /* TABLES IN MODULES */
+  .mod-panel table{min-width:480px;}
+  .mod-panel > div[style*="overflow"]{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+
+  /* SOURCE CARDS */
+  .src-grid{grid-template-columns:1fr!important;}
+  .src-card{padding:12px 14px;}
+
+  /* REPORT */
+  .report{padding:16px 12px;}
+  .rep-tit{font-size:16px;}
+  .rep-hdr{padding-bottom:12px;}
+
+  /* MISC */
+  footer{padding:20px 16px;font-size:10px;}
+  .live-badge{font-size:10px;padding:3px 8px;}
+  .tag{font-size:9px;padding:2px 6px;}
+}
+
+/* ── SMALL MOBILE (≤480px) ── */
+@media(max-width:480px){
+  h1.hero-h{font-size:clamp(24px,8vw,34px)!important;}
+  .stats{grid-template-columns:1fr;}
+  .lc{padding:24px 16px;}
+  #vessel-map{height:220px!important;}
+  .map-legend{display:none;} /* hide on very small screens */
+  .dash-brand{font-size:15px;}
+  .dash-brand span{font-size:11px;}
 }
 
 /* ── MAP ─────────────────────────────────────────────── */
@@ -364,7 +514,7 @@ footer a{color:var(--wake);text-decoration:none;}
     <div class="sec-t">No black boxes.</div>
     <div class="sec-s">Every data source documented, linked, and queryable.</div>
     <div style="overflow-x:auto">
-      <table class="stk-tbl" id="stk-tbl">
+      <div class="stk-wrap" style="overflow-x:auto;-webkit-overflow-scrolling:touch;"><table class="stk-tbl" id="stk-tbl">
         <thead><tr><th>Source</th><th>Coverage</th><th>Tier</th><th>URL</th></tr></thead>
         <tbody id="stk-body"></tbody>
       </table>
@@ -441,6 +591,32 @@ footer a{color:var(--wake);text-decoration:none;}
 
     <!-- MAIN CONTENT -->
     <div class="dash-main">
+      <!-- Mobile module nav -->
+      <div id="mobSidebarWrap" style="display:none">
+        <button class="mob-sidebar-btn" onclick="document.getElementById('mobSidebarMenu').classList.toggle('open')">
+          ☰ &nbsp;Modules
+        </button>
+        <div class="mobile-sidebar" id="mobSidebarMenu">
+          <div class="sb-grp">
+            <div class="sb-grp-lbl">Container Tracking</div>
+            <button class="sb-btn" onclick="showMod('ais',this);document.getElementById('mobSidebarMenu').classList.remove('open')"><span class="sb-icon">🛰️</span>AIS Tracking</button>
+            <button class="sb-btn" onclick="showMod('container',this);document.getElementById('mobSidebarMenu').classList.remove('open')"><span class="sb-icon">📦</span>Container Trace</button>
+            <button class="sb-btn" onclick="showMod('port',this);document.getElementById('mobSidebarMenu').classList.remove('open')"><span class="sb-icon">🏭</span>Port Performance</button>
+            <button class="sb-btn" onclick="showMod('registry',this);document.getElementById('mobSidebarMenu').classList.remove('open')"><span class="sb-icon">📋</span>Vessel Registry</button>
+          </div>
+          <div class="sb-grp">
+            <div class="sb-grp-lbl">Compliance & Risk</div>
+            <button class="sb-btn" onclick="showMod('ghg',this);document.getElementById('mobSidebarMenu').classList.remove('open')"><span class="sb-icon">🌿</span>GHG / CII</button>
+            <button class="sb-btn" onclick="showMod('customs',this);document.getElementById('mobSidebarMenu').classList.remove('open')"><span class="sb-icon">🛃</span>Customs Manifests</button>
+            <button class="sb-btn" onclick="showMod('sanctions',this);document.getElementById('mobSidebarMenu').classList.remove('open')"><span class="sb-icon">🚨</span>Sanctions Screen</button>
+            <button class="sb-btn" onclick="showMod('report',this);document.getElementById('mobSidebarMenu').classList.remove('open')"><span class="sb-icon">📄</span>Intel Report</button>
+          </div>
+          <div class="sb-grp">
+            <div class="sb-grp-lbl">Reference</div>
+            <button class="sb-btn" onclick="showMod('stack',this);document.getElementById('mobSidebarMenu').classList.remove('open')"><span class="sb-icon">🗄️</span>Free Data Stack</button>
+          </div>
+        </div>
+      </div>
       <div class="mod-header">
         <div><div class="mod-title" id="mod-title">AIS Tracking</div><div class="mod-sub">TradeMatrix Maritime Intelligence · Open Data Layer</div></div>
         <div class="live-badge"><span class="ld"></span>LIVE DATA &nbsp;<span id="ts" style="color:#94a3b8"></span></div>
@@ -1556,5 +1732,17 @@ MODULES.ais=function(el){
 };
 
 </script>
+
+<script>
+(function(){
+  function toggleMobSidebar(){
+    var w=document.getElementById('mobSidebarWrap');
+    if(w)w.style.display=window.innerWidth<=768?'block':'none';
+  }
+  toggleMobSidebar();
+  window.addEventListener('resize',toggleMobSidebar);
+})();
+</script>
+</div>
 </body>
 </html>
