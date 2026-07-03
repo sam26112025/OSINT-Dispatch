@@ -20,7 +20,7 @@ nav{position:fixed;top:0;left:0;right:0;height:60px;background:rgba(3,8,15,.95);
   canvas#oc{display:none!important;}
   #site{position:relative;z-index:2;background:var(--deep);}
   #login{z-index:210!important;}
-  #dash{z-index:5!important;}
+  
   nav{z-index:300!important;padding:0 14px;height:52px;}
   .nav-logo{font-size:16px;}
   nav .nav-links{display:none;position:fixed;top:52px;left:0;right:0;
@@ -210,7 +210,7 @@ footer a{color:var(--wake);text-decoration:none;}
 .back-link span:hover{color:var(--wake);}
 
 /* ── DASHBOARD ──────────────────────────────────────── */
-#dash{display:none;}
+
 #dash.show{display:block;}
 .dash-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;
   background:rgba(3,8,15,.95);backdrop-filter:blur(14px);
@@ -538,7 +538,7 @@ footer a{color:var(--wake);text-decoration:none;}
   body{background:var(--deep);}
   #site{position:relative;z-index:2;}
   #login{z-index:210 !important;}
-  #dash{z-index:1 !important;}
+  
   nav{z-index:300 !important;}
 }
 </style>
@@ -855,11 +855,15 @@ function hideLogin(){
 function showDash(){
   document.getElementById('login').classList.remove('show');
   document.getElementById('site').style.display='none';
-  document.getElementById('dash').classList.add('show');
+  var d=document.getElementById('dash');
+  d.classList.add('show');
+  d.style.display='block'; // Force display for mobile
   showMod('ais',document.querySelector('.sb-btn'));
 }
 function hideDash(){
-  document.getElementById('dash').classList.remove('show');
+  var _dh=document.getElementById('dash');
+  _dh.classList.remove('show');
+  _dh.style.display='';
   document.getElementById('site').style.display='';
   document.getElementById('login').classList.remove('show');
 }
