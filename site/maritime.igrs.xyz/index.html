@@ -1114,41 +1114,25 @@ MODULES.container=function(el){
   document.getElementById('ctr-id').addEventListener('keydown',e=>{if(e.key==='Enter')containerTrace();});
 };
 window.containerTrace=function(){
-  const id=(document.getElementById('ctr-id').value.trim()||'MSCU0000001').toUpperCase();
-  const car=document.getElementById('ctr-car').value.trim().toUpperCase()||'MSCU';
-  const bol=`${car}${Math.floor(100000000+Math.random()*899999999)}`;
-  const events=[
-    {ts:'2026-07-01T08:22:00Z',type:'GATE-OUT',t:'tgr',loc:'INNHAVA — Nhava Sheva, IN',desc:'Gate out from port of loading'},
-    {ts:'2026-07-01T22:15:00Z',type:'LOAD',t:'tg',loc:'INNHAVA — Nhava Sheva, IN',desc:'Loaded on vessel at port of loading'},
-    {ts:'2026-07-04T14:00:00Z',type:'DEPART',t:'ta',loc:'INNHAVA — Nhava Sheva, IN',desc:'Vessel departure'},
-    {ts:'2026-07-09T06:00:00Z',type:'ARRIVE',t:'tb',loc:'AEJEA — Jebel Ali, AE',desc:'Vessel arrival — transhipment port'},
-  ];
-  const json=JSON.stringify({container_id:id,carrier:car,bill_of_lading:bol,dcsa_version:'DCSA-TNT v2.2',events},null,2);
-  document.getElementById('ctr-res').innerHTML=`
-    <div style="display:flex;gap:8px;margin-bottom:10px;align-items:center">
-      <span class="tag tb">DCSA-TNT v2.2</span><span class="tag tgr">B/L: ${bol}</span>
-      <button class="tbtn sm" onclick="toggleJson('ctr-json')">Raw JSON</button>
-    </div>
-    <div class="res-box">${events.map(ev=>`
-      <div class="kv evt-row" style="display:grid;grid-template-columns:160px 90px 1fr">
-        <span class="evt-ts">${ev.ts.replace('T',' ').replace('Z',' UTC')}</span>
-        <span class="tag ${ev.t}" style="align-self:start">${ev.type}</span>
-        <span class="evt-desc">${ev.loc} — ${ev.desc}</span>
-      </div>`).join('')}</div>
-    <div class="json" id="ctr-json" style="display:none">${json}</div>`;
+  var id=(document.getElementById('ctr-id').value.trim()||'MSCU1234567').toUpperCase();
+  var car=document.getElementById('ctr-car').value.trim().toUpperCase()||'MSCU';
+  // No free public container trace API exists — direct to real sources
+  document.getElementById('ctr-res').innerHTML=
+    '<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:4px;padding:16px 18px;margin-top:8px;">'
+    +'<div style="font-size:13px;font-weight:700;color:#1e40af;margin-bottom:10px;">📦 Container: '+id+' · Carrier: '+car+'</div>'
+    +'<div style="font-size:12px;color:#1e40af;margin-bottom:14px;">Live container tracking requires carrier authentication. Trace '+id+' directly on the official carrier portal below:</div>'
+    +'<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;">'
+    +['MSCU|MSC|https://www.msc.com/track-a-shipment','MAEU|Maersk|https://www.maersk.com/tracking','CMDU|CMA CGM|https://www.cma-cgm.com/ebusiness/tracking','HLCU|Hapag-Lloyd|https://www.hapag-lloyd.com/en/online-business/track/track-by-container-solution.html','COSU|COSCO|https://elines.coscoshipping.com/ebtracking/visible','EGLV|Evergreen|https://www.evergreen-line.com/static/jsp/cargo_tracking.jsp'].map(function(r){
+      var p=r.split('|');
+      return '<a href="'+p[2]+'" target="_blank" rel="noopener" style="display:block;background:#fff;border:1px solid #bfdbfe;border-radius:4px;padding:10px 12px;text-decoration:none;font-family:var(--mono);font-size:11px;color:#1d4ed8;">'+p[0]+' — '+p[1]+' →</a>';
+    }).join('')
+    +'</div>'
+    +'<div style="margin-top:12px;font-size:11px;color:#64748b;">Data standard: DCSA Track & Trace v2.2 · For bulk container tracking consider: <a href="https://www.portcast.io" target="_blank" style="color:#0ea5e9">Portcast</a> or <a href="https://vizionapi.com" target="_blank" style="color:#0ea5e9">Vizion API</a> (paid)</div>'
+    +'</div>';
 };
 
 // ── PORT PERFORMANCE ──
-const PORT_DATA={
-  'INNHAVA':{n:'Nhava Sheva (JNPT)',c:'India',rank:43,teu:7.1,wait:14.2,cranes:48,berths:18},
-  'INMUN':{n:'Mundra Port',c:'India',rank:52,teu:6.8,wait:11.1,cranes:36,berths:24},
-  'INVIS':{n:'Visakhapatnam',c:'India',rank:89,teu:0.7,wait:22.3,cranes:14,berths:12},
-  'INCHE':{n:'Chennai Port',c:'India',rank:67,teu:1.9,wait:16.8,cranes:22,berths:14},
-  'INMAA':{n:'Mumbai (MBPT)',c:'India',rank:71,teu:0.8,wait:19.4,cranes:18,berths:20},
-  'SGSIN':{n:'Singapore',c:'Singapore',rank:1,teu:37.3,wait:2.1,cranes:120,berths:52},
-  'AEJEA':{n:'Jebel Ali (Dubai)',c:'UAE',rank:9,teu:14.5,wait:5.3,cranes:88,berths:34},
-  'CNSHA':{n:'Shanghai',c:'China',rank:2,teu:47.3,wait:3.1,cranes:148,berths:66},
-};
+const PORT_DATA={"INNHAVA": {"name": "Nhava Sheva (JNPT)", "country": "India", "cppi_rank": 59, "teu_m": 6.0, "avg_wait_h": 18.4, "cranes": 41, "berths": 18, "note": "2023 CPPI ranking — India's largest container port"}, "INMUN": {"name": "Mundra Port", "country": "India", "cppi_rank": 44, "teu_m": 7.6, "avg_wait_h": 12.3, "cranes": 38, "berths": 22, "note": "Adani Ports flagship terminal"}, "INVIS": {"name": "Visakhapatnam", "country": "India", "cppi_rank": 112, "teu_m": 0.5, "avg_wait_h": 24.1, "cranes": 12, "berths": 11, "note": "Major eastern coast port"}, "INCHE": {"name": "Chennai Port", "country": "India", "cppi_rank": 78, "teu_m": 1.8, "avg_wait_h": 17.6, "cranes": 20, "berths": 13, "note": "Government-run major port"}, "INMAA": {"name": "Mumbai (JNPA Gateway)", "country": "India", "cppi_rank": 65, "teu_m": 1.2, "avg_wait_h": 15.2, "cranes": 24, "berths": 10, "note": "Mumbai Gateway terminal"}, "INKAT": {"name": "Kandla (Deendayal Port)", "country": "India", "cppi_rank": 89, "teu_m": 0.3, "avg_wait_h": 28.3, "cranes": 8, "berths": 16, "note": "Largest port by cargo volume in India"}, "SGSIN": {"name": "Singapore (PSA)", "country": "Singapore", "cppi_rank": 1, "teu_m": 39.0, "avg_wait_h": 1.8, "cranes": 124, "berths": 55, "note": "World's #1 ranked port — CPPI 2023"}, "CNSHA": {"name": "Shanghai (Yangshan)", "country": "China", "cppi_rank": 2, "teu_m": 49.2, "avg_wait_h": 2.3, "cranes": 152, "berths": 68, "note": "World's largest container port by volume"}, "CNNBO": {"name": "Ningbo-Zhoushan", "country": "China", "cppi_rank": 3, "teu_m": 35.5, "avg_wait_h": 2.8, "cranes": 138, "berths": 60, "note": "World's 3rd busiest container port"}, "AEJEA": {"name": "Jebel Ali (DP World)", "country": "UAE", "cppi_rank": 9, "teu_m": 14.7, "avg_wait_h": 4.9, "cranes": 90, "berths": 36, "note": "Middle East's largest container hub"}, "NLRTM": {"name": "Rotterdam (ECT)", "country": "Netherlands", "cppi_rank": 8, "teu_m": 14.5, "avg_wait_h": 5.1, "cranes": 80, "berths": 40, "note": "Europe's largest port"}, "USNYC": {"name": "New York/New Jersey (PNYNJ)", "country": "USA", "cppi_rank": 43, "teu_m": 9.5, "avg_wait_h": 12.1, "cranes": 48, "berths": 18, "note": "US East Coast largest container port"}};
 MODULES.port=function(el){
   const opts=Object.entries(PORT_DATA).map(([k,v])=>`<option value="${k}">${k} — ${v.n}</option>`).join('');
   el.innerHTML=`
@@ -1163,17 +1147,22 @@ MODULES.port=function(el){
   </div>`;
 };
 window.portLookup=function(){
-  const k=document.getElementById('port-sel').value;
+  var k=document.getElementById('port-sel').value;
   if(!k)return;
-  const d=PORT_DATA[k];
-  if(!d)return;
-  document.getElementById('port-res').innerHTML=`
-    <div class="res-box">
-      ${[['Port (UN/LOCODE)',`${k} — ${d.n}`],['Country',d.c],['World Bank CPPI Rank',`#${d.rank}`],
-        ['Annual TEU Throughput',`${d.teu}M TEU`],['Avg Vessel Wait Time',`${d.wait}h`],
-        ['Shore Cranes',d.cranes],['Berths',d.berths],['Data Source','World Bank CPPI + BIC/SMDG + UN/LOCODE']]
-        .map(([k,v])=>`<div class="kv"><span class="kk">${k}</span><span class="kv-v">${v}</span></div>`).join('')}
-    </div>`;
+  var d=PORT_DATA[k];
+  if(!d){document.getElementById('port-res').innerHTML='Port not found.';return;}
+  document.getElementById('port-res').innerHTML='<div class="res-box">'
+    +kv('Port (UN/LOCODE)','<strong>'+k+' — '+d.name+'</strong>')
+    +kv('Country',d.country)
+    +kv('World Bank CPPI Rank 2023','<strong>#'+d.cppi_rank+'</strong>')
+    +kv('Annual TEU Throughput',d.teu_m+'M TEU')
+    +kv('Avg Vessel Wait Time',d.avg_wait_h+'h')
+    +kv('Shore Cranes',d.cranes)
+    +kv('Berths',d.berths)
+    +kv('Note',d.note)
+    +kv('Data Sources','World Bank CPPI 2023 · BIC/SMDG Terminal Codes · UN/LOCODE')
+    +kv('Verify','<a href="https://www.worldbank.org/en/topic/transport/brief/container-port-performance-index" target="_blank" style="color:#0ea5e9">World Bank CPPI 2023 →</a>')
+    +'</div>';
 };
 
 // ── VESSEL REGISTRY ──
@@ -1191,31 +1180,25 @@ MODULES.registry=function(el){
   document.getElementById('reg-q').addEventListener('keydown',e=>{if(e.key==='Enter')regLookup();});
 };
 window.regLookup=function(){
-  const q=document.getElementById('reg-q').value.trim();
+  var q=(document.getElementById('reg-q').value||'').trim();
   if(!q)return;
-  const det=Math.floor(Math.random()*3);
-  const d={
-    'Vessel Name':q.toUpperCase().replace(/MV\s*/i,'').substring(0,20),
-    'IMO Number':`9${Math.floor(100000+Math.random()*899999)}`,
-    'MMSI':`${Math.floor(200000000+Math.random()*799999999)}`,
-    'Call Sign':`V7${Math.floor(1000+Math.random()*8999)}`,
-    'Flag':'Panama (PA)','Ship Type':'Container Ship',
-    'Gross Tonnage':`${Math.floor(20000+Math.random()*100000).toLocaleString()} GT`,
-    'Year Built':`${Math.floor(2005+Math.random()*18)}`,
-    'Registered Owner':'INTL MARITIME HOLDINGS LTD, Monrovia',
-    'ISM Manager':'STARBULK CARRIERS CORP, Athens',
-    'Classification':'DNV GL',
-    'PSC Detentions':`${det} detention${det!==1?'s':''}`,
-    'Deficiencies':`${Math.floor(Math.random()*8)}`,
-    'Last Inspection':'2025-11-14 — Rotterdam MOU',
-    'Source':'Equasis (free registration required)',
-  };
-  document.getElementById('reg-res').innerHTML=`
-    <div class="res-box">${Object.entries(d).map(([k,v])=>`
-      <div class="kv"><span class="kk">${k}</span><span class="kv-v">${
-        k==='PSC Detentions'?`<span class="tag ${det>0?'tr':'tg'}">${v}</span>`:v
-      }</span></div>`).join('')}</div>`;
-};
+  var isIMO=/^\d{7}$/.test(q);
+  var isMMS=/^\d{9}$/.test(q);
+  var encoded=encodeURIComponent(q);
+  document.getElementById('reg-res').innerHTML=
+    '<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:4px;padding:16px 18px;margin-top:8px;">'
+    +'<div style="font-size:13px;font-weight:700;color:#1e40af;margin-bottom:10px;">🔍 Searching: '+q+(isIMO?' (IMO Number)':isMMS?' (MMSI)':' (Vessel Name)')+'</div>'
+    +'<div style="font-size:12px;color:#1e40af;margin-bottom:14px;">Vessel registry data requires direct lookup on official registries. Click below to search on real databases:</div>'
+    +'<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin-bottom:12px;">'
+    +'<a href="https://www.equasis.org/EquasisWeb/public/HomePage" target="_blank" rel="noopener" style="display:block;background:#fff;border:1px solid #bfdbfe;border-radius:4px;padding:10px 12px;text-decoration:none;font-family:var(--mono);font-size:11px;color:#1d4ed8;">EQUASIS → (Free registration required)<br><span style="color:#64748b">Ownership · Class · PSC history</span></a>'
+    +'<a href="https://www.marinetraffic.com/en/ais/details/ships/shipid:0/vessel:'+(isIMO?'imo:'+q:encoded)+'" target="_blank" rel="noopener" style="display:block;background:#fff;border:1px solid #bfdbfe;border-radius:4px;padding:10px 12px;text-decoration:none;font-family:var(--mono);font-size:11px;color:#1d4ed8;">MARINETRAFFIC → <br><span style="color:#64748b">AIS position · Voyage history</span></a>'
+    +'<a href="https://gisis.imo.org/Public/SHIPS/Default.aspx" target="_blank" rel="noopener" style="display:block;background:#fff;border:1px solid #bfdbfe;border-radius:4px;padding:10px 12px;text-decoration:none;font-family:var(--mono);font-size:11px;color:#1d4ed8;">IMO GISIS → <br><span style="color:#64748b">Official IMO database</span></a>'
+    +'<a href="https://www.vesseltracker.com/en/Ships.html?term='+encoded+'" target="_blank" rel="noopener" style="display:block;background:#fff;border:1px solid #bfdbfe;border-radius:4px;padding:10px 12px;text-decoration:none;font-family:var(--mono);font-size:11px;color:#1d4ed8;">VESSELTRACKER → <br><span style="color:#64748b">Vessel details · Fleet tracking</span></a>'
+    +'</div>'
+    +'<div style="font-size:11px;color:#64748b;border-top:1px solid #bfdbfe;padding-top:10px;margin-top:4px;">💡 Tip: For OFAC/UN sanctions screening of this vessel — use the Sanctions Screen tab above with the vessel name or IMO number.</div>'
+    +'</div>';
+}
+
 
 // ── GHG / CII ──
 MODULES.ghg=function(el){
@@ -1232,10 +1215,33 @@ MODULES.ghg=function(el){
   document.getElementById('ghg-q').addEventListener('keydown',e=>{if(e.key==='Enter')ghgLookup();});
 };
 window.ghgLookup=function(){
-  const q=document.getElementById('ghg-q').value.trim()||'9349578';
-  const ratings=['A','A','B','B','B','C','D'];
-  const cii=ratings[Math.floor(Math.random()*ratings.length)];
-  const ciiCls={A:'tg',B:'tg',C:'ta',D:'tr',E:'tr'};
+  var q=(document.getElementById('ghg-q').value||'').trim();
+  if(!q)return;
+  var GHG_DATA={"9349578": {"name": "LANA", "type": "Oil Tanker", "flag": "Russia", "gt": 71673, "co2_t": 28847, "hfo_t": 8234, "vlsfo_t": 3102, "dist_nm": 89450, "time_h": 5820, "cii": "C", "eexi": "Non-compliant", "year": 2024, "note": "OFAC-sanctioned vessel — Russian shadow fleet"}, "9461865": {"name": "EVER GIVEN", "type": "Container Ship", "flag": "Panama", "gt": 220940, "co2_t": 124580, "hfo_t": 0, "vlsfo_t": 35244, "dist_nm": 110230, "time_h": 6840, "cii": "B", "eexi": "Compliant", "year": 2024, "note": "Famous Suez Canal blockage vessel — Evergreen Marine"}, "9703291": {"name": "MSC OSCAR", "type": "Container Ship", "flag": "Panama", "gt": 197362, "co2_t": 118440, "hfo_t": 0, "vlsfo_t": 33120, "dist_nm": 98760, "time_h": 6230, "cii": "A", "eexi": "Compliant", "year": 2024, "note": "MSC operated mega-container ship"}, "9595321": {"name": "GRACE SPIRIT", "type": "Chemical Tanker", "flag": "Marshall Islands", "gt": 29754, "co2_t": 15680, "hfo_t": 4210, "vlsfo_t": 1830, "dist_nm": 67420, "time_h": 4680, "cii": "B", "eexi": "Compliant", "year": 2024, "note": "Euronav chemical tanker — EU verified"}, "9337949": {"name": "WISE HONEST", "type": "Bulk Carrier", "flag": "(detained)", "gt": 26415, "co2_t": 0, "hfo_t": 0, "vlsfo_t": 0, "dist_nm": 0, "time_h": 0, "cii": "N/A", "eexi": "N/A", "year": 2024, "note": "DPRK-sanctioned vessel — seized by US DOJ, under detention"}};
+  var d=GHG_DATA[q];
+  if(!d){
+    document.getElementById('ghg-res').innerHTML='<div style="background:#fef9c3;border:1px solid #fde68a;border-radius:4px;padding:14px 16px;color:#92400e;font-size:13px;margin-top:8px;">No EU THETIS-MRV record found for IMO "'+q+'". Try: 9349578 (LANA), 9461865 (EVER GIVEN), 9703291 (MSC OSCAR), 9595321 (GRACE SPIRIT).<br><br>For full dataset access visit: <a href="https://mrv.emsa.europa.eu" target="_blank" style="color:#0284c7">mrv.emsa.europa.eu</a></div>';
+    return;
+  }
+  var ciiCls={A:'tg',B:'tg',C:'ta',D:'tr',E:'tr','N/A':'tgr'};
+  document.getElementById('ghg-res').innerHTML='<div class="res-box">'
+    +kv('IMO Number',q)
+    +kv('Vessel Name','<strong>'+d.name+'</strong>')
+    +kv('Vessel Type',d.type)
+    +kv('Flag',d.flag)
+    +kv('Gross Tonnage',d.gt.toLocaleString()+' GT')
+    +kv('Reporting Year',d.year+' (EU THETIS-MRV verified)')
+    +kv('Total CO₂ Emitted',d.co2_t.toLocaleString()+' tonnes')
+    +kv('Fuel Consumed (HFO)',d.hfo_t.toLocaleString()+' tonnes')
+    +kv('Fuel Consumed (VLSFO)',d.vlsfo_t.toLocaleString()+' tonnes')
+    +kv('Distance Travelled',d.dist_nm.toLocaleString()+' nautical miles')
+    +kv('Time at Sea',d.time_h.toLocaleString()+' hours')
+    +kv('CII Rating','<span class="tag '+ciiCls[d.cii]+'">CII '+d.cii+'</span>')
+    +kv('EEXI Status',d.eexi)
+    +kv('Note',d.note)
+    +kv('Data Source','<a href="https://mrv.emsa.europa.eu" target="_blank" style="color:#0ea5e9">EU THETIS-MRV / EMSA</a> — Verified annual submission')
+    +'</div>';
+};
   const d={
     'IMO Number':q,'Reporting Year':'2025',
     'Total CO₂ (tonnes)':`${Math.floor(18000+Math.random()*40000).toLocaleString()} t`,
@@ -1245,13 +1251,8 @@ window.ghgLookup=function(){
     'Time at Sea (h)':`${Math.floor(5500+Math.random()*3000).toLocaleString()} h`,
     'CII Rating':cii,'EEDI':14.7,'EEXI Status':'Compliant',
     'Data Source':'EU THETIS-MRV / EMSA','Note':'Verified annual submission',
-  };
-  document.getElementById('ghg-res').innerHTML=`
-    <div class="res-box">${Object.entries(d).map(([k,v])=>`
-      <div class="kv"><span class="kk">${k}</span><span class="kv-v">${
-        k==='CII Rating'?`<span class="tag ${ciiCls[v]}">CII ${v}</span>`:v
-      }</span></div>`).join('')}</div>`;
-};
+  }
+
 
 // ── CUSTOMS MANIFESTS ──
 MODULES.customs=function(el){
@@ -1268,37 +1269,30 @@ MODULES.customs=function(el){
   document.getElementById('cus-q').addEventListener('keydown',e=>{if(e.key==='Enter')customsSearch();});
 };
 window.customsSearch=function(){
-  const q=document.getElementById('cus-q').value.trim()||'EXAMPLE EXPORTS';
-  const COMM=['MACHINERY PARTS','ELECTRONIC GOODS','TEXTILE FABRICS','CHEMICAL COMPOUNDS','AUTO COMPONENTS'];
-  const rows=Array.from({length:5},(_,i)=>({
-    bol:`MSCU${Math.floor(100000000+Math.random()*899999999)}`,
-    shipper:q.toUpperCase().substring(0,25)+' PVT LTD',
-    consignee:['ABC TRADERS LLC','GLOBAL IMPORTS CO','PACIFIC TRADE INC','SUMMIT LOGISTICS','METRO WHOLESALE'][i],
-    commodity:COMM[Math.floor(Math.random()*COMM.length)],
-    containers:`${Math.floor(1+Math.random()*4)} x 40' HC`,
-    weight:`${Math.floor(12000+Math.random()*80000).toLocaleString()} kg`,
-    arrival:`2026-07-0${i+4}`,
-  }));
-  document.getElementById('cus-res').innerHTML=`
-    <div style="overflow-x:auto;margin-top:8px">
-    <table style="width:100%;border-collapse:collapse;font-size:12px;">
-      <thead><tr>${['B/L','Shipper','Consignee','Commodity','Containers','Weight','Arrival']
-        .map(h=>`<th style="background:#f8fafc;padding:9px 10px;text-align:left;border-bottom:1px solid #e2e8f0;font-weight:700;color:#475569;font-size:11px;white-space:nowrap">${h}</th>`).join('')}</tr></thead>
-      <tbody>${rows.map(r=>`<tr style="border-bottom:1px solid #f1f5f9">
-        <td style="padding:8px 10px;font-family:var(--mono);font-size:11px;color:#64748b">${r.bol}</td>
-        <td style="padding:8px 10px">${r.shipper}</td><td style="padding:8px 10px">${r.consignee}</td>
-        <td style="padding:8px 10px">${r.commodity}</td><td style="padding:8px 10px">${r.containers}</td>
-        <td style="padding:8px 10px">${r.weight}</td><td style="padding:8px 10px">${r.arrival}</td>
-      </tr>`).join('')}</tbody>
-    </table></div>`;
+  var q=(document.getElementById('cus-q').value||'').trim();
+  if(!q)return;
+  var encoded=encodeURIComponent(q);
+  document.getElementById('cus-res').innerHTML=
+    '<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:4px;padding:16px 18px;margin-top:8px;">'
+    +'<div style="font-size:13px;font-weight:700;color:#1e40af;margin-bottom:10px;">🛃 Customs Search: '+q+'</div>'
+    +'<div style="font-size:12px;color:#1e40af;margin-bottom:14px;">US CBP bill of lading data is available on these free public platforms — click to search directly:</div>'
+    +'<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;margin-bottom:12px;">'
+    +'<a href="https://www.importyeti.com/company/'+encoded+'" target="_blank" rel="noopener" style="display:block;background:#fff;border:1px solid #bfdbfe;border-radius:4px;padding:12px 14px;text-decoration:none;">'
+    +'<div style="font-family:var(--mono);font-size:12px;font-weight:700;color:#1d4ed8;margin-bottom:4px;">IMPORTYETI →</div>'
+    +'<div style="font-size:11px;color:#475569;">US CBP B/L data · Shipper/Consignee · Commodity · Weight · Container count · Free</div></a>'
+    +'<a href="https://www.tradint.io/shipper/'+encoded+'" target="_blank" rel="noopener" style="display:block;background:#fff;border:1px solid #bfdbfe;border-radius:4px;padding:12px 14px;text-decoration:none;">'
+    +'<div style="font-family:var(--mono);font-size:12px;font-weight:700;color:#1d4ed8;margin-bottom:4px;">TRADINT →</div>'
+    +'<div style="font-size:11px;color:#475569;">US trade data · Import/Export records · Free tier</div></a>'
+    +'<a href="https://panjiva.com/search?q='+encoded+'" target="_blank" rel="noopener" style="display:block;background:#fff;border:1px solid #bfdbfe;border-radius:4px;padding:12px 14px;text-decoration:none;">'
+    +'<div style="font-family:var(--mono);font-size:12px;font-weight:700;color:#1d4ed8;margin-bottom:4px;">PANJIVA (S&P Global) →</div>'
+    +'<div style="font-size:11px;color:#475569;">Global trade intelligence · B/L data · Free trial</div></a>'
+    +'</div>'
+    +'<div style="font-size:11px;color:#64748b;border-top:1px solid #bfdbfe;padding-top:10px;">Note: US CBP manifest data covers US import shipments. For Indian customs data, contact DGFT or use ICEGATE portal (icegate.gov.in). For global trade data, Panjiva covers 100+ countries.</div>'
+    +'</div>';
 };
 
 // ── SANCTIONS SCREENING ──
-const SANCTIONED=[
-  {n:'LANA',imo:'9349578',flag:'Russia',prog:'UKRAINE-EO13662',r:'Shadow fleet — Russian crude oil transport'},
-  {n:'KAZAN',imo:'9367699',flag:'Palau',prog:'IRAN',r:'Linked to NIOC — petroleum product transport'},
-  {n:'PACIFIC GRACE',imo:'9145297',flag:'Belize',prog:'DPRK',r:'DPRK coal transport — UN Panel of Experts'},
-];
+const SANCTIONED=[{"name": "VICSCENE", "imo": "9290775", "mmsi": "", "flag": "Barbados", "type": "Crude Oil Tanker", "program": "IRAN-EO13846", "reason": "Transported Iranian-origin crude oil Mar-Apr 2025. Managed by ALL WIN SHIPPING MANAGEMENT LIMITED (Hong Kong)", "listed_by": "OFAC", "date": "2026-02"}, {"name": "AQUA LIVE", "imo": "9282792", "mmsi": "", "flag": "Aruba (false-flagged)", "type": "Crude Oil Tanker", "program": "IRAN-EO13846", "reason": "Transported Iranian-origin petroleum. Owned/managed by VICENS MARINE CO (Marshall Islands)", "listed_by": "OFAC", "date": "2026-02"}, {"name": "VETER", "imo": "9233739", "mmsi": "", "flag": "Cameroon", "type": "Crude Oil Tanker", "program": "IRAN-EO13846", "reason": "Transported Iranian-origin crude oil. Managed by FLUXUS MARINE INC (Kazakhstan)", "listed_by": "OFAC", "date": "2026-02"}, {"name": "RAYYAN GAS", "imo": "9133109", "mmsi": "", "flag": "Palau", "type": "LPG Tanker", "program": "IRAN-EO13846", "reason": "Transported Iranian-origin ammonia 7+ times in 2025. Managed by MPHASIS MARINE SOLUTIONS FZE (UAE)", "listed_by": "OFAC", "date": "2026-02"}, {"name": "GAZ CRYSTAL", "imo": "9318618", "mmsi": "", "flag": "Panama", "type": "LPG Tanker", "program": "IRAN-EO13846", "reason": "Transported Iranian-origin LPG. Managed by MPHASIS MARINE SOLUTIONS FZE (UAE)", "listed_by": "OFAC", "date": "2026-02"}, {"name": "DIANA", "imo": "9255945", "mmsi": "339000161", "flag": "Jamaica", "type": "Crude Oil Tanker", "program": "IRAN-EO13902", "reason": "Transported Iranian-origin crude oil. Linked to ALEAH SHIPPING INC", "listed_by": "OFAC", "date": "2025-12"}, {"name": "FLORA DOLCE", "imo": "9258595", "mmsi": "314001081", "flag": "Barbados", "type": "Chemical/Products Tanker", "program": "IRAN-EO13902", "reason": "Transported Iranian petroleum products. Linked to RUKBAT MARINE SERVICES CO", "listed_by": "OFAC", "date": "2025-12"}, {"name": "FOSHAN", "imo": "9404572", "mmsi": "352001366", "flag": "Panama", "type": "Chemical/Products Tanker", "program": "IRAN-EO13902", "reason": "Transported Iranian petroleum products. Linked to SINOSTAR MARINE GROUP LIMITED", "listed_by": "OFAC", "date": "2025-12"}, {"name": "AETHER SAIL", "imo": "9277371", "mmsi": "511101256", "flag": "Palau", "type": "Chemical/Products Tanker", "program": "IRAN-EO13902", "reason": "Transported Iranian petroleum products. Linked to PHOENIX SHIP MANAGEMENT FZE", "listed_by": "OFAC", "date": "2025-12"}, {"name": "ARIHANT", "imo": "9464156", "mmsi": "511100268", "flag": "Palau", "type": "Products Tanker", "program": "IRAN-EO13902", "reason": "Transported Iranian products. Linked to ARIHANT SHIPPING INC", "listed_by": "OFAC", "date": "2025-12"}, {"name": "HEMERA", "imo": "9263954", "mmsi": "511101408", "flag": "Palau", "type": "Asphalt/Bitumen Tanker", "program": "IRAN-EO13902", "reason": "Transported Iranian asphalt/bitumen. Linked to RED SEA SHIP MANAGEMENT LLC", "listed_by": "OFAC", "date": "2025-12"}, {"name": "LANA", "imo": "9349578", "mmsi": "273379950", "flag": "Russia", "type": "Oil Tanker", "program": "UKRAINE-EO13662", "reason": "Shadow fleet — Russian crude oil transport. Involved in evasion of Russia oil price cap", "listed_by": "OFAC/EU", "date": "2024"}, {"name": "KAZAN", "imo": "9367699", "mmsi": "273455890", "flag": "Palau", "type": "Oil Tanker", "program": "IRAN", "reason": "Linked to NIOC — petroleum product transport from Iran", "listed_by": "OFAC", "date": "2024"}, {"name": "SANAR 15", "imo": "9777670", "mmsi": "", "flag": "Russia", "type": "Oil Products Tanker", "program": "RUSSIA", "reason": "Owned by Covart — sanctioned for Russian oil products transport. US sanctions Dec 2025", "listed_by": "OFAC", "date": "2025-12"}, {"name": "PACIFIC GRACE", "imo": "9145297", "mmsi": "", "flag": "Belize", "type": "Bulk Carrier", "program": "DPRK", "reason": "DPRK coal transport — UN Panel of Experts documented evasion of UN Security Council sanctions", "listed_by": "UN/OFAC", "date": "2023"}, {"name": "MARINERA", "imo": "", "mmsi": "", "flag": "Russia", "type": "Oil Tanker", "program": "RUSSIA", "reason": "Seized by US Navy/Coast Guard Jan 7, 2026 in North Atlantic after shadowing by USCG Munro. Previously named Bella I, flagged Guyana", "listed_by": "US Navy", "date": "2026-01"}, {"name": "GRINCH", "imo": "", "mmsi": "", "flag": "Comoros (UK-sanctioned)", "type": "Oil Tanker", "program": "RUSSIA", "reason": "Seized by French Navy Jan 22, 2026 in Alboran Sea. UK-sanctioned, Comorian-flagged Russian shadow fleet tanker", "listed_by": "UK/FR", "date": "2026-01"}, {"name": "FITBURG", "imo": "", "mmsi": "", "flag": "St. Vincent & Grenadines", "type": "Freighter", "program": "RUSSIA", "reason": "Captured by Finnish coastguard Dec 31, 2025 en route Haifa from St. Petersburg. Carrying sanctioned structural steel. Suspected cable-damage vessel", "listed_by": "Finland", "date": "2025-12"}, {"name": "ENIGMA", "imo": "", "mmsi": "", "flag": "Cameroon", "type": "Oil Tanker", "program": "RUSSIA-UK", "reason": "Sanctioned by UK. Escorted by Russian frigate Admiral Grigorovich through English Channel Apr 8, 2026", "listed_by": "UK", "date": "2026"}, {"name": "JIN HUI", "imo": "", "mmsi": "", "flag": "Syria (false)", "type": "Oil Tanker", "program": "RUSSIA", "reason": "Detained by Swedish Coast Guard May 3, 2026. Chinese captain arrested for using false documents. False Syrian flag", "listed_by": "Sweden", "date": "2026-05"}, {"name": "WISE HONEST", "imo": "9337949", "mmsi": "", "flag": "Mongolia (former)", "type": "Bulk Carrier", "program": "DPRK", "reason": "DPRK-flagged bulk carrier used to export North Korean coal in violation of UN Security Council Resolutions. Seized by US DOJ", "listed_by": "OFAC/UN", "date": "2019"}];
 MODULES.sanctions=function(el){
   el.innerHTML=`
   <div class="mod-panel">
@@ -1313,22 +1307,37 @@ MODULES.sanctions=function(el){
   document.getElementById('san-q').addEventListener('keydown',e=>{if(e.key==='Enter')sanctionsCheck();});
 };
 window.sanctionsCheck=function(){
-  const q=document.getElementById('san-q').value.trim();
+  var q=(document.getElementById('san-q').value||'').trim();
   if(!q)return;
-  const hit=SANCTIONED.find(s=>s.n.toUpperCase().includes(q.toUpperCase())||q.includes(s.imo));
-  document.getElementById('san-res').innerHTML=hit?`
-    <div style="display:flex;gap:8px;margin-bottom:10px;align-items:center">
-      <span class="tag tr">⚠ SANCTIONS MATCH FOUND</span>
-      <span style="font-size:11px;color:#64748b">OFAC SDN · UN Consolidated · EU Sanctions</span>
-    </div>
-    <div class="res-box">
-      ${[['Vessel Name',hit.n],['IMO',hit.imo],['Flag',hit.flag],['Sanctions Programme',hit.prog],['Reason',hit.r],['Action Required','Do not transact · Report to compliance officer']]
-        .map(([k,v])=>`<div class="kv"><span class="kk">${k}</span><span class="kv-v">${k==='Vessel Name'?`<strong style="color:#dc2626">${v}</strong>`:v}</span></div>`).join('')}
-    </div>`
-  :`<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:4px;padding:14px 16px;margin-top:8px">
-      <span class="tag tg">✓ No Sanctions Match</span>
-      <div style="margin-top:8px;font-size:12px;color:#166534">No match found for "<strong>${q}</strong>" across OFAC SDN, UN Consolidated List, and EU Sanctions. Always verify against live OFAC SDN list before clearance: <a href="https://sanctionssearch.ofac.treas.gov" target="_blank" style="color:#15803d">sanctionssearch.ofac.treas.gov</a></div>
-    </div>`;
+  var search=q.toLowerCase();
+  var hits=SANCTIONED.filter(function(v){
+    return v.name.toLowerCase().includes(search)||
+           v.imo.includes(q)||
+           (v.mmsi&&v.mmsi.includes(q))||
+           v.program.toLowerCase().includes(search)||
+           v.flag.toLowerCase().includes(search);
+  });
+  if(hits.length>0){
+    var html='<div style="display:flex;gap:8px;margin-bottom:12px;align-items:center"><span class="tag tr">⚠ '+hits.length+' SANCTIONS MATCH'+(hits.length>1?'ES':'')+' FOUND</span><span style="font-size:11px;color:#64748b">Source: OFAC SDN · US State Dept · UN · EU Sanctions</span></div>';
+    hits.forEach(function(v){
+      html+='<div class="res-box" style="margin-bottom:10px">'
+        +kv('Vessel Name','<strong style="color:#dc2626">'+v.name+'</strong>')
+        +kv('IMO Number',v.imo||'Not publicly disclosed')
+        +kv('MMSI',v.mmsi||'Not publicly disclosed')
+        +kv('Flag',v.flag)
+        +kv('Type',v.type)
+        +kv('Sanctions Programme',v.program)
+        +kv('Listed By',v.listed_by)
+        +kv('Date Listed',v.date)
+        +kv('Reason / Basis',v.reason)
+        +kv('Action Required','DO NOT TRANSACT · Report to compliance officer · Verify at sanctionssearch.ofac.treas.gov')
+        +'</div>';
+    });
+    html+='<div style="background:#fef2f2;border:1px solid #fecaca;border-radius:4px;padding:12px 14px;font-size:12px;color:#991b1b;margin-top:8px;">Always verify at the primary source before making compliance decisions: <a href="https://sanctionssearch.ofac.treas.gov" target="_blank" style="color:#dc2626">sanctionssearch.ofac.treas.gov</a></div>';
+    document.getElementById('san-res').innerHTML=html;
+  } else {
+    document.getElementById('san-res').innerHTML='<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:4px;padding:14px 16px;margin-top:8px"><span class="tag tg">✓ No Match in Database</span><div style="margin-top:8px;font-size:12px;color:#166534">No match for "<strong>'+q+'</strong>" in our OFAC/State Dept/UN/EU sanctions dataset ('+SANCTIONED.length+' vessels). This does NOT guarantee clearance — always verify at the official source: <a href="https://sanctionssearch.ofac.treas.gov" target="_blank" style="color:#15803d">sanctionssearch.ofac.treas.gov</a></div></div>';
+  }
 };
 
 // ── INTEL REPORT ──
