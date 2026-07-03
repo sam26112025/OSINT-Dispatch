@@ -733,22 +733,36 @@ function initMap(){
   if(typeof L==='undefined'){setTimeout(initMap,400);return;}
   _mapInit=true;
 
-  _map=L.map('vessel-map',{zoomControl:true,attributionControl:true,minZoom:2,maxZoom:14}).setView([15,70],4);
+  _map=L.map('vessel-map',{
+    zoomControl:true,attributionControl:true,
+    minZoom:2,maxZoom:14,
+    preferCanvas:true
+  }).setView([15,70],3);
 
-  // Stadia dark tiles (no API key, reliable CORS)
-  L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png',{
-    maxZoom:18,
-    attribution:'&copy; <a href="https://stadiamaps.com/">Stadia</a> &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
+  // OSM tiles — globally reliable, no API key
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    maxZoom:19,
+    subdomains:['a','b','c'],
+    attribution:'© <a href="https://openstreetmap.org">OpenStreetMap</a> contributors | TradeMatrix',
+    crossOrigin:true,
+    errorTileUrl:'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
   }).addTo(_map);
 
-  // All vessel markers
+  // Plot all vessel markers using preferCanvas circles (faster, no SVG parse)
   LIVE_VESSELS.forEach(function(v){
     try{
-      var m=L.marker([v.lat,v.lng],{icon:vesselIcon(v),title:v.name,zIndexOffset:v.dark?1000:0})
-        .bindPopup(vesselPopup(v),{maxWidth:240})
-        .addTo(_map);
+      var c = v.dark ? '#ef4444' : typeColor(v.type);
+      var m = L.circleMarker([v.lat,v.lng],{
+        radius: v.dark ? 7 : 5,
+        color: v.dark ? '#ef4444' : 'rgba(0,0,0,0.4)',
+        weight: v.dark ? 2 : 1,
+        fillColor: c,
+        fillOpacity: 0.9,
+        opacity: 1
+      }).bindPopup(vesselPopup(v),{maxWidth:240,className:''}).addTo(_map);
+      if(v.dark) m.setStyle({className:'v-dark'});
       _markers[v.imo]=m;
-    }catch(e){console.warn('marker err',v.name,e);}
+    }catch(e){console.warn('marker err',v.name);}
   });
 
   // Indian port markers
@@ -760,14 +774,14 @@ function initMap(){
     {name:'Cochin',lat:9.96,lng:76.27},
     {name:'Kolkata',lat:22.55,lng:88.35}
   ];
-  var pIcon=L.divIcon({html:'<div class="p-dot"></div>',className:'',iconSize:[10,10],iconAnchor:[5,5]});
   PORTS.forEach(function(p){
-    L.marker([p.lat,p.lng],{icon:pIcon,zIndexOffset:2000})
-      .bindPopup('<div class="pop-name">🏭 '+p.name+'</div>',{maxWidth:180})
-      .addTo(_map);
+    L.circleMarker([p.lat,p.lng],{
+      radius:8,color:'#00c8ff',weight:2,
+      fillColor:'#ffffff',fillOpacity:0.9
+    }).bindPopup('<b>🏭 '+p.name+'</b><br>Indian Major Port',{maxWidth:180}).addTo(_map);
   });
 
-  // Drift every 4s
+  // Drift every 5s
   if(_driftInterval)clearInterval(_driftInterval);
   _driftInterval=setInterval(function(){
     LIVE_VESSELS.forEach(function(v){
@@ -775,8 +789,9 @@ function initMap(){
       if(v.lng>180)v.lng-=360; if(v.lng<-180)v.lng+=360;
       if(_markers[v.imo])try{_markers[v.imo].setLatLng([v.lat,v.lng]);}catch(e){}
     });
-  },4000);
+  },5000);
 }
+
 
 MODULES.ais=function(el){
   el.innerHTML=`
