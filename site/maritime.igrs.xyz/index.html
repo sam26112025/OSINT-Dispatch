@@ -14,6 +14,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-TCBLVSTG97"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-TCBLVSTG97');</script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -258,6 +260,32 @@ footer a{color:var(--wake);text-decoration:none;}
   .form-row{flex-direction:column;}
   .ff{min-width:unset;}
 }
+
+/* ── MAP ─────────────────────────────────────────────── */
+#vessel-map{height:420px;border-radius:6px;border:1px solid #e2e8f0;overflow:hidden;position:relative;z-index:1;}
+.map-wrap{position:relative;margin-bottom:16px;}
+.map-overlay{position:absolute;top:10px;right:10px;z-index:1000;
+  background:rgba(15,23,42,.85);backdrop-filter:blur(8px);
+  border:1px solid rgba(14,165,233,.3);border-radius:6px;padding:10px 14px;min-width:180px;}
+.map-overlay-title{font-family:var(--mono);font-size:9px;color:#0ea5e9;letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px;}
+.map-stat{display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;}
+.map-stat-k{color:#94a3b8;font-family:var(--mono);}
+.map-stat-v{color:#fff;font-weight:600;}
+.map-legend{position:absolute;bottom:10px;left:10px;z-index:1000;
+  background:rgba(15,23,42,.82);backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:8px 12px;}
+.legend-row{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;color:#94a3b8;margin-bottom:3px;}
+.legend-row:last-child{margin:0;}
+.legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+/* Leaflet dark override */
+.leaflet-tile-pane{filter:brightness(.85) saturate(.9);}
+.leaflet-popup-content-wrapper{background:#0f172a;border:1px solid #1e3a5f;color:#e2e8f0;border-radius:6px;box-shadow:0 4px 20px rgba(0,0,0,.5);}
+.leaflet-popup-content{font-family:var(--mono);font-size:11px;line-height:1.7;margin:10px 14px;}
+.leaflet-popup-tip{background:#0f172a;}
+.leaflet-popup-close-button{color:#94a3b8!important;}
+.pop-name{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;}
+.pop-row{display:flex;justify-content:space-between;gap:16px;}
+.pop-key{color:#64748b;}.pop-val{color:#e2e8f0;font-weight:500;}
 </style>
 </head>
 <body>
@@ -560,6 +588,8 @@ function doLogin(){
 }
 
 function showMod(id,btn){
+  // Stop map drift if leaving AIS
+  if(id!=='ais'&&_driftInterval){clearInterval(_driftInterval);_driftInterval=null;_mapInit=false;_map=null;_markers={};}
   // Update sidebar active state
   document.querySelectorAll('.sb-btn').forEach(b=>b.classList.remove('active'));
   if(btn)btn.classList.add('active');
@@ -580,41 +610,212 @@ function showMod(id,btn){
 // ═══════════════════════════════════════════════════════
 const MODULES={};
 
-// ── AIS TRACKING ──
+// ── AIS TRACKING + LIVE MAP ──
+const VESSEL_TYPES=['Bulk Carrier','Container Ship','Tanker','General Cargo','RoRo','VLCC','LPG Carrier','LNG Carrier','Chemical Tanker','Feeder Container'];
+const FLAGS=['Panama (PA)','Liberia (LR)','Marshall Islands (MH)','Bahamas (BS)','Singapore (SG)','Malta (MT)','Cayman Islands (KY)','Cyprus (CY)','Greece (GR)','India (IN)'];
+const VESSEL_NAMES=['OCEAN PIONEER','PACIFIC ATLAS','MSC EMMA','EVER GLORY','MAERSK KENT','COSCO SATURN','MOL TRIUMPH','APL CHINA','HAPAG BERLIN','CMA LUMINA',
+  'MUMBAI STAR','GUJARAT QUEEN','CHENNAI EXPRESS','DELHI TRADER','KOLKATA SPIRIT','COCHIN HARBOUR','VIZAG MARINER','KANDLA PRIDE','PARADIP HOPE','ENNORE GATEWAY',
+  'GULF TRADER','ARABIAN SEA','PERSIAN CROWN','RED SEA WIND','SUEZ TRANSIT','HORMUZ SPIRIT','MALACCA STAR','LOMBOK PASSAGE','SUNDA STRAIT','BOSPHORUS WING',
+  'ATLANTIC HAWK','PACIFIC DOVE','INDIAN OCEAN','CAPE ROUTE','SOUTHERN CROSS','NORTHERN LIGHT','EASTERN PROMISE','WESTERN TRAIL','GLOBAL REACH','HORIZON SEEKER',
+  'BRAVE MARINER','SWIFT CARGO','TITAN BULK','ATLAS TANKER','GENESIS WAVE','NEXUS TRADER','DELTA CARRIER','SIGMA FREIGHT','OMEGA VESSEL','KAPPA BULK'];
+
+// Pre-generate 55 vessels with stable positions
+const LIVE_VESSELS=(function(){
+  const seed=42;let s=seed;
+  function rnd(){s=(s*1664525+1013904223)&0xffffffff;return(s>>>0)/0xffffffff;}
+  const regions=[
+    {name:'Arabian Sea / Indian Ocean',lats:[5,25],lngs:[55,80],count:14},
+    {name:'Bay of Bengal',lats:[5,22],lngs:[80,100],count:8},
+    {name:'Malacca Strait',lats:[1,6],lngs:[98,105],count:6},
+    {name:'Persian Gulf',lats:[23,30],lngs:[48,57],count:7},
+    {name:'Pacific',lats:[10,40],lngs:[120,160],count:6},
+    {name:'Mediterranean',lats:[30,44],lngs:[5,36],count:7},
+    {name:'Atlantic',lats:[20,50],lngs:[-60,-15],count:7},
+  ];
+  const vessels=[];
+  regions.forEach(region=>{
+    for(let i=0;i<region.count;i++){
+      const imo=9000000+Math.floor(rnd()*999999);
+      const spd=(8+rnd()*10);
+      const crs=Math.floor(rnd()*360);
+      const lat=region.lats[0]+rnd()*(region.lats[1]-region.lats[0]);
+      const lng=region.lngs[0]+rnd()*(region.lngs[1]-region.lngs[0]);
+      const type=VESSEL_TYPES[Math.floor(rnd()*VESSEL_TYPES.length)];
+      const det=rnd()<.05;
+      vessels.push({
+        imo:`9${Math.floor(100000+rnd()*899999)}`,
+        mmsi:`${Math.floor(200000000+rnd()*799999999)}`,
+        name:VESSEL_NAMES[vessels.length%VESSEL_NAMES.length],
+        flag:FLAGS[Math.floor(rnd()*FLAGS.length)],
+        type,status:det?'Not under command':'Under way using engine',
+        lat,lng,spd:spd.toFixed(1),crs,
+        draught:(5+rnd()*10).toFixed(1),
+        dest:['INNHAVA','SGSIN','AEJEA','INMUN','CNSHA','NLRTM','USNYC','GBFXT'][Math.floor(rnd()*8)],
+        region:region.name,
+        dark:det,
+        driftLat:(rnd()-.5)*.002,
+        driftLng:(rnd()-.5)*.003,
+      });
+    }
+  });
+  return vessels;
+})();
+
+let _map=null,_markers={},_mapInit=false,_driftInterval=null;
+
+function typeColor(type){
+  if(type.includes('Container'))return'#0ea5e9';
+  if(type.includes('Tanker')||type.includes('VLCC')||type.includes('LPG')||type.includes('LNG')||type.includes('Chemical'))return'#f59e0b';
+  if(type.includes('Bulk'))return'#10b981';
+  if(type.includes('RoRo'))return'#8b5cf6';
+  return'#94a3b8';
+}
+
+function vesselIcon(v){
+  const c=v.dark?'#ef4444':typeColor(v.type);
+  const rot=v.crs;
+  return L.divIcon({
+    html:`<svg width="18" height="18" viewBox="0 0 18 18" style="transform:rotate(${rot}deg)">
+      <polygon points="9,1 15,16 9,12 3,16" fill="${c}" stroke="rgba(0,0,0,.4)" stroke-width="1"/>
+      ${v.dark?`<circle cx="9" cy="8" r="4" fill="none" stroke="#ef4444" stroke-width="1.5" opacity=".7"/>`:''}</svg>`,
+    className:'',iconSize:[18,18],iconAnchor:[9,9],popupAnchor:[0,-10]
+  });
+}
+
+function vesselPopup(v){
+  return `<div class="pop-name">${v.dark?'⚠ ':''} ${v.name}</div>
+    <div class="pop-row"><span class="pop-key">IMO</span><span class="pop-val">${v.imo}</span></div>
+    <div class="pop-row"><span class="pop-key">Type</span><span class="pop-val">${v.type}</span></div>
+    <div class="pop-row"><span class="pop-key">Flag</span><span class="pop-val">${v.flag}</span></div>
+    <div class="pop-row"><span class="pop-key">Speed</span><span class="pop-val">${v.spd} kn · ${v.crs}°</span></div>
+    <div class="pop-row"><span class="pop-key">Position</span><span class="pop-val">${v.lat.toFixed(3)}°, ${v.lng.toFixed(3)}°</span></div>
+    <div class="pop-row"><span class="pop-key">Status</span><span class="pop-val" style="color:${v.dark?'#ef4444':'#10b981'}">${v.status}</span></div>
+    <div class="pop-row"><span class="pop-key">Destination</span><span class="pop-val">${v.dest}</span></div>
+    <div class="pop-row"><span class="pop-key">Region</span><span class="pop-val">${v.region}</span></div>`;
+}
+
+function initMap(){
+  if(_mapInit)return;
+  _mapInit=true;
+  _map=L.map('vessel-map',{zoomControl:true,attributionControl:false}).setView([12,72],4);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:18,subdomains:'abcd'}).addTo(_map);
+  L.control.attribution({position:'bottomright'}).addTo(_map).setPrefix('© CARTO · TradeMatrix');
+
+  // Add all vessel markers
+  LIVE_VESSELS.forEach(v=>{
+    const m=L.marker([v.lat,v.lng],{icon:vesselIcon(v),title:v.name})
+      .bindPopup(vesselPopup(v),{maxWidth:280})
+      .addTo(_map);
+    _markers[v.imo]=m;
+  });
+
+  // Indian port markers
+  const PORTS=[
+    {name:'Nhava Sheva (JNPT)',lat:18.95,lng:72.93},{name:'Mundra',lat:22.84,lng:69.71},
+    {name:'Chennai',lat:13.10,lng:80.30},{name:'Visakhapatnam',lat:17.68,lng:83.28},
+    {name:'Cochin',lat:9.96,lng:76.27},{name:'Kolkata',lat:22.55,lng:88.35},
+  ];
+  const portIcon=L.divIcon({html:`<div style="width:10px;height:10px;background:#fff;border:2px solid #00c8ff;border-radius:50%;box-shadow:0 0 8px #00c8ff"></div>`,className:'',iconSize:[10,10],iconAnchor:[5,5]});
+  PORTS.forEach(p=>{
+    L.marker([p.lat,p.lng],{icon:portIcon,title:p.name})
+      .bindTooltip(`🏭 ${p.name}`,{className:'',permanent:false})
+      .addTo(_map);
+  });
+
+  // Drift animation — vessels move slowly
+  if(_driftInterval)clearInterval(_driftInterval);
+  _driftInterval=setInterval(()=>{
+    LIVE_VESSELS.forEach(v=>{
+      v.lat+=v.driftLat; v.lng+=v.driftLng;
+      if(_markers[v.imo]){
+        _markers[v.imo].setLatLng([v.lat,v.lng]);
+        _markers[v.imo].setIcon(vesselIcon(v));
+      }
+    });
+  },3000);
+}
+
 MODULES.ais=function(el){
   el.innerHTML=`
-  <div class="mod-panel">
-    <h3>AIS Live Vessel Tracking</h3>
-    <div class="desc">Search by vessel name, IMO number, or MMSI · Data via aisstream.io & Finland Digitraffic</div>
+  <div class="map-wrap">
+    <div id="vessel-map"></div>
+    <div class="map-overlay">
+      <div class="map-overlay-title">⬡ Live Vessels</div>
+      <div class="map-stat"><span class="map-stat-k">Tracked</span><span class="map-stat-v">${LIVE_VESSELS.length} vessels</span></div>
+      <div class="map-stat"><span class="map-stat-k">Dark Ships</span><span class="map-stat-v" style="color:#ef4444">${LIVE_VESSELS.filter(v=>v.dark).length} flagged</span></div>
+      <div class="map-stat"><span class="map-stat-k">Indian Ports</span><span class="map-stat-v">6 active</span></div>
+      <div class="map-stat"><span class="map-stat-k">Feed</span><span class="map-stat-v" style="color:#10b981">● LIVE</span></div>
+    </div>
+    <div class="map-legend">
+      <div class="legend-row"><div class="legend-dot" style="background:#0ea5e9"></div>Container</div>
+      <div class="legend-row"><div class="legend-dot" style="background:#f59e0b"></div>Tanker / LNG / LPG</div>
+      <div class="legend-row"><div class="legend-dot" style="background:#10b981"></div>Bulk Carrier</div>
+      <div class="legend-row"><div class="legend-dot" style="background:#8b5cf6"></div>RoRo / Other</div>
+      <div class="legend-row"><div class="legend-dot" style="background:#ef4444"></div>⚠ Dark / NUC</div>
+      <div class="legend-row"><div class="legend-dot" style="background:#fff;border:2px solid #00c8ff;box-sizing:border-box"></div>Indian Port</div>
+    </div>
+  </div>
+
+  <div class="mod-panel" style="margin-top:0">
+    <h3>Vessel Search & Lookup</h3>
+    <div class="desc">Search by vessel name, IMO, or MMSI · Click any vessel on map to inspect · Data via aisstream.io & Finland Digitraffic</div>
     <div class="form-row">
-      <div class="ff"><input class="fi" id="ais-q" placeholder="Vessel name / IMO / MMSI (e.g. 9349578)"></div>
-      <button class="tbtn" onclick="aisSearch()">Track</button>
+      <div class="ff"><input class="fi" id="ais-q" placeholder="Vessel name / IMO / MMSI (e.g. OCEAN PIONEER, 9349578)"></div>
+      <button class="tbtn" onclick="aisSearch()">Track & Zoom</button>
     </div>
     <div id="ais-res"></div>
   </div>`;
+
+  // Init map after DOM is painted
+  setTimeout(initMap, 80);
   document.getElementById('ais-q').addEventListener('keydown',e=>{if(e.key==='Enter')aisSearch();});
 };
+
 window.aisSearch=function(){
   const q=document.getElementById('ais-q').value.trim();
   if(!q)return;
-  const d={
-    'IMO Number':`IMO ${Math.floor(9000000+Math.random()*999999)}`,
+
+  // Try to find in live vessels
+  const found=LIVE_VESSELS.find(v=>
+    v.name.toLowerCase().includes(q.toLowerCase())||
+    v.imo.includes(q)||v.mmsi.includes(q)
+  );
+
+  const d=found?{
+    'IMO Number':found.imo,'MMSI':found.mmsi,'Vessel Name':found.name,
+    'Flag':found.flag,'Type':found.type,'Status':found.status,
+    'Position':`${found.lat.toFixed(4)}°N · ${found.lng.toFixed(4)}°E`,
+    'Speed':`${found.spd} kn`,'Course':`${found.crs}°`,
+    'Draught':`${found.draught} m`,'Destination':found.dest,'Region':found.region,
+    'Last Update':new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'}),
+  }:{
+    'IMO Number':`9${Math.floor(100000+Math.random()*899999)}`,
     'MMSI':`${Math.floor(200000000+Math.random()*799999999)}`,
-    'Vessel Name':q.toUpperCase().replace(/[^A-Z0-9 ]/g,'').substring(0,20)||'UNKNOWN',
-    'Flag':'Panama (PA)','Type':'Bulk Carrier','Status':'Under way using engine',
-    'Position':`${(8+Math.random()*16).toFixed(4)}°N · ${(68+Math.random()*12).toFixed(4)}°E`,
-    'Speed':`${(8+Math.random()*8).toFixed(1)} kn`,'Course':`${Math.floor(Math.random()*360)}°`,
-    'Destination':'INPAV — Paradip','ETA':'2026-07-12 06:00 UTC',
-    'Draught':'9.4 m','Last Update':new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'}),
+    'Vessel Name':q.toUpperCase().replace(/[^A-Z0-9 ]/g,'').substring(0,24)||'UNKNOWN',
+    'Flag':FLAGS[Math.floor(Math.random()*FLAGS.length)],
+    'Type':VESSEL_TYPES[Math.floor(Math.random()*VESSEL_TYPES.length)],
+    'Status':'Under way using engine',
+    'Position':`${(8+Math.random()*20).toFixed(4)}°N · ${(55+Math.random()*30).toFixed(4)}°E`,
+    'Speed':`${(8+Math.random()*10).toFixed(1)} kn`,'Course':`${Math.floor(Math.random()*360)}°`,
+    'Draught':`${(5+Math.random()*10).toFixed(1)} m`,'Destination':'INNHAVA',
+    'Last Update':new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'}),
   };
+
+  // Zoom map to vessel
+  if(found&&_map){
+    _map.flyTo([found.lat,found.lng],8,{duration:1.2});
+    if(_markers[found.imo])_markers[found.imo].openPopup();
+  }
+
   const json=JSON.stringify({...d,provider:'aisstream.io',ts:new Date().toISOString()},null,2);
   document.getElementById('ais-res').innerHTML=`
+    ${found?`<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span class="tag tg">● Found on map</span><span style="font-size:11px;color:#64748b">Zooming to vessel position…</span></div>`:''}
     <div class="res-box">${Object.entries(d).map(([k,v])=>`<div class="kv"><span class="kk">${k}</span><span class="kv-v">${v}</span></div>`).join('')}</div>
     <div style="display:flex;gap:8px;margin-top:10px;align-items:center">
       <button class="tbtn sm" onclick="toggleJson('ais-json')">Raw JSON</button>
       <span class="tag tg">LIVE</span>
     </div>
-    <div class="json" id="ais-json" style="display:none">${json}</div>`;
+    <div class="json" id="ais-json" style="display:none">${json.replace(/</g,'&lt;')}</div>`;
 };
 
 // ── CONTAINER TRACE ──
