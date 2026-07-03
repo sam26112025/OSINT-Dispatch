@@ -14,6 +14,64 @@ nav{position:fixed;top:0;left:0;right:0;height:60px;background:rgba(3,8,15,.95);
     display:flex;align-items:center;padding:0 24px;}
 .nav-logo{color:#fff;font-size:20px;font-weight:800;}
 .nav-logo span{color:#00c8ff;}
+
+/* ═══ MOBILE ═══ */
+@media(max-width:768px){
+  canvas#oc{display:none!important;}
+  #site{position:relative;z-index:2;background:var(--deep);}
+  #login{z-index:210!important;}
+  #dash{z-index:5!important;}
+  nav{z-index:300!important;padding:0 14px;height:52px;}
+  .nav-logo{font-size:16px;}
+  nav .nav-links{display:none;position:fixed;top:52px;left:0;right:0;
+    background:rgba(3,8,15,.98);flex-direction:column;padding:12px 0;
+    border-bottom:1px solid rgba(0,200,255,.1);z-index:200;}
+  nav .nav-links.open{display:flex;}
+  nav .nav-links a{padding:13px 20px;font-size:14px;min-height:44px;
+    display:flex;align-items:center;border-bottom:1px solid rgba(255,255,255,.04);}
+  .mob-ham{display:flex!important;flex-direction:column;gap:5px;
+    background:none;border:none;cursor:pointer;padding:8px;margin-left:auto;}
+  .mob-ham span{display:block;width:22px;height:2px;background:#00c8ff;
+    border-radius:2px;transition:all .3s;}
+  .mob-ham.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+  .mob-ham.active span:nth-child(2){opacity:0;}
+  .mob-ham.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+  .hero{padding:70px 16px 40px;min-height:auto;}
+  h1.hero-h{font-size:clamp(26px,8vw,42px)!important;line-height:1.1;}
+  .hero-sub{font-size:14px!important;}
+  .hero-btns{flex-direction:column;gap:10px;}
+  .btn-p,.btn-g{width:100%;text-align:center;min-height:48px;}
+  .stats{grid-template-columns:repeat(2,1fr);gap:16px;padding:32px 16px;}
+  .cap-grid{grid-template-columns:1fr;}
+  .cta-ban{padding:28px 16px;}
+  .lc{width:calc(100% - 32px);padding:28px 18px;margin:16px;}
+  .dash-body{grid-template-columns:1fr;}
+  .sidebar{display:none!important;}
+  .dash-main{padding:14px 12px!important;}
+  .mod-header{flex-direction:column;gap:8px;}
+  .mob-sidebar-btn{display:flex!important;}
+  .mobile-sidebar.open{display:block!important;}
+  #vessel-map{height:250px!important;}
+  .map-overlay{font-size:10px;padding:7px 10px;min-width:130px;}
+  .map-legend{padding:6px 8px;}
+  .form-row{flex-direction:column;gap:8px;}
+  .ff{width:100%;}
+  .fi,.fsel{width:100%;min-height:44px;font-size:16px!important;}
+  .tbtn{min-height:44px;width:100%;}
+  .tbtn.sm{min-height:36px;width:auto;}
+  .kv{flex-direction:column;gap:2px;}
+  .src-grid{grid-template-columns:1fr!important;}
+  .stk-tbl{min-width:550px;}
+  footer{padding:20px 14px;font-size:10px;}
+  .ticker-wrap{display:none;}
+}
+@media(max-width:480px){
+  h1.hero-h{font-size:clamp(22px,8vw,30px)!important;}
+  .stats{grid-template-columns:1fr;}
+  .lc{padding:24px 14px;}
+  #vessel-map{height:200px!important;}
+}
+
 </style>
 <meta name="description" content="Free maritime intelligence platform. AIS vessel tracking, container tracing, port performance, GHG/CII compliance, customs manifests, sanctions screening.">
 <meta name="keywords" content="maritime intelligence, vessel tracking, AIS, container tracing, port intelligence, trade intelligence, DCSA, ship tracking India, maritime OSINT">
@@ -488,7 +546,7 @@ footer a{color:var(--wake);text-decoration:none;}
 <body>
 
 <!-- Ocean animation canvas -->
-<canvas id="oc"></canvas>
+<canvas id="oc" width="1" height="1" style="display:none;position:fixed;z-index:0;"></canvas>
 
 <!-- ═══════════════ MARKETING SITE ═══════════════ -->
 <div id="site">
@@ -654,6 +712,7 @@ footer a{color:var(--wake);text-decoration:none;}
 // ═══════════════════════════════════════════════════════
 // OCEAN ANIMATION
 // ═══════════════════════════════════════════════════════
+if(window.innerWidth > 768){
 (function(){
   const cv=document.getElementById('oc'),ctx=cv.getContext('2d');
   function rsz(){cv.width=innerWidth;cv.height=innerHeight;}rsz();
@@ -692,6 +751,7 @@ footer a{color:var(--wake);text-decoration:none;}
   }
   draw();
 })();
+}
 
 // ═══════════════════════════════════════════════════════
 // DATA
