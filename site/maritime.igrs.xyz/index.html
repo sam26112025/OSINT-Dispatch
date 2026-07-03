@@ -1171,9 +1171,9 @@ MODULES.registry=function(el){
   el.innerHTML=`
   <div class="mod-panel">
     <h3>Vessel Registry · Equasis</h3>
-    <div class="desc">Ownership chain, ISM manager, classification society, port state control inspection history</div>
+    <div class="desc">Real-time data from Equasis (EMSA) — ownership chain, ISM manager, classification society, PSC inspection history, detentions</div>
     <div class="form-row">
-      <div class="ff"><input class="fi" id="reg-q" placeholder="Vessel name or IMO number (e.g. MV ALICE)"></div>
+      <div class="ff"><input class="fi" id="reg-q" placeholder="Vessel name or 7-digit IMO number (e.g. 9461865 = EVER GIVEN)"></div>
       <button class="tbtn" onclick="regLookup()">Lookup</button>
     </div>
     <div id="reg-res"></div>
@@ -1181,39 +1181,57 @@ MODULES.registry=function(el){
   document.getElementById('reg-q').addEventListener('keydown',e=>{if(e.key==='Enter')regLookup();});
 };
 window.regLookup=function(){
-  var q=(document.getElementById('reg-q').value||'').trim();
-  if(!q)return;
-  var isIMO=/^\d{7}$/.test(q);
-  var isMMS=/^\d{9}$/.test(q);
-  var encoded=encodeURIComponent(q);
-  document.getElementById('reg-res').innerHTML=
-    '<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:4px;padding:16px 18px;margin-top:8px;">'
-    +'<div style="font-size:13px;font-weight:700;color:#1e40af;margin-bottom:10px;">🔍 Searching: '+q+(isIMO?' (IMO Number)':isMMS?' (MMSI)':' (Vessel Name)')+'</div>'
-    +'<div style="font-size:12px;color:#1e40af;margin-bottom:14px;">Vessel registry data requires direct lookup on official registries. Click below to search on real databases:</div>'
-    +'<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin-bottom:12px;">'
-    +'<a href="https://www.equasis.org/EquasisWeb/public/HomePage" target="_blank" rel="noopener" style="display:block;background:#fff;border:1px solid #bfdbfe;border-radius:4px;padding:10px 12px;text-decoration:none;font-family:var(--mono);font-size:11px;color:#1d4ed8;">EQUASIS → (Free registration required)<br><span style="color:#64748b">Ownership · Class · PSC history</span></a>'
-    +'<a href="https://www.marinetraffic.com/en/ais/details/ships/shipid:0/vessel:'+(isIMO?'imo:'+q:encoded)+'" target="_blank" rel="noopener" style="display:block;background:#fff;border:1px solid #bfdbfe;border-radius:4px;padding:10px 12px;text-decoration:none;font-family:var(--mono);font-size:11px;color:#1d4ed8;">MARINETRAFFIC → <br><span style="color:#64748b">AIS position · Voyage history</span></a>'
-    +'<a href="https://gisis.imo.org/Public/SHIPS/Default.aspx" target="_blank" rel="noopener" style="display:block;background:#fff;border:1px solid #bfdbfe;border-radius:4px;padding:10px 12px;text-decoration:none;font-family:var(--mono);font-size:11px;color:#1d4ed8;">IMO GISIS → <br><span style="color:#64748b">Official IMO database</span></a>'
-    +'<a href="https://www.vesseltracker.com/en/Ships.html?term='+encoded+'" target="_blank" rel="noopener" style="display:block;background:#fff;border:1px solid #bfdbfe;border-radius:4px;padding:10px 12px;text-decoration:none;font-family:var(--mono);font-size:11px;color:#1d4ed8;">VESSELTRACKER → <br><span style="color:#64748b">Vessel details · Fleet tracking</span></a>'
-    +'</div>'
-    +'<div style="font-size:11px;color:#64748b;border-top:1px solid #bfdbfe;padding-top:10px;margin-top:4px;">💡 Tip: For OFAC/UN sanctions screening of this vessel — use the Sanctions Screen tab above with the vessel name or IMO number.</div>'
-    +'</div>';
-}
-
-
-// ── GHG / CII ──
-MODULES.ghg=function(el){
-  el.innerHTML=`
-  <div class="mod-panel">
-    <h3>GHG / CII Compliance · EU THETIS-MRV</h3>
-    <div class="desc">Verified CO₂, fuel consumption, CII rating, EEXI — per vessel annual data from EMSA (data Vizion does not provide)</div>
-    <div class="form-row">
-      <div class="ff"><input class="fi" id="ghg-q" placeholder="IMO number (e.g. 9123456)"></div>
-      <button class="tbtn" onclick="ghgLookup()">Check Compliance</button>
-    </div>
-    <div id="ghg-res"></div>
-  </div>`;
-  document.getElementById('ghg-q').addEventListener('keydown',e=>{if(e.key==='Enter')ghgLookup();});
+  var q=(document.getElementById('reg-q').value||'').trim().toUpperCase();
+  if(!q){return;}
+  var res=document.getElementById('reg-res');
+  res.innerHTML='<div style="padding:14px;font-family:var(--mono);font-size:12px;color:#64748b;">⏳ Querying Equasis registry...</div>';
+  fetch('/equasis_proxy.php?q='+encodeURIComponent(q))
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(!d.vessels||d.vessels.length===0){
+        res.innerHTML='<div style="background:#fef9c3;border:1px solid #fde68a;border-radius:4px;padding:14px 16px;color:#92400e;font-size:13px;margin-top:8px;">No vessel found for "'+q+'" in Equasis registry.</div>';
+        return;
+      }
+      var v=d.vessels[0];
+      var html='<div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;">'
+        +(d.total>1?'<span class="tag tb">'+d.total+' matches — showing first</span>':'')
+        +(d.cached?'<span class="tag tgr">Cached</span>':'<span class="tag tg">● Live Equasis</span>')
+        +'</div>'
+        +'<div class="res-box">';
+      var labels={name:'Vessel Name',imo:'IMO Number',mmsi:'MMSI',call_sign:'Call Sign',
+        flag:'Flag State',ship_type:'Ship Type',gross_tonnage:'Gross Tonnage',
+        dwt:'DWT',year_built:'Year Built',loa:'Length Overall (m)',beam:'Beam (m)',
+        registered_owner:'Registered Owner',operator:'Operator',ism_manager:'ISM Manager',
+        classification:'Classification Society',recognised_org:'Recognised Organisation',
+        p_and_i:'P&I Club',detentions:'PSC Detentions',data_source:'Data Source'};
+      Object.keys(labels).forEach(function(k){
+        if(v[k]!==undefined&&v[k]!==null&&v[k]!==''){
+          html+=kv(labels[k],k==='detentions'?'<span class="tag '+(v[k]>0?'tr':'tg')+'">'+v[k]+'</span>':v[k]);
+        }
+      });
+      // PSC inspections
+      if(v.psc_inspections&&v.psc_inspections.length){
+        html+='<div class="kv" style="flex-direction:column;align-items:flex-start;">'
+          +'<span class="kk" style="margin-bottom:6px;">PSC Inspection History</span>'
+          +'<div style="width:100%;overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:11px;">'
+          +'<tr style="background:#f8fafc"><th style="padding:5px 8px;text-align:left;border-bottom:1px solid #e2e8f0">Date</th><th style="padding:5px 8px;text-align:left;border-bottom:1px solid #e2e8f0">Authority</th><th style="padding:5px 8px;text-align:center;border-bottom:1px solid #e2e8f0">Inspections</th><th style="padding:5px 8px;text-align:center;border-bottom:1px solid #e2e8f0">Deficiencies</th></tr>';
+        v.psc_inspections.forEach(function(p){
+          html+='<tr><td style="padding:5px 8px;border-bottom:1px solid #f1f5f9">'+p.date+'</td>'
+            +'<td style="padding:5px 8px;border-bottom:1px solid #f1f5f9">'+p.authority+'</td>'
+            +'<td style="padding:5px 8px;text-align:center;border-bottom:1px solid #f1f5f9">'+p.inspections+'</td>'
+            +'<td style="padding:5px 8px;text-align:center;border-bottom:1px solid #f1f5f9;color:'+(p.deficiencies>0?'#dc2626':'#16a34a')+'">'+p.deficiencies+'</td></tr>';
+        });
+        html+='</table></div></div>';
+      }
+      html+='</div>';
+      if(d.total>1){
+        html+='<div style="margin-top:10px;font-size:12px;color:#64748b;">'+d.total+' vessels matched "'+q+'". Refine with IMO number for exact result.</div>';
+      }
+      res.innerHTML=html;
+    })
+    .catch(function(e){
+      res.innerHTML='<div style="background:#fee2e2;border:1px solid #fecaca;border-radius:4px;padding:14px;font-size:13px;color:#dc2626;">Equasis query failed. Try again in a moment.</div>';
+    });
 };
 window.ghgLookup=function(){
   var q=(document.getElementById('ghg-q').value||'').trim();
@@ -1647,9 +1665,9 @@ MODULES.registry=function(el){
   el.innerHTML=`
   <div class="mod-panel">
     <h3>Vessel Registry · Equasis</h3>
-    <div class="desc">Ownership chain, ISM manager, classification society, port state control inspection history</div>
+    <div class="desc">Real-time data from Equasis (EMSA) — ownership chain, ISM manager, classification society, PSC inspection history, detentions</div>
     <div class="form-row">
-      <div class="ff"><input class="fi" id="reg-q" placeholder="Vessel name or IMO number (e.g. MV ALICE)"></div>
+      <div class="ff"><input class="fi" id="reg-q" placeholder="Vessel name or 7-digit IMO number (e.g. 9461865 = EVER GIVEN)"></div>
       <button class="tbtn" onclick="regLookup()">Lookup</button>
     </div>
     <div id="reg-res"></div>
