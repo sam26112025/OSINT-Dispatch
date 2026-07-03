@@ -8,3 +8,4 @@ google.com, pub-5886568858916800, DIRECT, f08c47fec0942fa0
 # tm-map-fix-1783065431
 # retry-map-1783065633
 # osm-circles-1783065999
+# canvas-map-1783066561
