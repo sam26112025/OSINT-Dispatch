@@ -639,62 +639,6 @@ const FLAGS=['Panama (PA)','Liberia (LR)','Marshall Islands (MH)','Bahamas (BS)'
 const VESSEL_NAMES=['OCEAN PIONEER','PACIFIC ATLAS','MSC EMMA','EVER GLORY','MAERSK KENT','COSCO SATURN','MOL TRIUMPH','APL CHINA','HAPAG BERLIN','CMA LUMINA',
   'MUMBAI STAR','GUJARAT QUEEN','CHENNAI EXPRESS','DELHI TRADER','KOLKATA SPIRIT','COCHIN HARBOUR','VIZAG MARINER','KANDLA PRIDE','PARADIP HOPE','ENNORE GATEWAY',
   'GULF TRADER','ARABIAN SEA','PERSIAN CROWN','RED SEA WIND','SUEZ TRANSIT','HORMUZ SPIRIT','MALACCA STAR','LOMBOK PASSAGE','SUNDA STRAIT','BOSPHORUS WING',
-  'ATLANTIC HAWK','PACIFIC DOVE','INDIAN OCEAN','CAPE ROUTE','SOUTHERN CROSS','NORTHERN LIGHT','EASTERN PROMISE','WESTERN TRAIL','GLOBAL REACH','HORIZON SEEKER',
-  'BRAVE MARINER','SWIFT CARGO','TITAN BULK','ATLAS TANKER','GENESIS WAVE','NEXUS TRADER','DELTA CARRIER','SIGMA FREIGHT','OMEGA VESSEL','KAPPA BULK'];
-
-// Pre-generate 55 vessels with stable positions
-const LIVE_VESSELS=(function(){
-  const seed=42;let s=seed;
-  function rnd(){s=(s*1664525+1013904223)&0xffffffff;return(s>>>0)/0xffffffff;}
-  const regions=[
-    {name:'Arabian Sea / Indian Ocean',lats:[5,25],lngs:[55,80],count:14},
-    {name:'Bay of Bengal',lats:[5,22],lngs:[80,100],count:8},
-    {name:'Malacca Strait',lats:[1,6],lngs:[98,105],count:6},
-    {name:'Persian Gulf',lats:[23,30],lngs:[48,57],count:7},
-    {name:'Pacific',lats:[10,40],lngs:[120,160],count:6},
-    {name:'Mediterranean',lats:[30,44],lngs:[5,36],count:7},
-    {name:'Atlantic',lats:[20,50],lngs:[-60,-15],count:7},
-  ];
-  const vessels=[];
-  regions.forEach(region=>{
-    for(let i=0;i<region.count;i++){
-      const imo=9000000+Math.floor(rnd()*999999);
-      const spd=(8+rnd()*10);
-      const crs=Math.floor(rnd()*360);
-      const lat=region.lats[0]+rnd()*(region.lats[1]-region.lats[0]);
-      const lng=region.lngs[0]+rnd()*(region.lngs[1]-region.lngs[0]);
-      const type=VESSEL_TYPES[Math.floor(rnd()*VESSEL_TYPES.length)];
-      const det=rnd()<.05;
-      vessels.push({
-        imo:`9${Math.floor(100000+rnd()*899999)}`,
-        mmsi:`${Math.floor(200000000+rnd()*799999999)}`,
-        name:VESSEL_NAMES[vessels.length%VESSEL_NAMES.length],
-        flag:FLAGS[Math.floor(rnd()*FLAGS.length)],
-        type,status:det?'Not under command':'Under way using engine',
-        lat,lng,spd:spd.toFixed(1),crs,
-        draught:(5+rnd()*10).toFixed(1),
-        dest:['INNHAVA','SGSIN','AEJEA','INMUN','CNSHA','NLRTM','USNYC','GBFXT'][Math.floor(rnd()*8)],
-        region:region.name,
-        dark:det,
-        driftLat:(rnd()-.5)*.002,
-        driftLng:(rnd()-.5)*.003,
-      });
-    }
-  });
-  return vessels;
-})();
-
-
-// ═══════════════════════════════════════════════════════
-// PURE CANVAS WORLD MAP — no external tiles, no CDN
-// Self-contained, works everywhere
-// ═══════════════════════════════════════════════════════
-
-const VESSEL_TYPES=['Bulk Carrier','Container Ship','Tanker','General Cargo','RoRo','VLCC','LPG Carrier','LNG Carrier','Chemical Tanker','Feeder Container'];
-const FLAGS=['Panama (PA)','Liberia (LR)','Marshall Islands (MH)','Bahamas (BS)','Singapore (SG)','Malta (MT)','Cayman Islands (KY)','Cyprus (CY)','Greece (GR)','India (IN)'];
-const VESSEL_NAMES=['OCEAN PIONEER','PACIFIC ATLAS','MSC EMMA','EVER GLORY','MAERSK KENT','COSCO SATURN','MOL TRIUMPH','APL CHINA','HAPAG BERLIN','CMA LUMINA',
-  'MUMBAI STAR','GUJARAT QUEEN','CHENNAI EXPRESS','DELHI TRADER','KOLKATA SPIRIT','COCHIN HARBOUR','VIZAG MARINER','KANDLA PRIDE','PARADIP HOPE','ENNORE GATEWAY',
-  'GULF TRADER','ARABIAN SEA','PERSIAN CROWN','RED SEA WIND','SUEZ TRANSIT','HORMUZ SPIRIT','MALACCA STAR','LOMBOK PASSAGE','SUNDA STRAIT','BOSPHORUS WING',
   'ATLANTIC HAWK','PACIFIC DOVE','CAPE ROUTE','SOUTHERN CROSS','NORTHERN LIGHT','EASTERN PROMISE','BRAVE MARINER','SWIFT CARGO','TITAN BULK','ATLAS TANKER',
   'GENESIS WAVE','NEXUS TRADER','DELTA CARRIER','SIGMA FREIGHT','OMEGA VESSEL','KAPPA BULK','EPSILON SHIP','ZETA CARGO','ETA MARINE','THETA VESSEL'];
 
