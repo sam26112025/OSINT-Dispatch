@@ -5,7 +5,7 @@
     Header always set X-XSS-Protection "1; mode=block"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
     Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
-    Header always set Content-Security-Policy "default-src 'self' https:; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://www.googletagmanager.com https://*.google-analytics.com https://*.googleadservices.com https://*.google.com https://*.doubleclick.net https://static.cloudflareinsights.com https://img1.wsimg.com https://*.adtrafficquality.google; frame-src 'self' https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:;"
+    Header always set Content-Security-Policy "default-src 'self' https:; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://www.googletagmanager.com https://*.google-analytics.com https://*.googleadservices.com https://*.google.com https://*.doubleclick.net https://static.cloudflareinsights.com https://img1.wsimg.com https://*.adtrafficquality.google; frame-src 'self' https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self' https://www.google.com; frame-ancestors 'self';"
     Header always set Strict-Transport-Security "max-age=15768000; includeSubDomains; preload"
 </IfModule>
 
@@ -31,7 +31,7 @@ Redirect 301 /articles/igrs-108-vpn-jk-pok-intelligence-brief.html /articles/vpn
 
 
 # Protect sensitive files
-<FilesMatch "\.(env|git|log|sql|bak)$">
+<FilesMatch "\.(env|git|log|sql|bak|swp|tmp|inc)$">
     Order allow,deny
     Deny from all
 </FilesMatch>
@@ -70,6 +70,28 @@ Redirect 301 /articles/igrs-108-vpn-jk-pok-intelligence-brief.html /articles/vpn
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/css application/javascript text/plain
 </IfModule>
+
+
+# ── PHP HARDENING ──────────────────────────────────
+<IfModule mod_php.c>
+    php_flag display_errors Off
+    php_flag log_errors On
+    php_flag expose_php Off
+</IfModule>
+
+# Block common injection patterns in query strings
+<IfModule mod_rewrite.c>
+    RewriteCond %{QUERY_STRING} (<script|%3Cscript|\.\./) [NC]
+    RewriteRule .* - [F,L]
+</IfModule>
+
+# Noindex PHP endpoints (proxy etc)
+<FilesMatch "\.php$">
+    <IfModule mod_headers.c>
+        Header set X-Robots-Tag "noindex, nofollow"
+        Header set X-Content-Type-Options "nosniff"
+    </IfModule>
+</FilesMatch>
 
 # Custom error pages
 ErrorDocument 404 /404.html
