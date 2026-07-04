@@ -236,6 +236,38 @@ var PLAYBOOKS = [
     ],
     tools:["attack.mitre.org","virustotal.com","any.run","bazaar.abuse.ch","cisa.gov"]
   }
+
+  ,{
+    icon:"📱",title:"Mobile Device OSINT Investigation SOP",
+    tags:["Law Enforcement","Forensics","Corporate"],
+    desc:"End-to-end methodology for extracting intelligence from mobile numbers and associated digital footprint — WhatsApp, UPI, social media, location history, and device attribution.",
+    steps:[
+      {n:1,t:"Phone number triage and carrier identification",d:"Validate number format (country code, circle), identify carrier via TRAI MNPQ or Truecaller API, check if ported. Note MCC/MNC code for network-level tracking requests.",code:"TRAI MNPQ: mnpq.trai.gov.in | Truecaller: truecaller.com | NumLookup: numlookup.com"},
+      {n:2,t:"WhatsApp profile OSINT",d:"Check WhatsApp status, profile photo (reverse image search), last seen (if visible), About section. Note: WhatsApp profile photo EXIF may contain device info. Extract photo for facial recognition via PimEyes.",code:"WhatsApp Web → View contact → Profile photo → Save → Reverse search"},
+      {n:3,t:"UPI ID and payment trail",d:"Search UPI ID format (number@upi-handle) across BHIM, PhonePe, GPay, Paytm. Any UPI ID linked to number can reveal registered name — free via payment initiation (cancel before sending).",code:"UPI handles: @ybl @ibl @axl @paytm @oksbi @okaxis @okicici | Format: 9999999999@ybl"},
+      {n:4,t:"Social media footprint mapping",d:"Search number across Facebook (phone search), Instagram, Twitter, Truecaller, GetContact. Search in Google: '"9999999999" site:facebook.com' and similar. Check LinkedIn if business number.",code:"Facebook: search phone → People filter | GetContact: getcontact.com | Sync.me: sync.me"},
+      {n:5,t:"Location and travel intelligence",d:"Request CDR (Call Detail Record) via S.94 BNSS to telecom operator. CDR includes towers hit → maps to geographic areas. Cross-reference with Google timeline if device found. IPDR from ISP for internet sessions.",code:"S.94 BNSS notice → Telecom nodal officer → CDR + IPDR + SDR | Tower location: opencellid.org"},
+      {n:6,t:"Device attribution and IMEI",d:"Obtain IMEI via legal process from telecom — links device to subscriber. Check IMEI on CEIR (Central Equipment Identity Register) at ceir.gov.in for stolen device flag. IMEIs can reveal device make/model.",code:"CEIR: ceir.gov.in | IMEI check: imei.info | DoT CEIR block portal for stolen devices"},
+      {n:7,t:"Legal process and evidence packaging",d:"Package CDR/IPDR as electronic evidence with S.63 BSA certificate. All telecom data requires operator's authenticating officer certificate. Social media data: S.94 BNSS to Indian subsidiary or MLAT for foreign platforms.",code:"S.63 BSA certificate | S.94 BNSS to telecom/platform | MLAT via CBI for foreign platforms"}
+    ],
+    tools:["mnpq.trai.gov.in","ceir.gov.in","opencellid.org","truecaller.com"]
+  }
+  ,{
+    icon:"🏢",title:"Cyber Fraud Mule Account Investigation SOP",
+    tags:["Law Enforcement","Banking","Forensics"],
+    desc:"Step-by-step methodology for investigating mule bank accounts used in cyber fraud — from victim complaint to account freeze, KYC attribution, and prosecution under BNS/PMLA.",
+    steps:[
+      {n:1,t:"Collect transaction details from victim",d:"Obtain: beneficiary account number, IFSC code, UTR (Unique Transaction Reference), date-time, amount, payment mode (NEFT/IMPS/RTGS/UPI). Screenshot of bank statement or payment app is primary evidence.",code:"UTR format: NEFT-16 chars | IMPS-12 chars | UPI Ref: 12 digits | RBI complaint: cms.rbi.org.in"},
+      {n:2,t:"Report on 1930 / NCRP and track freezing",d:"Immediately report on cybercrime.gov.in or call 1930. Request Incident Reference Number. Police can initiate emergency freeze via I4C's Citizen Financial Cyber Fraud Reporting System — effective within 2 hours if reported quickly.",code:"1930 national helpline | cybercrime.gov.in | I4C portal | Time-critical: freeze within 1-2 hours"},
+      {n:3,t:"Issue S.94 BNSS notice to bank",d:"FIR registered → Issue S.94 BNSS (formerly S.91 CrPC) notice to bank's nodal officer for KYC details, account opening documents, linked mobile, IP logs, transaction history, and CCTV footage of ATM withdrawals.",code:"RBI Master Direction — Nodal Officers list at each bank | Send notice to nodal.officer@bankname.com"},
+      {n:4,t:"KYC analysis and mule identification",d:"Analyse account opening KYC: is it same person as account holder? Compare selfie/photo with UPI profile photos. Check Aadhaar address vs. IP/location of login. Flag if account opened recently (<30 days before fraud).",code:"UIDAI face auth | CKYC: ckycreg.in | Check Aadhaar linking: uidai.gov.in/verify-aadhaar"},
+      {n:5,t:"Transaction trail and layering analysis",d:"Map full transaction graph: victim → mule → further hops. Each hop = new S.94 BNSS notice. Funds often split (structuring/smurfing) to multiple accounts before withdrawal. ATM withdrawal location = key geographic lead.",code:"T+0: Immediate freeze | T+1: KYC | T+7: Full transaction graph | ATM CCTV via S.94 BNSS"},
+      {n:6,t:"Crypto off-ramp detection",d:"If funds converted to crypto: check for P2P exchange transactions (Binance P2P, WazirX, CoinDCX accounts linked to mobile). S.94 BNSS to Indian exchanges. Cross-reference crypto wallet with IGRS Crypto Tool.",code:"igrs.xyz/crypto-tracker.html | WazirX legal: legal@zanmai.in | CoinDCX: legal@coindcx.com"},
+      {n:7,t:"Prosecution sections and evidence packaging",d:"Primary: S.318/319 BNS (cheating) + S.66C/66D IT Act (identity theft, personation). PMLA S.3/4 if layering established. Evidence: certified bank statements (S.63 BSA), CDR, KYC, ATM CCTV. Attach I4C report as annexure.",code:"S.318 BNS | S.66C/66D IT Act | PMLA S.3/4 | S.63 BSA certificate for all electronic evidence"}
+    ],
+    tools:["cybercrime.gov.in","cms.rbi.org.in","ckycreg.in","igrs.xyz/crypto-tracker.html"]
+  }
+
 ];
 
 function buildPlaybooks(){
