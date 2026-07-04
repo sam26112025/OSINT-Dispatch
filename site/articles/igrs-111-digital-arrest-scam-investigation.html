@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Arrest Scam: Complete Investigation Methodology for Indian Cyber Cells | IGRS</title>
+<meta name="description" content="End-to-end investigation guide for Digital Arrest scams in India — from Cambodia-based fake police stations to WhatsApp video call infrastructure, VoIP tracing, mule networks, and BNS legal sections. Ahmedabad Cyber Crime Branch case analysis.">
+<meta name="keywords" content="digital arrest scam India investigation, digital arrest FIR methodology, Cambodia fake police station India fraud, VoIP spoofing investigation India, digital arrest BNS sections, cyber cell digital arrest guide, I4C digital arrest, 1930 helpline methodology">
+<meta name="author" content="Manuj Kumar Pandey">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://igrs.xyz/articles/igrs-111-digital-arrest-scam-investigation.html">
+<meta property="og:title" content="Digital Arrest Scam: Complete Investigation Methodology | IGRS">
+<meta property="og:description" content="How to investigate digital arrest scams — VoIP infrastructure, Cambodia networks, mule accounts, legal sections under BNS/IT Act.">
+<meta property="og:image" content="https://igrs.xyz/og/igrs111-digital-arrest.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://igrs.xyz/articles/igrs-111-digital-arrest-scam-investigation.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Digital Arrest Scam: Complete Investigation Methodology | IGRS">
+<meta name="twitter:image" content="https://igrs.xyz/og/igrs111-digital-arrest.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Digital Arrest Scam: Complete Investigation Methodology for Indian Cyber Cells","author":{"@type":"Person","name":"Manuj Kumar Pandey","url":"https://igrs.xyz/about.html"},"publisher":{"@type":"Organization","name":"IGRS — Intel Grid Research Station","url":"https://igrs.xyz"},"datePublished":"2026-07-04","dateModified":"2026-07-04","mainEntityOfPage":"https://igrs.xyz/articles/igrs-111-digital-arrest-scam-investigation.html","image":"https://igrs.xyz/og/igrs111-digital-arrest.png","description":"End-to-end investigation guide for Digital Arrest scams — Cambodia infrastructure, VoIP tracing, mule networks, legal sections.","keywords":"digital arrest scam, India cybercrime, VoIP investigation, Cambodia scam centre, cyber cell methodology"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"IGRS","item":"https://igrs.xyz"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://igrs.xyz/articles.html"},{"@type":"ListItem","position":3,"name":"Digital Arrest Investigation","item":"https://igrs.xyz/articles/igrs-111-digital-arrest-scam-investigation.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a digital arrest scam?","acceptedAnswer":{"@type":"Answer","text":"A digital arrest scam is a form of cyber fraud where criminals impersonate law enforcement officers (CBI, ED, TRAI, Delhi Police) via WhatsApp or Skype video calls. Victims are told they are under 'digital arrest' for fabricated crimes — narcotics trafficking, money laundering, fake Aadhaar misuse — and are psychologically coerced into transferring large sums to avoid non-existent criminal proceedings. The victim is kept on a continuous video call, isolated from family, sometimes for days."}},{"@type":"Question","name":"How do investigators trace digital arrest scam operations?","acceptedAnswer":{"@type":"Answer","text":"Key investigative leads include: VoIP number tracing via S.94 BNSS notice to telecom intermediaries, WhatsApp/Skype account data via MLAT (foreign platform) or S.94 BNSS (Indian subsidiary), mule bank account KYC via notice to receiving banks, IMEI and cell tower data for callers if they used Indian SIMs, and international cooperation via CBI for Cambodia/Southeast Asia-based scam centres."}},{"@type":"Question","name":"Which legal sections apply to digital arrest scams?","acceptedAnswer":{"@type":"Answer","text":"Primary sections: S.319 BNS (cheating by personation), S.318 BNS (cheating), S.351 BNS (criminal intimidation), S.170 BNS (impersonating public servant), S.66D IT Act (personation using computer resource), S.66C IT Act (identity theft). PMLA S.3/4 applies if layering through multiple accounts is established. For transnational operations, UAPA may apply if terror financing links are established."}},{"@type":"Question","name":"What was the Ahmedabad cyber cell digital arrest case?","acceptedAnswer":{"@type":"Answer","text":"In 2024, the Ahmedabad Cyber Crime Branch dismantled one of India's largest digital arrest fraud networks, arresting 17 accused including four Taiwanese nationals. The case — referenced by PM Modi in Mann Ki Baat — exposed transnational operation infrastructure. Joint Commissioner Sharad Singhal documented the investigative methodology in 'Cyber Trails: Unmasking Digital Crimes', a 403-page investigation manual."}}]}
+</script>
+<link rel="stylesheet" href="../style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+.art-wrap{max-width:860px;margin:0 auto;padding:32px 20px 60px}
+.breadcrumb{font-size:12px;color:#6a8faf;margin-bottom:24px;font-family:'Share Tech Mono',monospace}
+.breadcrumb a{color:#6a8faf;text-decoration:none}.breadcrumb a:hover{color:#00d4ff}
+.file-no{font-family:'Share Tech Mono',monospace;font-size:11px;color:#00d4ff;letter-spacing:.12em;margin-bottom:8px}
+h1{font-family:Rajdhani,sans-serif;font-size:clamp(24px,4vw,36px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:16px}
+.meta{font-size:12px;color:#6a8faf;font-family:'IBM Plex Mono',monospace;margin-bottom:32px}
+.meta span{margin-right:16px}
+h2{font-family:Rajdhani,sans-serif;font-size:22px;font-weight:700;color:#00d4ff;margin:36px 0 12px;border-left:3px solid #00d4ff;padding-left:12px}
+h3{font-family:Rajdhani,sans-serif;font-size:17px;font-weight:600;color:#ffb800;margin:24px 0 8px}
+p{color:#c8dff0;line-height:1.8;margin-bottom:16px;font-size:15px}
+.callout{background:#0a1628;border:1px solid #1a3a5c;border-left:3px solid #00d4ff;border-radius:4px;padding:16px 20px;margin:20px 0}
+.callout.amber{border-left-color:#ffb800}
+.callout.red{border-left-color:#ff4455}
+.callout.green{border-left-color:#00ff88}
+.callout p{margin:0;font-size:14px}
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px}
+th{background:#0a1628;color:#00d4ff;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.08em;text-align:left;padding:10px 12px;border-bottom:1px solid #1a3a5c}
+td{padding:9px 12px;border-bottom:1px solid #0d2040;color:#c8dff0;vertical-align:top}
+tr:hover td{background:rgba(0,212,255,.03)}
+.step-block{background:#060d16;border:1px solid #0d2040;border-radius:4px;padding:16px 20px;margin:12px 0}
+.step-no{font-family:'Share Tech Mono',monospace;font-size:11px;color:#00d4ff;margin-bottom:4px;letter-spacing:.1em}
+.step-title{font-family:Rajdhani,sans-serif;font-size:16px;font-weight:600;color:#fff;margin-bottom:8px}
+.tag{display:inline-block;padding:2px 8px;border-radius:2px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase}
+.tag.red{background:rgba(255,68,85,.12);color:#ff4455;border:1px solid rgba(255,68,85,.25)}
+.tag.amber{background:rgba(255,184,0,.12);color:#ffb800;border:1px solid rgba(255,184,0,.25)}
+.tag.green{background:rgba(0,255,136,.12);color:#00ff88;border:1px solid rgba(0,255,136,.25)}
+.tag.cyan{background:rgba(0,212,255,.12);color:#00d4ff;border:1px solid rgba(0,212,255,.25)}
+.hero-img{margin-bottom:28px;border-radius:6px;overflow:hidden;border:1px solid #0d2040}
+.hero-img img{display:block;max-width:100%;height:auto}
+.faq-block{margin:16px 0;border:1px solid #0d2040;border-radius:4px;overflow:hidden}
+.faq-q{background:#0a1628;padding:14px 18px;font-family:Rajdhani,sans-serif;font-size:16px;font-weight:600;color:#fff}
+.faq-a{padding:14px 18px;color:#c8dff0;font-size:14px;line-height:1.7}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}
+.related-card{background:#0a1628;border:1px solid #0d2040;border-radius:4px;padding:14px 16px;text-decoration:none;transition:border-color .2s}
+.related-card:hover{border-color:#00d4ff}
+.related-card .rc-cat{font-family:'Share Tech Mono',monospace;font-size:10px;color:#00d4ff;margin-bottom:6px;letter-spacing:.1em}
+.related-card .rc-title{font-family:Rajdhani,sans-serif;font-size:15px;color:#fff;font-weight:600}
+</style>
+</head>
+<body>
+<nav class="igrs-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="brand"><img src="../logo.svg" width="32" height="32" alt="IGRS Logo"> IGRS</a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../articles.html" class="act">Articles</a>
+      <a href="../tools.html">Tools</a>
+      <a href="../dashboard.html">Dashboard</a>
+      <a href="../cyberlaw.html">Cyber Law</a>
+    </div>
+  </div>
+</nav>
+
+<div class="art-wrap">
+  <div class="breadcrumb">
+    <a href="../index.html">IGRS</a> › <a href="../articles.html">Articles</a> › Digital Arrest Investigation Guide
+  </div>
+
+  <div class="file-no">FILE IGRS-111 · CYBER FRAUD INVESTIGATION · 04 JULY 2026</div>
+
+  <h1>Digital Arrest Scam: Complete Investigation Methodology for Indian Cyber Cells</h1>
+
+  <div class="meta">
+    <span>By Manuj Kumar Pandey</span>
+    <span>4 July 2026</span>
+    <span>Cyber Fraud Investigation</span>
+    <span class="tag red">Transnational Fraud</span>
+    <span class="tag amber">VoIP Spoofing</span>
+    <span class="tag cyan">S.319 BNS</span>
+  </div>
+
+  <div class="hero-img">
+    <img src="../og/igrs111-digital-arrest.png" alt="Digital Arrest Scam Investigation — IGRS" width="100%">
+  </div>
+
+  <p>Digital arrest scams have emerged as India's fastest-growing cyber fraud category in 2024–2026, with victims losing over ₹11.6 crore since 2023 in reported cases alone. The actual figure is significantly higher. In May 2026, Cambodian authorities uncovered a fake Indian police station operating inside a scam centre — a stark indicator of how sophisticated and institutionalised this transnational fraud infrastructure has become.</p>
+
+  <p>This article provides a complete investigative methodology — from victim complaint to chargesheet — for cyber cell officers handling digital arrest cases.</p>
+
+  <h2>Anatomy of a Digital Arrest Scam</h2>
+
+  <p>A digital arrest operation runs in three stages, each with a distinct team and infrastructure:</p>
+
+  <table>
+    <tr><th>Stage</th><th>Team</th><th>Method</th><th>Location</th></tr>
+    <tr><td>1. Initial contact</td><td>Caller team</td><td>Spoofed call from "TRAI", "CBI", "ED", "Delhi Police" — fake courier case, Aadhaar misuse, or FIR alert</td><td>Cambodia, Myanmar, UAE, or India</td></tr>
+    <tr><td>2. Escalation + isolation</td><td>Impersonator team</td><td>Video call on WhatsApp/Skype wearing police uniform in fake "police station" set — victim kept on call, barred from contacting family</td><td>Scam centre (Cambodia, Thailand)</td></tr>
+    <tr><td>3. Financial extraction</td><td>Money mule network</td><td>Victim transfers to mule accounts under pretext of "bail", "RBI verification", "court deposit"</td><td>India (mule accounts)</td></tr>
+  </table>
+
+  <div class="callout red">
+    <p><strong>Cambodia angle (2026):</strong> Cambodian authorities discovered a scam centre with a fully constructed fake Indian police station — police uniforms, backdrop of Indian police signage, official-looking furniture — specifically for video call impersonation of Indian LEA. Victims cannot distinguish this from a real police station on a video call.</p>
+  </div>
+
+  <h2>Investigative Entry Points</h2>
+
+  <div class="step-block">
+    <div class="step-no">ENTRY POINT 1</div>
+    <div class="step-title">Victim complaint on 1930 / NCRP portal</div>
+    <p>Immediate actions: Obtain victim's phone (preserve call logs, WhatsApp chat, transaction records). Note: VoIP numbers used, WhatsApp caller ID, times of contact. Check 1930's NCRP for previous complaints against same number or account — pattern recognition across complaints is critical for identifying network nodes.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-no">ENTRY POINT 2</div>
+    <div class="step-title">Mule bank account trail</div>
+    <p>Victim's transfer destination is the most actionable lead. Issue S.94 BNSS to the receiving bank within 24 hours — request KYC, account opening documents, linked mobile, IP logs, and all subsequent transfers. Emergency freeze request simultaneously via I4C's CFCFRMS portal.</p>
+  </div>
+
+  <h2>VoIP Number Investigation</h2>
+
+  <p>Digital arrest scammers invariably use VoIP numbers to spoof Indian landline or mobile numbers. Tracing these is possible but requires specific legal instruments:</p>
+
+  <table>
+    <tr><th>VoIP Provider Type</th><th>Legal Process</th><th>What You Get</th></tr>
+    <tr><td>Indian telecom (BSNL/Airtel/Jio OTT)</td><td>S.94 BNSS to nodal officer</td><td>Registration IP, device, payment details</td></tr>
+    <tr><td>WhatsApp (Meta India)</td><td>S.94 BNSS to Meta India's designated officer or MLAT via CBI</td><td>Account creation IP, phone number, last active, linked accounts</td></tr>
+    <tr><td>Skype/Teams (Microsoft)</td><td>MLAT via CBI (US company)</td><td>Account data, IP logs, billing info</td></tr>
+    <tr><td>International VoIP (Twilio, Vonage)</td><td>MLAT via CBI (US-based)</td><td>Originating phone number, billing address, usage logs</td></tr>
+    <tr><td>Telegram</td><td>MLAT or direct to Telegram legal team (Dubai entity)</td><td>Limited — only for specific IP in serious cases</td></tr>
+  </table>
+
+  <div class="callout amber">
+    <p><strong>Key tactic:</strong> Request subscriber information for the VoIP number that called the victim AND the number the scammer claimed to be (spoofed number). Discrepancy between the two is primary evidence of personation under S.319 BNS + S.66D IT Act.</p>
+  </div>
+
+  <h2>Legal Framework</h2>
+
+  <table>
+    <tr><th>Section</th><th>Element Covered</th><th>Key Evidence Needed</th></tr>
+    <tr><td>S.319 BNS</td><td>Cheating by personation — impersonating CBI/ED/Police officer</td><td>Video/audio recording, WhatsApp screenshot, uniform evidence</td></tr>
+    <tr><td>S.318 BNS</td><td>Cheating — financial deception</td><td>Bank transaction records, victim statement</td></tr>
+    <tr><td>S.170 BNS</td><td>Personation of public servant</td><td>Impersonation of CBI/ED/Police — certified communication records</td></tr>
+    <tr><td>S.351 BNS</td><td>Criminal intimidation</td><td>Threats of arrest, imprisonment, family exposure</td></tr>
+    <tr><td>S.66D IT Act</td><td>Personation using computer resource (video call)</td><td>WhatsApp/Skype session data, device evidence</td></tr>
+    <tr><td>S.66C IT Act</td><td>Identity theft (fake Aadhaar, fake warrants)</td><td>Fake documents produced to victim</td></tr>
+    <tr><td>PMLA S.3/4</td><td>Money laundering via mule account layering</td><td>Transaction graph from mule → aggregator accounts</td></tr>
+    <tr><td>S.63 BSA 2023</td><td>Electronic evidence certificate for all digital evidence</td><td>Certificate from competent authority for any device/log data</td></tr>
+  </table>
+
+  <h2>Ahmedabad Cyber Cell Case Study (2024)</h2>
+
+  <p>The Ahmedabad Cyber Crime Branch's 2024 operation remains the benchmark for digital arrest investigation in India. Key elements:</p>
+
+  <table>
+    <tr><th>Parameter</th><th>Detail</th></tr>
+    <tr><td>Accused arrested</td><td>17 (including 4 Taiwanese nationals)</td></tr>
+    <tr><td>Operation scope</td><td>One of India's largest digital arrest fraud networks</td></tr>
+    <tr><td>Referencing</td><td>PM Modi's Mann Ki Baat — national attention</td></tr>
+    <tr><td>Lead investigator</td><td>JCP (Crime) Sharad Singhal + DCP Dr Lavina Sinha + ACP Hardik Makadia</td></tr>
+    <tr><td>Documentation</td><td>'Cyber Trails: Unmasking Digital Crimes' — 403-page investigation manual (2026)</td></tr>
+    <tr><td>Key investigative lever</td><td>International cooperation with Taiwan + financial intelligence from mule account network</td></tr>
+  </table>
+
+  <h2>Evidence Packaging for Chargesheet</h2>
+
+  <p>Digital arrest cases require multi-source evidence packages. Each element must carry an S.63 BSA 2023 certificate:</p>
+
+  <table>
+    <tr><th>Evidence Type</th><th>Source</th><th>Certificate Required</th></tr>
+    <tr><td>WhatsApp video call recording</td><td>Victim's phone (Cellebrite extraction preferred)</td><td>S.63 BSA + hash verification</td></tr>
+    <tr><td>Bank transaction records</td><td>S.94 BNSS to bank</td><td>Bank's certifying officer certificate</td></tr>
+    <tr><td>VoIP subscriber data</td><td>S.94 BNSS / MLAT</td><td>Provider's certificate + MLAT chain</td></tr>
+    <tr><td>IP logs of mule account login</td><td>S.94 BNSS to bank + ISP</td><td>Bank + ISP certificates</td></tr>
+    <tr><td>KYC documents (mule account)</td><td>S.94 BNSS to bank</td><td>Bank's KYC officer certificate</td></tr>
+    <tr><td>NCRP complaint history</td><td>I4C portal</td><td>I4C officer certificate</td></tr>
+  </table>
+
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-block">
+    <div class="faq-q">What is a digital arrest scam?</div>
+    <div class="faq-a">Criminals impersonate CBI/ED/Police via WhatsApp video call, claim the victim is involved in a criminal case, and keep them on a continuous call — isolated from family — until they transfer money to avoid fabricated arrest. The Cambodia case (2026) showed a fully constructed fake Indian police station used for video call props.</div>
+  </div>
+  <div class="faq-block">
+    <div class="faq-q">How do investigators trace the operation?</div>
+    <div class="faq-a">Primary leads: VoIP number via S.94 BNSS to telecom intermediary, WhatsApp account data via S.94 BNSS to Meta India or MLAT, mule bank account KYC via S.94 BNSS to bank, IP + cell tower via telecom nodal officer. International cooperation via CBI for Cambodia/Southeast Asia-based operations.</div>
+  </div>
+  <div class="faq-block">
+    <div class="faq-q">Which BNS sections apply?</div>
+    <div class="faq-a">S.319 BNS (cheating by personation), S.318 BNS (cheating), S.170 BNS (impersonating public servant), S.351 BNS (criminal intimidation), S.66D IT Act (personation using computer), S.66C IT Act (identity theft). PMLA if layering established.</div>
+  </div>
+  <div class="faq-block">
+    <div class="faq-q">Where are these operations run from?</div>
+    <div class="faq-a">Primarily Cambodia, Myanmar (Myawaddy), Thailand, and UAE. Indian nationals are trafficked or go voluntarily as scam centre operators. Cambodian authorities uncovered a fake Indian police station in 2026. CBI has issued alerts and is pursuing MLAT requests with multiple jurisdictions.</div>
+  </div>
+
+  <h2>Related Resources</h2>
+  <div class="related-grid">
+    <a class="related-card" href="igrs-111-digital-arrest-scam-investigation.html">
+      <div class="rc-cat">SOP</div>
+      <div class="rc-title">Mule Account Investigation Playbook</div>
+    </a>
+    <a class="related-card" href="../dashboard.html">
+      <div class="rc-cat">FREE TOOL</div>
+      <div class="rc-title">IGRS Dashboard — IOC Lookup + Legal Quick Reference</div>
+    </a>
+    <a class="related-card" href="../playbooks.html">
+      <div class="rc-cat">SOP</div>
+      <div class="rc-title">UPI Fraud Investigation SOP</div>
+    </a>
+  </div>
+</div>
+
+<footer class="igrs-ftr">
+  <div class="ftr-inner">
+    <div class="ftr-links">
+      <a href="../about.html">About</a><a href="../contact.html">Contact</a>
+      <a href="../privacy-policy.html">Privacy</a><a href="../terms.html">Terms</a>
+      <a href="../disclaimer.html">Disclaimer</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+</body>
+</html>
