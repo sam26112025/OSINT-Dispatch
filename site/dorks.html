@@ -351,7 +351,61 @@ function renderDorks(){
   }
   var html = "";
   Object.keys(grouped).sort().forEach(function(cat){
-    var dorks = grouped[cat];
+    var dorks = grouped[cat
+  // ── EMAIL & CREDENTIALS (expand from 5) ─────────────────────
+  ,{cat:"Email & Credentials",dork:'site:pastebin.com "@gmail.com" "password"',desc:"Find leaked Gmail credentials on Pastebin.",tags:["pastebin","gmail","credentials"]}
+  ,{cat:"Email & Credentials",dork:'site:pastebin.com "@yahoo.com" OR "@rediffmail.com" "password"',desc:"Find leaked Indian email credentials on Pastebin.",tags:["pastebin","india","credentials"]}
+  ,{cat:"Email & Credentials",dork:'filetype:csv "email" "password" site:github.com',desc:"Find leaked credential CSV files on GitHub.",tags:["github","csv","credentials"]}
+  ,{cat:"Email & Credentials",dork:'inurl:"/wp-content/uploads" filetype:txt "password"',desc:"Find plaintext password files uploaded to WordPress sites.",tags:["wordpress","password","exposure"]}
+  ,{cat:"Email & Credentials",dork:'site:scribd.com "confidential" "email" "password"',desc:"Find credential documents on Scribd.",tags:["scribd","credentials","leak"]}
+  ,{cat:"Email & Credentials",dork:'intext:"@nic.in" intext:"password" site:pastebin.com OR site:rentry.co',desc:"Find leaked NIC government email credentials.",tags:["nic.in","government","india"]}
+  ,{cat:"Email & Credentials",dork:'filetype:xls intext:"username" intext:"password" intext:"@gmail.com"',desc:"Find Excel files with credential dumps.",tags:["excel","credentials","dump"]}
+  ,{cat:"Email & Credentials",dork:'site:github.com "SMTP_PASSWORD" OR "MAIL_PASSWORD" intext:"@gmail"',desc:"Find exposed SMTP credentials in GitHub repos.",tags:["github","smtp","email"]}
+  // ── DARK WEB & LEAKS (expand from 1) ──────────────────────────
+  ,{cat:"Dark Web & Leaks",dork:'site:onion.ws OR site:onion.pet "market" "bitcoin" "India"',desc:"Find dark web market references indexed via onion proxies.",tags:["darkweb","bitcoin","india"]}
+  ,{cat:"Dark Web & Leaks",dork:'site:rentry.co OR site:privatebin.net "aadhaar" OR "pan card"',desc:"Find Aadhaar/PAN data leaks on paste sites.",tags:["aadhaar","pan","leak"]}
+  ,{cat:"Dark Web & Leaks",dork:'site:pastebin.com "mysql dump" OR "database dump" ".in"',desc:"Find Indian database dumps on Pastebin.",tags:["database","dump","india"]}
+  ,{cat:"Dark Web & Leaks",dork:'site:github.com "data breach" "India" filetype:json OR filetype:csv',desc:"Find breach data files referencing India on GitHub.",tags:["breach","india","github"]}
+  ,{cat:"Dark Web & Leaks",dork:'site:t.me "sell" "data" "India" "OTP" OR "KYC"',desc:"Find Telegram channels selling Indian user data.",tags:["telegram","data","india"]}
+  ,{cat:"Dark Web & Leaks",dork:'site:pastebin.com "HDFC" OR "SBI" OR "ICICI" "account number" "ifsc"',desc:"Find Indian banking data leaks on Pastebin.",tags:["banking","ifsc","india"]}
+  ,{cat:"Dark Web & Leaks",dork:'intext:"leaked" intext:"India" filetype:txt site:anonfiles.com OR site:mega.nz',desc:"Find India-specific file leaks on file sharing sites.",tags:["leaked","india","files"]}
+  // ── FILE EXPOSURE (expand from 8) ─────────────────────────────
+  ,{cat:"File Exposure",dork:'filetype:env "DB_PASSWORD" OR "APP_KEY" OR "AWS_SECRET"',desc:"Find exposed .env files with application secrets.",tags:[".env","secrets","exposure"]}
+  ,{cat:"File Exposure",dork:'filetype:log "error" "password" OR "credential" site:*.in',desc:"Find error log files exposing credentials on Indian sites.",tags:["log","india","credentials"]}
+  ,{cat:"File Exposure",dork:'intitle:"index of" "backup" site:*.gov.in',desc:"Find backup files exposed in Indian government directory listings.",tags:["government","backup","india"]}
+  ,{cat:"File Exposure",dork:'filetype:sql "INSERT INTO users" site:*.in',desc:"Find exposed SQL dump files on Indian domains.",tags:["sql","users","india"]}
+  ,{cat:"File Exposure",dork:'filetype:bak OR filetype:old OR filetype:backup inurl:".in"',desc:"Find backup files on Indian domains.",tags:["backup","india","exposure"]}
+  ,{cat:"File Exposure",dork:'intitle:"index of" "wp-config.php.bak" OR "config.php.old"',desc:"Find exposed WordPress config backup files.",tags:["wordpress","config","backup"]}
+  ,{cat:"File Exposure",dork:'filetype:xlsx "aadhaar" OR "pan" OR "voter id" site:*.gov.in',desc:"Find Excel files with PII on Indian government sites.",tags:["aadhaar","excel","government"]}
+  ,{cat:"File Exposure",dork:'intitle:"index of" ".git" site:*.in',desc:"Find exposed Git repositories on Indian domains.",tags:["git","india","exposure"]}
+  ,{cat:"File Exposure",dork:'filetype:pem OR filetype:key "PRIVATE KEY" site:*.in',desc:"Find exposed private keys on Indian domains.",tags:["private key","ssl","india"]}
+  // ── INDIA GOVERNMENT (expand) ─────────────────────────────────
+  ,{cat:"India Government",dork:'site:nic.in filetype:xls OR filetype:xlsx "mobile" "aadhar"',desc:"Find Excel files with Aadhaar/mobile data on NIC domains.",tags:["nic","aadhaar","excel"]}
+  ,{cat:"India Government",dork:'site:mha.gov.in OR site:mea.gov.in filetype:pdf "classified" OR "restricted"',desc:"Find restricted documents on MHA/MEA portals.",tags:["mha","mea","classified"]}
+  ,{cat:"India Government",dork:'site:police.gov.in OR site:*.police.in "FIR" OR "chargesheet" filetype:pdf',desc:"Find publicly exposed FIR/chargesheet PDFs on state police sites.",tags:["police","fir","india"]}
+  ,{cat:"India Government",dork:'site:epfindia.gov.in OR site:uidai.gov.in "error" inurl:admin',desc:"Find admin pages and errors on EPFO/UIDAI portals.",tags:["epfo","uidai","admin"]}
+  ,{cat:"India Government",dork:'site:incometax.gov.in OR site:gst.gov.in "PAN" "TAN" filetype:pdf',desc:"Find tax-related documents with PAN/TAN on IT/GST portals.",tags:["pan","gst","incometax"]}
+  // ── VULNERABILITY RESEARCH (expand) ───────────────────────────
+  ,{cat:"Vulnerability Research",dork:'inurl:"/phpMyAdmin/" intitle:"phpMyAdmin" site:*.in',desc:"Find exposed phpMyAdmin panels on Indian domains.",tags:["phpmyadmin","india","exposure"]}
+  ,{cat:"Vulnerability Research",dork:'inurl:".git/config" site:*.in',desc:"Find exposed Git config files on Indian domains.",tags:["git","config","india"]}
+  ,{cat:"Vulnerability Research",dork:'intitle:"Laravel" intext:"APP_KEY" filetype:env',desc:"Find exposed Laravel .env files with app keys.",tags:["laravel","env","exposure"]}
+  ,{cat:"Vulnerability Research",dork:'inurl:"/api/v1/" intext:"api_key" OR intext:"token" site:*.in',desc:"Find exposed API keys in Indian web applications.",tags:["api","token","india"]}
+  ,{cat:"Vulnerability Research",dork:'inurl:"/.well-known/security.txt" site:*.gov.in',desc:"Find security.txt files on Indian government domains.",tags:["security.txt","gov.in","disclosure"]}
+  ,{cat:"Vulnerability Research",dork:'intitle:"Grafana" inurl:"/login" site:*.in',desc:"Find exposed Grafana dashboards on Indian infrastructure.",tags:["grafana","india","dashboard"]}
+  ,{cat:"Vulnerability Research",dork:'inurl:"/actuator/env" OR inurl:"/actuator/health" site:*.in',desc:"Find exposed Spring Boot actuator endpoints on Indian domains.",tags:["springboot","actuator","india"]}
+  ,{cat:"Vulnerability Research",dork:'intitle:"Jenkins" inurl:"/login" site:*.in',desc:"Find exposed Jenkins CI/CD panels on Indian domains.",tags:["jenkins","india","cicd"]}
+  // ── CRYPTO & FINANCE (expand from 8) ──────────────────────────
+  ,{cat:"Crypto & Finance",dork:'site:blockchain.com OR site:etherscan.io "India" "HDFC" OR "SBI"',desc:"Find Indian banking references in blockchain transactions.",tags:["blockchain","india","banking"]}
+  ,{cat:"Crypto & Finance",dork:'intext:"USDT" intext:"TRC20" intext:"wallet" site:t.me',desc:"Find Telegram messages about USDT TRC20 wallet transactions.",tags:["usdt","trc20","telegram"]}
+  ,{cat:"Crypto & Finance",dork:'site:localbitcoins.com OR site:paxful.com "India" "bank transfer"',desc:"Find Indian P2P crypto traders using bank transfers.",tags:["p2p","bitcoin","india"]}
+  ,{cat:"Crypto & Finance",dork:'filetype:pdf "cryptocurrency" "investigation" "FIR" site:*.gov.in',desc:"Find government crypto investigation reports.",tags:["crypto","fir","government"]}
+  // ── SOCIAL MEDIA OSINT (more India-specific) ───────────────────
+  ,{cat:"Social Media OSINT",dork:'site:linkedin.com/in "Innefu Labs" OR "BSF" OR "CRPF" OR "IB" OR "RAW"',desc:"Find LinkedIn profiles of Indian intelligence/security personnel.",tags:["linkedin","india","intelligence"]}
+  ,{cat:"Social Media OSINT",dork:'site:instagram.com intext:"#cybercrime" OR "#digitalfraud" intext:"India"',desc:"Find Instagram posts related to Indian cybercrime.",tags:["instagram","cybercrime","india"]}
+  ,{cat:"Social Media OSINT",dork:'site:twitter.com intext:"UIDAI" OR "CERT-In" intext:"breach" OR "leak"',desc:"Find tweets about UIDAI or CERT-In breach notifications.",tags:["twitter","uidai","certin"]}
+  ,{cat:"Social Media OSINT",dork:'site:facebook.com "cyber fraud" "helpline" "1930" India',desc:"Find Facebook posts/groups related to Indian cyber fraud helpline.",tags:["facebook","1930","cybercrime"]}
+
+];
     html += "<div class=\"cat-section\">";
     html += "<div class=\"cat-title\">" + cat + " <span>" + dorks.length + " dorks</span></div>";
     dorks.forEach(function(d){
