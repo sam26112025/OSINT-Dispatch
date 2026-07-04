@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WazirX ₹2000 Crore Hack: How Lazarus Group Breached India's Largest Crypto Exchange | IGRS</title>
+<meta name="description" content="Complete technical breakdown of the WazirX $235 million hack by North Korea's Lazarus Group — multi-sig wallet exploit, supply chain attack via Liminal Custody, blockchain forensics, and investigation methodology for Indian cyber cells.">
+<meta name="keywords" content="WazirX hack investigation, Lazarus Group India crypto theft, multi-sig wallet exploit, North Korea crypto heist India, WazirX Liminal Custody breach, blockchain forensics India, IFSO Delhi Police crypto, cryptocurrency exchange hack methodology">
+<meta name="author" content="Manuj Kumar Pandey">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://igrs.xyz/articles/igrs-110-wazirx-lazarus-hack.html">
+<meta property="og:title" content="WazirX ₹2000 Crore Hack: Lazarus Group Breach Analysis | IGRS">
+<meta property="og:description" content="Technical breakdown of the WazirX $235M hack — multi-sig exploit, Lazarus TTPs, blockchain trail, and investigation methodology.">
+<meta property="og:image" content="https://igrs.xyz/og/igrs110-wazirx-lazarus.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://igrs.xyz/articles/igrs-110-wazirx-lazarus-hack.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="WazirX ₹2000 Crore Hack: Lazarus Group Breach Analysis | IGRS">
+<meta name="twitter:description" content="Technical breakdown of the WazirX $235M hack — multi-sig exploit, Lazarus TTPs, blockchain forensics.">
+<meta name="twitter:image" content="https://igrs.xyz/og/igrs110-wazirx-lazarus.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"WazirX ₹2000 Crore Hack: How Lazarus Group Breached India's Largest Crypto Exchange","author":{"@type":"Person","name":"Manuj Kumar Pandey","url":"https://igrs.xyz/about.html"},"publisher":{"@type":"Organization","name":"IGRS — Intel Grid Research Station","url":"https://igrs.xyz"},"datePublished":"2026-07-04","dateModified":"2026-07-04","mainEntityOfPage":"https://igrs.xyz/articles/igrs-110-wazirx-lazarus-hack.html","image":"https://igrs.xyz/og/igrs110-wazirx-lazarus.png","description":"Technical breakdown of the WazirX $235M Lazarus Group hack — multi-sig exploit, supply chain attack, blockchain forensics, IFSO investigation.","keywords":"WazirX hack, Lazarus Group, crypto theft India, multi-sig exploit, blockchain forensics"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"IGRS","item":"https://igrs.xyz"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://igrs.xyz/articles.html"},{"@type":"ListItem","position":3,"name":"WazirX Lazarus Hack","item":"https://igrs.xyz/articles/igrs-110-wazirx-lazarus-hack.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How did Lazarus Group hack WazirX?","acceptedAnswer":{"@type":"Answer","text":"The Lazarus Group exploited WazirX's multi-signature wallet infrastructure through a supply chain attack on Liminal Custody, the third-party custodian. Hackers pre-positioned attack smart contracts on July 10, 2024 — eight days before the breach — using Tornado Cash-funded wallets. On July 18, they manipulated the transaction payload displayed on Liminal's interface, tricking signatories into approving a malicious contract upgrade that transferred wallet control to the attacker."}},{"@type":"Question","name":"What was stolen in the WazirX hack?","acceptedAnswer":{"@type":"Answer","text":"Approximately $234.9 million (₹2,000 crore) in digital assets were stolen, including $102.1 million in Shiba Inu (SHIB), $52.6 million in Ether (ETH), $11 million in MATIC, and various stablecoins. The funds were immediately swapped for ETH using decentralised exchanges to evade tracing."}},{"@type":"Question","name":"What legal action was taken in India?","acceptedAnswer":{"@type":"Answer","text":"WazirX filed an FIR with the Intelligence Fusion and Strategic Operations (IFSO) unit of Delhi Police Special Cell on August 5, 2024. One suspect, SK Masud Alam of West Bengal, was arrested for opening a mule account under alias 'Souvik Mondal' that facilitated the hack. Investigations were also conducted by CERT-In. CBI is involved in broader crypto exchange oversight."}},{"@type":"Question","name":"Was it officially confirmed as a North Korean attack?","acceptedAnswer":{"@type":"Answer","text":"Yes. A joint statement by the United States, South Korea, and Japan officially attributed the WazirX hack to North Korea's Lazarus Group in January 2025. The group is linked to North Korea's Reconnaissance General Bureau (RGB) and has two financial crime sub-units: APT38 and BlueNoroff. The stolen funds are believed to have been channelled into North Korea's weapons programs."}}]}
+</script>
+<link rel="stylesheet" href="../style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+.art-wrap{max-width:860px;margin:0 auto;padding:32px 20px 60px}
+.breadcrumb{font-size:12px;color:#6a8faf;margin-bottom:24px;font-family:'Share Tech Mono',monospace}
+.breadcrumb a{color:#6a8faf;text-decoration:none}.breadcrumb a:hover{color:#00d4ff}
+.file-no{font-family:'Share Tech Mono',monospace;font-size:11px;color:#00d4ff;letter-spacing:.12em;margin-bottom:8px}
+h1{font-family:Rajdhani,sans-serif;font-size:clamp(24px,4vw,36px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:16px}
+.meta{font-size:12px;color:#6a8faf;font-family:'IBM Plex Mono',monospace;margin-bottom:32px}
+.meta span{margin-right:16px}
+h2{font-family:Rajdhani,sans-serif;font-size:22px;font-weight:700;color:#00d4ff;margin:36px 0 12px;border-left:3px solid #00d4ff;padding-left:12px}
+h3{font-family:Rajdhani,sans-serif;font-size:17px;font-weight:600;color:#ffb800;margin:24px 0 8px}
+p{color:#c8dff0;line-height:1.8;margin-bottom:16px;font-size:15px}
+.callout{background:#0a1628;border:1px solid #1a3a5c;border-left:3px solid #00d4ff;border-radius:4px;padding:16px 20px;margin:20px 0}
+.callout.amber{border-left-color:#ffb800}
+.callout.red{border-left-color:#ff4455}
+.callout.green{border-left-color:#00ff88}
+.callout p{margin:0;font-size:14px}
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px}
+th{background:#0a1628;color:#00d4ff;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.08em;text-align:left;padding:10px 12px;border-bottom:1px solid #1a3a5c}
+td{padding:9px 12px;border-bottom:1px solid #0d2040;color:#c8dff0;vertical-align:top}
+tr:hover td{background:rgba(0,212,255,.03)}
+.step-block{background:#060d16;border:1px solid #0d2040;border-radius:4px;padding:16px 20px;margin:12px 0}
+.step-no{font-family:'Share Tech Mono',monospace;font-size:11px;color:#00d4ff;margin-bottom:4px;letter-spacing:.1em}
+.step-title{font-family:Rajdhani,sans-serif;font-size:16px;font-weight:600;color:#fff;margin-bottom:8px}
+.tag{display:inline-block;padding:2px 8px;border-radius:2px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase}
+.tag.red{background:rgba(255,68,85,.12);color:#ff4455;border:1px solid rgba(255,68,85,.25)}
+.tag.amber{background:rgba(255,184,0,.12);color:#ffb800;border:1px solid rgba(255,184,0,.25)}
+.tag.green{background:rgba(0,255,136,.12);color:#00ff88;border:1px solid rgba(0,255,136,.25)}
+.tag.cyan{background:rgba(0,212,255,.12);color:#00d4ff;border:1px solid rgba(0,212,255,.25)}
+.hero-img{margin-bottom:28px;border-radius:6px;overflow:hidden;border:1px solid #0d2040}
+.hero-img img{display:block;max-width:100%;height:auto}
+.faq-block{margin:16px 0;border:1px solid #0d2040;border-radius:4px;overflow:hidden}
+.faq-q{background:#0a1628;padding:14px 18px;font-family:Rajdhani,sans-serif;font-size:16px;font-weight:600;color:#fff}
+.faq-a{padding:14px 18px;color:#c8dff0;font-size:14px;line-height:1.7}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}
+.related-card{background:#0a1628;border:1px solid #0d2040;border-radius:4px;padding:14px 16px;text-decoration:none;transition:border-color .2s}
+.related-card:hover{border-color:#00d4ff}
+.related-card .rc-cat{font-family:'Share Tech Mono',monospace;font-size:10px;color:#00d4ff;margin-bottom:6px;letter-spacing:.1em}
+.related-card .rc-title{font-family:Rajdhani,sans-serif;font-size:15px;color:#fff;font-weight:600}
+.wallet-box{background:#04090f;border:1px solid #1a3a5c;border-radius:4px;padding:12px 16px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#00ff88;word-break:break-all;margin:12px 0}
+</style>
+</head>
+<body>
+<nav class="igrs-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="brand"><img src="../logo.svg" width="32" height="32" alt="IGRS Logo"> IGRS</a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../articles.html" class="act">Articles</a>
+      <a href="../tools.html">Tools</a>
+      <a href="../dashboard.html">Dashboard</a>
+      <a href="../cyberlaw.html">Cyber Law</a>
+    </div>
+  </div>
+</nav>
+
+<div class="art-wrap">
+  <div class="breadcrumb">
+    <a href="../index.html">IGRS</a> › <a href="../articles.html">Articles</a> › WazirX Lazarus Hack Analysis
+  </div>
+
+  <div class="file-no">FILE IGRS-110 · CRYPTO INTELLIGENCE · 04 JULY 2026</div>
+
+  <h1>WazirX ₹2,000 Crore Hack: How North Korea's Lazarus Group Breached India's Largest Crypto Exchange</h1>
+
+  <div class="meta">
+    <span>By Manuj Kumar Pandey</span>
+    <span>4 July 2026</span>
+    <span>Crypto Intelligence</span>
+    <span class="tag red">Nation-State Attack</span>
+    <span class="tag amber">Multi-Sig Exploit</span>
+    <span class="tag cyan">Blockchain Forensics</span>
+  </div>
+
+  <div class="hero-img">
+    <img src="../og/igrs110-wazirx-lazarus.png" alt="WazirX Lazarus Group Hack — IGRS Analysis" width="100%">
+  </div>
+
+  <div class="callout amber">
+    <p><strong>⚠ Disclaimer:</strong> This analysis is based entirely on publicly available sources — WazirX official disclosures, Mandiant forensic report, IFSO FIR records, Wikipedia, and joint US-South Korea-Japan government attribution. No confidential investigation data is referenced.</p>
+  </div>
+
+  <p>On 18 July 2024, at 06:19 UTC, India's largest cryptocurrency exchange WazirX lost approximately <strong>$234.9 million (₹2,000 crore)</strong> in a single coordinated cyberattack — the largest crypto heist in Indian history. The attack, later officially attributed to North Korea's Lazarus Group by the governments of the United States, South Korea, and Japan, exposed critical vulnerabilities in multi-signature wallet custody architecture and the dangers of supply chain attacks targeting third-party custodians.</p>
+
+  <p>This article is a complete technical breakdown of the attack — how it was executed, what the blockchain trail revealed, how Indian law enforcement responded, and what every crypto investigator and cyber cell officer must learn from it.</p>
+
+  <h2>What Happened: Attack Timeline</h2>
+
+  <table>
+    <tr><th>Date / Time</th><th>Event</th></tr>
+    <tr><td>10 Jul 2024</td><td>Lazarus Group pre-positions malicious smart contracts on Ethereum — funded via Tornado Cash (anonymisation mixer). No interaction with WazirX wallet yet.</td></tr>
+    <tr><td>18 Jul 06:19 UTC</td><td>Attack initiated. WazirX's Ethereum multisig wallet (0x27fD43BABfbe83a81d14665b1a6fB8030A60C9b4) begins draining.</td></tr>
+    <tr><td>18 Jul 06:48 UTC</td><td>Crystal blockchain intelligence firm detects and blocklists destination address. Attack already complete — $234.9M gone.</td></tr>
+    <tr><td>18 Jul (morning IST)</td><td>WazirX suspends all withdrawals. Cyvers Alerts (web3 security) had already flagged the exploit — WazirX took 4 hours to acknowledge.</td></tr>
+    <tr><td>18 Jul (afternoon IST)</td><td>WazirX confirms preliminary loss exceeds $230 million. Blames Liminal Custody interface.</td></tr>
+    <tr><td>5 Aug 2024</td><td>FIR filed with Delhi Police IFSO (Intelligence Fusion and Strategic Operations) unit.</td></tr>
+    <tr><td>14 Aug 2024</td><td>Mandiant (Google) releases forensic report — concludes WazirX's laptops were NOT compromised. Liminal's interface was the attack surface.</td></tr>
+    <tr><td>Nov 2024</td><td>Delhi Police arrests SK Masud Alam (West Bengal) for opening mule account 'Souvik Mondal' used to facilitate hack.</td></tr>
+    <tr><td>Jan 2025</td><td>US, South Korea, Japan officially attribute attack to Lazarus Group in joint statement.</td></tr>
+    <tr><td>Oct 2025</td><td>WazirX restarts operations after Singapore High Court approves restructuring — users receive 85% of funds.</td></tr>
+  </table>
+
+  <h2>The Attack Vector: Multi-Sig Wallet Supply Chain Exploit</h2>
+
+  <p>WazirX used a 4-of-6 multi-signature wallet — meaning any transaction required 4 signatures out of 6 keyholders (5 WazirX + 1 Liminal Custody). This architecture was supposed to be the strongest security layer. Instead, it became the attack surface.</p>
+
+  <div class="callout red">
+    <p><strong>Core exploit:</strong> Lazarus manipulated the transaction payload displayed on Liminal's interface — signatories saw a legitimate transaction on their screen but were actually approving a malicious smart contract upgrade that transferred wallet control to the attacker. Classic UI/UX spoofing on a custodial interface.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-no">PHASE 1 — PRE-POSITIONING (T-8 DAYS)</div>
+    <div class="step-title">Smart contract staging via Tornado Cash</div>
+    <p>On July 10, Lazarus deployed malicious smart contracts on Ethereum, funded through Tornado Cash to obscure the funding trail. These contracts were dormant — no interaction with WazirX yet. This is standard Lazarus operational pattern: pre-position infrastructure days/weeks before the actual attack.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-no">PHASE 2 — INITIAL ACCESS (T-0)</div>
+    <div class="step-title">Mule account creation + hot wallet reconnaissance</div>
+    <p>Lazarus created a fake WazirX account (via mule — SK Masud Alam's 'Souvik Mondal' account), deposited tokens, and purchased GALA tokens to map the exchange's hot wallet transaction flow. This reconnaissance phase allowed them to understand the signing process before targeting the cold wallet.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-no">PHASE 3 — EXECUTION (07:18 UTC)</div>
+    <div class="step-title">Payload manipulation via compromised Liminal interface</div>
+    <p>At the moment of attack, Lazarus sent a transaction request through Liminal's interface. The interface displayed a legitimate-looking transaction to WazirX signatories, but the actual on-chain payload contained a malicious contract upgrade instruction. Three WazirX keyholders signed — believing they were approving a routine transaction. Once the required signatures were obtained, the contract upgrade executed, transferring wallet control to the attacker's address.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-no">PHASE 4 — EXFILTRATION</div>
+    <div class="step-title">Systematic drain + token swapping</div>
+    <p>The attacker systematically drained the compromised wallet: $102.1M in SHIB, $52.6M in ETH, $11M in MATIC, plus stablecoins. Immediately, stolen tokens were swapped for ETH using decentralised exchanges (Uniswap, 1inch) — a standard Lazarus technique to convert heterogeneous assets into a single liquid asset before moving to laundering infrastructure.</p>
+  </div>
+
+  <h2>Blockchain Forensics: The Trail</h2>
+
+  <p>Blockchain intelligence firms including Elliptic, Arkham, and BlockSec tracked the funds in real-time. The attacker's wallet address and the subsequent hops were publicly traceable:</p>
+
+  <div class="wallet-box">Attack destination: 0x27fD43BABfbe83a81d14665b1a6fB8030A60C9b4 (WazirX multisig, compromised)</div>
+
+  <table>
+    <tr><th>Stage</th><th>Method</th><th>Tool</th></tr>
+    <tr><td>Pre-attack funding</td><td>Tornado Cash mixer — ETH → anonymised</td><td>On-chain tracing shows 8-day pre-positioning</td></tr>
+    <tr><td>Token → ETH conversion</td><td>DEX swaps (Uniswap, 1inch)</td><td>All on-chain, publicly traceable via Etherscan</td></tr>
+    <tr><td>ETH distribution</td><td>Multiple intermediate wallets</td><td>Arkham Intelligence entity labelling</td></tr>
+    <tr><td>Attempted cash-out</td><td>ChangeNOW (blocked), Binance (likely blocked)</td><td>Elliptic monitoring + exchange cooperation</td></tr>
+    <tr><td>Laundering</td><td>Remainder held in wallets for DPRK state use</td><td>Chainalysis / Elliptic tracking ongoing</td></tr>
+  </table>
+
+  <h2>Lazarus Group: TTPs Every Investigator Must Know</h2>
+
+  <p>The WazirX attack is consistent with documented Lazarus Group TTPs (Tactics, Techniques, Procedures) across prior crypto heists:</p>
+
+  <table>
+    <tr><th>TTP</th><th>WazirX Instance</th><th>Prior Cases</th></tr>
+    <tr><td>Tornado Cash pre-funding</td><td>July 10 staging</td><td>Ronin Network ($625M), Harmony ($100M)</td></tr>
+    <tr><td>Multi-sig UI spoofing</td><td>Liminal interface payload manipulation</td><td>Radiant Capital ($50M) — identical attack vector</td></tr>
+    <tr><td>DEX token-to-ETH swap</td><td>Immediate post-drain swaps</td><td>Standard across all Lazarus crypto heists</td></tr>
+    <tr><td>Mule account infrastructure</td><td>SK Masud Alam's account</td><td>Multiple prior exchange penetrations</td></tr>
+    <tr><td>State-level operational security</td><td>No compromised devices at WazirX</td><td>Attack attributed by US/South Korea/Japan</td></tr>
+  </table>
+
+  <h2>Indian Investigation: IFSO + Legal Framework</h2>
+
+  <table>
+    <tr><th>Section</th><th>Applicability</th></tr>
+    <tr><td>S.66 IT Act 2000</td><td>Unauthorised computer access — primary section for the hack</td></tr>
+    <tr><td>S.66C IT Act</td><td>Identity theft via mule accounts (Souvik Mondal alias)</td></tr>
+    <tr><td>S.43 IT Act</td><td>Damage to computer system / data theft</td></tr>
+    <tr><td>S.318 BNS 2023</td><td>Cheating — against mule account operators</td></tr>
+    <tr><td>PMLA S.3/4</td><td>Money laundering — ED parallel investigation for asset tracing</td></tr>
+    <tr><td>S.63 BSA 2023</td><td>Certificate required for all blockchain evidence in court</td></tr>
+  </table>
+
+  <div class="callout green">
+    <p><strong>Key investigative learning:</strong> IFSO's MLAT request was essential — Lazarus infrastructure spans Singapore (Liminal), US-based DEX protocols, and DPRK. Domestic legal process alone cannot recover such funds. CBI-routed MLAT + Interpol Red Notice for known wallets is the standard prosecution path.</p>
+  </div>
+
+  <h2>What Investigators Must Extract from This Case</h2>
+
+  <h3>1. Multi-sig is not foolproof</h3>
+  <p>The WazirX breach proves that multi-signature wallets are only as secure as the custodial interface rendering the transaction data. If a custodian's UI can be manipulated to display false transaction details, any number of signatures can be obtained fraudulently. Investigators must understand that multi-sig architecture does not eliminate insider/interface risk.</p>
+
+  <h3>2. Blockchain forensics begins within minutes</h3>
+  <p>Elliptic and Crystal blocklisted the attacker's address within 29 minutes of the hack. This window is critical — exchanges that cooperate immediately (blocking incoming deposits from the attacker wallet) can limit further damage. Indian cyber cells should have direct relationships with blockchain intelligence firms for real-time cooperation.</p>
+
+  <h3>3. Tornado Cash ≠ untrackable</h3>
+  <p>Despite pre-attack Tornado Cash funding, the on-chain pattern — timing, amounts, subsequent swaps — was sufficient for multiple firms to attribute the attack to Lazarus with high confidence. Tornado Cash obfuscates origin but creates its own distinctive signature that experienced analysts recognise.</p>
+
+  <h3>4. Supply chain custody is a critical risk</h3>
+  <p>WazirX's own laptops were clean (Mandiant confirmed). The attack came through Liminal Custody's interface — a third party. Any time a third-party custodian controls the transaction-signing interface, that interface becomes the highest-value attack surface for sophisticated threat actors.</p>
+
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-block">
+    <div class="faq-q">How did Lazarus Group hack WazirX?</div>
+    <div class="faq-a">Through a supply chain attack on Liminal Custody — Lazarus manipulated the transaction payload displayed on Liminal's interface, tricking WazirX signatories into approving a malicious smart contract upgrade. The hack exploited the gap between what signatories saw on screen and what was actually being submitted on-chain.</div>
+  </div>
+  <div class="faq-block">
+    <div class="faq-q">What was stolen?</div>
+    <div class="faq-a">$234.9 million (₹2,000 crore) including $102.1M SHIB, $52.6M ETH, $11M MATIC, and stablecoins. Immediately swapped to ETH via DEXs to evade tracing.</div>
+  </div>
+  <div class="faq-block">
+    <div class="faq-q">Was it officially confirmed as North Korea?</div>
+    <div class="faq-a">Yes — joint statement by USA, South Korea, and Japan in January 2025 officially attributed the attack to North Korea's Lazarus Group (linked to RGB, with APT38/BlueNoroff sub-units). Stolen funds believed channelled into DPRK weapons programs.</div>
+  </div>
+  <div class="faq-block">
+    <div class="faq-q">What legal action was taken?</div>
+    <div class="faq-a">FIR with Delhi Police IFSO on 5 August 2024. SK Masud Alam arrested November 2024 for mule account. CERT-In involved. MLAT request via CBI for international cooperation. ED investigating PMLA angle.</div>
+  </div>
+
+  <h2>Related Resources</h2>
+  <div class="related-grid">
+    <a class="related-card" href="igrs-109-gujarat-dirty-crypto-investigation.html">
+      <div class="rc-cat">CASE STUDY</div>
+      <div class="rc-title">Gujarat ₹226 Crore Dirty Crypto — USDT Terror Financing</div>
+    </a>
+    <a class="related-card" href="../crypto-tracker.html">
+      <div class="rc-cat">FREE TOOL</div>
+      <div class="rc-title">IGRS Crypto Investigation Suite — Trace Any Wallet</div>
+    </a>
+    <a class="related-card" href="../playbooks.html">
+      <div class="rc-cat">SOP</div>
+      <div class="rc-title">Cryptocurrency Tracing Playbook — 7-Step LEA Methodology</div>
+    </a>
+  </div>
+</div>
+
+<footer class="igrs-ftr">
+  <div class="ftr-inner">
+    <div class="ftr-links">
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../privacy-policy.html">Privacy</a>
+      <a href="../terms.html">Terms</a>
+      <a href="../disclaimer.html">Disclaimer</a>
+    </div>
+    <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+  </div>
+</footer>
+</body>
+</html>
