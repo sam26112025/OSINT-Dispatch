@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deepfake Fraud Investigation: Detection, Legal Sections & India-Specific Methodology | IGRS</title>
+<meta name="description" content="Complete investigation guide for AI deepfake fraud in India — 92,000+ digital arrest deepfake cases, Ambani/Tata celebrity face-swap scams, detection tools, S.66E IT Act, BNS sections, Delhi HC John Doe orders, and IT Rules 2026.">
+<meta name="keywords" content="deepfake fraud investigation India, AI face swap scam India, deepfake detection tools India, S.66E IT Act deepfake, BNS deepfake sections, deepfake celebrity scam India, John Doe order deepfake India, IT Rules 2026 deepfake, deepfake digital arrest India, deepfake WhatsApp scam investigation">
+<meta name="author" content="Manuj Kumar Pandey">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://igrs.xyz/articles/igrs-113-deepfake-fraud-investigation.html">
+<meta property="og:title" content="Deepfake Fraud Investigation: India-Specific Detection & Legal Guide | IGRS">
+<meta property="og:description" content="92,000+ deepfake digital arrests in India. Celebrity face-swap investment scams. Detection tools, S.66E IT Act, BNS sections, IT Rules 2026 — complete investigation methodology.">
+<meta property="og:image" content="https://igrs.xyz/og/igrs113-deepfake-fraud.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://igrs.xyz/articles/igrs-113-deepfake-fraud-investigation.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Deepfake Fraud Investigation India — IGRS">
+<meta name="twitter:image" content="https://igrs.xyz/og/igrs113-deepfake-fraud.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Deepfake Fraud Investigation: Detection, Legal Sections & India-Specific Methodology","author":{"@type":"Person","name":"Manuj Kumar Pandey","url":"https://igrs.xyz/about.html"},"publisher":{"@type":"Organization","name":"IGRS","url":"https://igrs.xyz"},"datePublished":"2026-07-04","dateModified":"2026-07-04","mainEntityOfPage":"https://igrs.xyz/articles/igrs-113-deepfake-fraud-investigation.html","image":"https://igrs.xyz/og/igrs113-deepfake-fraud.png","keywords":"deepfake fraud, India cybercrime, AI investigation, S.66E IT Act, BNS, deepfake detection"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"IGRS","item":"https://igrs.xyz"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://igrs.xyz/articles.html"},{"@type":"ListItem","position":3,"name":"Deepfake Investigation","item":"https://igrs.xyz/articles/igrs-113-deepfake-fraud-investigation.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What legal sections apply to deepfake fraud in India?","acceptedAnswer":{"@type":"Answer","text":"Primary sections: S.66E IT Act (violation of privacy — capturing/publishing private images), S.67 IT Act (publishing obscene material), S.67A IT Act (explicit content), S.319 BNS (cheating by personation — celebrity impersonation in financial scams), S.318 BNS (cheating — financial fraud), S.353 BNS (defamation — reputational deepfakes), S.308 BNS (extortion — sextortion via AI-generated content). IT Rules 2026 also mandate 2-hour removal of non-consensual intimate imagery and 3-hour removal of court/government-ordered content."}},{"@type":"Question","name":"How do investigators detect deepfakes?","acceptedAnswer":{"@type":"Answer","text":"Key detection methods: (1) FaceForensics++ AI detector — analyzes GAN artifacts in face swap videos, (2) Microsoft Video Authenticator — confidence score on each frame, (3) Intel FakeCatcher — real-time detection via blood vessel micro-patterns (rPPG signal), (4) Hive Moderation API — batch processing for platform-scale detection, (5) Manual indicators — unnatural blinking, ear/hairline artifacts, lighting inconsistencies on face vs background, audio sync issues. Always use multiple tools — single-tool accuracy drops post-compression."}},{"@type":"Question","name":"What is the Delhi HC John Doe order for deepfakes?","acceptedAnswer":{"@type":"Answer","text":"In Ankur Warikoo v John Doe (2025), Delhi High Court granted interim relief against unknown defendants creating AI deepfake videos using Warikoo's face for fraudulent stock tip scams on WhatsApp. The John Doe order allowed the court to issue injunctions against unidentified parties — a landmark in India's deepfake jurisprudence. The court relied on personality rights law established in Shivaji Rao Gaikwad v Varsha Productions (Rajinikanth case)."}},{"@type":"Question","name":"How serious is deepfake fraud in India?","acceptedAnswer":{"@type":"Answer","text":"As of 2025-2026, deepfake fraud in India is at crisis level: 92,000+ deepfake digital arrest incidents reported, Mukesh Ambani/Ratan Tata/Narayana Murthy/Virat Kohli/Sadhguru face-swapped into fake investment platform ads, deepfake incidents grew 2,137% over three years, and a convincing 60-second deepfake video can now be produced in under 25 minutes at zero cost. India and I4C partnered with Microsoft to block 1,000+ Skype IDs used in deepfake digital arrests."}}]}
+</script>
+<link rel="stylesheet" href="../style.css">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+.art-wrap{max-width:860px;margin:0 auto;padding:32px 20px 60px}
+.breadcrumb{font-size:12px;color:#6a8faf;margin-bottom:24px;font-family:'Share Tech Mono',monospace}
+.breadcrumb a{color:#6a8faf;text-decoration:none}.breadcrumb a:hover{color:#00d4ff}
+.file-no{font-family:'Share Tech Mono',monospace;font-size:11px;color:#00d4ff;letter-spacing:.12em;margin-bottom:8px}
+h1{font-family:Rajdhani,sans-serif;font-size:clamp(24px,4vw,36px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:16px}
+.meta{font-size:12px;color:#6a8faf;font-family:'IBM Plex Mono',monospace;margin-bottom:32px}.meta span{margin-right:16px}
+h2{font-family:Rajdhani,sans-serif;font-size:22px;font-weight:700;color:#00d4ff;margin:36px 0 12px;border-left:3px solid #00d4ff;padding-left:12px}
+h3{font-family:Rajdhani,sans-serif;font-size:17px;font-weight:600;color:#ffb800;margin:24px 0 8px}
+p{color:#c8dff0;line-height:1.8;margin-bottom:16px;font-size:15px}
+.callout{background:#0a1628;border:1px solid #1a3a5c;border-left:3px solid #00d4ff;border-radius:4px;padding:16px 20px;margin:20px 0}
+.callout.amber{border-left-color:#ffb800}.callout.red{border-left-color:#ff4455}.callout.green{border-left-color:#00ff88}
+.callout p{margin:0;font-size:14px}
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px}
+th{background:#0a1628;color:#00d4ff;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.08em;text-align:left;padding:10px 12px;border-bottom:1px solid #1a3a5c}
+td{padding:9px 12px;border-bottom:1px solid #0d2040;color:#c8dff0;vertical-align:top}
+tr:hover td{background:rgba(0,212,255,.03)}
+.tag{display:inline-block;padding:2px 8px;border-radius:2px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase}
+.tag.red{background:rgba(255,68,85,.12);color:#ff4455;border:1px solid rgba(255,68,85,.25)}
+.tag.amber{background:rgba(255,184,0,.12);color:#ffb800;border:1px solid rgba(255,184,0,.25)}
+.tag.cyan{background:rgba(0,212,255,.12);color:#00d4ff;border:1px solid rgba(0,212,255,.25)}
+.tag.green{background:rgba(0,255,136,.12);color:#00ff88;border:1px solid rgba(0,255,136,.25)}
+.hero-img{margin-bottom:28px;border-radius:6px;overflow:hidden;border:1px solid #0d2040}
+.hero-img img{display:block;max-width:100%;height:auto}
+.det-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:16px 0}
+.det-card{background:#060d16;border:1px solid #0d2040;border-radius:4px;padding:14px}
+.det-name{font-family:'Share Tech Mono',monospace;font-size:12px;color:#00d4ff;margin-bottom:4px}
+.det-desc{font-size:12px;color:#94a3b8;line-height:1.5}
+.faq-block{margin:16px 0;border:1px solid #0d2040;border-radius:4px;overflow:hidden}
+.faq-q{background:#0a1628;padding:14px 18px;font-family:Rajdhani,sans-serif;font-size:16px;font-weight:600;color:#fff}
+.faq-a{padding:14px 18px;color:#c8dff0;font-size:14px;line-height:1.7}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}
+.related-card{background:#0a1628;border:1px solid #0d2040;border-radius:4px;padding:14px 16px;text-decoration:none;transition:border-color .2s}
+.related-card:hover{border-color:#00d4ff}
+.related-card .rc-cat{font-family:'Share Tech Mono',monospace;font-size:10px;color:#00d4ff;margin-bottom:6px;letter-spacing:.1em}
+.related-card .rc-title{font-family:Rajdhani,sans-serif;font-size:15px;color:#fff;font-weight:600}
+</style>
+</head>
+<body>
+<nav class="igrs-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="brand"><img src="../logo.svg" width="32" height="32" alt="IGRS Logo"> IGRS</a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a><a href="../articles.html" class="act">Articles</a>
+      <a href="../tools.html">Tools</a><a href="../dashboard.html">Dashboard</a>
+      <a href="../cyberlaw.html">Cyber Law</a>
+    </div>
+  </div>
+</nav>
+
+<div class="art-wrap">
+  <div class="breadcrumb"><a href="../index.html">IGRS</a> › <a href="../articles.html">Articles</a> › Deepfake Fraud Investigation</div>
+  <div class="file-no">FILE IGRS-113 · AI FRAUD INTELLIGENCE · 04 JULY 2026</div>
+  <h1>Deepfake Fraud Investigation: AI Detection Tools, Legal Sections & India-Specific Methodology</h1>
+  <div class="meta">
+    <span>By Manuj Kumar Pandey</span><span>4 July 2026</span>
+    <span>AI Fraud Investigation</span>
+    <span class="tag red">92,000+ Cases India</span>
+    <span class="tag amber">S.66E IT Act</span>
+    <span class="tag cyan">IT Rules 2026</span>
+  </div>
+  <div class="hero-img"><img src="../og/igrs113-deepfake-fraud.png" alt="Deepfake Fraud Investigation — IGRS" width="100%"></div>
+
+  <p>A convincing 60-second deepfake video can now be produced in under 25 minutes at zero cost. In 2025, over <strong>92,000 deepfake digital arrest cases</strong> were reported in India. Mukesh Ambani, Ratan Tata, Narayana Murthy, Virat Kohli, Sadhguru, and Akshay Kumar have all had their faces AI-swapped into fraudulent investment platform advertisements. Deepfake fraud attempts surged <strong>2,137% over three years</strong> — and India is at the centre of this crisis.</p>
+
+  <p>This guide provides India's cyber cells and investigators with a complete methodology: detection, attribution, legal sections, and evidence packaging for deepfake fraud cases.</p>
+
+  <h2>Deepfake Fraud Categories in India</h2>
+  <table>
+    <tr><th>Type</th><th>Description</th><th>India Cases</th></tr>
+    <tr><td>Celebrity investment scam</td><td>AI face-swap of Ambani/Tata/celebrities into fake trading platform ads on Meta/YouTube/WhatsApp</td><td>Ankur Warikoo v John Doe (Delhi HC, 2025)</td></tr>
+    <tr><td>Deepfake digital arrest</td><td>AI-cloned police/CBI officers conducting WhatsApp video "arrests" — 92,000+ cases in 2025</td><td>Delhi: 1,000 raids in 2025</td></tr>
+    <tr><td>CEO/executive voice fraud</td><td>AI voice clone of corporate executives authorising wire transfers — ₹crore losses per incident</td><td>Bhopal corporate cases — MP unit</td></tr>
+    <tr><td>Sextortion deepfake</td><td>AI-generated intimate content using victim's social media photos — extortion demand</td><td>Nationwide, 90% women victims</td></tr>
+    <tr><td>Political deepfake</td><td>Fabricated videos of political leaders — electoral misinformation</td><td>Kejriwal jail deepfake (2024)</td></tr>
+    <tr><td>KYC bypass deepfake</td><td>AI face-swap to defeat liveness detection in KYC video calls — account takeover</td><td>Banking + fintech — growing rapidly</td></tr>
+  </table>
+
+  <h2>Scale: India Deepfake Crisis 2025–2026</h2>
+  <div class="callout red">
+    <p><strong>I4C data (2025):</strong> 92,000+ deepfake digital arrest incidents reported. Supreme Court estimated ₹3,000 crore losses from digital arrest scams alone. I4C + Microsoft partnership blocked 1,000+ Skype IDs used in deepfake arrests. IT Rules 2026 now mandate 2-hour removal of NCII and 3-hour removal of court-ordered deepfake content.</p>
+  </div>
+
+  <h2>Detection Methodology: Tools & Techniques</h2>
+
+  <h3>Tier 1 — AI-Based Detection Tools</h3>
+  <div class="det-grid">
+    <div class="det-card">
+      <div class="det-name">Microsoft Video Authenticator</div>
+      <div class="det-desc">Frame-by-frame confidence score. Detects GAN blending artifacts. Good for static deepfakes.</div>
+    </div>
+    <div class="det-card">
+      <div class="det-name">Intel FakeCatcher</div>
+      <div class="det-desc">Real-time detection via rPPG (remote photoplethysmography) — analyses blood vessel micro-patterns invisible to human eye. 96% accuracy on uncompressed video.</div>
+    </div>
+    <div class="det-card">
+      <div class="det-name">FaceForensics++</div>
+      <div class="det-desc">Open-source CNN model trained on face swap + face reenactment. Best for research-grade analysis. GitHub: ondyari/FaceForensics</div>
+    </div>
+    <div class="det-card">
+      <div class="det-name">Hive Moderation API</div>
+      <div class="det-desc">Platform-scale deepfake detection. Used by I4C + Microsoft partnership for batch processing of flagged content. REST API.</div>
+    </div>
+    <div class="det-card">
+      <div class="det-name">Deepware Scanner</div>
+      <div class="det-desc">Free online deepfake scanner. Upload video → confidence score + artifact map. Good for field-level quick check. deepware.ai</div>
+    </div>
+    <div class="det-card">
+      <div class="det-name">Sensity AI</div>
+      <div class="det-desc">Enterprise deepfake detection platform. Covers video + audio + image. Used by financial institutions for KYC liveness fraud detection.</div>
+    </div>
+  </div>
+
+  <div class="callout amber">
+    <p><strong>Critical limitation:</strong> All AI detectors lose accuracy post-compression (WhatsApp/Telegram compress videos). Accuracy drops ~25% on compressed content. Always request original uncompressed file from platform via legal process for reliable forensic analysis.</p>
+  </div>
+
+  <h3>Tier 2 — Manual Forensic Indicators</h3>
+  <table>
+    <tr><th>Indicator</th><th>What to Look For</th></tr>
+    <tr><td>Blinking pattern</td><td>Unnatural blink rate (too frequent or absent) — early GAN models struggled with eyes</td></tr>
+    <tr><td>Hairline/ear artifacts</td><td>Blurring, smearing, or unnatural edges around hair and ears — face boundary is highest-error zone</td></tr>
+    <tr><td>Lighting consistency</td><td>Face lighting direction differs from background — inconsistent shadow casting</td></tr>
+    <tr><td>Teeth/mouth</td><td>Blurring of teeth, unnatural mouth movement, lip-sync lag with audio</td></tr>
+    <tr><td>Skin texture</td><td>Overly smooth, waxy skin — GAN tends to over-smooth texture</td></tr>
+    <tr><td>Audio-visual sync</td><td>Subtle desync between lip movement and audio — especially in Hindi/regional language deepfakes (model primarily trained on English)</td></tr>
+    <tr><td>Background consistency</td><td>Background pixelation or warping around moving face boundary</td></tr>
+    <tr><td>Eye reflections</td><td>Inconsistent catchlights (light reflections in eyes) — different between left/right eye or absent</td></tr>
+  </table>
+
+  <h2>Legal Framework: India Deepfake Sections</h2>
+  <table>
+    <tr><th>Section</th><th>Application</th><th>Penalty</th></tr>
+    <tr><td>S.66E IT Act</td><td>Capturing/publishing private images without consent — sextortion deepfakes, KYC deepfake</td><td>Up to 3 years + fine</td></tr>
+    <tr><td>S.67 IT Act</td><td>Publishing obscene material — NCII deepfakes</td><td>Up to 3 years + ₹5L (first) / 5 years + ₹10L (repeat)</td></tr>
+    <tr><td>S.67A IT Act</td><td>Explicit AI-generated content — deepfake pornography</td><td>Up to 5 years + ₹10L (first) / 7 years + ₹10L (repeat)</td></tr>
+    <tr><td>S.319 BNS</td><td>Cheating by personation — celebrity/officer deepfake impersonation</td><td>Up to 5 years + fine</td></tr>
+    <tr><td>S.318 BNS</td><td>Cheating — financial loss caused by deepfake fraud</td><td>Up to 7 years + fine</td></tr>
+    <tr><td>S.308 BNS</td><td>Extortion — sextortion via deepfake threat</td><td>Up to 10 years + fine</td></tr>
+    <tr><td>S.353 BNS</td><td>Defamation — reputational damage deepfakes</td><td>Up to 2 years</td></tr>
+    <tr><td>IT Rules 2026</td><td>Platforms must remove NCII within 2 hours, court/government-ordered content within 3 hours</td><td>Platform liability for non-compliance</td></tr>
+    <tr><td>S.63 BSA 2023</td><td>Electronic evidence certificate for deepfake video/audio evidence in court</td><td>Mandatory for admissibility</td></tr>
+  </table>
+
+  <h2>Landmark Cases: Delhi HC Jurisprudence</h2>
+
+  <h3>Ankur Warikoo v John Doe (Delhi HC, 2025)</h3>
+  <p>First landmark deepfake case in India's financial fraud context. AI-generated videos using Warikoo's face and voice were used to lure victims into fraudulent WhatsApp stock tip groups. Delhi HC issued a John Doe order — injunction against unknown defendants — relying on personality rights framework from Shivaji Rao Gaikwad v Varsha Productions. This established that personality rights extend to AI-generated misuse of likeness, voice, and identity.</p>
+
+  <h3>Digital Arrest Syndicate (Delhi, 2025)</h3>
+  <p>50-member organised syndicate used AI-cloned police officer faces for WhatsApp video arrests — extorted ₹500 crore. MCOCA (Maharashtra Control of Organised Crime Act) invoked. Special Court granted 90-day custody. Bail denied under Section 21 MCOCA citing public safety. This case established that AI-enabled organised crime qualifies for MCOCA application.</p>
+
+  <h2>Investigation Workflow for Deepfake Fraud</h2>
+  <table>
+    <tr><th>Step</th><th>Action</th><th>Tool/Instrument</th></tr>
+    <tr><td>1. Preserve original</td><td>Request uncompressed original from victim's device — Cellebrite/MSAB XRY extraction preferred. Hash-verify before analysis.</td><td>S.63 BSA 2023 certificate + hash log</td></tr>
+    <tr><td>2. AI detection</td><td>Run through Intel FakeCatcher + FaceForensics++ + Deepware Scanner. Document confidence scores for court report.</td><td>AI detector tools</td></tr>
+    <tr><td>3. Reference face sourcing</td><td>Identify which social media/public video the source face was taken from — reverse image search + timeline correlation</td><td>PimEyes, Google Lens, TinEye</td></tr>
+    <tr><td>4. Platform data</td><td>Request metadata, creator account data, IP logs from platform via S.94 BNSS (Indian entity) or MLAT via CBI (foreign)</td><td>S.94 BNSS / MLAT</td></tr>
+    <tr><td>5. Payment trail</td><td>Trace victim's fund transfer to mule accounts — standard financial fraud chain. UPI/bank KYC via S.94 BNSS.</td><td>S.94 BNSS to bank + I4C freeze</td></tr>
+    <tr><td>6. Platform removal</td><td>Invoke IT Rules 2026: 2-hour window for NCII, 3-hour for court-ordered removal. StopNCII.org for hash-blocking.</td><td>IT Rules 2026 / StopNCII.org</td></tr>
+    <tr><td>7. Expert witness</td><td>AI forensics expert required in court — prepare technical report with detection methodology, tool outputs, confidence scores.</td><td>S.63 BSA certificate on AI analysis</td></tr>
+  </table>
+
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-block">
+    <div class="faq-q">Which IT Act sections apply to deepfake fraud?</div>
+    <div class="faq-a">S.66E (privacy violation), S.67 (obscene content), S.67A (explicit content), S.319 BNS (personation), S.308 BNS (extortion for sextortion), S.318 BNS (cheating). IT Rules 2026 add platform liability for non-removal within 2-3 hours.</div>
+  </div>
+  <div class="faq-block">
+    <div class="faq-q">How serious is deepfake fraud in India?</div>
+    <div class="faq-a">92,000+ deepfake digital arrest incidents in 2025. ₹3,000 crore in digital arrest losses alone. Ambani/Tata/Murthy/Kohli deepfakes used in investment scams. Deepfake fraud grew 2,137% in 3 years. A 60-second deepfake now costs zero and takes under 25 minutes.</div>
+  </div>
+  <div class="faq-block">
+    <div class="faq-q">How do investigators detect deepfakes?</div>
+    <div class="faq-a">Intel FakeCatcher (rPPG blood vessel analysis), FaceForensics++ (GAN artifact detection), Microsoft Video Authenticator, Deepware Scanner. Manual: check blinking, hairline artifacts, audio sync, lighting consistency. Always use uncompressed original — compression reduces detection accuracy by 25%.</div>
+  </div>
+  <div class="faq-block">
+    <div class="faq-q">What is the Delhi HC John Doe order for deepfakes?</div>
+    <div class="faq-a">Ankur Warikoo v John Doe (2025) — Delhi HC granted injunction against unknown creators of AI deepfake financial scam videos using Warikoo's face/voice. First case applying personality rights to deepfake fraud in India. Paves way for proactive John Doe orders in celebrity deepfake fraud.</div>
+  </div>
+
+  <h2>Related Resources</h2>
+  <div class="related-grid">
+    <a class="related-card" href="igrs-111-digital-arrest-scam-investigation.html">
+      <div class="rc-cat">CASE STUDY</div>
+      <div class="rc-title">Digital Arrest Scam — Complete Investigation Guide</div>
+    </a>
+    <a class="related-card" href="../cyberlaw.html">
+      <div class="rc-cat">REFERENCE</div>
+      <div class="rc-title">IT Act + BNS + IT Rules 2026 Full Reference</div>
+    </a>
+    <a class="related-card" href="../tools.html">
+      <div class="rc-cat">TOOLS</div>
+      <div class="rc-title">350+ OSINT & Forensic Tools Directory</div>
+    </a>
+  </div>
+</div>
+<footer class="igrs-ftr"><div class="ftr-inner">
+  <div class="ftr-links"><a href="../about.html">About</a><a href="../contact.html">Contact</a><a href="../privacy-policy.html">Privacy</a><a href="../disclaimer.html">Disclaimer</a></div>
+  <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+</div></footer>
+</body></html>
