@@ -542,6 +542,11 @@ footer a{color:var(--wake);text-decoration:none;}
   nav{z-index:300 !important;}
 }
 </style>
+<style>
+#site{display:block;}
+#login{display:none;}
+#dash{display:none;}
+</style>
 </head>
 <body>
 
@@ -844,27 +849,38 @@ function startCounts(){
 // NAVIGATION
 // ═══════════════════════════════════════════════════════
 function showLogin(){
-  document.getElementById('site').style.display='none';
-  document.getElementById('login').classList.add('show');
-  setTimeout(()=>document.getElementById('lu').focus(),100);
+  var site=document.getElementById('site');
+  var login=document.getElementById('login');
+  var dash=document.getElementById('dash');
+  site.style.display='none';
+  login.style.display='flex';
+  dash.style.display='none';
+  login.classList.add('show');
+  setTimeout(function(){var lu=document.getElementById('lu');if(lu)lu.focus();},100);
 }
 function hideLogin(){
+  document.getElementById('login').style.display='none';
   document.getElementById('login').classList.remove('show');
-  document.getElementById('site').style.display='';
+  document.getElementById('site').style.display='block';
 }
 function showDash(){
+  // Hide everything first
+  document.getElementById('login').style.display='none';
   document.getElementById('login').classList.remove('show');
   document.getElementById('site').style.display='none';
+  // Show dashboard with forced inline style
   var d=document.getElementById('dash');
+  d.style.cssText='display:block!important;visibility:visible!important;opacity:1!important;z-index:10!important;position:relative!important;';
   d.classList.add('show');
-  d.style.display='block'; // Force display for mobile
-  showMod('ais',document.querySelector('.sb-btn'));
+  // Init first module
+  setTimeout(function(){showMod('ais',document.querySelector('.sb-btn'));},50);
 }
 function hideDash(){
-  var _dh=document.getElementById('dash');
-  _dh.classList.remove('show');
-  _dh.style.display='';
-  document.getElementById('site').style.display='';
+  var d=document.getElementById('dash');
+  d.classList.remove('show');
+  d.style.cssText='display:none!important;';
+  document.getElementById('site').style.display='block';
+  document.getElementById('login').style.display='none';
   document.getElementById('login').classList.remove('show');
 }
 
