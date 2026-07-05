@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIM Swap Fraud Investigation: TRAI MNP, Telecom Nodal Officer Process & Complete LEA Guide | IGRS</title>
+<meta name="description" content="Complete investigation guide for SIM swap fraud in India — TRAI MNP hijacking, insider telecom fraud, e-KYC Aadhaar exploitation, TAFCOP portal, Sanchar Saathi, S.94 BNSS to telecom nodal officers, legal sections BNS/IT Act, and evidence chain for chargesheet.">
+<meta name="keywords" content="SIM swap fraud investigation India, TRAI MNP SIM fraud, telecom nodal officer notice India, TAFCOP portal SIM swap, Sanchar Saathi fraud India, SIM swap bank account drain India, S.66C IT Act SIM swap, BNS 319 SIM swap, MNP hijack investigation India, DoT SIM fraud directive">
+<meta name="author" content="Manuj Kumar Pandey">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://igrs.xyz/articles/igrs-114-sim-swap-fraud-investigation.html">
+<meta property="og:title" content="SIM Swap Fraud Investigation: TRAI MNP & Telecom Nodal Guide | IGRS">
+<meta property="og:description" content="SIM hijacking via MNP fraud, insider telecom betrayal, Aadhaar e-KYC abuse. Complete investigation chain — TAFCOP, S.94 BNSS, legal sections, chargesheet packaging.">
+<meta property="og:image" content="https://igrs.xyz/og/igrs114-sim-swap.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://igrs.xyz/articles/igrs-114-sim-swap-fraud-investigation.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SIM Swap Fraud Investigation India — IGRS">
+<meta name="twitter:image" content="https://igrs.xyz/og/igrs114-sim-swap.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"SIM Swap Fraud Investigation: TRAI MNP, Telecom Nodal Officer Process & Complete LEA Guide","author":{"@type":"Person","name":"Manuj Kumar Pandey","url":"https://igrs.xyz/about.html"},"publisher":{"@type":"Organization","name":"IGRS","url":"https://igrs.xyz"},"datePublished":"2026-07-05","dateModified":"2026-07-05","mainEntityOfPage":"https://igrs.xyz/articles/igrs-114-sim-swap-fraud-investigation.html","image":"https://igrs.xyz/og/igrs114-sim-swap.png","keywords":"SIM swap fraud, TRAI MNP, telecom investigation, S.66C IT Act, BNS 319, TAFCOP"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"IGRS","item":"https://igrs.xyz"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://igrs.xyz/articles.html"},{"@type":"ListItem","position":3,"name":"SIM Swap Investigation","item":"https://igrs.xyz/articles/igrs-114-sim-swap-fraud-investigation.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is SIM swap fraud and how does it work in India?","acceptedAnswer":{"@type":"Answer","text":"SIM swap fraud occurs when a criminal convinces a telecom operator to issue a new SIM card for the victim's mobile number — or ports the number to a different network via MNP (Mobile Number Portability). Once they control the number, they receive all OTPs from banks, UPI, Demat, email, and Aadhaar — enabling complete account takeover. In India, it occurs via: (1) customer care impersonation with leaked KYC data, (2) corrupt telecom store employees paid ₹5,000–₹50,000, (3) e-KYC Aadhaar biometric misuse from leaked fingerprints, and (4) MNP port-out fraud using a stolen UPC code."}},{"@type":"Question","name":"How do investigators trace SIM swap fraud in India?","acceptedAnswer":{"@type":"Answer","text":"Key investigative leads: (1) TAFCOP portal — check all SIMs registered on victim's Aadhaar, (2) S.94 BNSS notice to telecom's nodal officer — request SIM issuance log, PoS retailer details, Aadhaar authentication logs, (3) S.94 BNSS to receiving telecom (in MNP cases) — UPC generation log, port-in authentication details, (4) TRAI complaint via 1909, (5) Bank's IP log + session data for unauthorized transaction, (6) CCTV from PoS retailer where SIM was issued."}},{"@type":"Question","name":"What legal sections apply to SIM swap fraud?","acceptedAnswer":{"@type":"Answer","text":"S.66C IT Act (identity theft using electronic means — primary section), S.66D IT Act (personation using computer resource — OTP interception), S.319 BNS (cheating by personation — impersonating subscriber at telecom), S.318 BNS (cheating — financial loss), S.336(4) BNS (forgery of electronic records — fake KYC), S.321 BNS (dishonest misappropriation). Indian Telegraph Act S.25 for telecom-side violation. PMLA S.3/4 if funds layered. For corrupt telecom employees: S.409 IPC equivalent + Prevention of Corruption Act."}},{"@type":"Question","name":"What is the TRAI 7-day rule for SIM swap fraud?","acceptedAnswer":{"@type":"Answer","text":"From July 2025, TRAI amended MNP regulations to require a mandatory 7-day cooling period between SIM reissuance and subsequent porting. Previously, criminals could get a new SIM issued and immediately port the number to a different operator — complicating investigation. The 7-day rule closes this attack chain. Similarly, port-out OTP validity was reduced from 24 hours to 4 hours after the 2019 fraud spike. DoT's August 2023 SIM reissuance directive also mandates biometric verification for all duplicate SIM requests."}}]}
+</script>
+<link rel="stylesheet" href="../style.css">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+.art-wrap{max-width:860px;margin:0 auto;padding:32px 20px 60px}
+.breadcrumb{font-size:12px;color:#6a8faf;margin-bottom:24px;font-family:'Share Tech Mono',monospace}
+.breadcrumb a{color:#6a8faf;text-decoration:none}.breadcrumb a:hover{color:#00d4ff}
+.file-no{font-family:'Share Tech Mono',monospace;font-size:11px;color:#00d4ff;letter-spacing:.12em;margin-bottom:8px}
+h1{font-family:Rajdhani,sans-serif;font-size:clamp(24px,4vw,36px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:16px}
+.meta{font-size:12px;color:#6a8faf;font-family:'IBM Plex Mono',monospace;margin-bottom:32px}.meta span{margin-right:16px}
+h2{font-family:Rajdhani,sans-serif;font-size:22px;font-weight:700;color:#00d4ff;margin:36px 0 12px;border-left:3px solid #00d4ff;padding-left:12px}
+h3{font-family:Rajdhani,sans-serif;font-size:17px;font-weight:600;color:#ffb800;margin:24px 0 8px}
+p{color:#c8dff0;line-height:1.8;margin-bottom:16px;font-size:15px}
+.callout{background:#0a1628;border:1px solid #1a3a5c;border-left:3px solid #00d4ff;border-radius:4px;padding:16px 20px;margin:20px 0}
+.callout.amber{border-left-color:#ffb800}.callout.red{border-left-color:#ff4455}.callout.green{border-left-color:#00ff88}
+.callout p{margin:0;font-size:14px}
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px}
+th{background:#0a1628;color:#00d4ff;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.08em;text-align:left;padding:10px 12px;border-bottom:1px solid #1a3a5c}
+td{padding:9px 12px;border-bottom:1px solid #0d2040;color:#c8dff0;vertical-align:top}
+tr:hover td{background:rgba(0,212,255,.03)}
+.tag{display:inline-block;padding:2px 8px;border-radius:2px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase}
+.tag.red{background:rgba(255,68,85,.12);color:#ff4455;border:1px solid rgba(255,68,85,.25)}
+.tag.amber{background:rgba(255,184,0,.12);color:#ffb800;border:1px solid rgba(255,184,0,.25)}
+.tag.cyan{background:rgba(0,212,255,.12);color:#00d4ff;border:1px solid rgba(0,212,255,.25)}
+.tag.green{background:rgba(0,255,136,.12);color:#00ff88;border:1px solid rgba(0,255,136,.25)}
+.hero-img{margin-bottom:28px;border-radius:6px;overflow:hidden;border:1px solid #0d2040}
+.hero-img img{display:block;max-width:100%;height:auto}
+.faq-block{margin:16px 0;border:1px solid #0d2040;border-radius:4px;overflow:hidden}
+.faq-q{background:#0a1628;padding:14px 18px;font-family:Rajdhani,sans-serif;font-size:16px;font-weight:600;color:#fff}
+.faq-a{padding:14px 18px;color:#c8dff0;font-size:14px;line-height:1.7}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}
+.related-card{background:#0a1628;border:1px solid #0d2040;border-radius:4px;padding:14px 16px;text-decoration:none;transition:border-color .2s}
+.related-card:hover{border-color:#00d4ff}
+.related-card .rc-cat{font-family:'Share Tech Mono',monospace;font-size:10px;color:#00d4ff;margin-bottom:6px;letter-spacing:.1em}
+.related-card .rc-title{font-family:Rajdhani,sans-serif;font-size:15px;color:#fff;font-weight:600}
+</style>
+</head>
+<body>
+<nav class="igrs-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="brand"><img src="../logo.svg" width="32" height="32" alt="IGRS Logo"> IGRS</a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a><a href="../articles.html" class="act">Articles</a>
+      <a href="../tools.html">Tools</a><a href="../dashboard.html">Dashboard</a>
+      <a href="../cyberlaw.html">Cyber Law</a>
+    </div>
+  </div>
+</nav>
+
+<div class="art-wrap">
+  <div class="breadcrumb"><a href="../index.html">IGRS</a> › <a href="../articles.html">Articles</a> › SIM Swap Investigation Guide</div>
+  <div class="file-no">FILE IGRS-114 · TELECOM FRAUD INVESTIGATION · 05 JULY 2026</div>
+  <h1>SIM Swap Fraud Investigation: TRAI MNP, Telecom Nodal Officer Process & Complete LEA Guide</h1>
+  <div class="meta">
+    <span>By Manuj Kumar Pandey</span><span>5 July 2026</span>
+    <span>Telecom Fraud Investigation</span>
+    <span class="tag red">MNP Hijack</span>
+    <span class="tag amber">Insider Telecom Fraud</span>
+    <span class="tag cyan">S.66C IT Act</span>
+  </div>
+  <div class="hero-img"><img src="../og/igrs114-sim-swap.png" alt="SIM Swap Fraud Investigation — IGRS" width="100%"></div>
+
+  <p>SIM swap fraud is deceptively simple — a criminal convinces a telecom operator to hand over a victim's phone number, and instantly they receive every OTP from their bank, UPI, Demat, email, Aadhaar, and IT department. The victim's phone goes silent. Their financial life is drained before they realise what happened. In 2024, IDCARE reported a <strong>240% surge in SIM swap cases globally</strong>, with 90% occurring without any victim interaction. India, with its Aadhaar-linked telecom ecosystem, has unique attack vectors that demand a specific investigation methodology.</p>
+
+  <h2>How SIM Swap Fraud Works in India: 4 Attack Vectors</h2>
+
+  <table>
+    <tr><th>Attack Vector</th><th>Method</th><th>Enabler</th></tr>
+    <tr><td>Customer care impersonation</td><td>Criminal calls telecom, claims "lost SIM, need replacement" — provides leaked KYC data (name, DOB, Aadhaar last 4 digits) to pass verification</td><td>Data breaches + dark web KYC data</td></tr>
+    <tr><td>Insider/PoS retailer fraud</td><td>Corrupt telecom franchisee or employee issues duplicate SIM to criminal for ₹5,000–₹50,000 bribe</td><td>Weak franchisee oversight by operators</td></tr>
+    <tr><td>e-KYC Aadhaar biometric abuse</td><td>Criminal uses cloned fingerprint (from sub-registrar leaks, e-KYC scanner traps) to authenticate duplicate SIM via Aadhaar OTP</td><td>Biometric data theft from registrar offices</td></tr>
+    <tr><td>MNP port-out fraud</td><td>Criminal initiates port to different network using stolen UPC code — moves number out of original operator entirely</td><td>Stolen UPC + porting OTP interception</td></tr>
+  </table>
+
+  <div class="callout red">
+    <p><strong>Post-swap impact:</strong> Victim receives no signal. Attacker intercepts OTPs from bank, UPI (PhonePe/GPay/Paytm), Demat account, mutual funds, email 2FA, Aadhaar OTP, IT department refunds — complete digital identity takeover within minutes.</p>
+  </div>
+
+  <h2>TRAI Regulations: What Investigators Must Know</h2>
+
+  <table>
+    <tr><th>Regulation</th><th>Detail</th><th>Impact on Fraud</th></tr>
+    <tr><td>TRAI MNP Regulations 2009 (amended 2019, 2025)</td><td>Governs Mobile Number Portability process</td><td>Primary legal framework for port-out fraud cases</td></tr>
+    <tr><td>Port-out OTP validity</td><td>Reduced to 4 hours (from 24 hours post-2019 fraud spike)</td><td>Shorter window for criminals to exploit stolen UPC</td></tr>
+    <tr><td>7-day SIM-to-port cooling period (July 2025)</td><td>If new SIM issued, same number cannot be ported for 7 days</td><td>Closes the "get new SIM → immediately port" attack chain</td></tr>
+    <tr><td>DoT SIM reissuance directive (Aug 2023)</td><td>Biometric verification mandatory for all duplicate SIM requests</td><td>Raises bar for customer care impersonation</td></tr>
+    <tr><td>Max 9 SIMs per Aadhaar</td><td>TAFCOP portal tracks all SIMs linked to one Aadhaar</td><td>Detection tool for fraudulent SIM issuance</td></tr>
+    <tr><td>DoT Sanchar Saathi</td><td>Citizens can report fraudulent calls/SMS, block unknown SIMs</td><td>First-response platform for victims</td></tr>
+  </table>
+
+  <h2>Investigation Workflow: Step-by-Step</h2>
+
+  <h3>Step 1 — Immediate Victim Actions (Time-critical)</h3>
+  <p>The first 2 hours determine whether funds can be recovered:</p>
+  <table>
+    <tr><th>Action</th><th>How</th><th>Why</th></tr>
+    <tr><td>Block SIM at telecom</td><td>Call operator's helpline from alternate number. Airtel: 121, Jio: 198, Vi: 199, BSNL: 1503</td><td>Stop further OTP interception</td></tr>
+    <tr><td>Freeze banking + UPI</td><td>Call bank helpline — freeze all digital channels, cards, UPI. Demat: call DP helpline.</td><td>Stop fund transfers using stolen OTPs</td></tr>
+    <tr><td>Lock Aadhaar biometrics</td><td>uidai.gov.in → "Lock Biometrics" — prevents new SIM issuance using fingerprint</td><td>Prevent secondary SIM issuance</td></tr>
+    <tr><td>Report on 1930 / NCRP</td><td>cybercrime.gov.in — NCRP complaint for I4C emergency freeze</td><td>24-hour window for I4C to freeze destination accounts</td></tr>
+    <tr><td>TAFCOP check</td><td>tafcop.sancharsaathi.gov.in — see all SIMs on your Aadhaar, report unknown ones</td><td>Identify fraudulent SIMs for complaint</td></tr>
+  </table>
+
+  <h3>Step 2 — S.94 BNSS to Telecom Nodal Officer</h3>
+  <div class="callout amber">
+    <p><strong>Critical notice target:</strong> Every telecom operator has a designated Nodal Officer for legal/LEA requests. Unlike routine customer care, Nodal Officers have backend access to SIM issuance logs, Aadhaar authentication records, PoS retailer details, and IMEI change logs.</p>
+  </div>
+  <table>
+    <tr><th>Data to Request</th><th>Relevance</th></tr>
+    <tr><td>SIM issuance log for victim's number</td><td>Date/time of fraudulent SIM issuance, PoS retailer code, operator ID, location</td></tr>
+    <tr><td>Aadhaar authentication log</td><td>Which biometric/OTP was used to authenticate SIM issuance — if cloned biometric used, forensic gold</td></tr>
+    <tr><td>UPC generation log (MNP cases)</td><td>When/where UPC was generated, IP of request</td></tr>
+    <tr><td>PoS retailer details</td><td>Name, address, license number, CCTV footage request of retailer where SIM issued</td></tr>
+    <tr><td>IMEI history for the number</td><td>All IMEIs that have used the number — attacker's device IMEI is key attribution lead</td></tr>
+    <tr><td>Call/SMS logs post-swap</td><td>All OTPs received by attacker's SIM — banking, UPI, email 2FA — timeline of exploitation</td></tr>
+    <tr><td>Incoming call log of attacker's number</td><td>If attacker called victim before swap — social engineering pre-call trace</td></tr>
+  </table>
+
+  <h3>Step 3 — Bank + Payment Platform Evidence</h3>
+  <table>
+    <tr><th>Evidence</th><th>Source</th><th>Instrument</th></tr>
+    <tr><td>IP log of unauthorised transactions</td><td>Bank's fraud team</td><td>S.94 BNSS to bank nodal officer</td></tr>
+    <tr><td>Device fingerprint (device ID, OS)</td><td>Banking app / UPI app logs</td><td>S.94 BNSS to bank + NPCI</td></tr>
+    <tr><td>UPI transaction log</td><td>NPCI + beneficiary bank</td><td>S.94 BNSS to NPCI + bank</td></tr>
+    <tr><td>Mule account KYC</td><td>Destination bank</td><td>S.94 BNSS — standard mule chain</td></tr>
+    <tr><td>I4C emergency freeze</td><td>CFCFRMS portal (1930)</td><td>24-hour critical window</td></tr>
+  </table>
+
+  <h3>Step 4 — PoS Retailer Investigation (Insider Fraud)</h3>
+  <p>When SIM was issued at a physical retailer (most common in India), the PoS retailer is the primary accused or material witness:</p>
+  <table>
+    <tr><th>Action</th><th>Detail</th></tr>
+    <tr><td>CCTV seizure</td><td>Warrant for CCTV footage of PoS store — shows who presented KYC documents for SIM issuance</td></tr>
+    <tr><td>KYC document forensic</td><td>Physical/digital KYC submitted for SIM — forged Aadhaar/photo ID → forensic examination</td></tr>
+    <tr><td>Retailer's Aadhaar authentication log</td><td>Via S.94 BNSS to UIDAI — which biometric was used for KYC authentication</td></tr>
+    <tr><td>Retailer IMEI</td><td>Device used by retailer for EKYC authentication — corroborates retailer's presence</td></tr>
+    <tr><td>Retailer communication records</td><td>CDR of retailer's personal number — did they communicate with criminal before/after? Classic insider coordination pattern</td></tr>
+  </table>
+
+  <h2>Legal Sections</h2>
+  <table>
+    <tr><th>Section</th><th>Application</th><th>Penalty</th></tr>
+    <tr><td>S.66C IT Act 2000</td><td>Identity theft using electronic means (SIM swap = identity theft of subscriber identity)</td><td>Up to 3 years + ₹1L fine</td></tr>
+    <tr><td>S.66D IT Act 2000</td><td>Cheating by personation using computer resource (OTP interception for banking)</td><td>Up to 3 years + ₹1L fine</td></tr>
+    <tr><td>S.319 BNS 2023</td><td>Cheating by personation (impersonating subscriber to telecom)</td><td>Up to 5 years + fine</td></tr>
+    <tr><td>S.318 BNS 2023</td><td>Cheating (financial fraud enabled by SIM swap)</td><td>Up to 7 years + fine</td></tr>
+    <tr><td>S.336(4) BNS 2023</td><td>Forgery of electronic records (fake Aadhaar/KYC submitted for SIM)</td><td>Up to 3 years + fine</td></tr>
+    <tr><td>S.321 BNS 2023</td><td>Dishonest misappropriation of property</td><td>Up to 2 years + fine</td></tr>
+    <tr><td>Indian Telegraph Act S.25</td><td>Telecom operator liability for negligent SIM issuance without proper verification</td><td>Regulatory penalty on operator</td></tr>
+    <tr><td>PMLA S.3/4</td><td>If funds layered through multiple accounts post-swap</td><td>Rigorous imprisonment + attachment</td></tr>
+    <tr><td>Prevention of Corruption Act</td><td>For corrupt telecom employee/franchisee accepting bribe for SIM issuance</td><td>Up to 7 years</td></tr>
+    <tr><td>S.63 BSA 2023</td><td>Electronic evidence certificate for telecom logs, bank logs, UIDAI records</td><td>Mandatory for court admissibility</td></tr>
+  </table>
+
+  <h2>TAFCOP & Sanchar Saathi — Investigator's Toolkit</h2>
+  <table>
+    <tr><th>Portal</th><th>URL</th><th>Use</th></tr>
+    <tr><td>TAFCOP</td><td>tafcop.sancharsaathi.gov.in</td><td>Check all SIMs registered on victim's Aadhaar. Identify fraudulent SIMs. Report for deactivation.</td></tr>
+    <tr><td>Sanchar Saathi</td><td>sancharsaathi.gov.in</td><td>Report suspected fraudulent calls/SMS. Block/unblock SIMs. Lost phone block. IMEI check.</td></tr>
+    <tr><td>TRAI complaint</td><td>1909 or trai.gov.in</td><td>Regulatory complaint against telecom for negligent SIM issuance</td></tr>
+    <tr><td>UIDAI Aadhaar services</td><td>uidai.gov.in</td><td>Lock/unlock biometrics. Check authentication history. Verify Aadhaar usage log.</td></tr>
+    <tr><td>DoT CEIR</td><td>ceir.gov.in</td><td>Block/unblock IMEI. Check if attacker's device IMEI is blacklisted. Cross-reference device used post-swap.</td></tr>
+  </table>
+
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-block">
+    <div class="faq-q">What is SIM swap fraud and how does it work in India?</div>
+    <div class="faq-a">Criminal convinces telecom to issue new SIM for victim's number — via social engineering, corrupt employee bribe (₹5K–₹50K), cloned Aadhaar biometric, or MNP port-out. Post-swap: all OTPs (bank, UPI, Demat, email) go to attacker. Victim's phone goes silent. Account drained.</div>
+  </div>
+  <div class="faq-block">
+    <div class="faq-q">What should investigators request via S.94 BNSS?</div>
+    <div class="faq-a">From telecom nodal officer: SIM issuance log, Aadhaar authentication log, PoS retailer details + CCTV, UPC generation log (MNP cases), IMEI history, post-swap OTP SMS log. From bank: IP log, device fingerprint, UPI transaction chain. All responses need S.63 BSA 2023 certificate.</div>
+  </div>
+  <div class="faq-block">
+    <div class="faq-q">What is the TRAI 7-day rule?</div>
+    <div class="faq-a">From July 2025 — if new SIM issued for a number, that number cannot be ported to another network for 7 days. Closes the "new SIM → immediate port-out" attack chain that criminals used to evade investigation by moving to a different operator immediately after SIM swap.</div>
+  </div>
+  <div class="faq-block">
+    <div class="faq-q">Which legal sections apply to SIM swap fraud?</div>
+    <div class="faq-a">S.66C IT Act (identity theft), S.66D IT Act (personation using computer), S.319 BNS (cheating by personation), S.318 BNS (cheating), S.336(4) BNS (forgery of electronic records for fake KYC). Corrupt telecom employee: Prevention of Corruption Act. PMLA if laundering established.</div>
+  </div>
+
+  <h2>Related Resources</h2>
+  <div class="related-grid">
+    <a class="related-card" href="igrs-111-digital-arrest-scam-investigation.html">
+      <div class="rc-cat">CASE STUDY</div>
+      <div class="rc-title">Digital Arrest Investigation — VoIP + Mule Chain</div>
+    </a>
+    <a class="related-card" href="../playbooks.html">
+      <div class="rc-cat">SOP</div>
+      <div class="rc-title">Mule Account Investigation Playbook</div>
+    </a>
+    <a class="related-card" href="../cyberlaw.html">
+      <div class="rc-cat">REFERENCE</div>
+      <div class="rc-title">IT Act + BNS + BNSS Full Legal Reference</div>
+    </a>
+  </div>
+</div>
+<footer class="igrs-ftr"><div class="ftr-inner">
+  <div class="ftr-links"><a href="../about.html">About</a><a href="../contact.html">Contact</a><a href="../privacy-policy.html">Privacy</a><a href="../disclaimer.html">Disclaimer</a></div>
+  <div>&copy; 2026 IGRS — Intel Grid Research Station</div>
+</div></footer>
+</body></html>
