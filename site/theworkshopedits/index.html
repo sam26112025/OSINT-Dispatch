@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Networking Bingo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#12203D;
+    --navy-panel:#1B2C52;
+    --navy-panel-2:#223868;
+    --gold:#E8B54D;
+    --gold-dim:#8A6C2E;
+    --cream:#F6F1E4;
+    --coral:#E2604F;
+    --teal:#33AC98;
+    --line:rgba(246,241,228,0.12);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  html{ height:100%; }
+  body{
+    background: radial-gradient(circle at 50% -10%, #1c3161 0%, var(--navy) 55%);
+    color:var(--cream);
+    font-family:'Work Sans', sans-serif;
+    height:100dvh;
+    width:100vw;
+    overflow:hidden;
+    padding:min(2vh,14px) 14px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:min(1.4vh,10px);
+  }
+
+  .marquee{
+    position:relative;
+    width:100%;
+    max-width:640px;
+    flex:0 0 auto;
+    text-align:center;
+    padding:min(1.6vh,14px) 14px min(1.2vh,10px);
+    border-radius:14px;
+    background:var(--navy-panel);
+    border:2px solid var(--gold-dim);
+    box-shadow:0 10px 30px rgba(0,0,0,0.35);
+  }
+  .marquee .bulbs{
+    position:absolute; left:12px; right:12px; top:6px;
+    display:flex; justify-content:space-between;
+  }
+  .marquee .bulbs.bottom{ top:auto; bottom:6px; }
+  .bulbs span{
+    width:5px;height:5px;border-radius:50%;
+    background:var(--gold);
+    box-shadow:0 0 6px 1px rgba(232,181,77,0.7);
+    animation:twinkle 2.4s ease-in-out infinite;
+  }
+  .bulbs span:nth-child(odd){animation-delay:1.2s;}
+  @keyframes twinkle{ 0%,100%{opacity:1;} 50%{opacity:0.25;} }
+  .marquee h1{
+    font-family:'Bungee', sans-serif;
+    font-size:clamp(1.2rem, 4.6vh, 2rem);
+    letter-spacing:1.5px;
+    margin:min(1.2vh,10px) 0 4px;
+    color:var(--gold);
+    text-shadow:0 0 18px rgba(232,181,77,0.35);
+  }
+  .marquee p{ margin:0; font-size:clamp(0.72rem,1.9vh,0.88rem); color:rgba(246,241,228,0.72); }
+  .marquee .sub{ margin-top:5px; font-size:clamp(0.64rem,1.6vh,0.75rem); color:rgba(246,241,228,0.5); }
+
+  .winners-bar{
+    width:100%; max-width:640px;
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:var(--navy-panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:6px 10px;
+  }
+  .winners-bar.empty{ display:none; }
+  .winners-label{
+    font-size:clamp(0.7rem,1.8vh,0.82rem);
+    flex:0 0 auto;
+    color:var(--gold);
+    font-weight:700;
+  }
+  .winners-track{
+    display:flex;
+    gap:6px;
+    overflow-x:auto;
+    flex:1 1 auto;
+    scrollbar-width:none;
+  }
+  .winners-track::-webkit-scrollbar{ display:none; }
+  .winner-chip{
+    flex:0 0 auto;
+    background:rgba(232,181,77,0.14);
+    border:1px solid var(--gold-dim);
+    color:var(--cream);
+    border-radius:14px;
+    padding:3px 10px;
+    font-size:clamp(0.62rem,1.5vh,0.72rem);
+    white-space:nowrap;
+  }
+  .winner-chip b{ color:var(--gold); }
+
+  .progress-wrap{
+    width:100%; max-width:640px;
+    flex:0 0 auto;
+  }
+  .progress-label{
+    display:flex; justify-content:space-between;
+    font-size:clamp(0.66rem,1.7vh,0.78rem); color:rgba(246,241,228,0.6);
+    margin-bottom:5px;
+  }
+  .progress-bar{
+    width:100%; height:7px; border-radius:6px;
+    background:rgba(246,241,228,0.1);
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%; background:var(--teal);
+    width:0%; transition:width 0.35s ease;
+  }
+
+  .panel{
+    background:var(--navy-panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:min(1.6vh,14px);
+    width:100%;
+    max-width:640px;
+    flex:1 1 auto;
+    min-height:0;
+    display:flex;
+    flex-direction:column;
+    gap:min(1.2vh,10px);
+  }
+
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    grid-template-rows:repeat(4,1fr);
+    gap:min(1vh,8px);
+    flex:1 1 auto;
+    min-height:0;
+  }
+  .cell{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:var(--navy-panel-2);
+    border:1px solid var(--line);
+    border-radius:10px;
+    font-size:clamp(0.56rem, 1.5vh, 0.76rem);
+    font-weight:600;
+    line-height:1.2;
+    color:var(--cream);
+    padding:min(1vh,8px) min(0.8vh,6px);
+    cursor:pointer;
+    user-select:none;
+    transition:transform 0.1s ease, background 0.15s ease;
+    position:relative;
+    min-height:0;
+    overflow:hidden;
+  }
+  .cell:hover{ transform:translateY(-1px); }
+  .cell.marked{
+    background:var(--teal);
+    color:#08221d;
+    border-color:var(--teal);
+  }
+  .cell .name-tag{
+    position:absolute;
+    bottom:3px; left:3px; right:3px;
+    font-size:0.58rem;
+    font-weight:700;
+    color:#08221d;
+    opacity:0.85;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  .btn-row{ display:flex; gap:10px; justify-content:center; flex:0 0 auto; flex-wrap:wrap; }
+  button{
+    font-family:'Work Sans', sans-serif;
+    font-weight:600; font-size:clamp(0.76rem,1.9vh,0.88rem);
+    border:none; border-radius:10px;
+    padding:min(1.2vh,10px) 16px; cursor:pointer;
+    transition:transform 0.12s ease, filter 0.12s ease;
+  }
+  button:active{ transform:scale(0.96); }
+  button:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+  .btn-primary{ background:var(--gold); color:#22190a; }
+  .btn-primary:hover{ filter:brightness(1.08); }
+  .btn-secondary{ background:transparent; color:var(--cream); border:1px solid var(--line); }
+  .btn-secondary:hover{ border-color:var(--gold-dim); }
+
+  .connections{
+    width:100%; max-width:640px;
+    flex:0 1 auto;
+    min-height:0;
+    overflow-y:auto;
+  }
+  .connections h3{
+    font-size:clamp(0.64rem,1.6vh,0.74rem); letter-spacing:1.2px; text-transform:uppercase;
+    color:rgba(246,241,228,0.5); margin:0 0 6px;
+    text-align:center;
+  }
+  .chip-list{
+    display:flex; flex-wrap:wrap; gap:6px; justify-content:center;
+  }
+  .chip{
+    background:var(--navy-panel-2);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:4px 10px;
+    font-size:clamp(0.66rem,1.6vh,0.76rem);
+    color:var(--cream);
+  }
+  .chip b{ color:var(--gold); }
+
+  #hostView{
+    position:fixed; inset:0;
+    background: radial-gradient(circle at 50% -10%, #1c3161 0%, var(--navy) 55%);
+    z-index:55;
+    display:flex; align-items:center; justify-content:center;
+    padding:20px;
+  }
+  #hostView.hidden{ display:none; }
+  .host-panel{
+    width:100%; max-width:520px;
+    max-height:90vh;
+    display:flex; flex-direction:column;
+    background:var(--navy-panel);
+    border:2px solid var(--gold);
+    border-radius:18px;
+    padding:24px 22px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  }
+  .host-panel h1{
+    font-family:'Bungee', sans-serif;
+    color:var(--gold);
+    font-size:1.5rem;
+    text-align:center;
+    margin:0 0 6px;
+  }
+  .host-panel > p{
+    text-align:center;
+    color:rgba(246,241,228,0.65);
+    font-size:0.85rem;
+    margin:0 0 16px;
+  }
+  .host-list{
+    flex:1 1 auto;
+    overflow-y:auto;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .host-empty{
+    text-align:center;
+    color:rgba(246,241,228,0.4);
+    font-size:0.85rem;
+    padding:20px 10px;
+  }
+  .host-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:var(--navy-panel-2);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:10px 14px;
+  }
+  .host-row .rank{
+    font-family:'Bungee', sans-serif;
+    color:var(--gold);
+    font-size:1.1rem;
+    min-width:32px;
+  }
+  .host-row .info{ flex:1 1 auto; }
+  .host-row .info .name{ font-weight:700; font-size:0.95rem; }
+  .host-row .info .time{ font-size:0.72rem; color:rgba(246,241,228,0.5); }
+
+  #winOverlay, #nameOverlay, #modalOverlay{
+    position:fixed; inset:0;
+    background:rgba(10,15,30,0.9);
+    display:flex; align-items:center; justify-content:center;
+    z-index:50; padding:20px;
+  }
+  #winOverlay.hidden, #nameOverlay.hidden, #modalOverlay.hidden{ display:none; }
+  .win-card{
+    background:var(--navy-panel);
+    border:2px solid var(--gold);
+    border-radius:18px;
+    padding:36px 30px;
+    text-align:center;
+    max-width:360px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  }
+  .win-card h2{
+    font-family:'Bungee', sans-serif;
+    color:var(--gold);
+    font-size:2.2rem;
+    margin:0 0 10px;
+    text-shadow:0 0 20px rgba(232,181,77,0.5);
+  }
+  .win-card p{ color:rgba(246,241,228,0.75); margin-bottom:20px; font-size:0.9rem; }
+  .name-card input{
+    width:100%;
+    font-family:'Work Sans', sans-serif;
+    font-size:1rem;
+    padding:12px 14px;
+    border-radius:10px;
+    border:1px solid var(--line);
+    background:var(--navy-panel-2);
+    color:var(--cream);
+    margin-bottom:14px;
+    outline:none;
+  }
+  .name-card input:focus{ border-color:var(--gold); }
+  .name-card input::placeholder{ color:rgba(246,241,228,0.4); }
+
+  .confetti{
+    position:fixed; top:-10px; width:8px; height:14px; z-index:60;
+    opacity:0.95; animation-name:fall; animation-timing-function:linear;
+  }
+  @keyframes fall{ to{ transform:translateY(105vh) rotate(360deg); opacity:0.9; } }
+</style>
+</head>
+<body>
+
+  <header class="marquee">
+    <div class="bulbs"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <h1>NETWORKING BINGO</h1>
+    <p>Milo, Baat Karo, Box Bharo!</p>
+    <div class="sub">Jis box ka prompt match kare, us insaan se milkar box tap karo</div>
+    <div class="bulbs bottom"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  </header>
+
+  <div class="winners-bar empty" id="winnersBar">
+    <span class="winners-label">🏆 Winners</span>
+    <div class="winners-track" id="winnersTrack"></div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span id="progressText">0 / 16 complete</span>
+      <span>Poora card bharo aur jeeto</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <section class="panel">
+    <div class="card-grid" id="cardGrid"></div>
+    <div class="btn-row">
+      <button class="btn-secondary" id="resetBtn">Naya Card</button>
+    </div>
+  </section>
+
+  <div class="connections" id="connectionsWrap" style="display:none;">
+    <h3>Aapke Connections</h3>
+    <div class="chip-list" id="chipList"></div>
+  </div>
+
+  <div id="winOverlay" class="hidden">
+    <div class="win-card">
+      <h2>BINGO!</h2>
+      <p id="winMessage">Aapne pura card complete kar liya!</p>
+      <button class="btn-primary" id="closeWinBtn">Card Dekho</button>
+    </div>
+  </div>
+
+  <div id="nameOverlay" class="hidden">
+    <div class="win-card name-card">
+      <h2 style="font-size:1.6rem;">Khelne Se Pehle</h2>
+      <p>Apna naam daalo, taaki winner pata chal sake</p>
+      <input type="text" id="nameInput" placeholder="Aapka naam" maxlength="30" autocomplete="off">
+      <button class="btn-primary" id="startBtn">Shuru Karo</button>
+      <div style="margin-top:14px; padding-top:14px; border-top:1px dashed var(--line);">
+        <button class="btn-secondary" id="hostBtn" style="width:100%;">Main Host Hoon — Sirf Winners Dekhna Hai</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="hostView" class="hidden">
+    <div class="host-panel">
+      <h1>🏆 Live Winners</h1>
+      <p id="hostCount">0 logo ne Bingo complete kiya</p>
+      <div class="host-list" id="hostList">
+        <p class="host-empty">Abhi tak koi winner nahi. Jaise hi koi poora card complete karega, yaha turant dikhega.</p>
+      </div>
+      <div class="btn-row" style="margin-top:14px;">
+        <button class="btn-secondary" id="hostResetBtn">Winners List Reset Karo</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modalOverlay" class="hidden">
+    <div class="win-card name-card">
+      <h2 id="modalTitle" style="font-size:1.4rem;">Title</h2>
+      <p id="modalMessage">Message</p>
+      <div id="modalInputWrap" style="display:none;">
+        <input type="text" id="modalInput" placeholder="Naam" maxlength="30" autocomplete="off">
+      </div>
+      <div class="btn-row">
+        <button class="btn-secondary" id="modalCancelBtn">Cancel</button>
+        <button class="btn-primary" id="modalConfirmBtn">OK</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function(){
+  // ===== PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE =====
+  const API_URL = "https://script.google.com/macros/s/AKfycbyyk7qJvuHtLJjio2XFtC1oE71pZAqkp6kQmJ8msexavklQJ8a7Nmhfoplj6VfqJ83pTA/exec";
+  // ============================================================
+
+  const PROMPTS = [
+    "Jo apna business sirf Instagram/Reels se chalata/chalati hai",
+    "Jisne bina kisi investor ke apna business khada kiya",
+    "Jo apne products/services ke liye khud content shoot-edit karta/karti hai",
+    "Jo abhi tak apna business job/college ke saath side mein chala raha/rahi hai",
+    "Jiske paas repeat/loyal customers ka ek group hai",
+    "Jisne kisi local market ya exhibition mein stall lagaya ho",
+    "Jo WhatsApp se hi apne zyadatar orders leta/leti hai",
+    "Jisne kisi dusre creator/business ke saath collab ya barter kiya ho",
+    "Jo apne business ka packaging/branding khud design karta/karti hai",
+    "Jisne pichle 3 mahine mein koi naya product/service launch kiya",
+    "Jo kisi ek viral reel/trend se apna business grow kar chuka/chuki hai",
+    "Jiska business unke kisi hobby se shuru hua tha",
+    "Jo apne pricing khud decide karta/karti hai",
+    "Jisne kabhi bina ads ke customer paaya ho",
+    "Jo apna business kisi family member ke saath milke chalata/chalati hai",
+    "Jo agle 6 mahine mein apni team badhane wala/wali hai"
+  ];
+
+  let card = null; // in-memory only: { order, marked, names, playerName, winRecorded }
+  let winners = [];
+
+  let modalResolver = null;
+
+  function openModal(opts){
+    document.getElementById('modalTitle').textContent = opts.title || '';
+    document.getElementById('modalMessage').textContent = opts.message || '';
+    const inputWrap = document.getElementById('modalInputWrap');
+    const input = document.getElementById('modalInput');
+    if(opts.showInput){
+      inputWrap.style.display = 'block';
+      input.value = '';
+      setTimeout(()=> input.focus(), 60);
+    } else {
+      inputWrap.style.display = 'none';
+    }
+    document.getElementById('modalConfirmBtn').textContent = opts.confirmText || 'OK';
+    const cancelBtn = document.getElementById('modalCancelBtn');
+    if(opts.cancelText){
+      cancelBtn.style.display = 'inline-block';
+      cancelBtn.textContent = opts.cancelText;
+    } else {
+      cancelBtn.style.display = 'none';
+    }
+    document.getElementById('modalOverlay').classList.remove('hidden');
+    return new Promise((resolve)=>{ modalResolver = resolve; });
+  }
+
+  function closeModal(result){
+    document.getElementById('modalOverlay').classList.add('hidden');
+    if(modalResolver){
+      const r = modalResolver;
+      modalResolver = null;
+      r(result);
+    }
+  }
+
+  function wireModalButtons(){
+    document.getElementById('modalConfirmBtn').addEventListener('click', ()=>{
+      const inputWrap = document.getElementById('modalInputWrap');
+      if(inputWrap.style.display === 'block'){
+        const val = document.getElementById('modalInput').value.trim();
+        closeModal(val || null);
+      } else {
+        closeModal(true);
+      }
+    });
+    document.getElementById('modalCancelBtn').addEventListener('click', ()=> closeModal(null));
+    document.getElementById('modalInput').addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter') document.getElementById('modalConfirmBtn').click();
+    });
+  }
+
+  function shuffle(arr){
+    for(let i=arr.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [arr[i],arr[j]] = [arr[j],arr[i]];
+    }
+    return arr;
+  }
+
+  function makeCard(){
+    return {
+      order: shuffle(PROMPTS.map((_,i)=>i)),
+      marked: new Array(16).fill(false),
+      names: new Array(16).fill(""),
+      playerName: "",
+      winRecorded: false
+    };
+  }
+
+  function apiReady(){
+    return API_URL && API_URL.indexOf("PASTE") === -1 && API_URL.indexOf("http") === 0;
+  }
+
+  async function fetchWinners(){
+    if(!apiReady()) return [];
+    try{
+      const res = await fetch(API_URL, { method: "GET" });
+      const data = await res.json();
+      return data.winners || [];
+    }catch(e){
+      return winners; // keep last known list if network hiccups
+    }
+  }
+
+  async function registerWinner(name){
+    if(!apiReady()) return;
+    try{
+      const url = API_URL + "?action=add&name=" + encodeURIComponent(name);
+      const res = await fetch(url, { method: "GET" });
+      const data = await res.json();
+      winners = data.winners || winners;
+    }catch(e){
+      // no network — winner still recorded locally on this device below
+    }
+  }
+
+  function renderHostList(){
+    const list = document.getElementById('hostList');
+    const count = document.getElementById('hostCount');
+    count.textContent = winners.length + ' logo ne Bingo complete kiya';
+    if(!winners.length){
+      list.innerHTML = '<p class="host-empty">Abhi tak koi winner nahi. Jaise hi koi poora card complete karega, yaha turant dikhega.</p>';
+      return;
+    }
+    list.innerHTML = '';
+    winners.forEach((w, i)=>{
+      const row = document.createElement('div');
+      row.className = 'host-row';
+      let timeStr = '';
+      try{ timeStr = new Date(w.time).toLocaleTimeString('en-IN', { hour:'2-digit', minute:'2-digit' }); }catch(e){}
+      row.innerHTML = '<div class="rank">#' + (i+1) + '</div><div class="info"><div class="name">' + w.name + '</div><div class="time">' + timeStr + '</div></div>';
+      list.appendChild(row);
+    });
+  }
+
+  async function resetWinners(){
+    const proceed = await openModal({
+      title: 'Winners Reset Karein?',
+      message: 'Poori winners list mit jayegi. Naya round shuru karne ke liye hi ye karo.',
+      confirmText: 'Haan, Reset Karo',
+      cancelText: 'Cancel'
+    });
+    if(!proceed) return;
+    if(apiReady()){
+      try{
+        const res = await fetch(API_URL + '?action=reset', { method: 'GET' });
+        const data = await res.json();
+        winners = data.winners || [];
+      }catch(e){}
+    }
+    renderHostList();
+    renderWinnersBar();
+  }
+
+  function renderWinnersBar(){
+    const bar = document.getElementById('winnersBar');
+    const track = document.getElementById('winnersTrack');
+    if(!winners.length){
+      bar.classList.add('empty');
+      return;
+    }
+    bar.classList.remove('empty');
+    track.innerHTML = '';
+    winners.forEach((w, i)=>{
+      const chip = document.createElement('div');
+      chip.className = 'winner-chip';
+      chip.innerHTML = '<b>#' + (i+1) + '</b> ' + w.name;
+      track.appendChild(chip);
+    });
+  }
+
+  function renderCard(){
+    const grid = document.getElementById('cardGrid');
+    grid.innerHTML = '';
+    card.order.forEach((promptIdx, cellIdx)=>{
+      const div = document.createElement('div');
+      const isMarked = card.marked[cellIdx];
+      div.className = 'cell' + (isMarked ? ' marked' : '');
+      div.textContent = PROMPTS[promptIdx];
+      if(isMarked && card.names[cellIdx]){
+        const tag = document.createElement('span');
+        tag.className = 'name-tag';
+        tag.textContent = '✓ ' + card.names[cellIdx];
+        div.appendChild(tag);
+      }
+      div.addEventListener('click', ()=> toggleCell(cellIdx));
+      grid.appendChild(div);
+    });
+    renderProgress();
+    renderConnections();
+  }
+
+  async function toggleCell(cellIdx){
+    if(card.marked[cellIdx]){
+      const proceed = await openModal({
+        title: 'Unmark karein?',
+        message: '"' + card.names[cellIdx] + '" ko is box se hataana hai?',
+        confirmText: 'Haan, Hatao',
+        cancelText: 'Nahi'
+      });
+      if(proceed){
+        card.marked[cellIdx] = false;
+        card.names[cellIdx] = "";
+        renderCard();
+      }
+      return;
+    }
+    const name = await openModal({
+      title: 'Kis se mile?',
+      message: 'Us insaan ka naam daalo jo is prompt se match karta hai',
+      showInput: true,
+      confirmText: 'Mark Karo',
+      cancelText: 'Cancel'
+    });
+    if(!name) return;
+    card.marked[cellIdx] = true;
+    card.names[cellIdx] = name;
+    renderCard();
+    checkWin();
+  }
+
+  function renderProgress(){
+    const total = card.marked.length;
+    const done = card.marked.filter(Boolean).length;
+    document.getElementById('progressText').textContent = done + ' / ' + total + ' complete';
+    document.getElementById('progressFill').style.width = ((done/total)*100) + '%';
+  }
+
+  function renderConnections(){
+    const wrap = document.getElementById('connectionsWrap');
+    const list = document.getElementById('chipList');
+    const entries = [];
+    card.marked.forEach((m, i)=>{
+      if(m && card.names[i]) entries.push(card.names[i]);
+    });
+    if(entries.length === 0){
+      wrap.style.display = 'none';
+      return;
+    }
+    wrap.style.display = 'block';
+    list.innerHTML = '';
+    entries.forEach(n=>{
+      const chip = document.createElement('div');
+      chip.className = 'chip';
+      chip.innerHTML = '<b>•</b> ' + n;
+      list.appendChild(chip);
+    });
+  }
+
+  async function checkWin(){
+    if(card.marked.every(Boolean) && !card.winRecorded){
+      card.winRecorded = true;
+      await registerWinner(card.playerName);
+      renderWinnersBar();
+      const rank = winners.findIndex(w => w.name === card.playerName) + 1;
+      const rankText = rank > 0 ? ('Aap #' + rank + ' winner ho.') : '';
+      document.getElementById('winMessage').textContent =
+        card.playerName + ', aapne pura card complete kar liya! ' + rankText;
+      document.getElementById('winOverlay').classList.remove('hidden');
+      burstConfetti();
+    }
+  }
+
+  function burstConfetti(){
+    const colors = ['#E8B54D','#E2604F','#33AC98','#F6F1E4'];
+    for(let i=0;i<60;i++){
+      const el = document.createElement('div');
+      el.className = 'confetti';
+      el.style.left = Math.random()*100 + 'vw';
+      el.style.background = colors[Math.floor(Math.random()*colors.length)];
+      el.style.animationDuration = (2.2 + Math.random()*1.4) + 's';
+      el.style.animationDelay = (Math.random()*0.4) + 's';
+      document.body.appendChild(el);
+      setTimeout(()=> el.remove(), 4200);
+    }
+  }
+
+  async function newCard(){
+    const proceed = await openModal({
+      title: 'Naya Card?',
+      message: 'Purana card aur connections mit jayenge.',
+      confirmText: 'Haan, Naya Banao',
+      cancelText: 'Cancel'
+    });
+    if(!proceed) return;
+    const keepName = card.playerName;
+    card = makeCard();
+    card.playerName = keepName;
+    document.getElementById('winOverlay').classList.add('hidden');
+    renderCard();
+  }
+
+  function showNameOverlay(){
+    document.getElementById('nameOverlay').classList.remove('hidden');
+    const input = document.getElementById('nameInput');
+    setTimeout(()=> input.focus(), 50);
+  }
+
+  function submitName(){
+    const input = document.getElementById('nameInput');
+    const name = input.value.trim();
+    if(!name){ input.focus(); return; }
+    card.playerName = name;
+    document.getElementById('nameOverlay').classList.add('hidden');
+    renderCard();
+  }
+
+  let isHostMode = false;
+
+  function enterHostMode(){
+    isHostMode = true;
+    document.getElementById('nameOverlay').classList.add('hidden');
+    document.getElementById('hostView').classList.remove('hidden');
+    renderHostList();
+  }
+
+  async function init(){
+    wireModalButtons();
+    card = makeCard();
+    winners = await fetchWinners();
+    renderWinnersBar();
+    showNameOverlay();
+
+    document.getElementById('startBtn').addEventListener('click', submitName);
+    document.getElementById('nameInput').addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter') submitName();
+    });
+    document.getElementById('hostBtn').addEventListener('click', enterHostMode);
+    document.getElementById('hostResetBtn').addEventListener('click', resetWinners);
+    document.getElementById('resetBtn').addEventListener('click', newCard);
+    document.getElementById('closeWinBtn').addEventListener('click', ()=>{
+      document.getElementById('winOverlay').classList.add('hidden');
+    });
+
+    setInterval(async ()=>{
+      winners = await fetchWinners();
+      renderWinnersBar();
+      if(isHostMode) renderHostList();
+    }, 4000);
+  }
+
+  init();
+})();
+</script>
+
+</body>
+</html>
